@@ -1,0 +1,7 @@
+{
+  "name": "nTireofficeApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
