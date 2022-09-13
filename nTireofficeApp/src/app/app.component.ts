@@ -30,12 +30,13 @@ export class AppComponent {
   list5:boolean;
   list6:boolean;
   CamsList:boolean;
+  pms:boolean;
   user_role:any;
   chkadmin:boolean;
   username:any = window.localStorage.getItem('TUM_USER_NAME');
 
   public salespages = [
-   
+
     {
       title: 'Dashboard',
       url: '/dashboard',
@@ -51,7 +52,7 @@ export class AppComponent {
       url: '/addnewcorporate',
       icon: 'briefcase'
     },
-    
+
     {
       title: 'New Lead-Corporate',
       url: '/newleadcorporate',
@@ -98,10 +99,10 @@ export class AppComponent {
       icon: 'contact'
     },
   ];
-  
+
 
   public cobapages = [
-    
+
     {
       title: 'New Lead-Retail ',
       url: '/coba-new-lead',
@@ -169,7 +170,7 @@ export class AppComponent {
     {
       title: 'Employees',
       url: '/hrmsemployees',
-      icon: 'person'
+      icon: 'person-add'
     },
     {
       title: 'Attendance',
@@ -246,10 +247,10 @@ export class AppComponent {
       url: '/hrmsletterrequest',
       icon: 'document'
     }
-    
+
   ];
 
- 
+
   public erppages=[
     {
       title: 'Physcial Inventory',
@@ -357,43 +358,66 @@ export class AppComponent {
       url: '/vendorsitems',
       icon: 'flame'
     },
-    
-    
-    
-  ]
+  ];
+
+
+  public Property = [
+    {
+      title: 'Dashboard',
+      url: '/hrmsdashboard',
+      icon: 'home'
+    },
+    {
+      title: 'Customer',
+      url: '/hrmsmyprofile',
+      icon: 'people'
+    },
+    {
+      title: 'Employees',
+      url: '/hrmsemployees',
+      icon: 'person-add'
+    },
+    {
+      title: 'Reports',
+      url: '/hrmsemployees',
+      icon: 'create'
+    }
+  ];
+
   showSubmenu: boolean = false;
- 
+
   @ViewChild(IonRouterOutlet) routerOutlet: IonRouterOutlet;
   constructor(private locationAccuracy: LocationAccuracy,
-    private router:Router,
+    private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,private androidPermissions: AndroidPermissions,
-    private statusBar: StatusBar,public alertController: AlertController,private http: HttpClient,public Ipaddressservice:IpaddressService,
+    private statusBar: StatusBar,public alertController: AlertController,private http: HttpClient,
+    public Ipaddressservice: IpaddressService,
     public menuCtrl: MenuController
   ) {
 
     // this.platform.backButton.subscribeWithPriority(0, () => {
-    
+
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
     //     this.routerOutlet.pop();
     //   } else if (this.router.url === '/LoginPage') {
-     
+
     //     navigator['app'].exitApp();
     //   } else {
-      
+
     //     this.logout();
     //   }
     // });
 
     platform.ready().then(() => {
-    
+
       statusBar.styleDefault();
       splashScreen.hide();
 
       androidPermissions.requestPermissions(
         [
           androidPermissions.PERMISSION.RECORD_AUDIO
-         
+
         ]
       );
     });
@@ -403,26 +427,26 @@ export class AppComponent {
           this.splashScreen.hide();
       }, 100);
   }
-    
+
     this.user_name=localStorage.getItem('TUM_USER_NAME');
     this.router.events.subscribe(event => {
       if (event.constructor.name === "NavigationEnd") {
         this.name = (<any>event).url.split("/").slice(-1)[0];
 
         console.log("event.constructor.name :"+event.constructor.name)
-       
-        if(this.name=='login'){
+
+        if(this.name =='login'){
         this.logoutbtn=true;
         //navigator['app'].exitApp();
-       
+
         }
-        else if(this.name==''){
+        else if(this.name ==''){
           this.logoutbtn=true;
         }
         else{
           this.logoutbtn=false;
         }
-     
+
       }
     });
     this.initializeApp();
@@ -439,12 +463,12 @@ export class AppComponent {
         }
       },
       err => {
-       
+
       }
     );
-    
+
   }
-  
+
   ngOnInit(){
     this.user_role  = window.localStorage.getItem('TUM_USER_TYPE');
     console.log(this.user_role);
@@ -454,7 +478,7 @@ export class AppComponent {
   }
 
   ionViewWillEnter(){
-  
+
   }
 
   requestGPSPermission() {
@@ -477,6 +501,7 @@ export class AppComponent {
       }
     });
   }
+
   askToTurnOnGPS() {
     this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
       () => {
@@ -497,17 +522,17 @@ export class AppComponent {
   //     alert('Error getting location' + error);
   //   });
   // }
- 
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleBlackOpaque();
       setTimeout(() => {
         this.splashScreen.hide();
       }, 100);
-      
+
     });
   }
- 
+
   ionViewDidEnter() {
 
     if (this.platform.is('android')) {
@@ -518,54 +543,53 @@ export class AppComponent {
 
       this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
     }
-
-    
   }
- async logout(){
+
+ async logout(): Promise<void>{
     var alert1 = await this.alertController.create({
-     
+
       message: 'Are you sure you want to logout',
       buttons: [
         {
           text: 'No',
           role: 'cancel',
-        
+
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Yes',
-      
+
           handler: () => {
-            
+
           var logout_obj = {
               access_token: localStorage.getItem('token'),
               userid: localStorage.getItem('TUM_USER_ID'),
               usertoken: localStorage.getItem('usertoken'),
 
             };
-           
+
             const header = new Headers();
            header.append("Content-Type", "application/json");
          let options = new HttpHeaders().set('Content-Type', 'application/json');
            this.http.post(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj, {
              headers: options,
            }).subscribe(resp => {
-          
+
             localStorage.clear();
             this.router.navigate(['/login']);
-            
+
        }, error => {
         localStorage.clear();
         this.router.navigate(['/login']);
-        
+
            });
-         
+
           }
         }
       ]
     });
-  
+
     await alert1.present();
   }
   menutoogle(){
@@ -625,6 +649,7 @@ export class AppComponent {
 
   }
 
+
   menutoogle6(){
 
     if(this.list6==true){
@@ -651,17 +676,35 @@ export class AppComponent {
       this.CamsList=true;
     }
   }
+
+
+  menutooglepms(){
+
+    if(this.pms==true){
+      this.pms=false;
+    }
+    else{
+      this.pms=true;
+    }
+
+
+  }
+
+
+
+
+
 //   menutoogle(data){
-    
+
 //     this.showSubmenu = !this.showSubmenu;
 // if(data==5){
 //   this.router.navigateByUrl('/hrmsmyapprovals');
-  
+
 // }
 // else{
 //   this.list=data;
 // }
 //   }
-  
+
 }
 

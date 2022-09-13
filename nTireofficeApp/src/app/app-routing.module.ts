@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -17,10 +17,28 @@ const routes: Routes = [
   },
   // CAMS
   { path: 'dashboardCams',
-   loadChildren:  ()=> import('./Cams_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)},  {
+   loadChildren:  ()=> import('./Cams_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)},
+  {
     path: 'dashboard',
     loadChildren: () => import('./navbar/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+  {
+    path: 'pmscustomer',
+    loadChildren: () => import('./Property_Pages/pmscustomer/pmscustomer.module').then( m => m.PmscustomerPageModule)
+  },
+  {
+    path: 'pmsemployees',
+    loadChildren: () => import('./Property_Pages/pmsemployees/pmsemployees.module').then( m => m.PmsemployeesPageModule)
+  },  {
+    path: 'pmsdashboard',
+    loadChildren: () => import('./Property_Pages/pmsdashboard/pmsdashboard.module').then( m => m.PmsdashboardPageModule)
+  },
+  {
+    path: 'pmsreports',
+    loadChildren: () => import('./Property_Pages/pmsreports/pmsreports.module').then( m => m.PmsreportsPageModule)
+  },
+
+
 
   // { path: 'pending-jobs', loadChildren: './Cams_pages/pending-jobs/pending-jobs.module#PendingJobsPageModule' },
   // { path: 'pending-jobs-tabs', loadChildren: './Cams_pages/pending-jobs-tabs/pending-jobs-tabs.module#PendingJobsTabsPageModule' },
@@ -40,7 +58,7 @@ const routes: Routes = [
   // { path: 'reconciliation-report', loadChildren: './Cams_pages/reconciliation-report/reconciliation-report.module#ReconciliationReportPageModule' },
   // { path: 'department-wise', loadChildren: './Cams_pages/department-wise/department-wise.module#DepartmentWisePageModule' },
   // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' },
-  
+
 
 ];
 
