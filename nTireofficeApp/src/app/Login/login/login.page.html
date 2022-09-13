@@ -7,32 +7,31 @@
     <ion-label class="titlecolor">nTireOffice</ion-label><br><br>
     <ion-label class="titlecolor">v1.2</ion-label>
 </div>
-<div style="padding: 20px;">
-<div style="margin-top: 160px;" class="ion-inputcolor">
-  <ion-item class="ion-inputcolor">
+<div style="padding: 20px; margin-top: 160px;" class="ion-inputcolor">
+
+  <ion-item id="loginInput" style="background-color: #fff;" class="ion-inputcolor">
     <ion-icon name="person"></ion-icon>
     <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
    <!-- <ion-icon name="close" *ngIf="username!=null && username!=''" class="loginicon"  (click)="username=null"></ion-icon>  -->
 
   </ion-item>
-  <ion-item style='margin-top: 10px;'>
+  <ion-item id="loginInput" style='margin-top: 10px;'>
     <ion-icon name="key"></ion-icon>
-      <ion-input type="{{showValue.type}}"  placeholder="Password" [(ngModel)]="password"></ion-input>
+      <ion-input  type="{{showValue.type}}" placeholder="Password" [(ngModel)]="password"></ion-input>
       <!-- <ion-icon name="close" *ngIf="password!=null && password!=''" class="loginicon"  (click)="password=null"></ion-icon> -->
 
       <ion-icon id="showPassword" class="eyeicon" *ngIf="showValue.text=='Hide'" (click)="showPassword()" name="eye"></ion-icon>
       <ion-icon id="showPassword" *ngIf="showValue.text=='Show'" class="eyeicon"(click)="showPassword()" name="eye-off"></ion-icon>
     </ion-item>
+    <br/>
+    <div style="text-align:center;">
+      <ion-button expand="block" (click)="Loginevent()">
+      <!-- <ion-button style="--background:#58db58" class="btncolor" (click)="Loginevent()"> -->
+        Login
+      </ion-button>
+    </div>
 </div>
 </div>
-<br/>
-<div style="text-align:center;">
-  <ion-button style="--background:#58db58" class="btncolor" (click)="Loginevent()">
-    Login
-  </ion-button>
-</div>
-</div>
-
 </div>
 
 </ion-content>
