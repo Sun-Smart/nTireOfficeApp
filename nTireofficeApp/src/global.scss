@@ -708,9 +708,11 @@ height:100% !important;
     margin-top: 12px;
     }
 }
+#loginInput{
+    background-color: #fff;
+}
 .item {
-    background-color:#fff ;
-    
+    background-color:rgb(2,154,222) ;
     // width: 100%;
     // border-color: #ddd;
     // --background-color: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
@@ -719,7 +721,7 @@ height:100% !important;
     // position: relative;
     // z-index: 2;
     // display: block;
-    margin: 0px;
+     margin: 0px;
     // padding: 16px;
     // border-width: 1px;
     // border-style: solid;
