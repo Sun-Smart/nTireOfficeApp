@@ -1,0 +1,204 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Job Completion Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Function</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="function"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Branch</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="branch"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>From Date</ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="fromdate">
+          <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+        </ion-input>
+       
+      </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>To Date</ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="todate" (focusout)="compdateval()">
+          <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+        </ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Status</ion-label>
+        <select [(ngModel)]="Realease_status" class="form-control">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option value="Completed">Completed</option>
+        </select>
+        </ion-col>
+       
+          <!-- </div> -->
+         
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Asset Category</ion-label>
+            <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="getsubCategory(category)">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let item of product; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+              </option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Asset SubCategory</ion-label>
+            <select [(ngModel)]="subCategory" class="form-control" style="width:100%">
+              <option *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">{{item.SUB_CATEGORY_DESC}}
+              </option>
+            </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>PMJobs</ion-label>
+            <select [(ngModel)]="jobs" class="form-control" (change)="requestedJobs()">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option value="MT">PM Jobs</option>
+              <option value="AT">Requested Jobs</option>
+            </select>
+            </ion-col>
+    </ion-row>
+
+    <p style="font-weight: bold;text-align:center">Total Lead : {{responseDatalength}}</p>
+    <ion-card *ngFor="let item1 of responseData1; let i = index" style="background-color:#fff">
+      <ion-grid style="padding: 0px;">
+        <ion-row>
+          <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8"
+            style="background-color: #2e3192!important;color:#fff;padding:12px;">
+            {{item1.pmm_asset_code}} - {{item1.WorkorderNo}}&nbsp;
+          </ion-col>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"
+            style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
+            {{item1.Branch}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Workorder Number
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item1.WorkorderNo}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Asset Category
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item1.Category}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Sub Category
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item1.AssetType}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Status
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item1.Realease_status}}
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Assigned
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
+            {{item1.TUM_USER_NAME}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Criticality
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item1.Criticality}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <a (click)="showmore(i)">
+              <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
+
+              <i id="imageidvalsp{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
+            </a>
+          </ion-col>
+          <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <ion-row>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="font-weight:bold;">
+                Creation Date
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                {{item1.Creation_Date | date:'dd-MMM-yyyy'}}
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+                Asset Type
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                {{item1.AssetType}}
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
+                Assigned To
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">   
+                {{item1.TUM_USER_CODE}} 
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+                PM Duration
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
+                {{item1.amd_maintenance_duration}}
+              </ion-col>
+
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+                Frequency
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
+                {{item1.amd_frequency}}
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+                <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                    style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
+
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button (click)="closecompletejob(item1)" style="--background:#009689" size="full" >Close
+                </ion-button>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button (click)="reopenActionModal(item1)" style="--background:#ff4000" size="full" >Reopen
+                </ion-button>
+              </ion-col>
+            
+            </ion-row>
+          </div>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ 
+   
+ </ion-footer>
+

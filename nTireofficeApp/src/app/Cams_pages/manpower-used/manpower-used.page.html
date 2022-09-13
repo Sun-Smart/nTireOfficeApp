@@ -1,0 +1,97 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset code</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="assetcodetabrefe"></ion-input>
+      </ion-col>
+    </ion-row> 
+
+    <ion-card style="background-color:#fff">
+      <ion-grid style="padding: 0px;">
+        <ion-row>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="background-color: #2e3192!important;color:#fff;padding:12px;">
+            Manpower Used
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
+            <ion-label style="font-weight:bold;display: block;">Skills<span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <select [(ngModel)]="skill" class="form-control" style="width:100%">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let item of manpowerskill; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+              </option>
+            </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
+            <ion-label style="font-weight:bold;display: block;">Employee Reference<span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <select [(ngModel)]="empref" class="form-control" style="width:100%">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let item of manpowerrefdetail; let i = index" [ngValue]="item.tum_user_id">{{item.tum_user_code}}-{{item.tum_user_name}}
+              </option>
+            </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="display: inline-block;">
+              <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2" placeholder="HH:" [(ngModel)]="nomhours" >
+              <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2" placeholder="MM" [(ngModel)]="nomhoursm" >
+              
+          </ion-col>
+
+          <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12"  >
+            <ion-button (click)="manpowerinsert()" text-center style="--background:#009689" size="small">Save
+            </ion-button>
+        </ion-col>  -->
+      </ion-row>
+        <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
+            <ion-button (click)="manpowerinsert()" [disabled]="(skill=='<< Select >>' || empref=='<< Select >>'|| nomhours== undefined || nomhoursm == undefined)" text-center style="--background:#009689" size="small">Save
+            </ion-button>
+          </ion-col> 
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
+       
+        </ion-row>
+        </ion-grid>
+      </ion-card>
+      
+
+      <ion-card *ngFor="let data of manpowerrecord; let i = index" style="background-color:#fff">
+        <ion-grid style="padding: 0px;">
+          <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+              style="background-color: #2e3192!important;color:#fff;padding:12px;">
+              {{data.SKILL_TEXT}}
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+              style="background-color: hsl(238, 52%, 38%)!important;color:#fff;padding:12px;text-align:right;">
+              <button ion-button icon-only style="background-color:hsl(238, 52%, 38%)!important">
+                <ion-icon slot="icon-only" name="create" style="color:#fff;" (click)="editItem(data,i)"></ion-icon>
+              </button>
+              <button ion-button icon-only style="background-color:hsl(238, 52%, 38%)!important">
+                <ion-icon slot="icon-only" name="close-circle" style="color:#fff;" (click)="deleteItem(data,i)"></ion-icon>
+             </button>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+              Employee Reference
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              {{data.TEXT}}
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+              Number Of Hours
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              {{data.actual_hrs}}
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+              Cost
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              {{data.ASSET_COST}}
+            </ion-col>
+            </ion-row>
+            </ion-grid>
+            </ion-card>
+  </ion-grid>   
+</ion-content>

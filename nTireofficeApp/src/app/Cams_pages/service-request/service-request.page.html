@@ -1,0 +1,467 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Service Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <div *ngIf="ServiceRefshow">
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Request Reference</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="RequestRef"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Requested Date</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="RequestDate"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset Code and Description</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="ASSETCODEASSETDESCRIPTION"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Vendor Code</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="VENDORCODE"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Date Of Service</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="DATEOFSERVICE"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Expected Date of Delivery</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="EXPECTEDDATEOFDELIVERY"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Service Type</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="SERVICETYPE"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Workflow Number</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="workflow_no"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Status</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="Status"></ion-input>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="Serviceshow">
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Function</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="function"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Branch</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="branch"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
+          <ion-row>
+              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+                <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+                <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+                  color: gray !important;" (click)="processasset(item)">
+                    {{ item }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
+                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+                </ion-button>
+              </ion-col>
+          </ion-row>
+        <!-- </div> -->
+        </ion-col>
+
+        <ion-card *ngFor="let item1 of detailsser1; let i = index" style="background-color:#fff">
+          <ion-grid style="padding: 0px;">
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+          style="background-color: #2e3192!important;color:#fff;padding:12px;">
+          <span class="labelsize" style="color: white;font-size: 14px;font-weight: 500" >{{item1.pmm_asset_desc}}</span>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+          style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
+          {{item1.pmm_asset_code}}
+        </ion-col>
+
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Category</p>
+          <span style="font-size: 14px!important;">{{item1.pmm_asset_category}}</span>
+        </ion-col>
+  
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Subcategory</p>
+          <span style="font-size: 14px!important;">{{item1.pmm_sub_category}}</span>
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <a (click)="showmore(i)">
+            <!-- <a ng-click="showmore(i,items.CALL_ID)"> 
+  
+            <i id="imageidvalsp{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+              style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
+          </a>
+        </ion-col>
+        <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2"> -->
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <p style="font-weight:bold;">User</p>
+          <span style="font-size: 14px!important;" *ngIf='item1.ASSET_USER'>{{item1.ASSET_USER}}</span>
+          <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_USER'>--</span>
+        </ion-col>
+  
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Warranty Amount</p>
+          <span style="font-size: 14px!important;" *ngIf='item1.AMOUNT'>{{item1.AMOUNT}}</span>
+          <span style="font-size: 14px!important;" *ngIf='!item1.AMOUNT'>--</span>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Insurance Expiry</p>
+          <span style="font-size: 14px!important;" *ngIf='item1.pmm_insurance_expiry[0]'>{{item1.pmm_insurance_expiry[0]}}</span>
+          <span style="font-size: 14px!important;" *ngIf='!item1.pmm_insurance_expiry[0]'>--</span>
+        </ion-col>
+
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Incharge</p>
+          <span style="font-size: 14px!important;" *ngIf='item1.pmm_owner_name'>{{item1.pmm_owner_name}}</span>
+          <span style="font-size: 14px!important;" *ngIf='!item1.pmm_owner_name'>--</span>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Department</p>
+          <span style="font-size: 14px!important;">{{item1.departText}}</span>
+          <!-- <span style="font-size: 14px!important;" *ngIf='!item1.pmm_insurance_expiry'>--</span> -->
+        </ion-col>
+
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Purchase Date</p>
+          <span style="font-size: 14px!important;" *ngIf='item1.pmm_date_of_purchase'>{{item1.pmm_date_of_purchase}}</span>
+          <span style="font-size: 14px!important;" *ngIf='!item1.pmm_date_of_purchase'>--</span>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p style="font-weight:bold;">Warranty Expiry</p>
+          <span style="font-size: 14px!important;" *ngIf='item1.pmm_warenty_expiry[0]'>{{item1.pmm_warenty_expiry[0]}}</span>
+          <span style="font-size: 14px!important;" *ngIf='!item1.pmm_warenty_expiry[0]'>--</span>
+        </ion-col>
+
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+        <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+            style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
+
+</ion-col> -->
+        </ion-row>
+        </ion-grid>
+        </ion-card>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Request Date  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-datetime style="background-color: #d4d4d4!important;" class="form-control"
+            [(ngModel)]="reqdate" displayFormat="MM/DD/YYYY" disabled></ion-datetime>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Vendor Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-searchbar [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)"></ion-searchbar>
+            <ion-list *ngIf="isVendorItemAvailable" class="searchlist" style="height: 100px !important;">
+              <ion-item *ngFor="let item of vendor_code_det1" style="background-color: white !important;
+              color: gray !important;" (click)="fetchservsvendorreq(item)">
+                {{ item }}
+              </ion-item>
+
+            </ion-list>
+            <input type="hidden"  [(ngModel)]="vendorid">
+          </ion-col>
+  
+          <ion-card *ngFor="let item1 of detailsservendor1; let i = index" style="background-color:#fff">
+            <ion-grid style="padding: 0px;">
+          <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+            style="background-color: #2e3192!important;color:#fff;padding:12px;">
+            <span class="labelsize" style="color: white;font-size: 14px;font-weight: 500" >{{item1.Vendor_Code}}</span>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+            style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
+            <!-- {{item1.pmm_asset_code}} -->
+          </ion-col>
+  
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <p style="font-weight:bold;">Vendor Name</p>
+            <span style="font-size: 14px!important;">{{item1.Vendor_Name}}</span>
+          </ion-col>
+    
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <p style="font-weight:bold;">Contact Person</p>
+            <span style="font-size: 14px!important;">{{item1.Contact_Person}}</span>
+          </ion-col>
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <a (click)="showmore(i)">
+              <!-- <a ng-click="showmore(i,items.CALL_ID)"> 
+    
+              <i id="imageidvalsp{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
+            </a>
+          </ion-col>
+          <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2"> -->
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <p style="font-weight:bold;">Mobile</p>
+            <span style="font-size: 14px!important;">{{item1.Contact_Phone}}</span>
+          </ion-col>
+    
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <p style="font-weight:bold;">Email</p>
+            <span style="font-size: 14px!important;">{{item1.Email}}</span>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <p style="font-weight:bold;">Address</p>
+            <span style="font-size: 14px!important;" >{{item1.Add1}}&nbsp;{{item1.City}}&nbsp;{{item1.State}}&nbsp;{{item1.Country}}</span>
+          </ion-col>
+  
+         
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+          <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+              style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
+  
+  </ion-col> -->
+          </ion-row>
+          </ion-grid>
+          </ion-card>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Expected Delivery Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date"
+              [(ngModel)]="expdate" [min]="today1">
+              <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+            </ion-input>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Expected Expense</ion-label>
+            <ion-input style="background-color: #d4d4d4!important;" class="form-control"
+              [(ngModel)]="expexpense"></ion-input>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Replacement</ion-label>
+            <select [(ngModel)]="replacement" class="form-control">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option value="T">Temporary</option>
+              <option value="P">Permanent</option>
+            </select>
+            </ion-col>
+
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="replacement === 'T'">
+              <ion-label>Till Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+              <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date"
+                [(ngModel)]="tilldate" [min]="today1">
+                <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+              </ion-input>
+            </ion-col>
+            
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="replacement === 'T'">
+              <ion-label>Replacement Asset Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+              <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
+                <ion-row>
+                    <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+                      <ion-searchbar [(ngModel)]="repassetcode" type="text" debounce="500" (ionInput)="getreplaceItems($event)"></ion-searchbar>
+                      <ion-list *ngIf="isrespItemAvailable" class="searchlist" style="height: 100px !important;">
+                        <ion-item *ngFor="let item of Asset_code_det1r" style="background-color: white !important;
+                        color: gray !important;" (click)="fetchservsreqreplace(item)">
+                          {{ item }}
+                        </ion-item>
+                      </ion-list>
+                      <input  type="hidden"  [(ngModel)]="repassetid" >
+                    </ion-col>
+                    <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                      <ion-button style="--background:white; --background-hover:white" (click)="scancodeuserservrep()">
+                        <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+                      </ion-button>
+                    </ion-col>
+                </ion-row>
+              <!-- </div> -->
+              </ion-col>
+
+              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="replacement === 'P'">
+                <ion-label>Replacement Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+                <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
+                  <ion-row>
+                      <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+                        <ion-searchbar [(ngModel)]="repassetcode" type="text" debounce="500" (ionInput)="getreplaceItems($event)"></ion-searchbar>
+                        <ion-list *ngIf="isrespItemAvailable" class="searchlist" style="height: 100px !important;">
+                          <ion-item *ngFor="let item of Asset_code_det1r" style="background-color: white !important;
+                          color: gray !important;" (click)="fetchservsreqreplace(item)">
+                            {{ item }}
+                          </ion-item>
+                        </ion-list>
+                        <input  type="hidden"  [(ngModel)]="repassetid" >
+                      </ion-col>
+                      <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                        <ion-button style="--background:white; --background-hover:white" (click)="scancodeuserservrep()">
+                          <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+                        </ion-button>
+                      </ion-col>
+                  </ion-row>
+                <!-- </div> -->
+                </ion-col>
+
+              <ion-card *ngFor="let item1 of repdatalist1; let i = index" style="background-color:#fff">
+                <ion-grid style="padding: 0px;">
+              <ion-row>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+                style="background-color: #2e3192!important;color:#fff;padding:12px;">
+                <span class="labelsize" style="color: white;font-size: 14px;font-weight: 500" >{{item1.pmm_asset_desc}}</span>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+                style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
+                {{item1.pmm_asset_code}}
+              </ion-col>
+      
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Category</p>
+                <span style="font-size: 14px!important;">{{item1.Category}}</span>
+              </ion-col>
+        
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Subcategory</p>
+                <span style="font-size: 14px!important;">{{item1.categorysubcategory}}</span>
+              </ion-col>
+              <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <a (click)="showmore(i)">
+                  <!-- <a ng-click="showmore(i,items.CALL_ID)"> 
+        
+                  <i id="imageidvalsp{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                    style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
+                </a>
+              </ion-col>
+              <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2"> -->
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <p style="font-weight:bold;">User</p>
+                <span style="font-size: 14px!important;" *ngIf='item1.AssetUser'>{{item1.AssetUser}}</span>
+                <span style="font-size: 14px!important;" *ngIf='!item1.AssetUser'>--</span>
+              </ion-col>
+        
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Warranty Amount</p>
+                <span style="font-size: 14px!important;" *ngIf='item1.pmm_asset_value'>{{item1.pmm_asset_value}}</span>
+                <span style="font-size: 14px!important;" *ngIf='!item1.pmm_asset_value'>--</span>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Insurance Expiry</p>
+                <span style="font-size: 14px!important;" *ngIf='item1.ASSET_INSURANCE_TODATEs'>{{item1.ASSET_INSURANCE_TODATEs}}</span>
+                <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_INSURANCE_TODATEs'>--</span>
+              </ion-col>
+      
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Owner</p>
+                <span style="font-size: 14px!important;" *ngIf='item1.ownername'>{{item1.ownername}}</span>
+                <span style="font-size: 14px!important;" *ngIf='!item1.ownername'>--</span>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Department</p>
+                <span style="font-size: 14px!important;">{{item1.departText}}</span>
+                <!-- <span style="font-size: 14px!important;" *ngIf='!item1.pmm_insurance_expiry'>--</span> -->
+              </ion-col>
+      
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Purchase Date</p>
+                <span style="font-size: 14px!important;" *ngIf='item1.ASSET_PURCHASE_DATE'>{{item1.ASSET_PURCHASE_DATE}}</span>
+                <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_PURCHASE_DATE'>--</span>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <p style="font-weight:bold;">Warranty Expiry</p>
+                <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_WARRANTY_TILL'>{{item1.ASSET_WARRANTY_TILL}}</span>
+                <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_WARRANTY_TILL'>--</span>
+              </ion-col>
+      
+              <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+              <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
+      
+      </ion-col> -->
+              </ion-row>
+              </ion-grid>
+              </ion-card>
+
+              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+                <ion-label>Category </ion-label>
+                <select [(ngModel)]="servicecategory" class="form-control" style="width:100%">
+                  <option>&lt;&lt; Select &gt;&gt;</option>
+                  <option *ngFor="let item of detailssercat; let i = index" [ngValue]="item.VALUE">{{item.TEXT}}
+                  </option>
+                </select>
+              </ion-col>
+
+              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+                <ion-label>Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-textarea maxlength="400" [(ngModel)]="noofcharsdectest" style="height:auto !important" class="form-control">
+        </ion-textarea>
+        <span *ngIf="noofcharsdectest && noofcharsdectest != 'undefined' && noofcharsdectest.length > 0"
+          class="customCounter">{{400 - noofcharsdectest.length}}</span>
+    
+              </ion-col>
+
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+               
+                <ion-button (click)="processassetservicereq()" style="--background:#009689;width: 50%;margin: 0 auto;padding: 3px;" [disabled]="(assetcode==undefined || vendorcode== undefined|| reqdate== undefined || noofcharsdectest == undefined || expdate == undefined)" size="full" >Save
+                </ion-button>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+               
+                <ion-button (click)="assetserviceliveview()" style="--background:#009689;width: 50%;margin: 0 auto;padding: 3px;" size="full" >List
+                </ion-button>
+              </ion-col>
+    </ion-row>
+
+  </div>
+  </ion-grid>  
+</ion-content>
+<ion-footer class="bar-royal">
+  
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ 
+   
+ </ion-footer>

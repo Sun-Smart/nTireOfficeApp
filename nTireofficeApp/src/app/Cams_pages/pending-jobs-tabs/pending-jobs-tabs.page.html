@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Job Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-tabs>
+
+        <ion-tab-bar slot="bottom" color="primary">
+          <ion-tab-button tab="job-detail">
+            <ion-icon name="briefcase"></ion-icon>
+            <ion-label class="tablabel">Job Details</ion-label>
+          </ion-tab-button>
+      
+          <ion-tab-button tab="task">
+            <ion-icon name="information-circle"></ion-icon>
+            <ion-label class="tablabel">Task</ion-label>
+          </ion-tab-button>
+      
+          <ion-tab-button tab="manpowerUsed">
+            <ion-icon name="person"></ion-icon>
+            <ion-label class="tablabel">Manpower Used</ion-label>
+          </ion-tab-button>
+          <ion-tab-button tab="sparesUsed">
+              <ion-icon name="cog"></ion-icon>
+              <ion-label class="tablabel">Spares Used</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="consumableUsed">
+              <ion-icon name="paper"></ion-icon>
+              <ion-label class="tablabel">Consumable Used</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+      
+      </ion-tabs>
+</ion-content>

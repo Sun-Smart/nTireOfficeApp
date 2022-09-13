@@ -1,0 +1,171 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Asset Transfer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-radio-group [(ngModel)]="custType" (ionChange)="customerType($event)">
+    <ion-row>
+      <ion-col>
+        <ion-item style="background: none !important;border:none !important;--background-hover:none !important;color:#444" lines="none">
+          <ion-radio mode="md" item-left value="YES" color="danger"></ion-radio>
+          <ion-label style="padding-left: 5%;">External Transfer</ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col>
+        <ion-item style="background: none !important;border:none !important;--background-hover:none !important;color:#444" lines="none">
+          <ion-radio mode="md" item-left value="NO" color="danger"></ion-radio>
+          <ion-label style="padding-left: 5%;">Internal Transfer</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-radio-group>
+
+  <ion-grid *ngIf="type">
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Function</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="function"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
+          <ion-row>
+              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+                <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+                <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+                  color: gray !important;" (click)="processasset(item)">
+                    {{ item }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
+                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+                </ion-button>
+              </ion-col>
+          </ion-row>
+        <!-- </div> -->
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>From Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="detailfrombranch"></ion-input>
+            <input type="hidden" placeholder="" [(ngModel)]="detailfromidbranch"   >
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>To Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <select [(ngModel)]="tobranch" class="form-control" style="width:100%">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option *ngFor="let item of detailtobranch; let i = index" [ngValue]="item.BRANCH_ID">{{item.BRANCH_DESC}}
+            </option>
+          </select>
+        </ion-col>
+
+    </ion-row>
+    <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
+        <ion-button (click)="processassettransfer()" [disabled]="(assetcode==undefined || tobranch=='<< Select >>'|| detailfromidbranch== undefined)" style="--background:#009689" size="full" >Transfer Asset
+        </ion-button>
+      </ion-col> 
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
+    </ion-row>
+  </ion-grid>    
+
+  <ion-grid *ngIf="!type">
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Function</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="function"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
+          <ion-row>
+              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+                <ion-searchbar [(ngModel)]="assetcodei" type="text" debounce="500" (ionInput)="getintItems($event)"></ion-searchbar>
+                <ion-list *ngIf="isintItemAvailable" class="searchlist" style="height: 100px !important;">
+                  <ion-item *ngFor="let item of assetintcode1" style="background-color: white !important;
+                  color: gray !important;" (click)="frombranchi(item)">
+                    {{ item }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                <ion-button style="--background:white; --background-hover:white" (click)="scancodereconi()">
+                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+                </ion-button>
+              </ion-col>
+          </ion-row>
+        <!-- </div> -->
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Asset Description  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="detailassetdecpi"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Owner Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="detailownercodei"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Department  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="departmenttransferi"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Remarks</ion-label>
+  <ion-textarea maxlength="400" [(ngModel)]="remarksi" style="height:auto !important" class="form-control">
+  </ion-textarea>
+  <span *ngIf="remarksi && remarksi != 'undefined' && remarksi.length > 400"
+    class="customCounter">{{400 - remarksi.length}}</span>
+
+        </ion-col>
+
+    </ion-row>
+    <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
+        <ion-button (click)="processassettransferi()" [disabled]="(assetcodei==undefined || detailassetdecpi== undefined|| detailownercodei== undefined || departmenttransferi == undefined||buttondisa)" style="--background:#009689" size="full" >Transfer Asset
+        </ion-button>
+      </ion-col> 
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ 
+   
+ </ion-footer>

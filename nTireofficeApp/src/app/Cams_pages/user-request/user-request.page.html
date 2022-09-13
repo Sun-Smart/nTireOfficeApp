@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>User Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Function</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="function"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Branch</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="branch"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
+          <ion-row>
+              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+                <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+                <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+                  color: gray !important;" (click)="fetchreconcilation(item)">
+                    {{ item }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
+                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+                </ion-button>
+              </ion-col>
+          </ion-row>
+        <!-- </div> -->
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Asset Description</ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="descp"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Department</ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="department"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-datetime class="form-control"  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" disabled></ion-datetime>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Category</ion-label>
+          <select [(ngModel)]="categoryissue" class="form-control" style="width:100%">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option *ngFor="let item of detailsreqcat; let i = index" [ngValue]="item.ISSUEID">{{item.ISSUEDESCRIPTION}}
+            </option>
+          </select>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <select [(ngModel)]="priority" class="form-control">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="3 ">High</option>
+        <option value="4 ">Low</option>
+        <option value="1 ">Medium</option>
+        <option value="2 ">Normal</option>
+        <option value="5 ">Very High</option>
+          </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
+    <ion-textarea maxlength="200" [(ngModel)]="noofchars" style="height:auto !important" class="form-control">
+    </ion-textarea>
+    <span *ngIf="noofchars && noofchars != 'undefined' && noofchars.length > 0"
+      class="customCounter">{{200 - noofchars.length}}</span>
+
+          </ion-col>
+    </ion-row>
+    <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+        <!-- {{assetcode}}
+        {{priority}}
+        {{noofchars}}
+        {{date1}} -->
+        <ion-button (click)="processassetre()" [disabled]="(assetcode==undefined || priority=='<< Select >>'|| noofchars== undefined || doi == undefined)" style="--background:#009689" size="full" >process
+        </ion-button>
+      </ion-col> 
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
+    </ion-row>
+  </ion-grid>    
+</ion-content>
+<ion-footer>
+  
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ 
+   
+ </ion-footer>
