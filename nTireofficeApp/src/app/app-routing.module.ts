@@ -17,10 +17,48 @@ const routes: Routes = [
   },
   // CAMS
   { path: 'dashboardCams',
-   loadChildren:  ()=> import('./Cams_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)},  {
+   loadChildren:  ()=> import('./Cams_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)},
+  {
     path: 'dashboard',
     loadChildren: () => import('./navbar/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+  {
+    path:'pending-jobs',
+    loadChildren: () => import('./Cams_pages/pending-jobs/pending-jobs.module').then(m => m.PendingJobsPageModule)
+  },
+  {
+    path:'asset-details',
+    loadChildren: () => import('./Cams_pages/asset-details/asset-details.module').then(m => m.AssetDetailsPageModule)
+  },
+  {
+    path:'completion-jobs',
+    loadChildren: () => import('./Cams_pages/completion-jobs/completion-jobs.module').then(m => m.CompletionJobsPageModule)
+  },
+  {
+    path:'asset-reconcil',
+    loadChildren: () => import('./Cams_pages/asset-reconcil/asset-reconcil.module').then(m => m.AssetReconcilPageModule)
+  },
+  {
+    path:'user-request',
+    loadChildren: () => import('./Cams_pages/user-request/user-request.module').then(m => m.UserRequestPageModule)
+  },
+  {
+    path:'service-request',
+    loadChildren: () => import('./Cams_pages/service-request/service-request.module').then(m => m.ServiceRequestPageModule)
+  },
+  {
+    path:'location-wise-asset',
+    loadChildren: () => import('./Cams_pages/location-wise-asset/location-wise-asset.module').then(m => m.LocationWiseAssetPageModule)
+  },
+  {
+    path:'asset-transfer',
+    loadChildren:() => import('./Cams_pages/asset-transfer/asset-transfer.module').then(m => m.AssetTransferPageModule)
+  },
+  {
+    path:'reconciliation-report',
+    loadChildren:() => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
+  }
+
 
   // { path: 'pending-jobs', loadChildren: './Cams_pages/pending-jobs/pending-jobs.module#PendingJobsPageModule' },
   // { path: 'pending-jobs-tabs', loadChildren: './Cams_pages/pending-jobs-tabs/pending-jobs-tabs.module#PendingJobsTabsPageModule' },

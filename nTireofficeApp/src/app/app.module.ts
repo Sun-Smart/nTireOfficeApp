@@ -10,13 +10,15 @@ import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geoc
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
+
 // import { ChartsModule } from 'chartjs';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS   } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, ],
-  providers: [StatusBar,LocationAccuracy,SplashScreen,AndroidPermissions,NativeGeocoder,Geolocation,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
+  providers: [StatusBar,LocationAccuracy,SplashScreen,AndroidPermissions,NativeGeocoder,BarcodeScanner,Geolocation,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

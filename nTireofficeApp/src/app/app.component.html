@@ -19,9 +19,8 @@
           
              
                   <ion-item  *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                      <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
-                
-                      <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                      <ion-icon style="color:#fff !important;margin-top: 0px !important;font-family: poppins;" slot="start" [name]="p.icon"></ion-icon>
+                      <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100;font-family: poppins;">
                         {{p.title}}
                       </ion-label>
                     </ion-item>
