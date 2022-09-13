@@ -1,0 +1,865 @@
+
+
+<ion-content>
+  
+  <ion-header>
+    <ion-toolbar>   
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>            
+          </ion-buttons>
+      <ion-title>Welcome</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+        <ion-card >
+          <ion-item *ngFor="let item of displayUser">
+            <ion-avatar item-start style="margin:auto">
+               <!-- <img src="assets/images/defaultMale.png" style="background-color: white;">  -->
+              <img  src="{{item.Photo}}" onError="this.src='assets/images/defaultMale.png'" > 
+            </ion-avatar>
+          </ion-item>
+      <ion-col *ngFor="let item of displayUser" style="width:100%">
+  
+    <div class="imagediv">
+        <img *ngIf="!item.Photo" src="{{item.Photo}}">
+      <!-- <img  src="{{item.Photo}}"  alt="" width="50px" height="50px"> -->
+    </div>
+    <div *ngIf="displayUser.length!=0" style="text-align:center">
+        <div><b>{{displayUser[0].Name}}</b></div>
+        <div><span>{{displayUser[0].Designation}}</span>
+          <span>-</span> <span>{{displayUser[0].Department}}</span></div>
+       <div> <span>{{displayUser[0].Branch}}</span><span>&nbsp;|&nbsp;</span>
+        <span>{{displayUser[0].DOJ | date:'dd-MMM-yyyy'}}</span><span>&nbsp;|&nbsp;</span>
+        <span>{{displayUser[0].DOB | date:'dd-MMM-yyyy'}}</span></div>
+       
+      <div>  <span>{{displayUser[0].Email}}</span><span>&nbsp;|&nbsp;</span>
+        <span>{{displayUser[0].Mobile}}</span></div>
+    </div>
+       </ion-col>
+    </ion-card>
+    </ion-row>
+   
+  </ion-grid>
+  <div style="position: inherit;
+  height: 49% !important;
+  z-index: 100;
+  background-color: #1236b729 !important;
+  color: BLACK;text-align: center;padding-top: 20px;margin-left: 14px;
+    margin-right: 14px;border-radius: 5px;">
+  
+  <ion-row>
+   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+    <span style="display:inline-grid;text-align:center">
+    <button (click)="myRequest()" style="background-color: transparent;
+  height:72px;    border: 2px solid BLACK;width:72px;
+border-radius: 50%;margin: auto;" class="">
+    
+     <i style="font-size: 28px;     padding-top: 19px;
+     padding-bottom: 17px;" class="icon fa fa-calendar-check-o"></i>
+    </button>
+      <span style="padding-top: 12px;">My Request</span>
+  </span>
+  </ion-col>
+ <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">  
+    <span style="display:inline-grid;text-align:center">
+  <button (click)="paylsip()" style="background-color: transparent;
+  height:72px;    border: 2px solid BLACK;width:72px;
+border-radius: 50%;margin: auto;" class="">
+
+  <i style="font-size: 28px;
+      padding-top: 19px;
+padding-bottom: 17px;" class="icon 	fa fa-credit-card"></i>
+  </button>
+  <span style="padding-top: 12px;">My Payslips</span>
+  </span>
+</ion-col>
+
+   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+      <span style="display:inline-grid;text-align:center">
+      <button (click)="attendance1()" style="background-color: transparent;
+    height:72px;    border: 2px solid BLACK;width:72px;
+  border-radius: 50%;margin-left:5px;margin: auto;" class="">
+      
+       <i style="font-size: 28px;     padding-top: 19px;
+       padding-bottom: 17px;" class="icon fa fa-calendar-check-o"></i>
+      </button>
+        <span style="padding-top: 12px;">My Attendance</span>
+    </span>
+    </ion-col>
+ <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+   
+    <span style="display:inline-grid;text-align:center">
+    <button (click)="myAction()" style="background-color: transparent;
+    height:72px;    border: 2px solid BLACK;width:72px;
+border-radius: 50%;
+margin-left: -9px;margin: auto;">
+   <i style="font-size: 28px;
+   padding-top: 19px;
+padding-bottom: 17px;" class="icon fa fa-graduation-cap"></i>
+</button>
+
+
+<span style="    margin-left: 0%;
+padding-top: 12px;
+margin-right: 1px;;">My Actions</span>    
+</span>
+</ion-col>
+ <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+  <span style="display:inline-grid;text-align:center;">
+  <button (click)="myTraining()" style="background-color: transparent;
+  height:72px;    border: 2px solid BLACK;width:72px;
+border-radius: 50%;
+margin-left: -12px;margin: auto;">
+<i style="font-size: 28px;
+   
+padding-bottom: 0px;" class="icon fa fa-dedent"></i>
+</button>
+<span style="    padding-top: 12px;">My Training</span>
+</span>
+</ion-col>
+<ion-col class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-4">
+    <span style="display:inline-grid;text-align:center">
+    <button (click)="myGreetings()" style="background-color: transparent;
+    height:72px;    border: 2px solid BLACK;width:72px;
+border-radius: 50%;
+margin-left: -11px;margin: auto;">
+  <i style="font-size: 28px;
+    padding-top: 19px;
+padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
+
+</i>
+</button>
+<span style="padding-top: 12px;">Greetings</span>
+</span>
+</ion-col>
+  </ion-row>
+  
+  </div>
+
+  <!-- User profile -->
+ 
+
+<!-- My request -->
+<ion-row *ngIf='myrequest'>
+  <ion-card style="height: 190px;width: 100%;
+  overflow: hidden;
+    overflow-y: auto;
+">
+    <ion-item>My Requests</ion-item>
+    <div>
+
+    
+    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" *ngFor="let item of empAllRequests">
+    
+      <div *ngIf="item.REQUESTTYPE=='Leave Request'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div  style="background-color: #cbc9c9;
+    height: 43px;
+    padding-top: 12px;">
+        <span >Req Ref ~ {{item.RequestRef}}</span>
+            <span  style="float: right;">Type ~ <span style="color: seagreen;">{{item.REQUESTTYPE}} </span></span> 
+       </div>
+            <ion-row>
+          <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Req On ~ </b></p>
+              <p >{{item.RequestDate}}</p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Leave Date ~ </b></p>
+                      <p >{{item.COLUMN2}}-{{item.COLUMN3}}</p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p><b>No of Days ~</b></p>
+              <p > <b>{{item.COLUMN8}}</b></p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b >Status ~</b></p>
+              <p class="rowbody sapStatus" style="color: #ffc900;"><b>Pending</b></p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Leave Bal ~ </b><span ><b>{{item.COLUMN4}}</b></span></p>
+  
+              <p ><b>Reason ~</b><span>{{item.COLUMN5}}</span></p>
+           </ion-col>
+       </ion-row>
+        </div>
+
+        <div *ngIf="item.REQUESTTYPE=='C-OFF request'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+          <span >Req Ref ~ {{item.RequestRef}}</span>
+            <span  style="float: right;">Type ~ <span style="color: seagreen;">{{item.REQUESTTYPE}} </span></span> 
+     </div>
+            <ion-row>
+          <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Req On ~ </b></p>
+              <p >{{item.RequestDate}}</p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Coff Date ~ </b></p>
+              <p >{{item.COLUMN3}}</p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Working Date ~ </b></p>
+              <p >{{item.COLUMN2}}</p>
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Status ~ </b><span style="color: #ffc900;"><b>{{item.Status}}</b></span></p>
+
+           </ion-col>
+           <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+              <p ><b>Reason ~</b><span style="padding-left:10px;">{{item.COLUMN4}}</span></p>
+
+           </ion-col>
+       </ion-row>
+
+
+
+        </div>
+
+        <div  *ngIf="item.REQUESTTYPE=='Permission Request'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #8a2be2;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+              <ion-row style="padding: 0px;">
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On</b></p>
+                      <p >{{item.RequestDate}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Permission</b></p>
+                     <p >{{item.COLUMN2}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Hour</b></p>
+                     <p >{{item.COLUMN4}}</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~ </b><span><b style="color: #ffc900;">{{item.Status}}</b></span></p>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="padding: 0px;margin-top: -14px;">
+                      <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7">
+                      <p ><b>Reason ~ </b><span >{{item.COLUMN5}}</span></p>
+                      </ion-col>
+                  </ion-row>
+  
+          
+  
+          </div>
+            
+            <div  *ngIf="item.REQUESTTYPE=='OD Request'"  style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #E91E63;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+              <ion-row style="padding: 0px;">
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~</b></p>
+                      <p >{{item.RequestDate}}</p>
+                    </ion-col>
+                       <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>OD Date ~</b></p>
+                     <p >{{item.COLUMN1}}-{{item.COLUMN2}}</p>
+                    </ion-col>
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Hour ~</b></p>
+                     <p >{{item.COLUMN3}}</p>
+                    </ion-col>
+              </ion-row>
+                  <ion-row style="padding: 0px;margin-top: -14px;">
+                      <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~ </b><span ><b style="color: #ffc900;">{{item.Status}}</b></span></p>
+                      
+                      
+                    </ion-col>
+                       <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Reason ~ </b><span>{{item.COLUMN4}}</span></p>
+                    </ion-col>
+                  </ion-row>
+  
+       
+  
+          </div>
+  
+          <div  *ngIf="item.REQUESTTYPE=='Asset Transfer'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: brown;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+              <ion-row style="padding: 0px;">
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~ </b><span>{{item.RequestDate}}</span></p>
+                      
+                    </ion-col>
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Asset Code ~ </b></p>
+                      <p >{{item.COLUMN1}}</p>
+                     
+                    </ion-col>
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~ </b></p>
+                      <p ><b style="color: #ffc900;">{{item.Status}}</b></p>
+                      
+                    </ion-col>
+                    
+                  </ion-row>
+                  <ion-row style="padding: 0px;margin-top: -14px;">
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Transfer Type ~ </b><span>{{item.COLUMN4}}</span></p>
+                     
+                    </ion-col>
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Branch ~ </b><span >{{item.COLUMN2}}-{{item.COLUMN3}}</span></p>
+                     
+                    </ion-col>
+                    
+                  </ion-row >
+             
+  
+            </div>
+
+  
+          <div  *ngIf="item.REQUESTTYPE=='Asset Service'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #9932cc;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+              <ion-row style="padding: 0px;">
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~ </b></p>
+                      <p >{{item.RequestDate}}</p> 
+                    </ion-col>
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Asset Code ~ </b></p>
+                      <p >{{item.COLUMN1}}</p>
+                     
+                    </ion-col>
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~ </b></p>
+                      <p ><b style="color: #ffc900;">{{item.Status}}</b></p>
+                    </ion-col>
+                    
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Vendor Code ~</b></p>
+                     <p >{{item.COLUMN2}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Service Type ~</b></p>
+                     <p >{{item.COLUMN5}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Date Of Service ~ </b><span>{{item.COLUMN3}}</span></p>
+                     
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="padding: 0px;margin-top: -14px;">
+                 
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                       <p ><b>Exp. Delivery Date ~ </b><span>{{item.COLUMN4}}</span></p>
+                    </ion-col>
+                    </ion-row>
+                  </div>
+             
+         
+  
+          <div  *ngIf="item.REQUESTTYPE=='Purchase Requisition Slip'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span class="rowbody " style="float: right;">Type ~ <span class="sapcolor" style="color:red;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+        
+              <ion-row style="padding: 0px;margin-bottom: -15px;">
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~</b></p>
+                      <p >{{item.RequestDate}}</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>PRS Code ~</b></p>
+                     <p >{{item.COLUMN1}}</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>PRS Type ~</b></p>
+                     <p  *ngIf="item.COLUMN5">{{item.COLUMN5}}</p>
+                     <p  *ngIf="!item.COLUMN5">-</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~</b></p>
+                      <p ><b style="color: #ffc900;">{{item.Status}}</b></p>
+                      
+                    </ion-col>
+                  </ion-row>
+                  <ion-row >
+                  <ion-col size-sm="12" size="6" size-md="12" size-lg="12" size-xl="12">
+                      <p ><b>Reason For Purchase ~ </b><span>{{item.COLUMN3}}</span></p>
+                      
+                    </ion-col>
+                  </ion-row>
+  
+            </div>
+  
+       
+          <div  *ngIf="item.REQUESTTYPE=='ERP MRS'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span class="sapcolor" style="color:#fd6b0d;">{{item.REQUESTTYPE}}</span></span> 
+            </div> 
+          
+              <ion-row style="padding: 0px;">
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~</b></p>
+                      <p >{{item.RequestDate}}</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>MRS Code ~</b></p>
+                     <p >{{item.COLUMN1}}</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Exp. Date ~</b></p>
+                     <p >{{item.COLUMN4}}</p>
+                    </ion-col>
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~</b></p>
+                      <p ><b style="color: #ffc900;">{{item.Status}}</b></p>
+                      
+                    </ion-col>
+                  </ion-row>
+                
+  
+            </div>
+  
+        
+  
+  
+          <div  *ngIf="item.REQUESTTYPE=='Purchase Order Request'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #b8860b;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+              <ion-row style="padding: 0px;">
+                     <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~ </b></p>
+                      <p >{{item.RequestDate }}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>PO Ref ~</b></p>
+                     <p >{{item.COLUMN1}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Priority ~</b></p>
+                     <p >{{item.COLUMN3}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~</b></p>
+                      <p ><b style="color: #ffc900;">{{item.Status}}</b></p>
+                      
+                    </ion-col>
+                  </ion-row>
+                  <ion-row style="padding: 0px;margin-top:-14px;">
+                    <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Vendor Code ~ </b><span>{{item.COLUMN4}}</span></p>
+                     
+                    </ion-col>
+                     <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Vendor Name ~ </b><span>{{item.COLUMN5}}</span></p>
+                    </ion-col>
+                  </ion-row>
+                
+  
+            </div>
+  
+        
+  
+          <div  *ngIf="item.REQUESTTYPE=='Tender'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #009688;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+          
+              <ion-row style="padding: 0px;">
+                  <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~ </b></p>
+                      <p >{{item.RequestDate}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Tender Code ~</b></p>
+                     <p >{{item.COLUMN1}}</p>
+                    </ion-col>
+                    
+                  <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~</b></p>
+                      <p ><b style="color: #ffc900;">{{item.Status}}</b></p>
+                      
+                    </ion-col>
+                  </ion-row>
+  
+                  <ion-row style="padding: 0px;margin-top: -14px;">
+                   <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Tender Type ~ </b><span>{{item.COLUMN3}}</span></p>  
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Tender Start Date ~ </b><span>{{item.COLUMN4}}</span></p>
+                      
+                    </ion-col>
+                    
+                  </ion-row>
+                  <div class="nodata" *ngIf="training.length==0">
+                    <div style="color:gray;"><b>No Trainings Found</b></div>
+                  </div>
+  
+            </div>
+  
+        
+  
+          <div  *ngIf="item.REQUESTTYPE=='LegalCase'" style="background-color:#daf9f9;    margin-top: -17px;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #a21cc1;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+            
+              <ion-row style="padding: 0px;">
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~ </b><span>{{item.RequestDate}}</span></p>
+                      
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~ </b><span ><b style="color: #ffc900;">{{item.Status}}</b></span></p>
+                    </ion-col>
+                  </ion-row>
+            </div>
+  
+        
+          <div  *ngIf="item.REQUESTTYPE=='Announcement'" style="background-color:#daf9f9;">
+            <div  style="background-color: #cbc9c9;
+            height: 43px;
+            padding-top: 12px;">
+              <span >Req Ref ~ {{item.RequestRef}}</span>
+              <span  style="float: right;">Type ~ <span style="color: #0cb0b9;">{{item.REQUESTTYPE}}</span></span> 
+            </div>
+           
+              <ion-row style="padding: 0px;">
+                     <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Req On ~ </b><span>{{item.RequestDate}}</span></p>
+                      
+                    </ion-col>
+                    <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
+                      <p ><b>Status ~ </b><span style="font-size: 13px;"><b style="color: #ffc900;">{{item.Status}}</b></span></p>
+                    </ion-col>
+                  </ion-row>
+            </div>
+  
+        
+      <div  class="nodata" *ngIf="empAllRequests.length==0">
+              <div style="color:gray;"><b>No Requests Found</b></div>
+            </div>
+           
+          </ion-col>
+        </div>
+
+          <div class="nodata" *ngIf="empAllRequests.length==0">
+            <div style="color:gray;"><b>No Employee Request Found</b></div>
+          </div>
+ </ion-card>
+</ion-row>
+
+<!-- My payslips -->
+<ion-row *ngIf="mypayslip">
+    <ion-card >
+      <ion-item>
+          My Payslips
+      </ion-item>
+      <div style=" overflow: hidden;overflow-y: auto;">
+      <ion-row *ngIf="empPayslips.length!=0">
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              Month
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              Year
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              Netpay
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              Download
+          </ion-col>
+       
+      </ion-row>
+      <ion-row *ngFor="let item of empPayslips">
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              <p >{{item.Month}}</p>
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              <p >{{item.Year}}</p>
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              <p >{{item.NetPay}}</p>
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+              <button  (click)="getPermission(item)" style="margin-top:0px;background-color:transparent;">
+                  <i class="icon fa fa-arrow-circle-down" style="color: #11c1f3;"></i>
+                  </button>
+          </ion-col>
+      </ion-row>
+    </div>
+      <div class="nodata" *ngIf="empPayslips.length==0">
+          <div style="color:gray;"><b>No Payslips Found</b></div>
+        </div>
+      </ion-card>
+    
+      </ion-row>
+ 
+    
+<!-- My attendance -->
+      <ion-row *ngIf="myattendance">
+          <ion-card>
+            <ion-item>
+                My Attendance
+            </ion-item>
+            <!-- <ion-row *ngIf="attendanceList.length!=0">
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    Date
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    In Time
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    Out Time
+                </ion-col>
+              
+             
+            </ion-row>
+            <ion-row  *ngFor="let item of attendanceList">
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p this>{{item.TxnDate | date:'dd-MMM-yyyy'}}</p>
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p this>{{item.InTime}}</p>
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p this>{{item.OutTime}}</p>
+                </ion-col>
+              
+            </ion-row> -->
+
+            <ion-grid style="background-color: #f8f8f8;">
+              <ion-row>
+                  <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+          <ion-select [(ngModel)]="yeardata" style="display: flex;">
+          <ion-select-option value="">Year</ion-select-option>
+          <ion-select-option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
+          </ion-select>
+          </ion-col>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+              <ion-select [(ngModel)]="monthdata" style="display: flex;">
+              <ion-select-option value="">Month</ion-select-option>
+              <ion-select-option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
+              </ion-select>
+              </ion-col>
+              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                <ion-button style="--box-shadow:none;color: black;--background: transparent;" (click)="getAttendance()">Search</ion-button>
+                  </ion-col>
+              </ion-row>
+          
+            </ion-grid>
+
+            <div *ngIf="attendanceList&&attendanceList.length!=0">
+              <ion-grid>
+              <ion-row style="text-align:center">
+              <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+                  <b><i class="icon ion-android-calendar"></i> <span style="font-size: 13px;letter-spacing: 1px;">Date</span></b>
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <b><i class="icon ion-clock"></i><span style="font-size: 13px;letter-spacing: 1px;"> In Time</span></b>
+                  </ion-col>
+                  <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                      <b><i class="icon ion-clock"></i> <span style="font-size: 13px;letter-spacing: 1px;">Out Time</span></b>
+                    </ion-col>
+              </ion-row>
+              
+              <ion-row style="text-align:center" *ngFor="let item of attendanceList">
+                  <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+                      <p>{{item.TxnDate| date:'dd-MMM-yyyy'}}</p>
+                    </ion-col>
+                    <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                      <p>  {{item.InTime}}</p>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p>      {{item.OutTime}}</p>
+                        </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+            <ion-row style="text-align:center" *ngIf="(!attendanceList&&attendanceList.length==0)||nodata">
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <p>No data found</p>
+                </ion-col>
+            </ion-row>
+
+            <!-- <div class="nodata" *ngIf="attendanceList.length==0">
+                <div style="color:gray;"><b>No Attendance Found</b></div>
+              </div> -->
+            </ion-card>
+         
+            </ion-row>
+
+<!-- My action -->
+            <ion-row *ngIf="myaction">
+                <ion-card style="height: 190px;
+                /* max-height: 100%; */
+                /* display: flex; */
+                /* flex-direction: column; */
+                overflow: hidden;
+                overflow-y: auto;">
+                  <ion-item>
+                      My Actions
+                  </ion-item>
+                  <ion-row *ngIf="empApprovals.length!=0">
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <b>Type</b>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <b>WorkflowNo</b>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <b>Requestor</b>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <b>Action</b>
+                      </ion-col>
+                   
+                  </ion-row>
+                  <ion-row  *ngFor="let item of empApprovals">
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <p this>{{item.RequestType}}</p>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <p this><b>{{item.WorkflowNo }}</b></p>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <p this>{{item.RequestedBy}}</p>
+                      </ion-col>
+                      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                          <button class="butndesignapprove" (click)="viewModal(item)"><span style="margin-top: 1px;">View</span></button>
+
+                      </ion-col>
+                  </ion-row>
+                  <div class="nodata" *ngIf="empApprovals.length==0">
+                      <div style="color:gray;"><b>No Approvals Found</b></div>
+                    </div>
+                  </ion-card>
+               
+                  </ion-row>
+
+<!-- My training -->
+                  <ion-row *ngIf="mytraining">
+                      <ion-card>
+                        <ion-item>
+                            My Training
+                        </ion-item>
+                        <ion-row *ngIf="training.length!=0">
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                Training Name
+                            </ion-col>
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                From
+                            </ion-col>
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                To
+                            </ion-col>
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                Status
+                            </ion-col>
+                         
+                        </ion-row>
+                        <ion-row  *ngFor="let item of training">
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                <p this>{{item.Training_Name}}</p>
+                            </ion-col>
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                <p this>{{item.From_Date}}</p>
+                            </ion-col>
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                <p this>{{item.To_Date}}</p>
+                            </ion-col>
+                            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                <p this *ngIf="item.Status">{{item.Status}}</p>
+                                <p this *ngIf="!item.Status" style="text-align:center">{{"-"}}</p>
+                            </ion-col>
+                        </ion-row>
+                        <div class="nodata" *ngIf="training.length==0">
+                            <div style="color:gray;"><b>No Trainings Found</b></div>
+                          </div>
+                        </ion-card>
+                     
+                        </ion-row>
+
+    <!-- Greetings -->
+<ion-grid>
+    <ion-row *ngIf="mygreeting">
+        <ion-card>
+          <ion-item>
+              Greetings
+          </ion-item>
+         
+          <ion-row  style="padding-left:20px;padding-right:10px;" *ngFor="let item of advanceempgreeting">
+            
+                  <img *ngIf="item.em_emp_photo" src="assets\Images\defaultMale.png" class="greetingimg">
+                  <img *ngIf="!item.em_emp_photo" src="assets\Images\defaultMale.png" class="greetingimg">
+               
+                      <ion-col style="padding-left: 24px;" size-sm="9" size="9" size-md="9" size-lg="9" size-xl="9">
+                          <b>{{item.em_emp_name}} &nbsp;&nbsp;</b>
+                          <span style="font-weight:bolder; font-size:10px; color:gray;">{{item.Designation}}&nbsp;&nbsp;</span>
+                          <span style="font-weight:bolder; font-size:10px; color:gray;">{{item.em_emp_dob | date:'dd-MM-yyyy'}}</span>
+                           <br>
+                          
+                           <p>{{item.Wishes}}</p>
+                      </ion-col>
+                      <ion-col size-sm="1" size="1" size-md="1" size-lg="1" size-xl="1">
+                          <i style="font-size:25px; color:#43c585; font-weight:bold;" class="icon fa fa-birthday-cake"></i>
+                        </ion-col>
+           
+           
+          </ion-row>
+          <div class="nodata" *ngIf="advanceempgreeting.length==0">
+              <div style="color:gray;"><b>No Greetings Found</b></div>
+            </div>
+          </ion-card>
+       
+          </ion-row>
+        </ion-grid>
+</ion-content>
+<ion-footer >
+  
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+   
+ </ion-footer>
