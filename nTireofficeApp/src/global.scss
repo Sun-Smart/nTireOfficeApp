@@ -193,7 +193,8 @@ ion-searchbar{
     color: white !important;
     margin-left: 29px;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-family: 'Poppins';
     // font-family: 'Poppins', sans-serif;
 
     // font-family: 'Poppins';
@@ -271,6 +272,7 @@ ion-header::after {
                 // padding: 33px;
                 font-weight: 600;
                 margin-left: -53px;
+                font-family: 'poppins';
                 h6{
                     // background-color: #5d5ddd;
                     // padding: 15px;
@@ -406,8 +408,9 @@ app-login ion-content{
     // height: 42px;
     font-size: 14px;
     line-height: 1.42857143;
-    color: rgb(7,160,225);
+    color: #000000;
     background-color: #ffffff;
+    font-family: 'Poppins';
     /* background-image: none; */
     // /* border: 1px solid #ccc; 
     // border-radius: 4px;
