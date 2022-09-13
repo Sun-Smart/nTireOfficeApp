@@ -22,11 +22,11 @@ export class IpaddressService {
   public serviceurlCamsNode;
   public serviceerpapi;
   constructor() {
-  
+
     //  this.ipaddress1 = "http://demo.herbie.ai";
 
     //  this.ipaddress = "http://demo.herbie.ai:8034";
-  
+
     //   this.ipaddress1 = "http://65.0.146.170";
     //  this.ipaddress = "http://65.0.146.170:8034";
 
