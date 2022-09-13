@@ -233,9 +233,14 @@
 
     --ion-card-background: #1e1e1e;
   }
-//   @font-face {
-//     font-family: 'poppins';
-//     src: url("Poppins-Medium.ttf");
-// }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap"');
+$font-family-base :'Poppins', sans-serif !default;
+$font-family-md-base :'poppins';
+  // @font-face {
+  //   font-family: 'poppins';
+   
+  // }
+  // @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&display=swap');
 
 }

@@ -192,7 +192,9 @@ ion-searchbar{
     color: white !important;
     margin-left: 29px;
     font-weight: 600;
-    font-family: 'Poppins';
+    // font-family: 'Poppins', sans-serif;
+
+    // font-family: 'Poppins';
 }
 .mainicon{
     position: relative;
@@ -565,10 +567,10 @@ ion-searchbar{
     border-radius: 4px;
 }
 .alert-message{
-    background: #004073 !important;
+    background: rgb(36,193,242) !important;
 }
 .alert-message.sc-ion-alert-md{
-    background: #004073 !important;
+    background:rgb(36,193,242) !important;
     color: #fff;
     text-align: center;
 }
@@ -592,7 +594,7 @@ ion-searchbar{
     --min-width: 350px !important;
 }
 .alert-button-group{
-    background-color: brown !important;
+    background-color: red !important;
 }
 .alert-button.sc-ion-alert-md{
     color:#fff !important;
@@ -707,7 +709,8 @@ height:100% !important;
     }
 }
 .item {
-    background-color:rgb(2,154,222) ;
+    background-color:#fff ;
+    
     // width: 100%;
     // border-color: #ddd;
     // --background-color: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
@@ -716,7 +719,7 @@ height:100% !important;
     // position: relative;
     // z-index: 2;
     // display: block;
-    // margin: -1px;
+    margin: 0px;
     // padding: 16px;
     // border-width: 1px;
     // border-style: solid;
