@@ -359,27 +359,26 @@ export class AppComponent {
       icon: 'flame'
     },
   ];
-
-
+  
   public Property = [
     {
       title: 'Dashboard',
-      url: '/hrmsdashboard',
+      url: '/pmsdashboard',
       icon: 'home'
     },
     {
       title: 'Customer',
-      url: '/hrmsmyprofile',
+      url: '/pmscustomer',
       icon: 'people'
     },
     {
       title: 'Employees',
-      url: '/hrmsemployees',
+      url: '/pmsemployees',
       icon: 'person-add'
     },
     {
       title: 'Reports',
-      url: '/hrmsemployees',
+      url: '/pmsreports',
       icon: 'create'
     }
   ];
@@ -686,10 +685,7 @@ export class AppComponent {
     else{
       this.pms=true;
     }
-
-
   }
-
 
 
 
