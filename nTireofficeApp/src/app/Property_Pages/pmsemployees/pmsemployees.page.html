@@ -8,5 +8,157 @@
 </ion-header>
 
 <ion-content>
+  <ion-card >
+    <ion-card-header class="card_heder">
 
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Name</p>
+          </div> 
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
+          </div>
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Account Number</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <!-- <p class="card_right_text">{{items.ACCOUNTNUMBER}}</p> -->
+          </div> 
+          
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Customer Category</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <!-- <p class="card_right_text">{{items.PURPOSE || "-"}}</p> -->
+            <!-- <p class="card_right_text" *ngIf="items.total!=null">(Rs In Lakhs)</p> -->
+          </div> 
+          
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Outstanding Amount</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <!-- <p class="card_right_text">{{items.Amount || '-'}}</p> -->
+            <!-- <p class="card_right_text" *ngIf="items.total!=null">(Rs In Lakhs)</p> -->
+          </div> 
+          
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Critical - Amount</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <!-- <p class="card_right_text" >{{items.RAMOUNT || "-"}}</p> -->
+          </div> 
+          
+        </ion-col>
+        <!-- <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Rating</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_right_text">({{items.custCat}})</p>
+          </div> 
+          
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Cust-Category</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_right_text">{{items.Customer_Category}}</p>
+          </div> 
+          
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Frequency of Visit</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_right_text">{{items.frequency}}</p>
+          </div> 
+          
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_left_text">Date of Mapping</p>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <div>
+            <p class="card_right_text">{{items.DateMapping ||'-'}}</p>
+          </div> 
+          
+        </ion-col>
+        -->
+      </ion-row>
+      </ion-grid>
+      
+     
+                        <!--  <div class="search-table-outter wrapper">     -->
+                          <table class="table" style="margin-left:-4px;margin-top: 5px;font-size:13px;">
+                            <tr>
+                                <th class="fontsize" style="font-weight:bold;background-color:  #e7e5e5!important;color:#444444;">Monthly
+                                    Calls
+                                </th>
+                                <th class="fontsize" style="font-weight:bold;background-color:  #e7e5e5!important;color:#444444;">Yearly
+                                    Calls
+                                </th>
+                                <th class="fontsize" style="font-weight:bold;background-color:  #e7e5e5!important;background-color:  #e7e5e5!important;color:#444444;">Monthly
+                                    Visits
+                                </th>
+
+                                <th class="fontsize" style="font-weight:bold;background-color:  #e7e5e5!important;color:#444444">Yearly
+                                    Visits
+                                </th>
+                                <!-- <th style="font-weight:bold;">Rs.In.Lakhs</th> -->
+                            </tr>
+                            <tr>
+                                <!-- <td>{{items.CMONTH ||'-'}}</td>
+                                <td>{{items.CYEAR ||'-'}}</td>
+                                <td>{{items.CMONTH ||'-'}}</td>
+                                <td>{{items.VYEAR ||'-'}}</td> -->
+                                <!-- <td>{{items.total}}</td> -->
+                            </tr>
+                        </table>
+      <br>
+<div class="update_button">
+  <!-- <ion-button style="--background:#87ceeb" (click)="customerActionModal(items)" expand="block">Update</ion-button> -->
+
+</div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -405,12 +405,20 @@ textarea {
     background-color: #004073 !important;
 }
 
+
 ion-toolbar {
     --background: url("./assets/images/loginBackground.png") no-repeat;
 
     // --background: rgb(6,159,225)!important;
     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+}
+
+ion-toolbar{
+    --background: url("./assets/images/loginBackground.png") no-repeat;
     
+    // --background: rgb(6,159,225)!important;
+    // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+
 
     // background-image: -webkit-linear-gradient(30deg, rgb(2,154,222) 50%, rgb(34,191,241) 50%);
     // background-color: #34ADFF;
@@ -434,7 +442,10 @@ ion-content {
 
 app-login ion-content {
     // --background: url(../assets/images/Login/bg.png) no-repeat;
+
     opacity: defa;
+opacity: inherit;
+
 }
 
 .toolbar-container {
