@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttprequestService } from '../../httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+// import { HttprequestService } from '../../httprequest.service';
+// import { IpaddressService } from '../../ipaddress.service';
 import { LoadingController } from '@ionic/angular';
 import { IonicSelectableComponent } from 'ionic-selectable';
+import { HttprequestService } from 'src/app/service/httprequest.service';
+import { IpaddressService } from 'src/app/service/ipaddress.service';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.page.html',
@@ -190,7 +192,7 @@ export class EmployeesPage implements OnInit {
       department: department,
       top: 0,
 
-       increment: 3000;
+       increment: 3000
     }
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj1.empID + "/" + obj1.name + "/" + obj1.code + "/" + obj1.designation + "/" + obj1.branch + "/" + obj1.department + "/" + obj1.top + "/" + obj1.increment).then(resp=>{
@@ -199,7 +201,7 @@ export class EmployeesPage implements OnInit {
      }, error => {
       this.loading = false;
       // this.loadingdismiss();
-     console.log('error : '+JSON.stringify(error));
+     console.log("error : "+JSON.stringify(error));
 
      });
   }
@@ -221,15 +223,15 @@ export class EmployeesPage implements OnInit {
   }
 
   portChange(event: {
-    component: IonicSelectableComponent;
-    value: any;
+    component: IonicSelectableComponent,
+    value: any,
   }) {
     console.log('port:', event);
   }
 
-  modalcancel(event: {
-    component: IonicSelectableComponent;
-    value: any ;
+  modalcancel(event:{
+    component: IonicSelectableComponent,
+    value: any,
   }){
     event.value = '';
     console.log(event);
