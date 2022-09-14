@@ -38,8 +38,8 @@ export class AppComponent {
   public salespages = [
 
     {
-      title: 'Dashboard',
-      url: '/dashboard',
+      title: 'Sales Dashboard',
+      url: '/salesdashboard',
       icon: 'map'
     },
     {
