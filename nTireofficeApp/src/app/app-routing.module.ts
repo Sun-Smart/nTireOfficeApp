@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./navbar/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+
   {
     path:'pending-jobs',
     loadChildren: () => import('./Cams_pages/pending-jobs/pending-jobs.module').then(m => m.PendingJobsPageModule)
