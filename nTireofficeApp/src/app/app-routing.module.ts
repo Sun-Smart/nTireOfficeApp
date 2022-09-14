@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./navbar/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+
   {
     path:'pending-jobs',
     loadChildren: () => import('./Cams_pages/pending-jobs/pending-jobs.module').then(m => m.PendingJobsPageModule)
@@ -99,7 +100,7 @@ const routes: Routes = [
 //  hrms
 { path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
 
-
+{ path: 'myprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
   // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },
   // { path: 'hrmsmyprofile', loadChildren: './Hrms_pages/myprofile/myprofile.module#MyprofilePageModule' },
   // { path: 'hrmsemployees', loadChildren: './Hrms_pages/employees/employees.module#EmployeesPageModule' },
