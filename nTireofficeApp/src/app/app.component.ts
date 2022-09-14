@@ -22,24 +22,24 @@ export class AppComponent {
   isLogin;
   currentRoute;
   logoutbtn;
-  user_name;
-  list:boolean;
-  list1:boolean;
-  list2:boolean;
-  list3:boolean;
-  list5:boolean;
-  list6:boolean;
-  CamsList:boolean;
-  pms:boolean;
-  user_role:any;
-  chkadmin:boolean;
-  username:any = window.localStorage.getItem('TUM_USER_NAME');
+  user_name: string;
+  list: boolean;
+  list1: boolean;
+  list2: boolean;
+  list3: boolean;
+  list5: boolean;
+  list6: boolean;
+  CamsList: boolean;
+  pms: boolean;
+  user_role: any;
+  chkadmin: boolean;
+  username: any = window.localStorage.getItem('TUM_USER_NAME');
 
   public salespages = [
 
     {
-      title: 'Dashboard',
-      url: '/dashboard',
+      title: 'Sales Dashboard',
+      url: '/salesdashboard',
       icon: 'map'
     },
     {
@@ -164,7 +164,7 @@ export class AppComponent {
     },
     {
       title: 'My Profile',
-      url: '/hrmsmyprofile',
+      url: '/myprofile',
       icon: 'person'
     },
     {

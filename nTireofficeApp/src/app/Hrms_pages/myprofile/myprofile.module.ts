@@ -4,16 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MyprofilePageRoutingModule } from './myprofile-routing.module';
-
 import { MyprofilePage } from './myprofile.page';
+
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: MyprofilePage
+//   }
+// ];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyprofilePageRoutingModule
+    // RouterModule.forChild(routes)
   ],
   declarations: [MyprofilePage]
 })
