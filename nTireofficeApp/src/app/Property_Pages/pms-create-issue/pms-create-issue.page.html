@@ -4,27 +4,29 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>PMS CUSTOMER</ion-title>
+    <ion-title>PMS Create Issue</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-toolbar>
+    <ion-title>Create Issue</ion-title>
+  </ion-toolbar>
+
   <ion-card>
-    <ion-card-header class="card_heder">
-      My Property Details
-    </ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
 
           <ion-col size="6" class="col_height">
             <div>
-              <p class="card_left_text">Property Details</p>
+              <p class="card_left_text"> Branch :</p>
             </div>
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <ion-button (click)="openModal()"> Create</ion-button>
+              <ion-input placeholder="Text Input"></ion-input>
             </div>
           </ion-col>
 
@@ -35,81 +37,85 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
+              <ion-input placeholder="Text Input"></ion-input>
             </div>
           </ion-col>
 
           <ion-col size="6" class="col_height">
             <div>
-              <p class="card_left_text">Property Name :</p>
+              <p class="card_left_text">Date :</p>
             </div>
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
-            </div>
-          </ion-col>
-
-          <ion-col size="6" class="col_height">
-            <div>
-              <p class="card_left_text">Property Type :</p>
-            </div>
-          </ion-col>
-          <ion-col size="6" class="col_height">
-            <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
+              <ion-input placeholder="Text Input"></ion-input>
             </div>
           </ion-col>
 
           <ion-col size="6" class="col_height">
             <div>
-              <p class="card_left_text">Property Status :</p>
+              <p class="card_left_text">Category :</p>
             </div>
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
-            </div>
-          </ion-col>
-
-          <ion-col size="6" class="col_height">
-            <div>
-              <p class="card_left_text">Customer Name :</p>
-            </div>
-          </ion-col>
-          <ion-col size="6" class="col_height">
-            <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
+              <ion-input placeholder="Text Input"></ion-input>
             </div>
           </ion-col>
 
           <ion-col size="6" class="col_height">
             <div>
-              <p class="card_left_text">Agreement Start Date & End Date :</p>
+              <p class="card_left_text">Priority :</p>
             </div>
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
+              <ion-input placeholder="Text Input"></ion-input>
             </div>
           </ion-col>
 
           <ion-col size="6" class="col_height">
             <div>
-              <p class="card_left_text">Rent Amount :</p>
+              <p class="card_left_text">Property Details :</p>
             </div>
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
+              <ion-input placeholder="Text Input"></ion-input>
+            </div>
+          </ion-col>
+
+          <ion-col size="6" class="col_height">
+            <div>
+              <p class="card_left_text">Property Description :</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="col_height">
+            <div>
+              <ion-input placeholder="Text Input"></ion-input>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="col_height">
+            <div>
+              <p class="card_left_text">Property Owner :</p>
+            </div>
+          </ion-col>
+          <ion-col size="6" class="col_height">
+            <div>
+              <ion-input placeholder="Text Input"></ion-input>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-content>
-    
-  </ion-card>
-  
+      <ion-grid>
 
-  
+        <ion-row>
+          <ion-button size="6" color="secondary" (click)="save()">Save</ion-button>
+          <ion-button size="6" color="danger" (click)="cancel()">Cancel</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>

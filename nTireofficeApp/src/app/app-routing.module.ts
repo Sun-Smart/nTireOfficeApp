@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: '12',
-    redirectTo: 'home',
+    path: ' ',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -98,6 +98,16 @@ const routes: Routes = [
   // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' }
 //  hrms
 { path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
+
+  {
+    path: 'pms-create-issue',
+    loadChildren: () => import('./Property_Pages/pms-create-issue/pms-create-issue.module').then( m => m.PmsCreateIssuePageModule)
+  },
+  {
+    path: 'pms-issue-status',
+    loadChildren: () => import('./Property_Pages/pms-issue-status/pms-issue-status.module').then( m => m.PmsIssueStatusPageModule)
+  },
+
 
 
   // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },

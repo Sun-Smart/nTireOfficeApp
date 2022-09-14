@@ -1,5 +1,6 @@
 <ion-app>
   <!-- <img src='assets/Images/home.png' [hidden]="logoutbtn"  class="homeicon"> -->
+  
    
     <button [hidden]="logoutbtn" class="button button-icon button-clear logoutbtn"  (click)="logout()" style="font-size:10px">
         <ion-icon class="logicon" name="power"></ion-icon>
@@ -161,7 +162,7 @@
 
         </ion-list>
 
-        <p class="menuhead"  (click)=" menutooglepms()"><ion-icon  name="business-outline"></ion-icon>Property<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
+        <p class="menuhead"  (click)=" menutooglepms()"><ion-icon class="mainicon" name="business"></ion-icon>Property<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
 
         <ion-list class="menulsit" *ngIf="pms" no-lines>
           <ion-menu-toggle>
