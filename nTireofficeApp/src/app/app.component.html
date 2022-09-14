@@ -20,8 +20,8 @@
           
              
                   <ion-item  *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                      <ion-icon style="color:#fff !important;margin-top: 0px !important;font-family: poppins;" slot="start" [name]="p.icon"></ion-icon>
-                      <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100;font-family: poppins;">
+                      <ion-icon style="color:#000 !important;margin-top: 0px !important;font-family: poppins;" slot="start" [name]="p.icon"></ion-icon>
+                      <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:100;font-family: poppins;">
                         {{p.title}}
                       </ion-label>
                     </ion-item>
@@ -37,9 +37,9 @@
 
 
                 <ion-item  *ngFor="let p of salespages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                    <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
+                    <ion-icon style="color:#000 !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
               
-                    <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                    <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:100">
                       {{p.title}}
                     </ion-label>
                   </ion-item>
@@ -60,9 +60,9 @@
 
 
                 <ion-item  *ngFor="let p of CamsPage" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                    <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
+                    <ion-icon style="color:#000 !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
               
-                    <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                    <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:100">
                       {{p.title}}
                     </ion-label>
                   </ion-item>
@@ -80,9 +80,9 @@
 
 
               <ion-item *ngFor="let p of cobapages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                  <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
+                  <ion-icon style="color:#000 !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
            
-                  <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                  <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:100">
                     {{p.title}}
                   </ion-label>
                 </ion-item>
@@ -100,10 +100,10 @@
             <!-- *ngFor="let p of Dmspage" -->
            
               <!-- <ion-item  style="--background:black !important;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                  <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" ></ion-icon>
+                  <ion-icon style="color:#000 !important;margin-top: 0px !important;" slot="start" ></ion-icon>
                   <!-- [name]="p.icon" -->
 <!--            
-                  <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                  <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:100">
       
                   </ion-label> -->
                   <!-- {{p.title}} -->
@@ -176,11 +176,11 @@
 
             <ion-item *ngFor="let p of Property" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
               [routerLink]="[p.url]">
-              <ion-icon name="{{p.icon}}" style="color:#fff !important;margin-top: 15px !important;" slot="start" >
+              <ion-icon name="{{p.icon}}" style="color:#000 !important;margin-top: 15px !important;" slot="start" >
               </ion-icon>
               
 
-              <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+              <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:100">
                 {{p.title}}
               </ion-label>
             </ion-item>
@@ -200,6 +200,6 @@
 
 
   <!-- <ion-footer [hidden]="logoutbtn" style="padding: 14px;">
-    <div style="float:left;font-size:14px;color:#fff">Next iTechnologies </div>
-    <div style="float: right;font-size:14px;color:#fff">{{user_name}}</div>
+    <div style="float:left;font-size:14px;color:#000">Next iTechnologies </div>
+    <div style="float: right;font-size:14px;color:#000">{{user_name}}</div>
   </ion-footer> -->
