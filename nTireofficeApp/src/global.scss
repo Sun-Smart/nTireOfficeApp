@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .homeicon{
-    width: 30px; 
+    width: 30px;
     height: 30px;
     float: left;
     position: relative;
@@ -108,7 +108,7 @@ table{
     width:100%;
 }
 table th{
-   
+
     border: 1px solid #ddd;
     font-size: 13px;
     padding: 10px !important;
@@ -264,7 +264,7 @@ ion-header::after {
     }
     ion-header{
         ion-toolbar{
-            
+
             ion-title{
                 // padding: 33px;
                 font-weight: 600;
@@ -285,9 +285,9 @@ ion-header::after {
     ion-footer{
 
 background-color: #004073!important;
-  
+
         // --background: url("/assets/Images/Headerfooter/bottombox.png") no-repeat;
-       
+
         // background: red !important;
         // position: absolute;
         bottom: 0;
@@ -302,7 +302,7 @@ background-color: #004073!important;
         }
 .sc-ion-segment-md-h{
     background-color: #4c8dff;
-    
+
 }
 .segment-button-has-label {
     text-transform: none;
@@ -348,12 +348,12 @@ input, button, select, textarea {
     width:50%;
 }
 
-.toolbar-container{   
+.toolbar-container{
     background-color: #004073 !important;
 }
 ion-toolbar{
     // --background: url("/assets/Images/Headerfooter/bac1.png") no-repeat;
-    
+
     // --background: rgb(6,159,225)!important;
     --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
 
@@ -407,7 +407,7 @@ app-login ion-content{
     color: rgb(7,160,225);
     background-color: #ffffff;
     /* background-image: none; */
-    // /* border: 1px solid #ccc; 
+    // /* border: 1px solid #ccc;
     // border-radius: 4px;
     /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
@@ -429,10 +429,10 @@ width:58%;
 //     display: block;
 //     width: 100%;
 //     height: 42px;
-  
+
 //     font-size: 14px;
 //     line-height: 1.42857143;
-  
+
 //     color: #111;
 //     background-color: white;
 //     background-image: none;
@@ -605,7 +605,7 @@ ion-searchbar{
 //     --color:white;
 //     --font-weight:bold;
 //     --font-weight: 600;
- 
+
 // }
 ion-item{
     --background-hover: black !important;
@@ -615,7 +615,7 @@ ion-item{
     --font-weight: 600;
      border: 1px solid #b5b5b5;
      border-radius: 5px;
- 
+
 }
 
 
@@ -671,7 +671,7 @@ ion-modal ion-toolbar{
     --background: #004073 !important;
 }
 .btncolor{
-    --background: rgb(1,118,198)!important; 
+    --background: rgb(1,118,198)!important;
     width: 50%;
     margin: 0 auto;
 }
