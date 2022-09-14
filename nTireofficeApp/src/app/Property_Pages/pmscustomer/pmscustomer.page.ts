@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 
 @Component({
   selector: 'app-pmscustomer',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PmscustomerPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
-
+  async openModal() {
+   
+    const model = await this.modalCtrl.create({
+      
+      component: PmsCreateIssuePage,
+    });
+    model.present();
+  }
 }

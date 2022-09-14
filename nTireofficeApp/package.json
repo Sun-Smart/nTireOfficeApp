@@ -38,6 +38,7 @@
     "@swimlane/ngx-datatable": "^20.0.0",
     "chart.js": "^2.7.0",
     "cordova-plugin-statusbar": "^3.0.0",
+    "ionic-selectable": "^4.9.0",
     "ionicons": "^6.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
