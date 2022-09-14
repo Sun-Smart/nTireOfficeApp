@@ -1,37 +1,64 @@
-
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
   <div id="background-content">
     <div id="text-Content">
-<div style="text-align:center;position: relative;top: 150px;">
-    <ion-img style="height:80px;" class="animated bounceInDown" src="assets/images/minilogo.png"></ion-img>
-    <ion-label class="titlecolor">nTireOffice</ion-label><br><br>
-    <ion-label class="titlecolor">v1.2</ion-label>
-</div>
-<div style="padding: 20px; margin-top: 160px;" class="ion-inputcolor">
+      <div class="topheader">
+        <ion-img style="height:80px;" style="display: none;" class="animated bounceInDown"
+          src=""></ion-img>
+        <ion-label class="titlecolor1">Welcome to <b id="h2">ntireOffice</b></ion-label><br>
+        <ion-label class="titlecolor">Login to continue</ion-label>
+      </div>
+      <div class="loginform">
 
-  <ion-item id="loginInput" style="background-color: #fff;" class="ion-inputcolor">
-    <ion-icon name="person"></ion-icon>
-    <ion-input placeholder="Username" [(ngModel)]="username"></ion-input>
-   <!-- <ion-icon name="close" *ngIf="username!=null && username!=''" class="loginicon"  (click)="username=null"></ion-icon>  -->
+        <ion-title class="logintitle">Login</ion-title>
 
-  </ion-item>
-  <ion-item id="loginInput" style='margin-top: 10px;'>
-    <ion-icon name="key"></ion-icon>
-      <ion-input  type="{{showValue.type}}" placeholder="Password" [(ngModel)]="password"></ion-input>
-      <!-- <ion-icon name="close" *ngIf="password!=null && password!=''" class="loginicon"  (click)="password=null"></ion-icon> -->
+        <div style="padding: 20px;" class="ion-inputcolor">
 
-      <ion-icon id="showPassword" class="eyeicon" *ngIf="showValue.text=='Hide'" (click)="showPassword()" name="eye"></ion-icon>
-      <ion-icon id="showPassword" *ngIf="showValue.text=='Show'" class="eyeicon"(click)="showPassword()" name="eye-off"></ion-icon>
-    </ion-item>
-    <br/>
-    <div style="text-align:center;">
-      <ion-button expand="block" (click)="Loginevent()">
-      <!-- <ion-button style="--background:#58db58" class="btncolor" (click)="Loginevent()"> -->
-        Login
-      </ion-button>
+          <ion-item id="loginInput" style="background-color: #fff;" class="ion-inputcolor">
+            <ion-icon name="mail" style="color: #EEC20C;"></ion-icon>
+            <ion-input placeholder="Enter Email Id" [(ngModel)]="username"></ion-input>
+            <!-- <ion-icon name="close" *ngIf="username!=null && username!=''" class="loginicon"  (click)="username=null"></ion-icon>  -->
+
+          </ion-item>
+          <ion-item id="loginInput" style='margin-top: 10px;'>
+
+            <ion-icon name="lock-closed"  style="color: #EEC20C;"></ion-icon>            <ion-input type="{{showValue.type}}" placeholder="Password" [(ngModel)]="password"></ion-input>
+            <!-- <ion-icon name="close" *ngIf="password!=null && password!=''" class="loginicon"  (click)="password=null"></ion-icon> -->
+
+            <ion-icon id="showPassword" class="eyeicon" *ngIf="showValue.text=='Hide'" (click)="showPassword()"
+              name="eye"></ion-icon>
+            <ion-icon id="showPassword" *ngIf="showValue.text=='Show'" class="eyeicon" (click)="showPassword()"
+              name="eye-off"></ion-icon>
+          </ion-item>
+          <br />
+
+          <ion-row>
+            <ion-col class="loginbottom">
+              <ion-item style="border-color: white;background-color: white !important;
+              font-size: 10px !important;margin-top: -18px;" >
+                <ion-checkbox></ion-checkbox>
+                <ion-label>Remember me</ion-label>
+              </ion-item>
+            </ion-col>
+            <ion-col class="forgetpassword" style="  padding: left -2% !important;" >
+              <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+            </ion-col>
+          </ion-row>
+          <!-- <div style="text-align:center;">
+            <ion-button expand="block" (click)="Loginevent()">
+              <ion-button style="--background:#58db58" class="btncolor" (click)="Loginevent()">
+              Login
+            </ion-button>
+          </div> -->
+          <div class="loginbutton">
+            <ion-img  class="animated bounceInDown" (click)="Loginevent()" src="assets/images/loginBtn.png"></ion-img>
+          </div>
+          
+
+        </div>
+      </div>
     </div>
+  </div>
+<div class="loginbottomimg">
+<ion-img src="assets/images/loginBottom.png"></ion-img>
 </div>
-</div>
-</div>
-
 </ion-content>
