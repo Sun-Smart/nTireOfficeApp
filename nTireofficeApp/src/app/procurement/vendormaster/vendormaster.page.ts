@@ -1,13 +1,11 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-// import { IpaddressService } from 'src/app/ipaddress.service';
 
-// import { VendormasterModalPage } from '../vendormaster-modal/vendormaster-modal.page';
-// import { IonicSelectableComponent } from 'ionic-selectable';
+import { IonicSelectableComponent } from 'ionic-selectable';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 import { VendormasterModelPage } from '../vendormaster-model/vendormaster-model.page';
+
 class Port {
   public id: number;
   public name: string;
@@ -19,7 +17,6 @@ class Port {
   styleUrls: ['./vendormaster.page.scss'],
 })
 export class VendormasterPage implements OnInit {
-
 
   VendorCode:any;
   vendordetails:any;
@@ -34,11 +31,11 @@ export class VendormasterPage implements OnInit {
   showfilter:boolean = true;
   loading:boolean = false;
 
-  constructor(public modalController: ModalController, private http: HttpClient, public Ipaddressservice: IpaddressService) { }
+  constructor(public modalController: ModalController, private http: HttpClient, public Ipaddressservice: IpaddressService,) { }
 
   ngOnInit() {
-  }
 
+  }
 
   ionViewDidEnter(){
     this.vendoritemsview();
@@ -164,11 +161,9 @@ export class VendormasterPage implements OnInit {
   }
 
   portChange(event: {
-    // component: IonicSelectableComponent,
+    component: IonicSelectableComponent,
     value: any
   }) {
     console.log('port:', event);
   }
-
-
 }

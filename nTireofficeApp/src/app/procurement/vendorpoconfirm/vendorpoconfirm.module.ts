@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { VendorpoconfirmPageRoutingModule } from './vendorpoconfirm-routing.module';
-
 import { VendorpoconfirmPage } from './vendorpoconfirm.page';
 
 @NgModule({
@@ -13,7 +10,8 @@ import { VendorpoconfirmPage } from './vendorpoconfirm.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    VendorpoconfirmPageRoutingModule
+    VendorpoconfirmPageRoutingModule,
+
   ],
   declarations: [VendorpoconfirmPage]
 })
