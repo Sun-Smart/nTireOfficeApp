@@ -124,25 +124,58 @@ ion-icon {
 }
 
 .loginbutton {
-    border-radius:50% !important ;
+    border-radius: 50% !important;
     outline: none !important;
-    width: 26%;
+    width: 42%;
     z-index: -1 !important;
-    padding-left: 2% !important;
-    margin-bottom: -18%;
-    margin-left: 35%;
+    padding-left: -2% !important;
+    margin-bottom: -10%;
+    /* margin-left: 35%; */
+    /* bottom: 14px !important; */
+    margin-left: 73px;
+    height: 80px;
+    padding-top: 20px;
 }
 .loginbottomimg {
-    margin-top: 84%;
+    margin-top: 60.9%;
 }
-<<<<<<< Updated upstream
 
 #checkbox{
 color: black !important;
 padding: 4px !important;
-=======
-#checkbox{
-    color: black !important;
-    padding: 4px !important;
->>>>>>> Stashed changes
+}
+
+// #loginfooder
+// {
+//     padding-left: 15px;
+//     font-size: smaller;
+//     color: #cecece;
+//     background-color: #ffffff;
+//     padding-top: 5px;
+//     padding-bottom: 5px;border-radius: 10px 10px 0px 0px;
+
+// }
+
+
+.loginfooter {
+
+    background-color: #ffffff !important;
+    // border-radius: 25px 25px 0px 0px !important;
+
+    // --background: url("/assets/Images/Headerfooter/bottombox.png") no-repeat;
+
+    // background: red !important;
+    // position: absolute;
+    bottom: 0;
+    height: 30px;
+
+    // background-color: beige;
+    ion-row {
+        ion-col {
+            color: #cecece;
+            top: 6px;
+            font-size: smaller;
+            padding-left: 16px !important;
+        }
+    }
 }

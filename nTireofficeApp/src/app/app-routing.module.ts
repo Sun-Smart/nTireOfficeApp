@@ -7,17 +7,12 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-<<<<<<< HEAD
     path: '',
     redirectTo: 'login',
-=======
-    path: '12',
-    redirectTo: 'home',
->>>>>>> 3b6783b2639a1509c0cebdf7953092988eb2c323
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'login',
     loadChildren: () => import('./Login/login/login.module').then( m => m.LoginPageModule)
   },
   // CAMS
@@ -64,24 +59,6 @@ const routes: Routes = [
     loadChildren:() => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
   },
 
-// Property
-
-{
-  path:'pmsdashboard',
-  loadChildren:() => import('./Property_Pages/pmsdashboard/pmsdashboard.module').then(m => m.PmsdashboardPageModule)
-},
-{
-  path:'pmscustomer',
-  loadChildren:() => import('./Property_Pages/pmscustomer/pmscustomer-routing.module').then(m => m.PmscustomerPageRoutingModule)
-},
-{
-  path:'pmsemployees',
-  loadChildren:() => import('./Property_Pages/pmsemployees/pmsemployees.module').then(m => m.PmsemployeesPageModule)
-},
-{
-  path:'pmsreports',
-  loadChildren:() => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
-},
 
   // { path: 'pending-jobs', loadChildren: './Cams_pages/pending-jobs/pending-jobs.module#PendingJobsPageModule' },
   // { path: 'pending-jobs-tabs', loadChildren: './Cams_pages/pending-jobs-tabs/pending-jobs-tabs.module#PendingJobsTabsPageModule' },
@@ -103,8 +80,8 @@ const routes: Routes = [
   // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' }
 //  hrms
 { path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
-
-
+ 
+ 
   // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },
   // { path: 'hrmsmyprofile', loadChildren: './Hrms_pages/myprofile/myprofile.module#MyprofilePageModule' },
   // { path: 'hrmsemployees', loadChildren: './Hrms_pages/employees/employees.module#EmployeesPageModule' },
@@ -144,14 +121,14 @@ const routes: Routes = [
   // { path: 'hrmsapplicantemploymentdetails', loadChildren: './Hrms_pages/applicantemploymentdetails/applicantemploymentdetails.module#ApplicantemploymentdetailsPageModule' },
   // { path: 'hrmsapplicantskillsdetails', loadChildren: './Hrms_pages/applicantskillsdetails/applicantskillsdetails.module#ApplicantskillsdetailsPageModule' },
   // { path: 'hrmsletterrequest', loadChildren: './Hrms_pages/letterrequest/letterrequest.module#LetterrequestPageModule' },
-
+  
   // { path: 'hrmsmyapprovals', loadChildren: './myapprovals/myapprovals.module#MyapprovalsPageModule' },
   // { path: 'hrmsodsummary', loadChildren: './Hrms_pages/odsummary/odsummary.module#OdsummaryPageModule' },
 
-
-
+  
+ 
   // { path: 'attendanceemployee', loadChildren: './Hrms_pages/E-attendance/attendanceemployee/attendanceemployee.module#AttendanceemployeePageModule' },
-
+  
   // { path: 'approverequest1', loadChildren: './myapprovals/approverequest1/approverequest1.module#Approverequest1PageModule' },
   // { path: 'approvalaccept', loadChildren: './Hrms_pages/approvalaccept/approvalaccept.module#ApprovalacceptPageModule' },
   // { path: 'deny-screen', loadChildren: './Hrms_pages/deny-screen/deny-screen.module#DenyScreenPageModule' },
@@ -165,7 +142,7 @@ const routes: Routes = [
   // { path: 'applicationeditskillsdetails', loadChildren: './Hrms_pages/applicationeditskillsdetails/applicationeditskillsdetails.module#ApplicationeditskillsdetailsPageModule' },
   // { path: 'applicanteditemployeedetails', loadChildren: './Hrms_pages/applicanteditemployeedetails/applicanteditemployeedetails.module#ApplicanteditemployeedetailsPageModule' },
 
-
+  
 
 
 ];

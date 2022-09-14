@@ -1,26 +1,26 @@
 <ion-app>
-  <!-- <img src='assets/Images/home.png' [hidden]="logoutbtn"  class="homeicon"> -->
+  <!-- <img src='assets/Images/home.png' [hidden]="logoutbtn"  class="homeicon"> auto-hide="false"-->
    
     <button [hidden]="logoutbtn" class="button button-icon button-clear logoutbtn"  (click)="logout()" style="font-size:10px">
         <ion-icon class="logicon" name="power"></ion-icon>
     </button>
   
-      <ion-menu menuId="first" contentId="content"  type="overlay">
+      <ion-menu menuId="first" contentId="content"  type="overlay" >
         <ion-header>
-          <ion-toolbar style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); color: white;">
+          <ion-toolbar id="titleImg" style=" color: white;">
             <ion-title style="font-family: poppins !important;font-size: 18px;">My Desk</ion-title>
           </ion-toolbar>
         </ion-header>
-        <ion-content style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); color: white;font-family: poppins !important;">
+        <ion-content style=" --background:linear-gradient(90deg,#2C5291,#0E78A7);color: white;font-family: poppins !important;">
            <p class="menuhead"   (click)="menutoogle()"><ion-icon class="mainicon" name="people"></ion-icon>HRMS<ion-icon class="arrowicon" name="arrow-dropdown" style="color: white;"></ion-icon></p>
       
           <ion-list class="menulsit"  *ngIf="list" no-lines>
-            <ion-menu-toggle>
+            <ion-menu-toggle >
           
              
-                  <ion-item  *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                      <ion-icon style="color:#fff !important;margin-top: 0px !important;font-family: poppins;" slot="start" [name]="p.icon"></ion-icon>
-                      <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100;font-family: poppins;">
+                  <ion-item  *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(225, 230, 231), rgb(229, 234, 236) 50%, rgb(231, 236, 238) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
+                      <ion-icon style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 0px !important;font-family: poppins;" slot="start" [name]="p.icon"></ion-icon>
+                      <ion-label style="color:rgb(10, 10, 10) !important;font-size: 13px !important;font-weight:100;font-family: poppins;">
                         {{p.title}}
                       </ion-label>
                     </ion-item>
@@ -29,16 +29,18 @@
             </ion-menu-toggle>
            
           </ion-list>
-         <p class="menuhead"  (click)="menutoogle1()"><ion-icon class="mainicon" name="briefcase"></ion-icon>Sales<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
+         <p class="menuhead"  (click)="menutoogle1()">
+           <ion-icon class="mainicon" name="briefcase"></ion-icon>
+           Sales<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
 
           <ion-list class="menulsit"  *ngIf="list1" no-lines>
           <ion-menu-toggle>
         
            
                 <ion-item  *ngFor="let p of salespages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                    <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
+                    <ion-icon style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
               
-                    <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                    <ion-label style="color:rgb(17, 17, 17) !important;font-size: 17px !important;font-weight:100">
                       {{p.title}}
                     </ion-label>
                   </ion-item>
@@ -48,16 +50,20 @@
          
         </ion-list> 
 
-        <p class="menuhead"   (click)="menutoogleCams()"><ion-icon class="mainicon" name="people"></ion-icon>CAMS<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
+        <p class="menuhead"   (click)="menutoogleCams()"><ion-icon class="mainicon" name="people"></ion-icon>CAMS
+          <ion-icon class="arrowicon" name="arrow-dropdown">
+            <!-- <ion-icon name="arrow-dropdown-circle"></ion-icon> -->
+        </ion-icon>
+      </p>
 
         <ion-list class="menulsit"  *ngIf="CamsList" no-lines>
           <ion-menu-toggle>
         
            
                 <ion-item  *ngFor="let p of CamsPage" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                    <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
+                    <ion-icon style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
               
-                    <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                    <ion-label style="color:rgb(17, 17, 17) !important;font-size: 17px !important;font-weight:100">
                       {{p.title}}
                     </ion-label>
                   </ion-item>
@@ -75,9 +81,9 @@
         
            
               <ion-item *ngFor="let p of cobapages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                  <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
+                  <ion-icon style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 0px !important;" slot="start" [name]="p.icon"></ion-icon>
            
-                  <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                  <ion-label style="color:rgb(17, 17, 17) !important;font-size: 17px !important;font-weight:100">
                     {{p.title}}
                   </ion-label>
                 </ion-item>
@@ -92,17 +98,17 @@
 
         <ion-list class="menulsit" *ngIf="list3" no-lines>
           <ion-menu-toggle>
-            <!-- *ngFor="let p of Dmspage" -->
            
-              <!-- <ion-item  style="--background:black !important;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
-                  <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" ></ion-icon>
-                  <!-- [name]="p.icon" -->
-<!--            
-                  <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
-      
-                  </ion-label> -->
-                  <!-- {{p.title}} -->
-                <!-- </ion-item> --> 
+           
+              <ion-item  *ngFor="let p of Dmspage"  style="--background:black !important;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
+                  <ion-icon style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 0px !important;" slot="start" ></ion-icon>
+                 [name]="p.icon"
+
+                  <ion-label style="color:rgb(17, 17, 17) !important;font-size: 17px !important;font-weight:100">
+       
+                  </ion-label>
+                  {{p.title}}
+                 </ion-item>  
 
          
         
@@ -121,10 +127,10 @@
 
             <ion-item *ngFor="let p of erppages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
               [routerLink]="[p.url]">
-              <ion-icon style="color:#fff !important;margin-top: 0px !important;" slot="start" [name]="p.icon">
+              <ion-icon style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 0px !important;" slot="start" [name]="p.icon">
               </ion-icon>
 
-              <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+              <ion-label style="color:rgb(17, 17, 17) !important;font-size: 17px !important;font-weight:100">
                 {{p.title}}
               </ion-label>
             </ion-item>
@@ -147,11 +153,11 @@
 
             <ion-item *ngFor="let p of procurement" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
               [routerLink]="[p.url]">
-              <ion-icon name="{{p.icon}}" style="color:#fff !important;margin-top: 15px !important;" slot="start" >
+              <ion-icon name="{{p.icon}}" style="font-size: 18px !important;color:rgb(17, 17, 17) !important;margin-top: 15px !important;" slot="start" >
               </ion-icon>
               
 
-              <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+              <ion-label style="color:rgb(17, 17, 17) !important;font-size: 17px !important;font-weight:100">
                 {{p.title}}
               </ion-label>
             </ion-item>
@@ -161,27 +167,6 @@
 
         </ion-list>
 
-        <p class="menuhead"  (click)=" menutooglepms()"><ion-icon  name="business-outline"></ion-icon>Property<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
-
-        <ion-list class="menulsit" *ngIf="pms" no-lines>
-          <ion-menu-toggle>
-
-
-            <ion-item *ngFor="let p of Property" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
-              [routerLink]="[p.url]">
-              <ion-icon name="{{p.icon}}" style="color:#fff !important;margin-top: 15px !important;" slot="start" >
-              </ion-icon>
-              
-
-              <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
-                {{p.title}}
-              </ion-label>
-            </ion-item>
-
-
-          </ion-menu-toggle>
-
-        </ion-list>
       </ion-content>
       </ion-menu>
       <ion-router-outlet id="content" main></ion-router-outlet>

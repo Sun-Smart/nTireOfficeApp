@@ -360,6 +360,10 @@ export class AppComponent {
     },
   ];
   
+  public Dmspage =[
+    
+  ];
+
   public Property = [
     {
       title: 'Dashboard',
