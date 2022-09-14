@@ -100,7 +100,18 @@ const routes: Routes = [
 //  hrms
 { path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
 
-{ path: 'myprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
+{ path: 'hrmsmyprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
+
+{ path: 'hrmsemployees', loadChildren:()=>import('./Hrms_pages/employees/employees.module').then(m => m.EmployeesPageModule) },
+
+{ path: 'hrmsattendance', loadChildren:()=>import('./Hrms_pages/attendence/attendence.module').then(m => m.AttendencePageModule) },
+
+// { path: 'myprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
+
+// { path: 'myprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
+
+
+
   // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },
   // { path: 'hrmsmyprofile', loadChildren: './Hrms_pages/myprofile/myprofile.module#MyprofilePageModule' },
   // { path: 'hrmsemployees', loadChildren: './Hrms_pages/employees/employees.module#EmployeesPageModule' },
