@@ -22,214 +22,43 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./navbar/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
-  // {
-  //   path: 'applicant-details',
-  //   loadChildren: () => import('./Hrms_pages/applicant-details/applicant-details.module').then( m => m.ApplicantDetailsPageModule)
-  // },
-  // {
-  //   path: 'applicanteditemployeedetails',
-  //   loadChildren: () => import('./Hrms_pages/applicanteditemployeedetails/applicanteditemployeedetails.module').then( m => m.ApplicanteditemployeedetailsPageModule)
-  // },
-  // {
-  //   path: 'applicanteducationdetails',
-  //   loadChildren: () => import('./Hrms_pages/applicanteducationdetails/applicanteducationdetails.module').then( m => m.ApplicanteducationdetailsPageModule)
-  // },
-  // {
-  //   path: 'applicantemploymentdetails',
-  //   loadChildren: () => import('./Hrms_pages/applicantemploymentdetails/applicantemploymentdetails.module').then( m => m.ApplicantemploymentdetailsPageModule)
-  // },
-  // {
-  //   path: 'applicantskilldetails',
-  //   loadChildren: () => import('./Hrms_pages/applicantskilldetails/applicantskilldetails.module').then( m => m.ApplicantskilldetailsPageModule)
-  // },
-  // {
-  //   path: 'applicantsummary',
-  //   loadChildren: () => import('./Hrms_pages/applicantsummary/applicantsummary.module').then( m => m.ApplicantsummaryPageModule)
-  // },
-  // {
-  //   path: 'applicanttab',
-  //   loadChildren: () => import('./Hrms_pages/applicanttab/applicanttab.module').then( m => m.ApplicanttabPageModule)
-  // },
-  // {
-  //   path: 'application-editeducation',
-  //   loadChildren: () => import('./Hrms_pages/application-editeducation/application-editeducation.module').then( m => m.ApplicationEditeducationPageModule)
-  // },
-  // {
-  //   path: 'applicationeditskillsdetails',
-  //   loadChildren: () => import('./Hrms_pages/applicationeditskillsdetails/applicationeditskillsdetails.module').then( m => m.ApplicationeditskillsdetailsPageModule)
-  // },
-  // {
-  //   path: 'approvalaccept',
-  //   loadChildren: () => import('./Hrms_pages/approvalaccept/approvalaccept.module').then( m => m.ApprovalacceptPageModule)
-  // },
-  // {
-  //   path: 'assetssummary',
-  //   loadChildren: () => import('./Hrms_pages/assetssummary/assetssummary.module').then( m => m.AssetssummaryPageModule)
-  // },
-  // {
-  //   path: 'assetrequest',
-  //   loadChildren: () => import('./Hrms_pages/assetrequest/assetrequest.module').then( m => m.AssetrequestPageModule)
-  // },
-  // {
-  //   path: 'assetreturn',
-  //   loadChildren: () => import('./Hrms_pages/assetreturn/assetreturn.module').then( m => m.AssetreturnPageModule)
-  // },
-  // {
-  //   path: 'attendence',
-  //   loadChildren: () => import('./Hrms_pages/attendence/attendence.module').then( m => m.AttendencePageModule)
-  // },
-  // {
-  //   path: 'attendance-notification',
-  //   loadChildren: () => import('./Hrms_pages/attendance-notification/attendance-notification.module').then( m => m.AttendanceNotificationPageModule)
-  // },
-  // {
-  //   path: 'claimsrequest',
-  //   loadChildren: () => import('./Hrms_pages/claimsrequest/claimsrequest.module').then( m => m.ClaimsrequestPageModule)
-  // },
-  // {
-  //   path: 'claimssmmary',
-  //   loadChildren: () => import('./Hrms_pages/claimssmmary/claimssmmary.module').then( m => m.ClaimssmmaryPageModule)
-  // },
-  // {
-  //   path: 'coff-request',
-  //   loadChildren: () => import('./Hrms_pages/coff-request/coff-request.module').then( m => m.CoffRequestPageModule)
-  // },
-  // {
-  //   path: 'coffsummary',
-  //   loadChildren: () => import('./Hrms_pages/coffsummary/coffsummary.module').then( m => m.CoffsummaryPageModule)
-  // },
-  // {
-  //   path: 'dashboard',
-  //   loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  // },
-  // {
-  //   path: 'deny-screen',
-  //   loadChildren: () => import('./Hrms_pages/deny-screen/deny-screen.module').then( m => m.DenyScreenPageModule)
-  // },
-  // {
-  //   path: 'employees',
-  //   loadChildren: () => import('./Hrms_pages/employees/employees.module').then( m => m.EmployeesPageModule)
-  // },
-  // {
-  //   path: 'examdetails',
-  //   loadChildren: () => import('./Hrms_pages/examdetails/examdetails.module').then( m => m.ExamdetailsPageModule)
-  // },
-  // {
-  //   path: 'leave-request',
-  //   loadChildren: () => import('./Hrms_pages/leave-request/leave-request.module').then( m => m.LeaveRequestPageModule)
-  // },
-  // {
-  //   path: 'leavesummary',
-  //   loadChildren: () => import('./Hrms_pages/leavesummary/leavesummary.module').then( m => m.LeavesummaryPageModule)
-  // },
-  // {
-  //   path: 'letterrequest',
-  //   loadChildren: () => import('./Hrms_pages/letterrequest/letterrequest.module').then( m => m.LetterrequestPageModule)
-  // },
-  // {
-  //   path: 'loan-request',
-  //   loadChildren: () => import('./Hrms_pages/loan-request/loan-request.module').then( m => m.LoanRequestPageModule)
-  // },
-  // {
-  //   path: 'loan-summary',
-  //   loadChildren: () => import('./Hrms_pages/loan-summary/loan-summary.module').then( m => m.LoanSummaryPageModule)
-  // },
-  // {
-  //   path: 'mobilepin',
-  //   loadChildren: () => import('./Hrms_pages/mobilepin/mobilepin.module').then( m => m.MobilepinPageModule)
-  // },
-  // {
-  //   path: 'myapprovals',
-  //   loadChildren: () => import('./Hrms_pages/myapprovals/myapprovals.module').then( m => m.MyapprovalsPageModule)
-  // },
-  // {
-  //   path: 'myprofile',
-  //   loadChildren: () => import('./Hrms_pages/myprofile/myprofile.module').then( m => m.MyprofilePageModule)
-  // },
-  // {
-  //   path: 'od-request',
-  //   loadChildren: () => import('./Hrms_pages/od-request/od-request.module').then( m => m.OdRequestPageModule)
-  // },
-  // {
-  //   path: 'odsummary',
-  //   loadChildren: () => import('./Hrms_pages/odsummary/odsummary.module').then( m => m.OdsummaryPageModule)
-  // },
-  // {
-  //   path: 'online-exam-ctrl',
-  //   loadChildren: () => import('./Hrms_pages/online-exam-ctrl/online-exam-ctrl.module').then( m => m.OnlineExamCtrlPageModule)
-  // },
-  // {
-  //   path: 'onlineexam',
-  //   loadChildren: () => import('./Hrms_pages/onlineexam/onlineexam.module').then( m => m.OnlineexamPageModule)
-  // },
-  // {
-  //   path: 'onlineexamportal',
-  //   loadChildren: () => import('./Hrms_pages/onlineexamportal/onlineexamportal.module').then( m => m.OnlineexamportalPageModule)
-  // },
-  // {
-  //   path: 'onlineexamreports',
-  //   loadChildren: () => import('./Hrms_pages/onlineexamreports/onlineexamreports.module').then( m => m.OnlineexamreportsPageModule)
-  // },
-  // {
-  //   path: 'onlineexamtimer',
-  //   loadChildren: () => import('./Hrms_pages/onlineexamtimer/onlineexamtimer.module').then( m => m.OnlineexamtimerPageModule)
-  // },
-  // {
-  //   path: 'openaddemploymentpage',
-  //   loadChildren: () => import('./Hrms_pages/openaddemploymentpage/openaddemploymentpage.module').then( m => m.OpenaddemploymentpagePageModule)
-  // },
-  // {
-  //   path: 'payslip',
-  //   loadChildren: () => import('./Hrms_pages/payslip/payslip.module').then( m => m.PayslipPageModule)
-  // },
-  // {
-  //   path: 'permission-request',
-  //   loadChildren: () => import('./Hrms_pages/permission-request/permission-request.module').then( m => m.PermissionRequestPageModule)
-  // },
-  // {
-  //   path: 'permissionsummary',
-  //   loadChildren: () => import('./Hrms_pages/permissionsummary/permissionsummary.module').then( m => m.PermissionsummaryPageModule)
-  // },
-  // {
-  //   path: 'processed-attendance',
-  //   loadChildren: () => import('./Hrms_pages/processed-attendance/processed-attendance.module').then( m => m.ProcessedAttendancePageModule)
-  // },
-  // {
-  //   path: 'questionanswerreport',
-  //   loadChildren: () => import('./Hrms_pages/questionanswerreport/questionanswerreport.module').then( m => m.QuestionanswerreportPageModule)
-  // },
-  // {
-  //   path: 'questionreport',
-  //   loadChildren: () => import('./Hrms_pages/questionreport/questionreport.module').then( m => m.QuestionreportPageModule)
-  // },
-  // {
-  //   path: 'reapply-od',
-  //   loadChildren: () => import('./Hrms_pages/reapply-od/reapply-od.module').then( m => m.ReapplyOdPageModule)
-  // },
-  // {
-  //   path: 'reapplyasset',
-  //   loadChildren: () => import('./Hrms_pages/reapplyasset/reapplyasset.module').then( m => m.ReapplyassetPageModule)
-  // },
-  // {
-  //   path: 'reapplycoff',
-  //   loadChildren: () => import('./Hrms_pages/reapplycoff/reapplycoff.module').then( m => m.ReapplycoffPageModule)
-  // },
-  // {
-  //   path: 'reapplyleave',
-  //   loadChildren: () => import('./Hrms_pages/reapplyleave/reapplyleave.module').then( m => m.ReapplyleavePageModule)
-  // },
-  // {
-  //   path: 'reapplyloan',
-  //   loadChildren: () => import('./Hrms_pages/reapplyloan/reapplyloan.module').then( m => m.ReapplyloanPageModule)
-  // },
-  // {
-  //   path: 'reapplypermission',
-  //   loadChildren: () => import('./Hrms_pages/reapplypermission/reapplypermission.module').then( m => m.ReapplypermissionPageModule)
-  // },
-  // {
-  //   path: 'view-report',
-  //   loadChildren: () => import('./Hrms_pages/view-report/view-report.module').then( m => m.ViewReportPageModule)
-  // },
+  {
+    path:'pending-jobs',
+    loadChildren: () => import('./Cams_pages/pending-jobs/pending-jobs.module').then(m => m.PendingJobsPageModule)
+  },
+  {
+    path:'asset-details',
+    loadChildren: () => import('./Cams_pages/asset-details/asset-details.module').then(m => m.AssetDetailsPageModule)
+  },
+  {
+    path:'completion-jobs',
+    loadChildren: () => import('./Cams_pages/completion-jobs/completion-jobs.module').then(m => m.CompletionJobsPageModule)
+  },
+  {
+    path:'asset-reconcil',
+    loadChildren: () => import('./Cams_pages/asset-reconcil/asset-reconcil.module').then(m => m.AssetReconcilPageModule)
+  },
+  {
+    path:'user-request',
+    loadChildren: () => import('./Cams_pages/user-request/user-request.module').then(m => m.UserRequestPageModule)
+  },
+  {
+    path:'service-request',
+    loadChildren: () => import('./Cams_pages/service-request/service-request.module').then(m => m.ServiceRequestPageModule)
+  },
+  {
+    path:'location-wise-asset',
+    loadChildren: () => import('./Cams_pages/location-wise-asset/location-wise-asset.module').then(m => m.LocationWiseAssetPageModule)
+  },
+  {
+    path:'asset-transfer',
+    loadChildren:() => import('./Cams_pages/asset-transfer/asset-transfer.module').then(m => m.AssetTransferPageModule)
+  },
+  {
+    path:'reconciliation-report',
+    loadChildren:() => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
+  },
+
 
   // { path: 'pending-jobs', loadChildren: './Cams_pages/pending-jobs/pending-jobs.module#PendingJobsPageModule' },
   // { path: 'pending-jobs-tabs', loadChildren: './Cams_pages/pending-jobs-tabs/pending-jobs-tabs.module#PendingJobsTabsPageModule' },
@@ -248,12 +77,7 @@ const routes: Routes = [
   // { path: 'asset-transfer', loadChildren: './Cams_pages/asset-transfer/asset-transfer.module#AssetTransferPageModule' },
   // { path: 'reconciliation-report', loadChildren: './Cams_pages/reconciliation-report/reconciliation-report.module#ReconciliationReportPageModule' },
   // { path: 'department-wise', loadChildren: './Cams_pages/department-wise/department-wise.module#DepartmentWisePageModule' },
-  // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' },
-  
-  // hrms\
-  
-
-   { path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
+  // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' }
   // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },
   // { path: 'hrmsmyprofile', loadChildren: './Hrms_pages/myprofile/myprofile.module#MyprofilePageModule' },
   // { path: 'hrmsemployees', loadChildren: './Hrms_pages/employees/employees.module#EmployeesPageModule' },
@@ -318,7 +142,6 @@ const routes: Routes = [
 
 
 ];
-
 
 @NgModule({
   imports: [
