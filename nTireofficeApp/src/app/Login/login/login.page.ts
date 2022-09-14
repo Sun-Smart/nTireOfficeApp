@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
     private httpresponse:HttprequestService,
     public loadingController: LoadingController,private  route: Router,public alertController: AlertController,private http: HttpClient,
     public Ipaddressservice:IpaddressService,
-    private  menuCtrl: MenuController,private  navCtrl: NavController) { 
+    private  menuCtrl: MenuController,private  navCtrl: NavController) {
     this.menuCtrl.enable(false, 'first');
     this.showValue = { "type": "password", "text": "Show" };
 
@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  
+
 
   Loginevent(){
     if(this.username!=undefined && this.password!=undefined){
@@ -51,12 +51,12 @@ export class LoginPage implements OnInit {
     var username=this.username.toUpperCase();
     var password=this.password;
 
-   
-    var credentials = { 
+
+    var credentials = {
       functionid: 1,
        user_lower: username,
         password: password,
-         sessionid: sessionid, 
+         sessionid: sessionid,
          companyname: companyname,
           ip: ip
          };
@@ -69,42 +69,42 @@ export class LoginPage implements OnInit {
           var data1 = resp['data'];
           var userdata = resp['data'];
           // this.loadingdismiss();
-         
+
           if(resp['data']['Column1']!=undefined)
           {
-            
+
             var b = resp['data']['Column1'];
             setTimeout(() => {
             this.loadingdismiss();
             this.presentAlert('Alert1',b);
-           
+
             console.log(""+resp['data']['Column1'])
 
-        
-             
-                 
+
+
+
               }, 5000);
-        
-           
+
+
           }
-        
+
           // this.loadingdismiss();
           // if(userdata['TUM_FORCE_LOGON']=='Y'){
-         
+
           // }else{
             localStorage.setItem('expires', resp['expires'].toString());
-    
+
             localStorage.setItem('token', resp['token'].toString());
             localStorage.setItem('usertoken', resp['usertoken'].toString());
-    
+
             if (window.localStorage['TUM_USER_TYPE'] == 8) {
-    
+
               this.usertype = true;
             } else {
               this.usertype = false;
               // $state.go('app.dashboard');
             }
-            
+
             this.validityToDate = new Date(window.localStorage['TUM_VALIDITY_TO']);
             //  console.log(validityToDate);
              this.today = new Date();
@@ -113,10 +113,10 @@ export class LoginPage implements OnInit {
              // console.log(today);
              // var formattedDate =   $filter('date')(today, "yyyy-MM-dd");
              // var formattedTime =   $filter('date')(today, "HH:mma");
-    
+
              if (this.validityToDate < this.today) {
                console.log("validate date is small");
-    
+
              } else {
                console.log("validate date is big");
                var diff = this.validityToDate - this.today;
@@ -124,7 +124,7 @@ export class LoginPage implements OnInit {
                this.timeDiff = Math.abs(this.validityToDate.getTime() - this.today.getTime());
                var diffDays = Math.ceil(this.timeDiff / (1000 * 3600 * 24));
                console.log(diffDays)
-    
+
                if (diffDays == 3) {
                 this.presentAlert('Note','You have 3 days validity. Kindly reach your system administrator to extend.');
                 //  var alertPopup = $ionicPopup.alert({
@@ -138,7 +138,7 @@ export class LoginPage implements OnInit {
                 //  });
                } else if (diffDays == 1) {
                 this.presentAlert('Note','Your validity is going to expire tomorrow. Kindly reach your system administrator to extend.');
-                 
+
               //    var alertPopup = $ionicPopup.alert({
               //      title: 'Note',
               //      template: 'Your validity is going to expire tomorrow. Kindly reach your system administrator to extend.',
@@ -148,18 +148,18 @@ export class LoginPage implements OnInit {
               //      }, ]
               //    });
               //  }
-    
+
              }
-    
-    
+
+
      if (typeof (userdata['TUM_USER_NAME']) == 'undefined') {
       this.presentAlert('','Wrong Credential');
             }
-            
-        
+
+
               else if (userdata['TUM_USER_STATUS'] == 'A') {
                 if (userdata['TUM_USER_NAME'].toUpperCase() === username || userdata['TUM_USER_CODE'].toUpperCase() ===username) {
-              
+
                   localStorage.setItem('TUM_USER_ID', userdata['TUM_USER_ID']);
                   localStorage.setItem('TUM_USER_TYPE', userdata['TUM_USER_TYPE']);
                   localStorage.setItem('TUM_BRANCH_ID', userdata['TUM_BRANCH_ID']);
@@ -171,9 +171,9 @@ export class LoginPage implements OnInit {
                   localStorage.setItem('FUNCTION_ID', userdata['FUNCTION_ID']);
                   localStorage.setItem('BRANCH_LATLONG', userdata['BRANCH_LATLONG']);
                   localStorage.setItem('DashName', userdata['TUM_USER_NAME']);
-                
-                  
-                  this.route.navigate(['/dashboardCams']);
+
+
+                  this.route.navigate(['/dashboard']);
                 } else {
                   this.loadingdismiss();
                   this.presentAlert('Login failed!','Please check your username & Password!');
@@ -184,20 +184,20 @@ export class LoginPage implements OnInit {
                 this.loadingdismiss();
                 this.presentAlert('Login failed!','Please check your username & Password!');
               }
-    
-         
-         
-          
-    
-    
-      
-             
-            }  
-    
+
+
+
+
+
+
+
+
+            }
+
         }, error => {
           this.loadingdismiss();
           this.presentAlert('Login failed!','Server Error, Please try after sometime!');
-       
+
         });
       }
       else{
@@ -207,7 +207,7 @@ export class LoginPage implements OnInit {
   async presentAlert(heading,tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+
       message: tittle,
       buttons: ['OK']
     });
@@ -222,7 +222,7 @@ export class LoginPage implements OnInit {
       this.showValue = { "type": "password", "text": "Show" }
     }
   };
- 
+
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
@@ -230,13 +230,13 @@ export class LoginPage implements OnInit {
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
-    
+
 
     });
     return await loading.present();
   }
   async   loadingdismiss() {
-  
+
      return await this.loadingController.dismiss();
   }
 
