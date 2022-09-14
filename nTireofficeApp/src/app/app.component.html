@@ -161,6 +161,27 @@
 
         </ion-list>
 
+        <p class="menuhead"  (click)=" menutooglepms()"><ion-icon  name="business-outline"></ion-icon>Property<ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon></p>
+
+        <ion-list class="menulsit" *ngIf="pms" no-lines>
+          <ion-menu-toggle>
+
+
+            <ion-item *ngFor="let p of Property" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
+              [routerLink]="[p.url]">
+              <ion-icon name="{{p.icon}}" style="color:#fff !important;margin-top: 15px !important;" slot="start" >
+              </ion-icon>
+              
+
+              <ion-label style="color:#fff !important;font-size: 13px !important;font-weight:100">
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+
+
+          </ion-menu-toggle>
+
+        </ion-list>
       </ion-content>
       </ion-menu>
       <ion-router-outlet id="content" main></ion-router-outlet>
