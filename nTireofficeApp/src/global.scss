@@ -306,7 +306,7 @@ ion-header {
         ion-title {
             // padding: 33px;
             font-weight: 600;
-            // margin-left: -53px;
+            margin-left: -53px;
             font-family: 'poppins';
 
             h6 {
@@ -330,8 +330,9 @@ ion-footer {
 
     // background: red !important;
     // position: absolute;
-    bottom: 0;
+    bottom: 0 !important;
     height: 40px;
+    border-radius: 16px 16px 0 0 !important;
 
     // background-color: beige;
     ion-row {

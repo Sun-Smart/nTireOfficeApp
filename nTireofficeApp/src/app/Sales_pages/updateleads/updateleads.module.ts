@@ -3,17 +3,24 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { Routes, RouterModule } from '@angular/router';
 import { UpdateleadsPageRoutingModule } from './updateleads-routing.module';
 
 import { UpdateleadsPage } from './updateleads.page';
-
+import { AddcontactPage } from '../addcontact/addcontact.page';
+const routes: Routes = [
+  {
+    path: '',
+    component: AddcontactPage
+  }
+];
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateleadsPageRoutingModule
+    UpdateleadsPageRoutingModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [UpdateleadsPage]
 })

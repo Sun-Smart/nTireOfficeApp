@@ -7,9 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-
     path: '',
-
     redirectTo: 'login',
     pathMatch: 'full'
   },
@@ -26,6 +24,51 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./navbar/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
+  {
+    path: 'invoiceupload',
+    loadChildren: () => import('./procurement/invoiceupload/invoiceupload.module').then( m => m.InvoiceuploadPageModule)
+  },
+  {
+    path: 'updatevendoritem',
+    loadChildren: () => import('./procurement/updatevendoritem/updatevendoritem.module').then( m => m.UpdatevendoritemPageModule)
+  },
+  {
+    path: 'updatevendorquot',
+    loadChildren: () => import('./procurement/updatevendorquot/updatevendorquot.module').then( m => m.UpdatevendorquotPageModule)
+  },
+  {
+    path: 'vendormaster',
+    loadChildren: () => import('./procurement/vendormaster/vendormaster.module').then( m => m.VendormasterPageModule)
+  },
+  {
+    path: 'vendormaster-model',
+    loadChildren: () => import('./procurement/vendormaster-model/vendormaster-model.module').then( m => m.VendormasterModelPageModule)
+  },
+  {
+    path: 'vendorpayments',
+    loadChildren: () => import('./procurement/vendorpayments/vendorpayments.module').then( m => m.VendorpaymentsPageModule)
+  },
+  {
+    path: 'vendorppconfirm',
+    loadChildren: () => import('./procurement/vendorppconfirm/vendorppconfirm.module').then( m => m.VendorppconfirmPageModule)
+  },
+  {
+    path: 'vendorquotation',
+    loadChildren: () => import('./procurement/vendorquotation/vendorquotation.module').then( m => m.VendorquotationPageModule)
+  },
+  {
+    path: 'vendorsdetails',
+    loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then( m => m.VendorsdetailsPageModule)
+  },
+  {
+    path: 'vendorsitems',
+    loadChildren: () => import('./procurement/vendorsitems/vendorsitems.module').then( m => m.VendorsitemsPageModule)
+  },
+  {
+    path: 'vendorpoconfirm',
+    loadChildren: () => import('./procurement/vendorpoconfirm/vendorpoconfirm.module').then( m => m.VendorpoconfirmPageModule)
+  },
+
 
   {
     path: 'pending-jobs',

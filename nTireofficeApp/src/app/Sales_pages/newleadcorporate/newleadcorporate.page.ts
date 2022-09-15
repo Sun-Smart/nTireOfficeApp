@@ -285,7 +285,7 @@ export class NewleadcorporatePage implements OnInit {
     }).subscribe(resp => {
       this.branchlist = resp;
       this.branchlist.forEach(element => {
-        this.branchlist1.push(element)
+        this.branchlist1.push(element);
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
