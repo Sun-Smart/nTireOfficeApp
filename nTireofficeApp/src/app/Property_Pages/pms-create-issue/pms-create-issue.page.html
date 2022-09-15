@@ -1,12 +1,3 @@
-<ion-header>
-
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>PMS Create Issue</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
 
@@ -41,14 +32,22 @@
             </div>
           </ion-col>
 
-          <ion-col size="6" class="col_height">
+          <ion-col size="5" class="col_height">
             <div>
               <p class="card_left_text">Date :</p>
             </div>
           </ion-col>
-          <ion-col size="6" class="col_height">
+          <ion-col size="7" class="col_height">
             <div>
-              <ion-input placeholder="Text Input"></ion-input>
+
+              <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+              <ion-modal [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime id="datetime"></ion-datetime>
+                </ng-template>
+              </ion-modal>
+
             </div>
           </ion-col>
 
@@ -110,9 +109,16 @@
       <ion-grid>
 
         <ion-row>
-          <ion-button size="6" color="secondary" (click)="save()">Save</ion-button>
-          <ion-button size="6" color="danger" (click)="cancel()">Cancel</ion-button>
+          <ion-col size="6">
+            <ion-button size="6" color="danger" (click)="cancel()">Cancel</ion-button>
+            
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-button color="success" (click)="save()">Save</ion-button>
+          </ion-col>
         </ion-row>
+
       </ion-grid>
     </ion-card-content>
 
