@@ -308,8 +308,9 @@ ion-header {
         ion-title {
             // padding: 33px;
             font-weight: 600;
-            margin-left: -53px;
+            // margin-left: -53px;
             font-family: 'poppins';
+            text-align: initial;
 
             h6 {
                 // background-color: #5d5ddd;
@@ -441,6 +442,7 @@ ion-content {
     // --background: url(../assets/Images/Landing/bg.png) no-repeat;
     position: relative;
     opacity: 0.9;
+    font-family: "Poppins" !important;
     // bottom: 50px;
 }
 
@@ -777,7 +779,7 @@ ion-label {
 //     margin: 15px !important;
 // }
 ion-modal ion-toolbar {
-    --background: #004073 !important;
+    --background: #004073;
 }
 
 .btncolor {

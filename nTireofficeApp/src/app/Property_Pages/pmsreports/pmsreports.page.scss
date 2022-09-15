@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+.card_heder {
+    background-color: #019ADE !important;
+    color: white !important;
+    font-family: "Poppins";
+    padding: 5px;
+}
+.card_left_text {
+    font-family: "Poppins";
+    color: black;
+}
+.card_heder {
+    ion-label{
+        color: white !important;
+    }
+}
+.pmsReport{
+    ion-card{
+        // box-shadow: 0px 0px 5px 0px #afafaf !important;
+    }
+}
+.pmsReportCard{
+    ion-card-content{
+        height: 150px;
+    }
+}
