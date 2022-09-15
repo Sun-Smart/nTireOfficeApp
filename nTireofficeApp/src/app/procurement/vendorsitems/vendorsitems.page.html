@@ -1,0 +1,190 @@
+
+
+<ion-content>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Vendor Items</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <!-- ng-repeat=" item in Vendors_Item_List" -->
+  <ion-grid style="background: #7a3c9129; padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label position="stacked">Vendor Code</ion-label>
+        <ion-item style="color:black;background:white!important">
+            <ionic-selectable item-content [(ngModel)]="vendorscode"  ngDefaultControl  [itemValueField]="vendor_id"  itemTextField="Vendor_Code" [items]="vendorcode" [canSearch]="true"
+          (onChange)="portChange($event)" (onSelect)="getvendornames($event)" >
+          </ionic-selectable>
+        </ion-item>
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label position="stacked">Item Category</ion-label>
+      <ion-item style="color:black;background:white!important">
+
+      </ion-item>
+  </ion-col>
+  <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+    <ion-label position="stacked">Item Sub Category</ion-label>
+    <ion-item style="color:black;background:white!important">
+
+    </ion-item>
+</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-spinner *ngIf="loading" style="margin: 10px auto;display: block;"></ion-spinner>
+
+  <div *ngIf="Vendors_Item_List.length!=0">
+  <ion-card *ngFor="let item of Vendors_Item_List;let i=index;" style="position: relative;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <p class="" style="text-align: center;">Item Code :&nbsp; {{item.VENDOR_ITEM_CODE}}</p>
+          <!-- {{item.VENDOR_ITEM_CODE}} -->
+        </ion-col>
+        <ion-col size="6">
+          <p class="" style="text-align: center">U.P :&nbsp;{{item.UNIT_PRICE}}</p>
+          <!-- {{item.UNIT_PRICE}} -->
+        </ion-col>
+      </ion-row>
+
+      <div style="margin-left: 15px;margin-top: 14px;font-size: 13px;">
+        <ion-row>
+          <ion-col size="6">
+            <p style="text-align: left;font-weight: bold">Item Category</p>
+          </ion-col>
+          <ion-col size="6">
+            <p>{{item.itemCategory}}</p>
+            <!-- {{item.itemCategory}} -->
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <p style="text-align: left;font-weight: bold">Item Subcategory</p>
+          </ion-col>
+          <ion-col size="6">
+            <p>{{item.itemSubCategory||"-"}}</p>
+            <!-- {{item.itemSubCategory||"-"}} -->
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <p style="text-align: left;font-weight: bold">Item Desc</p>
+          </ion-col>
+          <ion-col size="6">
+            <p>{{item.itemCategory||"-"}}</p>
+            <!-- {{item.itemCategory||"-"}} -->
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <p style="text-align: left;font-weight: bold">Brand</p>
+          </ion-col>
+          <ion-col size="6">
+            <p>{{item.Brand||"-"}}</p>
+            <!-- {{item.Brand||"-"}} -->
+          </ion-col>
+        </ion-row>
+        <!-- (click)="showmore($index)" -->
+        <div [hidden]="clickedIndex == i" >
+          <i id="imageidvals{{0+$index}}" (click)="clickedIndex == i? clickedIndex = null : clickedIndex = i" class="fa fa-angle-double-down" aria-hidden="true" style="font-size: 21px;background: #b246d0;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;margin-bottom: 10px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float: right;margin-right: 29px;right:0;"></i>
+        </div>
+
+      </div>
+    </ion-grid>
+
+
+      <ion-grid [hidden]="clickedIndex != i">
+        <div style="margin-left: 5px;margin-top: 11px;font-size: 13px;">
+      <ion-row>
+        <ion-col size="6">
+          <p style="text-align: left;font-weight: bold">Discount(%)</p>
+        </ion-col>
+        <ion-col size="6">
+          <p>{{item.DISCOUNT||"-"}}</p>
+          <!-- {{item.DISCOUNT||"-"}} -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="text-align: left;font-weight: bold">Taxes & Levies(%)</p>
+        </ion-col>
+        <ion-col size="6">
+          <p>{{item.TAXES_AND_LEVIES||"-"}}</p>
+          <!-- {{item.TAXES_AND_LEVIES||"-"}} -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="text-align: left;font-weight: bold">Lead Time</p>
+        </ion-col>
+        <ion-col size="6">
+          <p>{{item.LEAD_TIME||"-"}}</p>
+          <!-- {{item.LEAD_TIME||"-"}} -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="text-align: left;font-weight: bold">Transportation Charges</p>
+        </ion-col>
+        <ion-col size="6">
+          <p>{{item.TRANSPORT_CHARGES||"-"}}</p>
+          <!-- {{item.TRANSPORT_CHARGES||"-"}} -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="text-align: left;font-weight: bold">Net Price</p>
+        </ion-col>
+        <ion-col size="6">
+          <p>{{item.NET_PRICE_PER_UNIT||"-"}}</p>
+          <!-- {{item.NET_PRICE_PER_UNIT||"-"}} -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="text-align: left;font-weight: bold">Remarks</p>
+        </ion-col>
+        <ion-col size="6">
+          <p>{{item.REMARKS||"-"}}</p>
+          <!-- {{item.REMARKS||"-"}} -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="text-align: center;">
+          <ion-button style="min-width: 115px; --background: #b246d0;color:white;" type="button" (click)="updateVendors(item)" class="button button-assertive button-small editbut">Update</ion-button>
+          <!-- <a (click)="showless($index)">
+            <i id="imageidvals{{0+$index}}" class="fa fa-angle-double-up" aria-hidden="true" style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float: right;margin-right: 25px;"></i>
+             </a> -->
+        </ion-col>
+      </ion-row>
+
+
+        <div [hidden]="clickedIndex != i" >
+          <i id="imageidvals{{0+$index}}" (click)="clickedIndex == i? clickedIndex = null : clickedIndex = i" class="fa fa-angle-double-up" aria-hidden="true" style="font-size: 21px;background: #b246d0;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float: right;margin-right: 22px;right:0;margin-bottom:10px;"></i>
+        </div>
+      </div>
+    </ion-grid>
+
+  </ion-card>
+</div>
+
+  <p style="font-weight: bold;text-align: center;color: white; padding: 10px;" *ngIf="Vendors_Item_List.length==0">No record Found</p>
+  <!-- ng-if="Vendors_Item_List.length==0" -->
+
+</ion-content>
