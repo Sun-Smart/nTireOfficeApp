@@ -105,7 +105,31 @@ const routes: Routes = [
     loadChildren: () => import('./Property_Pages/pms-issue-status/pms-issue-status.module').then(m => m.PmsIssueStatusPageModule)
   },
 
-
+  //Sales Page
+  {
+    path: 'salesdashboard',
+    loadChildren: () => import('./Sales_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)
+  },
+  {
+    path: 'newlead-retail',
+    loadChildren: () => import('./Sales_pages/newlead-retail/newlead-retail.module').then(m => m.NewleadRetailPageModule)
+  },
+  {
+    path: 'addnewcorporate',
+    loadChildren: () => import('./Sales_pages/addnewcorporate/addnewcorporate.module').then(m => m.AddnewcorporatePageModule)
+  },
+  {
+    path: 'addcontact',
+    loadChildren: () => import('./Sales_pages/addcontact/addcontact.module').then(m => m.AddcontactPageModule)
+  },
+  {
+    path: 'newleadcorporate',
+    loadChildren: () => import('./Sales_pages/newleadcorporate/newleadcorporate.module').then(m => m.NewleadcorporatePageModule)
+  },
+  {
+    path: 'updateleads',
+    loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
+  },
 
 
   // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },

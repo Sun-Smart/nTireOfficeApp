@@ -1,0 +1,32 @@
+select {
+  width: 100%
+}
+
+#map {
+  overflow: inherit !important;
+  position: inherit !important;
+  height: 250px;
+  width: 100%;
+}
+
+.input-label {
+  position: absolute;
+  right: 12px;
+  top: 34px;
+  z-index: 1000;
+}
+
+.assertive,
+a.assertive {
+  color: #ef473a;
+}
+
+.balanced,
+a.balanced {
+  color: #33cd5f;
+}
+
+ion-content {
+  --background: url('../../../assets/images/Headerfooter/background1.png') repeat !important;
+  position: relative;
+}

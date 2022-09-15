@@ -36,10 +36,13 @@
     "@ionic/angular": "^6.1.9",
     "@ionic/cordova-builders": "^7.0.0",
     "@swimlane/ngx-datatable": "^20.0.0",
+    "@types/jquery": "^3.5.14",
     "chart.js": "^2.7.0",
     "cordova-plugin-statusbar": "^3.0.0",
     "ionic-selectable": "^4.9.0",
     "ionicons": "^6.0.3",
+    "jquery": "^3.6.1",
+    "ngx-google-places-autocomplete": "^2.0.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
