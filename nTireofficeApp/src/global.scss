@@ -295,7 +295,9 @@ ion-searchbar {
 ion-title {
     font-size: 18px;
 }
-
+ion-header{
+    background-image: url('./assets/images/loginBackground.png'),;
+}
 ion-header::after {
     background-image: none;
 }
@@ -407,20 +409,15 @@ textarea {
 }
 
 
-<<<<<<< HEAD
 ion-toolbar {
-    --background: url("./assets/images/loginBackground.png");
-=======
-// ion-toolbar {
-//     --background: url("./assets/images/loginBackground.png") no-repeat;
->>>>>>> 679f52740478116af353610fb5c299b330e4c17b
+    --background: url("./assets/images/loginBackground.png") no-repeat;
 
-//     // --background: rgb(6,159,225)!important;
-//     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
-// }
+    // --background: rgb(6,159,225)!important;
+    // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+}
 
 ion-toolbar {
-    --background: url("./assets/images/loginBackground.png");
+    --background: url("./assets/images/loginBackground.png") no-repeat;
 
     // --background: rgb(6,159,225)!important;
     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
@@ -933,8 +930,10 @@ a.balanced {
 // :host(.menu-button-hidden){
 //     display: block !important;
 // }
+#background-content {
+    background-color: #ECF3F9 !important;
+}
 
 main.inner-scroll.scroll-y {
     background-color: #ECF3F9 !important;
 }
-

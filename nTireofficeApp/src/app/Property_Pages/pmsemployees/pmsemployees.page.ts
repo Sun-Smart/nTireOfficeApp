@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PmsemployeesPage implements OnInit {
 
+  username = window.localStorage.getItem('TUM_USER_NAME');
+
   constructor() { }
 
   ngOnInit() {
