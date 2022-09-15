@@ -11,13 +11,16 @@
 <ion-content>
   <ion-card>
     <ion-card-header class="card_heder">
-      My Property Details
+          <ion-label class="card_header_text">Property Details</ion-label>
+
+          <ion-label class="card_header_link_text"> 
+            <a  (click)="createModal()" class="pms-link">Create</a> / <a  (click)="viewModal()">View</a>
+          </ion-label>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
-
-          <ion-col size="6" class="col_height">
+          <!-- <ion-col size="6" class="col_height">
             <div>
               <p class="card_left_text">Property Details</p>
             </div>
@@ -25,9 +28,8 @@
           <ion-col size="6" class="col_height">
             <div>
               <a  (click)="createModal()">Create</a> / <a  (click)="viewModal()">View</a>
-              <!-- <ion-button (click)="openModal()"> Create</ion-button> -->
             </div>
-          </ion-col>
+          </ion-col> -->
 
           <ion-col size="6" class="col_height">
             <div>
