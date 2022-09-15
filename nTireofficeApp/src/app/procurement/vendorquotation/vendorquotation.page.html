@@ -11,16 +11,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid style="background: #7a3c9129; padding: 10px;margin: 10px;border-radius: 8px;">
+
+  <p style="text-align:center ;"> vendor Quotation</p>
+  <!-- <ion-grid style="background: #7a3c9129; padding: 10px;margin: 10px;border-radius: 8px;">
     <ion-row>
       <ion-col>
           <ion-label>Item Code</ion-label>
-      <!-- </ion-col>
-      <ion-col size="9" > -->
         <ion-item>
         <ion-input style="--background: white;" placeholder="Enter Item Code"  id="itemcode" type="text" [(ngModel)]="itemcode" (ionChange)="getvendornames(itemcode)"></ion-input>
       </ion-item>
-        <!-- [(ngModel)]="itemcode" ngblur="getvendornames(itemcode)" -->
+
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -31,22 +31,22 @@
       <ion-row style="background: #b200e2;color: white;font-weight: bold;padding: 0 5px;">
         <ion-col size="6">
           <p class="">{{item.QUOTE_REF}}</p>
-          <!-- {{item.QUOTE_REF}} -->
+
         </ion-col>
         <ion-col size="6">
           <p class="" style="text-align: right;">{{item.QUOTE_DATE}}</p>
-            <!--{{item.QUOTE_DATE}}-->
+
         </ion-col>
       </ion-row>
 
       <ion-row style="color: black; letter-spacing: 1px;">
         <ion-col size="6">
           <p>{{item.item_Code}}</p>
-          <!-- {{item.item_Code}} -->
+
         </ion-col>
         <ion-col size="6">
           <p style="text-align: right;">{{item.RFQCODE}}</p>
-          <!--{{item.RFQCODE}}-->
+
         </ion-col>
       </ion-row>
 
@@ -54,17 +54,17 @@
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Req Qty</p>
           <p style="text-align: center">{{item.QUANTITY}}</p>
-          <!-- {{item.QUANTITY}} -->
+
         </ion-col>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Unit Price</p>
           <p style="text-align: center">{{item.UNIT_PRICE}}</p>
-          <!-- {{item.UNIT_PRICE}} -->
+
         </ion-col>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Net Price</p>
           <p style="text-align: center">{{item.NET_PRICE_PER_UNIT}}</p>
-          <!-- {{item.NET_PRICE_PER_UNIT}} -->
+
         </ion-col>
       </ion-row>
 
@@ -72,19 +72,19 @@
         <ion-col size="9">
           <p style="color: black;font-weight: bold">Expected Date </p>
           <p>{{item.EXPECTEDDATE}}</p>
-          <!-- {{item.EXPECTEDDATE}} -->
+
         </ion-col>
         <ion-col size="3">
           <p style="color: black;text-align: right;font-weight: bold">Status</p>
                 <p style="text-align: right;">{{item.STATUSVAL}}</p>
-          <!-- {{item.STATUSVAL}} -->
+
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col style="text-align: center;">
           <ion-button *ngIf="item.statusval=='Closed'" style="min-width: 115px; --background: #009689;font-size: 14px;color: white;"  size="default" (click)="updateVendorsQuot(item)" >Update</ion-button>
-          <!-- (click)="updateVendorsQuot(item)"  -->
+
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -92,8 +92,8 @@
 
 </div>
 
-  <p style="font-weight: bold;text-align: center;color:white;" *ngIf="Vendors_Item_List.length==0">No record Found</p>
-  <!--  -->
+  <p style="font-weight: bold;text-align: center;color:white;" *ngIf="Vendors_Item_List.length==0">No record Found</p> -->
+
 
 
 </ion-content>

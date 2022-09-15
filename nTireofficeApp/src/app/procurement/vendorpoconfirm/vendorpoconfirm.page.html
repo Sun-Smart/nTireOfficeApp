@@ -13,7 +13,7 @@
 
 
   <div style="margin-top: 10px;"><span style="font-size: 24px;margin: 25px;color:black;" (click)="togglefilter()"><i class="fa fa-filter" aria-hidden="true"></i></span></div>
-    <!-- *ngFor="let item of Payment_term;" -->
+
     <ion-card *ngIf="showfilter" style="background:#aa2ed27a;border-radius:5px;">
 
       <ion-card-content>
@@ -23,19 +23,18 @@
               <ion-label>Branch</ion-label>
               <ion-item>
               <ion-select style="background:white;padding: 10px;border: none;" [(ngModel)]="branch_id" >
-                <!-- ng-init="item.BRANCH_ID == 1"  ng-options="item.BRANCH_ID as item.BRANCH_CODE for item in allbranches" [(ngModel)]="branch_id" -->
                 <ion-select-option value=""><< Select >></ion-select-option>
                 <ion-select-option *ngFor="let item of allbranch" value={{item.BRANCH_ID}}>{{item.BRANCH_CODE}}</ion-select-option>
               </ion-select>
             </ion-item>
-              <!-- {{item.PayDiscription || '-'}} -->
+
             </ion-col>
             <ion-col size="6">
               <ion-label>Vendor Code</ion-label>
               <ion-item>
               <ion-input [(ngModel)]="vendorcode" style="background:white;display:inline-block" type="text" ></ion-input>
             </ion-item>
-              <!-- [(ngModel)]="vendorcode" -->
+
             </ion-col>
           </ion-row>
 
@@ -45,7 +44,6 @@
               <ion-item>
               <ion-input [(ngModel)]="ponum" style="background:white;display:inline-block" type="text"></ion-input>
             </ion-item>
-              <!-- [(ngModel)]="ponum" -->
             </ion-col>
             <ion-col size="6">
               <ion-label>Status</ion-label>
@@ -62,7 +60,7 @@
                 <ion-select-option value="X">Approved</ion-select-option>
               </ion-select>
             </ion-item>
-              <!-- [(ngModel)]="postatus" -->
+
             </ion-col>
           </ion-row>
 
@@ -72,14 +70,13 @@
               <span class=""><i class="icon ion-calendar placeholder-icon" style="padding-left: 0px;"></i>
               </span>
               <input [(ngModel)]="fromdate" type="date" style="display:inline-block;padding: 8px;"/>
-              <!--  (onChange)="filterDate(fromdate,todate)" -->
+
             </ion-col>
             <ion-col size="6">
              <ion-label>To Date</ion-label>
              <span class=""><i class="icon ion-calendar placeholder-icon" style="background:white;padding-left: 0px;"></i>
              </span>
               <input type="date"  min="{{fromdate | date: 'yyyy-MM-dd'}}" [(ngModel)]="todate" required="" style="display:inline-block;padding: 8px;"/>
-            <!--   (onChange)="filterDate(fromdate,todate)" -->
             </ion-col>
           </ion-row>
 
@@ -93,8 +90,6 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-
-        <!-- *ngFor="item in filtered = (PO_list)" -->
         <div *ngIf="PO_list.length!=0" >
         <ion-card  *ngFor="let item of (PO_list)">
 
@@ -103,11 +98,9 @@
               <ion-row>
                 <ion-col size="6">
                   <p class="" style="color: #b300ec;font-weight: bold;">{{item.po_reference}}</p>
-                  <!-- {{item.po_reference}}-->
                 </ion-col>
                 <ion-col size="6">
                   <p class="" style="color: #b300ec;text-align: right;font-weight: bold;">{{item.po_date}}</p>
-                  <!-- {{item.po_date}} -->
                 </ion-col>
               </ion-row>
 
@@ -117,7 +110,7 @@
                 </ion-col>
                 <ion-col size="6">
                   <p style="text-align: right;">{{item.vendor_code}}</p>
-                  <!-- {{item.vendor_code}} -->
+
                 </ion-col>
               </ion-row>
 
@@ -127,7 +120,7 @@
                 </ion-col>
                 <ion-col size="6">
                   <p style="text-align: right;">{{item.vendor_name}}</p>
-                                    <!-- {{item.vendor_name}} -->
+
                 </ion-col>
               </ion-row>
 
@@ -137,7 +130,7 @@
                 </ion-col>
                 <ion-col size="8">
                   <p style="text-align: right;">{{item.status}}</p>
-                                    <!-- {{item.status}} -->
+
                 </ion-col>
               </ion-row>
 
@@ -150,11 +143,10 @@
                 <ion-col  style="text-align: center;">
                   <ion-button style="min-width: 35px;margin: 5px; --background: #009689;font-size: 14px;
                   color: white;" type="button" (click)="confirmPo(item)" class="button button-assertive button-small editbut col">Confirm</ion-button>
-                <!-- </ion-col>
-                <ion-col size="6"> -->
+
                   <ion-button *ngIf="item.status=='Approved'" style="min-width: 35px;margin: 5px; --background: #009689;font-size: 14px;
                   color: white;" type="button" (click)="payPo(item)" class="button button-assertive button-small editbut col" >Update</ion-button>
-                  <!-- *ngIf="item.status=='Approved'" -->
+
                 </ion-col>
               </ion-row>
 
@@ -164,5 +156,5 @@
       </div>
 
         <p style="font-weight: bold;text-align: center;color:white;" *ngIf="PO_list.length==0" >No record Found</p>
-        <!-- *ngIf="PO_list.length==0" -->
+
 </ion-content>
