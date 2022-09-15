@@ -4,7 +4,7 @@
     margin: 5px;
 }
 ion-card-content.md.card-content-md.hydrated {
-  padding: 15px;
+  padding: 15px !important;
  
 }
 .first{
@@ -28,13 +28,7 @@ ion-card-content.md.card-content-md.hydrated {
     color: white;
     margin: 0%;
 }
-.ion-margin {
-    --ion-grid-column-padding: 10px;
-    border-collapse: collapse;
-    border-style: hidden;
-    
-  
-  }
+
   ion-card-header.ion-inherit-color.md.hydrated {
     background-color: #019ADE;
     color: white !important;

@@ -140,6 +140,10 @@ const routes: Routes = [
     loadChildren: () => import('./Property_Pages/pmscustomer/pmscustomer.module').then(m => m.PmscustomerPageModule)
   },
   {
+    path: 'pmsemployees',
+    loadChildren: () => import('./Property_Pages/pmsemployees/pmsemployees.module').then(m => m.PmsemployeesPageModule)
+  },
+  {
     path: 'pms-create-issue',
     loadChildren: () => import('./Property_Pages/pms-create-issue/pms-create-issue.module').then(m => m.PmsCreateIssuePageModule)
   },
