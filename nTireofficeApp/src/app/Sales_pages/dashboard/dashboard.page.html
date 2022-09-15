@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sales Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+  <select [(ngModel)]="branch" style="margin-top:12px;margin-left:20px;width: 90%;" class="form-control"
+    (change)="branchchange(branch)">
+    <option>Please Select Branch</option>
+    <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">{{branch.BRANCH_DESC}}
+    </option>
+  </select>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
+        <ion-card>
+          <div class="dashboardhead">
+            Stage Wise Lead Count
+          </div>
+          <div style="margin-top:15px;">
+            <canvas #barCanvas id="barCanvas"></canvas>
+          </div>
+
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
+        <ion-card>
+          <div class="dashboardhead">
+            Source Wise Lead Count
+
+          </div>
+          <div style="margin-top:15px;">
+            <canvas #sourcecanvas id="sourcecanvas"></canvas>
+
+          </div>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
+        <ion-card>
+          <div class="dashboardhead">
+            Product Wise Forecast
+
+          </div>
+          <div style="margin-top:15px;">
+            <canvas #productcanvas height="90" width="100" id="productcanvas" class="chart chart-line"
+              chart-data="data1" chart-labels="Productlabel" chart-series="series1" chart-options="options1"
+              chart-dataset-override="datasetOverride1" chart-click="onClick">
+            </canvas>
+
+
+          </div>
+          <div style="margin-top:15px;">
+            <canvas height="70" width="100" #productcanvas1 id="productcanvas1" class="chart chart-line"
+              chart-data="data1" chart-labels="Productlabel" chart-series="series1" chart-options="options1"
+              chart-dataset-override="datasetOverride1" chart-click="onClick">
+            </canvas>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
