@@ -407,15 +407,15 @@ textarea {
 }
 
 
-ion-toolbar {
-    --background: url("./assets/images/loginBackground.png") no-repeat;
+// ion-toolbar {
+//     --background: url("./assets/images/loginBackground.png") no-repeat;
 
-    // --background: rgb(6,159,225)!important;
-    // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
-}
+//     // --background: rgb(6,159,225)!important;
+//     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+// }
 
 ion-toolbar {
-    --background: url("./assets/images/loginBackground.png") no-repeat;
+    --background: url("./assets/images/loginBackground.png");
 
     // --background: rgb(6,159,225)!important;
     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
@@ -928,9 +928,6 @@ a.balanced {
 // :host(.menu-button-hidden){
 //     display: block !important;
 // }
-#background-content {
-    background-color: #ECF3F9 !important;
-}
 
 main.inner-scroll.scroll-y {
     background-color: #ECF3F9 !important;
