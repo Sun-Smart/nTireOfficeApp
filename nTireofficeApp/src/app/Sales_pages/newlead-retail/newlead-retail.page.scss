@@ -27,6 +27,11 @@ a.balanced {
 }
 
 ion-content {
-  --background: url('../../../assets/images/Headerfooter/background1.png') repeat !important;
+  // --background: url('../../../assets/images/Headerfooter/background1.png') repeat !important;
   position: relative;
+}
+.commontextpage {
+  text-align: center;
+  position: relative;
+  top: 50%;
 }

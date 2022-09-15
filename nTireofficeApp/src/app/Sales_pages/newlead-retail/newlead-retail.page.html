@@ -8,7 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <p class="commontextpage">New Lead Retail Page</p>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Function</ion-label>
@@ -61,9 +62,6 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
 
-        <!-- <ion-input class="form-control" type="number" maxlength="10"
-          [(ngModel)]="mobile"></ion-input>
-        <span *ngIf="mobile != undefined && mobile.length < 10" style="color: red">valid mobile number required</span> (keyup)="numberOnlyValidation($event)"-->
         <ion-input type="tel" class="form-control" pattern="[0-9]*" [(ngModel)]="mobile" minlength="10" maxlength="15"
         #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
@@ -74,17 +72,9 @@
         <ion-label>Office Number</ion-label>
         <ion-input type="tel" class="form-control" pattern="[0-9]*" [(ngModel)]="OffPhone" minlength="10" maxlength="15"
           #uname="ngModel"></ion-input>
-        <!-- <span *ngIf="uname.errors?.number">
-          <p style="color:red;">Valid office number is required</p>
-        </span> -->
         <div *ngIf="OffPhone && uname.errors?.minlength || uname.errors?.maxlength">
           <p style="color:red;">Office number should be 10-13 digits</p>
         </div>
-        <!-- <span *ngIf="((OffPhone.$error.minlength ||
-                                         OffPhone.$error.maxlength) &&
-                                         OffPhone.$dirty) ">
-                                         <p style="color:red;">Office number should be 10-13 digits</p>
-                                  </span> -->
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Telephone Number</ion-label>
@@ -268,5 +258,18 @@
         <ion-button (click)="Cancelretail()" color="danger" size="full">Cancel</ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>
+<ion-footer>
+
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+
+
+</ion-footer>

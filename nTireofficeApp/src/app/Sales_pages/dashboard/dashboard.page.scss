@@ -1,7 +1,7 @@
-ion-content {
-  --background: url('../../../assets/images/Headerfooter/background1.png') repeat !important;
-  position: relative;
-}
+// ion-content {
+//   --background: url('../../../assets/images/Headerfooter/background1.png') repeat !important;
+//   position: relative;
+// }
 .sc-ion-card-md-h{
   --background:#fff;
   border-radius: 12px;
@@ -12,5 +12,10 @@ ion-content {
   background-image: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
   border-radius: 10px;
   text-align: center;
+}
+.commontextpage {
+  text-align: center;
+  position: relative;
+  top: 50%;
 }
 
