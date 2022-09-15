@@ -8,6 +8,8 @@ import { ModalController } from '@ionic/angular';
 })
 export class PmsIssueStatusPage implements OnInit {
 
+  username = window.localStorage.getItem('TUM_USER_NAME');
+  
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {

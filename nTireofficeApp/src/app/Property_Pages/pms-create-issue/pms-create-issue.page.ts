@@ -9,7 +9,8 @@ import { ModalController } from '@ionic/angular';
 export class PmsCreateIssuePage implements OnInit {
 
   name: string;
-
+  username = window.localStorage.getItem('TUM_USER_NAME');
+  
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {

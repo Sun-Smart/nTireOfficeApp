@@ -9,7 +9,8 @@ import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
   styleUrls: ['./pmscustomer.page.scss'],
 })
 export class PmscustomerPage implements OnInit {
-
+  
+  username = window.localStorage.getItem('TUM_USER_NAME');
   name: string = '';
   constructor(private modalCtrl: ModalController) { }
 

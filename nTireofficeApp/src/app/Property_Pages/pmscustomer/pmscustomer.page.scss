@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 .card_heder {
-    background-image: url("../../../assets/images/loginBackground.png");
+    background-color: #004073 !important;
     color: white !important;
     font-family: "Poppins";
 }
@@ -13,9 +13,7 @@
     color: white !important;
 }
 .card_header_link_text {
-    text-align: end !important;
     color: white !important;
-    margin-left: 60px;
     font-size: 18px;
 }
 .card_header_link_text {
