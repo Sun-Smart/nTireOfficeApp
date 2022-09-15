@@ -7,7 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'home',
+
+    path: '12',
     redirectTo: 'home',
     pathMatch: 'full'
   },
@@ -68,48 +69,65 @@ const routes: Routes = [
   },
 
 
-  // { path: 'pending-jobs', loadChildren: './Cams_pages/pending-jobs/pending-jobs.module#PendingJobsPageModule' },
-  // { path: 'pending-jobs-tabs', loadChildren: './Cams_pages/pending-jobs-tabs/pending-jobs-tabs.module#PendingJobsTabsPageModule' },
-  // { path: 'job-detail', loadChildren: './Cams_pages/job-detail/job-detail.module#JobDetailPageModule' },
-  // { path: 'task-detail', loadChildren: './Cams_pages/task-detail/task-detail.module#TaskDetailPageModule' },
-  // { path: 'manpower-used', loadChildren: './Cams_pages/manpower-used/manpower-used.module#ManpowerUsedPageModule' },
-  // { path: 'spares-used', loadChildren: './Cams_pages/spares-used/spares-used.module#sparesUsedPageModule' },
-  // { path: 'consumable-used', loadChildren: './Cams_pages/consumable-used/consumable-used.module#ConsumableUsedPageModule' },
-  // { path: 'completion-jobs', loadChildren: './Cams_pages/completion-jobs/completion-jobs.module#CompletionJobsPageModule' },
-  // { path: 'asset-reconcil', loadChildren: './Cams_pages/asset-reconcil/asset-reconcil.module#AssetReconcilPageModule' },
-  // { path: 'user-request', loadChildren: './Cams_pages/user-request/user-request.module#UserRequestPageModule' },
-  // { path: 'asset-details', loadChildren: './Cams_pages/asset-details/asset-details.module#AssetDetailsPageModule' },
-  // { path: 'service-request', loadChildren: './Cams_pages/service-request/service-request.module#ServiceRequestPageModule' },
-  // { path: 'service-list', loadChildren: './Cams_pages/service-list/service-list.module#ServiceListPageModule' },
-  // { path: 'location-wise-asset', loadChildren: './Cams_pages/location-wise-asset/location-wise-asset.module#LocationWiseAssetPageModule' },
-  // { path: 'asset-transfer', loadChildren: './Cams_pages/asset-transfer/asset-transfer.module#AssetTransferPageModule' },
-  // { path: 'reconciliation-report', loadChildren: './Cams_pages/reconciliation-report/reconciliation-report.module#ReconciliationReportPageModule' },
-  // { path: 'department-wise', loadChildren: './Cams_pages/department-wise/department-wise.module#DepartmentWisePageModule' },
-  // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' },
+  {
+    path:'pending-jobs',
+    loadChildren: () => import('./Cams_pages/pending-jobs/pending-jobs.module').then(m => m.PendingJobsPageModule)
+  },
+  {
+    path:'asset-details',
+    loadChildren: () => import('./Cams_pages/asset-details/asset-details.module').then(m => m.AssetDetailsPageModule)
+  },
+  {
+    path:'completion-jobs',
+    loadChildren: () => import('./Cams_pages/completion-jobs/completion-jobs.module').then(m => m.CompletionJobsPageModule)
+  },
+  {
+    path:'asset-reconcil',
+    loadChildren: () => import('./Cams_pages/asset-reconcil/asset-reconcil.module').then(m => m.AssetReconcilPageModule)
+  },
+  {
+    path:'user-request',
+    loadChildren: () => import('./Cams_pages/user-request/user-request.module').then(m => m.UserRequestPageModule)
+  },
+  {
+    path:'service-request',
+    loadChildren: () => import('./Cams_pages/service-request/service-request.module').then(m => m.ServiceRequestPageModule)
+  },
+  {
+    path:'location-wise-asset',
+    loadChildren: () => import('./Cams_pages/location-wise-asset/location-wise-asset.module').then(m => m.LocationWiseAssetPageModule)
+  },
+  {
+    path:'asset-transfer',
+    loadChildren:() => import('./Cams_pages/asset-transfer/asset-transfer.module').then(m => m.AssetTransferPageModule)
+  },
+  {
+    path:'reconciliation-report',
+    loadChildren:() => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
+  },
 
+// Property
 
+{
+  path:'pmsdashboard',
+  loadChildren:() => import('./Property_Pages/pmsdashboard/pmsdashboard.module').then(m => m.PmsdashboardPageModule)
+},
+{
+  path:'pmscustomer',
+  loadChildren:() => import('./Property_Pages/pmscustomer/pmscustomer-routing.module').then(m => m.PmscustomerPageRoutingModule)
+},
+{
+  path:'pmsemployees',
+  loadChildren:() => import('./Property_Pages/pmsemployees/pmsemployees.module').then(m => m.PmsemployeesPageModule)
+},
+{
+  path:'pmsreports',
+  loadChildren:() => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
+},
 
-  //Procurement
+{ path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
 
-
-
-
-
-  // { path: 'updatevendoritem', loadChildren: './procurement/updatevendoritem/updatevendoritem.module#UpdatevendoritemPageModule' },
-  // { path: 'updatevendorquot', loadChildren: './procurement/updatevendorquot/updatevendorquot.module#UpdatevendorquotPageModule' },
-  // { path: 'vendormaster', loadChildren: './procurement/vendormaster/vendormaster.module#VendormasterPageModule' },
-  // { path: 'vendormaster-modal', loadChildren: './procurement/vendormaster-modal/vendormaster-modal.module#VendormasterModalPageModule' },
-  // { path: 'vendorpayments', loadChildren: './procurement/vendorpayments/vendorpayments.module#VendorpaymentsPageModule' },
-  // { path: 'invoiceupload', loadChildren: './procurement/invoiceupload/invoiceupload.module#InvoiceuploadPageModule' },
-  // { path: 'vendorpoconfirm', loadChildren: './procurement/vendorpoconfirm/vendorpoconfirm.module#VendorpoconfirmPageModule' },
-  // { path: 'vendorquotation', loadChildren: './procurement/vendorquotation/vendorquotation.module#VendorquotationPageModule' },
-  // { path: 'vendorsdetails', loadChildren: './procurement/vendorsdetails/vendorsdetails.module#VendorsdetailsPageModule' },
-  // { path: 'vendorsitems', loadChildren: './procurement/vendorsitems/vendorsitems.module#VendorsitemsPageModule' },
-  // { path: 'imageview', loadChildren: './Sales_pages/imageview/imageview.module#ImageviewPageModule' },
-  // { path: 'closedleads', loadChildren: './Sales_pages/closedleads/closedleads.module#ClosedleadsPageModule' },
-  // { path: 'itemdetails', loadChildren: './itemdetails/itemdetails.module#ItemdetailsPageModule' },
-
-
+{ path: 'myprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
 
 
 ];
