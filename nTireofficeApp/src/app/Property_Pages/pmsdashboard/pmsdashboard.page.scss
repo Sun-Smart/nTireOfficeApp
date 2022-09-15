@@ -60,3 +60,13 @@ td {
   //       width: 2px !important;
   //   }
   // }
+
+  .pmsDashboardHeader{
+    ion-card-header, ion-item{
+      background: #019ADE !important;
+      color: white;
+    }
+  }
+  .table-body{
+    text-align: initial;
+  }
