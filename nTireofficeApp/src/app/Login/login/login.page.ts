@@ -173,7 +173,7 @@ export class LoginPage implements OnInit {
                   localStorage.setItem('DashName', userdata['TUM_USER_NAME']);
 
 
-                  this.route.navigate(['/dashboardCams']);
+                  this.route.navigate(['/dashboard']);
                 } else {
                   this.loadingdismiss();
                   this.presentAlert('Login failed!','Please check your username & Password!');

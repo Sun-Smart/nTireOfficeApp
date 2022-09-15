@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
+import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
 
 @Component({
   selector: 'app-pmscustomer',
@@ -9,16 +10,33 @@ import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 })
 export class PmscustomerPage implements OnInit {
 
+  name: string = '';
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
-  async openModal() {
-   
+  async createModal() {
+
     const model = await this.modalCtrl.create({
-      
+
       component: PmsCreateIssuePage,
     });
-    model.present();
+   return await model.present();
+    const { data, role } = await model.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.name = data;
+
+    }
   }
+
+ async viewModal(){
+  const model = await this.modalCtrl.create({
+
+    component: PmsIssueStatusPage,
+  });
+  return await model.present();
+ }
+  
+ 
 }
