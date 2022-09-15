@@ -7,13 +7,12 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-
-    path: '12',
-    redirectTo: 'home',
+    path: '',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'login',
     loadChildren: () => import('./Login/login/login.module').then( m => m.LoginPageModule)
   },
   // CAMS
@@ -106,28 +105,83 @@ const routes: Routes = [
     loadChildren:() => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
   },
 
-// Property
-
-{
-  path:'pmsdashboard',
-  loadChildren:() => import('./Property_Pages/pmsdashboard/pmsdashboard.module').then(m => m.PmsdashboardPageModule)
-},
-{
-  path:'pmscustomer',
-  loadChildren:() => import('./Property_Pages/pmscustomer/pmscustomer-routing.module').then(m => m.PmscustomerPageRoutingModule)
-},
-{
-  path:'pmsemployees',
-  loadChildren:() => import('./Property_Pages/pmsemployees/pmsemployees.module').then(m => m.PmsemployeesPageModule)
-},
-{
-  path:'pmsreports',
-  loadChildren:() => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
-},
 
 { path: 'hrmsdashboard', loadChildren:()=>import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
 
-{ path: 'myprofile', loadChildren:()=>import('./Hrms_pages/myprofile/myprofile.module').then(m => m.MyprofilePageModule) },
+
+  {
+    path: 'pms-create-issue',
+    loadChildren: () => import('./Property_Pages/pms-create-issue/pms-create-issue.module').then( m => m.PmsCreateIssuePageModule)
+  },
+  {
+    path: 'pms-issue-status',
+    loadChildren: () => import('./Property_Pages/pms-issue-status/pms-issue-status.module').then( m => m.PmsIssueStatusPageModule)
+  },
+
+
+
+
+  // { path: 'hrmsmyapprovals', loadChildren: './Hrms_pages/myapprovals/myapprovals.module#MyapprovalsPageModule' },
+  // { path: 'hrmsmyprofile', loadChildren: './Hrms_pages/myprofile/myprofile.module#MyprofilePageModule' },
+  // { path: 'hrmsemployees', loadChildren: './Hrms_pages/employees/employees.module#EmployeesPageModule' },
+  // { path: 'hrmsattendance', loadChildren: './Hrms_pages/attendance/attendance.module#AttendancePageModule' },
+  // { path: 'hrmsprocessed-attendance', loadChildren: './Hrms_pages/processed-attendance/processed-attendance.module#ProcessedAttendancePageModule' },
+  // { path: 'hrmspayslip', loadChildren: './Hrms_pages/payslip/payslip.module#PayslipPageModule' },
+  // { path: 'hrmscoff-request', loadChildren: './Hrms_pages/coff-request/coff-request.module#CoffRequestPageModule' },
+  // { path: 'hrmscoffsummary', loadChildren: './Hrms_pages/coffsummary/coffsummary.module#CoffsummaryPageModule' },
+  // { path: 'hrmsreapplycoff', loadChildren: './Hrms_pages/reapplycoff/reapplycoff.module#ReapplycoffPageModule' },
+  // { path: 'hrmsod-request', loadChildren: './Hrms_pages/od-request/od-request.module#OdRequestPageModule' },
+  // { path: 'hrmsclaimsrequest', loadChildren: './Hrms_pages/claimsrequest/claimsrequest.module#ClaimsrequestPageModule' },
+  // { path: 'hrmsclaimssummary', loadChildren: './Hrms_pages/claimssummary/claimssummary.module#ClaimssummaryPageModule' },
+
+  // { path: 'hrmsleave-request', loadChildren: './Hrms_pages/leave-request/leave-request.module#LeaveRequestPageModule' },
+  // { path: 'hrmsleavesummary', loadChildren: './Hrms_pages/leavesummary/leavesummary.module#LeavesummaryPageModule' },
+  // { path: 'hrmspermission-request', loadChildren: './Hrms_pages/permission-request/permission-request.module#PermissionRequestPageModule' },
+  // { path: 'hrmspermissionsummary', loadChildren: './Hrms_pages/permissionsummary/permissionsummary.module#PermissionsummaryPageModule' },
+  // { path: 'hrmsassetrequest', loadChildren: './Hrms_pages/assetrequest/assetrequest.module#AssetrequestPageModule' },
+  // { path: 'hrmsassestssummary', loadChildren: './Hrms_pages/assestssummary/assestssummary.module#AssestssummaryPageModule' },
+  // { path: 'hrmsattendance-notification', loadChildren: './Hrms_pages/attendance-notification/attendance-notification.module#AttendanceNotificationPageModule' },
+  // { path: 'hrmsloan-request', loadChildren: './Hrms_pages/loan-request/loan-request.module#LoanRequestPageModule' },
+  // { path: 'hrmsloan-summary', loadChildren: './Hrms_pages/loan-summary/loan-summary.module#LoanSummaryPageModule' },
+  // { path: 'hrmsassetreturn', loadChildren: './Hrms_pages/assetreturn/assetreturn.module#AssetreturnPageModule' },
+  // { path: 'hrmsonlineexamportal', loadChildren: './Hrms_pages/onlineexamportal/onlineexamportal.module#OnlineexamportalPageModule' },
+  // { path: 'hrmsonlineexam', loadChildren: './Hrms_pages/onlineexam/onlineexam.module#OnlineexamPageModule' },
+  // { path: 'hrmsexamdetails', loadChildren: './Hrms_pages/examdetails/examdetails.module#ExamdetailsPageModule' },
+  // { path: 'hrmsonlineexamtimer', loadChildren: './Hrms_pages/onlineexamtimer/onlineexamtimer.module#OnlineexamtimerPageModule' },
+  // { path: 'hrmsonline-exam-ctrl', loadChildren: './Hrms_pages/online-exam-ctrl/online-exam-ctrl.module#OnlineExamCtrlPageModule' },
+  // { path: 'hrmsonlineexamreports', loadChildren: './Hrms_pages/onlineexamreports/onlineexamreports.module#OnlineexamreportsPageModule' },
+  // { path: 'hrmsview-report', loadChildren: './Hrms_pages/view-report/view-report.module#ViewReportPageModule' },
+  // { path: 'hrmsquestionreport', loadChildren: './Hrms_pages/questionreport/questionreport.module#QuestionreportPageModule' },
+  // { path: 'hrmsquestionanswerreport', loadChildren: './Hrms_pages/questionanswerreport/questionanswerreport.module#QuestionanswerreportPageModule' },
+  // { path: 'hrmsapplicantsummary', loadChildren: './Hrms_pages/applicantsummary/applicantsummary.module#ApplicantsummaryPageModule' },
+  // { path: 'hrmsapplicant-details', loadChildren: './Hrms_pages/applicant-details/applicant-details.module#ApplicantDetailsPageModule' },
+  // { path: 'hrmsapplicanttab', loadChildren: './Hrms_pages/applicanttab/applicanttab.module#ApplicanttabPageModule' },
+  // { path: 'applicanteducationdetail', loadChildren: './Hrms_pages/applicanteducationdetail/applicanteducationdetail.module#ApplicanteducationdetailPageModule' },
+  // { path: 'hrmsapplicantemploymentdetails', loadChildren: './Hrms_pages/applicantemploymentdetails/applicantemploymentdetails.module#ApplicantemploymentdetailsPageModule' },
+  // { path: 'hrmsapplicantskillsdetails', loadChildren: './Hrms_pages/applicantskillsdetails/applicantskillsdetails.module#ApplicantskillsdetailsPageModule' },
+  // { path: 'hrmsletterrequest', loadChildren: './Hrms_pages/letterrequest/letterrequest.module#LetterrequestPageModule' },
+
+  // { path: 'hrmsmyapprovals', loadChildren: './myapprovals/myapprovals.module#MyapprovalsPageModule' },
+  // { path: 'hrmsodsummary', loadChildren: './Hrms_pages/odsummary/odsummary.module#OdsummaryPageModule' },
+
+
+
+  // { path: 'attendanceemployee', loadChildren: './Hrms_pages/E-attendance/attendanceemployee/attendanceemployee.module#AttendanceemployeePageModule' },
+
+  // { path: 'approverequest1', loadChildren: './myapprovals/approverequest1/approverequest1.module#Approverequest1PageModule' },
+  // { path: 'approvalaccept', loadChildren: './Hrms_pages/approvalaccept/approvalaccept.module#ApprovalacceptPageModule' },
+  // { path: 'deny-screen', loadChildren: './Hrms_pages/deny-screen/deny-screen.module#DenyScreenPageModule' },
+  // { path: 'open-add-education', loadChildren: './Hrms_pages/open-add-education/open-add-education.module#OpenAddEducationPageModule' },
+  // { path: 'openaddemploymentpage', loadChildren: './Hrms_pages/openaddemploymentpage/openaddemploymentpage.module#OpenaddemploymentpagePageModule' },
+  // { path: 'reapply-od', loadChildren: './Hrms_pages/reapply-od/reapply-od.module#ReapplyODPageModule' },
+  // { path: 'reapplypermission', loadChildren: './Hrms_pages/reapplypermission/reapplypermission.module#ReapplypermissionPageModule' },
+  // { path: 'reapplyleave', loadChildren: './Hrms_pages/reapplyleave/reapplyleave.module#ReapplyleavePageModule' },
+  // { path: 'reapplyasset', loadChildren: './Hrms_pages/reapplyasset/reapplyasset.module#ReapplyassetPageModule' },
+  // { path: 'application-editeducation', loadChildren: './Hrms_pages/application-editeducation/application-editeducation.module#ApplicationEditeducationPageModule' },
+  // { path: 'applicationeditskillsdetails', loadChildren: './Hrms_pages/applicationeditskillsdetails/applicationeditskillsdetails.module#ApplicationeditskillsdetailsPageModule' },
+  // { path: 'applicanteditemployeedetails', loadChildren: './Hrms_pages/applicanteditemployeedetails/applicanteditemployeedetails.module#ApplicanteditemployeedetailsPageModule' },
+
+
 
 
 ];

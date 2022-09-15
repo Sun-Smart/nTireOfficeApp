@@ -2,8 +2,7 @@
   <div id="background-content">
     <div id="text-Content">
       <div class="topheader">
-        <ion-img style="height:80px;" style="display: none;" class="animated bounceInDown"
-          src=""></ion-img>
+        <!-- <ion-img style="height:80px;" style="display: none;" class="animated bounceInDown" src=""></ion-img> -->
         <ion-label class="titlecolor1">Welcome to <b id="h2">ntireOffice</b></ion-label><br>
         <ion-label class="titlecolor">Login to continue</ion-label>
       </div>
@@ -11,7 +10,7 @@
 
         <ion-title class="logintitle">Login</ion-title>
 
-        <div style="padding: 20px;" class="ion-inputcolor">
+        <div style="padding: 20px;padding-bottom: 11px !important;" class="ion-inputcolor">
 
           <ion-item id="loginInput" style="background-color: #fff;" class="ion-inputcolor">
             <ion-icon name="mail" style="color: #EEC20C;"></ion-icon>
@@ -21,7 +20,8 @@
           </ion-item>
           <ion-item id="loginInput" style='margin-top: 10px;'>
 
-            <ion-icon name="lock-closed"  style="color: #EEC20C;"></ion-icon>            <ion-input type="{{showValue.type}}" placeholder="Password" [(ngModel)]="password"></ion-input>
+            <ion-icon name="lock-closed" style="color: #EEC20C;"></ion-icon>
+            <ion-input type="{{showValue.type}}" placeholder="Password" [(ngModel)]="password"></ion-input>
             <!-- <ion-icon name="close" *ngIf="password!=null && password!=''" class="loginicon"  (click)="password=null"></ion-icon> -->
 
             <ion-icon id="showPassword" class="eyeicon" *ngIf="showValue.text=='Hide'" (click)="showPassword()"
@@ -33,18 +33,13 @@
 
           <ion-row>
             <ion-col class="loginbottom">
-<<<<<<< Updated upstream
               <!-- <ion-item style="border-color: white;background-color: white !important;
               font-size: 10px !important;margin-top: -18px;" > -->
-=======
-              <!-- <ion-item style="border-color: white;background-color: white !important; -->
-              <!-- font-size: 10px !important;margin-top: -18px;" > -->
->>>>>>> Stashed changes
-                <ion-checkbox></ion-checkbox>
-                <ion-label id="checkbox">Remember me</ion-label>
+              <ion-checkbox></ion-checkbox>
+              <ion-label class="checkbox">Remember me</ion-label>
               <!-- </ion-item> -->
             </ion-col>
-            <ion-col class="forgetpassword" style="  padding: left -2% !important;" >
+            <ion-col class="forgetpassword" style="  padding: left -2% !important;">
               <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
             </ion-col>
           </ion-row>
@@ -55,15 +50,28 @@
             </ion-button>
           </div> -->
           <div class="loginbutton">
-            <ion-img  class="animated bounceInDown" (click)="Loginevent()" src="assets/images/loginbutton.png"></ion-img>
+            <ion-img class="animated bounceInDown" (click)="Loginevent()" src="assets/images/loginbutton.png"></ion-img>
           </div>
-          
+
 
         </div>
       </div>
     </div>
   </div>
-<div class="loginbottomimg">
-<ion-img src="assets/images/loginBottom.png"></ion-img>
-</div>
+  <div class="loginbottomimg">
+    <ion-img src="assets/images/loginBottom.png"></ion-img>
+  </div>
 </ion-content>
+<ion-footer class="loginfooter">
+  
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <!-- <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col> -->
+  </ion-row>
+ 
+   
+ </ion-footer>

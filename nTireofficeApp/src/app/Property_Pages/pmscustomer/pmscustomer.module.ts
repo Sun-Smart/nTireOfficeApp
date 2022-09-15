@@ -21,6 +21,6 @@ const routes: Routes = [
     RouterModule,
     PmscustomerPageRoutingModule
   ],
-  declarations: [PmscustomerPage]
+  declarations: [PmscustomerPage ]
 })
 export class PmscustomerPageModule {}

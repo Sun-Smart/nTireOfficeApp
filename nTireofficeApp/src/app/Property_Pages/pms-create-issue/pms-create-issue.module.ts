@@ -4,22 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MyprofilePage } from './myprofile.page';
+import { PmsCreateIssuePageRoutingModule } from './pms-create-issue-routing.module';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: MyprofilePage
-//   }
-// ];
+import { PmsCreateIssuePage } from './pms-create-issue.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    // RouterModule.forChild(routes)
+    PmsCreateIssuePageRoutingModule
   ],
-  declarations: [MyprofilePage]
+  declarations: [PmsCreateIssuePage]
 })
-export class MyprofilePageModule {}
+export class PmsCreateIssuePageModule {}

@@ -329,7 +329,7 @@ ion-toolbar{
     // --background: url("/assets/Images/Headerfooter/bac1.png") no-repeat;
     
     // --background: rgb(6,159,225)!important;
-    --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+    background-color: #2C5291 !important;
 
     // background-image: -webkit-linear-gradient(30deg, rgb(2,154,222) 50%, rgb(34,191,241) 50%);
     // background-color: #34ADFF;
@@ -645,7 +645,7 @@ ion-modal ion-toolbar{
     --background: #004073 !important;
 }
 .btncolor{
-    --background: rgb(1,118,198)!important; 
+    --background:#2C5291!important; 
     width: 50%;
     margin: 0 auto;
 }
@@ -755,3 +755,14 @@ ion-input ion-icon{
             line-height: 0px;
             margin-top: 10px;
         }
+
+
+
+    
+#background-content {
+    //  background-image: url(../../../assets/images/Loginbg.png) !important; 
+    // background-image: url(../../../assets/images/loginBackground.png);
+    height: 325px;
+    border-radius: 0 0 100px 100px !important;
+
+}
