@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pms-issue-status',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PmsIssueStatusPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
-
+  cancel(){
+    return this.modalCtrl.dismiss(null, 'cancel');
+  }
 }

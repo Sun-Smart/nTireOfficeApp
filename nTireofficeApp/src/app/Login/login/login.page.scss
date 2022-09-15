@@ -79,11 +79,12 @@ ion-icon {
 
 .logintitle {
     padding: 21px;
-    margin-left: 36% !important;
+    // margin-left: 36% !important;
     color: #0a0a58;
     font-family: auto;
     font-weight: 100;
     font-size: x-large;
+    text-align: center;
 }
 
 .titlecolor1 {
@@ -93,13 +94,13 @@ ion-icon {
 }
 
 .titlecolor {
-    font-size: 22px !important;
+    font-size: 22x  px !important;
     font-family: system-ui !important;
 
 }
 
 #h2 {
-    font-size: 30px !important;
+    font-size: 26px !important;
     color: #EEC20C;
 }
 
@@ -132,7 +133,7 @@ ion-icon {
     margin-bottom: -10%;
     /* margin-left: 35%; */
     /* bottom: 14px !important; */
-    margin-left: 73px;
+    margin-left: 28%;
     height: 80px;
     padding-top: 20px;
 }
@@ -143,4 +144,11 @@ ion-icon {
 .checkbox{
     color: #000 !important;
     padding: 4px;
+}
+
+ion-footer {
+    background-color: #fff;
+    bottom: 0 !important;
+    height: 40px;
+    border-radius: 16px 16px 0 0 !important;
 }
