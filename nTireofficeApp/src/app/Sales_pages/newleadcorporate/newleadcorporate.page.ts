@@ -1088,7 +1088,7 @@ export class NewleadcorporatePage implements OnInit {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Ok',
+          text: 'OK',
           handler: () => {
             this.branch = "<< Select >>";
             this.branchlocation = "<< Select >>";
@@ -1181,7 +1181,7 @@ export class NewleadcorporatePage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-
+      cssClass:'buttonCss',
       message: tittle,
       buttons: ['OK']
     });

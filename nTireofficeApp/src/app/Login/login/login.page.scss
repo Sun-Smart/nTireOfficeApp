@@ -17,9 +17,25 @@
     background-color: transparent !important;
 }
 ion-item {
-    --highlight-color-focused: none;
+    --highlight-color-focused: #fff !important;
 
-    color: black;
+    // color: black;
+}
+
+.ion-inputcolor {
+    --highlight-color-focused: #fff !important;
+    --highlight-background: #fff !important;
+    --highlight-color-valid: #fff !important;
+    --caret-color: #fff !important;
+    caret-color: #fff !important;
+}
+.item-interactive.ion-valid{
+    --highlight-background: #fff !important;
+
+}
+
+:host(.item-interactive.ion-valid) {
+    --highlight-background: #fff;
 }
 
 ion-input {
@@ -57,6 +73,15 @@ ion-icon {
     height: 325px;
 
 }
+
+ion-content {
+    --background: url('../../../assets/images/loginallback.jpg') repeat !important;
+    position: relative;
+}
+
+// .bgcontent{
+//     background-color: #000000 !important;
+// }
 
 .titlecolor {
     color: white;
@@ -96,7 +121,7 @@ ion-icon {
 }
 
 .titlecolor {
-    font-size: 22x  px !important;
+    font-size: 22x px !important;
     font-family: system-ui !important;
 
 }
@@ -109,7 +134,7 @@ ion-icon {
 .topheader {
     text-align: left !important;
     position: relative !important;
-    top: 64px !important;
+    top: 84px !important;
     left: 17px !important;
 }
 
@@ -139,11 +164,12 @@ ion-icon {
     height: 80px;
     padding-top: 20px;
 }
+
 .loginbottomimg {
-    margin-top: 60.9%;
+    margin-top: 88.9%;
 }
 
-.checkbox{
+.checkbox {
     color: #000 !important;
     padding: 4px;
 }
@@ -153,4 +179,11 @@ ion-footer {
     bottom: 0 !important;
     height: 40px;
     border-radius: 16px 16px 0 0 !important;
+}
+
+.borderlogin {
+    color: #0a0a58 !important;
+    border-bottom: 5px solid #EEC20C;
+    text-align: center;
+    font-family: sans-serif;
 }

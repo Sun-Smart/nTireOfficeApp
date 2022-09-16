@@ -1043,7 +1043,7 @@ username:any;
               console.log('Confirm Cancel: blah');
             }
           }, {
-            text: 'Ok',
+            text: 'OK',
             handler: () => {
               this.branch = '<< Select >>';
               this.branchlocation = '<< Select >>';
@@ -1088,7 +1088,7 @@ username:any;
       message: tittle,
       buttons: [
         {
-          text: 'Ok',
+          text: 'OK',
           handler: () => {
             this.branch = '<< Select >>';
             this.branchlocation = '<< Select >>';
