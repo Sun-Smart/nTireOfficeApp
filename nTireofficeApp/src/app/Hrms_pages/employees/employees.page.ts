@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-// import { HttprequestService } from '../../httprequest.service';
-// import { IpaddressService } from '../../ipaddress.service';
+import { HttprequestService } from '../../service/httprequest.service';
+import { IpaddressService } from '../../ipaddress.service';
 import { LoadingController } from '@ionic/angular';
 import { IonicSelectableComponent } from 'ionic-selectable';
-import { HttprequestService } from 'src/app/service/httprequest.service';
-import { IpaddressService } from 'src/app/service/ipaddress.service';
+
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.page.html',
   styleUrls: ['./employees.page.scss'],
 })
+
 export class EmployeesPage implements OnInit {
 
   Designation=[];
@@ -36,7 +36,6 @@ export class EmployeesPage implements OnInit {
     this.designation="";
     this.branch="";
     this.department="";
-
   }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttprequestService} from '../.../../../service/httprequest.service';
-import {IpaddressService} from '../.../../../service/ipaddress.service';
+import {HttprequestService} from '../../service/httprequest.service';
+import {IpaddressService} from '../../ipaddress.service';
 import { Router } from '@angular/router';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
@@ -11,13 +11,13 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+
   myrequest:boolean;
   myattendance:boolean;
   mypayslip:boolean;
@@ -65,7 +65,7 @@ export class DashboardPage implements OnInit {
   backButtonSubscription: any;
   // username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private fileOpener: FileOpener,private androidPermissions: AndroidPermissions,
-  public toastmessageService:ToastmessageService,public loadingController:LoadingController,private transfer: FileTransfer, private file: File,private router: Router,private HttpRequest:HttprequestService,public Ipaddressservice:IpaddressService,private  menuCtrl: MenuController,private  navCtrl: NavController,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public alertController: AlertController) { 
+  public toastmessageService:ToastmessageService,public loadingController:LoadingController,private transfer: FileTransfer, private file: File,private router: Router,private HttpRequest:HttprequestService,public Ipaddressservice:IpaddressService,private  menuCtrl: MenuController,private  navCtrl: NavController,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public alertController: AlertController) {
     // this.menuCtrl.enable(true, 'first');
     this.menuCtrl.enable(true, 'first');
     this.attendance = {};
@@ -77,7 +77,7 @@ export class DashboardPage implements OnInit {
     console.log(""+ this.emp_id+this.userid);
     this.myrequest=false;
 
-    
+
     this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
 
@@ -92,11 +92,11 @@ export class DashboardPage implements OnInit {
     this.getEmployeeALLRequests();
     this.getEmployeePayslip();
     // this.getAttendance();
-    
+
     this.getEmployeeApprovals();
     this.getMyTrainings();
     this.getGreetings();
-    
+
 this.backbutton();
 
   }
@@ -104,9 +104,9 @@ this.backbutton();
     console.log('backbutton')
     document.addEventListener("backbutton", async () => {
       console.log('backbutton1' + this.router.url)
-   
+
       if (this.router.url =='/hrmsdashboard') {
-       
+
         this.router.navigate(['/hrmsdashboard'])
         var alert1 = await this.alertController.create({
 
@@ -115,37 +115,37 @@ this.backbutton();
             {
               text: 'No',
               role: 'cancel',
-    
+
               handler: (blah) => {
                 console.log('Confirm Cancel: blah');
               }
             }, {
               text: 'Yes',
-    
+
               handler: () => {
-    
+
                 var logout_obj = {
                   access_token: localStorage.getItem('token'),
                   userid: localStorage.getItem('TUM_USER_ID'),
                   usertoken: localStorage.getItem('usertoken'),
-    
+
                 };
                 this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj).then(resp => {
                    this.router.navigate(['/login']);
                 }, error => {
                   this.router.navigate(['/login']);
-    
+
                 });
-    
-    
+
+
               }
             }
           ]
         });
-    
+
         await alert1.present();
       // this.logout();
-        
+
       }
       else if (this.router.url === '/login') {
         navigator['app'].exitApp();
@@ -172,50 +172,50 @@ this.backbutton();
   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
    this.displayEmployee = JSON.parse(resp.toString());
    this.displayEmployee = this.displayEmployee[0];
- 
+
    console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));
-       
+
      }, error => {
-     
+
      console.log("error : "+JSON.stringify(error));
-     
+
      });
    }
    geYears(){
      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Year/%20/0/0").then(resp=>{
        this.year = JSON.parse(resp.toString());
-           
+
          }, error => {
-         
+
          console.log("error : "+JSON.stringify(error));
-         
+
          });
    }
    geMonths(){
      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Month/%20/0/0").then(resp=>{
        this.month = JSON.parse(resp.toString());
-           
+
          }, error => {
-         
+
          console.log("error : "+JSON.stringify(error));
-         
+
          });
    }
 
    async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
-     
+
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
-    
+
 
     });
     return await loading.present();
   }
   async   loadingdismiss() {
-  
+
      return await this.loadingController.dismiss();
   }
    getAttendance(){
@@ -232,13 +232,13 @@ this.backbutton();
          empID:this.employee_id,
          year:this.yeardata,
          month:this.monthdata
- 
+
        }
        this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
-         
+
         this.loadingdismiss();
          this.attendanceList = JSON.parse(resp.toString());
-         
+
          console.log(""+JSON.stringify(this.attendanceList));
          if(this.attendanceList.length==0){
            this.nodata = true;
@@ -253,16 +253,16 @@ this.backbutton();
            if(error.status == 400){
              this.nodata = true;
            }
-           
+
            });
    }
- 
+
    getDateObj(value){
      var split = value.split("/");
      var date = new Date(split[1] + "/" + split[0] + "/" + split[2]);
      return date;
    }
-  
+
 
   myRequest(){
     this.myrequest=true;
@@ -336,11 +336,11 @@ this.backbutton();
       console.log("displayUser : "+JSON.stringify(this.displayUser));
           window.localStorage['Emailid']=this.displayUser[0].Email;
           this.Emailid=window.localStorage['Emailid']
-       
+
           this.displayUser[0].Branch = window.localStorage['TUM_BRANCH_CODE'];
           this.empID = this.displayUser[0].EmployeeID;
           // this.empID = 1;
-          
+
           window.localStorage['em_emp_id']=this.empID;
           console.log("empid"+ window.localStorage['em_emp_id']);
           window.localStorage['empid']=this.empID;
@@ -352,7 +352,7 @@ this.backbutton();
 
               // console.log("image")
               this.displayUser[0].Photo ='http://demo.herbieai.com/ssg/uploaddocu/sstpl/'+this.photo[this.img];
-             
+
             }
 
           if (this.displayUser.length == 0 || this.displayUser == undefined) {
@@ -361,9 +361,9 @@ this.backbutton();
             this.error = "";
           }
     }, error => {
-    
+
     console.log("error : "+JSON.stringify(error));
-    
+
     });
   }
 
@@ -381,28 +381,28 @@ this.backbutton();
       this.empAllRequests = this.empAllRequests1.Table1;
       console.log(this.empAllRequests);
     }, error => {
-    
+
     console.log("error : "+JSON.stringify(error));
-    
+
     });
   }
   //Get emeployee payslips based on employee id
   //*params="employee id"
   getEmployeePayslip(){
-   
+
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeePayslip/'+ window.localStorage['em_emp_id']).then(resp=>{
       this.empPayslips = JSON.parse(resp.toString());
       console.log("empPayslips : "+JSON.stringify(this.empPayslips))
-      
+
       if (this.empPayslips.length == 0 || this.empPayslips == undefined) {
         this.error = "No data found";
       } else {
         this.error = "";
       }
     }, error => {
-    
+
     console.log("error : "+JSON.stringify(error));
-    
+
     });
   }
 
@@ -431,9 +431,9 @@ this.backbutton();
   //       this.error = "";
   //     }
   //   }, error => {
-    
+
   //   console.log("error : "+JSON.stringify(error));
-    
+
   //   });
   // }
 
@@ -442,18 +442,18 @@ this.backbutton();
   getEmployeeApprovals(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"EmployeeApproval/"+ window.localStorage['em_emp_id']).then(resp=>{
       this.empApprovals = JSON.parse(resp.toString());
-          // this.empApprovals = this.empApprovals[0];          
+          // this.empApprovals = this.empApprovals[0];
           // console.log(this.empApprovals);
-  
+
           if (this.empApprovals.length == 0 || this.empApprovals == undefined) {
             this.error = "No data found";
           } else {
-            this.error = "";  
+            this.error = "";
           }
     }, error => {
-    
+
     console.log("error : "+JSON.stringify(error));
-    
+
     });
   }
 
@@ -461,7 +461,7 @@ this.backbutton();
   //*params="userid,usertoken,access_token"
   getMyTrainings(){
     var get_obj={
-          
+
       userid:this.userid,
       usertoken:this.usertoken,
       access_token:this.token
@@ -473,9 +473,9 @@ this.backbutton();
         this.training=element;
   });
     }, error => {
-    
+
     console.log("error : "+JSON.stringify(error));
-    
+
     });
   }
 
@@ -483,7 +483,7 @@ this.backbutton();
   //*params="userid,usertoken,access_token"
   getGreetings(){
     var get_obj={
-          
+
       userid:this.userid,
       usertoken:this.usertoken,
       access_token:this.token
@@ -494,7 +494,7 @@ this.backbutton();
       this.advanceempgreeting1.forEach(element => {
         this.advanceempgreeting.push(element);
       });
-   
+
       this.advanceempgreeting.forEach(element => {
       this.birthdaydateEmp.push({
         date:element.em_emp_dob
@@ -511,54 +511,54 @@ this.backbutton();
         var d = q.getDate();
         console.log(d);    // 5 today
         var y = q.getFullYear();
-        
+
         var date = new Date(y,m,d);
-        
+
         // mydate=new Date('2009-03-08');
         this.birthdaydateEmp.forEach(element => {
        var mydate=new Date(element.date);
-      
-        var m1= mydate.getMonth()+1; 
+
+        var m1= mydate.getMonth()+1;
         console.log(m1); // march 3
         var d1 = mydate.getDate();
         console.log(d1); //4  birthday
         console.log(date);   //today date
-        
+
         console.log(mydate) //birthdate
-        
+
         if(m>m1)
         {
-         
+
         }
         else if(m == m1)
         {
-         
+
           if(parseInt(d.toString())<parseInt(d1.toString())){
 
             this.advanceempgreeting.forEach(element => {
-             
+
               element.Wishes='Happy Birthday'
             });
-             
-        
+
+
           }
           else if(parseInt(d.toString())>parseInt(d1.toString())){
             this.advanceempgreeting.forEach(element => {
-             
+
               element.Wishes='Happy Birthday'
             });
-          
+
           }
-          
+
           else{
             this.advanceempgreeting.forEach(element => {
-             
+
               element.Wishes='Happy Birthday'
             });
-          
+
           }
           console.log(""+JSON.stringify(this.advanceempgreeting));
-         
+
         }
         else
         {
@@ -566,9 +566,9 @@ this.backbutton();
         }
       });
     }, error => {
-    
+
     console.log("error : "+JSON.stringify(error));
-    
+
     });
   }
 
@@ -583,12 +583,12 @@ this.backbutton();
   viewModal(item){
     this.router.navigate(['/hrmsmyapprovals', {
       item:JSON.stringify(item)
-      
+
       }])
-   
-    
+
+
   }
-  
+
   // downloadDoc(doc) {
   //   console.log(""+doc);
   //   const fileTransfer: FileTransferObject = this.transfer.create();
@@ -659,11 +659,8 @@ this.backbutton();
       '/Download/' + fileName).then(() =>
       this.toastmessageService.presentAlert1("Downloaded Successfully","Please check the Downloads folder")
        )
-   
-
 
   }
-  
 
   updateLocation(){
     this.geolocation.getCurrentPosition().then((res) => {
@@ -671,9 +668,9 @@ this.backbutton();
       this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
       let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
       console.log("location :n" + location);
-      var input_obj = { 
-        'TUM_USER_CODE': window.localStorage['TUM_USER_CODE'], 
-        'current_location': this.currentlatlon, 
+      var input_obj = {
+        'TUM_USER_CODE': window.localStorage['TUM_USER_CODE'],
+        'current_location': this.currentlatlon,
       userid:window.localStorage['TUM_USER_ID'],
       usertoken:window.localStorage['usertoken'],
         access_token:window.localStorage['token'] };
@@ -682,9 +679,9 @@ this.backbutton();
 
           console.log(resp);
         }, error => {
-        
+
         //console.log("error : "+JSON.stringify(error));
-        
+
         });
     }).catch((error) => {
       this.presentAlert('', 'Turn on location to processed!');
@@ -701,5 +698,4 @@ this.backbutton();
 
     await alert.present();
   }
-
 }

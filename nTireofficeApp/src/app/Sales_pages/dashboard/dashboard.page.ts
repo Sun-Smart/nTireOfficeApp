@@ -1,3 +1,19 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable space-before-function-paren */
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable object-shorthand */
+/* eslint-disable radix */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable max-len */
+/* eslint-disable no-var */
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/quotes */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, MenuController, NavController } from '@ionic/angular';
@@ -76,7 +92,7 @@ export class DashboardPage implements OnInit {
       this.branchlist = resp;
 
       this.branchlist.forEach(element => {
-        this.branchlist1.push(element)
+        this.branchlist1.push(element);
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
 
@@ -129,16 +145,16 @@ export class DashboardPage implements OnInit {
           label: branch,
 
           data: this.datap,
-          backgroundColor: '#458CAF',
+          backgroundColor: '#2ebaed',
 
-        }]
+        }];
 
       if (this.barChart) {
         this.barChart.destroy();
       }
       this.barChart = new Chart(this.barCanvas.nativeElement, {
 
-        type: 'bar',
+        type: 'line',
 
         data: {
           labels: this.labelsp,
@@ -214,15 +230,15 @@ export class DashboardPage implements OnInit {
 
       sourecfinal = resp;
       this.sourcelabel = ['Web Lead', 'Personal', 'Branch', 'Corporate Website', 'Mobile', 'Call Center'];
-      this.sourcedata = [sourecfinal[0]['Web Lead'], sourecfinal[0]['Personal Lead'], sourecfinal[0]['Branch'], sourecfinal[0]['Corporate Website'], sourecfinal[0]['Mobile'], sourecfinal[0]['Call Center']]
+      this.sourcedata = [sourecfinal[0]['Web Lead'], sourecfinal[0]['Personal Lead'], sourecfinal[0]['Branch'], sourecfinal[0]['Corporate Website'], sourecfinal[0]['Mobile'], sourecfinal[0]['Call Center']];
 
       sourcearray = [
         {
 
           data: this.sourcedata,
-          backgroundColor: '#458CAF',
+          backgroundColor: '#1b6aa8',
 
-        }]
+        }];
       if (this.sourcechart) {
         this.sourcechart.destroy();
       }
@@ -318,9 +334,9 @@ export class DashboardPage implements OnInit {
 
       for (var i = 0; i < top10.length; i++) {
         this.Productlabel.push(top10[i].Product);
-        this.totalleads.push(top10[i]['Total Leads'])
-        this.closedleades.push(top10[i]['Closed Leads'])
-        this.percenclosedleads.push(top10[i]['% Closed Leads'])
+        this.totalleads.push(top10[i]['Total Leads']);
+        this.closedleades.push(top10[i]['Closed Leads']);
+        this.percenclosedleads.push(top10[i]['% Closed Leads']);
       }
       if (this.productchart) {
         this.productchart.destroy();
@@ -335,7 +351,7 @@ export class DashboardPage implements OnInit {
             label: 'Total Leads',
             yAxisID: 'A',
             data: this.totalleads,
-            borderColor: '#458CAF',
+            borderColor: '#dd4a68',
 
           },
           {
@@ -347,8 +363,8 @@ export class DashboardPage implements OnInit {
             label: 'Closed Leads',
             yAxisID: 'B',
             data: this.closedleades,
-            borderColor: '#ffb3d9',
-            backgroundColor: ' #ffe6f2'
+            borderColor: '#4a95ba',
+            backgroundColor: ' #4a95ba'
           },
 
           ]
@@ -408,7 +424,7 @@ export class DashboardPage implements OnInit {
         else {
           if (nottop10[i].Product.length > 10) {
             nottop10[i].Product = nottop10[i].Product.substring(0, 10) + '...';
-            console.log(nottop10[i])
+            console.log(nottop10[i]);
           }
 
           this.labels1n.push(nottop10[i].Product);
@@ -429,7 +445,7 @@ export class DashboardPage implements OnInit {
             label: 'Total Leads',
             yAxisID: 'A',
             data: this.total_leads_datan,
-            borderColor: '#458CAF',
+            borderColor: '#dd4a68',
           },
           {
             label: '% Closed Leads',
@@ -440,8 +456,8 @@ export class DashboardPage implements OnInit {
             label: 'Closed Leads',
             yAxisID: 'B',
             data: this.perc_closedn,
-            borderColor: '#ffb3d9',
-            backgroundColor: ' #ffe6f2'
+            borderColor: '#856c6c',
+            backgroundColor: ' #4a95ba'
           },
 
           ]

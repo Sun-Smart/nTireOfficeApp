@@ -1,8 +1,10 @@
 <ion-content>
+
   <!-- [scrollEvents]="true"
   (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()" -->
+
   <ion-header class="bar-stable">
     <ion-toolbar>
         <ion-buttons slot="start">
@@ -12,9 +14,11 @@
     </ion-toolbar>
   </ion-header>
 
-    <p  *ngIf="profile!==undefined" style="text-align:center;"><b>{{profile.Name}}</b></p>
+    <p  *ngIf="profile!=undefined" style="text-align:center;"><b>{{profile.Name}}</b></p>
   <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+
     <ion-row style="background-color: #ffffff;">
+
              <br/>
         <ion-col  size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
           <div  style="background:rgba(181, 179, 179, 0.31); width:120px; height:127px;">
@@ -25,9 +29,11 @@
               padding-top: -24px;
               background-color: #f6efef;
               margin-left: 83px;" ion-button color="light" clear Button><ion-icon (click)="presentActionSheet()" ios="ios-camera" md="md-camera"></ion-icon></button>
+
           </div>
           </ion-col>
-          <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7" *ngIf="profile!==undefined">
+          <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7" *ngIf="profile!=undefined">
+
               <span><ion-icon name="card" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon">{{profile.EmployeeCode}}</span></span>
               <br/>
               <span><ion-icon name="briefcase" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon">{{profile.Function}}</span></span>
@@ -39,6 +45,7 @@
               <span><ion-icon name="home" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon" *ngIf=profile.CurrentCity>{{profile.CurrentCity}}</span> <span *ngIf=!profile.CurrentCity class="profileicon">No data</span></span>
               <br/>
               <span *ngIf="profile.CurrentCountry!=0"><ion-icon name="globe" style="margin-right:5px;"></ion-icon><span class="profileicon" *ngIf=profile.CurrentCountry>{{profile.CurrentCountry}}</span> <span *ngIf=!profile.CurrentCountry class="profileicon">No data</span></span>
+
             </ion-col>
     </ion-row>
     <ion-row  style="background-color: #ffffff;
@@ -57,8 +64,8 @@
         <ion-segment-button value="education">
           <ion-label style="font-size: 12px !important;color:#fff !important">EDUCATION & CAREER</ion-label>
         </ion-segment-button>
-      </ion-segment>
 
+      </ion-segment>
       <!-- //personal details -->
 <div  *ngIf="segmentdata=='Personal'">
       <!-- Personal Details -->
@@ -89,11 +96,15 @@
           <button  (click)="hidePersonalPanel('personal')" *ngIf="personalToggle == 0">
               <ion-icon name="create"></ion-icon>
             </button>
+
+
             <button *ngIf="personalToggle == 1" (click)="hidePersonalPanel('personal.cancel')">
                 <i class="fa fa-times-circle" style="font-size:20px; margin-left:5px; color:red;"></i>
+
             </button>
             <button *ngIf="personalToggle == 1"  (click)="hidePersonalPanel('personal')">
                 <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+
             </button>
       </div>
         </ion-item> -->
@@ -112,6 +123,7 @@
                 <br/>
                 <ion-input type="text" class="profileinput" *ngIf="personalToggle == 1" placeholder="Family Name" [(ngModel)]="profile.LastName" [disabled]="personalToggle == 0"></ion-input>
                 <span *ngIf="personalToggle == 0">{{profile.LastName}}</span>
+
               </ion-col>
         </ion-row>
         <ion-row>
@@ -128,10 +140,12 @@
                         <ion-select-option value="">Qualification</ion-select-option>
                         <ion-select-option *ngFor="let item of qualification" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
                       </ion-select>
+
                       <!-- <ion-label *ngIf="personalToggle==0">Qualification</ion-label>
                       <br> -->
                     <!-- <ion-input type="text"   *ngIf="personalToggle==0" class="profileinput" [(ngModel)]="profile.Qualification" [disabled]="personalToggle == 0"></ion-input> -->
                     <span *ngIf="personalToggle == 0" >{{profile.Qualification}}</span>
+
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -142,9 +156,12 @@
                           <ion-select-option value="">Sub Qualification</ion-select-option>
                           <ion-select-option  *ngFor="let item  of subQualification" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
                         </ion-select>
+
                         <!-- <ion-label *ngIf="personalToggle==0">Sub Qualification</ion-label>
                       <br/> -->
+
                            <span *ngIf="personalToggle == 0" >{{profile.SubQualification}}</span>
+
                     </ion-col>
         </ion-row>
         </ion-grid>

@@ -34,3 +34,7 @@ ion-icon{
 .searchlist{
   height: auto !important;
 }
+ion-content {
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  position: relative;
+}

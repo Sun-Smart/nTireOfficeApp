@@ -15,7 +15,7 @@ import { DashboardPage } from './dashboard.page';
     IonicModule,
     DashboardPageRoutingModule
   ],
-  providers:[FileOpener,FileTransfer,File],
+providers: [FileOpener,FileTransfer,File],
   declarations: [DashboardPage]
 })
 export class DashboardPageModule {}

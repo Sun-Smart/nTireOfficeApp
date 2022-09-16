@@ -10,19 +10,20 @@
       <ion-title>Welcome</ion-title>
     </ion-toolbar>
   </ion-header>
-  <p class="commontextpage">HRMS Dashboard Page</p>
   <ion-grid>
     <ion-row>
         <ion-card >
           <ion-item *ngFor="let item of displayUser">
             <ion-avatar item-start style="margin:auto">
-              <img  src="{{item.Photo}}" onError="this.src='assets/images/defaultMale.png'" >
+              <!-- <img src="assets\Images\defaultMale.png" style="background-color: white;"> -->
+              <img  src="{{item.Photo}}" onError="this.src='../../../assets/Images/defaultMale.png'" >
             </ion-avatar>
           </ion-item>
       <ion-col *ngFor="let item of displayUser" style="width:100%">
 
     <div class="imagediv">
         <img *ngIf="!item.Photo" src="{{item.Photo}}">
+      <!-- <img  src="{{item.Photo}}"  alt="" width="50px" height="50px"> -->
     </div>
     <div *ngIf="displayUser.length!=0" style="text-align:center">
         <div><b>{{displayUser[0].Name}}</b></div>
@@ -136,6 +137,10 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
   </div>
 
+  <!-- User profile -->
+
+
+<!-- My request -->
 <ion-row *ngIf='myrequest'>
   <ion-card style="height: 190px;width: 100%;
   overflow: hidden;
@@ -323,7 +328,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
             </div>
 
 
-          <div  *ngIf="item.REQUESTTYPE==='Asset Service'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div  *ngIf="item.REQUESTTYPE=='Asset Service'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div  style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -579,6 +584,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
  </ion-card>
 </ion-row>
 
+<!-- My payslips -->
 <ion-row *ngIf="mypayslip">
     <ion-card >
       <ion-item>
@@ -624,11 +630,39 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
       </ion-row>
 
+
+<!-- My attendance -->
       <ion-row *ngIf="myattendance">
           <ion-card>
             <ion-item>
                 My Attendance
             </ion-item>
+            <!-- <ion-row *ngIf="attendanceList.length!=0">
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    Date
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    In Time
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    Out Time
+                </ion-col>
+
+
+            </ion-row>
+            <ion-row  *ngFor="let item of attendanceList">
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p this>{{item.TxnDate | date:'dd-MMM-yyyy'}}</p>
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p this>{{item.InTime}}</p>
+                </ion-col>
+                <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                    <p this>{{item.OutTime}}</p>
+                </ion-col>
+
+            </ion-row> -->
+
             <ion-grid style="background-color: #f8f8f8;">
               <ion-row>
                   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
@@ -683,9 +717,15 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                 <p>No data found</p>
                 </ion-col>
             </ion-row>
+
+            <!-- <div class="nodata" *ngIf="attendanceList.length==0">
+                <div style="color:gray;"><b>No Attendance Found</b></div>
+              </div> -->
             </ion-card>
+
             </ion-row>
 
+<!-- My action -->
             <ion-row *ngIf="myaction">
                 <ion-card style="height: 190px;
                 /* max-height: 100%; */
@@ -709,8 +749,8 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                       <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
                           <b>Action</b>
                       </ion-col>
-                  </ion-row>
 
+                  </ion-row>
                   <ion-row  *ngFor="let item of empApprovals">
                       <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
                           <p this>{{item.RequestType}}</p>
@@ -723,14 +763,17 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                       </ion-col>
                       <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
                           <button class="butndesignapprove" (click)="viewModal(item)"><span style="margin-top: 1px;">View</span></button>
+
                       </ion-col>
                   </ion-row>
                   <div class="nodata" *ngIf="empApprovals.length==0">
                       <div style="color:gray;"><b>No Approvals Found</b></div>
                     </div>
                   </ion-card>
+
                   </ion-row>
 
+<!-- My training -->
                   <ion-row *ngIf="mytraining">
                       <ion-card>
                         <ion-item>
@@ -749,6 +792,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                             <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
                                 Status
                             </ion-col>
+
                         </ion-row>
                         <ion-row  *ngFor="let item of training">
                             <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
@@ -769,7 +813,10 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                             <div style="color:gray;"><b>No Trainings Found</b></div>
                           </div>
                         </ion-card>
+
                         </ion-row>
+
+    <!-- Greetings -->
 <ion-grid>
     <ion-row *ngIf="mygreeting">
         <ion-card>
@@ -778,6 +825,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </ion-item>
 
           <ion-row  style="padding-left:20px;padding-right:10px;" *ngFor="let item of advanceempgreeting">
+
                   <img *ngIf="item.em_emp_photo" src="assets\Images\defaultMale.png" class="greetingimg">
                   <img *ngIf="!item.em_emp_photo" src="assets\Images\defaultMale.png" class="greetingimg">
 
@@ -792,16 +840,19 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                       <ion-col size-sm="1" size="1" size-md="1" size-lg="1" size-xl="1">
                           <i style="font-size:25px; color:#43c585; font-weight:bold;" class="icon fa fa-birthday-cake"></i>
                         </ion-col>
+
+
           </ion-row>
           <div class="nodata" *ngIf="advanceempgreeting.length==0">
               <div style="color:gray;"><b>No Greetings Found</b></div>
             </div>
           </ion-card>
+
           </ion-row>
         </ion-grid>
 </ion-content>
-
 <ion-footer >
+
   <ion-row>
   <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
     © SunSmart Global Inc
@@ -810,4 +861,5 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
    {{username}}
  </ion-col>
   </ion-row>
+
  </ion-footer>
