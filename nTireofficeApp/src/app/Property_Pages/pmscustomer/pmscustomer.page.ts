@@ -10,8 +10,8 @@ import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
 })
 export class PmscustomerPage implements OnInit {
 
-  name: string = '';
-  constructor(private modalCtrl: ModalController) { }
+  name: string = '';username:any;
+  constructor(private modalCtrl: ModalController) { this.username=localStorage.getItem('TUM_USER_NAME'); }
 
   ngOnInit() {
   }

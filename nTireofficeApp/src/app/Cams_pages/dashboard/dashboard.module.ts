@@ -22,6 +22,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
 
-  declarations: [DashboardPage]
+  declarations: [DashboardPage],
+  providers:[]
 })
 export class DashboardPageModule {}

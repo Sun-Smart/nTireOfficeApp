@@ -5,7 +5,7 @@
 }
 ion-card-content.md.card-content-md.hydrated {
   padding: 15px !important;
- 
+
 }
 .first{
     background: linear-gradient(45deg, #10E7D8, #5A75E8);
@@ -14,7 +14,7 @@ ion-card-content.md.card-content-md.hydrated {
   background: linear-gradient(45deg, #3EE493, #38B1B5);
 }
 .third{
- 
+
   background: linear-gradient(45deg, #F54A9F, #FE7278);
 }
 .label {
@@ -59,4 +59,13 @@ td {
   //   #sno{
   //       width: 2px !important;
   //   }
+  // }
+  .commontextpage {
+    text-align: center;
+    position: relative;
+    top: 50%;
+  }
+  // ion-content {
+  //   --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  //   position: relative;
   // }

@@ -39,19 +39,20 @@ export class DashboardPage implements OnInit {
   total_leads_datan = [];
   closed_leads_datan = [];
   perc_closedn = [];
+  username:any;
   // This property will save the callback which we can unsubscribe when we leave this view
-  public unsubscribeBackEvent: any;username: any;
+  public unsubscribeBackEvent: any;
   constructor(private platform: Platform, public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService, private navCtrl: NavController, private menuCtrl: MenuController) {
     this.menuCtrl.enable(true, 'first');
     this.Getbranches();
 
-    // eslint-disable-next-line no-var
     var branchid = localStorage.getItem('TUM_BRANCH_ID');
     this.branch_txt = localStorage.getItem('TUM_BRANCH_CODE');
-    this.username=localStorage.getItem('TUM_USER_NAME');
+
     this.Stagewisegraph(branchid);
     this.Sourcewisegrph(branchid);
     this.productwisegraph(branchid);
+    this.username=localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {

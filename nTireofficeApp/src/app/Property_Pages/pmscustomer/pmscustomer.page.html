@@ -9,27 +9,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <!-- <p class="commontextpage">PMS Customer Page</p> -->
+<ion-card>
     <ion-card-header class="card_heder">
           <ion-label class="card_header_text">Property Details</ion-label>
 
-          <ion-label class="card_header_link_text"> 
+          <ion-label class="card_header_link_text">
             <a  (click)="createModal()" class="pms-link">Create</a> / <a  (click)="viewModal()">View</a>
           </ion-label>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
         <ion-row>
-          <!-- <ion-col size="6" class="col_height">
-            <div>
-              <p class="card_left_text">Property Details</p>
-            </div>
-          </ion-col>
-          <ion-col size="6" class="col_height">
-            <div>
-              <a  (click)="createModal()">Create</a> / <a  (click)="viewModal()">View</a>
-            </div>
-          </ion-col> -->
 
           <ion-col size="6" class="col_height">
             <div>
@@ -38,7 +29,6 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
 
@@ -49,7 +39,6 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
 
@@ -60,7 +49,6 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
 
@@ -71,7 +59,6 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
 
@@ -82,7 +69,6 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
 
@@ -93,7 +79,6 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
 
@@ -104,15 +89,27 @@
           </ion-col>
           <ion-col size="6" class="col_height">
             <div>
-              <!-- <p class="card_right_text">{{items.CUSTOMERNAME}}</p> -->
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
-    
-  </ion-card>
-  
 
-  
+  </ion-card>
+
+
+
 </ion-content>
+<ion-footer>
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+
+
+ </ion-footer>

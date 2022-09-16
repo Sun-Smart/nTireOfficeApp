@@ -30,8 +30,12 @@ export class VendormasterPage implements OnInit {
   vendorcode_resp:any;
   showfilter:boolean = true;
   loading:boolean = false;
+username:any;
+  constructor(public modalController: ModalController, private http: HttpClient, public Ipaddressservice: IpaddressService,) {
 
-  constructor(public modalController: ModalController, private http: HttpClient, public Ipaddressservice: IpaddressService,) { }
+    
+ this.username=localStorage.getItem('TUM_USER_NAME');
+   }
 
   ngOnInit() {
 

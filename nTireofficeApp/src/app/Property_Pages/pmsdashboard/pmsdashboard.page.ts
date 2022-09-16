@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PmsdashboardPage implements OnInit {
   students: any[];
-  constructor() { }
+  username:any;
+  constructor() { this.username=localStorage.getItem('TUM_USER_NAME'); }
 
   ngOnInit() {
     // fetch('').then(res => res.json())

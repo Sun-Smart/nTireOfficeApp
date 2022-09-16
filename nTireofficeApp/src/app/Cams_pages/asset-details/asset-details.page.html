@@ -8,7 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <!-- <p class="commontextpage">Asset Details Page</p> -->
+ <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content>
     </ion-refresher-content>
   </ion-refresher>
@@ -28,7 +29,6 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code</ion-label>
-        <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
                 <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
@@ -45,7 +45,6 @@
                 </ion-button>
               </ion-col>
           </ion-row>
-        <!-- </div> -->
         </ion-col>
 
         </ion-row>
@@ -108,7 +107,6 @@
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Department</p>
         <span style="font-size: 14px!important;">{{departmentreqdd}}</span>
-        <!-- <span style="font-size: 14px!important;" *ngIf="!item1.TYPE">--</span> -->
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -126,7 +124,6 @@
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <a (click)="showmore(i)">
-          <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
 
           <i id="imageidvalsp{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
             style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
@@ -192,7 +189,7 @@
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      
+
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -213,7 +210,6 @@
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="overflow:auto;display:flex;">
         <span style="margin-right:10px;"  *ngIf="icheck">
-          <!-- <img src="http://herbieai.com/mydesk/nTireCAMS/UI/CAMSManagement/Images/{{icheck}}" style="width:150px;height:150px;" /> -->
           <img src="https://demo.herbieai.com/ssg/Uploaddocu/SSTPL/{{icheck}}" style="width:150px;height:150px;" />
         </span>
         <span style="font-size: 14px!important;" *ngIf="!icheck">No Image Found</span>
@@ -224,7 +220,7 @@
         </ion-icon>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
-       
+
       </ion-col>
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -235,7 +231,7 @@
           </ion-col>
         </ion-row>
       </ion-col>
-     
+
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-row>
@@ -243,7 +239,7 @@
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
             <ion-button (click)="updateassetdetails()" style="--background:#009689" size="full" >Update
             </ion-button>
-          </ion-col> 
+          </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
         </ion-row>
       </ion-col>
@@ -259,7 +255,7 @@
         </ion-row>
       </ion-grid>
       </ion-card>
-      
+
       <div *ngIf="showmap">
         <div class="" id="showdivs">
           <div class="container">
@@ -272,7 +268,7 @@
 
 </ion-content>
 <ion-footer>
-  
+
   <ion-row>
   <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
     © SunSmart Global Inc
@@ -281,6 +277,6 @@
    {{username}}
  </ion-col>
   </ion-row>
- 
-   
+
+
  </ion-footer>

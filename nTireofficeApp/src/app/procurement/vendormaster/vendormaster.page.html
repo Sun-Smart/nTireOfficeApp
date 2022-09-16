@@ -10,7 +10,7 @@
   </ion-header>
 
   <ion-content>
-
+    <!-- <p class="commontextpage">Vendor Master Page</p> -->
   <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i class="fa fa-filter" aria-hidden="true"></i></span></div>
 
   <ion-grid *ngIf="showfilter" style="background: #7a3c9129; padding: 10px;margin: 10px;border-radius: 8px;">
@@ -48,7 +48,7 @@
     <ion-card  *ngFor="let items of vendormaster;let i = index;">
       <ion-card-header style="background-color:#b246d0!important">
         <ion-card-title style="color: white;font-size: 14px;font-weight: bold;">Vendor Code : {{items.Code}}</ion-card-title>
-        <!--  -->
+
       </ion-card-header>
 
       <ion-card-content>
@@ -59,7 +59,7 @@
             </ion-col>
             <ion-col size="6">
               <span style="font-size: 14px;">{{items.CompanyName||"-"}}</span>
-              <!--  -->
+
             </ion-col>
           </ion-row>
 
@@ -69,7 +69,7 @@
             </ion-col>
             <ion-col size="6">
               <span style="font-size: 14px;">{{items.PrimaryContactPerson||"-"}}</span>
-              <!--  -->
+
             </ion-col>
           </ion-row>
 
@@ -82,23 +82,6 @@
             </ion-col>
           </ion-row>
 
-          <!-- <ion-row>
-            <ion-col size="6">
-              <p style="font-weight:bold;">Brand</p>
-            </ion-col>
-            <ion-col size="6">
-              <span style="font-size: 14px;">{{items.Brand||"-"}}</span>
-            </ion-col>
-          </ion-row> -->
-
-          <!-- <ion-row>
-            <ion-col size="6">
-              <p style="font-weight:bold;">Model</p>
-            </ion-col>
-            <ion-col size="6">
-              <span style="font-size: 14px;">{{items.Model||"-"}}</span>
-            </ion-col>
-          </ion-row> -->
 
           <ion-row>
             <ion-col style="text-align: center;">
@@ -113,3 +96,16 @@
 
 
 </ion-content>
+<ion-footer>
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+
+
+ </ion-footer>

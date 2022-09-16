@@ -133,7 +133,7 @@ export class NewleadRetailPage implements OnInit {
   Currency: any;
   inputall_imagesdoc = [];
   inputall_images = [];
-  username: any;
+username:any;
   constructor(public actionSheetController: ActionSheetController, private datePipe: DatePipe, public sanitizer: DomSanitizer, public alertController: AlertController, private crop: Crop, private base64: Base64, private camera: Camera, private zone: NgZone, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.exampleText = '';
     this.exampleTextoff = '';
@@ -156,7 +156,7 @@ export class NewleadRetailPage implements OnInit {
     this.leadby = 'S';
     this.source = 1;
 
-    this.username = localStorage.getItem('TUM_USER_NAME');
+    this.username=localStorage.getItem('TUM_USER_NAME');
 
     this.Salutation = '<< Select >>';
     this.Getbranches();

@@ -20,10 +20,10 @@ export class DashboardPage implements OnInit {
   username:any;
   sourcechart: any;
   myChart:any;
-  
-  @ViewChild('sourcecanvas1') sourcecanvas1;
-  constructor(private platform: Platform,public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService,private navCtrl: NavController,private menuCtrl: MenuController,private router: Router) { 
 
+  @ViewChild('sourcecanvas1') sourcecanvas1;
+  constructor(private platform: Platform,public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService,private navCtrl: NavController,private menuCtrl: MenuController,private router: Router) {
+this.menuCtrl.enable(true, 'first');
     this.userid= window.localStorage['TUM_USER_ID'];
     this.username=localStorage.getItem('TUM_USER_NAME');
     this.currentDate = new Date();
@@ -49,7 +49,7 @@ export class DashboardPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.result = resp;
-      
+
       this.CategoryCount = JSON.parse(this.result);
       console.log(this.CategoryCount);
       this.labels2 = [];
@@ -83,7 +83,7 @@ export class DashboardPage implements OnInit {
               align: 'start',
               position:'bottom',
               verticalAlign:"center",
-              labels: {  
+              labels: {
                   boxWidth: 20,
                   padding: 20
               }
@@ -110,10 +110,10 @@ getMaintenanceCountChart = function () {
     headers: options,
   }).subscribe(resp => {
     this.Monthresult = resp;
-    
+
     this.MaintenanceCount = JSON.parse(this.Monthresult);
     console.log(this.MaintenanceCount);
-    
+
     this.data3 = [];
 
     this.data3.push(this.MaintenanceCount[0].Completed);
@@ -123,7 +123,7 @@ getMaintenanceCountChart = function () {
     console.log(this.data3);
     const canvas = <HTMLCanvasElement> document.getElementById('maintenanceChart');
     const ctx = canvas.getContext('2d');
-    
+
 
     const myChart = new Chart(ctx, {
       type: 'pie',
@@ -140,7 +140,7 @@ getMaintenanceCountChart = function () {
         responsive: true,
         legend: {
             position: 'bottom',
-            labels: {  
+            labels: {
                 boxWidth: 20,
                 padding: 20
             }
@@ -167,7 +167,7 @@ getBranchCountChart = function () {
     headers: options,
   }).subscribe(resp => {
     this.branchCountresult = resp;
-    
+
     this.branchCount = JSON.parse(this.branchCountresult);
     console.log(this.branchCount);
     this.labels = [];

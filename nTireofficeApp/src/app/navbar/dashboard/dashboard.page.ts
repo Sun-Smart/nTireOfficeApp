@@ -33,7 +33,7 @@ export class DashboardPage  {
   CamsList:boolean;
   user_role:any;
   chkadmin:boolean;
-  username:any = window.localStorage.getItem('TUM_USER_NAME');
+  username:any;
 
   public salespages = [
    
@@ -372,7 +372,7 @@ export class DashboardPage  {
     private statusBar: StatusBar,public alertController: AlertController,private http: HttpClient,public Ipaddressservice:IpaddressService,
     public menuCtrl: MenuController
   ) {
-
+    this.username=localStorage.getItem('TUM_USER_NAME');
     // this.platform.backButton.subscribeWithPriority(0, () => {
     
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {

@@ -1,18 +1,28 @@
 <ion-header>
-  <div id="background-content">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button style="color:#EEC20C;"></ion-menu-button>
-   </ion-buttons>
-    <ion-title>Dashboard </ion-title>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
-  </div>
 </ion-header>
 
 <ion-content>
-
+  <p class="commontextpage">Home Page</p>
 </ion-content>
+<ion-footer>
 
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+
+
+ </ion-footer>
   <!-- <ion-footer [hidden]="logoutbtn" style="padding: 14px;">
     <div style="float:left;font-size:14px;color:#fff">Next iTechnologies </div>
     <div style="float: right;font-size:14px;color:#fff">{{user_name}}</div>

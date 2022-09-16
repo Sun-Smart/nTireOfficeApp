@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <p class="commontextpage">New Lead Retail Page</p>
-  <!-- <ion-grid>
+  <!-- <p class="commontextpage">New Lead Retail Page</p> -->
+  <ion-grid>
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Function</ion-label>
@@ -72,6 +72,7 @@
         <ion-label>Office Number</ion-label>
         <ion-input type="tel" class="form-control" pattern="[0-9]*" [(ngModel)]="OffPhone" minlength="10" maxlength="15"
           #uname="ngModel"></ion-input>
+
         <div *ngIf="OffPhone && uname.errors?.minlength || uname.errors?.maxlength">
           <p style="color:red;">Office number should be 10-13 digits</p>
         </div>
@@ -258,18 +259,18 @@
         <ion-button (click)="Cancelretail()" color="danger" size="full">Cancel</ion-button>
       </ion-col>
     </ion-row>
-  </ion-grid> -->
+  </ion-grid>
 </ion-content>
 <ion-footer>
 
   <ion-row>
-    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-      © SunSmart Global Inc
-    </ion-col>
-    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-      {{username}}
-    </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
   </ion-row>
 
 
-</ion-footer>
+ </ion-footer>

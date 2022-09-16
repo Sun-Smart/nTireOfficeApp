@@ -40,7 +40,10 @@ export class VendorpoconfirmPage implements OnInit {
   showfilter:boolean = true;
   fromDate:any;
   toDate:any;
-    constructor(public modalController: ModalController,private router: Router, private http: HttpClient,public navCtrl:NavController, public Ipaddressservice: IpaddressService,) { }
+  username:any;
+    constructor(public modalController: ModalController,private router: Router, private http: HttpClient,public navCtrl:NavController, public Ipaddressservice: IpaddressService,) { 
+      this.username=localStorage.getItem('TUM_USER_NAME');
+    }
 
   ngOnInit() {
   }

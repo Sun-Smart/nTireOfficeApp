@@ -762,7 +762,16 @@ ion-input ion-icon{
 #background-content {
     //  background-image: url(../../../assets/images/Loginbg.png) !important; 
     // background-image: url(../../../assets/images/loginBackground.png);
-    height: 325px;
-    border-radius: 0 0 100px 100px !important;
+    // height: 325px;
+    // border-radius: 0 0 100px 100px !important;
 
 }
+.commontextpage {
+  text-align: center;
+  position: relative;
+  top: 50%;
+}
+ion-content {
+    --background: url('../../../assets/images/tpbackground.png') repeat !important;
+    position: relative;
+  }
