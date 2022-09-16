@@ -222,12 +222,10 @@ export class AppComponent {
       title: 'PushNotifiction Config',
       url: '/attendance-notification',
       icon: 'notifications'
-    },
     {
       title: 'Loan Request',
       url: '/loan-request',
       icon: 'cash'
-    },
     {
       title: 'Asset Returns',
       url: '/assetreturn',

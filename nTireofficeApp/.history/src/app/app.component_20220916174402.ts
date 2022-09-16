@@ -227,7 +227,6 @@ export class AppComponent {
       title: 'Loan Request',
       url: '/loan-request',
       icon: 'cash'
-    },
     {
       title: 'Asset Returns',
       url: '/assetreturn',
