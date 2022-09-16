@@ -30,11 +30,20 @@ ion-card {
   text-align: center;
   font-weight: 600;
 }
-
+.list-data{
+  display: flex;
+  // align-items: end;
+  margin:10px; 
+  padding: 0px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 7px 0px grey;
+  background: transparent !important;
+}
 .item_list{
     padding: 0px;
     text-align: center;
     margin: 1px;
+    border-radius: 5px;
 }
 // ion-card-content.md.card-content-md.hydrated {
 //   padding: 15px !important;
