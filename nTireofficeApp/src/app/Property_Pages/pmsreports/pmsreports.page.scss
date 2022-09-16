@@ -1,28 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
-ion-card {
-    box-shadow: 1px 1px 7px 0px grey;
+ion-content {
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  position: relative;
 }
-ion-card {
-    .card_header_text {
-        font-size: 15px;
-        color: #ffff;
 
-    }
-}
-ion-card {
-    .card_header {
-        background-color: #019ade !important;
-        color: white !important;
-        text-align: center;
-        padding: 15px;
-    }
-}
-ion-card {
-    .card_content {
-        height: auto;
-        background-color: #ffff !important;
-        padding: 15px;
-        color: #000;
-    }
-}
