@@ -195,6 +195,7 @@ export class AppComponent {
     {
       title: 'OD Request',
       url: '/od-request',
+      icon:'git-pull-request'
     },
     {
       title: 'Claims',

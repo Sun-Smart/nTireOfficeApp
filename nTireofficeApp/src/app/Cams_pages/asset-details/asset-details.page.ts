@@ -68,7 +68,7 @@ export class AssetDetailsPage implements OnInit {
   }
   products: any;
   @ViewChild('map') mapElement: ElementRef;
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private crop: Crop, private base64: Base64, private camera: Camera,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public sanitizer: DomSanitizer,private barcodeScanner: BarcodeScanner) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private crop: Crop, private base64: Base64, private camera: Camera,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public sanitizer: DomSanitizer,private barcodeScanner: BarcodeScanner) {
 
       //,private qrScanner: QRScanner
       this.function = localStorage.getItem('FUNCTION_DESC');
@@ -144,8 +144,8 @@ export class AssetDetailsPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-  
-  
+
+
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -154,7 +154,7 @@ export class AssetDetailsPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -198,7 +198,7 @@ export class AssetDetailsPage implements OnInit {
   }).subscribe(resp => {
     console.log(resp);
       this.departmentreqdd = resp[0].Text;
-    
+
   }, error => {
     console.log("error : " + JSON.stringify(error));
 
@@ -209,8 +209,8 @@ export class AssetDetailsPage implements OnInit {
     console.log(resp);
      this.details = resp;
     console.log(this.details);
- 
-   
+
+
     var alasset = this.details;
 
     if (this.details.length < 1) {
@@ -230,7 +230,7 @@ export class AssetDetailsPage implements OnInit {
             //console.log($scope.deprciationtype);
         }
 
-        
+
         var imgchk = resp[0].ImageUrl;
 
         if(imgchk!=null){
@@ -239,7 +239,7 @@ export class AssetDetailsPage implements OnInit {
           if(imglen < 4){
             this.icheck = null;
           console.log("200")
-         
+
         }else{
           this.icheck = resp[0].ImageUrl;
           console.log("100")
@@ -277,7 +277,7 @@ export class AssetDetailsPage implements OnInit {
 
       this.myValue = true;
     }
-    
+
   }, error => {
     console.log("error : " + JSON.stringify(error));
 
@@ -291,7 +291,7 @@ export class AssetDetailsPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -400,11 +400,11 @@ export class AssetDetailsPage implements OnInit {
             'userid': this.userID,
             'usertoken': this.userToken
         };
-        
+
         console.log(JSON.stringify(obj));
         const header = new Headers();
         header.append("Content-Type", "application/json");
-      
+
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/uploadimage',obj, {
           headers: options,
@@ -414,10 +414,10 @@ export class AssetDetailsPage implements OnInit {
             this.imagesucessres.push(resp);
             //$scope.getuserlist();
         }
-          
+
         }, error => {
           console.log("error : " + JSON.stringify(error));
-      
+
         });
       }
       if (j == this.file.length) {
@@ -431,7 +431,7 @@ export class AssetDetailsPage implements OnInit {
         console.log("location :n" + location);
         var lat = res.coords.latitude;
         var long = res.coords.longitude;
-  
+
         var datauasset = {
           'assetcode': this.assetucode,
           'branchid': this.branchID,
@@ -444,7 +444,7 @@ export class AssetDetailsPage implements OnInit {
         }
         const header = new Headers();
         header.append("Content-Type", "application/json");
-      
+
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetdetailmap',datauasset, {
           headers: options,
@@ -460,12 +460,12 @@ export class AssetDetailsPage implements OnInit {
             if(imglen < 4){
               this.icheck = null;
             console.log("200")
-           
+
           }else{
             this.icheck = resp[0].ImageUrl;
             console.log("100")
           }
-  
+
         }else{
           this.icheck = null;
         }
@@ -508,15 +508,15 @@ export class AssetDetailsPage implements OnInit {
         //$scope.detailsdept = response.data.recordsets[1];
         console.log(assetlatm);
 
-          
+
         }, error => {
           console.log("error : " + JSON.stringify(error));
-      
+
         });
-        
+
       }).catch((error) => {
-        this.presentAlert('', 'Turn on location to processed!');
+        // this.presentAlert('', 'Turn on location to processed!');
       });
-    }    
+    }
   }
 }
