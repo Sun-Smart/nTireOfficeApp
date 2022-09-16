@@ -1,13 +1,41 @@
+ion-card {
+  .card_header {
+      background-color: #019ade !important;
+      color: white !important;
+      text-align: center;
+      padding: 15px;
+  }
+}
+ion-card {
+  .card_header_text {
+      font-size: 15px;
+      color: #ffff;
+  }
+}
+@media(min-width:320px) and (max-width:440px){
+  .label {
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+}
+}
+.label {
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
 .item_list{
     padding: 0px;
     text-align: center;
-    margin: 5px;
+    margin: 1px;
 }
-ion-card-content.md.card-content-md.hydrated {
-  padding: 15px !important;
+// ion-card-content.md.card-content-md.hydrated {
+//   padding: 15px !important;
 
 
-}
+// }
 ion-card-content.ios.card-content-ios.hydrated {
   padding-top: 15px;
 }
@@ -21,11 +49,7 @@ ion-card-content.ios.card-content-ios.hydrated {
 
   background: linear-gradient(45deg, #F54A9F, #FE7278);
 }
-.label {
-    color: white;
-    text-align: center;
-    font-weight: 600;
-}
+
 .count{
     text-align: center;
     font-size: 25px;
@@ -52,20 +76,14 @@ td {
 // .headertitle{
 //     color: white;
 // }
-  @media(min-width:320px) and (max-width:440px){
-    .label {
-      color: white;
-      text-align: center;
-      font-weight: 700;
-      font-size: 12px;
-  }
+
   .count{
     text-align: center;
     font-size: 18px;
     color: white;
     margin: 0%;
 }
-  }
+  
   .commontextpage {
     text-align: center;
     position: relative;
