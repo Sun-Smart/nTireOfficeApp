@@ -13,7 +13,9 @@
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-
+.item .item-input {
+    background-color: transparent !important;
+}
 ion-item {
     --highlight-color-focused: none;
 

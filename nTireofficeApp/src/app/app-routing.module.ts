@@ -145,14 +145,18 @@ const routes: Routes = [
     path: 'pmsemployees',
     loadChildren: () => import('./Property_Pages/pmsemployees/pmsemployees.module').then(m => m.PmsemployeesPageModule)
   },
-  // {
-  //   path: 'pms-create-issue',
-  //   loadChildren: () => import('./Property_Pages/pms-create-issue/pms-create-issue.module').then(m => m.PmsCreateIssuePageModule)
-  // },
-  // {
-  //   path: 'pms-issue-status',
-  //   loadChildren: () => import('./Property_Pages/pms-issue-status/pms-issue-status.module').then(m => m.PmsIssueStatusPageModule)
-  // },
+  {
+    path: 'pms-create-issue',
+    loadChildren: () => import('./Property_Pages/pms-create-issue/pms-create-issue.module').then(m => m.PmsCreateIssuePageModule)
+  },
+  {
+    path: 'pms-issue-status',
+    loadChildren: () => import('./Property_Pages/pms-issue-status/pms-issue-status.module').then(m => m.PmsIssueStatusPageModule)
+  },
+  {
+    path: 'pmsreports',
+    loadChildren: () => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
+  },
 
   //Sales Page
   {
