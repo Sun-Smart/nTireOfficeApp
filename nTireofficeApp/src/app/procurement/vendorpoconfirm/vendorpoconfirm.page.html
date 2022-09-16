@@ -1,5 +1,3 @@
-
-
 <ion-content>
 
   <ion-header>
@@ -12,162 +10,174 @@
   </ion-header>
 
   <!-- <p class="commontextpage">Vendor PO Confirm Page</p> -->
-  <div style="margin-top: 10px;"><span style="font-size: 24px;margin: 25px;color:black;" (click)="togglefilter()"><i class="fa fa-filter" aria-hidden="true"></i></span></div>
+  <div style="margin-top: 10px;"><span style="font-size: 24px;margin: 25px;color:black;" (click)="togglefilter()"><i
+        class="fa fa-filter" aria-hidden="true"></i></span></div>
 
-    <ion-card *ngIf="showfilter" style="background:#aa2ed27a;border-radius:5px;">
+  <ion-card *ngIf="showfilter">
+
+    <ion-card-content class="card_content">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-label class="card_content_label">Branch</ion-label>
+
+            <ion-select style="background:white;padding: 10px;border:1px solid #ccc; border-radius: 5px;"
+              [(ngModel)]="branch_id">
+              <ion-select-option value="">
+                << Select>>
+              </ion-select-option>
+              <ion-select-option *ngFor="let item of allbranch" value={{item.BRANCH_ID}}>{{item.BRANCH_CODE}}
+              </ion-select-option>
+            </ion-select>
+
+
+          </ion-col>
+          <ion-col size="6">
+            <ion-label class="card_content_label">Vendor Code</ion-label>
+
+            <ion-input [(ngModel)]="vendorcode"
+              style="background:white;display:inline-block; border:1px solid #ccc; border-radius: 5px;" type="text">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-label class="card_content_label">PO Number</ion-label>
+            <ion-input [(ngModel)]="ponum"
+              style="background:white;display:inline-block; border:1px solid #ccc; border-radius: 5px;" type="text">
+            </ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label class="card_content_label">Status</ion-label>
+            <ion-select [(ngModel)]="postatus"
+              style="background:white;padding: 10px;border:1px solid #ccc; border-radius: 5px;">
+              <ion-select-option value="">
+                << Select>>
+              </ion-select-option>
+              <ion-select-option value="N">New</ion-select-option>
+              <ion-select-option value="P">Pending</ion-select-option>
+              <ion-select-option value="A">Approved</ion-select-option>
+              <ion-select-option value="C">Cancelled</ion-select-option>
+              <ion-select-option value="D">Denied</ion-select-option>
+              <ion-select-option value="CN">Vendor Confirmed</ion-select-option>
+              <ion-select-option value="X">Approved</ion-select-option>
+            </ion-select>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-label class="card_content_label">From Date</ion-label>
+            <span class=""><i class="icon ion-calendar placeholder-icon" style="padding-left: 0px;"></i>
+            </span>
+            <input [(ngModel)]="fromdate" type="date"
+              style="display:inline-block;padding: 8px;border:1px solid #ccc; border-radius: 5px;" />
+
+          </ion-col>
+          <ion-col size="6">
+            <ion-label class="card_content_label">To Date</ion-label>
+            <span class=""><i class="icon ion-calendar placeholder-icon"
+                style="background:white;padding-left: 0px;"></i>
+            </span>
+            <input type="date" min="{{fromdate | date: 'yyyy-MM-dd'}}" [(ngModel)]="todate" required=""
+              style="display:inline-block;padding: 8px;border:1px solid #ccc; border-radius: 5px;" />
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col style="text-align: center;">
+            <!-- <ion-button (click)="searchpo(branch_id,ponum,vendorcode
+              ,postatus,fromdate,todate)"  style="min-width: 115px; --background: #009689;font-size: 14px;color: white;" type="submit"   >SEARCH</ion-button>            </ion-col>
+           -->
+            <ion-button (click)="searchpo(branch_id,ponum,vendorcode
+              ,postatus,fromdate,todate)" color="success" type="submit">SEARCH</ion-button>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="PO_list.length!=0">
+    <ion-card *ngFor="let item of (PO_list)">
 
       <ion-card-content>
         <ion-grid>
           <ion-row>
             <ion-col size="6">
-              <ion-label>Branch</ion-label>
-              <ion-item>
-              <ion-select style="background:white;padding: 10px;border: none;" [(ngModel)]="branch_id" >
-                <ion-select-option value=""><< Select >></ion-select-option>
-                <ion-select-option *ngFor="let item of allbranch" value={{item.BRANCH_ID}}>{{item.BRANCH_CODE}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-
+              <p class="" style="color: #b300ec;font-weight: bold;">{{item.po_reference}}</p>
             </ion-col>
             <ion-col size="6">
-              <ion-label>Vendor Code</ion-label>
-              <ion-item>
-              <ion-input [(ngModel)]="vendorcode" style="background:white;display:inline-block" type="text" ></ion-input>
-            </ion-item>
+              <p class="" style="color: #b300ec;text-align: right;font-weight: bold;">{{item.po_date}}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <p style="text-align:left;font-weight: bold">Vendor Code</p>
+            </ion-col>
+            <ion-col size="6">
+              <p style="text-align: right;">{{item.vendor_code}}</p>
 
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="6">
-              <ion-label>PO Number</ion-label>
-              <ion-item>
-              <ion-input [(ngModel)]="ponum" style="background:white;display:inline-block" type="text"></ion-input>
-            </ion-item>
+              <p style="text-align:left;font-weight: bold">Vendor Name</p>
             </ion-col>
             <ion-col size="6">
-              <ion-label>Status</ion-label>
-              <ion-item>
-              <ion-select [(ngModel)]="postatus"style="background:white;padding: 10px;border: none;" >
-                <ion-select-option value="" >
-                  << Select >></ion-select-option>
-                <ion-select-option value="N">New</ion-select-option>
-                <ion-select-option value="P">Pending</ion-select-option>
-                <ion-select-option value="A">Approved</ion-select-option>
-                <ion-select-option value="C">Cancelled</ion-select-option>
-                <ion-select-option value="D">Denied</ion-select-option>
-                <ion-select-option value="CN">Vendor Confirmed</ion-select-option>
-                <ion-select-option value="X">Approved</ion-select-option>
-              </ion-select>
-            </ion-item>
-
+              <p style="text-align: right;">{{item.vendor_name}}</p>
             </ion-col>
           </ion-row>
 
           <ion-row>
-            <ion-col size="6">
-              <ion-label>From Date</ion-label>
-              <span class=""><i class="icon ion-calendar placeholder-icon" style="padding-left: 0px;"></i>
-              </span>
-              <input [(ngModel)]="fromdate" type="date" style="display:inline-block;padding: 8px;"/>
+            <ion-col size="4">
+              <p style="text-align:left;font-weight: bold">Status</p>
+            </ion-col>
+            <ion-col size="8">
+              <p style="text-align: right;">{{item.status}}</p>
 
             </ion-col>
-            <ion-col size="6">
-             <ion-label>To Date</ion-label>
-             <span class=""><i class="icon ion-calendar placeholder-icon" style="background:white;padding-left: 0px;"></i>
-             </span>
-              <input type="date"  min="{{fromdate | date: 'yyyy-MM-dd'}}" [(ngModel)]="todate" required="" style="display:inline-block;padding: 8px;"/>
-            </ion-col>
           </ion-row>
+
+
+
+
 
 
           <ion-row>
             <ion-col style="text-align: center;">
-              <ion-button (click)="searchpo(branch_id,ponum,vendorcode
-              ,postatus,fromdate,todate)"  style="min-width: 115px; --background: #009689;font-size: 14px;color: white;" type="submit"   >SEARCH</ion-button>            </ion-col>
+              <ion-button color="success" type="button" (click)="confirmPo(item)"
+                class="button button-assertive button-small editbut col">Confirm</ion-button>
+
+              <ion-button *ngIf="item.status=='Approved'" color="success" type="button" (click)="payPo(item)"
+                class="button button-assertive button-small editbut col">Update</ion-button>
+
+            </ion-col>
           </ion-row>
 
         </ion-grid>
       </ion-card-content>
     </ion-card>
-        <div *ngIf="PO_list.length!=0" >
-        <ion-card  *ngFor="let item of (PO_list)">
+  </div>
 
-          <ion-card-content>
-            <ion-grid>
-              <ion-row>
-                <ion-col size="6">
-                  <p class="" style="color: #b300ec;font-weight: bold;">{{item.po_reference}}</p>
-                </ion-col>
-                <ion-col size="6">
-                  <p class="" style="color: #b300ec;text-align: right;font-weight: bold;">{{item.po_date}}</p>
-                </ion-col>
-              </ion-row>
-
-              <ion-row>
-                <ion-col size="6">
-                  <p style="text-align:left;font-weight: bold">Vendor Code</p>
-                </ion-col>
-                <ion-col size="6">
-                  <p style="text-align: right;">{{item.vendor_code}}</p>
-
-                </ion-col>
-              </ion-row>
-
-              <ion-row>
-                <ion-col size="6">
-                  <p style="text-align:left;font-weight: bold">Vendor Name</p>
-                </ion-col>
-                <ion-col size="6">
-                  <p style="text-align: right;">{{item.vendor_name}}</p>
-
-                </ion-col>
-              </ion-row>
-
-              <ion-row>
-                <ion-col size="4">
-                  <p style="text-align:left;font-weight: bold">Status</p>
-                </ion-col>
-                <ion-col size="8">
-                  <p style="text-align: right;">{{item.status}}</p>
-
-                </ion-col>
-              </ion-row>
-
-
-
-
-
-
-              <ion-row>
-                <ion-col  style="text-align: center;">
-                  <ion-button style="min-width: 35px;margin: 5px; --background: #009689;font-size: 14px;
-                  color: white;" type="button" (click)="confirmPo(item)" class="button button-assertive button-small editbut col">Confirm</ion-button>
-
-                  <ion-button *ngIf="item.status=='Approved'" style="min-width: 35px;margin: 5px; --background: #009689;font-size: 14px;
-                  color: white;" type="button" (click)="payPo(item)" class="button button-assertive button-small editbut col" >Update</ion-button>
-
-                </ion-col>
-              </ion-row>
-
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </div>
-
-        <p style="font-weight: bold;text-align: center;color:white;" *ngIf="PO_list.length==0" >No record Found</p>
+  <p style="font-weight: bold;text-align: center;color:white;" *ngIf="PO_list.length==0">No record Found</p>
 
 </ion-content>
 <ion-footer>
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
 
 
- </ion-footer>
+</ion-footer>
