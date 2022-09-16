@@ -175,8 +175,13 @@ export class AppComponent {
     },
     {
       title: 'Attendance',
+<<<<<<< Updated upstream
       url: '/attendance',
       icon: 'list-box'
+=======
+      url: '/hrmsattendance',
+      icon: 'expand-outline'
+>>>>>>> Stashed changes
     },
     {
       title: 'Processed Attendance',
@@ -185,6 +190,7 @@ export class AppComponent {
     },
     {
       title: 'Pay Slip',
+<<<<<<< Updated upstream
       url: '/payslip',
       icon: 'list-box'
     },
@@ -192,6 +198,10 @@ export class AppComponent {
       title: 'COFF Request',
       url: '/coff-request',
       icon: 'logo-usd'
+=======
+      url: '/hrmspayslip',
+      icon: 'document-outline'
+>>>>>>> Stashed changes
     },
     // {
     //   title: 'COFF Request',
@@ -210,8 +220,13 @@ export class AppComponent {
     },
     {
       title: 'Leave Request',
+<<<<<<< Updated upstream
       url: '/leave-request',
       icon: 'jet'
+=======
+      url: '/hrmsleave-request',
+      icon: 'calendar-number-outline'
+>>>>>>> Stashed changes
     },
     {
       title: 'Permission Request',
@@ -223,11 +238,19 @@ export class AppComponent {
       url: '/assetrequest',
       icon: 'laptop'
     },
+<<<<<<< Updated upstream
     {
       title: 'PushNotifiction Config',
       url: '/attendance-notification',
       icon: 'notifications'
     },
+=======
+    // {
+    //   title: 'PushNotifiction Config',
+    //   url: '/hrmsattendance-notification',
+    //   icon: 'notifications'
+    // },
+>>>>>>> Stashed changes
     {
       title: 'Loan Request',
       url: '/loan-request',
@@ -238,6 +261,7 @@ export class AppComponent {
       url: '/assetreturn',
       icon: 'laptop'
     },
+<<<<<<< Updated upstream
     {
       title: 'Online Exam Portal',
       url: '/onlineexamportal',
@@ -248,6 +272,18 @@ export class AppComponent {
       url: '/applicantsummary',
       icon: 'apps'
     },
+=======
+    // {
+    //   title: 'Online Exam Portal',
+    //   url: '/hrmsonlineexamportal',
+    //   icon: 'laptop-outline'
+    // },
+    // {
+    //   title: 'Applicant Detail',
+    //   url: '/hrmsapplicantsummary',
+    //   icon: 'apps'
+    // },
+>>>>>>> Stashed changes
     {
       title: 'Letter Request',
       url: '/letterrequest',
