@@ -287,7 +287,7 @@ export class AssetDetailsPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      cssClass:'buttonCss',
       message: tittle,
       buttons: ['OK']
     });
