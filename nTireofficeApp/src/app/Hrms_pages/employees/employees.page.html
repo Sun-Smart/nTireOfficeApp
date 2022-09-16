@@ -1,9 +1,170 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>employees</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Employee Directory</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i class="fa fa-filter" aria-hidden="true"></i></span></div>
+    <ion-grid *ngIf="showfilter" style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+      <ion-row>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Name</ion-label>
+              <ion-item>
+               <ion-input placeholder="Enter Name" [(ngModel)]="name" style="background-color: white!important;display:inline-block;" type="text"></ion-input>
+             </ion-item>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Code</ion-label>
+              <ion-item>
+               <ion-input placeholder="Enter Code" [(ngModel)]="code" style="background-color: white!important;display:inline-block;" type="text"></ion-input>
+             </ion-item>
+            </ion-col>
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <!-- <select [(ngModel)]="designation"  class="form-control">
+                    <option value="">Designation</option>
+              <option *ngFor="let item of Designation" [ngValue]="item.VALUE">{{item.TEXT}}</option>
+                </select> -->
+
+                <ion-label position="stacked">Designation</ion-label>
+          <ion-item style="color:black;background:white!important">
+              <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Designation" [canSearch]="true" [canClear]="true"
+            (onChange)="portChange($event)" (onSelect)="displaydetails($event)">
+            </ionic-selectable>
+          </ion-item>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <!-- <select [(ngModel)]="branch"  class="form-control">
+                      <option value="">Branch</option>
+                      <option *ngFor="let item of Branch" [ngValue]="item.VALUE">{{item.TEXT}}</option>
+                  </select> -->
+                  <ion-label position="stacked">Branch</ion-label>
+          <ion-item style="color:black;background:white!important">
+              <ionic-selectable item-content placeholder="Select Branch" [(ngModel)]="branch" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Branch" [canSearch]="true" [canClear]="true"
+            (onChange)="portChange($event)" (onSelect)="displaydetails($event)" >
+
+            </ionic-selectable>
+          </ion-item>
+                </ion-col>
+                <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+
+                    <!-- <select [(ngModel)]="department"  class="form-control">
+                        <option value="">Department</option>
+                        <option *ngFor="let item of Department" [ngValue]="item.VALUE">{{item.TEXT}}</option>
+                    </select> -->
+
+                    <ion-label position="stacked">Department</ion-label>
+                    <ion-item style="color:black;background:white!important">
+                        <ionic-selectable item-content placeholder="Select Department" [(ngModel)]="department" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Department" [canSearch]="true" [canClear]="true"
+                      (onChange)="portChange($event)" (onSelect)="displaydetails($event)">
+                      </ionic-selectable>
+                      </ion-item>
+
+                  </ion-col>
+                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                    <ion-button (click)="employeeSearch()">Search</ion-button>
+                    </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <p *ngIf="loading" style="text-align: center;">Please Wait..</p>
+
+  <p *ngIf="totalemployee" style="text-align:center;"><b>Total Employee : {{totalemployee}}</b></p>
+
+  <ion-card *ngFor="let item of displayEmployee">
+    <ion-card-header style="background-color:#1a3fb9!important">
+      <ion-card-title style="color: white;font-size: 14px;font-weight: bold;">{{item.EmployeeCode}} <span style="float: right;">{{item.Name}}</span></ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="padding: 10px;">
+<ion-grid style="padding: 0;">
+  <ion-row>
+      <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+          {{item.EmployeeCode}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="text-align:right;">
+              {{item.Name}}
+              </ion-col> -->
+              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+               <div *ngIf="item.Sex=='Male'">
+                  <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar"  src="assets/Images/defaultMale.png"> -->
+                  <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}">
+
+               </div>
+               <div *ngIf="item.Sex=='Female'">
+                  <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar"  src="assets/Images/defaultFemale.png"> -->
+                  <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}">
+                </div>
+                  </ion-col>
+                  <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                      <ion-label>Designation</ion-label>
+                      <br/>
+                    <span>{{item.Designation}}</span>
+                      </ion-col>
+                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                          <ion-label >Department</ion-label>
+                          <br/>
+                          <span>{{item.Department}}</span>
+                          </ion-col>
+                          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                              <ion-label>Branch :</ion-label>
+                              <br/>
+                              <span>{{item.branchtxt}}</span>
+                              </ion-col>
+                              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                  <ion-label>DOJ :</ion-label>
+                                  <br/>
+                                  <span>{{item.DOJ | date: 'dd-MM-yyyy'}}</span>
+                                  </ion-col>
+                                  <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                      <ion-label>DOB :</ion-label>
+                                      <br/>
+                    <span>{{item.DOB | date: 'dd-MM-yyyy'}}</span>
+                                      </ion-col>
+                                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                          <ion-label>Status :</ion-label>
+                                          <br/>
+                                          <span>{{item.Status}}</span>
+                                          </ion-col>
+                                          <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                              <ion-label>Email ID :</ion-label>
+                                              <br/>
+                    <span>{{item.Email}}</span>
+                                              </ion-col>
+                                              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                                  <ion-label><i class="icon ion-android-call"></i> Office</ion-label>
+                                                  <br/>
+                                                  <span *ngIf="item.OffPhone!=0">{{item.OffPhone}}</span>
+                                                  <span *ngIf="item.OffPhone==0"></span>
+                                                  </ion-col>
+                                                  <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                                      <ion-label><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
+                                                  <br/>
+                                                      <span *ngIf="item.Mobile!=0">{{item.Mobile}}</span>
+                                                      <span *ngIf="item.Mobile==0"></span>
+                                                      </ion-col>
+                                                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                                        <ion-label><i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
+                                                  <br/>
+       <span></span>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-card-content>
+  </ion-card>
+  <p  *ngIf="!displayEmployee&&displayEmployee.length == 0" style="text-align:center;"><b>No Data Found</b></p>
 
 </ion-content>
+<ion-footer>
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

@@ -1043,7 +1043,7 @@ username:any;
               console.log('Confirm Cancel: blah');
             }
           }, {
-            text: 'Ok',
+            text: 'OK',
             handler: () => {
               this.branch = '<< Select >>';
               this.branchlocation = '<< Select >>';
@@ -1084,10 +1084,11 @@ username:any;
   async presentAlertConfirm(heading, tittle) {
     const alert = await this.alertController.create({
       header: heading,
+      cssClass:'buttonCss',
       message: tittle,
       buttons: [
         {
-          text: 'Ok',
+          text: 'OK',
           handler: () => {
             this.branch = '<< Select >>';
             this.branchlocation = '<< Select >>';
@@ -1146,6 +1147,7 @@ username:any;
   async presentAlert(heading, tittle) {
     const alert = await this.alertController.create({
       header: heading,
+      cssClass:'buttonCss',
       message: tittle,
       buttons: ['OK']
     });

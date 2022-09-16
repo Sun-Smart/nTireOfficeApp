@@ -9,6 +9,10 @@
     z-index: -1;
 
 }
+ion-content {
+    --background: url('../../../assets/images/tpbackground.png') repeat !important;
+    position: relative;
+  }
 .commontextpage {
     text-align: center;
     position: relative;

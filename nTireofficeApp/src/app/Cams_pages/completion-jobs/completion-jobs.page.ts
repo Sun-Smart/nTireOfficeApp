@@ -290,7 +290,7 @@ if(item.CMD_ACTIVITY_ID == null || item.CMD_ASSET_ID == null){
 async presentAlert(heading, tittle) {
   var alert = await this.alertController.create({
     header: heading,
-
+    cssClass:'buttonCss',
     message: tittle,
     buttons: ['OK']
   });
