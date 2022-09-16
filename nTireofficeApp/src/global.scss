@@ -994,3 +994,18 @@
    --ion-color-base: #32CD32 !important;
 
  }
+
+
+
+ ion-card {
+  box-shadow: 1px 1px 7px 0px grey;
+}
+ion-card {
+  .card_content {
+    .card_content_label {
+      height: auto;
+      background-color: #ffff !important;
+      color: #000 !important;
+    }
+  }
+}

@@ -170,23 +170,38 @@ export class AppComponent {
     },
     {
       title: 'Employees',
-      url: '/hrmsemployees',
+      url: '/employees',
       icon: 'person-add'
     },
     {
       title: 'Attendance',
+<<<<<<< Updated upstream
       url: '/hrmsattendance',
       icon: 'expand-outline'
+=======
+      url: '/attendance',
+      icon: 'list-box'
+>>>>>>> Stashed changes
     },
     {
       title: 'Processed Attendance',
-      url: '/hrmsprocessed-attendance',
+      url: '/processed-attendance',
       icon: 'checkmark-circle'
     },
     {
       title: 'Pay Slip',
+<<<<<<< Updated upstream
       url: '/hrmspayslip',
       icon: 'document-outline'
+=======
+      url: '/payslip',
+      icon: 'list-box'
+    },
+    {
+      title: 'COFF Request',
+      url: '/coff-request',
+      icon: 'logo-usd'
+>>>>>>> Stashed changes
     },
     // {
     //   title: 'COFF Request',
@@ -195,44 +210,58 @@ export class AppComponent {
     // },
     {
       title: 'OD Request',
-      url: '/hrmsod-request',
+      url: '/od-request',
       icon: 'briefcase'
     },
     {
       title: 'Claims',
-      url: '/hrmsclaimsrequest',
+      url: '/claimsrequest',
       icon: 'cash'
     },
     {
       title: 'Leave Request',
+<<<<<<< Updated upstream
       url: '/hrmsleave-request',
       icon: 'calendar-number-outline'
+=======
+      url: '/leave-request',
+      icon: 'jet'
+>>>>>>> Stashed changes
     },
     {
       title: 'Permission Request',
-      url: '/hrmspermission-request',
+      url: '/permission-request',
       icon: 'create'
     },
     {
       title: 'Asset Request',
-      url: '/hrmsassetrequest',
+      url: '/assetrequest',
       icon: 'laptop'
     },
+<<<<<<< Updated upstream
     // {
     //   title: 'PushNotifiction Config',
     //   url: '/hrmsattendance-notification',
     //   icon: 'notifications'
     // },
+=======
+    {
+      title: 'PushNotifiction Config',
+      url: '/attendance-notification',
+      icon: 'notifications'
+    },
+>>>>>>> Stashed changes
     {
       title: 'Loan Request',
-      url: '/hrmsloan-request',
+      url: '/loan-request',
       icon: 'cash'
     },
     {
       title: 'Asset Returns',
-      url: '/hrmsassetreturn',
+      url: '/assetreturn',
       icon: 'laptop'
     },
+<<<<<<< Updated upstream
     // {
     //   title: 'Online Exam Portal',
     //   url: '/hrmsonlineexamportal',
@@ -243,12 +272,23 @@ export class AppComponent {
     //   url: '/hrmsapplicantsummary',
     //   icon: 'apps'
     // },
+=======
+    {
+      title: 'Online Exam Portal',
+      url: '/onlineexamportal',
+      icon: 'paper'
+    },
+    {
+      title: 'Applicant Detail',
+      url: '/applicantsummary',
+      icon: 'apps'
+    },
+>>>>>>> Stashed changes
     {
       title: 'Letter Request',
-      url: '/hrmsletterrequest',
+      url: '/letterrequest',
       icon: 'document'
     }
-
   ];
 
 
