@@ -78,36 +78,41 @@ const routes: Routes = [
     path: 'asset-details',
     loadChildren: () => import('./Cams_pages/asset-details/asset-details.module').then(m => m.AssetDetailsPageModule)
   },
-  // {
-  //   path: 'completion-jobs',
-  //   loadChildren: () => import('./Cams_pages/completion-jobs/completion-jobs.module').then(m => m.CompletionJobsPageModule)
-  // },
-  // {
-  //   path: 'asset-reconcil',
-  //   loadChildren: () => import('./Cams_pages/asset-reconcil/asset-reconcil.module').then(m => m.AssetReconcilPageModule)
-  // },
-  // {
-  //   path: 'user-request',
-  //   loadChildren: () => import('./Cams_pages/user-request/user-request.module').then(m => m.UserRequestPageModule)
-  // },
-  // {
-  //   path: 'service-request',
-  //   loadChildren: () => import('./Cams_pages/service-request/service-request.module').then(m => m.ServiceRequestPageModule)
-  // },
-  // {
-  //   path: 'location-wise-asset',
-  //   loadChildren: () => import('./Cams_pages/location-wise-asset/location-wise-asset.module').then(m => m.LocationWiseAssetPageModule)
-  // },
-  // {
-  //   path: 'asset-transfer',
-  //   loadChildren: () => import('./Cams_pages/asset-transfer/asset-transfer.module').then(m => m.AssetTransferPageModule)
-  // },
-  // {
-  //   path: 'reconciliation-report',
-  //   loadChildren: () => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
-  // },
+  {
+    path: 'completion-jobs',
+    loadChildren: () => import('./Cams_pages/completion-jobs/completion-jobs.module').then(m => m.CompletionJobsPageModule)
+  },
+  {
+    path: 'asset-reconcil',
+    loadChildren: () => import('./Cams_pages/asset-reconcil/asset-reconcil.module').then(m => m.AssetReconcilPageModule)
+  },
+  {
+    path: 'user-request',
+    loadChildren: () => import('./Cams_pages/user-request/user-request.module').then(m => m.UserRequestPageModule)
+  },
+  {
+    path: 'service-request',
+    loadChildren: () => import('./Cams_pages/service-request/service-request.module').then(m => m.ServiceRequestPageModule)
+  },
+  {
+    path: 'location-wise-asset',
+    loadChildren: () => import('./Cams_pages/location-wise-asset/location-wise-asset.module').then(m => m.LocationWiseAssetPageModule)
+  },
+  {
+    path: 'asset-transfer',
+    loadChildren: () => import('./Cams_pages/asset-transfer/asset-transfer.module').then(m => m.AssetTransferPageModule)
+  },
+  {
+    path: 'reconciliation-report',
+    loadChildren: () => import('./Cams_pages/reconciliation-report/reconciliation-report.module').then(m => m.ReconciliationReportPageModule)
+  },
+  {
+    path:'department-wise',
+    loadChildren:() => import('./Cams_pages/department-wise/department-wise.module').then(m => m.DepartmentWisePageModule)
+  },
+  
 
-
+<<<<<<< Updated upstream
   // { path: 'pending-jobs', loadChildren: './Cams_pages/pending-jobs/pending-jobs.module#PendingJobsPageModule' },
   // { path: 'pending-jobs-tabs', loadChildren: './Cams_pages/pending-jobs-tabs/pending-jobs-tabs.module#PendingJobsTabsPageModule' },
   // { path: 'job-detail', loadChildren: './Cams_pages/job-detail/job-detail.module#JobDetailPageModule' },
@@ -126,6 +131,12 @@ const routes: Routes = [
   // { path: 'reconciliation-report', loadChildren: './Cams_pages/reconciliation-report/reconciliation-report.module#ReconciliationReportPageModule' },
   // { path: 'department-wise', loadChildren: './Cams_pages/department-wise/department-wise.module#DepartmentWisePageModule' },
   // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' }
+=======
+  //  hrms
+  { path: 'hrmsdashboard', loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
+
+  { path: 'hrmsemployees', loadChildren: () => import('./Hrms_pages/employees/employees.module').then(m => m.EmployeesPageModule) },
+>>>>>>> Stashed changes
 
   //Property
 

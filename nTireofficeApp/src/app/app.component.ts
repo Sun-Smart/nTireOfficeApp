@@ -97,18 +97,18 @@ export class AppComponent {
     {
       title: 'My Clients',
       url: '/myclients',
-      icon: 'contact'
+      icon: 'people-outline'
     },
   ];
 
 
   public cobapages = [
 
-    {
-      title: 'New Lead-Retail ',
-      url: '/coba-new-lead',
-      icon: 'person-add'
-    },
+    // {
+    //   title: 'New Lead-Retail ',
+    //   url: '/coba-new-lead',
+    //   icon: 'person-add'
+    // },
     // {
     //   title: 'Add Corporate',
     //   url: '/addnewcorporate',
@@ -119,41 +119,41 @@ export class AppComponent {
     //   url: '/newleadcorporate',
     //   icon: 'person-add'
     // },
-    {
-      title: 'Pending Leads',
-      url: '/cobapendingleads',
-      icon: 'hourglass'
-    },
-    {
-      title: 'Pending Clients',
-      url: '/convertedlead',
-      icon: 'pin'
-    },
-    {
-      title: 'Documents',
-      url: '/coba-document-verification',
-      icon: 'map'
-    },
-    {
-      title: 'Rejected',
-      url: '/rejecteddocument',
-      icon: 'today'
-    },
-    {
-      title: 'Pending Process',
-      url: '/cobapendingprocess',
-      icon: 'people'
-    },
-    {
-      title: 'Rejected Process',
-      url: '/coba-rejected-process',
-      icon: 'contrast'
-    },
-    {
-      title: 'Completed Process',
-      url: '/coba-completed-process',
-      icon: 'contact'
-    },
+    // {
+    //   title: 'Pending Leads',
+    //   url: '/cobapendingleads',
+    //   icon: 'hourglass'
+    // },
+    // {
+    //   title: 'Pending Clients',
+    //   url: '/convertedlead',
+    //   icon: 'pin'
+    // },
+    // {
+    //   title: 'Documents',
+    //   url: '/coba-document-verification',
+    //   icon: 'map'
+    // },
+    // {
+    //   title: 'Rejected',
+    //   url: '/rejecteddocument',
+    //   icon: 'today'
+    // },
+    // {
+    //   title: 'Pending Process',
+    //   url: '/cobapendingprocess',
+    //   icon: 'people'
+    // },
+    // {
+    //   title: 'Rejected Process',
+    //   url: '/coba-rejected-process',
+    //   icon: 'contrast'
+    // },
+    // {
+    //   title: 'Completed Process',
+    //   url: '/coba-completed-process',
+    //   icon: 'contact'
+    // },
   ];
 
 
@@ -176,7 +176,7 @@ export class AppComponent {
     {
       title: 'Attendance',
       url: '/hrmsattendance',
-      icon: 'list-box'
+      icon: 'expand-outline'
     },
     {
       title: 'Processed Attendance',
@@ -186,13 +186,13 @@ export class AppComponent {
     {
       title: 'Pay Slip',
       url: '/hrmspayslip',
-      icon: 'list-box'
+      icon: 'document-outline'
     },
-    {
-      title: 'COFF Request',
-      url: '/hrmscoff-request',
-      icon: 'logo-usd'
-    },
+    // {
+    //   title: 'COFF Request',
+    //   url: '/hrmscoff-request',
+    //   icon: 'logo-usd'
+    // },
     {
       title: 'OD Request',
       url: '/hrmsod-request',
@@ -206,7 +206,7 @@ export class AppComponent {
     {
       title: 'Leave Request',
       url: '/hrmsleave-request',
-      icon: 'jet'
+      icon: 'calendar-number-outline'
     },
     {
       title: 'Permission Request',
@@ -218,11 +218,11 @@ export class AppComponent {
       url: '/hrmsassetrequest',
       icon: 'laptop'
     },
-    {
-      title: 'PushNotifiction Config',
-      url: '/hrmsattendance-notification',
-      icon: 'notifications'
-    },
+    // {
+    //   title: 'PushNotifiction Config',
+    //   url: '/hrmsattendance-notification',
+    //   icon: 'notifications'
+    // },
     {
       title: 'Loan Request',
       url: '/hrmsloan-request',
@@ -233,16 +233,16 @@ export class AppComponent {
       url: '/hrmsassetreturn',
       icon: 'laptop'
     },
-    {
-      title: 'Online Exam Portal',
-      url: '/hrmsonlineexamportal',
-      icon: 'paper'
-    },
-    {
-      title: 'Applicant Detail',
-      url: '/hrmsapplicantsummary',
-      icon: 'apps'
-    },
+    // {
+    //   title: 'Online Exam Portal',
+    //   url: '/hrmsonlineexamportal',
+    //   icon: 'laptop-outline'
+    // },
+    // {
+    //   title: 'Applicant Detail',
+    //   url: '/hrmsapplicantsummary',
+    //   icon: 'apps'
+    // },
     {
       title: 'Letter Request',
       url: '/hrmsletterrequest',
@@ -269,12 +269,13 @@ export class AppComponent {
       title: 'Dashboard',
       url: '/dashboardCams',
       icon: 'home'
-    },{
-        title: 'Asset Details',
-        url: '/asset-details',
-        icon: 'paper'
-      }
-    ,{
+    },
+    // {
+    //     title: 'Asset Details',
+    //     url: '/asset-details',
+    //     icon: 'folder-open-outline'
+    //   }
+    {
       title: 'Pending Jobs',
       url: '/pending-jobs',
       icon: 'hourglass'
@@ -289,7 +290,7 @@ export class AppComponent {
     },{
       title: 'Asset Details',
       url: '/asset-details',
-      icon: 'paper'
+      icon: 'folder-open-outline'
     },{
       title: 'User Request',
       url: '/user-request',
@@ -305,7 +306,7 @@ export class AppComponent {
     },{
       title: 'Asset Transfer',
       url: '/asset-transfer',
-      icon: 'jet'
+      icon: 'document-outline'
     },{
       title: 'Reconciliation Report',
       url: '/reconciliation-report',
