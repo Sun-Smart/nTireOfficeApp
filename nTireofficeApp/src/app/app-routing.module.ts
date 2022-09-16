@@ -126,10 +126,6 @@ const routes: Routes = [
   // { path: 'reconciliation-report', loadChildren: './Cams_pages/reconciliation-report/reconciliation-report.module#ReconciliationReportPageModule' },
   // { path: 'department-wise', loadChildren: './Cams_pages/department-wise/department-wise.module#DepartmentWisePageModule' },
   // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' }
-  //  hrms
-  { path: 'hrmsdashboard', loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
-
-  { path: 'hrmsemployees', loadChildren: () => import('./Hrms_pages/employees/employees.module').then(m => m.EmployeesPageModule) },
 
   //Property
 
@@ -179,6 +175,224 @@ const routes: Routes = [
     path: 'newleadcorporate',
     loadChildren: () => import('./Sales_pages/newleadcorporate/newleadcorporate.module').then(m => m.NewleadcorporatePageModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'applicant-details',
+    loadChildren: () => import('./Hrms_pages/applicant-details/applicant-details.module').then( m => m.ApplicantDetailsPageModule)
+  },
+  {
+    path: 'applicanteditemployeedetails',
+    loadChildren: () => import('./Hrms_pages/applicanteditemployeedetails/applicanteditemployeedetails.module').then( m => m.ApplicanteditemployeedetailsPageModule)
+  },
+  {
+    path: 'applicanteducationdetail',
+    loadChildren: () => import('./Hrms_pages/applicanteducationdetail/applicanteducationdetail.module').then( m => m.ApplicanteducationdetailPageModule)
+  },
+  {
+    path: 'applicantemploymentdetails',
+    loadChildren: () => import('./Hrms_pages/applicantemploymentdetails/applicantemploymentdetails.module').then( m => m.ApplicantemploymentdetailsPageModule)
+  },
+  {
+    path: 'applicantskilssdetails',
+    loadChildren: () => import('./Hrms_pages/applicantskilssdetails/applicantskilssdetails.module').then( m => m.ApplicantskilssdetailsPageModule)
+  },
+  {
+    path: 'applicantsummary',
+    loadChildren: () => import('./Hrms_pages/applicantsummary/applicantsummary.module').then( m => m.ApplicantsummaryPageModule)
+  },
+  {
+    path: 'applicanttab',
+    loadChildren: () => import('./Hrms_pages/applicanttab/applicanttab.module').then( m => m.ApplicanttabPageModule)
+  },
+  {
+    path: 'applicantion-editeducation',
+    loadChildren: () => import('./Hrms_pages/applicantion-editeducation/applicantion-editeducation.module').then( m => m.ApplicantionEditeducationPageModule)
+  },
+  {
+    path: 'applicantioneditskillsdetails',
+    loadChildren: () => import('./Hrms_pages/applicantioneditskillsdetails/applicantioneditskillsdetails.module').then( m => m.ApplicantioneditskillsdetailsPageModule)
+  },
+  {
+    path: 'approvalaccept',
+    loadChildren: () => import('./Hrms_pages/approvalaccept/approvalaccept.module').then( m => m.ApprovalacceptPageModule)
+  },
+  {
+    path: 'assetssummary',
+    loadChildren: () => import('./Hrms_pages/assetssummary/assetssummary.module').then( m => m.AssetssummaryPageModule)
+  },
+  {
+    path: 'assetrequest',
+    loadChildren: () => import('./Hrms_pages/assetrequest/assetrequest.module').then( m => m.AssetrequestPageModule)
+  },
+  {
+    path: 'assetreturn',
+    loadChildren: () => import('./Hrms_pages/assetreturn/assetreturn.module').then( m => m.AssetreturnPageModule)
+  },
+  {
+    path: 'attendance',
+    loadChildren: () => import('./Hrms_pages/attendance/attendance.module').then( m => m.AttendancePageModule)
+  },
+  {
+    path: 'attendance-notification',
+    loadChildren: () => import('./Hrms_pages/attendance-notification/attendance-notification.module').then( m => m.AttendanceNotificationPageModule)
+  },
+  {
+    path: 'claimsrequest',
+    loadChildren: () => import('./Hrms_pages/claimsrequest/claimsrequest.module').then( m => m.ClaimsrequestPageModule)
+  },
+  {
+    path: 'claimssummary',
+    loadChildren: () => import('./Hrms_pages/claimssummary/claimssummary.module').then( m => m.ClaimssummaryPageModule)
+  },
+  {
+    path: 'coff-request',
+    loadChildren: () => import('./Hrms_pages/coff-request/coff-request.module').then( m => m.CoffRequestPageModule)
+  },
+  {
+    path: 'coffsummary',
+    loadChildren: () => import('./Hrms_pages/coffsummary/coffsummary.module').then( m => m.CoffsummaryPageModule)
+  },
+  {
+    path: 'deny-screen',
+    loadChildren: () => import('./Hrms_pages/deny-screen/deny-screen.module').then( m => m.DenyScreenPageModule)
+  },
+  {
+    path: 'employees',
+    loadChildren: () => import('./Hrms_pages/employees/employees.module').then( m => m.EmployeesPageModule)
+  },
+  {
+    path: 'examdetails',
+    loadChildren: () => import('./Hrms_pages/examdetails/examdetails.module').then( m => m.ExamdetailsPageModule)
+  },
+  {
+    path: 'leave-request',
+    loadChildren: () => import('./Hrms_pages/leave-request/leave-request.module').then( m => m.LeaveRequestPageModule)
+  },
+  {
+    path: 'leavesummary',
+    loadChildren: () => import('./Hrms_pages/leavesummary/leavesummary.module').then( m => m.LeavesummaryPageModule)
+  },
+  {
+    path: 'letterrequest',
+    loadChildren: () => import('./Hrms_pages/letterrequest/letterrequest.module').then( m => m.LetterrequestPageModule)
+  },
+  {
+    path: 'loan-request',
+    loadChildren: () => import('./Hrms_pages/loan-request/loan-request.module').then( m => m.LoanRequestPageModule)
+  },
+  {
+    path: 'loan-summary',
+    loadChildren: () => import('./Hrms_pages/loan-summary/loan-summary.module').then( m => m.LoanSummaryPageModule)
+  },
+  {
+    path: 'mobilepin',
+    loadChildren: () => import('./Hrms_pages/mobilepin/mobilepin.module').then( m => m.MobilepinPageModule)
+  },
+  {
+    path: 'myapprovals',
+    loadChildren: () => import('./Hrms_pages/myapprovals/myapprovals.module').then( m => m.MyapprovalsPageModule)
+  },
+  {
+    path: 'myprofile',
+    loadChildren: () => import('./Hrms_pages/myprofile/myprofile.module').then( m => m.MyprofilePageModule)
+  },
+  {
+    path: 'od-request',
+    loadChildren: () => import('./Hrms_pages/od-request/od-request.module').then( m => m.OdRequestPageModule)
+  },
+  {
+    path: 'odsummary',
+    loadChildren: () => import('./Hrms_pages/odsummary/odsummary.module').then( m => m.OdsummaryPageModule)
+  },
+  {
+    path: 'online-exam-ctrl',
+    loadChildren: () => import('./Hrms_pages/online-exam-ctrl/online-exam-ctrl.module').then( m => m.OnlineExamCtrlPageModule)
+  },
+  {
+    path: 'onlineexam',
+    loadChildren: () => import('./Hrms_pages/onlineexam/onlineexam.module').then( m => m.OnlineexamPageModule)
+  },
+  {
+    path: 'onlineexamportal',
+    loadChildren: () => import('./Hrms_pages/onlineexamportal/onlineexamportal.module').then( m => m.OnlineexamportalPageModule)
+  },
+  {
+    path: 'onlineexamreports',
+    loadChildren: () => import('./Hrms_pages/onlineexamreports/onlineexamreports.module').then( m => m.OnlineexamreportsPageModule)
+  },
+  {
+    path: 'onlineexamtimer',
+    loadChildren: () => import('./Hrms_pages/onlineexamtimer/onlineexamtimer.module').then( m => m.OnlineexamtimerPageModule)
+  },
+  {
+    path: 'open-add-education',
+    loadChildren: () => import('./Hrms_pages/open-add-education/open-add-education.module').then( m => m.OpenAddEducationPageModule)
+  },
+  {
+    path: 'openaddemploymentpage',
+    loadChildren: () => import('./Hrms_pages/openaddemploymentpage/openaddemploymentpage.module').then( m => m.OpenaddemploymentpagePageModule)
+  },
+  {
+    path: 'payslip',
+    loadChildren: () => import('./Hrms_pages/payslip/payslip.module').then( m => m.PayslipPageModule)
+  },
+  {
+    path: 'permission-request',
+    loadChildren: () => import('./Hrms_pages/permission-request/permission-request.module').then( m => m.PermissionRequestPageModule)
+  },
+  {
+    path: 'permissionsummary',
+    loadChildren: () => import('./Hrms_pages/permissionsummary/permissionsummary.module').then( m => m.PermissionsummaryPageModule)
+  },
+  {
+    path: 'processed-attendance',
+    loadChildren: () => import('./Hrms_pages/processed-attendance/processed-attendance.module').then( m => m.ProcessedAttendancePageModule)
+  },
+  {
+    path: 'questionanswerreport',
+    loadChildren: () => import('./Hrms_pages/questionanswerreport/questionanswerreport.module').then( m => m.QuestionanswerreportPageModule)
+  },
+  {
+    path: 'questionreport',
+    loadChildren: () => import('./Hrms_pages/questionreport/questionreport.module').then( m => m.QuestionreportPageModule)
+  },
+  {
+    path: 'reapply-od',
+    loadChildren: () => import('./Hrms_pages/reapply-od/reapply-od.module').then( m => m.ReapplyOdPageModule)
+  },
+  {
+    path: 'reapplyasset',
+    loadChildren: () => import('./Hrms_pages/reapplyasset/reapplyasset.module').then( m => m.ReapplyassetPageModule)
+  },
+  {
+    path: 'reapplycoff',
+    loadChildren: () => import('./Hrms_pages/reapplycoff/reapplycoff.module').then( m => m.ReapplycoffPageModule)
+  },
+  {
+    path: 'reapplyleave',
+    loadChildren: () => import('./Hrms_pages/reapplyleave/reapplyleave.module').then( m => m.ReapplyleavePageModule)
+  },
+  {
+    path: 'reapplyloan',
+    loadChildren: () => import('./Hrms_pages/reapplyloan/reapplyloan.module').then( m => m.ReapplyloanPageModule)
+  },
+  {
+    path: 'reapplypermission',
+    loadChildren: () => import('./Hrms_pages/reapplypermission/reapplypermission.module').then( m => m.ReapplypermissionPageModule)
+  },
+  {
+    path: 'view-report',
+    loadChildren: () => import('./Hrms_pages/view-report/view-report.module').then( m => m.ViewReportPageModule)
+  },
+
+
+
+
+
+
   // {
   //   path: 'updateleads',
   //   loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
