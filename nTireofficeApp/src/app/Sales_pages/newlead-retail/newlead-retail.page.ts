@@ -1084,6 +1084,7 @@ username:any;
   async presentAlertConfirm(heading, tittle) {
     const alert = await this.alertController.create({
       header: heading,
+      cssClass:'buttonCss',
       message: tittle,
       buttons: [
         {
@@ -1146,6 +1147,7 @@ username:any;
   async presentAlert(heading, tittle) {
     const alert = await this.alertController.create({
       header: heading,
+      cssClass:'buttonCss',
       message: tittle,
       buttons: ['OK']
     });
