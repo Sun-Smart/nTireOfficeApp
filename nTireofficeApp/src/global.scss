@@ -407,15 +407,15 @@ textarea {
 }
 
 
+// ion-toolbar {
+//     --background: url("./assets/images/loginBackground.png") no-repeat;
+
+//     // --background: rgb(6,159,225)!important;
+//     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+// }
+
 ion-toolbar {
-    --background: url("./assets/images/loginBackground.png") no-repeat;
-
-    // --background: rgb(6,159,225)!important;
-    // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
-}
-
-ion-toolbar{
-    --background: url("./assets/images/loginBackground.png") no-repeat;
+    --background: url("./assets/images/loginBackground.png");
 
     // --background: rgb(6,159,225)!important;
     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
@@ -427,6 +427,7 @@ ion-toolbar{
     color: white;
     font-size: 17px;
     text-align: center;
+    padding-top: 37px !important;
     // height: 169px;
 }
 
@@ -445,7 +446,7 @@ app-login ion-content {
     // --background: url(../assets/images/Login/bg.png) no-repeat;
 
     opacity: defa;
-opacity: inherit;
+    opacity: inherit;
 
 }
 
@@ -636,6 +637,7 @@ ion-searchbar {
     color: #fff;
     font-size: 30px;
     font-weight: bold;
+    padding-top: 37px;
 }
 
 .btn {
@@ -788,7 +790,15 @@ ion-modal ion-toolbar {
 
 ion-icon {
     font-size: 25px;
+    color: #004073;
+
     // padding-top: 12px;
+}
+.ionicon{
+color: #004073;
+}
+.hydrated {
+    visibility: visible !important;
 }
 
 ion-button {
@@ -914,12 +924,9 @@ a.balanced {
 .inner-scroll.scroll-y {
     background-color: #2C5291 !important;
 }
-.cardheader
-{
-  background-color: #0198de !important;
-  color: #fff;
-  padding: 10px;
-}
 ion-menu-button{
-  color: yellow !important;
+    color: yellow  !important;
+}
+.item-inner{
+  border-width: 0px !important;
 }
