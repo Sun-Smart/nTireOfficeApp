@@ -35,6 +35,7 @@ export class AppComponent {
   chkadmin: boolean;
   username: any = window.localStorage.getItem('TUM_USER_NAME');
 
+
   public salespages = [
 
     {
@@ -159,7 +160,7 @@ export class AppComponent {
   public hrmsPages = [
     {
       title: 'Dashboard',
-      url: '/hrmsdashboard',
+      url: '/dashboard',
       icon: 'home'
     },
     {
@@ -359,9 +360,9 @@ export class AppComponent {
       icon: 'flame'
     },
   ];
-  
+
   public Dmspage =[
-    
+
   ];
 
   public Property = [
