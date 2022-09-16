@@ -126,10 +126,6 @@ const routes: Routes = [
   // { path: 'reconciliation-report', loadChildren: './Cams_pages/reconciliation-report/reconciliation-report.module#ReconciliationReportPageModule' },
   // { path: 'department-wise', loadChildren: './Cams_pages/department-wise/department-wise.module#DepartmentWisePageModule' },
   // { path: 'department-wise-model', loadChildren: './Cams_pages/department-wise-model/department-wise-model.module#DepartmentWiseModelPageModule' }
-  //  hrms
-  { path: 'hrmsdashboard', loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
-
-  { path: 'hrmsemployees', loadChildren: () => import('./Hrms_pages/employees/employees.module').then(m => m.EmployeesPageModule) },
 
   //Property
 
