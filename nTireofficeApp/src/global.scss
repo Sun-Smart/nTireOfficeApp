@@ -994,10 +994,18 @@
    --ion-color-base: #32CD32 !important;
 
  }
- .dashboardheadCams{
-  color: #fff !important;
-  padding: 0px;
-  background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
-  // border-radius: 10px;
-  text-align: center;
- }
+
+
+
+ ion-card {
+  box-shadow: 1px 1px 7px 0px grey;
+}
+ion-card {
+  .card_content {
+    .card_content_label {
+      height: auto;
+      background-color: #ffff !important;
+      color: #000 !important;
+    }
+  }
+}
