@@ -443,7 +443,7 @@ username:any;
         this.currentlocation = this.generateAddress(result[0]);
       })
       .catch((error: any) => {
-        this.presentAlert('', 'Error getting location');
+        // this.presentAlert('', 'Error getting location');
       });
 
     $('#fileinput').trigger('click');
@@ -541,7 +541,7 @@ username:any;
         this.currentlocation = this.generateAddress(result[0]);
       })
       .catch((error: any) => {
-        this.presentAlert('', 'Error getting location');
+        // this.presentAlert('', 'Error getting location');
       });
     this.imagecif = Math.floor((Math.random() * 1000000000000000) + 1);
     const options: CameraOptions = {
