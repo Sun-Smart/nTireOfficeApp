@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;margin-top: 1px;">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>            
     </ion-buttons>
@@ -7,6 +7,61 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="pmsReport">
 
+  <!-- Property List Card-->
+<ion-card class="pmsReportCard">
+  <ion-card-header class="card_heder">
+        <ion-label >Property List</ion-label>
+  </ion-card-header>
+  <ion-card-content>
+  </ion-card-content>
+</ion-card>
+
+ <!-- Property Condact List Card-->
+ <ion-card class="pmsReportCard">
+  <ion-card-header class="card_heder">
+        <ion-label class="card_header_text">Property Condact List</ion-label>
+  </ion-card-header>
+  <ion-card-content>
+  </ion-card-content>
+</ion-card>
+
+ <!-- Document Expiry Report -->
+ <ion-card class="pmsReportCard">
+  <ion-card-header class="card_heder">
+        <ion-label class="card_header_text">Document Expiry Report</ion-label>
+  </ion-card-header>
+  <ion-card-content>
+  </ion-card-content>
+</ion-card>
+
+ <!-- Issue Ledger -->
+ <ion-card class="pmsReportCard">
+  <ion-card-header class="card_heder">
+        <ion-label class="card_header_text">Issue Ledger</ion-label>
+  </ion-card-header>
+  <ion-card-content>
+  </ion-card-content>
+</ion-card>
+
+<!-- Payment Details -->
+<ion-card class="pmsReportCard">
+  <ion-card-header class="card_heder">
+        <ion-label class="card_header_text">Payment Details</ion-label>
+  </ion-card-header>
+  <ion-card-content>
+  </ion-card-content>
+</ion-card>
 </ion-content>
+
+<ion-footer >
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

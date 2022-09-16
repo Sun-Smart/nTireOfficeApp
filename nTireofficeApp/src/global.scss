@@ -295,7 +295,9 @@ ion-searchbar {
 ion-title {
     font-size: 18px;
 }
-
+ion-header{
+    background-image: url('./assets/images/loginBackground.png'),;
+}
 ion-header::after {
     background-image: none;
 }
@@ -306,8 +308,9 @@ ion-header {
         ion-title {
             // padding: 33px;
             font-weight: 600;
-            margin-left: -53px;
+            // margin-left: -53px;
             font-family: 'poppins';
+            text-align: initial;
 
             h6 {
                 // background-color: #5d5ddd;
@@ -407,15 +410,15 @@ textarea {
 }
 
 
-// ion-toolbar {
-//     --background: url("./assets/images/loginBackground.png") no-repeat;
+ion-toolbar {
+    --background: url("./assets/images/loginBackground.png") no-repeat;
 
-//     // --background: rgb(6,159,225)!important;
-//     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
-// }
+    // --background: rgb(6,159,225)!important;
+    // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
+}
 
 ion-toolbar {
-    --background: url("./assets/images/loginBackground.png");
+    --background: url("./assets/images/loginBackground.png") no-repeat;
 
     // --background: rgb(6,159,225)!important;
     // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
@@ -439,6 +442,7 @@ ion-content {
     // --background: url(../assets/Images/Landing/bg.png) no-repeat;
     position: relative;
     opacity: 0.9;
+    font-family: "Poppins" !important;
     // bottom: 50px;
 }
 
@@ -775,7 +779,7 @@ ion-label {
 //     margin: 15px !important;
 // }
 ion-modal ion-toolbar {
-    --background: #004073 !important;
+    --background: #004073;
 }
 
 .btncolor {
