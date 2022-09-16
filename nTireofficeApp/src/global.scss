@@ -931,3 +931,16 @@ ion-menu-button{
 .item-inner{
   border-width: 0px !important;
 }
+.dashboardhead{
+    color: #fff !important;
+    padding: 0px;
+    background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
+    border-radius: 10px;
+    text-align: center;
+}
+.dashboardheadtitle {
+ 
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+}
