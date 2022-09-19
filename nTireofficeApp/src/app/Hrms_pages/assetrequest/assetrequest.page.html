@@ -1,9 +1,117 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>assetrequest</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Asset Request</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-row>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
+            <ion-input style="background-color: white;
+            color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Branch</ion-label>
+                <ion-input style="background-color: white;
+                color: black;" class="form-control" disabled  [(ngModel)]="branch"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-label>EMP Code<span class="validatecolor">*</span></ion-label>
+                  <ion-input style="background-color: white;
+                  color: black;" class="form-control" disabled  [(ngModel)]="empCode"></ion-input>
+                </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Name<span class="validatecolor">*</span></ion-label>
+                    <ion-input style="background-color: white;
+                    color: black;" class="form-control" disabled  [(ngModel)]="name"></ion-input>
+                  </ion-col>
+
+                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-label>Request Reference<span class="validatecolor">*</span></ion-label>
+                            <ion-input style="background-color: white;
+                            color: black;" class="form-control" disabled [(ngModel)]="reqID"></ion-input>
+                          </ion-col>
+                          <ion-col *ngIf="ASSETCODE!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Asset Code<span class="validatecolor">*</span></ion-label>
+                                <ion-input class="form-control" disabled [(ngModel)]="ASSETCODE"></ion-input>
+                              </ion-col>
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-label>Assest Category<span class="validatecolor">*</span></ion-label>
+                            <ion-select *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory" (ionChange)="getAssestsSubcat(assestCategory)" class="form-control">
+                              <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                               <ion-select-option *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</ion-select-option>
+                            </ion-select>
+                            <ion-input *ngIf="ASSETCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETCATEGORY"></ion-input>
+                            </ion-col>
+                            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Assest Subcategory<span class="validatecolor">*</span></ion-label>
+                              <ion-select *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory"  class="form-control">
+                                <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                                 <ion-select-option *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</ion-select-option>
+                              </ion-select>
+                              <ion-input *ngIf="ASSETSUBCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETSUBCATEGORY"></ion-input>
+                               </ion-col>
+                              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                <ion-label>Request Date<span class="validatecolor">*</span></ion-label>
+                                  <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" [(ngModel)]="requestDate"></ion-input>
+                                </ion-col>
+                                <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                  <ion-label>Return Date</ion-label>
+                                    <ion-input type="date" class="form-control"  [(ngModel)]="returnDate"></ion-input>
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                    <ion-label>Required Before<span class="validatecolor">*</span></ion-label>
+                                      <ion-input type="date" class="form-control"  [(ngModel)]="reqbeforedte"></ion-input>
+                                    </ion-col>
+                                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Reason<span class="validatecolor">*</span></ion-label>
+                                        <ion-textarea class="form-control"   [(ngModel)]="reason"></ion-textarea>
+                                        <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
+
+                                      </ion-col>
+
+                                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                        <div  style="padding: 12px;display: flex;">
+                                            <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+                                            <ion-label>Release</ion-label>
+                                        </div>
+                                      </ion-col>
+                                      <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                          <div  style="padding: 12px;display: flex;">
+
+                                               <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
+                                          </div>
+                                        </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+                              <ion-button this.disabledvalue = true; color="success" [disabled]="assestCategory=='' || assestsubCategory=='' || requestDate==undefined || reqbeforedte==undefined || reason==undefined" (click)="assestsSubmit()">Ok</ion-button>
+                              </ion-col>
+                              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+                                  <ion-button this.disabledvalue = true; color="danger" (click)="assestCancel()">Cancel</ion-button>
+                                  </ion-col>
+                                  <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+                                      <ion-button this.disabledvalue = true; (click)="assesstsList()">List</ion-button>
+                                      </ion-col>
+                              </ion-row>
+                          </ion-grid>
 </ion-content>
+
+<ion-footer class="bar-royal">
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

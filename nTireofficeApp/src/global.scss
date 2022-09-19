@@ -300,6 +300,8 @@
 
  ion-header {
    background-image: url('./assets/images/loginBackground.png'), ;
+   position: sticky;
+    top: 0;
  }
 
  ion-header::after {

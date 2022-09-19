@@ -41,7 +41,10 @@ export class VendorpoconfirmPage implements OnInit {
   fromDate:any;
   toDate:any;
   username:any;
-    constructor(public modalController: ModalController,private router: Router, private http: HttpClient,public navCtrl:NavController, public Ipaddressservice: IpaddressService,) { 
+  todate:any;
+  fromdate:any;
+  postatus:any;
+    constructor(public modalController: ModalController,private router: Router, private http: HttpClient,public navCtrl:NavController, public Ipaddressservice: IpaddressService,) {
       this.username=localStorage.getItem('TUM_USER_NAME');
     }
 
@@ -91,8 +94,9 @@ export class VendorpoconfirmPage implements OnInit {
   filterdate(){}
 
   searchpo(branch_id, ponum, vendor_code, postatus, fromdate, todate){
+  debugger
     this.loading = true;
-    if (fromdate == undefined) {
+    if (fromdate === undefined) {
       var fromDate = '';
     }
     if (todate == undefined) {
@@ -124,8 +128,8 @@ export class VendorpoconfirmPage implements OnInit {
       BRANCH_ID: branch_id,
       PONUMBER: ponum,
       VENDORCODE: vendor_code,
-      FROMDATE: fromDate,
-      TODATE: toDate,
+      FROMDATE: this.fromDate,
+      TODATE: this.toDate,
       SORTEXPRESSION: 'po_reference',
       STATUS: postatus,
       ITEMCODE: '',

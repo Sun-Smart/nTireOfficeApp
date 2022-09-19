@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>examdetails</ion-title>
+    <ion-title>Exam</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-grid>
+        <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                Test Name
+                </ion-col>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                    {{item.TEST_CODE}}-{{item.TEST_DESCRIPTION}}
+                    </ion-col>
+                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                        Test Type
+                        </ion-col>
+                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                            {{item.Test_Type_Desc}}
+                            </ion-col>
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                No. of Questions
+                                </ion-col>
+                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                    {{item.NO_OF_QUESTIONS}}
+                                    </ion-col>
+                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                        Total Marks
+                                        </ion-col>
+                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                            {{item.total_marks}}
+                                            </ion-col>
+                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                Time Duration
+                                                </ion-col>
+                                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+<span *ngIf='item.Exam_DURATION[0]==00'>  {{item.Exam_DURATION[0]}} hr&nbsp <span>{{item.Exam_DURATION[1]}} min</span>
+</span>
+                                                </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+<ion-button (click)="startExam(item)">Start</ion-button>
+                    </ion-col>
+                </ion-row>
+                </ion-grid>
 </ion-content>

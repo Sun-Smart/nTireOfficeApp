@@ -1,12 +1,170 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-   </ion-buttons>
-    <ion-title>vendormaster-model</ion-title>
+    <!-- <ion-title>Vendor Details</ion-title> -->
+
+      <ion-buttons slot="start">
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="icon-only" style=" background-color: white;" name="close" >close</ion-icon>
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+<ion-grid>
+  <p><b>General Information :</b>
+  </p>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Company Name</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.CompanyName||"-"}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Code</p>
+    </ion-col>
+    <ion-col size="6" style="margin: auto;">
+      <span style="font-size: 14px;"></span>
+    {{itemdata.Code||"-"}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Address</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Address1||"-"}},<br>{{itemdata.Address2||"-"}},<br>{{itemdata.City||"-"}} - {{itemdata.ZIPCode||"-"}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Web Site	</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Website||"-"}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Group</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.GroupName||"-"}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Total Employee</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.TotalEmployees||"-"}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Date of Incorp</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.DateOfIncorporation|date:'d/M/yy'}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Status</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Status}}
+    </ion-col>
+  </ion-row>
+  <p><b>Contact Information :</b>
+  </p>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Contact Person Name</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.PrimaryContactPerson}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Designation</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Designation}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Phone</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.OfficePhone ||"-"}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Mobile</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Mobile ||"-"}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Email</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Email}}
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Fax</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.Fax||"-"}}
+    </ion-col>
+  </ion-row>
+  <!-- <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Lead Time</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.LEAD_TIME||"-"}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6">
+      <p style="font-weight:bold;">Remarks</p>
+    </ion-col>
+    <ion-col size="6">
+      <span style="font-size: 14px;"></span>
+      {{itemdata.REMARKS||"-"}}
+    </ion-col>
+  </ion-row> -->
+</ion-grid>
 </ion-content>

@@ -1,9 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>attendance-notification</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Attendance Notification</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-grid >
+    <!-- style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;" -->
+    <ion-row>
+        <table>
+            <tr>
+              <th>Check</th>
+              <th>Emp Code</th>
+              <th>Emp Name</th>
+              <th>In Time</th>
+              <th>Out Time</th>
+            </tr>
+            <tr *ngFor="let items of notification">
+              <td>
+                  <ion-checkbox name="checkindex" (click)="checkAll()"  [(ngModel)]="items.pushcheck"  [checked]="items.pushcheck"></ion-checkbox>
+        </td>
+
+              <td>{{items.EM_EMP_CODE}}</td>
+              <td>{{items.em_emp_name}}</td>
+              <td>
+                    <ion-checkbox  [(ngModel)]="items.checkin" (click)="checkAll()" name="checkindex1" [checked]="items.pushcheck == true || items.Innotify_flag == 'true'"></ion-checkbox>
+              </td>
+
+              <td>
+                  <ion-checkbox  [(ngModel)]="items.checkout" (click)="checkAll()" name="checkindex2" [checked]="items.pushcheck == true || items.Outnotify_flag == 'true'"></ion-checkbox>
+              </td>
+            </tr>
+          </table>
+    </ion-row>
+    <ion-row>
+      <ion-button (click)="Save()">Process</ion-button>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer class="bar-royal">
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

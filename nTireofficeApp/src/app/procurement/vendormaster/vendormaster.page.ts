@@ -33,7 +33,7 @@ export class VendormasterPage implements OnInit {
 username:any;
   constructor(public modalController: ModalController, private http: HttpClient, public Ipaddressservice: IpaddressService,) {
 
-    
+
  this.username=localStorage.getItem('TUM_USER_NAME');
    }
 

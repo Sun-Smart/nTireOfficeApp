@@ -1,9 +1,149 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>applicantsummary</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Applicant Summary</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
+        <ion-input style="background-color: white;
+        color: black;" class="form-control" [(ngModel)]="company"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Applicant Ref<span class="validatecolor">*</span></ion-label>
+        <ion-input class="form-control" (change)="filerchange(applicantref)" [(ngModel)]="applicantref"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Given Name<span class="validatecolor">*</span></ion-label>
+        <ion-input class="form-control" (change)="filerchange1(name)" [(ngModel)]="name"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Job Category</ion-label>
+        <select [(ngModel)]="jobCategory" (change)="filerchange2(jobCategory)" class="form-control">
+          <option value="">&lt;&lt; Select &gt;&gt; </option>
+          <option *ngFor="let item of hrmjobcategory" [ngValue]="item.TEXT">{{item.TEXT}}</option>
+        </select>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Mobile<span class="validatecolor">*</span></ion-label>
+        <ion-input (change)="filerchange3(Mobile)" class="form-control" [(ngModel)]="Mobile"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>From Date</ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="from"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>To Date</ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="todate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Status</ion-label>
+        <ion-select [(ngModel)]="applicantstatus" (change)="statusChange(applicantstatus)" class="form-control">
+          <ion-select-option value="">
+            << Select>>
+          </ion-select-option>
+          <ion-select-option value="A">Active</ion-select-option>
+          <ion-select-option value="I">Inactive</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card *ngFor="let applicantdata of applicanthistorydetail">
+
+    <ion-card-header style="padding: 0;">
+      <ion-grid style="padding: 0;">
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+            {{applicantdata.amd_reference_no}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn"
+            style="text-align:center;">
+            {{applicantdata.amd_firstname}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <ion-card-content>
+
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p><b>Category</b></p>{{applicantdata.amd_job_category}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p><b>Mobile</b></p>{{applicantdata.amd_mobile}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p><b>Email</b></p>{{applicantdata.amd_email1}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+          *ngIf="applicantdata.amd_availability_from !='null' && applicantdata.amd_availability_from !=''">
+          <p><b>Availability(days)</b></p>{{applicantdata.amd_availability_from}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+          *ngIf="applicantdata.amd_availability_from =='null' && applicantdata.amd_availability_from ==''">
+          <p><b>Availability(days)</b></p>-
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <p><b>Application Date</b>
+            {{applicantdata.amd_date | date:'dd-MM-yyyy'}}
+            <span *ngIf="!applicantdata.amd_date">--</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-button class="reportbtn" style="width:100%" (click)="applicantView(applicantdata)">View</ion-button>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-button class="reportbtn" style="width:100%" *ngIf="applicantstatus=='A'"
+            (click)="deleteapplicant(applicantdata)">Delete</ion-button>
+          <ion-button class="reportbtn" style="width:100%" *ngIf="applicantstatus=='I'"
+            (click)="activeeapplicant(applicantdata)">Active</ion-button>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+  </ion-card>
+  <p *ngIf="applicanthistorydetail.length==0" class="norecord" style="text-align: center;">No Result Found</p>
+  <!-- <ion-icon  class="circleicon" name="add"></ion-icon> -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToApplicantDetails()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
+
+
+<ion-footer class="bar-royal">
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+
+
+ </ion-footer>
