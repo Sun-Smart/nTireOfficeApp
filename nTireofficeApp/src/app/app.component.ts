@@ -324,21 +324,21 @@ export class AppComponent {
     //   url: '/updatevendoritem',
     //   icon: 'pricetag'
     // },
-    // {
-    //   title: 'Update Vendor Quotation',
-    //   url: '/updatevendorquot',
-    //   icon: 'create'
-    // },
+    {
+      title: 'Update Vendor Quotation',
+      url: '/updatevendorquot',
+      icon: 'create'
+    },
     {
       title: 'Vendor Master',
       url: '/vendormaster',
       icon: 'person'
     },
-    // {
-    //   title: 'Vendor Payments',
-    //   url: '/vendorpayments',
-    //   icon: 'cash'
-    // },
+    {
+      title: 'Vendor Payments',
+      url: '/vendorpayments',
+      icon: 'cash'
+    },
     {
       title: 'Vendor PO Confirm',
       url: '/vendorpoconfirm',

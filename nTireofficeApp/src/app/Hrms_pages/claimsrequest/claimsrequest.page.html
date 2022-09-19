@@ -1,9 +1,214 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>claimsrequest</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Claims</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+    <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+        <ion-row>
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
+                <ion-input style="background-color: white;
+                color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Branch</ion-label>
+                    <ion-input style="background-color: white;
+                    color: black;" class="form-control"  disabled [(ngModel)]="branch"></ion-input>
+                  </ion-col>
+                  <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Date</ion-label>
+                        <ion-input type="date" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" class="form-control"   [(ngModel)]="date"></ion-input>
+                      </ion-col> -->
+                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-label>Name<span class="validatecolor">*</span></ion-label>
+                            <ion-input style="background-color: white;
+                            color: black;"  class="form-control"  disabled [(ngModel)]="name"></ion-input>
+                          </ion-col>
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Request Category<span claretailss="validatecolor">*</span></ion-label>
+                              <ion-select placeholder="Select Request Category" [(ngModel)]="requestCat" class="form-control" style="display: flex;">
+                                  <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                                  <ion-select-option *ngFor="let item of Reqcategory"  [value]="item.VAL">{{item.TEXT}}</ion-select-option>
+                              </ion-select>
+                              </ion-col>
+
+                              <ion-col *ngIf="requestCat=='2'"  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" >
+                                  <ion-label>Request Ref <span class="validatecolor">*</span></ion-label>
+
+                                  <ion-select placeholder="Select Request Ref" style="display: flex;" [(ngModel)]="reqRef" class="form-control" (change)="requestRefChange()">
+                                      <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+
+                                      <ion-select-option *ngFor="let item of ReferenceData">{{item.TxnReference}}</ion-select-option>
+                                  </ion-select>
+
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Amount</ion-label>
+                                      <ion-input type="tel" class="form-control" [(ngModel)]="expenseamount"></ion-input>
+                                      </ion-col>
+                                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                          <ion-label>Description<span class="validatecolor">*</span></ion-label>
+                                          <ion-textarea  class="form-control" [(ngModel)]="description"></ion-textarea>
+                                          </ion-col>
+                                          <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+                                              <div  style="padding: 12px;display: flex;">
+                                                  <ion-checkbox color="primary"  [(ngModel)]="release" [value]="false"></ion-checkbox>&nbsp;&nbsp;
+                                                  <ion-label>Release</ion-label>
+                                              </div>
+                                            </ion-col>
+                                            <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7">
+                                                <div  style="padding: 12px;display: flex;">
+                                                    <ion-checkbox color="primary"  [(ngModel)]="billableclient" [value]="false"></ion-checkbox>&nbsp;&nbsp;
+                                                    <ion-label>Billable To Client</ion-label>
+                                                </div>
+                                              </ion-col>
+                  </ion-row>
+
+                  <ion-row *ngIf="travelData.length!=0">
+                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                    <p class="" style="color:black;text-align: center"><b>Total Records : {{travelData.length}}</b></p>
+                    </ion-col>
+                </ion-row>
+                  <ion-card *ngFor="let traveldata of travelData">
+                    <ion-row>
+                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+                          {{name}}
+                          </ion-col>
+                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="float:right">
+                            {{traveldata.TravelDate | date:'dd/MM/yyyy'}}
+                            </ion-col>
+                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                            From Place
+                            </ion-col>
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                              {{traveldata.FromPlace || '-'}}
+                              </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                To Place
+                                </ion-col>
+                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                  {{traveldata.ToPlace || '-'}}
+                                  </ion-col>
+                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                    Travel Date
+                                    </ion-col>
+                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                      {{traveldata.TravelDate | date:'dd/MM/yyyy' ||  '-' }}
+                                      </ion-col>
+                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                        Travel Mode
+                                        </ion-col>
+                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                          {{traveldata.TravelMode || '-'}}
+                                          </ion-col>
+                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                          comment
+                                          </ion-col>
+                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                            {{traveldata.Comments}}
+                                            </ion-col>
+                    </ion-row>
+                </ion-card>
+                  <ion-row>
+                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Expense Type<span class="validatecolor">*</span></ion-label>
+                      <ion-select style="display: flex;" placeholder="Select Expense Type" class="form-control" [(ngModel)]="expenseType">
+                          <ion-select-option value="Select">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                          <ion-select-option value="1">Food</ion-select-option>
+                          <ion-select-option value="2">Travel</ion-select-option>
+                          <ion-select-option value="3">Hotel</ion-select-option>
+                      </ion-select>
+                      </ion-col>
+                    <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Expense Type</ion-label>
+                      <ion-select [(ngModel)]="expenseType" class="form-control">
+                          <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                          <ion-select-option *ngFor="let item of expenseetype1" [ngValue]="item.VAL">{{item.TEXT}}</ion-select-option>
+                      </ion-select>
+                    </ion-col> -->
+                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-label>Amount</ion-label>
+                        <ion-input type="tel" class="form-control" [(ngModel)]="amount"></ion-input>
+                        </ion-col>
+                        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-label>Remarks</ion-label>
+                            <ion-textarea  class="form-control" [(ngModel)]="expenseremarks"></ion-textarea>
+                            <span *ngIf="expenseremarks!=undefined" class="customCounter">{{4000 - expenseremarks.length}}</span>
+                          </ion-col>
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Attach Document</ion-label>
+                              <br/>
+                              <ion-icon style="font-size:28px;position: relative;left:50%" (click)="Attachdocument()" name="camera"></ion-icon>
+                              </ion-col>
+                              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-row>
+                                <ion-col  *ngFor="let image of image"  size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                                <ion-icon name="close-circle-outline" class="closebtn" (click)="DeleteImage(i)"></ion-icon>
+                               <img  [src]="sanitizer.bypassSecurityTrustUrl(image.imgURL)"/>
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <div class="plusicon">
+                                         <ion-icon name="add" (click)="addExpenseDetails()" style="margin-top: 7px;"></ion-icon>
+                                      </div>
+                                     </ion-col>
+                              </ion-row>
+                                </ion-col>
+                  </ion-row>
+
+                    <ion-card *ngFor="let items of expenseArray">
+                        <ion-row>
+                            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" class="leadscolumn">
+                              <!-- Expense Type:{{items.EXPENSE_TYPE}} -->
+                              Expense Type:{{expenseType}}
+                              </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                  Amount
+                                </ion-col>
+                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                    {{items.EXPENSE_AMOUNT}}
+                                  </ion-col>
+                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                      Remarks
+                                    </ion-col>
+                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                        {{items.EXPENSE_REMARKS}}
+                                      </ion-col>
+                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                          Attachment
+                                        </ion-col>
+                                        <ion-col *ngIf="items.ATTACTMENT" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                          <img  [src]="sanitizer.bypassSecurityTrustUrl(items.ATTACTMENT.imgURL)"/>
+
+                                        </ion-col>
+                        </ion-row>
+                    </ion-card>
+
+                  <ion-row>
+                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                        <ion-button color="success" [disabled]="requestCat=='' ||  description==undefined" (click)="claimsSubmit()">Ok</ion-button>
+                        </ion-col>
+                        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                            <ion-button color="danger" (click)="cancelClaims()">Cancel</ion-button>
+                            </ion-col>
+                            <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                <ion-button (click)="claimList()">List</ion-button>
+                                </ion-col>
+                        </ion-row>
+                  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

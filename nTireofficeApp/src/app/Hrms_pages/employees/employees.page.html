@@ -9,7 +9,7 @@
   </ion-header>
 
   <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i class="fa fa-filter" aria-hidden="true"></i></span></div>
-    <ion-grid *ngIf="showfilter" style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-grid *ngIf="showfilter" style="background: transparent; padding: 10px;margin: 10px;border-radius: 8px;">
       <ion-row>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Name</ion-label>
@@ -76,7 +76,7 @@
   <p *ngIf="totalemployee" style="text-align:center;"><b>Total Employee : {{totalemployee}}</b></p>
 
   <ion-card *ngFor="let item of displayEmployee">
-    <ion-card-header style="background-color:#1a3fb9!important">
+    <ion-card-header class="dashboardhead" style="padding: 10px;">
       <ion-card-title style="color: white;font-size: 14px;font-weight: bold;">{{item.EmployeeCode}} <span style="float: right;">{{item.Name}}</span></ion-card-title>
     </ion-card-header>
     <ion-card-content style="padding: 10px;">
