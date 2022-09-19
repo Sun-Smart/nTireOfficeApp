@@ -21,29 +21,25 @@
 
              <br/>
         <ion-col  size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
-          <div  style="background:rgba(181, 179, 179, 0.31); width:120px; height:127px;">
+          <div  style="background:rgba(181, 179, 179, 0.31);">
               <!-- <img src="{{profilepic}}" onerror="this.src='assets/Images/defaultMale.png'"> -->
               <!-- <img  [src]="sanitizer.bypassSecurityTrustUrl(profilepic)" onerror="this.src='assets/Images/defaultMale.png'"/> -->
               <img  src="assets/images/defaultMale.png"/>
-              <button  style="    margin-top: -73px;
-              /* top: 12px; */
-              padding-top: -24px;
-              background-color: #f6efef;
-              margin-left: 83px;" ion-button color="light" clear Button><ion-icon (click)="presentActionSheet()" ios="ios-camera" md="md-camera"></ion-icon></button>
+              <button   ion-button color="light" clear Button style="background-color: transparent;position: relative;bottom: 0;left: 70px;"><ion-icon (click)="presentActionSheet()" name="camera"></ion-icon></button>
 
           </div>
           </ion-col>
-          <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7" *ngIf="profile!=undefined">
+          <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7" *ngIf="profile!=undefined" style="font-size: 13px;">
 
-              <span><ion-icon name="card" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon">{{profile.EmployeeCode}}</span></span>
+              <span><ion-icon name="card"></ion-icon><span class="profileicon">{{profile.EmployeeCode}}</span></span>
               <br/>
-              <span><ion-icon name="briefcase" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon">{{profile.Function}}</span></span>
+              <span><ion-icon name="briefcase"></ion-icon><span class="profileicon">{{profile.Function}}</span></span>
               <br/>
-              <span><ion-icon name="person" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon">{{profile.Designation}}  </span> </span>
+              <span><ion-icon name="person"></ion-icon><span class="profileicon">{{profile.Designation}}  </span> </span>
               <br/>
-              <span><ion-icon name="flame" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon">{{profile.Department}}</span></span>
+              <span><ion-icon name="flame"></ion-icon><span class="profileicon">{{profile.Department}}</span></span>
               <br/>
-              <span><ion-icon name="home" style="margin-right:5px;vertical-align: sub;"></ion-icon><span class="profileicon" *ngIf=profile.CurrentCity>{{profile.CurrentCity}}</span> <span *ngIf=!profile.CurrentCity class="profileicon">No data</span></span>
+              <span><ion-icon name="home"></ion-icon><span class="profileicon" *ngIf=profile.CurrentCity>{{profile.CurrentCity}}</span> <span *ngIf=!profile.CurrentCity class="profileicon">No data</span></span>
               <br/>
               <span *ngIf="profile.CurrentCountry!=0"><ion-icon name="globe" style="margin-right:5px;"></ion-icon><span class="profileicon" *ngIf=profile.CurrentCountry>{{profile.CurrentCountry}}</span> <span *ngIf=!profile.CurrentCountry class="profileicon">No data</span></span>
 
@@ -60,10 +56,10 @@
     </ion-row>
     <ion-segment [(ngModel)]="segmentdata">
         <ion-segment-button  value="Personal">
-          <ion-label style="font-size: 12px !important;color:#fff !important">PERSONAL DETAILS</ion-label>
+          <ion-label style="font-size: 12px !important;color:#000 !important">PERSONAL DETAILS</ion-label>
         </ion-segment-button>
         <ion-segment-button value="education">
-          <ion-label style="font-size: 12px !important;color:#fff !important">EDUCATION & CAREER</ion-label>
+          <ion-label style="font-size: 12px !important;color:#000 !important">EDUCATION & CAREER</ion-label>
         </ion-segment-button>
 
       </ion-segment>
