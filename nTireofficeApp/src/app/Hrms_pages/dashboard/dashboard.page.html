@@ -1,7 +1,4 @@
-
-
 <ion-content>
-
   <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
@@ -12,17 +9,18 @@
   </ion-header>
   <ion-grid>
     <ion-row>
-        <ion-card >
+        <ion-card style="display: contents; justify-content: center;">
           <ion-item *ngFor="let item of displayUser">
             <ion-avatar item-start style="margin:auto">
-              <!-- <img src="assets\Images\defaultMale.png" style="background-color: white;"> -->
-              <img  src="{{item.Photo}}" onError="this.src='../../../assets/Images/defaultMale.png'" >
+              <img src="assets/images/defaultMale.png" >
+              <!-- <img  src="{{item.Photo}}" onError="this.src='../../../assets/Images/defaultMale.png'" > -->
             </ion-avatar>
           </ion-item>
+
       <ion-col *ngFor="let item of displayUser" style="width:100%">
 
     <div class="imagediv">
-        <img *ngIf="!item.Photo" src="{{item.Photo}}">
+        <img *ngIf="!item.Photo" src="{{item.Photo}}" >
       <!-- <img  src="{{item.Photo}}"  alt="" width="50px" height="50px"> -->
     </div>
     <div *ngIf="displayUser.length!=0" style="text-align:center">
@@ -98,7 +96,6 @@ margin-left: -9px;margin: auto;">
    padding-top: 19px;
 padding-bottom: 17px;" class="icon fa fa-graduation-cap"></i>
 </button>
-
 
 <span style="    margin-left: 0%;
 padding-top: 12px;
