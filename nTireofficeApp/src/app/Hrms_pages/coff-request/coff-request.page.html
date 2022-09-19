@@ -1,9 +1,126 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>coff-request</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button *ngIf="!disabledvalue"> </ion-menu-button>
+            <ion-back-button *ngIf="disabledvalue"
+                [text]="buttonText"
+                [icon]="buttonIcon">
+            </ion-back-button>
+          </ion-buttons>
+      <ion-title>C-Off Request</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-row>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label>Function</ion-label>
+            <ion-input style="background-color: white;
+            color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Branch</ion-label>
+                <ion-input  style="background-color: white;
+                color: black;" class="form-control"  disabled [(ngModel)]="branch"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Name</ion-label>
+                    <ion-input style="background-color: white;
+                    color: black;"  class="form-control"  disabled [(ngModel)]="name"></ion-input>
+                  </ion-col>
+                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Contact Number</ion-label>
+                        <ion-input style="background-color: white;
+                        color: black;" class="form-control" disabled  [(ngModel)]="contact"></ion-input>
+                      </ion-col>
+                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-label>Request Reference<span class="validatecolor">*</span></ion-label>
+
+                            <ion-input style="background-color: white;
+                            color: black;"  class="form-control" disabled [(ngModel)]="reqID1"></ion-input>
+                          </ion-col>
+                          <ion-col *ngIf="RequestRefshow" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                            <ion-label>Requested Date<span class="validatecolor">*</span></ion-label>
+
+                              <ion-input  class="form-control"  [disabled]="disabledvalue"  [(ngModel)]="RequestDate"></ion-input>
+                            </ion-col>
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+
+                              <ion-label>C-Off Date <span class="validatecolor">*</span></ion-label>
+                                <ion-input type="date"   [disabled]="disabledvalue"  (change)="clearToDate()"  min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" class="form-control"   [(ngModel)]="coffdate"></ion-input>
+                              </ion-col>
+                              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+
+                                  <ion-label>Working Date<span class="validatecolor">*</span></ion-label>
+
+                                    <ion-input type="date"    [disabled]="disabledvalue"  [disabled]="coffdate==undefined" min="{{today| date: 'yyyy-MM-dd'}}"   (change)="workingchange($event.target.value)"  class="form-control"   [(ngModel)]="workingdate"></ion-input>
+                                    <!-- max="{{coffdate | date: 'yyyy-MM-dd'}}" -->
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Leave Type<span class="validatecolor">*</span></ion-label>
+
+                                      <ion-select  [disabled]="disabledvalue" class="form-control" [(ngModel)]="leavetype">
+                                          <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                                          <ion-select-option value="C">Extra</ion-select-option>
+                                          <ion-select-option value="E">C-Off</ion-select-option>
+                                      </ion-select>
+                                      </ion-col>
+                                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                          <ion-label>Reason<span class="validatecolor">*</span></ion-label>
+
+                                            <ion-textarea  class="form-control"    [disabled]="disabledvalue"   [(ngModel)]="reason"></ion-textarea>
+                                            <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
+
+                                          </ion-col>
+                                          <ion-col *ngIf="RequestRefshow" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                            <ion-label>Status</ion-label>
+                                              <ion-textarea  class="form-control"    [disabled]="disabledvalue"   [(ngModel)]="status"></ion-textarea>
+                                            </ion-col>
+                                            <ion-col *ngIf="!disabledvalue" size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                              <div  style="padding: 12px;display: flex;">
+                                                  <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+                                                  <ion-label>Release</ion-label>
+                                              </div>
+                                            </ion-col>
+                                            <ion-col *ngIf="!disabledvalue" size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                                <div  style="padding: 12px;display: flex;">
+
+                                                     <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
+                                                </div>
+                                              </ion-col>
+                                              <ion-col *ngIf="disabledvalue" size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                                <div  style="padding: 12px;display: flex;">
+
+                                                     <ion-label>Current Status : <span *ngIf="coffdata.Currentstatus == 'P'">Pending</span><span *ngIf="coffdata.Currentstatus == 'A'">Approved</span><span *ngIf="coffdata.Currentstatus == 'D'">Denied</span></ion-label>
+                                                </div>
+                                              </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+          <ion-button *ngIf="!disabledvalue"  color="success" [disabled]="coffdate==undefined || workingdate==undefined || workingdate=='' || leavetype=='' || reason==undefined" (click)="coffSubmit()">Ok</ion-button>
+          </ion-col>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+              <ion-button  *ngIf="!disabledvalue" [disabled]="disabledvalue"   color="danger" (click)="coffCancel()">Cancel</ion-button>
+              </ion-col>
+              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+                  <ion-button *ngIf="!disabledvalue"  [disabled]="disabledvalue" (click)="coffList()">List</ion-button>
+                  </ion-col>
+          </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>
