@@ -1,6 +1,10 @@
 <ion-app>
   <!-- <img src='assets/Images/home.png' [hidden]="logoutbtn"  class="homeicon"> -->
 
+  <!-- <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons> -->
+
 
     <button [hidden]="logoutbtn" class="button button-icon button-clear logoutbtn"  (click)="logout()" style="font-size:10px">
         <ion-icon class="logicon" name="power"></ion-icon>
@@ -19,18 +23,13 @@
 
           <ion-list class="menulsit"  *ngIf="list" no-lines>
             <ion-menu-toggle>
-
-
                   <ion-item lines="none" *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
                       <ion-icon style="color:#000 !important;margin: 10px;font-size: 18px;" slot="start" [name]="p.icon"></ion-icon>
                       <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:bolder;">
                         {{p.title}}
                       </ion-label>
                     </ion-item>
-
-
             </ion-menu-toggle>
-
           </ion-list>
          <p class="menuhead"  (click)="menutoogle1()"><ion-icon class="mainicon" name="briefcase"></ion-icon>Sales
           <ion-icon class="arrowicon" name="caret-down-outline" style="color: #fff;font-size: 20px !important;"></ion-icon>
