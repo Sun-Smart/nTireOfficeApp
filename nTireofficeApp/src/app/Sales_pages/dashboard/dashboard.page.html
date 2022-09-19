@@ -19,9 +19,9 @@
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
         <ion-card>
-          <div class="dashboardhead">
-            Stage Wise Lead Count
-          </div>
+          <ion-card-header class="card_header">
+            <ion-label class="card_header_text">Stage Wise Lead Count</ion-label>
+          </ion-card-header>
           <div style="margin-top:15px;">
             <canvas #barCanvas id="barCanvas"></canvas>
           </div>
@@ -30,10 +30,9 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
         <ion-card>
-          <div class="dashboardhead">
-            Source Wise Lead Count
-
-          </div>
+          <ion-card-header class="card_header">
+            <ion-label class="card_header_text">Source Wise Lead Count</ion-label>
+          </ion-card-header>
           <div style="margin-top:15px;">
             <canvas #sourcecanvas id="sourcecanvas"></canvas>
 
@@ -42,10 +41,9 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
         <ion-card>
-          <div class="dashboardhead">
-            Product Wise Forecast
-
-          </div>
+          <ion-card-header class="card_header">
+            <ion-label class="card_header_text">Product Wise Forecast</ion-label>
+          </ion-card-header>
           <div style="margin-top:15px;">
             <canvas #productcanvas height="90" width="100" id="productcanvas" class="chart chart-line"
               chart-data="data1" chart-labels="Productlabel" chart-series="series1" chart-options="options1"
@@ -68,13 +66,13 @@
 <ion-footer>
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
 
 
- </ion-footer>
+</ion-footer>
