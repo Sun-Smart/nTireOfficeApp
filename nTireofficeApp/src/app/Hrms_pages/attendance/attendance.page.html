@@ -1,3 +1,5 @@
+
+
 <ion-content>
   <ion-header>
     <ion-toolbar>
@@ -15,6 +17,8 @@
               <p>{{displayEmployee.Designation}}</p>
               <p>{{displayEmployee.Department}}</p>
       </ion-col>
+
+
       </ion-row>
     </ion-grid>
   </ion-card>
@@ -23,7 +27,7 @@
     <ion-card-header>
       <ion-grid style="background-color: #f8f8f8;">
     <ion-row>
-      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 <ion-select [(ngModel)]="yeardata" style="display: flex;">
 <ion-select-option value="">Year</ion-select-option>
 <ion-select-option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
@@ -37,8 +41,9 @@
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
       <ion-button style="--box-shadow:none;color: black;--background: transparent;" (click)="getAttendance()">Search</ion-button>
-    </ion-col>
+        </ion-col>
     </ion-row>
+
   </ion-grid>
 </ion-card-header>
 
@@ -92,5 +97,6 @@
    {{username}}
  </ion-col>
   </ion-row>
+
 
  </ion-footer>

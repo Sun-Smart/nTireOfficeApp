@@ -23,6 +23,7 @@ export class AttendancePage implements OnInit {
   nodata:boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController) {
+
     this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
 
@@ -36,6 +37,7 @@ export class AttendancePage implements OnInit {
 
   ngOnInit() {
   }
+
   getEmployeeList(){
    var obj = {
       empID: this.empid,
@@ -50,23 +52,33 @@ export class AttendancePage implements OnInit {
  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
   this.displayEmployee = JSON.parse(resp.toString());
   this.displayEmployee = this.displayEmployee[0];
+
   console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));
+
     }, error => {
+
     console.log("error : "+JSON.stringify(error));
+
     });
   }
   geYears(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Year/%20/0/0").then(resp=>{
       this.year = JSON.parse(resp.toString());
+
         }, error => {
+
         console.log("error : "+JSON.stringify(error));
+
         });
   }
   geMonths(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Month/%20/0/0").then(resp=>{
       this.month = JSON.parse(resp.toString());
+
         }, error => {
+
         console.log("error : "+JSON.stringify(error));
+
         });
   }
   getAttendance(){
@@ -83,6 +95,7 @@ export class AttendancePage implements OnInit {
         empID:this.employee_id,
         year:this.yeardata,
         month:this.monthdata
+
       }
       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
 
@@ -112,9 +125,12 @@ this.loadingdismiss();
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
+
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
+
+
     });
     return await loading.present();
   }
@@ -122,4 +138,7 @@ this.loadingdismiss();
 
      return await this.loadingController.dismiss();
   }
+
+
+
 }

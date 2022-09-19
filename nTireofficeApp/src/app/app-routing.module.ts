@@ -167,6 +167,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
+  {
+    path:'attendance',
+    loadChildren:()=> import('./Hrms_pages/attendance/attendance.module').then(m => m.AttendancePageModule)
+  },
   // {
   //   path: 'applicant-details',
   //   loadChildren: () => import('./Hrms_pages/applicant-details/applicant-details.module').then( m => m.ApplicantDetailsPageModule)

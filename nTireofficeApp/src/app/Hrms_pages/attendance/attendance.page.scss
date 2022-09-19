@@ -56,3 +56,8 @@ ion-card{
   0 100px 80px rgba(0, 0, 0, 0.12)
 ;
 }
+
+ion-content {
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  position: relative;
+}
