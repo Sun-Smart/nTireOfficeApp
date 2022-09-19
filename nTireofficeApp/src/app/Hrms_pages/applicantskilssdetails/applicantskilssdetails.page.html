@@ -1,9 +1,103 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>applicantskilssdetails</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
+  <ion-card class="applicantcard">
+      <ion-grid>
+        <ion-row>
+          <ion-item>
+            Skills Details
+          </ion-item>
+         <br/>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                  <ion-label>Skill Category<span class="validatecolor">*</span></ion-label>
+                  <select [(ngModel)]="category"  class="form-control">
+                      <option value="">&lt;&lt; Select &gt;&gt; </option>
+                       <option *ngFor="let item of hrmskillcat" [ngValue]="item.VAL">{{item.TEXT}}</option>
+                    </select>
+                  </ion-col>
 
+                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                          <ion-label>Skill<span class="validatecolor">*</span></ion-label>
+                            <ion-input class="form-control" [(ngModel)]="skills"></ion-input>
+
+                          </ion-col>
+                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                              <ion-label>Years of Use<span class="validatecolor">*</span></ion-label>
+                                <ion-input  type="tel" class="form-control" [(ngModel)]="use"></ion-input>
+
+                              </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                  <ion-label>Last Worked<span class="validatecolor">*</span></ion-label>
+                                    <ion-input type="tel" class="form-control" [(ngModel)]="worked"></ion-input>
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Rating<span class="validatecolor">*</span></ion-label>
+                                      <select  [(ngModel)]="rating"  class="form-control">
+                                        <option value="">&lt;&lt; Select &gt;&gt; </option>
+                                         <option *ngFor="let item of hrmskillrating" [ngValue]="item.VAL">{{item.TEXT}}</option>
+                                      </select>
+                                      </ion-col>
+
+                                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                          <ion-label>Remarks</ion-label>
+                                            <ion-textarea  class="form-control" [(ngModel)]="remarks"></ion-textarea>
+                                            <span *ngIf="remarks!=undefined" class="customCounter ">{{200-remarks.length}}</span>
+                                            <span *ngIf="remarks!=undefined && remarks.length > 200" style="color:red;">Details Exceeds</span>
+                                          </ion-col>
+                      </ion-row>
+                      </ion-grid>
+
+                      <ion-grid>
+                          <ion-row>
+                            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-button color="success" (click)="saveSkillsDetails()">Save</ion-button>
+                           </ion-col>
+                           </ion-row>
+                           </ion-grid>
+                      </ion-card>
+
+                      <ion-card *ngFor="let item of skilldetails;let i=index">
+                        <ion-grid>
+                            <ion-row>
+                               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+                                            {{item.catname}}
+                             </ion-col>
+                             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+                              <span (click)="editItem(item,i)" class="applicanticon">
+                                  <ion-icon name="create" id="iconUpdate"></ion-icon></span>
+                                </ion-col>
+                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                        <ion-label>Skill</ion-label>
+                         </ion-col>
+                         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                            {{item.asd_skill_name}}
+             </ion-col>
+             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-label>Years of Use</ion-label>
+ </ion-col>
+ <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+    {{item.asd_years_of_exp}}
+</ion-col>
+<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+    <ion-label>Last Worked</ion-label>
+</ion-col>
+<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+  {{item.asd_last_used}}
+</ion-col>
+<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+    <ion-label>Rating</ion-label>
+</ion-col>
+<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+  {{item.ratedecp}}
+</ion-col>
+<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+    <ion-label>Remarks</ion-label>
+</ion-col>
+<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+{{item.asd_remarks}}
+</ion-col>
+                            </ion-row>
+                          </ion-grid>
+                    </ion-card>
 </ion-content>

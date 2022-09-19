@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ApplicantioneditskillsdetailsPageRoutingModule } from './applicantioneditskillsdetails-routing.module';
-
-import { ApplicantioneditskillsdetailsPage } from './applicantioneditskillsdetails.page';
+import { ApplicationeditskillsdetailsPage } from './applicantioneditskillsdetails.page';
 
 @NgModule({
   imports: [
@@ -15,6 +14,6 @@ import { ApplicantioneditskillsdetailsPage } from './applicantioneditskillsdetai
     IonicModule,
     ApplicantioneditskillsdetailsPageRoutingModule
   ],
-  declarations: [ApplicantioneditskillsdetailsPage]
+  declarations: [ApplicationeditskillsdetailsPage]
 })
 export class ApplicantioneditskillsdetailsPageModule {}

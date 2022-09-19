@@ -1,9 +1,83 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>processed-attendance</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <ion-content>
+    <ion-header>
+      <ion-toolbar>
+          <ion-buttons slot="start">
+              <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+        <ion-title>Processed Attendance</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-<ion-content>
+    <ion-card>
+      <ion-grid *ngIf="displayEmployee!=undefined">
+        <ion-row style="text-align:center">
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <strong style="color:#2e3192;">{{displayEmployee.EmployeeCode}} -- {{displayEmployee.FirstName}} {{displayEmployee.LastName}}</strong>
+                <p>{{displayEmployee.Designation}}</p>
+                <p>{{displayEmployee.Department}}</p>
+        </ion-col>
 
-</ion-content>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <ion-card>
+        <ion-grid style="background-color: #f8f8f8;">
+      <ion-row>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+  <ion-select [(ngModel)]="yeardata" style="display: flex;">
+  <ion-select-option value="">Year</ion-select-option>
+  <ion-select-option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
+  </ion-select>
+  </ion-col>
+  <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+      <ion-select [(ngModel)]="monthdata" style="display: flex;">
+      <ion-select-option value="">Month</ion-select-option>
+      <ion-select-option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
+      </ion-select>
+      </ion-col>
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+        <ion-button style="--box-shadow:none;--background:transparent;color:black;" (click)="getAttendance()">Search</ion-button>
+          </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    </ion-card>
+    <ion-card>
+        <ion-row  *ngFor="let item of attendanceList" style="border:1px solid #dcd4d4">
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <div classs="attendanceimg">
+
+        </div>
+        <p style="margin-left: 52px; margin-top: 0px; font-weight: bolder; color:#797575;">{{item.TxnDate | date:'dd-MMM-yyyy'}}</p>
+
+          </ion-col>
+            <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                <b><i class="icon ion-clock"></i> In</b><br>
+              <p>  {{item.InTime }}</p>
+              </ion-col>
+              <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+                  <b><i class="icon ion-clock"></i> Out</b><br>
+                <p>  {{item.OutTime }}</p>
+                </ion-col>
+                <p style="font-weight: bold; font-size:11px; margin-top:-3px;padding-left: 56px;">Full Day Present</p>
+                <!-- border-bottom:1px solid #dcd4d4 !important; -->
+          </ion-row>
+    </ion-card>
+    <ion-row style="text-align:center" *ngIf="(!attendanceList&&attendanceList.length==0)||nodata">
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <p>No data found</p>
+          </ion-col>
+      </ion-row>
+  </ion-content>
+  <ion-footer>
+
+    <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+     {{username}}
+   </ion-col>
+    </ion-row>
+   </ion-footer>

@@ -11,7 +11,9 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 })
 
 export class EmployeesPage implements OnInit {
-
+displaydetails($event: Event) {
+throw new Error('Method not implemented.');
+}
   Designation=[];
   function_id;
   Branch=[];
@@ -31,6 +33,7 @@ export class EmployeesPage implements OnInit {
   loading:boolean = false;
   obj;
   username = window.localStorage.getItem('TUM_USER_NAME');
+VALUE: any;
   constructor(public loadingController: LoadingController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService) {
     this.function_id=window.localStorage["FUNCTION_ID"];
     this.designation="";
