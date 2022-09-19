@@ -68,6 +68,8 @@ const routes: Routes = [
     path: 'vendorpoconfirm',
     loadChildren: () => import('./procurement/vendorpoconfirm/vendorpoconfirm.module').then( m => m.VendorpoconfirmPageModule)
   },
+
+
   {
     path: 'pending-jobs',
     loadChildren: () => import('./Cams_pages/pending-jobs/pending-jobs.module').then(m => m.PendingJobsPageModule)
@@ -375,6 +377,8 @@ const routes: Routes = [
   //   path: 'view-report',
   //   loadChildren: () => import('./Hrms_pages/view-report/view-report.module').then( m => m.ViewReportPageModule)
   // },
+
+
 
 
 
