@@ -20,12 +20,13 @@ ion-card {
       color: #ffff;
   }
 }
-@media(min-width:320px) and (max-width:440px){
+@media(min-width:320px) and (max-width:670px){
   .label {
     color: white;
     text-align: center;
     font-weight: 700;
     font-size: 12px;
+    padding: 20px !important;
 }
 }
 .label {
@@ -53,8 +54,8 @@ ion-card {
 
 
 // }
-ion-card-content.ios.card-content-ios.hydrated {
-  padding-top: 15px;
+ion-card-content {
+  padding: 10px !important;
 }
 .first{
     background: linear-gradient(45deg, #10E7D8, #5A75E8);
@@ -86,6 +87,7 @@ ion-card-content.ios.card-content-ios.hydrated {
 th {
   background-color: #eeeeee;
   color: #2c5291;
+  padding: 8px !important;
   // font-size: large !important;
 
 }
@@ -115,3 +117,4 @@ td {
   //   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   //   position: relative;
   // }
+
