@@ -1,9 +1,350 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>applicant-details</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
+  <ion-card class="applicantcard">
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          Applicant Details
+        </ion-item>
+        <br />
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Company<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="name"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Name<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="gname"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Family Name<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="gfamilyname"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Middle Name</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gmiddlename"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Gender<span class="validatecolor">*</span></ion-label>
+          <select [(ngModel)]="ggender" class="form-control">
+            <option value="">Select</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Mobile<span class="validatecolor">*</span></ion-label>
+          <ion-input pattern="[0-9]*" type="number" maxlength="10" pattern="/^-?\d+\.?\d*$/"
+            onKeyPress="if(this.value!=undefined && this.value.length==10) return false;" class="form-control"
+            [(ngModel)]="gmobile"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Primary Email</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gprimartemail"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Application Date<span class="validatecolor">*</span></ion-label>
+          <ion-input type="date" class="form-control" [(ngModel)]="gapplicationdate"></ion-input>
+        </ion-col>
+        <ion-col *ngIf="updaterefrenceno!=undefined" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Application reference</ion-label>
+          <ion-input class="form-control" [(ngModel)]="updaterefrenceno"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Marital Status</ion-label>
+          <select class="form-control" [(ngModel)]="gmaritalstatus">
+            <option value="">Select</option>
+            <option value="S">Single</option>
+            <option value="M">Married</option>
+          </select>
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Application Mode<span class="validatecolor">*</span></ion-label>
+          <select class="form-control" [(ngModel)]="gapplicationmode">
+            <option value="">Select</option>
+            <option value="RA">Agency</option>
+            <option value="AD">Advertisement</option>
+            <option value="D">HR Sourcing</option>
+            <option value="RA">Agency</option>
+            <option value="R">Reference</option>
+            <option value="W">WalkIn</option>
+          </select>
+        </ion-col>
+        <ion-col *ngIf="gapplicationmode=='RA'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Agency Name</ion-label>
+          <ion-select [(ngModel)]="agency" class="form-control">
+            <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+            <ion-select-option *ngFor="let item of agencyname" [value]="item.AgencyName">{{item.AgencyName}}</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Father's Name</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gfathername"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Date Of Birth <span class="validatecolor">*</span></ion-label>
+          <ion-input type="date" max="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" class="form-control"
+            [(ngModel)]="gdob" (change)="getage($event)"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Age<span class="validatecolor">*</span></ion-label>
+          <ion-input type="tel" class="form-control" [(ngModel)]="gage"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Passport Number</ion-label>
+          <ion-input type="tel" class="form-control" [(ngModel)]="gpassportnumber"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>PP Validity Upto</ion-label>
+          <ion-input type="date" class="form-control" [(ngModel)]="gppvalidity"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Highest Qualification<span class="validatecolor">*</span></ion-label>
+          <select [(ngModel)]="ghighqualification" class="form-control">
+            <option value="">&lt;&lt; Select &gt;&gt; </option>
+            <option *ngFor="let item of hrmedudetaiscat" [ngValue]="item.VAL">{{item.TEXT}}</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Job Category<span class="validatecolor">*</span></ion-label>
+          <select [(ngModel)]="gjobcategory" class="form-control">
+            <option value="">&lt;&lt; Select &gt;&gt; </option>
+            <option *ngFor="let item of hrmjobcategory" [ngValue]="item.VAL">{{item.TEXT}}</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Total Experience(months)<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="gtotalexp"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Last Salary<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="glastsalary"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Expected Salary<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="gexpsalary"></ion-input>
+        </ion-col>
+        <ion-col *ngIf="projectselect" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Location Preference<span class="validatecolor">*</span></ion-label>
+
+          <select [(ngModel)]="glocationpref" class="form-control">
+            <option value="">&lt;&lt; Select &gt;&gt; </option>
+            <option *ngFor="let item of locprefdetails" [ngValue]="item.BRANCH_ID">{{item.BRANCH_CODE}}</option>
+          </select>
+        </ion-col>
+        <ion-col *ngIf="projectmultiselect" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Location Preference<<span class="validatecolor">*</span></ion-label>
+          <select [(ngModel)]="glocationpref" class="form-control" multiple>
+            <option value="">&lt;&lt; Select &gt;&gt; </option>
+            <option *ngFor="let item of locprefdetails" [ngValue]="item.BRANCH_ID">{{item.BRANCH_CODE}}</option>
+          </select>
+          <span (click)="multiselectproject()" style="cursor: pointer;"> <i class="fa fa-plus-circle"
+              aria-hidden="true"></i></span>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Notice Period(days)</ion-label>
+          <ion-input type="tel" class="form-control" [(ngModel)]="gnoticeperiod"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Relavent Experience(months)</ion-label>
+          <ion-input class="form-control" [(ngModel)]="grelaventexp"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Overseas Experience</ion-label>
+          <ion-select class="form-control" [(ngModel)]="goverseasexp">
+            <ion-select-option value="">Select</ion-select-option>
+            <ion-select-option value="Y">Yes</ion-select-option>
+            <ion-select-option value="N">No</ion-select-option>
+          </ion-select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Applicant Photo</ion-label>
+          <br />
+          <ion-icon style="font-size:28px;position: relative;left:50%" (click)="Attachdocument()" name="camera">
+          </ion-icon>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <img class="thumb" width="100" height="100" *ngIf="gapplicantphoto"
+            src="http://sunsmart.in/MyDesk/SmartHRMS/Upload/{{gapplicantphoto}}" alt="update image">
+          <span>No Image Found</span>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-row>
+            <ion-col *ngFor="let image of Images; let i = index" size-sm="3" size="3" size-md="3" size-lg="3"
+              size-xl="3">
+              <ion-icon name="close-circle-outline" class="closebtn" (click)="DeleteImage(i)"></ion-icon>
+              <img [src]="sanitizer.bypassSecurityTrustUrl(image)" />
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="applicantcard">
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          Address Details
+        </ion-item>
+        <br />
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label> Same as Current</ion-label>
+          <ion-checkbox style="margin-left: 19px;
+                margin-top: 10px;" color="primary" [(ngModel)]="chkval" value=false (click)="usameaddress(chkval)">
+          </ion-checkbox>
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Current Address</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gcurrentaddress"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Permanent Address<span class="validatecolor">*</span></ion-label>
+          <ion-input class="form-control" [(ngModel)]="gpermanentaddress"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Address2</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gaddress2c"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Address2</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gaddress2p"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>City</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gcityc"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>City</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gcityp"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>state</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gstatec"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>state</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gstatep"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Country</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gcountryc"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Country</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gcountryp"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Pincode</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gpincodec"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Pincode</ion-label>
+          <ion-input class="form-control" [(ngModel)]="pincodep"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Phone(res)</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gphonec"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Phone(office)</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gphonep"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Fax</ion-label>
+          <ion-input type="tel" class="form-control" [(ngModel)]="gfax"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Secondary Email</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gsecemail"></ion-input>
+        </ion-col>
+
+
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="applicantcard">
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          Reference Details
+        </ion-item>
+        <br />
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Reference 1</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gref1"></ion-input>
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Contact No</ion-label>
+          <ion-input type="tel" maxlength="10" class="form-control" [(ngModel)]="gcontact1"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Reference 2</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gref2"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Contact No</ion-label>
+          <ion-input class="form-control" [(ngModel)]="gcontact2"></ion-input>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="applicantcard">
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          Attach Profile
+        </ion-item>
+        <br />
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Attach Profile</ion-label>
+          <br />
+          <ion-icon style="font-size:28px;position: relative;left:50%" (click)="attachProfile()" name="camera">
+          </ion-icon>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-row>
+            <ion-col *ngFor="let image of Images1; let i = index" size-sm="3" size="3" size-md="3" size-lg="3"
+              size-xl="3">
+              <ion-icon name="close-circle-outline" class="closebtn" (click)="DeleteImage(i)"></ion-icon>
+              <img [src]="sanitizer.bypassSecurityTrustUrl(image)" />
+            </ion-col>
+          </ion-row>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="applicantcard">
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          Additional Information
+        </ion-item>
+        <br />
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Additional Information</ion-label>
+          <ion-textarea [(ngModel)]="information" class="form-control"></ion-textarea>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-button color="success" (click)="saveGeneralDetails()">Save</ion-button>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-button color="success" (click)="historypage()">List</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

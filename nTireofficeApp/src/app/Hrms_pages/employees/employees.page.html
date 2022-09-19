@@ -14,13 +14,13 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Name</ion-label>
               <ion-item>
-               <ion-input placeholder="Enter Name" [(ngModel)]="name" style="background-color: white!important;display:inline-block;" type="text"></ion-input>
+               <ion-input placeholder="Enter Name" name="name" ngDefaultControl  [(ngModel)]="name" style="background-color: white!important;display:inline-block;" type="text"></ion-input>
              </ion-item>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Code</ion-label>
               <ion-item>
-               <ion-input placeholder="Enter Code" [(ngModel)]="code" style="background-color: white!important;display:inline-block;" type="text"></ion-input>
+               <ion-input placeholder="Enter Code" name="code" ngDefaultControl [(ngModel)]="code" style="background-color: white!important;display:inline-block;" type="text"></ion-input>
              </ion-item>
             </ion-col>
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -31,8 +31,8 @@
 
                 <ion-label position="stacked">Designation</ion-label>
           <ion-item style="color:black;background:white!important">
-              <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Designation" [canSearch]="true" [canClear]="true"
-            (onChange)="portChange($event)" (onSelect)="displaydetails($event)">
+              <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" name="designation" ngDefaultControl  [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Designation" [canSearch]="true" [canClear]="true"
+           (onSelect)="displaydetails($event)">
             </ionic-selectable>
           </ion-item>
               </ion-col>
@@ -43,8 +43,9 @@
                   </select> -->
                   <ion-label position="stacked">Branch</ion-label>
           <ion-item style="color:black;background:white!important">
-              <ionic-selectable item-content placeholder="Select Branch" [(ngModel)]="branch" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Branch" [canSearch]="true" [canClear]="true"
-            (onChange)="portChange($event)" (onSelect)="displaydetails($event)" >
+              <ionic-selectable item-content placeholder="Select Branch" name="branch" ngDefaultControl
+               [(ngModel)]="branch" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Branch" [canSearch]="true" [canClear]="true"
+          (onSelect)="displaydetails($event)" >
 
             </ionic-selectable>
           </ion-item>
@@ -58,8 +59,8 @@
 
                     <ion-label position="stacked">Department</ion-label>
                     <ion-item style="color:black;background:white!important">
-                        <ionic-selectable item-content placeholder="Select Department" [(ngModel)]="department" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Department" [canSearch]="true" [canClear]="true"
-                      (onChange)="portChange($event)" (onSelect)="displaydetails($event)">
+                        <ionic-selectable item-content placeholder="Select Department"  name="department" ngDefaultControl  [(ngModel)]="department" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Department" [canSearch]="true" [canClear]="true"
+                 (onSelect)="displaydetails($event)">
                       </ionic-selectable>
                       </ion-item>
 
@@ -89,13 +90,13 @@
               </ion-col> -->
               <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
                <div *ngIf="item.Sex=='Male'">
-                  <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar"  src="assets/Images/defaultMale.png"> -->
-                  <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}">
+                  <img  style="width: 50%;margin-left: 10px;" class="avatar"  src="assets/images/defaultMale.png ">
+                  <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
 
                </div>
                <div *ngIf="item.Sex=='Female'">
-                  <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar"  src="assets/Images/defaultFemale.png"> -->
-                  <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}">
+                  <img  style="width: 50%;margin-left: 10px;" class="avatar"  src="assets/images/defaultFemale.png">
+                  <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
                 </div>
                   </ion-col>
                   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">

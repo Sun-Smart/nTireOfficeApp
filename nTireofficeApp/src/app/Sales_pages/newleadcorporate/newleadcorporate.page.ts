@@ -477,7 +477,7 @@ export class NewleadcorporatePage implements OnInit {
 
 
           }).catch((error) => {
-            this.presentAlert('', 'Turn on location to processed!');
+            // this.presentAlert('', 'Turn on location to processed!');
           });
         }
       },

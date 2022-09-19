@@ -4,3 +4,18 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+
+
+.input-wrapper {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: inherit;
+  align-items: inherit;
+  align-self: stretch;
+  text-overflow: ellipsis;
+  overflow: inherit;
+  box-sizing: border-box;
+  background-color: skyblue;
+  padding-right: 14px;
+  padding-left: 14px;
+}
