@@ -1,4 +1,3 @@
-
 import { Component, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttprequestService } from '../../service/httprequest.service';

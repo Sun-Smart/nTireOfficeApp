@@ -25,7 +25,7 @@
  @import "~@ionic/angular/css/text-transformation.css";
  @import "~@ionic/angular/css/flex-utils.css";
 *{
-  font-family: "Poppins" !important;
+  font-family: "Poppins";
 }
  .homeicon {
    width: 30px;
@@ -300,6 +300,8 @@
 
  ion-header {
    background-image: url('./assets/images/loginBackground.png'), ;
+   position: sticky;
+    top: 0;
  }
 
  ion-header::after {
@@ -875,7 +877,7 @@
    /* position: relative; */
    /* z-index: 2; */
    /* display: block; */
-   margin: -1px;
+   margin: 9px;
    /* padding: 16px; */
    border-width: 1px;
    /* border-style: solid; */
@@ -954,10 +956,10 @@
    color: #fff !important;
    padding: 0px;
    background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
-  //  border-radius: 10px;
+   //  border-radius: 10px;
    text-align: center;
  }
- 
+
 
  .dashboardheadtitle {
 
@@ -967,78 +969,92 @@
  }
 
  .addcnt_close {
-   float: right;
    background-color: red !important;
-   font-size: 27px;
-   border-radius: 50%;
+     font-size: 27px;
+     position: relative;
+     border-radius: 50%;
+     top: -20px;
+     right: -37%;
  }
- .buttonCss {
-   button.alert-button:nth-child(1){
-     background-color: red !important;
-     color: white;
-   }
 
-   // button.alert-button:nth-child(2){
-   //   color: green;
+ .buttonCss {
+   // background-color: red !important;
+   // color: #fff;
+   // button.alert-button {
+   //   background-color: red !important;
+   //   color: white;
    // }
+
+   // button.alert
+   .alert-button-group{
+     background:red !important;
+   }
  }
- .alert-button.sc-ion-alert-ios{
+
+ .alert-button.sc-ion-alert-ios {
    color: #fff !important;
    font-weight: bold;
  }
- .alert-button.sc-ion-alert-ios:last-child{
+
+ .alert-button.sc-ion-alert-ios:last-child {
    color: #fff;
  }
+
  .ion-color-danger {
    --ion-color-base: red !important;
  }
 
- .ion-color-success{
+ .ion-color-success {
    --ion-color-base: #32CD32 !important;
 
  }
 
 
  ion-card {
-  box-shadow: 1px 1px 7px 0px grey;
-}
-ion-card {
-  .card_header_text {
-      font-size: 15px;
-      color: #ffff;
+   box-shadow: 1px 1px 7px 0px grey;
+ }
 
-  }
-}
-ion-card {
-  .card_header {
-      background-color: #019ade !important;
-      color: white !important;
-      text-align: center;
-      padding: 5px;
-  }
-}
-ion-card {
-  .card_content {
-      height: auto;
-      background-color: #ffff !important;
-      padding: 15px;
-      color: #000;
-  }
-}
-  ion-card {
-  .card_content {
-    .card_content_label {
-      height: auto;
-      background-color: #ffff !important;
-      color: #000 !important;
-    }
-  }
-  }
-.dashboardheadCams {
-  color: #fff !important;
-  padding: 0px;
-  background-color: #1ba4e1 !important;
-  // background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
-  // border-radius: 10px;
-  text-align: center;
-}
+ ion-card {
+   .card_header_text {
+     font-size: 15px;
+     color: #ffff;
+
+   }
+ }
+
+ ion-card {
+   .card_header {
+     background-color: #019ade !important;
+     color: white !important;
+     text-align: center;
+     padding: 15px;
+   }
+ }
+
+ ion-card {
+   .card_content {
+     height: auto;
+     background-color: #ffff !important;
+     padding: 15px;
+     color: #000;
+   }
+ }
+
+ ion-card {
+   .card_content {
+     .card_content_label {
+       height: auto;
+       background-color: #ffff !important;
+       color: #000 !important;
+     }
+   }
+ }
+
+ .dashboardheadCams {
+   color: #fff !important;
+   padding: 0px;
+   background-color: #1ba4e1 !important;
+   // background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
+   // border-radius: 10px;
+   text-align: center;
+ }

@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^14.2.2",
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
@@ -38,6 +39,7 @@
     "@swimlane/ngx-datatable": "^20.0.0",
     "@types/jquery": "^3.5.14",
     "chart.js": "^2.7.0",
+    "cordova-android": "10.1.2",
     "cordova-plugin-statusbar": "^3.0.0",
     "ionic-selectable": "^4.9.0",
     "ionicons": "^6.0.3",
@@ -87,7 +89,9 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-request-location-accuracy": {},
+      "cordova-plugin-request-location-accuracy": {
+        "PLAY_SERVICES_LOCATION_VERSION": "16.+"
+      },
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},

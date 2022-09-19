@@ -684,7 +684,7 @@ this.backbutton();
 
         });
     }).catch((error) => {
-      this.presentAlert('', 'Turn on location to processed!');
+      // this.presentAlert('', 'Turn on location to processed!');
     });
   }
 

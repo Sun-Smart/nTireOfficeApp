@@ -175,8 +175,8 @@ export class AppComponent {
     },
     {
       title: 'Attendance',
-      url: '/hrmsattendance',
-      icon: 'expand-outline'
+      url: '/attendance',
+      icon: 'reader-outline'
     },
     {
       title: 'Processed Attendance',
@@ -185,8 +185,13 @@ export class AppComponent {
     },
     {
       title: 'Pay Slip',
-      url: '/hrmspayslip',
-      icon: 'document-outline'
+      url: '/payslip',
+      icon: 'receipt-outline'
+    },
+    {
+      title: 'COFF Request',
+      url: '/coff-request',
+      icon: 'logo-usd'
     },
     // {
     //   title: 'COFF Request',
@@ -195,6 +200,7 @@ export class AppComponent {
     {
       title: 'OD Request',
       url: '/od-request',
+      icon:'git-pull-request'
     },
     {
       title: 'Claims',
@@ -203,8 +209,8 @@ export class AppComponent {
     },
     {
       title: 'Leave Request',
-      url: '/hrmsleave-request',
-      icon: 'calendar-number-outline'
+      url: '/leave-request',
+      icon: 'reader-outline'
     },
     {
       title: 'Permission Request',
@@ -224,23 +230,19 @@ export class AppComponent {
     {
       title: 'Loan Request',
       url: '/loan-request',
-      icon: 'cash'
+      icon: 'cash-outline'
+
     },
     {
-      title: 'Asset Returns',
-      url: '/assetreturn',
-      icon: 'laptop'
+      title: 'Online Exam Portal',
+      url: '/onlineexamportal',
+      icon: 'pencil-outline'
     },
-    // {
-    //   title: 'Online Exam Portal',
-    //   url: '/hrmsonlineexamportal',
-    //   icon: 'laptop-outline'
-    // },
-    // {
-    //   title: 'Applicant Detail',
-    //   url: '/hrmsapplicantsummary',
-    //   icon: 'apps'
-    // },
+    {
+      title: 'Applicant Detail',
+      url: '/applicantsummary',
+      icon: 'apps'
+    },
     {
       title: 'Letter Request',
       url: '/letterrequest',

@@ -218,7 +218,7 @@ username:any;
       console.log('branchlocationlist one: ' + JSON.stringify(this.branchlocationlist));
 
     }, error => {
-      this.presentAlert('Alert', 'Server Error, Branch Location not loaded.');
+      // this.presentAlert('Alert', 'Server Error, Branch Location not loaded.');
       console.log('branchlist1 : ' + JSON.stringify(error));
     });
   }
@@ -405,7 +405,7 @@ username:any;
 
 
           }).catch((error) => {
-            this.presentAlert('', 'Turn on location to processed!');
+            // this.presentAlert('', 'Turn on location to processed!');
           });
         }
       },
@@ -530,7 +530,7 @@ username:any;
       console.log('location :n' + location);
       this.getGeoencoder(res.coords.latitude, res.coords.longitude);
     }).catch((error) => {
-      this.presentAlert('', 'Turn on location to processed!');
+      // this.presentAlert('', 'Turn on location to processed!');
     });
   }
   //geocoder method to fetch address from coordinates passed as arguments

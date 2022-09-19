@@ -1,0 +1,66 @@
+ion-content {
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  position: relative;
+}
+
+ion-button{
+  --background: #009689;
+  text-transform: none;
+}
+
+ion-content {
+  --background: url(../../../assets/Images/bg1_blue.jpg) 40% 75% repeat;
+  // --background: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
+  // --background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  // --background: linear-gradient(to top, #ff0084, #33001b);
+  position: relative;
+}
+
+
+ion-item {
+  margin-top: 7px !important;
+  --background-hover: black !important;
+  --color: #111;
+  --font-weight: bold;
+  --font-weight: 600;
+  border-radius: 5px;
+}
+
+ion-toolbar {
+  --background: transparent !important;
+  color: black;
+  // color: white;
+  font-size: 17px;
+  text-align: center;
+}
+
+ion-label{
+  // color:white !important;
+  color: black;
+}
+
+ion-spinner{
+  // color:white;
+  color: black;
+  display: block;
+  margin: 15px auto;
+}
+
+.header-md:after{
+  background-image: none !important;
+}
+
+ion-card{
+  background: #ffffff;
+  margin: 25px;
+  border-radius: 20px;
+  font-size: 14px;
+  // box-shadow: 0 -3px 2px 0 rgb(255 255 255 / 20%), 0 -5px 12px 0 rgb(255 245 245 / 53%) !important;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+}
