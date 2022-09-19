@@ -7,17 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <p class="commontextpage">New Lead Retail Page</p> -->
+<ion-content class="card_content">
   <ion-grid>
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Function</ion-label>
+        <ion-label class="card_content_label">Function</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="function"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">{{branch.BRANCH_DESC}}
@@ -25,7 +24,7 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Branch Location </ion-label>
+        <ion-label class="card_content_label">Branch Location </ion-label>
         <select [(ngModel)]="branchlocation" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.locationID">
@@ -33,7 +32,7 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Product <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Product <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="productdata" (change)="Getnextaction(productdata)" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let product of productdataarray; let i = index" [ngValue]="product.ProductID">
@@ -41,26 +40,26 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Salutation <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Salutation <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="Salutation" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let saluation of saluationarray; let i = index">{{saluation.Text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>First Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">First Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="firstname"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Last Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Last Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="lastname"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Email <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Email <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="email"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
 
         <ion-input type="tel" class="form-control" pattern="[0-9]*" [(ngModel)]="mobile" minlength="10" maxlength="15"
         #umobile="ngModel"></ion-input>
@@ -69,7 +68,7 @@
         </div>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Office Number</ion-label>
+        <ion-label class="card_content_label">Office Number</ion-label>
         <ion-input type="tel" class="form-control" pattern="[0-9]*" [(ngModel)]="OffPhone" minlength="10" maxlength="15"
           #uname="ngModel"></ion-input>
 
@@ -78,7 +77,7 @@
         </div>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Telephone Number</ion-label>
+        <ion-label class="card_content_label">Telephone Number</ion-label>
         <ion-input type="tel" class="form-control" pattern="[0-9]*" minlength="10" maxlength="15" [(ngModel)]="ResPhone"
           #resnum="ngModel"></ion-input>
         <div *ngIf="ResPhone && resnum.errors?.minlength || resnum.errors?.maxlength">
@@ -86,7 +85,7 @@
         </div>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Call Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Call Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callpriority" class="form-control">
 
           <option *ngFor="let prioriy of callpriorityarray; let i = index" [ngValue]="prioriy.Value">{{prioriy.Text}}
@@ -94,7 +93,7 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Call Rating <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Call Rating <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callrating" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let rating of callratingarray; let i = index" [ngValue]="rating.Value">{{rating.Text}}
@@ -102,7 +101,7 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Call Nature <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Call Nature <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callnature" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let nature of callnaturearray; let i = index" [ngValue]="nature.Value">{{nature.Text}}
@@ -110,38 +109,38 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callstage" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.Value">{{stage.Text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Lead Source</ion-label>
+        <ion-label class="card_content_label">Lead Source</ion-label>
         <select [(ngModel)]="source" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.Value">{{lead.Text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Next Action <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Next Action <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="nextaction" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let action of nextactionarray; let i = index" [ngValue]="action.val">{{action.text}}</option>
         </select>
       </ion-col>
       <ion-col *ngIf="nextaction=='1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Call Back Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Call Back Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
           [(ngModel)]="followdate"></ion-input>
       </ion-col>
       <ion-col *ngIf="nextaction=='1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Time <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Time <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input type="Time" class="form-control" (change)="timeValidation($event.target.value)"
           [(ngModel)]="followtime"></ion-input>
       </ion-col>
       <ion-col *ngIf="nextaction=='1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Place To Meet <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Place To Meet <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <textarea appAutocomplete style="width:100%;height:auto;padding:8px;" [(ngModel)]="placetomeet"
           [options]='options' class="form-control" #placesRef="ngx-places"
           (onAddressChange)="handleAddressChange($event)"></textarea>
@@ -166,7 +165,7 @@
           [(ngModel)]="followtime"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Lead By <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Lead By <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="leadby" class="form-control">
           <option value="">&lt;&lt; Select &gt;&gt;</option>
           <option value="S">Self</option>
@@ -176,27 +175,27 @@
         </select>
       </ion-col>
       <ion-col *ngIf="leadby=='E'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Employee ID <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Employee ID <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="Employeeid" (keyup)="valid_UserNumber($event,leadby)"></ion-input>
         <span class="input-label {{show_color}}">{{show_request}}</span>
       </ion-col>
       <ion-col *ngIf="leadby=='C'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Customer Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Customer Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="custname" (keyup)="valid_UserNumber($event,leadby)"></ion-input>
         <span class="input-label {{show_color}}">{{show_request}}</span>
       </ion-col>
       <ion-col *ngIf="leadby=='P'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Lead By Value <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Lead By Value <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="leadByval" (keyup)="valid_UserNumber($event,leadby)"></ion-input>
         <span class="input-label {{show_color}}">{{show_request}}</span>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Exp. Closed Date</ion-label>
+        <ion-label class="card_content_label">Exp. Closed Date</ion-label>
         <ion-input class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" date='dd/MM/yyyy'
           type="date" [(ngModel)]="expdate"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Currency</ion-label>
+        <ion-label class="card_content_label">Currency</ion-label>
         <select class="form-control" [(ngModel)]="Currency">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option value="1">Indian Rupees</option>
@@ -210,11 +209,11 @@
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Expected Amount</ion-label>
+        <ion-label class="card_content_label">Expected Amount</ion-label>
         <ion-input class="form-control" type="number" [(ngModel)]="expectedAmount"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Attach Document</ion-label>
+        <ion-label class="card_content_label">Attach Document</ion-label>
         <br />
         <i class="fa fa-paperclip" aria-hidden="true" style="font-size:28px;position: relative;left:50%" ios="ios-attach" md="md-attach" (click)="selectImage()"></i>
         <!-- <ion-icon style="font-size:28px;position: relative;left:50%" ios="ios-attach" md="md-attach" (click)="selectImage()"></ion-icon> -->
@@ -233,13 +232,13 @@
         </ion-row>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label>Current Location</ion-label>
+        <ion-label class="card_content_label">Current Location</ion-label>
 
         <ion-textarea [(ngModel)]="currentlocation" style="height:auto !important" class="form-control"></ion-textarea>
 
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label>Remarks <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="card_content_label">Remarks <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-textarea [(ngModel)]="remarks" (keyup)="offnumberOnlyValidation($event)" maxlength="4000" style="height:auto !important" class="form-control">
         </ion-textarea>
         <span *ngIf="remarks && remarks != 'undefined' && remarks.length > 0"

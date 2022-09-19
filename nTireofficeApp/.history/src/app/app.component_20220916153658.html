@@ -21,7 +21,7 @@
             <ion-menu-toggle>
 
 
-                  <ion-item lines="none" *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
+                  <ion-item  *ngFor="let p of hrmsPages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);;border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
                       <ion-icon style="color:#000 !important;margin: 10px;font-size: 18px;" slot="start" [name]="p.icon"></ion-icon>
                       <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:bolder;">
                         {{p.title}}
@@ -41,7 +41,7 @@
           <ion-menu-toggle>
 
 
-                <ion-item lines="none" *ngFor="let p of salespages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-item  *ngFor="let p of salespages" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
                     <ion-icon style="color:#000 !important;margin: 10px;font-size: 18px;" slot="start" [name]="p.icon"></ion-icon>
 
                     <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:bolder">
@@ -55,7 +55,7 @@
         </ion-list>
 
         <p class="menuhead"   (click)="menutoogleCams()"><ion-icon class="mainicon" name="people"></ion-icon>CAMS
-
+          
           <ion-icon class="arrowicon" name="caret-down-outline" style="color: #fff;font-size: 20px !important;"></ion-icon>
           <!-- <ion-icon class="arrowicon" name="arrow-dropdown"> -->
 
@@ -65,7 +65,7 @@
           <ion-menu-toggle>
 
 
-                <ion-item lines="none" *ngFor="let p of CamsPage" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
+                <ion-item  *ngFor="let p of CamsPage" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'" [routerLink]="[p.url]">
                     <ion-icon style="color:#000 !important;margin: 10px;font-size: 18px;" slot="start" [name]="p.icon"></ion-icon>
 
                     <ion-label style="color:#000 !important;font-size: 13px !important;font-weight:bolder">
@@ -119,8 +119,8 @@
 
           <!-- </ion-menu-toggle>
 
-        </ion-list> -->
-<!--
+        </ion-list> --> 
+<!-- 
          <p class="menuhead" (click)="menutoogle2()">
           <ion-icon class="mainicon" name="people"></ion-icon>ERP<ion-icon class="arrowicon" name="arrow-dropdown">
           </ion-icon>
@@ -157,7 +157,7 @@
           <ion-menu-toggle>
 
 
-            <ion-item lines="none" *ngFor="let p of procurement" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
+            <ion-item *ngFor="let p of procurement" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
               [routerLink]="[p.url]">
               <ion-icon name="{{p.icon}}" style="font-size: 18px !important;color:rgb(17, 17, 17) !important;font-size: 18px;margin: 10px;" slot="start" >
               </ion-icon>
@@ -184,7 +184,7 @@
           <ion-menu-toggle>
 
 
-            <ion-item lines="none" *ngFor="let p of Property" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
+            <ion-item *ngFor="let p of Property" style="--background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%); border: none !important;" [routerDirection]="'root'"
               [routerLink]="[p.url]">
               <ion-icon name="{{p.icon}}" style="color:#000 !important;margin: 10px;font-size: 18px;" slot="start" >
               </ion-icon>
@@ -195,13 +195,13 @@
               </ion-label>
             </ion-item>
 
-
+            
 
 
           </ion-menu-toggle>
 
         </ion-list>
-
+        
         <p class="menuhead" *ngIf="chkadmin"  (click)="menutoogle4()"><ion-icon class="mainicon" name="grid"></ion-icon>My approvals</p>
         <ion-icon class="arrowicon" name="arrow-dropdown"></ion-icon>
 

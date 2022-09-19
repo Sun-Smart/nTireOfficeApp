@@ -1,23 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
-.card_header {
-    background-color: #019ADE !important;
-    color: white !important;
-    font-family: "Poppins";
+ion-content {
+    --background: url('../../../assets/images/tpbackground.png') repeat !important;
+    position: relative;
+  }
+// .card_header {
+//     background-color: #019ADE !important;
+//     color: white !important;
+//     font-family: "Poppins";
  
-}
-.card_left_text {
-    font-family: "Poppins";
-    color: black;
-    font-weight: 600 !important;
-}
-.card_header_text {
-    color: white !important;
-    // font-weight: 600;
-}
+// }
+// .card_left_text {
+//     font-family: "Poppins";
+//     color: black;
+//     font-weight: 600 !important;
+// }
+// .card_header_text {
+//     color: white !important;
+//     // font-weight: 600;
+// }
 .card_header_link_text {
     color: white !important;
-    font-size: 18px;
+    font-size: 16px;
 }
 .card_header_link_text {
     a {

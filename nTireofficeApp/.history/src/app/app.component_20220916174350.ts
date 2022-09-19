@@ -191,10 +191,12 @@ export class AppComponent {
     // {
     //   title: 'COFF Request',
     //   url: '/hrmscoff-request',
+    //   icon: 'logo-usd'
     // },
     {
       title: 'OD Request',
       url: '/od-request',
+      icon: 'briefcase'
     },
     {
       title: 'Claims',
@@ -220,12 +222,10 @@ export class AppComponent {
       title: 'PushNotifiction Config',
       url: '/attendance-notification',
       icon: 'notifications'
-    },
     {
       title: 'Loan Request',
       url: '/loan-request',
       icon: 'cash'
-    },
     {
       title: 'Asset Returns',
       url: '/assetreturn',

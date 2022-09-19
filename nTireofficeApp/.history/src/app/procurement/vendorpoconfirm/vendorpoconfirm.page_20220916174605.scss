@@ -1,0 +1,17 @@
+
+//  ion-card {
+//   box-shadow: 1px 1px 7px 0px grey;
+// }
+// ion-card {
+//   .card_content {
+//     .card_content_label {
+//       height: auto;
+//       background-color: #ffff !important;
+//       color: #000 !important;
+//     }
+//   }
+// }
+ion-content {
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  position: relative;
+}
