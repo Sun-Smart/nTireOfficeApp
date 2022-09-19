@@ -30,7 +30,7 @@ ion-card {
 }
 
 .label {
-  color: white;
+  color: #000;
   text-align: center;
   font-weight: 600;
 }
@@ -76,7 +76,7 @@ ion-card-content {
 .count{
     text-align: center;
     font-size: 25px;
-    color: white;
+    color: #000;
     margin: 0%;
 }
 
@@ -87,7 +87,7 @@ ion-card-content {
 th {
   background-color: #eeeeee;
   color: #2c5291;
-  padding: 8px !important;
+  padding: 4px !important;
   // font-size: large !important;
 
 }
@@ -101,12 +101,9 @@ td {
 //     color: white;
 // }
 
-  .count{
-    text-align: center;
-    font-size: 18px;
-    color: white;
-    margin: 0%;
-}
+// @media (min-width:320px) and (max-width:670px) {
+  
+// }
   
   .commontextpage {
     text-align: center;
