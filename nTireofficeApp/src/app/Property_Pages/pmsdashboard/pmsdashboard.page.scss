@@ -2,6 +2,9 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+ion-row{
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+}
 
 ion-card {
   .card_header {
@@ -55,13 +58,18 @@ ion-card-content.ios.card-content-ios.hydrated {
 }
 .first{
     background: linear-gradient(45deg, #10E7D8, #5A75E8);
+    border-radius: 5px;
+    max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 90%) !important;
 }
 .second{
   background: linear-gradient(45deg, #3EE493, #38B1B5);
+  border-radius: 5px;
+  max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%) !important;
 }
 .third{
-
+  border-radius: 5px;
   background: linear-gradient(45deg, #F54A9F, #FE7278);
+  max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%) !important;
 }
 
 .count{
