@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { VendormasterPageRoutingModule } from './vendormaster-routing.module';
 import { VendormasterPage } from './vendormaster.page';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { VendormasterModelPage } from '../vendormaster-model/vendormaster-model.page';
 // import { RouterModule  } from '@angular/router';
 
 @NgModule({
@@ -14,9 +15,10 @@ import { IonicSelectableModule } from 'ionic-selectable';
     IonicModule,
     // RouterModule.forChild(),
     VendormasterPageRoutingModule,
-    IonicSelectableModule
+    IonicSelectableModule,
+
   ],
-  declarations: [VendormasterPage],
+  declarations: [VendormasterPage, VendormasterModelPage],
   // schemas: [NO_ERRORS_SCHEMA]
 })
 export class VendormasterPageModule {}

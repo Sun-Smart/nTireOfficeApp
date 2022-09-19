@@ -15,6 +15,6 @@ import { UpdatevendoritemPage } from './updatevendoritem.page';
     IonicModule,
     UpdatevendoritemPageRoutingModule
   ],
-  declarations: [UpdatevendoritemPage]
+  declarations: [UpdatevendoritemPage ]
 })
 export class UpdatevendoritemPageModule {}

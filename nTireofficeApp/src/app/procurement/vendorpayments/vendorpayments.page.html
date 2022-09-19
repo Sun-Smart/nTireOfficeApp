@@ -1,12 +1,198 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-   </ion-buttons>
-    <ion-title>vendorpayments</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/vendorpoconfirm"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Vendor Payments</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card-content>
+    <ion-grid>
 
-</ion-content>
+    <!-- <ion-grid style="border-radius: 5px; background: #c882e06b; margin: 10px;"> -->
+      <ion-row>
+        <ion-col size="7">
+          <p style="padding:0;font-weight: 700;color:black;">Vendor Name</p>
+          {{vendor_name}}
+        </ion-col>
+        <ion-col size="5" style="text-align: end;">
+          <p style="padding:0;font-weight: 700;color:black;">Vendor Code</p>
+          {{vendor_code}}
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="padding:0;font-weight: 700;color:black;">PO Code</p>
+          {{Pocode}}
+        </ion-col>
+        <ion-col size="6" style="text-align: end;">
+          <p style="padding:0;text-align: right;font-weight: 700;color:black;">PO Date</p>
+          {{Po_date}}
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col style="padding-left: 0;text-align: center;">
+          <a  style="padding: 0;font-size: 14px;cursor: pointer;
+      text-decoration: underline;">View Payment Details</a>
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+  </ion-card-content>
+
+    <!-- *ngFor="let item of poPayment;" -->
+    <ion-card *ngFor="let item of poPayment;">
+
+      <ion-card-header style="background:#ce71ec;color:white;padding: 10px;font-weight: bold;">
+          ITEM DESCRIPTION: {{item.item_description}}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+
+
+          <ion-row>
+            <ion-col size="4">
+              <p style="text-align: center;font-weight: bold">Discount(%)</p>
+              <p style="text-align: center">{{item.DISCOUNT}}</p>
+
+            </ion-col>
+            <ion-col size="5">
+              <p style="text-align: center;font-weight: bold">Taxes & Levies(%)</p>
+              <p style="text-align: center">Tax 1: {{item.tax1 || '-'}}  Tax 2: {{item.tax2 || '-'}}</p>
+              <!-- <p style="text-align: center"></p> -->
+              <!-- {{item.LEVIES_DUTIES}} -->
+            </ion-col>
+            <ion-col size="3">
+              <p style="text-align: center;font-weight: bold">Lead Time</p>
+              <p style="text-align: center"> 6</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <p style="font-weight: bold">Trans. Charges</p>
+              <p style="text-align: center">{{item.TRANSPORT_CHARGES}}</p>
+
+            </ion-col>
+            <ion-col size="6">
+              <p style="text-align:center;font-weight: bold">Net Price</p>
+              <p style="text-align: center;">{{item.Net_Amount}}</p>
+
+            </ion-col>
+          </ion-row>
+
+          <!-- <ion-row *ngIf="Payment_term.length!=0">
+
+            <ion-col>
+              <p style="padding:0;font-weight: 700;color:black;text-align: center">Payment Terms</p>
+            </ion-col>
+          </ion-row> -->
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="padding:5px;" *ngFor="let item of poPaymentaddress">
+      <ion-card-header style="padding: 10px;font-weight: bold;text-align: center;text-decoration: underlin">
+        Address Details
+    </ion-card-header>
+    <ion-card-content>
+      <h6 style="font-weight: bold;">DELIVERY ADDRESS</h6>
+      <p style="margin: 5px;">{{item.SHIPADD1}},<br> {{item.SHIPADD2}},<br>{{item.SHIPADD3}},<br>{{item.SHIPADD4}},</p>
+      <h6 style="font-weight: bold;">BILLING ADDRESS</h6>
+      <p style="margin: 5px;">{{item.ADD1}},<br>{{item.Bill_City}},<br>{{item.Bill_State }},<br>{{item.Bill_Pincode}},</p>
+    </ion-card-content>
+    </ion-card>
+
+    <!-- *ngFor="let item of Payment_term;" -->
+    <ion-card *ngFor="let item of poPaymentdata;" >
+      <ion-card-header style="padding: 10px;font-weight: bold;text-align: center;text-decoration: underlin">
+        Payment Details
+    </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <p style="font-weight: bold;text-transform: capitalize;">Payment Descp: {{item.PayDiscription || '-'}}</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <p style="font-weight: bold">Payment % : {{item.PayDiscount || '-'}}</p>
+              <!-- <p>{{item.PayDiscount || '-'}}</p> -->
+
+            </ion-col>
+            <ion-col size="6">
+              <p style="text-align: right;font-weight: bold">Amount: {{item.payment_amount || '-'}}</p>
+              <!-- <p style="text-align: right;">{{item.payment_amount || '-'}}</p> -->
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p style="font-weight: bold">Remarks:</p>
+              <p>{{item.PayRemarks || '-'}}</p>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <p style="font-weight: bold">Approved % : {{item.ApprovedPercentage || '-'}}</p>
+              <!-- <p>{{item.ApprovedPercentage || '-'}}</p> -->
+
+            </ion-col>
+            <ion-col size="6">
+              <p style="text-align: right;font-weight: bold">Amount: {{item.ApprovedAmount || '-'}}</p>
+              <!-- <p style="text-align: right;">{{item.ApprovedAmount || '-'}}</p> -->
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p style="font-weight: bold">Approval Remarks</p>
+              <p>{{item.ApproverRemarks || '-'}}</p>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <p style="font-weight: bold">Invoice Date : {{item.Invoice_date || '-'}}</p>
+              <!-- <p>{{item.ApprovedPercentage || '-'}}</p> -->
+
+            </ion-col>
+            <ion-col size="6">
+              <p style="text-align: right;font-weight: bold">Invoice Status: {{item.Invoice_status || '-'}}</p>
+              <!-- <p style="text-align: right;">{{item.ApprovedAmount || '-'}}</p> -->
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <p style="font-weight: bold">STATUS <span style="float: right;background: yellow;padding: 0 5px;">{{item.status || '-'}}</span></p>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6" style="text-align: center;">
+              <button style="min-width: 35px;margin: 5px;background: #009689;padding: 8px;color: white;" type="button" (click)="confirmpayment(item)" class="button button-assertive button-small editbut col">Confirm Payment</button>
+            </ion-col>
+            <ion-col size="6" style="text-align: center;">
+              <button style="min-width: 35px;margin: 5px; background: #009689;padding: 8px;color: white;" type="button" (click)="openModal(item)" class="button button-assertive button-small editbut col">Invoice</button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
