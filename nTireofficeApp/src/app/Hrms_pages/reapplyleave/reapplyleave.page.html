@@ -1,9 +1,115 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reapplyleave</ion-title>
+
+    <ion-title>Update Leave Request</ion-title>
+    <ion-icon name="close-circle" (click)="closemodel(1)" class="popupclose"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
+                <ion-input style="background-color: #d4d1d1;
+                color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Branch</ion-label>
+                    <ion-input style="background-color: #d4d1d1;
+                    color: black;" class="form-control" disabled  [(ngModel)]="branch"></ion-input>
+                  </ion-col>
+                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Name</ion-label>
+                        <ion-input style="background-color: #d4d1d1;
+                        color: black;" class="form-control" disabled  [(ngModel)]="name"></ion-input>
+                      </ion-col>
+                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-label>Contact Number</ion-label>
+                            <ion-input style="background-color: #d4d1d1;
+                            color: black;" class="form-control" disabled  [(ngModel)]="item.MobileNum "></ion-input>
+                          </ion-col>
+                          <!-- <ion-col *ngIf="LEAVEFRMDATE!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-label>Leave From Date</ion-label>
+                              <ion-input  class="form-control" disabled  [(ngModel)]="item.FromDate"></ion-input>
+                            </ion-col>
+                            <ion-col *ngIf="LEAVETODATE!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Leave To Date</ion-label>
+                                <ion-input  class="form-control" disabled  [(ngModel)]="item.ToDate"></ion-input>
+                              </ion-col>
+                              <ion-col *ngIf="LEAVEBALANCE!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                <ion-label>Leave Balance</ion-label>
+                                  <ion-input class="form-control" disabled  [(ngModel)]="item.CurLeaveBalance"></ion-input>
+                                </ion-col>
+                                <ion-col *ngIf="LEAVEREASON!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                  <ion-label>Leave Reason</ion-label>
+                                    <ion-input  class="form-control" disabled  [(ngModel)]="item.Reason"></ion-input>
+                                  </ion-col> -->
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Leave Type<span class="validatecolor">*</span></ion-label>
+                             <ion-select   [(ngModel)]="item.LeaveType" class="form-control" (change)="getLeaveBalance()">
+                                <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
+                                <ion-select-option *ngFor="let item of leavetypearray" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
+                             </ion-select>
+                             <!-- <ion-input *ngIf="LEAVETYPE!=undefined" class="form-control" disabled  [(ngModel)]="LEAVETYPE"></ion-input> -->
+                              </ion-col>
+                              <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                  <ion-label>Current Leave Balance</ion-label>
+                                    <ion-input  class="form-control" disabled  [(ngModel)]="item.CurLeaveBalance"></ion-input>
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Leave Request Reference<span class="validatecolor">*</span></ion-label>
+                                        <ion-input class="form-control" disabled  [(ngModel)]="item.ReqRef"></ion-input>
+                                      </ion-col>
+                                      <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                          <ion-label>From (Date)<span class="validatecolor">*</span></ion-label>
+                                            <ion-input  type="date" class="form-control"  (change)="validateFromDate()" [(ngModel)]="this.Lfromdate"></ion-input>
+                                          </ion-col>
+                                          <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                              <ion-label>To (Date)<span class="validatecolor">*</span></ion-label>
+                                                <ion-input type="date" class="form-control" (change)="validateToDate($event)"  [(ngModel)]="this.Ltodate"></ion-input>
+                                              </ion-col>
+                                              <ion-col   size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                  <ion-label>Number of Days</ion-label>
+                                                    <ion-input  class="form-control" disabled  [(ngModel)]="item.NoDays"></ion-input>
+                                                  </ion-col>
+                                                  <!-- <ion-col  *ngIf="RequestDate!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                    <ion-label>Request date</ion-label>
+                                                      <ion-input class="form-control" disabled  [(ngModel)]="RequestDate"></ion-input>
+                                                    </ion-col> -->
+                                                    <!-- <ion-col  *ngIf="Status!=undefined" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                      <ion-label>Status</ion-label>
+                                                        <ion-input  class="form-control" disabled  [(ngModel)]="Status"></ion-input>
+                                                      </ion-col> -->
+                                                  <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                      <ion-label>Reason<span class="validatecolor">*</span></ion-label>
+                                                        <ion-textarea  class="form-control"   [(ngModel)]="item.Reason"></ion-textarea>
+                                                        <span *ngIf="item.Reason!=undefined" class="customCounter">{{4000 - item.Reason.length}}</span>
 
+                                                      </ion-col>
+                                                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                                        <div  style="padding: 12px;display: flex;">
+                                                            <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+                                                            <ion-label>Release</ion-label>
+                                                        </div>
+                                                      </ion-col>
+                                                      <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                                          <div  style="padding: 12px;display: flex;">
+
+                                                               <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
+                                                          </div>
+                                                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col size-sm="4" size="6" size-md="4" size-lg="4" size-xl="4">
+
+                            <ion-button  color="success" (click)="submitLeaveDetails()">Reapply</ion-button>
+                            </ion-col>
+                            <ion-col size-sm="4" size="6" size-md="4" size-lg="4" size-xl="4">
+
+                                <ion-button  color="danger" (click)="refreshModal()">Cancel</ion-button>
+                                </ion-col>
+
+                            </ion-row>
+                      </ion-grid>
 </ion-content>

@@ -1,9 +1,106 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reapplyasset</ion-title>
+    <ion-title>Asset Request</ion-title>
+    <ion-icon name="close-circle" (click)="closemodel(1)" class="popupclose"></ion-icon>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
+            <ion-input style="background-color: #d4d1d1;
+            color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Branch</ion-label>
+                <ion-input style="background-color: #d4d1d1;
+                color: black;" class="form-control" disabled  [(ngModel)]="branch"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-label>EMP Code<span class="validatecolor">*</span></ion-label>
+                  <ion-input style="background-color: #d4d1d1;
+                  color: black;" class="form-control" disabled  [(ngModel)]="empCode"></ion-input>
+                </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Name<span class="validatecolor">*</span></ion-label>
+                    <ion-input style="background-color: #d4d1d1;
+                    color: black;" class="form-control" disabled  [(ngModel)]="name"></ion-input>
+                  </ion-col>
 
+                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-label>Request Reference<span class="validatecolor">*</span></ion-label>
+                            <ion-input style="background-color: #d4d1d1;
+                            color: black;" class="form-control" disabled [(ngModel)]="item.ReqRef"></ion-input>
+                          </ion-col>
+                          <!-- <ion-col *ngIf="ASSETCODE!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Asset Code<span class="validatecolor">*</span></ion-label>
+                                <ion-input class="form-control" disabled [(ngModel)]="ASSETCODE"></ion-input>
+                              </ion-col> -->
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-label>Assest Category<span class="validatecolor">*</span></ion-label>
+                            <ion-select  [(ngModel)]="assestCategory" (change)="getAssestsSubcat(assestCategory)" class="form-control">
+                              <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                               <ion-select-option *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</ion-select-option>
+                            </ion-select>
+                            <!-- <ion-input *ngIf="ASSETCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETCATEGORY"></ion-input> -->
+                            </ion-col>
+                            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Assest Subcategory<span class="validatecolor">*</span></ion-label>
+                              <ion-select  [(ngModel)]="assestsubCategory"  class="form-control">
+                                <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                                 <ion-select-option *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</ion-select-option>
+                              </ion-select>
+                              <!-- <ion-input *ngIf="ASSETSUBCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETSUBCATEGORY"></ion-input> -->
+                               </ion-col>
+                              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                <ion-label>Request Date<span class="validatecolor">*</span></ion-label>
+                                  <ion-input type="date" class="form-control"  [(ngModel)]="item.RequestDate"></ion-input>
+                                </ion-col>
+                                <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                  <ion-label>Return Date</ion-label>
+                                    <ion-input type="date" class="form-control"  [(ngModel)]="returnDate"></ion-input>
+                                  </ion-col>
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                    <ion-label>Required Before<span class="validatecolor">*</span></ion-label>
+                                      <ion-input type="date" class="form-control"  [(ngModel)]="reqbeforedte"></ion-input>
+                                    </ion-col>
+                                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Reason<span class="validatecolor">*</span></ion-label>
+                                        <ion-textarea class="form-control"   [(ngModel)]="item.Reason"></ion-textarea>
+                                        <span *ngIf="item.Reason!=undefined" class="customCounter">{{4000 - item.Reason.length}}</span>
+
+                                      </ion-col>
+
+                                      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                        <div  style="padding: 12px;display: flex;">
+                                            <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+                                            <ion-label>Release</ion-label>
+                                        </div>
+                                      </ion-col>
+                                      <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                          <div  style="padding: 12px;display: flex;">
+
+                                               <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
+                                          </div>
+                                        </ion-col>
+                                      <!-- </div> -->
+                          </ion-row>
+                          <ion-row style="display: flex;margin: 0 auto;">
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                              <ion-button color="success" [disabled]="assestCategory=='' || assestsubCategory=='' || item.RequestDate==undefined || reqbeforedte==undefined || item.Reason==undefined" (click)="assestsSubmit()">Ok</ion-button>
+                              </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                                  <ion-button color="danger" (click)="closemodel(1)">Cancel</ion-button>
+                                  </ion-col>
+                                  <!-- <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+                                      <ion-button (click)="assesstsList()">List</ion-button>
+                                      </ion-col> -->
+                              </ion-row>
+                          </ion-grid>
 </ion-content>

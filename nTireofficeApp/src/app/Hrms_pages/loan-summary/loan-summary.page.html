@@ -1,9 +1,158 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>loan-summary</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Loan Summary</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+      <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-label>Employee Code</ion-label>
+       <ion-input style="background-color: white;
+       color: black;" class="form-control"  [(ngModel)]="empCode"></ion-input>
+                </ion-col>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                    <ion-label>Employee Name</ion-label>
+               <ion-input style="background-color: white;
+               color: black;"  class="form-control"  [(ngModel)]="empname"></ion-input>
+                  </ion-col>
+
+                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                        <ion-label>Designation</ion-label>
+                        <ion-input style="background-color: white;
+                        color: black;"  class="form-control"  [(ngModel)]="designation"></ion-input>
+
+                        </ion-col>
+                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                            <ion-label>Department</ion-label>
+                            <ion-input style="background-color: white;
+                            color: black;"  class="form-control"  [(ngModel)]="department"></ion-input>
+                            </ion-col>
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                <ion-label>Request Type</ion-label>
+                                <ion-select class="form-control" (ionChange)="changeOrder()"  [(ngModel)]="request_type">
+                                    <ion-select-option  value="">
+                                      &lt;&lt; Select &gt;&gt;
+                                    </ion-select-option>
+                                    <ion-select-option value="1">Loan</ion-select-option>
+                                    <ion-select-option value="2">Advance</ion-select-option>
+                                  </ion-select>
+                                </ion-col>
+                  </ion-row>
+                  </ion-grid>
+                  <p style="text-align: center;">{{error}}</p>
+                  <ion-card *ngFor="let loanDataItems of display; let i = index">
+                      <ion-grid style="padding: 0px;">
+                     <ion-row>
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+                              {{empCode}} - {{empname}}
+                              </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="text-align:right;">
+                                #{{loanDataItems.req_id}}
+                                  </ion-col>
+                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                    Req.Type
+                                      </ion-col>
+                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                        <span  *ngIf="loanDataItems.request_type=='2'">Advance</span>
+                                        <span  *ngIf="loanDataItems.request_type=='1'">Loan</span>
+                                          </ion-col>
+                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                            Schema Code
+                                              </ion-col>
+                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                {{loanDataItems.scheme_code || '-'}}
+                                                  </ion-col>
+                                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                    Request Reference
+                                                      </ion-col>
+                                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                        {{loanDataItems.req_id}}
+                                                          </ion-col>
+                                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                    Schema Desc
+                                                      </ion-col>
+                                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                        {{loanDataItems.scheme_desc || '-'}}
+                                                          </ion-col>
+                                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                            Amount
+                                                              </ion-col>
+                                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                {{loanDataItems.amount}}
+                                                                  </ion-col>
+                                                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                    Requested On
+                                                                      </ion-col>
+                                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                          <span style="font-size: 14px!important;">{{loanDataItems.created_on | date:'dd-MM-yyyy'}}</span>
+                                                                          <span><a (click)="showmoreloan(i)"><i id="imageidvals{{0+i}}" class="fa fa-angle-double-down iconcolor" aria-hidden="true" style="border-radius: 50%;width: 26px;height: 26px;text-align: center;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);background-color: #607d8b;padding-top: 4px;font-size: 20px;color: white;float:right;"></i></a></span>
+                                                                            </ion-col>
+
+
+                                      </ion-row>
+
+                                      <div id="dividvals{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                                        <ion-row>
+                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                              Max Installments
+                                              </ion-col>
+                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                  {{loanDataItems.max_installments}}
+                                                </ion-col>
+                                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                  Interest Rate
+                                                  </ion-col>
+                                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                    {{loanDataItems.int_rate || '-'}}
+                                                    </ion-col>
+                                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                      Monthly Deduction
+                                                      </ion-col>
+                                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                        {{loanDataItems.monthly_deduction || '-'}}
+                                                        </ion-col>
+                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                          Status
+                                                          </ion-col>
+                                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                            <span *ngIf="loanDataItems.status=='P'">Pending</span>
+                                                            <span *ngIf="loanDataItems.status=='A'">Approved</span>
+                                                            <span *ngIf="loanDataItems.status=='N'">New</span>
+                                                             <span *ngIf="loanDataItems.status=='D'">Denied</span>
+                                                             <span *ngIf="loanDataItems.status=='R'">Rejected</span>
+                                                            <span><a (click)="showlessnewloan(i)"><i class="fa fa-angle-double-up iconcolor " aria-hidden="true " style="border-radius: 50%;width: 26px;height: 26px;text-align: center;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);background-color: #607d8b;padding-top: 3px;font-size: 20px;color: white;float:right; "></i></a></span>
+                                                            </ion-col>
+                                                             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                                                    <ion-row>
+                                                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                        <ion-button color='success' (click)="openModal(loanDataItems)" [disabled]="loanDataItems.status=='P' || loanDataItems.status == 'A' ">UPADATE </ion-button>
+                                                                                        </ion-col>
+                                                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                                                                                        <ion-button color='danger' (click)='cancelRequest(loanDataItems)' [disabled]="loanDataItems.status == 'P' || loanDataItems.status == 'N' || loanDataItems.status == 'C'">CANCEL</ion-button>
+                                                                                  </ion-col>
+                                                                                      </ion-row>
+                                                                                   </ion-col>
+                                                </ion-row>
+                                                </div>
+                                      </ion-grid>
+                                      </ion-card>
+                                      <!-- <p  style="text-align:center" *ngIf="display.length==0" class="norecord">No Record Found</p> -->
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

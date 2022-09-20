@@ -72,9 +72,7 @@ export class ProcessedAttendancePage implements OnInit {
       this.month = JSON.parse(resp.toString());
 
         }, error => {
-
         console.log("error : "+JSON.stringify(error));
-
         });
   }
 

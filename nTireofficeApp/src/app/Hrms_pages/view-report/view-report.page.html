@@ -1,9 +1,71 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>view-report</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Report</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<ion-card>
 
+  <ion-row *ngIf="reportData!=undefined">
+    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-item style="margin: -5px;width: 103%;">
+
+          {{reportData.TEST_CODE}}-{{reportData.TEST_DESC}}
+      </ion-item>
+      </ion-col>
+
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Test Date
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{reportData.TEST_DATE | date:'dd/MM/yyyy'}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Total No. Question
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                {{reportData.TOTAL_NO_QUESTIONS}}
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                  Attempted Question
+                </ion-col>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                    {{reportData.NO_QUESTIONS_ATTENDED}}
+                  </ion-col>
+                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                      Unattempted Question
+                    </ion-col>
+                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                        {{reportData.TOTAL_NO_QUESTIONS-reportData.NO_QUESTIONS_ATTENDED}}
+                      </ion-col>
+                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                          Correct Question
+                        </ion-col>
+                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                            {{reportData.NO_QUESTIONS_CORRECT}}
+                          </ion-col>
+                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                              Incorrect Question
+                            </ion-col>
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                {{reportData.NO_QUESTIONS_ATTENDED-reportData.NO_QUESTIONS_CORRECT}}
+                              </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                  Total Score
+                                </ion-col>
+                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                    {{reportData.TEST_MARK}}
+                                  </ion-col>
+                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                      <span style="font-weight: 500;color: #03A9F4;" (click)="OpenDetailReport(reportData)">Details Report</span>
+                                    </ion-col>
+                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                        <span style="float: right;font-weight: 500;color: #03A9F4;" (click)="OpenQuestionDetail(reportData)">Question Details</span>
+                                      </ion-col>
+  </ion-row>
+</ion-card>
 </ion-content>
