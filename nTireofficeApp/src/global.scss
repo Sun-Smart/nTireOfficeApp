@@ -88,7 +88,7 @@ ion-textarea {
 }
 
 ion-segment ion-label {
-  text-transform: lowercase !important;
+  text-transform: uppercase !important;
 }
 
 .circleicon {
@@ -287,13 +287,17 @@ ion-searchbar {
   border: 1px solid #ddd;
 }
 
+// .alert-button-group.sc-ion-alert-md {
+//   justify-content: center !important;
+// }
+
 .alert-button-group.sc-ion-alert-md {
-  justify-content: center !important;
+  justify-content: space-around !important;
 }
 
-.alert-button {
-  width: 47%;
-}
+// .alert-button {
+//   width: 47%;
+// }
 
 ion-title {
   font-size: 18px;
@@ -384,9 +388,9 @@ ion-footer {
   color: #ffffff;
 }
 
-.alert-button-inner.sc-ion-alert-md {
-  justify-content: center !important;
-}
+// .alert-button-inner.sc-ion-alert-md {
+//   justify-content: center !important;
+// }
 
 input,
 button,
