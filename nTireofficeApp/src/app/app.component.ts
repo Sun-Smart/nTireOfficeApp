@@ -190,13 +190,9 @@ export class AppComponent {
     },
     {
       title: 'COFF Request',
+      url: '/coff-request',
       icon: 'logo-usd'
     },
-    // {
-    //   title: 'COFF Request',
-    //   url: '/hrmscoff-request',
-    //   icon: 'logo-usd'
-    // },
     {
       title: 'OD Request',
       url: '/od-request',
