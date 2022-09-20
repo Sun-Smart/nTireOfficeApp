@@ -96,7 +96,7 @@ export class AppComponent {
     {
       title: 'My Clients',
       url: '/myclients',
-      icon: 'contact'
+      icon: 'person-outline'
     },
   ];
 
@@ -187,11 +187,11 @@ export class AppComponent {
       url: '/payslip',
       icon: 'receipt-outline'
     },
-    {
-      title: 'COFF Request',
-      url: '/coff-request',
-      icon: 'logo-usd'
-    },
+    // {
+    //   title: 'COFF Request',
+    //   url: '/coff-request',
+    //   icon: 'logo-usd'
+    // },
     {
       title: 'OD Request',
       url: '/od-request',
@@ -217,11 +217,11 @@ export class AppComponent {
       url: '/assetrequest',
       icon: 'laptop'
     },
-    {
-      title: 'PushNotifiction Config',
-      url: '/attendance-notification',
-      icon: 'notifications'
-    },
+    // {
+    //   title: 'PushNotifiction Config',
+    //   url: '/attendance-notification',
+    //   icon: 'notifications'
+    // },
     {
       title: 'Loan Request',
       url: '/loan-request',
@@ -232,16 +232,16 @@ export class AppComponent {
       url: '/assetreturn',
       icon: 'laptop'
     },
-    {
-      title: 'Online Exam Portal',
-      url: '/onlineexamportal',
-      icon: 'receipt-outline'
-    },
-    {
-      title: 'Applicant Detail',
-      url: '/applicantsummary',
-      icon: 'apps'
-    },
+    // {
+    //   title: 'Online Exam Portal',
+    //   url: '/onlineexamportal',
+    //   icon: 'receipt-outline'
+    // },
+    // {
+    //   title: 'Applicant Detail',
+    //   url: '/applicantsummary',
+    //   icon: 'apps'
+    // },
     {
       title: 'Letter Request',
       url: '/letterrequest',
@@ -268,11 +268,12 @@ export class AppComponent {
       title: 'Dashboard',
       url: '/dashboardCams',
       icon: 'home'
-    },{
-        title: 'Asset Details',
-        url: '/asset-details',
-        icon: 'paper'
-      }
+    },
+    // {
+    //     title: 'Asset Details',
+    //     url: '/asset-details',
+    //     icon: 'document-outline'
+    //   }
     ,{
       title: 'Pending Jobs',
       url: '/pending-jobs',
@@ -285,11 +286,13 @@ export class AppComponent {
       title: 'Asset Reconciliation',
       url: '/asset-reconcil',
       icon: 'book'
-    },{
+    },
+    {
       title: 'Asset Details',
       url: '/asset-details',
-      icon: 'paper'
-    },{
+      icon: 'document-outline'
+    },
+    {
       title: 'User Request',
       url: '/user-request',
       icon: 'person'
@@ -304,7 +307,7 @@ export class AppComponent {
     },{
       title: 'Asset Transfer',
       url: '/asset-transfer',
-      icon: 'jet'
+      icon: 'newspaper-outline'
     },{
       title: 'Reconciliation Report',
       url: '/reconciliation-report',
