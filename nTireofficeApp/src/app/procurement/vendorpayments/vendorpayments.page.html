@@ -8,7 +8,11 @@
       <ion-title>Vendor Payments</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card-content>
+  <ion-card>
+    <ion-card-header class="card_header">
+      <ion-card-title style="color:#fff ;" >Vendor Payments</ion-card-title>
+    </ion-card-header>
+  <ion-card-content class="card_content">
     <ion-grid>
 
     <!-- <ion-grid style="border-radius: 5px; background: #c882e06b; margin: 10px;"> -->
@@ -43,6 +47,8 @@
       </ion-row> -->
     </ion-grid>
   </ion-card-content>
+
+  </ion-card>
 
     <!-- *ngFor="let item of poPayment;" -->
     <ion-card *ngFor="let item of poPayment;">

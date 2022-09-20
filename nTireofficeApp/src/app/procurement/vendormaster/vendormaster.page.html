@@ -48,8 +48,8 @@
 
   <div *ngIf="vendormaster&&vendormaster.length>0">
     <ion-card  *ngFor="let items of vendormaster;let i = index;">
-      <ion-card-header class="card">
-        <ion-card-title >Vendor Code : {{items.Code}}</ion-card-title>
+      <ion-card-header class="card_header">
+        <ion-card-title style="color:#fff ;" >Vendor Code : {{items.Code}}</ion-card-title>
       </ion-card-header>
       <ion-card-content class="card_content">
         <ion-grid>
