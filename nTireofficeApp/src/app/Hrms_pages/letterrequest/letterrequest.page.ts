@@ -82,7 +82,7 @@ export class LetterrequestPage implements OnInit {
     }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "insertletter_request/",letter_request).then(resp=>{
      this.reqID = resp[0].inserted_id;
-     this.toastmessageService.presentAlert1("","Request Updated Successfully");
+     this.toastmessageService.presentAlert("","Request Updated Successfully");
    this.letterList();
   this.requestType="";
   this.reason=undefined;

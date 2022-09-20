@@ -14,8 +14,19 @@ export class ToastmessageService {
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
-  
+
+  async presentAlert(heading,tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 }
