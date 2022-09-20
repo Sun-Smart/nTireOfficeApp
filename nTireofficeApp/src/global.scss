@@ -1024,14 +1024,14 @@ ion-card {
 ion-card {
   .card_header_text {
     font-size: 15px;
-    color: #ffff;
+    color: #ffff !important;
 
   }
 }
 
 ion-card {
   .card_header {
-    background-color: #019ade !important;
+    background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;
     color: white !important;
     text-align: center;
     padding: 15px;
