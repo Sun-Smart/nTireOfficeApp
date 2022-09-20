@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>onlineexamtimer</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Online Exam</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-row>
+        <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-icon name="stopwatch"></ion-icon>&nbsp;<span id="timer"></span>
+            </ion-col>
+            <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+       <ion-button color="danger" (click)="SubmitTestAnswer()">End</ion-button>
+              </ion-col>
+      </ion-row>
+      <ion-row style="background-color: yellow;">
+          <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <span style="float:left;">Question: {{indexval+1}}/{{QAns.length}}</span><span style="float:right;">Marks:{{Marks}}</span>
+            </ion-col>
+        </ion-row>
 </ion-content>

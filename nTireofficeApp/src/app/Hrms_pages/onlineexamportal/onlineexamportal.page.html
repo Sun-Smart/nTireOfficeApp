@@ -1,9 +1,52 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>onlineexamportal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Online Exam Portal</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+ <ion-row>
+    <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+    <img src="/assets/Images/students-750x410.jpg" style="width:100%;height:100%" style="border-radius: 15px;">
+    </ion-col>
+
+ </ion-row>
+ <!-- class="onlineexam" -->
+ <ion-row >
+    <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <!-- style="color: #fff;font-size: 48px;background-color: #2d3666;border-radius: 50%;padding: 5px;width: 50%;max-height: 100px !important;min-height: 100px !important;" -->
+      <div >
+        <ion-button style="--box-shadow:none;height: 45px;" class="button button-clear icon ion-edit" (click)="goToTestList()">
+            <ion-icon style="padding: 10px;background: #0d00d0;border-radius: 50%;color: white;" slot="icon-only" name="create" id="iconUpdate"></ion-icon>
+        </ion-button>
+
+        <p style="font-size: 15px;color: black;padding-top: 4px;font-family: sans-serif;font-weight: bold;padding-left:7px;text-align: center;">MY TEST</p>
+        </div>
+      </ion-col>
+      <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <div>
+          <ion-button style="--box-shadow:none;height: 45px;" class="button button-clear icon ion-stats-bars" (click)="goToReport()" >
+              <ion-icon style="padding: 10px;background: #0d00d0;border-radius: 50%;color: white;" slot="icon-only" name="repeat"></ion-icon>
+          </ion-button>
+
+          <p style="font-size: 15px;color: black;padding-top: 4px;font-family: sans-serif;font-weight: bold;text-align: center;">REPORTS</p>
+        </div>
+        </ion-col>
+ </ion-row>
+</ion-grid>
 </ion-content>
+<ion-footer class="bar-royal">
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

@@ -85,11 +85,10 @@ ion-textarea {
 
 .profileicon {
   position: relative;
-  top: -7px;
 }
 
 ion-segment ion-label {
-  text-transform: lowercase !important;
+  text-transform: uppercase !important;
 }
 
 .circleicon {
@@ -288,13 +287,17 @@ ion-searchbar {
   border: 1px solid #ddd;
 }
 
+// .alert-button-group.sc-ion-alert-md {
+//   justify-content: center !important;
+// }
+
 .alert-button-group.sc-ion-alert-md {
-  justify-content: center !important;
+  justify-content: space-around !important;
 }
 
-.alert-button {
-  width: 47%;
-}
+// .alert-button {
+//   width: 47%;
+// }
 
 ion-title {
   font-size: 18px;
@@ -385,9 +388,9 @@ ion-footer {
   color: #ffffff;
 }
 
-.alert-button-inner.sc-ion-alert-md {
-  justify-content: center !important;
-}
+// .alert-button-inner.sc-ion-alert-md {
+//   justify-content: center !important;
+// }
 
 input,
 button,
@@ -712,7 +715,7 @@ ion-searchbar {
 }
 
 .sc-ion-alert-md-h {
-  --min-width: 350px !important;
+  // --min-width: 350px !important;
 }
 
 .alert-button-group {
@@ -972,11 +975,11 @@ ion-menu-button {
 
 .addcnt_close {
   background-color: red !important;
-  font-size: 27px;
-  position: relative;
+  font-size: 25px;
+  // position: relative;
   border-radius: 50%;
-  top: -20px;
-  right: -37%;
+  // top: -20px;
+  // right: -37%;
 }
 
 .buttonCss {
@@ -1008,6 +1011,7 @@ ion-menu-button {
 
 .ion-color-success {
   --ion-color-base: #32CD32 !important;
+  opacity: 1;
 
 }
 
@@ -1019,14 +1023,14 @@ ion-card {
 ion-card {
   .card_header_text {
     font-size: 15px;
-    color: #ffff;
+    color: #ffff !important;
 
   }
 }
 
 ion-card {
   .card_header {
-    background-color: #019ade !important;
+    background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;
     color: white !important;
     text-align: center;
     padding: 15px;

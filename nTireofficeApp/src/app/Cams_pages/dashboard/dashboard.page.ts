@@ -39,7 +39,7 @@ this.menuCtrl.enable(true, 'first');
     this.router.navigate(['/landing-page']);
   }
   getCategoryCountChart = function () {
-
+  debugger;
     var sourcearray=[];
     const header = new Headers();
     header.append("Content-Type", "application/json");

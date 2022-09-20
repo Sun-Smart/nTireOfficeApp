@@ -1,10 +1,52 @@
-.chart-legend,.bar-legend,.line-legend,.pie-legend,.radar-legend,.polararea-legend,.doughnut-legend{list-style-type:none;margin-top:5px;text-align:center;-webkit-padding-start:0;-moz-padding-start:0;padding-left:0}.chart-legend li,.bar-legend li,.line-legend li,.pie-legend li,.radar-legend li,.polararea-legend li,.doughnut-legend li{white-space:nowrap;position:relative;margin-bottom:20px;border-radius:5px;padding:2px 8px 2px 28px;font-size:smaller;cursor:default}.chart-legend li span,.bar-legend li span,.line-legend li span,.pie-legend li span,.radar-legend li span,.polararea-legend li span,.doughnut-legend li span{display:block;left:0;top:0;width:10px;height:10px;padding-left: 20px;float:left;}
-
-ion-content {
-  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+.chart-legend,
+.bar-legend,
+.line-legend,
+.pie-legend,
+.radar-legend,
+.polararea-legend,
+.doughnut-legend {
+  list-style-type: none;
+  margin-top: 5px;
+  text-align: center;
+  -webkit-padding-start: 0;
+  -moz-padding-start: 0;
+  padding-left: 0;
+}
+.chart-legend li,
+.bar-legend li,
+.line-legend li,
+.pie-legend li,
+.radar-legend li,
+.polararea-legend li,
+.doughnut-legend li {
+  white-space: nowrap;
   position: relative;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 2px 8px 2px 28px;
+  font-size: smaller;
+  cursor: default;
+}
+.chart-legend li span,
+.bar-legend li span,
+.line-legend li span,
+.pie-legend li span,
+.radar-legend li span,
+.polararea-legend li span,
+.doughnut-legend li span {
+  display: block;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  padding-left: 20px;
+  float: left;
 }
 
+ion-content {
+  --background: url("../../../assets/images/tpbackground.png") repeat !important;
+  position: relative;
+}
 
 .input-wrapper {
   display: flex;
@@ -18,4 +60,47 @@ ion-content {
   background-color: skyblue;
   padding-right: 14px;
   padding-left: 14px;
+}
+
+.mygreetings {
+  background-color: transparent;
+  height: 72px;
+  border: 2px solid BLACK;
+  width: 72px;
+  border-radius: 50%;
+  margin-left: -11px;
+  margin: auto;
+}
+
+.dashboardcard {
+  position: inherit;
+  height: auto;
+  z-index: 100;
+  background-color: #fff !important;
+  color: BLACK;
+  text-align: center;
+  padding-top: 20px;
+  // margin-left: 14px;
+  // margin-right: 14px;
+  // border-radius: 5px;
+}
+
+.dashboardhead {
+  margin-top: -20px;
+  padding: 13px 128px;
+}
+
+.dashboardprofilecard {
+  display: contents;
+  justify-content: center;
+}
+.avatarCard {
+  background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
+}
+.dashboardMyprofile-button {
+  background-color: transparent;
+  height: 65px;
+  border: 2px solid BLACK;
+  width: 65px;
+  border-radius: 50%;
 }

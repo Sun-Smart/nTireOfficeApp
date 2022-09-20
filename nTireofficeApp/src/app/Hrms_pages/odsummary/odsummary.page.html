@@ -1,9 +1,134 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>odsummary</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>OD Summary</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+        <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-label>Company Name</ion-label>
+                <ion-input style="background-color: white;
+                color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                  <ion-label>OD From (Date)<span class="validatecolor">*</span></ion-label>
+         <ion-input type='date' class="form-control" (ionChange)="filterDate($event.target.value,toDate)"  [(ngModel)]="fromDate"></ion-input>
+                  </ion-col>
+                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                      <ion-label>OD To (Date)<span class="validatecolor">*</span></ion-label>
+                 <ion-input  type='date' class="form-control" (ionChange)="filterDate(fromDate,$event.target.value)" [(ngModel)]="toDate"></ion-input>
+                    </ion-col>
 
+                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                              <ion-label>Status<span class="validatecolor">*</span></ion-label>
+                             <ion-select [(ngModel)]="status" class="form-control" (ionChange)="changeOrder();">
+                                <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
+                            <ion-select-option>Approved</ion-select-option>
+                            <ion-select-option>Pending</ion-select-option>
+                            <ion-select-option>New</ion-select-option>
+                            <ion-select-option>Cancelled</ion-select-option>
+                            <ion-select-option>Denied</ion-select-option>
+                             </ion-select>
+                              </ion-col>
+                    </ion-row>
+
+                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                    <!-- <ion-button size="default" color="success" (click)="filterDate(undefined,undefined);">Search</ion-button> -->
+                    </ion-col>
+                    </ion-grid>
+                    <p style="text-align: center;">{{error}}</p>
+                    <ion-card *ngFor="let odData of display; let i = index">
+                        <ion-grid style="padding: 0px;">
+                       <ion-row>
+                              <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumn">
+                                {{odData.Code}} - {{odData.Name}}&nbsp;
+                                </ion-col>
+                                <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" class="leadscolumn" style="text-align:right;">
+                                    # {{odData.ReqRef}}
+                                    </ion-col>
+
+                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                Mobile
+                                                </ion-col>
+                                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                    <a style="font-size: 14px;text-decoration: none;color:#444444;" *ngIf="odData.MobileNum!=null" (click)="callNumber(odData.MobileNum)" href="tel:{{odData.MobileNum}}">{{odData.MobileNum}}</a>
+
+                                                    </ion-col>
+                                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                      Req-on
+                                                        </ion-col>
+                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                          {{odData.RDate}}
+                                                            </ion-col>
+                                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                              OD From - OD To
+                                                                </ion-col>
+                                                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                  {{odData.FromDate}} - {{odData.ToDate}}
+                                                                    </ion-col>
+                                                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                      Request Reference
+                                                                        </ion-col>
+                                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                          {{odData.ReqRef}}
+                                                                            </ion-col>
+                                                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                      Reason
+                                                                        </ion-col>
+                                                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                              {{odData.Reason}}
+                                                                              </ion-col>
+                                                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                  Status
+                                                                                  </ion-col>
+                                                                                  <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                      {{odData.Status}}
+                                                                                      </ion-col>
+                                                                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                        No of Days
+                                                                                        </ion-col>
+                                                                                        <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                          {{odData.NoDays}}
+                                                                                            </ion-col>
+                                                                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                              Travel Status
+                                                                                              </ion-col>
+                                                                                              <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                                <span>{{odData.travelstatus}}</span>
+                                                                                                <span  *ngIf="odData.Status=='Pending'">{{odData.TravelStatus}} </span>
+                                                                                                <span  *ngIf="odData.Status=='Processed'" (click)="openTicketModal(odData)">{{odData.travelstatus}} </span>
+                                                                                                  </ion-col>
+                                                                                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                                                      <ion-row>
+                                                                                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                                                          <ion-button color='success' size="full"  (click)="openModal(odData)" *ngIf="odData.Status == 'New' ? true : false">Update</ion-button>
+                                                                                          <ion-button color='success' (click)="openModal(odData)" *ngIf="odData.Status == 'Denied' ? true : false">Update</ion-button>
+
+                                                                                        </ion-col>
+
+                                                                                        </ion-row>
+                                                                                     </ion-col>
+                                        </ion-row>
+                                        </ion-grid>
+                                        </ion-card>
+                                        <p  style="text-align:center" *ngIf="display.length==0" class="norecord">No Record Found</p>
 </ion-content>
+<ion-footer class="bar-royal">
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+
+
+ </ion-footer>
