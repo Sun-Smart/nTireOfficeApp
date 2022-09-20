@@ -8,13 +8,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 
 
 // import { ChartsModule } from 'chartjs';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS   } from '@angular/common/http';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],

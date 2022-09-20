@@ -21,6 +21,7 @@ export class UpdatevendoritemPage implements OnInit {
   vendorid_res:any;
   Vendors_Item_List:any;
   Vendors_Item_List_res:any;
+  showgrid:boolean =false
 
   constructor( private http: HttpClient, public Ipaddressservice: IpaddressService,private navParams: NavParams,public modalController: ModalController) {
     this.documentnew = this.navParams.data.data;

@@ -52,18 +52,18 @@ const routes: Routes = [
     path: 'vendorppconfirm',
     loadChildren: () => import('./procurement/vendorppconfirm/vendorppconfirm.module').then( m => m.VendorppconfirmPageModule)
   },
-  // {
-  //   path: 'vendorquotation',
-  //   loadChildren: () => import('./procurement/vendorquotation/vendorquotation.module').then( m => m.VendorquotationPageModule)
-  // },
-  // {
-  //   path: 'vendorsdetails',
-  //   loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then( m => m.VendorsdetailsPageModule)
-  // },
-  // {
-  //   path: 'vendorsitems',
-  //   loadChildren: () => import('./procurement/vendorsitems/vendorsitems.module').then( m => m.VendorsitemsPageModule)
-  // },
+  {
+    path: 'vendorquotation',
+    loadChildren: () => import('./procurement/vendorquotation/vendorquotation.module').then( m => m.VendorquotationPageModule)
+  },
+  {
+    path: 'vendorsdetails',
+    loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then( m => m.VendorsdetailsPageModule)
+  },
+  {
+    path: 'vendorsitems',
+    loadChildren: () => import('./procurement/vendorsitems/vendorsitems.module').then( m => m.VendorsitemsPageModule)
+  },
   {
     path: 'vendorpoconfirm',
     loadChildren: () => import('./procurement/vendorpoconfirm/vendorpoconfirm.module').then( m => m.VendorpoconfirmPageModule)
