@@ -145,7 +145,7 @@ table td {
 
 .heatmap td,
 th {
-  background-color: #1a89db;
+  background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
   color: white;
 }
 
@@ -254,7 +254,7 @@ ion-searchbar {
 }
 
 .leadscolumn {
-  background-color: #2e3192 !important;
+  background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
   color: #fff;
   padding: 12px;
 }
