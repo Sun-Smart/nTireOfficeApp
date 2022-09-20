@@ -254,7 +254,8 @@ ion-searchbar {
 }
 
 .leadscolumn {
-  background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
+  background-color: #00ACFB !important;
+  // background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
   color: #fff;
   padding: 12px;
 }
@@ -722,7 +723,7 @@ ion-searchbar {
   color: #fff;
   // background-color: red !important;
   // background: linear-gradient(to left, #32CD32 50%, #ff0000ff 50%) !important;
-  background: linear-gradient(to left, green 50%, red 50%) !important;
+  background: linear-gradient(to left, #089408cc 50%, #e71414f0 50%) !important;
 }
 
 .alert-button.sc-ion-alert-md {
@@ -993,7 +994,20 @@ ion-menu-button {
 
   // button.alert
   .alert-button-group {
-    background: red !important;
+    background: #e71414f0!important;
+  }
+}
+.Cssbutton {
+  // background-color: red !important;
+  // color: #fff;
+  // button.alert-button {
+  //   background-color: red !important;
+  //   color: white;
+  // }
+
+  // button.alert
+  .alert-button-group {
+    background: #089408cc!important;
   }
 }
 
