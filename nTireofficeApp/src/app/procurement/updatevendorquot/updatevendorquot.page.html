@@ -2,11 +2,132 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-   </ion-buttons>
-    <ion-title>updatevendorquot</ion-title>
+    </ion-buttons>
+    <ion-title>Update Vendor Quotation</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Item Code</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+        <!-- [(ngModel)]="VendorQuot.itemcode" -->
+      </ion-col>
 
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Item Description</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.itemdesc" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>UOM</ion-label>
+        <select style="background-color: #d4d4d4!important;display:inline-block;padding: 10px;border: none;" class="textareaField" >
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+        </select>
+         <!-- [(ngModel)]="VendorQuot.uomtext" -->
+      </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Qty</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.qty" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Unit Price</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField" (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.unitprice" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label id="disc">Discount (%)</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField" (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.discount" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Tax1 (%)</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.tax1" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Tax2 (%)</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.tax2" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Transport Charge</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="number" class="textareaField" (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.transportcharge" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Net Price</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="VendorQuot.netprice" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Release Before</ion-label>
+        <!-- <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input> -->
+        <input type="date" class="textareaField" disabled="" style="display:inline-block;padding: 8px;">
+
+        <!-- [(ngModel)]="VendorQuot.releasedate" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Delivery Before</ion-label>
+         <input type="date" class="textareaField" disabled="" style="display:inline-block;padding: 8px;">
+        <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Remarks</ion-label>
+        <ion-textarea placeholder=" " id="textareaID" style="background-color: #d4d4d4!important;display:inline-block;width:100%;" maxlength="150"  required=""  class="textareaField"></ion-textarea>
+        <!-- (ionSelect)="resize()" -->
+        <!-- (keyup)="checkTestPressure(this)" -->
+        <!-- [(ngModel)]="VendorQuot.remarks" -->
+        <!-- <span class="customCounter">{{150 - VendorQuot.remarks.length}}</span> -->
+      </ion-col>
+      <!-- <ion-row> -->
+
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="newquot" >
+        <!-- -->
+        <!-- <ion-label>Release</ion-label>
+        <input type="checkbox" ng-true-value="0" ng-false-value="1" style="outline: none;"> -->
+
+        <ion-item>
+          <ion-label>Release</ion-label>
+          <ion-checkbox></ion-checkbox>
+          <!-- [(ngModel)]="VendorQuot.release" -->
+        </ion-item>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="releasedquot">
+        <ion-item>
+          <ion-label>Release</ion-label>
+          <ion-checkbox></ion-checkbox>
+          <!-- [(ngModel)]="VendorQuot.release" -->
+        </ion-item>
+      </ion-col>
+
+        <!-- <label class="checkbox" style="padding-left: 20px !important;padding-top: 0px;padding-right: 20px;">
+          <input type="checkbox" ng-true-value="0" ng-false-value="1" style="outline: none;">
+        </label>
+        <label class="labels">Release</label> -->
+
+      <!-- </ion-col> -->
+    <!-- </ion-row> -->
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-button class="button button-small button-block  button-full button-balanced schedulebutn" style="min-width: 115px; background: #009689 !important;" type="button" (click)="updateVendorDetails(VendorQuot)" disabled="(VendorQuot.transportcharge==undefined||VendorQuot.transportcharge==''  || VendorQuot.unitprice=='' || VendorQuot.unitprice==undefined ||
+  VendorQuot.discount==undefined||VendorQuot.discount=='' || VendorQuot.deliverydate=='' || VendorQuot.deliverydate==undefined )" class="button button-assertive button-small editbut">UPDATE</ion-button>
 </ion-content>

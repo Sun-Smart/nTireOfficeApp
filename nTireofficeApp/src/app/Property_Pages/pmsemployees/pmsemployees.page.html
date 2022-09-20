@@ -1,103 +1,100 @@
 <ion-header>
   <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;margin-top: 1px;">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>            
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>PMS EMPLOYEES</ion-title>
   </ion-toolbar>
 </ion-header>
 <!-- <div style="display: flex;"> -->
-  <ion-content>
-<div>
-  <ion-button color="tertiary" class="btn" size="small">Additional <br> Charges</ion-button>
-  <ion-button color="tertiary"  class="btn" size="small">Payment <br> Status <br> Update</ion-button>
-  <ion-button color="tertiary"  class="btn" size="small">Create <br> Issue</ion-button>
-</div>
+<ion-content>
+  <div>
+    <ion-button color="tertiary" class="btn" size="small">Additional <br> Charges</ion-button>
+    <ion-button color="tertiary" class="btn" size="small">Payment <br> Status <br> Update</ion-button>
+    <ion-button color="tertiary" class="btn" size="small">Create <br> Issue</ion-button>
+  </div>
 
 
-  <ion-card >
-    <ion-card-header>
-      <ion-card-title class="headertitle">Property Transcation Details</ion-card-title>
+  <ion-card>
+    <ion-card-header class="card_header">
+      <ion-label class="card_header_text">Property Transcation Details</ion-label>
     </ion-card-header>
-    <ion-card-content>
-     
-      <div class="table">
-        <table class="table table-striped">
-            <thead>
-                <tr class="table-head">
-                    <th>#</th>
-                    <th>Pay Description</th>
-                    <th>Pay Amount</th>
-                    <th>Paid Amount</th>
-                    <th>Balance Amount</th>
-                    <th>Pay Last Date</th>
-                    <th>Late Fee</th>
+    <ion-card-content style="padding:10px !important;overflow-x: scroll;">
 
-                </tr>
-            </thead>
-            <tbody class="table-body" >
-                <ng-container>
-                    <tr>
-                        <td>1</td>
-                        <td>security Deposit</td>
-                        <td>1000</td>
-                        <td>800</td>
-                        <td>200</td>
-                        <td>1/08/2022</td>
-                        <td>0</td>
+      <table class="table table-striped">
+        <thead>
+          <tr class="table-head">
+            <th>#</th>
+            <th>Pay Description</th>
+            <th>Pay Amount</th>
+            <th>Paid Amount</th>
+            <th>Balance Amount</th>
+            <th>Pay Last Date</th>
+            <th>Late Fee</th>
 
-                     
-                     </tr>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <ng-container>
+            <tr>
+              <td>1</td>
+              <td>security Deposit</td>
+              <td>1000</td>
+              <td>800</td>
+              <td>200</td>
+              <td>1/08/2022</td>
+              <td>0</td>
 
-                     <tr>
-                      <td>2</td>
-                      <td>security Deposit</td>
-                      <td>1000</td>
-                      <td>800</td>
-                      <td>200</td>
-                      <td>1/08/2022</td>
-                      <td>0</td>
-                   
-                   </tr>
 
-                   <tr>
-                    <td>3</td>
-                    <td>security Deposit</td>
-                    <td>1000</td>
-                    <td>800</td>
-                    <td>200</td>
-                    <td>1/08/2022</td>
-                    <td>0</td>
-                 
-                 </tr>
+            </tr>
 
-                 <tr>
-                  <td>4</td>
-                  <td>security Deposit</td>
-                        <td>1000</td>
-                        <td>800</td>
-                        <td>200</td>
-                        <td>1/08/2022</td>
-                        <td>0</td>
-               
-               </tr>
-                    
-                </ng-container>
-            </tbody>
-        </table>
-    </div>
+            <tr>
+              <td>2</td>
+              <td>security Deposit</td>
+              <td>1000</td>
+              <td>800</td>
+              <td>200</td>
+              <td>1/08/2022</td>
+              <td>0</td>
+
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td>security Deposit</td>
+              <td>1000</td>
+              <td>800</td>
+              <td>200</td>
+              <td>1/08/2022</td>
+              <td>0</td>
+
+            </tr>
+
+            <tr>
+              <td>4</td>
+              <td>security Deposit</td>
+              <td>1000</td>
+              <td>800</td>
+              <td>200</td>
+              <td>1/08/2022</td>
+              <td>0</td>
+
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
     </ion-card-content>
   </ion-card>
 </ion-content>
 
 
-<ion-footer >
+<ion-footer>
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- </ion-footer>
+</ion-footer>

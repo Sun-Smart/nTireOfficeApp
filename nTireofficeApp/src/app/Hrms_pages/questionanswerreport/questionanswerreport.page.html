@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>questionanswerreport</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Question Answer Report</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-card>
+    <ion-row *ngFor="let data of QusetionAnsReport;let i=index" style="margin: 0px;border-bottom: 1px solid #dedada;">
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <h5 style="color: #061ea2;">Q{{i+1}}. {{data.Question_Desc}}</h5>
+        <p><span style="font-size: 15px;font-weight: 600;padding-right: 5px;">Your Answer:</span><span>{{data.ANSWER_DESC}}</span></p>
+        <p><span  style="font-size: 15px;font-weight: 600;padding-right: 5px;color: green;">Correct Answer:</span><span>{{data.Correct_Answer_Desc}}</span></p>
+   </ion-col>
+      </ion-row>
 
+      </ion-card>
 </ion-content>

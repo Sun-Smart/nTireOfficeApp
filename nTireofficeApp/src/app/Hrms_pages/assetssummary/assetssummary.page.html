@@ -1,9 +1,125 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>assetssummary</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Asset Summary</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid style="background: #1236b729; padding: 10px;margin: 10px;border-radius: 8px;">
+      <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label>Company Name</ion-label>
+              <ion-input class="form-control" disabled  [(ngModel)]="company"></ion-input>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-label>From (Date)<span class="validatecolor">*</span></ion-label>
+       <ion-input type='date' class="form-control" (ionChange)="filterAsset('filter')"  [(ngModel)]="fromDate"></ion-input>
+                </ion-col>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                    <ion-label>To (Date)<span class="validatecolor">*</span></ion-label>
+               <ion-input  type='date' class="form-control" (ionChange)="filterAsset('filter')" [(ngModel)]="toDate"></ion-input>
+                  </ion-col>
+                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                    <ion-label>Assest Category<span class="validatecolor">*</span></ion-label>
+                    <!-- "filterAsset('subcat')" -->
+                    <ion-select [(ngModel)]="assestCategory" (ionChange)="getAssestsSubcat()" class="form-control">
+                      <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                       <ion-select-option *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</ion-select-option>
+                    </ion-select>
+                    </ion-col>
+                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                      <ion-label>Assest Subcategory<span class="validatecolor">*</span></ion-label>
+                      <ion-select [(ngModel)]="assestsubCategory" (ionChange)="filterAsset('filter')" class="form-control">
+                        <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+                         <ion-select-option *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</ion-select-option>
+                      </ion-select>
+                      </ion-col>
+                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                <ion-label>Status<span class="validatecolor">*</span></ion-label>
+                               <ion-select [(ngModel)]="status" (ionChange)="changeOrder()" class="form-control">
+                                  <ion-select-option value selected="">&lt;&lt; Select &gt;&gt;</ion-select-option>
+                              <ion-select-option>Approved</ion-select-option>
+                              <ion-select-option>Pending</ion-select-option>
+                              <ion-select-option>New</ion-select-option>
+                              <ion-select-option>Cancelled</ion-select-option>
+                              <ion-select-option>Denied</ion-select-option>
+                               </ion-select>
+                                </ion-col>
+                  </ion-row>
+                  </ion-grid>
+                  <p style="text-align: center;">{{error}}</p>
+                  <ion-card *ngFor="let assetData of display; let i = index">
+                      <ion-grid style="padding: 0px;">
+                     <ion-row>
+                            <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumn">
+                              {{assetData.Code}} - {{assetData.Name}}&nbsp;
+                              </ion-col>
+                              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" class="leadscolumn" style="text-align:right;">
+                                  # {{assetData.ReqRef}}
+                                  </ion-col>
 
+                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                              Mobile
+                                              </ion-col>
+                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                  <a style="font-size: 14px;text-decoration: none;color:#444444;"  (click)="callNumber(assetData.ContactPhone)" href="tel:{{assetData.ContactPhone}}">{{assetData.MobileNum}}</a>
+
+                                                  </ion-col>
+                                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                      Req-On
+                                                      </ion-col>
+                                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="color: red;">
+                                                          {{assetData.RequestDate |  date :  "dd/MM/y"}}
+                                                          </ion-col>
+                                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                            Asset Category
+                                                              </ion-col>
+                                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                  {{assetData.AssetCategory}}
+                                                                  </ion-col>
+                                                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                    Asset Subcategory
+                                                                      </ion-col>
+                                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                            {{assetData.SubCategory}}
+                                                                            </ion-col>
+                                                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                              Status
+                                                                                </ion-col>
+                                                                                <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                    {{assetData.Status}}
+                                                                                    </ion-col>
+                                                                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                      Reason
+                                                                                        </ion-col>
+                                                                                        <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                            {{assetData.Reason}}
+                                                                                            </ion-col>
+                                                                                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                                                                    <ion-row>
+                                                                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                                                                                        <ion-button color='success' (click)="openModal(assetData)" [disabled]="assetData.Status=='Pending' || assetData.Status == 'Approved' || assetData.Status == 'Cancelled'">UPADATE </ion-button>
+                                                                                        </ion-col>
+                                                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                                                                                        <ion-button color='danger' (click)='cancelRequest(assetData)' [disabled]="assetData.Status == 'Pending' || assetData.Status == 'New' || assetData.Status == 'Cancelled'">CANCEL</ion-button>
+                                                                                  </ion-col>
+                                                                                      </ion-row>
+                                                                                   </ion-col>
+                                      </ion-row>
+                                      </ion-grid>
+                                      </ion-card>
 </ion-content>
+
+<ion-footer class="bar-royal">
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

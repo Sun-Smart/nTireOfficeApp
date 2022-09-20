@@ -28,7 +28,7 @@ ion-item {
 
 ion-toolbar {
   --background: transparent !important;
-  color: black;
+  color: #fff;
   // color: white;
   font-size: 17px;
   text-align: center;
@@ -70,4 +70,9 @@ ion-card{
   ion-toolbar{
   --background: blue !important;
   }
+}
+
+ion-content {
+  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  position: relative;
 }

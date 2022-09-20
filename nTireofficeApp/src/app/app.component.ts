@@ -176,7 +176,7 @@ export class AppComponent {
     {
       title: 'Attendance',
       url: '/attendance',
-      icon: 'list-box'
+      icon: 'reader-outline'
     },
     {
       title: 'Processed Attendance',
@@ -186,11 +186,10 @@ export class AppComponent {
     {
       title: 'Pay Slip',
       url: '/payslip',
-      icon: 'list-box'
+      icon: 'receipt-outline'
     },
     {
       title: 'COFF Request',
-      url: '/coff-request',
       icon: 'logo-usd'
     },
     // {
@@ -201,7 +200,7 @@ export class AppComponent {
     {
       title: 'OD Request',
       url: '/od-request',
-      icon: 'briefcase'
+      icon:'git-pull-request'
     },
     {
       title: 'Claims',
@@ -211,7 +210,7 @@ export class AppComponent {
     {
       title: 'Leave Request',
       url: '/leave-request',
-      icon: 'jet'
+      icon: 'reader-outline'
     },
     {
       title: 'Permission Request',
@@ -231,17 +230,13 @@ export class AppComponent {
     {
       title: 'Loan Request',
       url: '/loan-request',
-      icon: 'cash'
-    },
-    {
-      title: 'Asset Returns',
-      url: '/assetreturn',
-      icon: 'laptop'
+      icon: 'cash-outline'
+
     },
     {
       title: 'Online Exam Portal',
       url: '/onlineexamportal',
-      icon: 'paper'
+      icon: 'pencil-outline'
     },
     {
       title: 'Applicant Detail',
@@ -329,21 +324,21 @@ export class AppComponent {
     //   url: '/updatevendoritem',
     //   icon: 'pricetag'
     // },
-    // {
-    //   title: 'Update Vendor Quotation',
-    //   url: '/updatevendorquot',
-    //   icon: 'create'
-    // },
+    {
+      title: 'Update Vendor Quotation',
+      url: '/updatevendorquot',
+      icon: 'create'
+    },
     {
       title: 'Vendor Master',
       url: '/vendormaster',
       icon: 'person'
     },
-    // {
-    //   title: 'Vendor Payments',
-    //   url: '/vendorpayments',
-    //   icon: 'cash'
-    // },
+    {
+      title: 'Vendor Payments',
+      url: '/vendorpayments',
+      icon: 'cash'
+    },
     {
       title: 'Vendor PO Confirm',
       url: '/vendorpoconfirm',

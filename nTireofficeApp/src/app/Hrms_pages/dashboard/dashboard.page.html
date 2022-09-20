@@ -1,7 +1,4 @@
-
-
 <ion-content>
-
   <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
@@ -12,17 +9,18 @@
   </ion-header>
   <ion-grid>
     <ion-row>
-        <ion-card >
+        <ion-card class="dashboardprofilecard">
           <ion-item *ngFor="let item of displayUser">
             <ion-avatar item-start style="margin:auto">
-              <!-- <img src="assets\Images\defaultMale.png" style="background-color: white;"> -->
-              <img  src="{{item.Photo}}" onError="this.src='../../../assets/Images/defaultMale.png'" >
+              <img src="assets/images/defaultMale.png" >
+              <!-- <img  src="{{item.Photo}}" onError="this.src='../../../assets/Images/defaultMale.png'" > -->
             </ion-avatar>
           </ion-item>
+
       <ion-col *ngFor="let item of displayUser" style="width:100%">
 
     <div class="imagediv">
-        <img *ngIf="!item.Photo" src="{{item.Photo}}">
+        <img *ngIf="!item.Photo" src="{{item.Photo}}" >
       <!-- <img  src="{{item.Photo}}"  alt="" width="50px" height="50px"> -->
     </div>
     <div *ngIf="displayUser.length!=0" style="text-align:center">
@@ -39,17 +37,15 @@
        </ion-col>
     </ion-card>
     </ion-row>
-
   </ion-grid>
-  <div style="position: inherit;
-  height: 49% !important;
-  z-index: 100;
-  background-color: #1236b729 !important;
-  color: BLACK;text-align: center;padding-top: 20px;margin-left: 14px;
-    margin-right: 14px;border-radius: 5px;">
 
-  <ion-row>
+  <div class="dashboardcard">
+  <ion-row >
+    <div class="dashboardhead">
+     My Profile
+    </div>
    <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
     <span style="display:inline-grid;text-align:center">
     <button (click)="myRequest()" style="background-color: transparent;
   height:72px;    border: 2px solid BLACK;width:72px;
@@ -99,7 +95,6 @@ margin-left: -9px;margin: auto;">
 padding-bottom: 17px;" class="icon fa fa-graduation-cap"></i>
 </button>
 
-
 <span style="    margin-left: 0%;
 padding-top: 12px;
 margin-right: 1px;;">My Actions</span>
@@ -120,10 +115,7 @@ padding-bottom: 0px;" class="icon fa fa-dedent"></i>
 </ion-col>
 <ion-col class="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-4">
     <span style="display:inline-grid;text-align:center">
-    <button (click)="myGreetings()" style="background-color: transparent;
-    height:72px;    border: 2px solid BLACK;width:72px;
-border-radius: 50%;
-margin-left: -11px;margin: auto;">
+    <button (click)="myGreetings()" class="mygreetings">
   <i style="font-size: 28px;
     padding-top: 19px;
 padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
@@ -134,7 +126,6 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 </span>
 </ion-col>
   </ion-row>
-
   </div>
 
   <!-- User profile -->

@@ -1,9 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>onlineexam</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Online Exam</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+    <div class="examhead">
+        <h2 class="title">Examinations</h2>
+      </div>
+      <p *ngIf="Exam_List.length==0">No Record Found</p>
+      <ul>
+       <li class="examlist" *ngFor="let x of Exam_List">
+          <span *ngIf="x.ExamStatus!='C'" style="float: right;"><a class="button icon-right ion-chevron-right button-calm" (click)="goToExamStart(x)" style="border-radius: 22px;min-width: 100%;max-width: 100%;min-height: 40px;max-height: 40px;font-weight: 500;background-color: #33c739;">Start Test</a></span>
+
+			<span *ngIf="x.ExamStatus=='C'" style="float: right;"><a class="button button-calm" style="border-radius: 22px;min-width: 100%;max-width: 100%;min-height: 40px;max-height: 40px;font-weight: 500;background-color: #009688;">Completed</a></span>
+
+
+     		<h3 style="font-size: 18px;">{{x.TEST_CODE}}-{{x.TEST_DESCRIPTION}}</h3>
+     		<p>
+           <span style="font-size: 13px;font-weight: 500;">Total Marks : </span>
+           {{x.total_marks}}&nbsp;
+           <span style="font-size: 13px;font-weight: 500;">Duration :</span>
+             <span *ngIf='x.Exam_DURATION[0]!=00'>{{x.Exam_DURATION[0]}} hr&nbsp</span>
+             <span>{{x.Exam_DURATION[1]}} mins</span>
+
+      </p>
+       </li>
+      </ul>
 </ion-content>
+<ion-footer class="bar-royal">
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+ </ion-footer>

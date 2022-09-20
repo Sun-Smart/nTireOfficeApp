@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-applicanttab',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicanttabPage implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute:ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((res)=>{
+      console.log(res);
+  });
+  }
 
   ngOnInit() {
   }

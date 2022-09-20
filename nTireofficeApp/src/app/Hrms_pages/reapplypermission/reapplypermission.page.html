@@ -1,9 +1,97 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reapplypermission</ion-title>
+
+    <ion-title>Update Permission</ion-title>
+    <ion-icon name="close-circle" (click)="closemodel(1)" class="popupclose"></ion-icon>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
+                <ion-input style="background-color: #d4d1d1;
+                color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Branch</ion-label>
+                    <ion-input style="background-color: #d4d1d1;
+                    color: black;" class="form-control" disabled  [(ngModel)]="branch"></ion-input>
+                  </ion-col>
+                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Name</ion-label>
+                        <ion-input style="background-color: #d4d1d1;
+                        color: black;" class="form-control" disabled  [(ngModel)]="name"></ion-input>
+                      </ion-col>
+                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <ion-label>Contact Number</ion-label>
+                            <ion-input style="background-color: #d4d1d1;
+                            color: black;" class="form-control" disabled  [(ngModel)]="this.item.MobileNum"></ion-input>
+                          </ion-col>
+                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                              <ion-label>Request Reference</ion-label>
+                                <ion-input style="background-color: #d4d1d1;
+                                color: black;" class="form-control" disabled [(ngModel)]="reqID"></ion-input>
+                              </ion-col>
+                              <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                <ion-label>Requested Date</ion-label>
+                                  <ion-input class="form-control"  type="date"  [(ngModel)]="this.item.RDate"></ion-input>
+                                </ion-col>
+                              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                  <ion-label>Permission Date<span class="validatecolor">*</span></ion-label>
+                                    <ion-input class="form-control" type="date"  (change)="changedate()"  [(ngModel)]="this.item.PermDate"></ion-input>
+                                  </ion-col>
+                                  <!-- <ion-col *ngIf="BETWEEN!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                    <ion-label>Between</ion-label>
+                                      <ion-input type="date"   [disabled]="disabledvalue" class="form-control"  [(ngModel)]="BETWEEN"></ion-input>
+                                    </ion-col> -->
+                                    <!-- <ion-col *ngIf="Status!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>Status</ion-label>
+                                        <ion-input type="date"   [disabled]="disabledvalue" class="form-control"  [(ngModel)]="Status"></ion-input>
+                                      </ion-col> -->
+                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                      <ion-label>From Hours<span class="validatecolor">*</span></ion-label>
+                                        <ion-input type="time" class="form-control"   [(ngModel)]="this.item.FromHours"></ion-input>
+                                      </ion-col>
+                                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                          <ion-label>To Hours<span class="validatecolor">*</span></ion-label>
+                                            <ion-input type="time" class="form-control"   [(ngModel)]="this.item.ToHours"></ion-input>
+                                          </ion-col>
+                                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                                              <ion-label>Reason<span class="validatecolor">*</span></ion-label>
+                                                <ion-textarea class="form-control"     [(ngModel)]="this.item.Reason"></ion-textarea>
+                                                <span *ngIf="item.Reason!=undefined" class="customCounter">{{4000 - item.Reason.length}}</span>
 
+                                              </ion-col>
+
+                                              <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                                                <div  style="padding: 12px;display: flex;">
+                                                    <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+                                                    <ion-label>Release</ion-label>
+                                                </div>
+                                              </ion-col>
+                                              <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                                                  <div  style="padding: 12px;display: flex;">
+
+                                                       <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
+                                                  </div>
+                                                </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                            <ion-button    color="success"  (click)="submitPerm()">Reapply</ion-button>
+                            </ion-col>
+                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                                <ion-button color="danger"   (click)="permCancel()">Cancel</ion-button>
+                                </ion-col>
+                                <!-- <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+                                    <ion-button   [disabled]="disabledvalue" (click)="permissionList()">List</ion-button>
+                                    </ion-col> -->
+                            </ion-row>
+                      </ion-grid>
 </ion-content>
