@@ -269,11 +269,11 @@ export class AppComponent {
       url: '/dashboardCams',
       icon: 'home'
     },
-    // {
-    //     title: 'Asset Details',
-    //     url: '/asset-details',
-    //     icon: 'document-outline'
-    //   }
+    {
+        title: 'Asset Details',
+        url: '/asset-details',
+        icon: 'document-outline'
+      }
     ,{
       title: 'Pending Jobs',
       url: '/pending-jobs',
@@ -287,11 +287,11 @@ export class AppComponent {
       url: '/asset-reconcil',
       icon: 'book'
     },
-    {
-      title: 'Asset Details',
-      url: '/asset-details',
-      icon: 'document-outline'
-    },
+    // {
+    //   title: 'Asset Details',
+    //   url: '/asset-details',
+    //   icon: 'document-outline'
+    // },
     {
       title: 'User Request',
       url: '/user-request',
