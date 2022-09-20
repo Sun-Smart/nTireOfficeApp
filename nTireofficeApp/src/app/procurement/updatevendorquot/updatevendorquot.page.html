@@ -131,3 +131,17 @@
   <ion-button class="button button-small button-block  button-full button-balanced schedulebutn" style="min-width: 115px; background: #009689 !important;" type="button" (click)="updateVendorDetails(VendorQuot)" disabled="(VendorQuot.transportcharge==undefined||VendorQuot.transportcharge==''  || VendorQuot.unitprice=='' || VendorQuot.unitprice==undefined ||
   VendorQuot.discount==undefined||VendorQuot.discount=='' || VendorQuot.deliverydate=='' || VendorQuot.deliverydate==undefined )" class="button button-assertive button-small editbut">UPDATE</ion-button>
 </ion-content>
+
+<ion-footer>
+
+  <ion-row>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+    © SunSmart Global Inc
+  </ion-col>
+  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+   {{username}}
+ </ion-col>
+  </ion-row>
+
+
+ </ion-footer>
