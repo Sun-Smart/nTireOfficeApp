@@ -35,7 +35,6 @@ export class AppComponent {
   chkadmin: boolean;
   username: any = window.localStorage.getItem('TUM_USER_NAME');
 
-
   public salespages = [
 
     {
@@ -97,18 +96,18 @@ export class AppComponent {
     {
       title: 'My Clients',
       url: '/myclients',
-      icon: 'people-outline'
+      icon: 'contact'
     },
   ];
 
 
   public cobapages = [
 
-    // {
-    //   title: 'New Lead-Retail ',
-    //   url: '/coba-new-lead',
-    //   icon: 'person-add'
-    // },
+    {
+      title: 'New Lead-Retail ',
+      url: '/coba-new-lead',
+      icon: 'person-add'
+    },
     // {
     //   title: 'Add Corporate',
     //   url: '/addnewcorporate',
@@ -119,48 +118,48 @@ export class AppComponent {
     //   url: '/newleadcorporate',
     //   icon: 'person-add'
     // },
-    // {
-    //   title: 'Pending Leads',
-    //   url: '/cobapendingleads',
-    //   icon: 'hourglass'
-    // },
-    // {
-    //   title: 'Pending Clients',
-    //   url: '/convertedlead',
-    //   icon: 'pin'
-    // },
-    // {
-    //   title: 'Documents',
-    //   url: '/coba-document-verification',
-    //   icon: 'map'
-    // },
-    // {
-    //   title: 'Rejected',
-    //   url: '/rejecteddocument',
-    //   icon: 'today'
-    // },
-    // {
-    //   title: 'Pending Process',
-    //   url: '/cobapendingprocess',
-    //   icon: 'people'
-    // },
-    // {
-    //   title: 'Rejected Process',
-    //   url: '/coba-rejected-process',
-    //   icon: 'contrast'
-    // },
-    // {
-    //   title: 'Completed Process',
-    //   url: '/coba-completed-process',
-    //   icon: 'contact'
-    // },
+    {
+      title: 'Pending Leads',
+      url: '/cobapendingleads',
+      icon: 'hourglass'
+    },
+    {
+      title: 'Pending Clients',
+      url: '/convertedlead',
+      icon: 'pin'
+    },
+    {
+      title: 'Documents',
+      url: '/coba-document-verification',
+      icon: 'map'
+    },
+    {
+      title: 'Rejected',
+      url: '/rejecteddocument',
+      icon: 'today'
+    },
+    {
+      title: 'Pending Process',
+      url: '/cobapendingprocess',
+      icon: 'people'
+    },
+    {
+      title: 'Rejected Process',
+      url: '/coba-rejected-process',
+      icon: 'contrast'
+    },
+    {
+      title: 'Completed Process',
+      url: '/coba-completed-process',
+      icon: 'contact'
+    },
   ];
 
 
   public hrmsPages = [
     {
       title: 'Dashboard',
-      url: '/dashboard',
+      url: '/hrmsdashboard',
       icon: 'home'
     },
     {
@@ -170,80 +169,85 @@ export class AppComponent {
     },
     {
       title: 'Employees',
-      url: '/employees',
+      url: '/hrmsemployees',
       icon: 'person-add'
     },
     {
       title: 'Attendance',
-      url: '/attendance',
-      icon: 'reader-outline'
+      url: '/hrmsattendance',
+      icon: 'list-box'
     },
     {
       title: 'Processed Attendance',
-      url: '/processed-attendance',
+      url: '/hrmsprocessed-attendance',
       icon: 'checkmark-circle'
     },
     {
       title: 'Pay Slip',
-      url: '/payslip',
-      icon: 'receipt-outline'
+      url: '/hrmspayslip',
+      icon: 'list-box'
     },
     {
       title: 'COFF Request',
-      url: '/coff-request',
+      url: '/hrmscoff-request',
       icon: 'logo-usd'
     },
     {
       title: 'OD Request',
-      url: '/od-request',
-      icon:'git-pull-request'
+      url: '/hrmsod-request',
+      icon: 'briefcase'
     },
     {
       title: 'Claims',
-      url: '/claimsrequest',
+      url: '/hrmsclaimsrequest',
       icon: 'cash'
     },
     {
       title: 'Leave Request',
-      url: '/leave-request',
-      icon: 'reader-outline'
+      url: '/hrmsleave-request',
+      icon: 'jet'
     },
     {
       title: 'Permission Request',
-      url: '/permission-request',
+      url: '/hrmspermission-request',
       icon: 'create'
     },
     {
       title: 'Asset Request',
-      url: '/assetrequest',
+      url: '/hrmsassetrequest',
       icon: 'laptop'
     },
     {
       title: 'PushNotifiction Config',
-      url: '/attendance-notification',
+      url: '/hrmsattendance-notification',
       icon: 'notifications'
     },
     {
       title: 'Loan Request',
-      url: '/loan-request',
-      icon: 'cash-outline'
-
+      url: '/hrmsloan-request',
+      icon: 'cash'
+    },
+    {
+      title: 'Asset Returns',
+      url: '/hrmsassetreturn',
+      icon: 'laptop'
     },
     {
       title: 'Online Exam Portal',
-      url: '/onlineexamportal',
-      icon: 'pencil-outline'
+      url: '/hrmsonlineexamportal',
+      icon: 'paper'
     },
     {
       title: 'Applicant Detail',
-      url: '/applicantsummary',
+      url: '/hrmsapplicantsummary',
       icon: 'apps'
     },
     {
       title: 'Letter Request',
-      url: '/letterrequest',
+      url: '/hrmsletterrequest',
       icon: 'document'
     }
+
   ];
 
 
@@ -264,13 +268,12 @@ export class AppComponent {
       title: 'Dashboard',
       url: '/dashboardCams',
       icon: 'home'
-    },
-    // {
-    //     title: 'Asset Details',
-    //     url: '/asset-details',
-    //     icon: 'folder-open-outline'
-    //   }
-    {
+    },{
+        title: 'Asset Details',
+        url: '/asset-details',
+        icon: 'paper'
+      }
+    ,{
       title: 'Pending Jobs',
       url: '/pending-jobs',
       icon: 'hourglass'
@@ -285,7 +288,7 @@ export class AppComponent {
     },{
       title: 'Asset Details',
       url: '/asset-details',
-      icon: 'folder-open-outline'
+      icon: 'paper'
     },{
       title: 'User Request',
       url: '/user-request',
@@ -301,7 +304,7 @@ export class AppComponent {
     },{
       title: 'Asset Transfer',
       url: '/asset-transfer',
-      icon: 'document-outline'
+      icon: 'jet'
     },{
       title: 'Reconciliation Report',
       url: '/reconciliation-report',
@@ -428,9 +431,6 @@ export class AppComponent {
       url: '/view-invoice-status',
       icon: 'cash-outline'
     },
-
-
-
 
   ];
 
