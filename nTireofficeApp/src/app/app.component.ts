@@ -159,7 +159,7 @@ export class AppComponent {
   public hrmsPages = [
     {
       title: 'Dashboard',
-      url: '/hrmsdashboard',
+      url: '/dashboard',
       icon: 'home'
     },
     {
@@ -169,82 +169,82 @@ export class AppComponent {
     },
     {
       title: 'Employees',
-      url: '/hrmsemployees',
+      url: '/employees',
       icon: 'person-add'
     },
     {
       title: 'Attendance',
-      url: '/hrmsattendance',
-      icon: 'list-box'
+      url: '/attendance',
+      icon: 'reader-outline'
     },
     {
       title: 'Processed Attendance',
-      url: '/hrmsprocessed-attendance',
+      url: '/processed-attendance',
       icon: 'checkmark-circle'
     },
     {
       title: 'Pay Slip',
-      url: '/hrmspayslip',
-      icon: 'list-box'
+      url: '/payslip',
+      icon: 'receipt-outline'
     },
     {
       title: 'COFF Request',
-      url: '/hrmscoff-request',
+      url: '/coff-request',
       icon: 'logo-usd'
     },
     {
       title: 'OD Request',
-      url: '/hrmsod-request',
+      url: '/od-request',
       icon: 'briefcase'
     },
     {
       title: 'Claims',
-      url: '/hrmsclaimsrequest',
+      url: '/claimsrequest',
       icon: 'cash'
     },
     {
       title: 'Leave Request',
-      url: '/hrmsleave-request',
-      icon: 'jet'
+      url: '/leave-request',
+      icon: 'reader-outline'
     },
     {
       title: 'Permission Request',
-      url: '/hrmspermission-request',
+      url: '/permission-request',
       icon: 'create'
     },
     {
       title: 'Asset Request',
-      url: '/hrmsassetrequest',
+      url: '/assetrequest',
       icon: 'laptop'
     },
     {
       title: 'PushNotifiction Config',
-      url: '/hrmsattendance-notification',
+      url: '/attendance-notification',
       icon: 'notifications'
     },
     {
       title: 'Loan Request',
-      url: '/hrmsloan-request',
+      url: '/loan-request',
       icon: 'cash'
     },
     {
       title: 'Asset Returns',
-      url: '/hrmsassetreturn',
+      url: '/assetreturn',
       icon: 'laptop'
     },
     {
       title: 'Online Exam Portal',
-      url: '/hrmsonlineexamportal',
-      icon: 'paper'
+      url: '/onlineexamportal',
+      icon: 'receipt-outline'
     },
     {
       title: 'Applicant Detail',
-      url: '/hrmsapplicantsummary',
+      url: '/applicantsummary',
       icon: 'apps'
     },
     {
       title: 'Letter Request',
-      url: '/hrmsletterrequest',
+      url: '/letterrequest',
       icon: 'document'
     }
 
