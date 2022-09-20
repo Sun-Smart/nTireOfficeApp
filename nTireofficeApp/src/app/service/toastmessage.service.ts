@@ -10,7 +10,7 @@ export class ToastmessageService {
   async presentAlert1(heading,tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: ['OK']
     });
