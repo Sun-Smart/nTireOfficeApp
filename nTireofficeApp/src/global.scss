@@ -721,7 +721,8 @@ ion-searchbar {
 .alert-button-group {
   color: #fff;
   // background-color: red !important;
-  background: linear-gradient(to left, #32CD32 50%, #ff0000ff 50%) !important;
+  // background: linear-gradient(to left, #32CD32 50%, #ff0000ff 50%) !important;
+  background: linear-gradient(to left, green 50%, red 50%) !important;
 }
 
 .alert-button.sc-ion-alert-md {
@@ -1052,6 +1053,7 @@ ion-card {
       height: auto;
       background-color: #ffff !important;
       color: #000 !important;
+      font-size: 14px;
     }
   }
 }

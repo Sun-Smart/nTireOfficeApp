@@ -28,10 +28,10 @@ const routes: Routes = [
   //   path: 'invoiceupload',
   //   loadChildren: () => import('./procurement/invoiceupload/invoiceupload.module').then( m => m.InvoiceuploadPageModule)
   // },
-  // {
-  //   path: 'updatevendoritem',
-  //   loadChildren: () => import('./procurement/updatevendoritem/updatevendoritem.module').then( m => m.UpdatevendoritemPageModule)
-  // },
+  {
+    path: 'updatevendoritem',
+    loadChildren: () => import('./procurement/updatevendoritem/updatevendoritem.module').then( m => m.UpdatevendoritemPageModule)
+  },
   {
     path: 'updatevendorquot',
     loadChildren: () => import('./procurement/updatevendorquot/updatevendorquot.module').then( m => m.UpdatevendorquotPageModule)
@@ -40,10 +40,10 @@ const routes: Routes = [
     path: 'vendormaster',
     loadChildren: () => import('./procurement/vendormaster/vendormaster.module').then( m => m.VendormasterPageModule)
   },
-  // {
-  //   path: 'vendormaster-model',
-  //   loadChildren: () => import('./procurement/vendormaster-model/vendormaster-model.module').then( m => m.VendormasterModelPageModule)
-  // },
+  {
+    path: 'vendormaster-model',
+    loadChildren: () => import('./procurement/vendormaster-model/vendormaster-model.module').then( m => m.VendormasterModelPageModule)
+  },
   {
     path: 'vendorpayments',
     loadChildren: () => import('./procurement/vendorpayments/vendorpayments.module').then( m => m.VendorpaymentsPageModule)
