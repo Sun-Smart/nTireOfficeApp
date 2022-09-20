@@ -96,12 +96,12 @@ export class VendorpoconfirmPage implements OnInit {
   searchpo(branch_id, ponum, vendor_code, postatus, fromdate, todate){
   debugger
     this.loading = true;
-    if (fromdate === undefined) {
-      var fromDate = '';
-    }
-    if (todate == undefined) {
-     var toDate = '';
-    }
+    // if (fromdate == undefined) {
+    //   var fromDate = '';
+    // }
+    // if (todate == undefined) {
+    //  var toDate = '';
+    // }
     // fromDate = $filter('date')(fromdate, 'dd/MM/yyyy');
     // $scope.toDate = $filter('date')(todate, 'dd/MM/yyyy');
 

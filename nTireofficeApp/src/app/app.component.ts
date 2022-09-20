@@ -315,14 +315,15 @@ export class AppComponent {
   ];
 
   public procurement= [
-    // {
-    //   title: 'Update Vendor Item',
-    //   url: '/updatevendoritem',
-    //   icon: 'pricetag'
-    // },
+    {
+      title: 'Update Vendor Item',
+      url: '/updatevendoritem',
+      icon: 'pricetag'
+    },
     {
       title: 'Update Vendor Quotation',
       url: '/updatevendorquot',
+
       icon: 'create'
     },
     {
@@ -355,6 +356,82 @@ export class AppComponent {
       url: '/vendorsitems',
       icon: 'flame'
     },
+    // new
+    {
+      title: 'Purchase Request',
+      url: '/purchase-request',
+      icon: 'pricetag-sharp'
+    },
+    {
+      title: 'PRS Status',
+      url: '/prsstatus',
+      icon: 'stats-chart-sharp'
+
+    },
+    {
+      title: 'RFP',
+      url: '/rfp',
+      icon: 'logo-steam'
+    },
+    {
+      title: 'RFQ',
+      url: '/rfq',
+      icon: 'logo-stencil'
+    },
+    {
+      title: 'Workflow Approval',
+      url: '/workflow-approval',
+      icon: 'code-working-sharp'
+    },
+    {
+      title: 'Material Request',
+      url: '/material-request',
+      icon: 'git-network-sharp'
+    },
+    {
+      title: 'Material Issue',
+      url: '/material-issue',
+      icon: 'bag-handle-outline'
+    },
+    {
+      title: 'Physcial Inventory',
+      url: '/physical-inventory',
+      icon: 'card-sharp'
+    },
+    {
+      title: 'PI Mismatch',
+      url: '/pi-mismatch',
+      icon: 'shield-sharp'
+    },
+    {
+      title: 'Inter Location Transfer',
+      url: '/inter-location-transfer',
+      icon: 'compass-sharp'
+    },
+    {
+      title: 'Pending Quotation',
+      url: '/vendorpending-quotations',
+      icon: 'bag-handle-outline'
+    },
+    {
+      title: 'Upload Invoice',
+      url: '/upload-invoice',
+      icon: 'cash-outline'
+    },
+    {
+      title: 'View PO PDF File',
+      url: '/view-popdffile',
+      icon: 'eye-sharp'
+    },
+    {
+      title: 'View Invoice Status',
+      url: '/view-invoice-status',
+      icon: 'cash-outline'
+    },
+
+
+
+
   ];
 
   public Dmspage =[

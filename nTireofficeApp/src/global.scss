@@ -1053,6 +1053,7 @@ ion-card {
       height: auto;
       background-color: #ffff !important;
       color: #000 !important;
+      font-size: 14px;
     }
   }
 }
@@ -1072,4 +1073,10 @@ ion-card {
   color: white !important;
   text-align: center;
   padding: 0px;
+}
+
+
+.textareaField{
+  background-color: #fff!important;
+  display:inline-block;
 }
