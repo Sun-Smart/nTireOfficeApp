@@ -1,9 +1,87 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reapplycoff</ion-title>
+    <ion-title>Update COFF</ion-title>
+    <ion-icon name="close-circle" (click)="closemodel()" class="popupclose"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-row>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label>Company Name</ion-label>
+            <ion-input style="background-color: #d4d1d1;
+            color: black;"  class="form-control"   [(ngModel)]="company"></ion-input>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-label>Branch</ion-label>
+              <ion-input style="background-color: #d4d1d1;
+              color: black;"  class="form-control"   [(ngModel)]="branch"></ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-label>Name</ion-label>
+                <ion-input style="background-color: #d4d1d1;
+                color: black;"  class="form-control"   [(ngModel)]="name"></ion-input>
+            </ion-col>
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <ion-label>ContactPhone</ion-label>
+                  <ion-input style="background-color: #d4d1d1;
+                  color: black;"  class="form-control"   [(ngModel)]="contactPhone"></ion-input>
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                  <ion-label>Request Ref</ion-label>
+                    <ion-input style="background-color: #d4d1d1;
+                    color: black;"  class="form-control"   [(ngModel)]="requestRef"></ion-input>
+                </ion-col>
+                <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                    <ion-label>COFF Date</ion-label>
+                      <ion-input  class="form-control" type="date"  [(ngModel)]="coffDateFrom" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"></ion-input>
+                  </ion-col>
+                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                      <ion-label>Working Date</ion-label>
+                        <ion-input type="date" class="form-control"  min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"  max="{{coffDateFrom | date: 'yyyy-MM-dd'}}" [(ngModel)]="coffDateTo"></ion-input>
+                    </ion-col>
+                    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                        <ion-label>COFF Type</ion-label>
+                        <ion-select class="form-control" [(ngModel)]="coffType" required="required">
+                            <ion-select-option value>&lt;&lt; Select &gt;&gt;</ion-select-option>
+                            <ion-select-option value="E">Extra</ion-select-option>
+                            <ion-select-option value="C">COFF</ion-select-option>
+                          </ion-select>
 
+                      </ion-col>
+                      <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                          <div class="form-control" style="padding: 12px;display: flex;">
+                              <ion-checkbox color="primary"  [(ngModel)]="release" [value]="false"></ion-checkbox>
+                              <ion-label style="font-weight:normal;padding-left: 20px;padding-top: 3px;">Release</ion-label>
+                          </div>
+                        </ion-col> -->
+                        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                            <ion-label>Reason</ion-label>
+                            <ion-textarea  class="form-control"   [(ngModel)]="reason"></ion-textarea>
+                            <span *ngIf="reason!=undefined" class="customCounter">{{200 - reason.length}}</span>
+                          </ion-col>
+                          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+                            <div  style="padding: 12px;display: flex;">
+                                <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+                                <ion-label>Release</ion-label>
+                            </div>
+                          </ion-col>
+                          <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+                              <div  style="padding: 12px;display: flex;">
+
+                                   <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
+                              </div>
+                            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-button color='success' [disabled]="coffDateFrom==undefined || coffDateTo==undefined || coffDateTo=='' || coffType=='' || reason==undefined" (click)="reapply()">REAPPLY </ion-button>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+            <ion-button color='danger' (click)='cancelCoff()'>CANCEL</ion-button>
+      </ion-col>
+          </ion-row>
 </ion-content>
+

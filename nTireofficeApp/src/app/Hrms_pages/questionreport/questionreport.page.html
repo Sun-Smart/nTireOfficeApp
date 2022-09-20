@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>questionreport</ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Question Report</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+<ion-card>
+  <ion-row *ngIf="reportData!=undefined">
+    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-item style="margin: -5px;width: 103%;">
 
+          {{reportData.TEST_CODE}}-{{reportData.TEST_DESC}}
+      </ion-item>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <table>
+            <thead>
+          <tr>
+              <th>Q.No.</th>
+              <th>Status</th>
+
+              <th>Marks</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of QusetionAnsDetails;let i=index">
+              <td>{{i+1}}</td>
+              <td>
+                <span *ngIf="data.correct_answer=='Y'"><ion-icon name="checkmark" style="color:green;"></ion-icon></span>
+                <span *ngIf="data.correct_answer=='N'"><ion-icon name="close" style="color:red;"></ion-icon></span></td>
+              <td>{{data.TEST_MARK}}</td>
+          </tr>
+        </tbody>
+        </table>
+ </ion-col>
+  </ion-row>
+</ion-card>
 </ion-content>

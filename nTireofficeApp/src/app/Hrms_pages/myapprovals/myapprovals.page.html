@@ -1,9 +1,1022 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>myapprovals</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>My Approvals</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid style="background: #00822726; padding: 10px;margin: 10px;border-radius: 8px;">
+  <ion-row>
+    <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
+      <ion-label>Req.Type<span class="validatecolor">*</span></ion-label>
 
+      <ion-select [(ngModel)]="reqType" class="form-control">
+        <ion-select-option value="" selected>&lt;&lt; Select &gt;&gt;</ion-select-option>
+        <ion-select-option *ngFor="let req of requests; let i = index" [value]="req.WF_CONFIG_ID">{{req.WF_DESC}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="status" class="form-control" [interfaceOptions]="customPopoverOptions">
+        <ion-select-option value=""> &lt;&lt; Select &gt;&gt; </ion-select-option>
+        <ion-select-option value="P">Pending</ion-select-option>
+        <ion-select-option value="U">UnderProcess</ion-select-option>
+        <ion-select-option value="A">Approved</ion-select-option>
+        <ion-select-option value="S">Stopped</ion-select-option>
+        <ion-select-option value="D">Denied</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
+      <ion-label>From (Date)</ion-label>
+      <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
+    </ion-col>
+    <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
+      <ion-label>To (Date)</ion-label>
+      <ion-input type="date" class="form-control" [(ngModel)]="todate"></ion-input>
+    </ion-col>
+    <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
+      <ion-label>Request Number</ion-label>
+      <ion-input type="text" class="form-control" [(ngModel)]="reqNum" (keyup)="validRequestNumber(reqNum)"></ion-input>
+      <span class="input-label {{show_color}}"
+        *ngIf='reqNum==""||reqNum==null||reqNum.requestno==undefined'>{{show_request}}</span>
+
+    </ion-col>
+    <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
+      <ion-label>Request By</ion-label>
+      <ion-input type="text" class="form-control" [(ngModel)]="reqby"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-button size="small" style="margin: 10px auto;width:100px;--background: green;" (click)="myApprovals()"
+      [disabled]="reqType==''">
+      Search
+    </ion-button>
+  </ion-row>
+  </ion-grid>
+  <ion-card *ngFor="let items of approve_result1; let i = index">
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
+            {{items.RequestedBy}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="text-align:right;">
+            <a (click)="pathRedirect(items)" *ngIf="reqType==4"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect4(items)" *ngIf="reqType==26"><u>#{{items.workflow_no}}</u></a>
+            <!-- [routerLink]="['/hrmsod-request',items]" -->
+            <a  (click)="pathRedirect5(items)"  *ngIf="reqType==15"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect6(items)" *ngIf="reqType==11"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect7(items)" *ngIf="reqType==223"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect8(items)" *ngIf="reqType==192"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect9(items)" *ngIf="reqType==172"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect3(items)" *ngIf="reqType==7"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect10(items)"
+              *ngIf="reqType!=4 && reqType!=11 && reqType!=172 && reqType!=192 && reqType!=15 && reqType!=223 && reqType!=7 && reqType!=172 && reqType!=26 && reqType!=9 && reqType!=216 && reqType==167"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect1(items)" *ngIf="reqType==9"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect1(items)" *ngIf="reqType==253"><u>#{{items.workflow_no}}</u></a>
+            <a (click)="pathRedirect2(items)" *ngIf="reqType==216"><u>#{{items.workflow_no}}</u></a>
+            <!-- #{{items.workflow_no}} -->
+
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid style="padding: 0px;" *ngIf="configid!=reqTypeid">
+
+        <ion-row>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Request Refrence
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.RequestRef}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Requested Date
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.RequestDate}}
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Request Type
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Reqtype}}
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Loan Scheme
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Schemename}}
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Max Installment
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Maxinstallments}}
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Monthly Deduction
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==167" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Monthlydeduction}}
+          </ion-col>
+
+
+
+
+          <ion-col *ngIf="reqTypeid==253" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Category
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==253" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Category}}
+          </ion-col>
+
+
+          <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10"></ion-col>
+          <ion-col *ngIf="reqTypeid==26" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmore(i,items)">
+              <!-- <a (click)="showmore(i,items.CALL_ID)"> -->
+
+              <i id="imageidvals{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+          <!--asset transfer-->
+          <div id="dividvals{{0+i}}" style="display:none;" *ngIf="reqTypeid==26" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Transfer Type
+            </ion-col>
+            <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.TRANSFERTYPE"> {{items.TRANSFERTYPE}}</span>
+              <span *ngIf="!items.TRANSFERTYPE">--</span>
+            </ion-col> -->
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items['Transfer Type']"> {{items['Transfer Type']}}</span>
+              <span *ngIf="!items['Transfer Type']">--</span>
+            </ion-col>
+            <ion-col *ngIf="items.FRMBRANCH" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              From Branch
+            </ion-col>
+            <ion-col *ngIf="items.FRMBRANCH" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.FRMBRANCH}}</span>
+
+            </ion-col>
+            <ion-col *ngIf="items.TOBRANCH" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              To Branch
+            </ion-col>
+            <ion-col *ngIf="items.TOBRANCH" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.TOBRANCH}}</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Asset Code
+            </ion-col>
+            <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.ASSETCODEASSETDESCRIPTION"> {{items.ASSETCODEASSETDESCRIPTION}}</span>
+              <span *ngIf="!items.ASSETCODEASSETDESCRIPTION">--</span>
+            </ion-col> -->
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.Assetcode"> {{items.Assetcode}}</span>
+              <span *ngIf="!items.Assetcode">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Owner
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.RequestedBy}}</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Department
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.departmentreqdd}}</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Remarks
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+              <span *ngIf="items.assetremarkapp"> {{items.assetremarkapp}}</span>
+              <span *ngIf="!items.assetremarkapp">--</span>
+            </ion-col>
+            <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10"></ion-col>
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </ion-row>
+          </div>
+          <!--asset transfer end-->
+          <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10"></ion-col>
+          <ion-col *ngIf="reqTypeid==172" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistassests(i,items)">
+              <!-- <a (click)="showmore(i,items.CALL_ID)"> -->
+
+              <i id="iamgeidvalassests{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+          <!-- assests service -->
+          <div id="dividvalsassests{{0+i}}" *ngIf="reqTypeid==172" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-row>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Asset Code
+            </ion-col>
+            <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.ASSETCODEASSETDESCRIPTION"> {{items.ASSETCODEASSETDESCRIPTION}}</span>
+              <span *ngIf="!items.ASSETCODEASSETDESCRIPTION">--</span>
+            </ion-col> -->
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.Assetcodeassetdescription"> {{items.Assetcodeassetdescription}}</span>
+              <span *ngIf="!items.Assetcodeassetdescription">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Vendor Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.Vendorcode}}</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Date Of Service
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.Dateofservice}}</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Expected Date Of Delivery
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.Expecteddateofdelivery}}</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Expected Expense
+            </ion-col>
+            <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.EXPENSE"> {{items.EXPENSE}}</span>
+              <span *ngIf="!items.EXPENSE"> --</span>
+            </ion-col> -->
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.Expense"> {{items.Expense}}</span>
+              <span *ngIf="!items.Expense"> --</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Replacement Asset Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.replaceassetcode"> {{items.replaceassetcode}}</span>
+              <span *ngIf="!items.replaceassetcode"> --</span>
+
+            </ion-col>
+            <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10"></ion-col>
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showassestsless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </ion-row>
+          </div>
+          <!-- assests service end -->
+
+          <!--purchase order-->
+          <ion-col *ngIf="reqType==20" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==20" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              PO Number
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.ponumber"> {{items.ponumber}}</span>
+              <span *ngIf="!items.ponumber">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              PO Date
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.podate"> {{items.podate | date:'dd-MM-yyyy'}}</span>
+              <span *ngIf="!items.podate">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              PO Amount
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.poamount"> {{items.poamount}}</span>
+              <span *ngIf="!items.poamount">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Vendor Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.povendorcode}}</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Vendor Name
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.povendorname"> {{items.povendorname}}</span>
+              <span *ngIf="!items.povendorname"> --</span>
+            </ion-col>
+
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+          <!--purchase order end-->
+
+          <ion-col *ngIf="reqType==11" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            PRS Code
+          </ion-col>
+          <ion-col *ngIf="reqType==11" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span *ngIf="items['PRS CODE']">{{items['PRS CODE']}}</span>
+            <span *ngIf="!items['PRS CODE']">--</span>
+          </ion-col>
+          <!--supplier registration-->
+          <ion-col *ngIf="reqType==155" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==155" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Vendor Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.splrvendorcode">{{items.splrvendorcode}}</span>
+              <span *ngIf="!items.splrvendorcode">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Supplier Name
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.splrname"> {{items.splrname}}</span>
+              <span *ngIf="!items.splrname">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Vendor Category
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.splrvendorcat"> {{items.splrvendorcat}}</span>
+              <span *ngIf="!items.splrvendorcat">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Company Category
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span> {{items.splrcmpycat}}</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Company Type
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.splrcmpytype"> {{items.splrcmpytype}}</span>
+              <span *ngIf="!items.splrcmpytype"> --</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Date Of Incorporation
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.splrdate">{{items.splrdate | date:'dd-MM-yyyy'}}</span>
+              <span *ngIf="!items.splrdate"> --</span>
+            </ion-col>
+
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+          <!--supplier registration end-->
+
+          <!--ERP MRS-->
+          <ion-col *ngIf="reqType==223" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==223" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              MRS Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.MRS CODE">{{items.MRS CODE}</span>
+          <span *ngIf="!items.MRS CODE">--</span>
+          </ion-col>
+          <ion-col   size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Requested By
+          </ion-col>
+          <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.RequestedBy">  {{items.RequestedBy}}</span>
+              <span *ngIf="!items.RequestedBy">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Order Priority
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.mrspriority"> {{items.mrspriority}}</span>
+              <span *ngIf="!items.mrspriority">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Cost Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.mrscostcode"> {{items.mrscostcode}}</span>
+              <span *ngIf="!items.mrscostcode">--</span>
+            </ion-col>
+
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+
+          <!--ERP MRS end-->
+
+          <!--invoice-->
+          <ion-col *ngIf="reqType==239" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==239" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Invoice Number
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.invno">{{items.invno}}</span>
+              <span *ngIf="!items.invno">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Invoice Date
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.invdte"> {{items.invdte | date:'dd-MM-yyyy'}}</span>
+              <span *ngIf="!items.RequestedBy">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Invoice Amount
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.invamnt"> {{items.invamnt}}</span>
+              <span *ngIf="!items.invamnt">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Upload Document
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.invupload"> {{items.invupload}}</span>
+              <span *ngIf="!items.invupload">--</span>
+            </ion-col>
+
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+          <!--invoice end-->
+
+          <!-- ilt -->
+          <ion-col *ngIf="reqType==195" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==195" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Transfer ID
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.iltid">{{items.iltid}}</span>
+              <span *ngIf="!items.iltid">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Transfer Reference
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.iltref"> {{items.iltref | date:'dd-MM-yyyy'}}</span>
+              <span *ngIf="!items.iltref">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Transfer Date
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.iltdte"> {{items.iltdte}}</span>
+              <span *ngIf="!items.iltdte">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Mode
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.iltmode=='IN'">Inter</span>
+              <span *ngIf="items.iltmode=='IR'">Intra</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              To Branch
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.ilttobranch=='IN'">{{items.ilttobranch}}</span>
+              <span *ngIf="items.ilttobranch=='IR'">--</span>
+            </ion-col>
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+          <!-- ilt -->
+
+          <!-- budget -->
+          <ion-col *ngIf="reqType==238" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==238" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Final Year
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.budfinyear">{{items.budfinyear}}</span>
+              <span *ngIf="!items.budfinyear">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Zone
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.budzone"> {{items.budzone}}</span>
+              <span *ngIf="!items.budzone">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Item Category
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.buditemscat"> {{items.buditemscat}}</span>
+              <span *ngIf="!items.buditemscat">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Budget Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.budcode">{{items.budcode}}</span>
+              <span *ngIf="!items.budcode">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Budget Amount
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.budamount">{{items.budamount}}</span>
+              <span *ngIf="items.budamount">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Maximum Deviation
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.buddeviation">{{items.buddeviation}}</span>
+              <span *ngIf="items.buddeviation">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Unused Budget To
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.budunused">{{items.budunused}}</span>
+              <span *ngIf="items.budunused">--</span>
+            </ion-col>
+
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+          <!-- budget end -->
+
+          <!-- price list -->
+          <ion-col *ngIf="reqType==127" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmorelistpurchase(i,items)">
+
+              <i id="iamgeidvalpurchase{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+
+
+          <div id="dividvalspurchase{{0+i}}" *ngIf="reqType==127" style="display:none;" size-sm="2" size="2" size-md="2"
+            size-lg="2" size-xl="2">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              Branch
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.rqbranch">{{items.rqbranch}}</span>
+              <span *ngIf="!items.rqbranch">--</span>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              RFQ ID
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.rqid"> {{items.rqid}}</span>
+              <span *ngIf="!items.rqid">--</span>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              RFQ Code
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <span *ngIf="items.rqcode"> {{items.rqcode}}</span>
+              <span *ngIf="!items.rqcode">--</span>
+            </ion-col>
+
+
+            <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+              <a (click)="showpurchaseless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                  style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+            </ion-col>
+          </div>
+
+          <!-- price list end -->
+
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Asset Code
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.ASSETCODE}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            AssetCategory
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.ASSETCATEGORY}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            AssetSubCategory
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.ASSETSUBCATEGORY}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Reason
+          </ion-col>
+          <ion-col *ngIf="reqType==9" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.REASON}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==4" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            COFF Work Date
+          </ion-col>
+          <ion-col *ngIf="reqType==4" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Coffworkdate}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==4" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            COFF Request Ref
+          </ion-col>
+          <ion-col *ngIf="reqType==4" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Txnreference}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==4" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            COFF Date
+          </ion-col>
+          <ion-col *ngIf="reqType==4" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Coffdate}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            From Date
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Leavefrmdate}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==15" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            From Date
+          </ion-col>
+          <ion-col *ngIf="reqType==15" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Odfrmdate}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            To Date
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Leavetodate}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            No of Days
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Nodays}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==15" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            To Date
+          </ion-col>
+          <ion-col *ngIf="reqType==15" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Odtodate}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Leave Type
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Leavetype}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Balance
+          </ion-col>
+          <ion-col *ngIf="reqType==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span>{{items.Leavebalance}}</span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==7" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Permission Date
+          </ion-col>
+          <ion-col *ngIf="reqType==7" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Permissiondate}}
+
+          </ion-col>
+          <ion-col *ngIf="reqType==7" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Permission Taken
+          </ion-col>
+          <ion-col *ngIf="reqType==7" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Permissionstaken}}
+
+          </ion-col>
+          <ion-col *ngIf="reqType==7 ||reqTypeid==15" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Between
+          </ion-col>
+          <ion-col *ngIf="reqType==7 ||reqTypeid==15" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Between}}
+
+          </ion-col>
+          <ion-col *ngIf="reqType==234" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Announcement Subject
+          </ion-col>
+          <ion-col *ngIf="reqType==234" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span *ngIf="items.ANNOUNCEMENT_SUBJECT" [innerHtml]="items.ANNOUNCEMENT_SUBJECT"></span>
+
+          </ion-col>
+          <ion-col *ngIf="reqType==234" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Announcement Description
+          </ion-col>
+          <ion-col *ngIf="reqType==234" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span *ngIf="items.ANNOUNCEMENT_DESC" [innerHtml]="items.ANNOUNCEMENT_DESC"></span>
+
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==7||reqTypeid==4||reqTypeid==15" size-sm="6" size="6" size-md="6" size-lg="6"
+            size-xl="6">
+            Reason
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==7||reqTypeid==4||reqTypeid==15" size-sm="6" size="6" size-md="6" size-lg="6"
+            size-xl="6">
+            {{items.Reason}}
+
+          </ion-col>
+          <ion-col *ngIf="LEAVEREASON==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Reason
+          </ion-col>
+          <ion-col *ngIf="LEAVEREASON==216" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.REASON}}>
+
+          </ion-col>
+          <ion-col *ngIf="LEAVEREASON==8" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Reason
+          </ion-col>
+          <ion-col *ngIf="LEAVEREASON==8" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            I am too sick. I cant come . Please Give me Leave Immediately
+
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Status
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Status}}
+          </ion-col>
+          <ion-col *ngIf="LEAVEREASON==8" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Leave Bal
+          </ion-col>
+          <ion-col *ngIf="LEAVEREASON==8" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{2}}
+          </ion-col>
+          <ion-col *ngIf="reqTypeid==23" style="display:block" size-sm="12" size="12" size-md="12" size-lg="12"
+            size-xl="12">
+
+            <ion-row>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button color="success"
+                  style="font-size: 13px;letter-spacing: 1px;height:30px!important;line-height: 15px;"
+                  class="ion-button ion-button-assertive ion-button-small schedulebutn"
+                  (click)="openmrsitems(items.workflow_no)" [disabled]="">view</ion-button>
+
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button color="success"
+                  style="font-size: 13px;letter-spacing: 1px;height:30px!important;line-height: 15px;"
+                  (click)="openModal(1,items)" (click)="show = 1"
+                  class="ion-button ion-button-balanced ion-button-small schedulebutn"
+                  [disabled]="items.Status=='Approved'">Approve</ion-button>
+
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button color="danger"
+                  style="font-size: 13px;letter-spacing: 1px;height:30px!important;line-height: 15px;"
+                  class="ion-button ion-button-assertive ion-button-small schedulebutn" (click)="openDenyModal(items)"
+                  [disabled]="items.Status=='Denied'">Deny</ion-button>
+
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col *ngIf="reqTypeid!=23" style="display:block" size-sm="12" size="12" size-md="12" size-lg="12"
+            size-xl="12">
+
+            <ion-row>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button color="success"
+                  style="font-size: 13px;letter-spacing: 1px;height:30px!important;line-height: 15px;"
+                  (click)="openModal(1,items)" (click)="show = 1"
+                  class="ion-button ion-button-balanced ion-button-small schedulebutn"
+                  [disabled]="items.Status=='Approved'||items.Status=='Denied'">Approve</ion-button>
+
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button color="danger"
+                  style="font-size: 13px;letter-spacing: 1px;height:30px!important;line-height: 15px;"
+                  class="ion-button ion-button-assertive ion-button-small schedulebutn" (click)="openDenyModal(items)"
+                  [disabled]="items.Status=='Denied'||items.Status=='Approved'">Deny</ion-button>
+
+              </ion-col>
+
+            </ion-row>
+
+
+          </ion-col>
+
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+
+
+
+  </ion-card>
+
+
+  <ion-card *ngFor="let items of approve_result1; let i = index">
+    <ion-grid style="padding: 0px;" *ngIf="configid==reqTypeid">
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+          <b>Workflow #</b> : {{items.workflow_no}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+          <b>Requested On</b> : {{items.RequestDate}} / {{items.TUM_USER_ID}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+          <b>Requested by</b> : {{items.RequestedBy}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+          <b>TAT : </b> {{items.WorkFlowCompleteDate}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+          <b>Status : </b> {{items.Status}}
+
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+
+          {{ion-button_valid}}
+
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-row>
+            <ion-col *ngIf="reqTypeid==configid" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-button style="min-width: 80px;margin-left: -15px;" type="ion-button" style="float:right;margin:5px;"
+                (click)="viewdocument(items)"
+                class="ion-button ion-button-outline ion-button-assertive ion-button-small ion-button-clear">View Screen
+              </ion-button>
+
+            </ion-col>
+            <ion-col *ngIf="reqTypeid!=configid" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-button style="min-width: 80px;" type="ion-button" style="float:right;margin:5px;"
+                (click)="openModal(2,items)"
+                class="ion-button ion-button-outline ion-button-assertive ion-button-small ion-button-clear">View Screen
+              </ion-button>
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-button style="min-width: 80px;margin-left: -10px;" type="ion-button" (click)="openModal(1,items)"
+                (click)="show = 1" style="float:right;margin:5px;"
+                class="ion-button ion-button-assertive ion-button-small" [disabled]="items.Status=='Approved'">Approve
+              </ion-button>
+
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-button style="min-width: 80px;margin-left: -5px;" type="ion-button" style="float:right;margin:5px;"
+                class="ion-button ion-button-assertive ion-button-assertive ion-button-small "
+                (click)="openDenyModal(items)" [disabled]="items.Status=='Denied'">Deny</ion-button>
+
+            </ion-col>
+            <ion-col *ngIf="reqTypeid==157" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-button style="min-width: 80px;margin-left: -1px;;" type="ion-button" style="float:right;margin:5px;"
+                class="ion-button ion-button-assertive ion-button-assertive ion-button-small "
+                (click)="viewhistroy(items)" [disabled]="items.Status=='Denied'">view History</ion-button>
+
+            </ion-col>
+
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+
+
+  <ion-row style="text-align:center" *ngIf="approve_result1==0 || approve_result1==''">
+    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <p>{{approval_search}}</p>
+    </ion-col>
+  </ion-row>
 </ion-content>
+<ion-footer class="bar-royal">
+
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>
