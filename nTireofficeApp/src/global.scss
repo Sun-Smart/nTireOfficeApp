@@ -85,7 +85,6 @@ ion-textarea {
 
 .profileicon {
   position: relative;
-  top: -7px;
 }
 
 ion-segment ion-label {
@@ -712,7 +711,7 @@ ion-searchbar {
 }
 
 .sc-ion-alert-md-h {
-  --min-width: 350px !important;
+  // --min-width: 350px !important;
 }
 
 .alert-button-group {
@@ -972,11 +971,11 @@ ion-menu-button {
 
 .addcnt_close {
   background-color: red !important;
-  font-size: 27px;
-  position: relative;
+  font-size: 25px;
+  // position: relative;
   border-radius: 50%;
-  top: -20px;
-  right: -37%;
+  // top: -20px;
+  // right: -37%;
 }
 
 .buttonCss {
@@ -1008,6 +1007,7 @@ ion-menu-button {
 
 .ion-color-success {
   --ion-color-base: #32CD32 !important;
+  opacity: 1;
 
 }
 
