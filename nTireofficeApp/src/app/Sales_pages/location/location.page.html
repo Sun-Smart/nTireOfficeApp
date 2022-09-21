@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <select style="width:100%" [(ngModel)]="branch" class="form-control">
+          <option [ngValue]="Select">Please Select Branch</option>
+          <option *ngFor="let branchlist of branchlist1; let i = index" [ngValue]="branchlist">
+            {{branchlist.BRANCH_DESC}}</option>
+        </select>
+
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <select style="width:100%" id="desc" [(ngModel)]="role" class="form-control">
+          <option [ngValue]="Select">Please Select Role</option>
+          <option *ngFor="let user of usertype1; let i = index" [ngValue]="user.TYPE_ID">{{user.DESCRIPTION}}</option>
+        </select>
+      </ion-col>
+      <ion-col style="text-align:center" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <button (click)="Getlocation(branch,role)" class="btn-info" size="full" style="background-color: rgb(2 154 222);width:100% !important;font-size: 17px;height: 2.8em;">Get Locations</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="showmap">
+    <div class="" id="showdivs" style="margin: 0 auto;
+              margin-left: 7%">
+      <div class="row">
+        <div id="mapshowimageloc" style="width:100%;height:400px;">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br /><br /><br />
+  <p style="font-weight: bold;margin-top:10px;text-align:center" *ngIf="nomap"><span>{{NoCustomer}}</span></p>
+
+</ion-content>

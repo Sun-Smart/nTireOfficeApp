@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { Routes, RouterModule } from '@angular/router';
-import { UpdateleadsPageRoutingModule } from './updateleads-routing.module';
 
-import { UpdateleadsPage } from './updateleads.page';
+import { ImageviewPageRoutingModule } from './imageview-routing.module';
+import { Routes, RouterModule } from '@angular/router';
+import { ImageviewPage } from './imageview.page';
 const routes: Routes = [
   {
     path: '',
-    component: UpdateleadsPage
+    component: ImageviewPage
   }
 ];
 @NgModule({
@@ -18,9 +18,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateleadsPageRoutingModule,
+    ImageviewPageRoutingModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [UpdateleadsPage]
+  declarations: [ImageviewPage]
 })
-export class UpdateleadsPageModule {}
+export class ImageviewPageModule {}
