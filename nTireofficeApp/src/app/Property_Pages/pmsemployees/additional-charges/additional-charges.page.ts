@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-additional-charges',
   templateUrl: './additional-charges.page.html',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdditionalChargesPage implements OnInit {
   visible:boolean=true;
   invisible:boolean=false
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -17,6 +17,6 @@ export class AdditionalChargesPage implements OnInit {
     this.invisible=true
       }
       cancel() {
-        // this.modal.dismiss(null, 'cancel');
+        return this.modalCtrl.dismiss(null, 'cancel');
       }
 }

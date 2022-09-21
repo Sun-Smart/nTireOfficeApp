@@ -3,6 +3,7 @@ import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { AdditionalChargesPage } from './additional-charges/additional-charges.page';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pmsemployees',
   templateUrl: './pmsemployees.page.html',
@@ -10,12 +11,12 @@ import { AdditionalChargesPage } from './additional-charges/additional-charges.p
 })
 export class PmsemployeesPage implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
-  // @ViewChild(IonModal) modal1: IonModal;
+  @ViewChild(IonModal) modal1: IonModal;
   username = window.localStorage.getItem('TUM_USER_NAME');
   name: any;
   message: string;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController,private route:Router) { }
 
   ngOnInit() {
   }
@@ -24,11 +25,12 @@ export class PmsemployeesPage implements OnInit {
   }
   canceled() {
     debugger
-    this.modal.dismiss(null, 'cancel');
+    this.modal1.dismiss(null, 'cancell');
   }
   confirm() {
     this.modal.dismiss(this.name, 'confirm');
   }
+  
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
