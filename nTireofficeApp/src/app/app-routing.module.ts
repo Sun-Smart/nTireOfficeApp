@@ -456,7 +456,8 @@ const routes: Routes = [
   {
     path: 'view-report',
     loadChildren: () => import('./Hrms_pages/view-report/view-report.module').then( m => m.ViewReportPageModule)
-  },  {
+  },
+  {
     path: 'pendingleads',
     loadChildren: () => import('./Sales_pages/pendingleads/pendingleads.module').then( m => m.PendingleadsPageModule)
   },
@@ -484,10 +485,27 @@ const routes: Routes = [
     path: 'heatmap',
     loadChildren: () => import('./Sales_pages/heatmap/heatmap.module').then( m => m.HeatmapPageModule)
   },
+  // {
+  //   path: 'mymeeting',
+  //   loadChildren: () => import('./Sales_pages/mymeeting/mymeeting.module').then( m => m.MymeetingPageModule)
+  // },
+  // {
+  //   path: 'teammeetings',
+  //   loadChildren: () => import('./Sales_pages/teammeetings/teammeetings.module').then( m => m.TeammeetingsPageModule)
+  // },
   {
-    path: 'mymeeting',
-    loadChildren: () => import('./Sales_pages/mymeeting/mymeeting.module').then( m => m.MymeetingPageModule)
+    path: 'expensedetails',
+    loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
   },
+  // {
+  //   path: 'addtravelexpensedetails',
+  //   loadChildren: () => import('./Sales_pages/addtravelexpensedetails/addtravelexpensedetails.module').then( m => m.AddtravelexpensedetailsPageModule)
+  // },
+  // {
+  //   path: 'myclients',
+  //   loadChildren: () => import('./Sales_pages/myclients/myclients.module').then( m => m.MyclientsPageModule)
+  // },
+
 
 
 
