@@ -23,6 +23,7 @@ export class DashboardPage implements OnInit {
 
   @ViewChild('sourcecanvas1') sourcecanvas1;
   constructor(private platform: Platform,public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService,private navCtrl: NavController,private menuCtrl: MenuController,private router: Router) {
+    debugger
 this.menuCtrl.enable(true, 'first');
     this.userid= window.localStorage['TUM_USER_ID'];
     this.username=localStorage.getItem('TUM_USER_NAME');
@@ -45,9 +46,8 @@ this.menuCtrl.enable(true, 'first');
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams+'camscategorycount/'+this.userid,{
-      headers: options,
-    }).subscribe(resp => {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams+'camscategorycount/'+this.userid).subscribe(resp => { 
+    debugger
       this.result = resp;
 
       this.CategoryCount = JSON.parse(this.result);
@@ -157,7 +157,7 @@ getMaintenanceCountChart = function () {
 
 
 getBranchCountChart = function () {
-
+debugger
   var sourcearray=[];
   const header = new Headers();
   header.append("Content-Type", "application/json");
@@ -165,7 +165,8 @@ getBranchCountChart = function () {
   let options = new HttpHeaders().set('Content-Type', 'application/json');
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams+'camsbranchcount',{
     headers: options,
-  }).subscribe(resp => {
+  }).subscribe((resp:any) => {
+    debugger
     this.branchCountresult = resp;
 
     this.branchCount = JSON.parse(this.branchCountresult);

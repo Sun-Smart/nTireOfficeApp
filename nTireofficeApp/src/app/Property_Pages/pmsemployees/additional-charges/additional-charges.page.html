@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button>BACK</ion-back-button>
+      <ion-title>Additional Charges</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header class="card_header">
+      <ion-card-title class="card_header_text">ADD</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="card_content">
+      <ion-grid>
+        <ion-row>
+
+          <ion-col size="7" class="col_height">
+    
+            <p class="card_left_text"> Description :</p>
+         
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          
+            <ion-input placeholder="Text Input" class="createInput" ></ion-input>
+         
+        </ion-col>
+
+        <ion-col size="7" class="col_height">
+    
+          <p class="card_left_text"> Amount :</p>
+       
+      </ion-col>
+      <ion-col size="5" class="col_height">
+        
+          <ion-input placeholder="Text Input" class="createInput" ></ion-input>
+       
+      </ion-col>
+
+
+
+      <ion-col size="7" class="col_height">
+    
+        <p class="card_left_text"> Pay Type :</p>
+     
+    </ion-col>
+    <ion-col size="5" class="col_height">
+      
+        <ion-input placeholder="Text Input" class="createInput" ></ion-input>
+     
+    </ion-col>
+
+         
+        </ion-row>
+      </ion-grid>
+ 
+    </ion-card-content>
+    <ion-grid>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-button  color="success" *ngIf="visible" (click)="submit()">Save</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button color="success" *ngIf="invisible" >Edit</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="danger" *ngIf="invisible" >Delete</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card>
+
+</ion-content>
