@@ -33,7 +33,7 @@
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
                 <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
                 <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+                  <ion-item *ngFor="let item of assetcode1" style="--background: white !important;
                   color: gray !important;" (click)="processasset(item)">
                     {{ item }}
                   </ion-item>
@@ -61,64 +61,64 @@
           style="color:#fff;padding:12px;text-align:right;">
           {{item1.ASSET_CODE}}
         </ion-col>
-
+   
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Category</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.cnme'>{{item1.cnme}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.cnme'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.cnme'>{{item1.cnme}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.cnme'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Subcategory</p>
-        <span style="font-size: 14px!important;" *ngIf="item1.SUB_CATEGORY_DESC">{{item1.SUB_CATEGORY_DESC}}</span>
-        <span style="font-size: 14px!important;" *ngIf="!item1.SUB_CATEGORY_DESC">--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf="item1.SUB_CATEGORY_DESC">{{item1.SUB_CATEGORY_DESC}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf="!item1.SUB_CATEGORY_DESC">--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Value</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_VALUE'>{{item1.ASSET_VALUE}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_VALUE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_VALUE'>{{item1.ASSET_VALUE}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_VALUE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Current User</p>
-        <span style="font-size: 14px!important;" *ngIf="item1.TUM_USER_CODE">{{item1.TUM_USER_CODE}}</span>
-        <span style="font-size: 14px!important;" *ngIf="!item1.TUM_USER_CODE">--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf="item1.TUM_USER_CODE">{{item1.TUM_USER_CODE}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf="!item1.TUM_USER_CODE">--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Brand</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_BRAND'>{{item1.ASSET_BRAND}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_BRAND'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_BRAND'>{{item1.ASSET_BRAND}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_BRAND'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Model</p>
-        <span style="font-size: 14px!important;" *ngIf="item1.TYPE">{{item1.TYPE}}</span>
-        <span style="font-size: 14px!important;" *ngIf="!item1.TYPE">--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf="item1.TYPE">{{item1.TYPE}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf="!item1.TYPE">--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Incharge</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.TUM_USER_NAME'>{{item1.TUM_USER_NAME}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.TUM_USER_NAME'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.TUM_USER_NAME'>{{item1.TUM_USER_NAME}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.TUM_USER_NAME'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Department</p>
-        <span style="font-size: 14px!important;">{{departmentreqdd}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;">{{departmentreqdd}}</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Purchase Date</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_PURCHASE_DATE'>{{item1.ASSET_PURCHASE_DATE | date:'dd-MM-yyyy'}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_PURCHASE_DATE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_PURCHASE_DATE'>{{item1.ASSET_PURCHASE_DATE | date:'dd-MM-yyyy'}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_PURCHASE_DATE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Warranty Upto</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_WARRANTY_TILL'>{{item1.ASSET_WARRANTY_TILL | date:'dd-MM-yyyy'}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_WARRANTY_TILL'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_WARRANTY_TILL'>{{item1.ASSET_WARRANTY_TILL | date:'dd-MM-yyyy'}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_WARRANTY_TILL'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
@@ -133,59 +133,59 @@
         <ion-row>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Manufacturer</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.CAMS_ASSET_MANUFACTURER'>{{item1.CAMS_ASSET_MANUFACTURER}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.CAMS_ASSET_MANUFACTURER'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.CAMS_ASSET_MANUFACTURER'>{{item1.CAMS_ASSET_MANUFACTURER}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.CAMS_ASSET_MANUFACTURER'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Residual Value</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_RESIDUAL_VALUE'>{{item1.ASSET_RESIDUAL_VALUE}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_RESIDUAL_VALUE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_RESIDUAL_VALUE'>{{item1.ASSET_RESIDUAL_VALUE}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_RESIDUAL_VALUE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Depreciation Type</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_DEPRECIATION_TYPE'>{{deprciationtype}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_DEPRECIATION_TYPE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_DEPRECIATION_TYPE'>{{deprciationtype}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_DEPRECIATION_TYPE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Depreciation Percentage</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_DEPRECIATION_PERCENTAGE'>{{item1.ASSET_DEPRECIATION_PERCENTAGE}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_DEPRECIATION_PERCENTAGE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_DEPRECIATION_PERCENTAGE'>{{item1.ASSET_DEPRECIATION_PERCENTAGE}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_DEPRECIATION_PERCENTAGE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Installation Date</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_INSTALLATION_DATE'>{{item1.ASSET_INSTALLATION_DATE | date:'dd-MM-yyyy'}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_INSTALLATION_DATE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_INSTALLATION_DATE'>{{item1.ASSET_INSTALLATION_DATE | date:'dd-MM-yyyy'}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_INSTALLATION_DATE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Installed By</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_INSTALLED_BY'>{{item1.ASSET_INSTALLED_BY}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_INSTALLED_BY'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_INSTALLED_BY'>{{item1.ASSET_INSTALLED_BY}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_INSTALLED_BY'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Certificate Issued</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_CERTIFICATE_ISSUED=="Y"'>YES</span>
-      <span style="font-size: 14px!important;" *ngIf='item1.ASSET_CERTIFICATE_ISSUED=="N"'>NO</span>
-      <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_CERTIFICATE_ISSUED'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_CERTIFICATE_ISSUED=="Y"'>YES</span>
+      <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_CERTIFICATE_ISSUED=="N"'>NO</span>
+      <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_CERTIFICATE_ISSUED'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Working Condition</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_WORKING_CONDITION=="Y"'>YES</span>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_WORKING_CONDITION=="N"'>NO</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_WORKING_CONDITION'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_WORKING_CONDITION=="Y"'>YES</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_WORKING_CONDITION=="N"'>NO</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_WORKING_CONDITION'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Asset Mode</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_MODE==1'>Own</span>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_MODE==3'>Lease</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_MODE'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_MODE==1'>Own</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_MODE==3'>Lease</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_MODE'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -194,8 +194,8 @@
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <p style="font-weight:bold;">Remarks</p>
-        <span style="font-size: 14px!important;" *ngIf='item1.ASSET_DESCRIPTION'>{{item1.ASSET_DESCRIPTION}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ASSET_DESCRIPTION'>--</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='item1.ASSET_DESCRIPTION'>{{item1.ASSET_DESCRIPTION}}</span>
+        <span style="font-size: 14px!important;font-weight: 700;color: black;" *ngIf='!item1.ASSET_DESCRIPTION'>--</span>
       </ion-col>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
