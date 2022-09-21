@@ -41,15 +41,16 @@
     <ion-row>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button color="success" (click)="letterSubmit()">Ok</ion-button>
+        <ion-button 
+        color="success" expand="block" (click)="letterSubmit()">Ok</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button color="danger" (click)="requestClear()">Clear</ion-button>
+        <ion-button color="danger" expand="block" (click)="requestClear()">Clear</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button (click)="letterList()">List</ion-button>
+        <ion-button color="primary" expand="block" (click)="letterList()">List</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

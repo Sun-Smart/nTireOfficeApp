@@ -21,7 +21,7 @@
           <ion-col size="6">
             <ion-label class="card_content_label">Branch</ion-label>
 
-            <ion-select style="background:white;padding: 10px;border:1px solid #ccc; border-radius: 5px;"
+            <ion-select class="Input-text-field" style="display:flex;"
               [(ngModel)]="branch_id">
               <ion-select-option value="">
                 << Select>>
@@ -29,14 +29,12 @@
               <ion-select-option *ngFor="let item of allbranch" value={{item.BRANCH_ID}}>{{item.BRANCH_CODE}}
               </ion-select-option>
             </ion-select>
-
-
           </ion-col>
           <ion-col size="6">
             <ion-label class="card_content_label">Vendor Code</ion-label>
 
             <ion-input [(ngModel)]="vendorcode"
-              style="background:white;display:inline-block; border:1px solid #ccc; border-radius: 5px;" type="text">
+            class="Input-text-field" type="text" style="display:flex;">
             </ion-input>
           </ion-col>
         </ion-row>
@@ -45,14 +43,14 @@
           <ion-col size="6">
             <ion-label class="card_content_label">PO Number</ion-label>
             <ion-input [(ngModel)]="ponum"
-              style="background:white;display:inline-block; border:1px solid #ccc; border-radius: 5px;" type="text">
+            class="Input-text-field" type="text" style="display:flex;">
             </ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-label class="card_content_label">Status</ion-label>
             <ion-select [(ngModel)]="postatus"
-              style="background:white;padding: 10px;border:1px solid #ccc; border-radius: 5px;">
-              <ion-select-option value="">
+            class="Input-text-field" style="display:flex;">
+              <ion-select-option value="" >
                 << Select>>
               </ion-select-option>
               <ion-select-option value="N">New</ion-select-option>
@@ -73,7 +71,7 @@
             <span class=""><i class="icon ion-calendar placeholder-icon" style="padding-left: 0px;"></i>
             </span>
             <input [(ngModel)]="fromdate" type="date"
-              style="display:inline-block;padding: 8px;border:1px solid #ccc; border-radius: 5px;" />
+              style="padding: 8px;display:flex;" class="Input-text-field" />
 
           </ion-col>
           <ion-col size="6">
@@ -82,7 +80,7 @@
                 style="background:white;padding-left: 0px;"></i>
             </span>
             <input type="date" min="{{fromdate | date: 'yyyy-MM-dd'}}" [(ngModel)]="todate" required=""
-              style="display:inline-block;padding: 8px;border:1px solid #ccc; border-radius: 5px;" />
+            style="padding: 8px;display:flex;" class="Input-text-field"/>
           </ion-col>
         </ion-row>
 
@@ -93,7 +91,7 @@
               ,postatus,fromdate,todate)"  style="min-width: 115px; --background: #009689;font-size: 14px;color: white;" type="submit"   >SEARCH</ion-button>            </ion-col>
            -->
             <ion-button (click)="searchpo(branch_id,ponum,vendorcode
-              ,postatus,fromdate,todate)" color="success" type="submit">SEARCH</ion-button>
+              ,postatus,fromdate,todate)" color="success" expand="block" type="submit">SEARCH</ion-button>
           </ion-col>
 
         </ion-row>
