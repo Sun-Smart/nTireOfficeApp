@@ -456,7 +456,39 @@ const routes: Routes = [
   {
     path: 'view-report',
     loadChildren: () => import('./Hrms_pages/view-report/view-report.module').then( m => m.ViewReportPageModule)
+  },  {
+    path: 'pendingleads',
+    loadChildren: () => import('./Sales_pages/pendingleads/pendingleads.module').then( m => m.PendingleadsPageModule)
   },
+  {
+    path: 'imageview',
+    loadChildren: () => import('./Sales_pages/imageview/imageview.module').then( m => m.ImageviewPageModule)
+  },
+  {
+    path: 'histotydetails',
+    loadChildren: () => import('./Sales_pages/histotydetails/histotydetails.module').then( m => m.HistotydetailsPageModule)
+  },
+  {
+    path: 'closedleads',
+    loadChildren: () => import('./Sales_pages/closedleads/closedleads.module').then( m => m.ClosedleadsPageModule)
+  },
+  {
+    path: 'location',
+    loadChildren: () => import('./Sales_pages/location/location.module').then( m => m.LocationPageModule)
+  },
+  {
+    path: 'locationupdateleads',
+    loadChildren: () => import('./Sales_pages/locationupdateleads/locationupdateleads.module').then( m => m.LocationupdateleadsPageModule)
+  },
+  {
+    path: 'heatmap',
+    loadChildren: () => import('./Sales_pages/heatmap/heatmap.module').then( m => m.HeatmapPageModule)
+  },
+  {
+    path: 'mymeeting',
+    loadChildren: () => import('./Sales_pages/mymeeting/mymeeting.module').then( m => m.MymeetingPageModule)
+  },
+
 
 
 
