@@ -1,0 +1,288 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header no-border>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Closed Leads</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+    <div class="filtericon" (click)="showfilter()">
+      <i class="fa fa-filter" aria-hidden="true"></i>
+
+    </div>
+    <div class="fadeInDown" style="display: none">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <select [(ngModel)]="penleadfilter.BRANCH_ID" class="form-control" style="width:100%">
+
+              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+                {{branch.BRANCH_DESC}}</option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-input class="form-control" placeholder="Ref ID" [(ngModel)]="penleadfilter.TCC_CUST_LEAD_ID">
+            </ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-input class="form-control" placeholder="Customer Name" [(ngModel)]="penleadfilter.CUST_LNAME">
+            </ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-input class="form-control" placeholder="Customer Mobile" [(ngModel)]="penleadfilter.MOBILE">
+            </ion-input>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <select [(ngModel)]="penleadfilter.TCM_CAMPAIGN_SHORTDESC" class="form-control" style="width:100%">
+              <option value=""> &lt;&lt; Select Product &gt;&gt; </option>
+              <option *ngFor="let pro of products1; let i = index">{{pro.ProductName}}</option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <select [(ngModel)]="penleadfilter.TCC_LEAD_PRIORITY" class="form-control" style="width:100%">
+              <option value=""> &lt;&lt; Call Priority &gt;&gt; </option>
+
+              <option *ngFor="let call of callpriority1; let i = index" [ngValue]="call.Value">{{call.Text}}</option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <select [(ngModel)]="penleadfilter.TCC_LEAD_RATING" class="form-control" style="width:100%">
+              <option value=""> &lt;&lt; Call Rating &gt;&gt; </option>
+              <option *ngFor="let rating of callrating1; let i = index" [ngValue]="rating.Value">{{rating.Text}}
+              </option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <div class="form-control" style="padding: 12px;display: flex;">
+              <ion-checkbox color="primary" [(ngModel)]="reporting" [value]="false"></ion-checkbox>
+              <ion-label style="font-weight:normal;padding-left: 20px;padding-top: 3px;">Reporting To</ion-label>
+            </div>
+
+          </ion-col>
+          <ion-col *ngIf="reporting==true" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <select [(ngModel)]="user_type_val" class="form-control"
+              (change)="getuserlist(user_type_val,penleadfilter.BRANCH_ID)" style="width:100%">
+              <option value=""> &lt;&lt; Select Usertype &gt;&gt; </option>
+
+              <option *ngFor="let usertype of usertype1; let i = index" [ngValue]="usertype.TYPE_ID">
+                <span *ngIf="usertype.DESCRIPTION!='நிர்வாகி'"> {{usertype.DESCRIPTION}}</span>
+              </option>
+            </select>
+          </ion-col>
+          <ion-col *ngIf="reporting==true" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <select [(ngModel)]="penleadfilter.TCC_LEAD_BY" class="form-control" style="width:100%">
+              <option value=""> &lt;&lt; Select User &gt;&gt; </option>
+              <option *ngFor="let user of userdata1; let i = index">{{user.TUM_USER_NAME}}</option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-button (click)="callforalldetails(segment)" style="--background: #11c1f3" size="full">Search
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <p style="font-weight: bold;text-align:center">Total Lead : {{pendingleadsdatalength}}</p>
+
+    <ion-card *ngFor="let items of pendleaddetails; let i = index">
+      <ion-grid style="padding: 0px;">
+        <ion-row>
+          <!-- <button ion-button block class="start-button" (click)="startRecording(i)">Start Recording</button>
+          <ion-button color="danger" (click)="stopRecording(i)">Stop
+           Recording</ion-button> -->
+          <div class="card_header" style="width: 100% !important;">
+            <ion-col size="6" style="color:#fff;padding:12px;">
+              {{items.CustFullName}}
+            </ion-col>
+            <ion-col size="6" style="color:#fff;padding:12px;text-align:right;">
+              #{{items.CUST_LEAD_ID}}
+            </ion-col>
+          </div>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Lead ID
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.TCC_CUSTOMER_ID}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Contact Number
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" *ngIf="segmentdata == 'new'">
+            <span>
+              <a (click)="makeCall(items.MOBILE,i)"
+                style="text-decoration:none !important;cursor:pointer;">{{items.MOBILE}}</a>
+              <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.OFFPHONE}}&nbsp;</a><a
+                *ngIf="items.OFFPHONE == '011'"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+              <i>|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.RESPHONE}}</a>
+              <a *ngIf="items.RESPHONE == '011'"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+            </span>
+
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+            *ngIf="segmentdata == 'followup' || segmentdata == 'appointment'">
+            <span>
+              <a (click)="makeCall(items.MOBILE,i)"
+                style="text-decoration:none !important;cursor:pointer;">{{items.MOBILE}}</a>
+              <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.OFFPHONE}}&nbsp;</a><a
+                *ngIf="items.OFFPHONE == '011'"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+              <i>|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.RESPHONE}}</a>
+              <a *ngIf="items.RESPHONE == '011'"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+            </span>
+
+          </ion-col>
+          <ion-col *ngIf="audioList.length!=0" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Audio
+          </ion-col>
+          <ion-col *ngIf="audioList.length!=0" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-list>
+              <ion-item *ngFor="let audio of audioList; index as i;">
+                <p>{{audio.filename}}</p>
+                <button ion-button clear item-end large (click)="playAudio(audio.filename, i)">
+                  <ion-icon name="play"></ion-icon>
+                </button>
+              </ion-item>
+
+            </ion-list>
+            <div style="margin-top: -20px;">
+              <!-- <button ion-button block class="start-button" *ngIf="!items.isRecording && !items.blobUrl" (click)="startRecording(i)">Start Recording</button> -->
+              <ion-button color="danger" *ngIf="items.isRecording && !items.blobUrl" (click)="stopRecording(i)">Stop
+                Recording</ion-button>
+              <!-- <div *ngIf="items.isRecording && !items.blobUrl"> {{recordedTime}} </div> -->
+              <div>
+                <audio *ngIf="!items.isRecording && items.blobUrl" controls controlsList="nodownload"
+                  style="position: relative;left: -50px;width:208px">
+                  <source [src]="items.blobUrl" type="audio/webm">
+                </audio>
+              </div>
+            </div>
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Current Caller
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.Current_Caller}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Last Call
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{items.CreatedOn1 | date:'dd/MM/yyyy'}} {{items.created_time}}
+          </ion-col>
+          <ion-col *ngIf="items.TCC_NEXT_CALL_DATE!=null" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Next Call
+          </ion-col>
+          <ion-col *ngIf="items.TCC_NEXT_CALL_DATE!=null" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span style="font-size: 14px;">{{items.TCC_NEXT_CALL_DATE | date:'dd/MM/yyyy'}} {{items.call_time}}</span>
+
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
+              style="font-size: 14px;color:green;font-weight: 900;">{{items.PriorityText}}</span>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
+              style="font-size: 14px;color:red;font-weight: 900;">{{items.Ratingtext}}</span>
+          </ion-col>
+          <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <a (click)="showmore(i,items.CALL_ID)">
+              <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
+
+              <i id="imageidvals{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
+                style="font-size: 17px;background: #4e595e;color: white;left: 285px;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 4px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+            </a>
+          </ion-col>
+          <div id="dividvals{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <ion-row>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                Campaign
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                {{items.Campaign}}
+              </ion-col>
+              <ion-col *ngIf="items.TCC_LEAD_STAGE==3||items.TCC_LEAD_STAGE==5||items.TCC_LEAD_STAGE==6" size-sm="6"
+                size="6" size-md="6" size-lg="6" size-xl="6">
+                Call Stage
+              </ion-col>
+              <ion-col *ngIf="items.TCC_LEAD_STAGE==3||items.TCC_LEAD_STAGE==5||items.TCC_LEAD_STAGE==6" size-sm="6"
+                size="6" size-md="6" size-lg="6" size-xl="6">
+                {{items.Stage}}
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                Exp. Closed Date
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <span *ngIf="items.ClosedDate != '1900-01-01'">{{items.ClosedDate|date:'dd/MM/yyyy'}}</span>
+                <!-- <span *ngIf="items.ClosedDate != '1900-01-01'">-</span> -->
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                Expected Amount
+              </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+                <span *ngIf="items.ExpctedAmount==0">-</span>
+                <span *ngIf="items.ExpctedAmount!=0"> {{items.ExpctedAmount}}</span>
+              </ion-col>
+              <ion-col *ngIf="latlog[i]!=null||latlog[i]!=undefined" size-sm="12" size="12" size-md="12" size-lg="12"
+                size-xl="12">
+                Location
+              </ion-col>
+              <ion-col *ngIf="latlog[i]!=null||latlog[i]!=undefined" size-sm="6" size="6" size-md="6" size-lg="6"
+                size-xl="6">
+                {{formattedadd[i]}}
+              </ion-col>
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <b>Attachment</b>
+              </ion-col>
+              <ion-col *ngIf="filename[i]!=undefined && filename[i].length!=0" style="overflow:auto;display:flex;"
+                size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                <span *ngFor="let image of filename[i]; let i = index" style="margin-right:10px;">
+                  <img src={{commonapi_sales}}{{image}} (click)="imageview(image)" style="width:150px;height:150px;"
+                    (click)="downloadImage(image)" />
+                </span>
+              </ion-col>
+
+              <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+                <span>Remarks</span>
+              </ion-col>
+              <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+                <span>{{items.Remarks}}</span>
+              </ion-col>
+              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+                <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
+                    style="font-size: 17px;background: #4e595e;color: white;top: 60px;left: 10px;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 4px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+
+              </ion-col>
+              <ion-col style="text-align:center" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <button (click)="Gethistorydetails(items)" class="btn-info" size="full" style="background-color: rgb(2 154 222);width:100% !important;font-size: 17px;">History</button>
+              </ion-col>
+              <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-button (click)="Gethistorydetails(items)" class="history_btn_closedlead" size="full">History
+                </ion-button>
+              </ion-col> -->
+
+
+            </ion-row>
+          </div>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
+</ion-content>

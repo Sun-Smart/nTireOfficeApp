@@ -2,3 +2,24 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+select{
+  width:100%;
+}
+ion-input{
+  width:100%
+}
+#map{
+  position: absolute;
+  /* overflow: hidden; */
+  /* height: 100vh; */
+  height: 100%;
+  width: 100%;
+}
+ion-icon{
+  float: right;
+  position: absolute;
+  right: 9px;
+  top: 17px;
+  font-size: 24px;
+  cursor: pointer;
+}
