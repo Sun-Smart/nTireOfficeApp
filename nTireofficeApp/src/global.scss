@@ -8,7 +8,7 @@
  * For more information on global stylesheets, visit the documentation:
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 /* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
 
@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -40,7 +40,7 @@
 }
 
 .onlineexam {
-  background-color: #3F51B5;
+  background-color: #3f51b5;
   padding-left: 41px;
 }
 
@@ -61,7 +61,7 @@
 }
 
 ion-textarea {
-  height: auto !important
+  height: auto !important;
 }
 
 .nodata {
@@ -126,7 +126,6 @@ table {
 }
 
 table th {
-
   border: 1px solid #ddd;
   font-size: 13px;
   padding: 10px !important;
@@ -203,11 +202,11 @@ ion-searchbar {
   top: 65px;
   overflow: auto;
   border: 1px solid #ddd;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
 .arrowicon {
@@ -222,7 +221,7 @@ ion-searchbar {
   margin-left: 29px;
   font-weight: 600;
   font-size: 17px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   // font-family: 'Poppins', sans-serif;
 
   // font-family: 'Poppins';
@@ -254,7 +253,7 @@ ion-searchbar {
 }
 
 .leadscolumn {
-  background-color: #00ACFB !important;
+  background-color: #00acfb !important;
   // background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
   color: #fff;
   padding: 12px;
@@ -305,7 +304,7 @@ ion-title {
 }
 
 ion-header {
-  background-image: url('./assets/images/loginBackground.png'), ;
+  background-image: url("./assets/images/loginBackground.png");
   position: sticky;
   top: 0;
 }
@@ -316,12 +315,11 @@ ion-header::after {
 
 ion-header {
   ion-toolbar {
-
     ion-title {
       // padding: 33px;
       font-weight: 600;
       // margin-left: -53px;
-      font-family: 'poppins';
+      font-family: "poppins";
       text-align: initial;
 
       h6 {
@@ -338,7 +336,6 @@ ion-header {
 //     top: 17%;
 // }
 ion-footer {
-
   background-color: #004073;
 
   // --background: url("/assets/Images/Headerfooter/bottombox.png") no-repeat;
@@ -360,7 +357,6 @@ ion-footer {
 
 .sc-ion-segment-md-h {
   background-color: #4c8dff;
-
 }
 
 .segment-button-has-label {
@@ -421,7 +417,6 @@ textarea {
   background-color: #004073 !important;
 }
 
-
 ion-toolbar {
   --background: url("./assets/images/loginBackground.png") no-repeat;
 
@@ -434,7 +429,6 @@ ion-toolbar {
 
   // --background: rgb(6,159,225)!important;
   // --background: linear-gradient(to left, rgb(34,191,241), rgb(2,154,222) 50%, rgb(2,154,222) 50%);
-
 
   // background-image: -webkit-linear-gradient(30deg, rgb(2,154,222) 50%, rgb(34,191,241) 50%);
   // background-color: #34ADFF;
@@ -446,7 +440,7 @@ ion-toolbar {
   // height: 169px;
 }
 
-ion-content>.scroll-content {
+ion-content > .scroll-content {
   padding-bottom: 56px;
 }
 
@@ -463,12 +457,10 @@ app-login ion-content {
 
   opacity: defa;
   opacity: inherit;
-
 }
 
 .toolbar-container {
   background-color: #43c585;
-
 }
 
 .scroll-x.sc-ion-content-md,
@@ -481,7 +473,6 @@ app-login ion-content {
 }
 
 .form-control {
-
   width: 100%;
   padding: 12px 20px;
   display: inline-block;
@@ -497,25 +488,24 @@ app-login ion-content {
   line-height: 1.42857143;
   color: #000000;
   background-color: #ffffff;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   /* background-image: none; */
   // /* border: 1px solid #ccc;
   // border-radius: 4px;
   /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   // border: 1px solid #ccc;
 }
 
 .labelcls {
   width: 58%;
-
 }
 
 // .labelcls1{
 //     background-color: lightgray;
 // }
-.ion-item {}
-
+.ion-item {
+}
 
 // .form-control{
 //     display: block;
@@ -541,7 +531,6 @@ app-login ion-content {
 //         resize:none;
 //     }
 // }
-
 
 .item-interactive-disabled.sc-ion-label-md-h:not(.item-multiple-inputs),
 .item-interactive-disabled:not(.item-multiple-inputs) .sc-ion-label-md-h {
@@ -595,7 +584,7 @@ ion-searchbar {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   margin: 0;
 }
 
@@ -618,7 +607,7 @@ ion-searchbar {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   margin: 0;
 }
 
@@ -688,7 +677,6 @@ ion-searchbar {
   color: #000;
   text-align: center;
   font-size: large;
-
 }
 
 // .alert-message.sc-ion-alert-md {
@@ -746,10 +734,7 @@ ion-item {
   --font-weight: 600;
   border: 1px solid #b5b5b5;
   border-radius: 5px;
-
 }
-
-
 
 .icon-bg1 {
   background-color: blue;
@@ -781,15 +766,12 @@ ion-label {
   /* border-style: solid; */
   font-size: 15px;
   top: 11px;
-
 }
 
 .dashboardbranch {
   margin-top: 12px;
   margin-left: 20px;
 }
-
-
 
 .canvasdiv {
   margin-top: 15px;
@@ -828,7 +810,7 @@ ion-icon {
 }
 
 ion-button {
-  width: 100%
+  width: 100%;
 }
 
 .swiper-pagination-bullet {
@@ -907,7 +889,7 @@ ion-input ion-icon {
 }
 
 .error {
-  color: #F44336;
+  color: #f44336;
   font-size: 15px;
 }
 
@@ -948,7 +930,7 @@ a.balanced {
 }
 
 .inner-scroll.scroll-y {
-  background-color: #2C5291 !important;
+  background-color: #2c5291 !important;
 }
 
 ion-menu-button {
@@ -967,9 +949,7 @@ ion-menu-button {
   text-align: center;
 }
 
-
 .dashboardheadtitle {
-
   color: #fff;
   padding: 10px;
   font-size: 20px;
@@ -994,7 +974,7 @@ ion-menu-button {
 
   // button.alert
   .alert-button-group {
-    background: #e71414f0!important;
+    background: #e71414f0 !important;
   }
 }
 .Cssbutton {
@@ -1007,7 +987,7 @@ ion-menu-button {
 
   // button.alert
   .alert-button-group {
-    background: #089408cc!important;
+    background: #089408cc !important;
   }
 }
 
@@ -1025,11 +1005,9 @@ ion-menu-button {
 }
 
 .ion-color-success {
-  --ion-color-base: #32CD32 !important;
+  --ion-color-base: #32cd32 !important;
   opacity: 1;
-
 }
-
 
 ion-card {
   box-shadow: 1px 1px 7px 0px grey;
@@ -1039,13 +1017,17 @@ ion-card {
   .card_header_text {
     font-size: 15px;
     color: #ffff !important;
-
   }
 }
 
 ion-card {
   .card_header {
-    background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;
+    background-image: linear-gradient(
+      to left,
+      rgb(34, 191, 241),
+      rgb(2, 154, 222) 50%,
+      rgb(2, 154, 222) 50%
+    ) !important;
     color: white !important;
     text-align: center;
     padding: 15px;
@@ -1081,7 +1063,6 @@ ion-card {
 //   text-align: center;
 // }
 
-
 .hrms_header {
   background-color: #019ade !important;
   color: white !important;
@@ -1089,9 +1070,15 @@ ion-card {
   padding: 0px;
 }
 
-
-.textareaField{
-  background-color: #fff!important;
-  display:inline-block;
+.textareaField {
+  background-color: #fff !important;
+  display: inline-block;
 }
 
+.alert-radio-group {
+  background-color: white !important;
+}
+
+label {
+  color: black !important;
+}
