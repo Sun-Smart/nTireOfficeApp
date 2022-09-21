@@ -1,467 +1,488 @@
 <ion-content>
 
   <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button *ngIf="!disabledvalue"> </ion-menu-button>
-            <ion-back-button *ngIf="disabledvalue"
-                [text]="buttonText"
-                [icon]="buttonIcon">
-            </ion-back-button>
-          </ion-buttons>
-        <ion-title>OD Request</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button *ngIf="!disabledvalue"> </ion-menu-button>
+        <ion-back-button *ngIf="disabledvalue" [text]="buttonText" [icon]="buttonIcon">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title>OD Request</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-    <!--  -->
+  <!--  -->
+
   <ion-grid *ngIf="ODRefshow" style="padding: 10px;margin: 10px;border-radius: 8px;">
-      <ion-row>
+    <ion-row>
 
-          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                      <label>Company Name<span style="color:red;margin-left: 5px;">*</span></label>
-                      <ion-input style="background-color: white;
-                      color: black;" type="text" [disabled]="disabledvalue"  class="form-control" [(ngModel)]="company"></ion-input>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Company Name<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input style="background-color: white;
+                      color: black;" type="text" [disabled]="disabledvalue" class="form-control" [(ngModel)]="company">
+        </ion-input>
 
-                   </ion-col>
-                   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                        <label>Branch</label>
-                        <ion-input style="background-color: white;
-                        color: black;" type="text" [disabled]="disabledvalue"  class="form-control" placeholder="Branch" [(ngModel)]="branch"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                       <label>Name</label>
-                       <ion-input style="background-color: white;
-                       color: black;" type="text" [disabled]="disabledvalue" class="form-control"  [(ngModel)]="name"></ion-input>
-
-                   </ion-col>
-                   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                  <label>Request Reference<span style="color:red;margin-left: 5px;">*</span></label>
-                  <ion-input style="background-color: white;
-                  color: black;" type="text" [disabled]="disabledvalue" class="form-control"  [(ngModel)]="Txnreference"></ion-input>
-
-               </ion-col>
-               <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                   <label>Request Date</label>
-                   <ion-input  type="date"class="form-control" [disabled]="disabledvalue"    [(ngModel)]="reqdate"></ion-input>
-       </ion-col>
-       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                  <label>OD-FR0M DATE</label>
-                  <ion-input  type="date" [disabled]="disabledvalue" class="form-control"  (change)="validateFromDate()" [(ngModel)]="from"></ion-input>
-           </ion-col>
-           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                  <label>OD-TO DATE</label>
-                  <ion-input class="form-control" [disabled]="disabledvalue" type="date" (change)="validateFromDate($event)" [(ngModel)]="to"></ion-input>
-            </ion-col>
-            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                    <label>No OF DAYS</label>
-                    <ion-input  class="form-control" [disabled]="disabledvalue" type="tel"   [(ngModel)]="nod"></ion-input>
-              </ion-col>
-              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                      <label>HOURS(FROM)</label>
-                      <ion-input  class="form-control" [disabled]="disabledvalue" type="time"   [(ngModel)]="fromHour"></ion-input>
-
-                   </ion-col>
-                   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                        <label>HOURS(TO)</label>
-                        <ion-input  class="form-control" [disabled]="disabledvalue" type="time"   [(ngModel)]="toHour"></ion-input>
-
-                     </ion-col>
-
-                     <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                      <label>REASON</label>
-                      <ion-input class="form-control" [disabled]="disabledvalue" [(ngModel)]="reason"></ion-input>
-
-                   </ion-col>
-
-                   <ion-col *ngIf="disabledvalue" size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
-                      <div  style="padding: 12px;display: flex;">
-
-                           <ion-label>Current Status : <span *ngIf="currentstatus == 'P'">Pending</span><span *ngIf="currentstatus == 'A'">Approved</span><span *ngIf="currentstatus == 'D'">Denied</span></ion-label>
-                      </div>
-                    </ion-col>
-      </ion-row>
-
-
-  <ion-card *ngFor="let item of odrequest2;let i=index">
-          <ion-row *ngIf="item.IsTravelRequired=='Y'">
-  <ion-item>
-    <span style="color: black;font-size: 14px;font-weight: 500;" >Travel {{i+1}}</span>
-  </ion-item>
-  <ion-row id="travelidvals{{i+0}}">
-    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        From
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{item.FromPlace}}
-        </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Branch</label>
+        <ion-input style="background-color: white;
+                        color: black;" type="text" [disabled]="disabledvalue" class="form-control" placeholder="Branch"
+          [(ngModel)]="branch"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Name</label>
+        <ion-input style="background-color: white;
+                       color: black;" type="text" [disabled]="disabledvalue" class="form-control" [(ngModel)]="name">
+        </ion-input>
 
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          To
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Request Reference<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input style="background-color: white;
+                  color: black;" type="text" [disabled]="disabledvalue" class="form-control"
+          [(ngModel)]="Txnreference"></ion-input>
+
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Request Date</label>
+        <ion-input type="date" class="form-control" [disabled]="disabledvalue" [(ngModel)]="reqdate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>OD-FR0M DATE</label>
+        <ion-input type="date" [disabled]="disabledvalue" class="form-control" (change)="validateFromDate()"
+          [(ngModel)]="from"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>OD-TO DATE</label>
+        <ion-input class="form-control" [disabled]="disabledvalue" type="date" (change)="validateFromDate($event)"
+          [(ngModel)]="to"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>No OF DAYS</label>
+        <ion-input class="form-control" [disabled]="disabledvalue" type="tel" [(ngModel)]="nod"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>HOURS(FROM)</label>
+        <ion-input class="form-control" [disabled]="disabledvalue" type="time" [(ngModel)]="fromHour"></ion-input>
+
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>HOURS(TO)</label>
+        <ion-input class="form-control" [disabled]="disabledvalue" type="time" [(ngModel)]="toHour"></ion-input>
+
+      </ion-col>
+
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>REASON</label>
+        <ion-input class="form-control" [disabled]="disabledvalue" [(ngModel)]="reason"></ion-input>
+
+      </ion-col>
+
+      <ion-col *ngIf="disabledvalue" size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
+        <div style="padding: 12px;display: flex;">
+
+          <ion-label>Current Status : <span *ngIf="currentstatus == 'P'">Pending</span><span
+              *ngIf="currentstatus == 'A'">Approved</span><span *ngIf="currentstatus == 'D'">Denied</span></ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-card *ngFor="let item of odrequest2;let i=index">
+      <ion-row *ngIf="item.IsTravelRequired=='Y'">
+        <ion-item>
+          <span style="color: black;font-size: 14px;font-weight: 500;">Travel {{i+1}}</span>
+        </ion-item>
+        <ion-row id="travelidvals{{i+0}}">
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            From
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.FromPlace}}
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            To
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             {{item.ToPlace}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              Travel Mode
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              {{item.TravelMode}}
-
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                Travel Date
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                  {{item.CreatedOn  | date: 'dd-MMM-yyyy'}}
-                </ion-col>
-                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                    Comment
-                  </ion-col>
-                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      {{item.Comments}}
-                    </ion-col>
-                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                        Amount
-                      </ion-col>
-                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                          {{item.amount}}
-                        </ion-col>
-
-  </ion-row>
-</ion-row>
-
-  <ion-row id="editfield{{i+0}}" style="display: none;">
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-          <label>From Place<span style="color:red;margin-left: 5px;">*</span></label>
-          <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="fromPlace"
-          [options]='options'  class="form-control" (onAddressChange)="handleAddressChange($event)" #placesRef="ngx-places"></textarea>
+            Travel Mode
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.TravelMode}}
 
           </ion-col>
-          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-              <label>To Place<span style="color:red;margin-left: 5px;">*</span></label>
-              <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="toPlace"
-              [options]='options' class="form-control" #placesRef="ngx-places" (onAddressChange)="handleAddressChange1($event)"></textarea>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Travel Date
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.CreatedOn | date: 'dd-MMM-yyyy'}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Comment
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.Comments}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Amount
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.amount}}
+          </ion-col>
 
-              </ion-col>
-              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                  <label>Travel Date<span style="color:red;margin-left: 5px;">*</span></label>
-                  <ion-input  type="date"  [(ngModel)]="travelDate"></ion-input>
-                  </ion-col>
-                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                      <label>Travel Mode<span style="color:red;margin-left: 5px;">*</span></label>
-                      <ion-input  type="date"  [(ngModel)]="travelMode"></ion-input>
-                      </ion-col>
-                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                          <label>Comment</label>
-                          <ion-input  type="date"  [(ngModel)]="comment"></ion-input>
-                          </ion-col>
-                          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                              <label>Amount</label>
-                              <ion-input  type="tel"  [(ngModel)]="amount"></ion-input>
-                              </ion-col>
-  </ion-row>
-  </ion-card>
+        </ion-row>
+      </ion-row>
 
+      <ion-row id="editfield{{i+0}}" style="display: none;">
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <label>From Place<span style="color:red;margin-left: 5px;">*</span></label>
+          <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="fromPlace"
+            [options]='options' class="form-control" (onAddressChange)="handleAddressChange($event)"
+            #placesRef="ngx-places"></textarea>
+
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <label>To Place<span style="color:red;margin-left: 5px;">*</span></label>
+          <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="toPlace"
+            [options]='options' class="form-control" #placesRef="ngx-places"
+            (onAddressChange)="handleAddressChange1($event)"></textarea>
+
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <label>Travel Date<span style="color:red;margin-left: 5px;">*</span></label>
+          <ion-input type="date" [(ngModel)]="travelDate"></ion-input>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <label>Travel Mode<span style="color:red;margin-left: 5px;">*</span></label>
+          <ion-input type="date" [(ngModel)]="travelMode"></ion-input>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <label>Comment</label>
+          <ion-input type="date" [(ngModel)]="comment"></ion-input>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <label>Amount</label>
+          <ion-input type="tel" [(ngModel)]="amount"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-card>
 
 
   </ion-grid>
-<ion-grid *ngIf="ODshow" style="padding: 10px;margin: 10px;border-radius: 8px;">
-      <ion-row>
-          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                          <label>Company Name<span style="color:red;margin-left: 5px;">*</span></label>
-                          <ion-input  type="text" style="background-color: white;
+
+  <ion-grid *ngIf="ODshow" style="padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Company Name<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="text" style="background-color: white;
                           color: black;" class="form-control" [(ngModel)]="company"></ion-input>
 
-                       </ion-col>
-                       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                            <label>Branch</label>
-                            <ion-input  type="text" style="background-color: white;
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Branch</label>
+        <ion-input type="text" style="background-color: white;
                             color: black;" class="form-control" placeholder="Branch" [(ngModel)]="branch"></ion-input>
-   </ion-col>
-   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>Contact Number</label>
-      <ion-input  type="text" style="background-color: white;
-      color: black;"  class="form-control"  [(ngModel)]="contact"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label>OD Request Reference<span style="color:red;margin-left: 5px;">*</span></label>
-  <!-- {{disabledvalue}}          -->
-  <ion-input style="background-color: white;
-  color: black;" disabled type="text"  class="form-control"  [(ngModel)]="reqref"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label>OD From<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-input  type="date" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
-  displayFormat="hh:mm a" class="form-control" [disabled]="disabledvalue" [(ngModel)]="from"
-  note (change)="validateFromDate($event)"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label>OD To<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-input  type="date" min="{{from | date: 'yyyy-MM-dd'}}"  [disabled]="disabledvalue"  class="form-control"  [(ngModel)]="to" (change)="validateToDate($event)"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label>Number of Days</label>
-  <ion-input  type="tel" [disabled]="disabledvalue" class="form-control" [(ngModel)]="nod"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label> Hours (From)<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-input  type="time" [disabled]="disabledvalue"    class="form-control" placeholder="Branch" [(ngModel)]="fromHour"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label> Hours (To)<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-input  type="time" [disabled]="disabledvalue"    class="form-control" placeholder="Branch" [(ngModel)]="toHour"></ion-input>
-</ion-col>
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label> Reason<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-textarea [disabled]="disabledvalue"  class="form-control" [(ngModel)]="reason"></ion-textarea>
-  <span class="customCounter" *ngIf="reason!=undefined">{{4000 - reason.length}}</span>
-</ion-col>
-<ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-  <div  style="padding: 12px;display: flex;">
-      <ion-checkbox color="primary"  [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
-      <ion-label>Release</ion-label>
-  </div>
-</ion-col>
-<ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
-    <div  style="padding: 12px;display: flex;">
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Contact Number</label>
+        <ion-input type="text" style="background-color: white;
+      color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>OD Request Reference<span style="color:red;margin-left: 5px;">*</span></label>
+        <!-- {{disabledvalue}}          -->
+        <ion-input style="background-color: white;
+  color: black;" disabled type="text" class="form-control" [(ngModel)]="reqref"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>OD From<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="date" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" displayFormat="hh:mm a"
+          class="form-control" [disabled]="disabledvalue" [(ngModel)]="from" note (change)="validateFromDate($event)">
+        </ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>OD To<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="date" min="{{from | date: 'yyyy-MM-dd'}}" [disabled]="disabledvalue" class="form-control"
+          [(ngModel)]="to" (change)="validateToDate($event)"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Number of Days</label>
+        <ion-input type="tel" [disabled]="disabledvalue" class="form-control" [(ngModel)]="nod"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label> Hours (From)<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="time" [disabled]="disabledvalue" class="form-control" placeholder="Branch"
+          [(ngModel)]="fromHour"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label> Hours (To)<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="time" [disabled]="disabledvalue" class="form-control" placeholder="Branch"
+          [(ngModel)]="toHour"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label> Reason<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-textarea [disabled]="disabledvalue" class="form-control" [(ngModel)]="reason"></ion-textarea>
+        <span class="customCounter" *ngIf="reason!=undefined">{{4000 - reason.length}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <div style="padding: 12px;display: flex;">
+          <ion-checkbox slot="start" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+          <ion-label>Release</ion-label>
+        </div>
+      </ion-col>
+      <ion-col  size="6" >
+        <div style="padding: 12px;display: flex;">
 
-         <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span></ion-label>
-    </div>
-  </ion-col>
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      <div  style="padding: 12px;display: flex;">
-          <ion-checkbox color="primary"  [(ngModel)]="travelReq" (ionChange)="changevalue()" [value]="true"></ion-checkbox>&nbsp;&nbsp;
+          <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span>
+          </ion-label>
+        </div>
+      </ion-col>
+      <ion-col  size="12" >
+        <div style="padding: 12px;display: flex;">
+          <ion-checkbox slot="start" [(ngModel)]="travelReq" (ionChange)="changevalue()" [value]="true">
+          </ion-checkbox>&nbsp;&nbsp;
           <ion-label>Travel Required</ion-label>
-      </div>
-    </ion-col>
-    <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        </div>
+      </ion-col>
+      <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <div  style="padding: 12px;display: flex;">
             <ion-checkbox color="primary"  [(ngModel)]="advance" [value]="true"></ion-checkbox>&nbsp;&nbsp;
             <ion-label>Advance</ion-label>
         </div>
       </ion-col> -->
-          </ion-row>
+    </ion-row>
 
-<ion-row *ngIf="advance==true">
-<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-  <label>Amount<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-input  type="tel"  class="form-control" placeholder="amount" [(ngModel)]="advanceAmount"></ion-input>
+    <ion-row *ngIf="advance==true">
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <label>Amount<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="tel" class="form-control" placeholder="amount" [(ngModel)]="advanceAmount"></ion-input>
 
-</ion-col>
-<ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
-  <ion-select style="position:relative;top:17px" class="form-control" [(ngModel)]="advanceCurrency">
-      <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
-      <ion-select-option *ngFor="let item of currencylist" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-  </ion-select>
-</ion-col>
-
-<ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-  <label>Repayment<span style="color:red;margin-left: 5px;">*</span></label>
-  <ion-radio-group [(ngModel)]="Repayment">
-
-      &nbsp;&nbsp;&nbsp;
-        <ion-label>Cash</ion-label> &nbsp; &nbsp;
-        <ion-radio value="C"></ion-radio>
-        &nbsp;&nbsp;&nbsp;
-        <ion-label>Salary</ion-label> &nbsp; &nbsp;
-        <ion-radio value="S"></ion-radio>
-    </ion-radio-group>
-</ion-col>
-
-</ion-row>
-<ion-row *ngIf="Repayment=='S'">
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      <label>Installment<span style="color:red;margin-left: 5px;">*</span></label>
-      <ion-input  type="tel"  class="form-control"  [(ngModel)]="installment"></ion-input>
-
-  </ion-col>
-  <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
-          <span class="installdata">Months</span>
       </ion-col>
-</ion-row>
-<ion-row *ngIf="travelReq==true">
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>From Place<span style="color:red;margin-left: 5px;">*</span></label>
-      <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="fromPlace"
-      [options]='options' class="form-control" #placesRef="ngx-places"
-      (onAddressChange)="handleAddressChange($event)"></textarea>
-  </ion-col>
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>To Place<span style="color:red;margin-left: 5px;">*</span></label>
-      <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="toPlace"
-      [options]='options' class="form-control" #placesRef="ngx-places" (onAddressChange)="handleAddressChange1($event)"></textarea>
-</ion-col>
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>Travel Date<span style="color:red;margin-left: 5px;">*</span></label>
-      <ion-input type="date"
-      min="{{from | date: 'yyyy-MM-dd'}}"
-      max="{{to | date: 'yyyy-MM-dd'}}" (change)="travelDateValidation($event)" class="form-control"  [(ngModel)]="tavelDate"></ion-input>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
 
-  </ion-col>
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>Travel Mode<span style="color:red;margin-left: 5px;">*</span></label>
-      <ion-select  class="form-control" [(ngModel)]="travelmode">
+        <ion-select style="position:relative;top:17px" class="form-control" [(ngModel)]="advanceCurrency">
+          <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
+          <ion-select-option *ngFor="let item of currencylist" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Repayment<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-radio-group [(ngModel)]="Repayment">
+
+          &nbsp;&nbsp;&nbsp;
+          <ion-label>Cash</ion-label> &nbsp; &nbsp;
+          <ion-radio value="C"></ion-radio>
+          &nbsp;&nbsp;&nbsp;
+          <ion-label>Salary</ion-label> &nbsp; &nbsp;
+          <ion-radio value="S"></ion-radio>
+        </ion-radio-group>
+      </ion-col>
+
+    </ion-row>
+    <ion-row *ngIf="Repayment=='S'">
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <label>Installment<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="tel" class="form-control" [(ngModel)]="installment"></ion-input>
+
+      </ion-col>
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
+        <span class="installdata">Months</span>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="travelReq==true">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>From Place<span style="color:red;margin-left: 5px;">*</span></label>
+        <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="fromPlace"
+          [options]='options' class="form-control" #placesRef="ngx-places"
+          (onAddressChange)="handleAddressChange($event)"></textarea>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>To Place<span style="color:red;margin-left: 5px;">*</span></label>
+        <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="toPlace"
+          [options]='options' class="form-control" #placesRef="ngx-places"
+          (onAddressChange)="handleAddressChange1($event)"></textarea>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Travel Date<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-input type="date" min="{{from | date: 'yyyy-MM-dd'}}" max="{{to | date: 'yyyy-MM-dd'}}"
+          (change)="travelDateValidation($event)" class="form-control" [(ngModel)]="tavelDate"></ion-input>
+
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Travel Mode<span style="color:red;margin-left: 5px;">*</span></label>
+        <ion-select class="form-control" [(ngModel)]="travelmode">
           <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
           <ion-select-option *ngFor="let item of TavelmodeType" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-      </ion-select>
+        </ion-select>
 
-  </ion-col>
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>Comment</label>
-     <ion-textarea [(ngModel)]="travelComment" class="form-control"></ion-textarea>
-     <span *ngIf="comment!=undefined" class="customCounter">{{4000 - comment.length}}</span>
-  </ion-col>
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <label>Amount</label>
-      <ion-input  type="tel" class="form-control"  [(ngModel)]="travelamount"></ion-input>
-  </ion-col>
-  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-<div class="plusicon">
-  <ion-icon name="add" (click)="addTravel()" style="margin: 7px 0;"></ion-icon>
-</div>
-</ion-col>
-</ion-row>
-          <ion-row *ngIf="travelReq==true">
-              <ion-card *ngFor="let item of AllTravelData;let i=index">
-                  <ion-item>
-                      <span style="color: #737373;font-size: 14px;font-weight: 600;width:100%">Travel {{i+1}}</span>
-                      <div style="float:right;width:100%;text-align: right;">
-                          <span (click)="editTravel(item,i)" id="editbtn{{i+0}}" style="font-size: 15px;border-radius: 50%;margin-right: 10px;">
-                              <ion-icon name="create"></ion-icon>
-                          </span>
-                          <span (click)="saveeditTravel(edittraVal,i)" id="checkmarkbtn{{i+0}}" style="font-size: 15px;border-radius: 50%;margin-right: 10px;display:none;">
-                              <ion-icon name="checkmark"></ion-icon>
-                          </span>
-                          <span style="font-size: 15px;border-radius: 50%;color:black" (click)="deleteTravel(item,i)">
-                              <ion-icon name="close-circle"></ion-icon>
-                            <!-- <i class="icon ion-close-circled"></i> -->
-                          </span>
-                      </div>
-                  </ion-item>
-                  <ion-row id="travelidvals{{i+0}}" style="padding: 10px;">
-                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                        From
-                      </ion-col>
-                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                          {{item.FROM_PLACE}}
-                        </ion-col>
-                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                          To
-                        </ion-col>
-                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                          {{item.TO_PLACE}}
-                        </ion-col>
-                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                            Travel Mode
-                          </ion-col>
-                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                              {{item.TRAVEL_MODETEXT}}
-                            </ion-col>
-                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                Tavel Date
-                              </ion-col>
-                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                  {{item.TRAVEL_DATE  | date: 'dd-MMM-yyyy'}}
-                                </ion-col>
-                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                    Comment
-                                  </ion-col>
-                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                      {{item.TRAVEL_COMMENT}}
-                                    </ion-col>
-                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                        Amount
-                                      </ion-col>
-                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                          {{item.TRAVEL_AMOUNT}}
-                                        </ion-col>
-
-
-          </ion-row>
-          <ion-row id="editfield{{i+0}}" style="display: none;">
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                  <label>From Place</label>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Comment</label>
+        <ion-textarea [(ngModel)]="travelComment" class="form-control"></ion-textarea>
+        <span *ngIf="comment!=undefined" class="customCounter">{{4000 - comment.length}}</span>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <label>Amount</label>
+        <ion-input type="tel" class="form-control" [(ngModel)]="travelamount"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <div class="plusicon">
+          <ion-icon name="add" (click)="addTravel()" style="margin: 7px 0;"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="travelReq==true">
+      <ion-card *ngFor="let item of AllTravelData;let i=index">
+        <ion-item>
+          <span style="color: #737373;font-size: 14px;font-weight: 600;width:100%">Travel {{i+1}}</span>
+          <div style="float:right;width:100%;text-align: right;">
+            <span (click)="editTravel(item,i)" id="editbtn{{i+0}}"
+              style="font-size: 15px;border-radius: 50%;margin-right: 10px;">
+              <ion-icon name="create"></ion-icon>
+            </span>
+            <span (click)="saveeditTravel(edittraVal,i)" id="checkmarkbtn{{i+0}}"
+              style="font-size: 15px;border-radius: 50%;margin-right: 10px;display:none;">
+              <ion-icon name="checkmark"></ion-icon>
+            </span>
+            <span style="font-size: 15px;border-radius: 50%;color:black" (click)="deleteTravel(item,i)">
+              <ion-icon name="close-circle"></ion-icon>
+              <!-- <i class="icon ion-close-circled"></i> -->
+            </span>
+          </div>
+        </ion-item>
+        <ion-row id="travelidvals{{i+0}}" style="padding: 10px;">
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            From
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.FROM_PLACE}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            To
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.TO_PLACE}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Travel Mode
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.TRAVEL_MODETEXT}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Tavel Date
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.TRAVEL_DATE | date: 'dd-MMM-yyyy'}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Comment
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.TRAVEL_COMMENT}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            Amount
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{item.TRAVEL_AMOUNT}}
+          </ion-col>
 
 
-               </ion-col>
-               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                  <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="editfromPlace"
-                  [options]='options' class="form-control" #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"></textarea>
-
-               </ion-col>
-
-               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <label>To Place</label>
-               </ion-col>
-               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
-                  <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="edittoPlace"
-                  [options]='options' class="form-control" #placesRef="ngx-places" (onAddressChange)="handleAddressChange1($event)"></textarea>
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <label>Travel Date</label>
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
-                  <ion-input class="form-control" type="date" [(ngModel)]="edittavelDate"></ion-input>
-               </ion-col>
-               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <label>Travel Mode</label>
-               </ion-col>
-
-               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
-                  <ion-select  class="form-control" [(ngModel)]="edittravelmode">
-                      <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
-                      <ion-select-option *ngFor="let item of TavelmodeType" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-                  </ion-select>
-
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <label>Comment</label>
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
-                  <ion-input class="form-control"  [(ngModel)]="edittravelComment"></ion-input>
-
-               </ion-col>
-               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                  <label>Amount</label>
+        </ion-row>
+        <ion-row id="editfield{{i+0}}" style="display: none;">
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <label>From Place</label>
 
 
-                 </ion-col>
-                 <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <ion-input class="form-control"  type="tel" [(ngModel)]="edittravelamount"></ion-input>
-                 </ion-col>
-          </ion-row>
-          </ion-card>
-          </ion-row>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="editfromPlace"
+              [options]='options' class="form-control" #placesRef="ngx-places"
+              (onAddressChange)="handleAddressChange($event)"></textarea>
+
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <label>To Place</label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+            <textarea appFromplacedirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="edittoPlace"
+              [options]='options' class="form-control" #placesRef="ngx-places"
+              (onAddressChange)="handleAddressChange1($event)"></textarea>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <label>Travel Date</label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+            <ion-input class="form-control" type="date" [(ngModel)]="edittavelDate"></ion-input>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <label>Travel Mode</label>
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+            <ion-select class="form-control" [(ngModel)]="edittravelmode">
+              <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
+              <ion-select-option *ngFor="let item of TavelmodeType" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
+            </ion-select>
+
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <label>Comment</label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
+            <ion-input class="form-control" [(ngModel)]="edittravelComment"></ion-input>
+
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <label>Amount</label>
+
+
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-input class="form-control" type="tel" [(ngModel)]="edittravelamount"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-row>
   </ion-grid>
 
-      <ion-row *ngIf="ODshow">
-          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+  <ion-row *ngIf="ODshow">
+    <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-            <ion-button [disabled]="from==undefined || to==undefined || to=='' || nod=='' || fromHour==undefined|| toHour==undefined|| reason==undefined"   *ngIf="!disabledvalue"  color="success" (click)="odSubmit()">Ok</ion-button>
-            </ion-col>
-            <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+      <ion-button
+        [disabled]="from==undefined || to==undefined || to=='' || nod=='' || fromHour==undefined|| toHour==undefined|| reason==undefined"
+        *ngIf="!disabledvalue" color="success" expand="block" strong (click)="odSubmit()">Ok</ion-button>
+    </ion-col>
+    <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-                <ion-button    *ngIf="!disabledvalue" (click)="refresh()" color="danger">Cancel</ion-button>
-                </ion-col>
-                <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+      <ion-button *ngIf="!disabledvalue" (click)="refresh()" color="danger">Cancel</ion-button>
+    </ion-col>
+    <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-                    <ion-button   *ngIf="!disabledvalue"  (click)="odSummary()">List</ion-button>
-                    </ion-col>
-            </ion-row>
+      <ion-button *ngIf="!disabledvalue" (click)="odSummary()">List</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
 
 <ion-footer class="bar-royal">
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- </ion-footer>
+</ion-footer>

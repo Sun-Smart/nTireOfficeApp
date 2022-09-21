@@ -1,0 +1,168 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Schedule Meeting</ion-title>
+    <ion-icon name="close-circle" (click)="closemodel()" style="float:right"></ion-icon>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <div *ngIf="audiofilename!=undefined">
+          <label class="labels">Attachment</label>
+          <audio controls style="box-shadow: rgba(205, 205, 188, 0.27) 2px 2px 2px 2px;width: 100%;">
+            <source src="{{ntireoffice_image}}{{filename}}" type="audio/amr">
+          </audio>
+        </div>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+
+        <ion-label>Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <select [(ngModel)]="dataobjs.leadstatusval" class="form-control">
+          <option value="">
+            << Select>>
+          </option>
+          <option value="3">High</option>
+          <option value="2">Low</option>
+          <option value="1">Normal</option>
+        </select>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Call Rating <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <select [(ngModel)]="dataobjs.callratingval" class="form-control">
+          <option value="0">
+            << Select>>
+          </option>
+          <option value="3">Cold</option>
+          <option value="2">Hot</option>
+          <option value="1">Warm</option>
+        </select>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Call Nature <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <select [(ngModel)]="dataobjs.callnatureval" class="form-control">
+          <option value="0"> &lt;&lt; Select &gt;&gt;</option>
+          <option value="2">Courtesy Call</option>
+          <option value="3">Others</option>
+          <option value="1">Sales Call</option>
+        </select>
+
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <select [(ngModel)]="dataobjs.callstageval" class="form-control">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.Value">{{stage.Text}}</option>
+        </select>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Lead Source</ion-label>
+        <select [(ngModel)]="dataobjs.leadsrc" class="form-control">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.Value">{{lead.Text}}</option>
+        </select>
+      </ion-col>
+
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Exp. Closed Date</ion-label>
+        <ion-input class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" date='dd/MM/yyyy'
+          type="date" [(ngModel)]="dataobjs.ClosedDate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Expected Amount</ion-label>
+        <ion-input class="form-control" type="number" [(ngModel)]="dataobjs.ExpctedAmount"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Remarks</ion-label>
+        <ion-textarea [(ngModel)]="dataobjs.pendleadremarks" style="height:auto !important" class="form-control">
+        </ion-textarea>
+        <span
+          *ngIf="dataobjs.pendleadremarks!= undefined &&dataobjs.pendleadremarks.length > 0 && dataobjs.pendleadremarks.length < 50"
+          class="badge badge-stable pull-right" style="color:green;">{{4000 - dataobjs.pendleadremarks.length}}
+        </span>
+        <span
+          *ngIf="dataobjs.pendleadremarks!= undefined &&dataobjs.pendleadremarks.length > 50 && dataobjs.pendleadremarks.length < 100"
+          class="badge badge-stable pull-right" style="color:#ff9800;">{{4000 - dataobjs.pendleadremarks.length}}
+        </span>
+        <span
+          *ngIf="dataobjs.pendleadremarks!= undefined &&dataobjs.pendleadremarks.length > 100 && dataobjs.pendleadremarks.length <= 4000"
+          class="badge badge-stable pull-right" style="color:red;">{{4000 - dataobjs.pendleadremarks.length}}
+        </span>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Action Required</ion-label>
+        <ion-textarea [(ngModel)]="dataobjs.pendleadactreq" style="height:auto !important" class="form-control">
+        </ion-textarea>
+        <span
+          *ngIf="dataobjs.pendleadactreq!= undefined &&dataobjs.pendleadactreq.length > 0 && dataobjs.pendleadactreq.length < 50"
+          class="badge badge-stable pull-right" style="color:green;">{{4000 - dataobjs.pendleadactreq.length}}</span>
+        <span
+          *ngIf="dataobjs.pendleadactreq!= undefined &&dataobjs.pendleadactreq.length > 50 && dataobjs.pendleadactreq.length < 100"
+          class="badge badge-stable pull-right" style="color:#ff9800;">{{4000 - dataobjs.pendleadactreq.length}}</span>
+        <span
+          *ngIf="dataobjs.pendleadactreq!= undefined &&dataobjs.pendleadactreq.length > 100 && dataobjs.pendleadactreq.length <= 4000"
+          class="badge badge-stable pull-right" style="color:red;">{{4000 - dataobjs.pendleadactreq.length}}</span>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label>Next Action <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <select [(ngModel)]="dataobjs.nextactionval" class="form-control">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option value="2">Follow Up</option>
+          <option value="1">Appointment Fixed</option>
+          <option value="4">Lead Closed</option>
+          <option value="8">Email</option>
+        </select>
+      </ion-col>
+      <ion-col *ngIf="dataobjs.nextactionval == '2' || dataobjs.nextactionval == '1'" size-sm="12" size="12"
+        size-md="12" size-lg="12" size-xl="12">
+        <label class="labels" *ngIf="dataobjs.nextactionval == '2'">Date<span style="color:red;">*</span></label>
+        <label class="labels" *ngIf="dataobjs.nextactionval == '1'">Meeting Date<span
+            style="color:red;">*</span></label>
+        <ion-input class="form-control" type="date" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
+          [(ngModel)]="dataobjs.schedmeetdate"></ion-input>
+      </ion-col>
+      <ion-col *ngIf="dataobjs.nextactionval == '2' || dataobjs.nextactionval == '1'" size-sm="12" size="12"
+        size-md="12" size-lg="12" size-xl="12">
+        <label class="labels" *ngIf="dataobjs.nextactionval == '2'">Time<span style="color:red;">*</span></label>
+        <label class="labels" *ngIf="dataobjs.nextactionval == '1'">Meeting Time<span
+            style="color:red;">*</span></label>
+        <ion-input type="Time" class="form-control" (change)="timeValidation($event.target.value)"
+          [(ngModel)]="followtime"></ion-input>
+
+      </ion-col>
+      <ion-col *ngIf="dataobjs.nextactionval == '1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Place To Meet <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <textarea appMeetingdirective style="width:100%;height:auto;padding:8px;" [(ngModel)]="schedleadareaname"
+          [options]='options' class="form-control" #placesRef="ngx-places"
+          (onAddressChange)="handleAddressChange($event)"></textarea>
+        <span *ngIf="schedleadareaname!= undefined &&schedleadareaname.length > 0 && schedleadareaname.length < 50"
+          class="badge badge-stable pull-right" style="color:green;">
+          {{400 - schedleadareaname.length}}
+        </span>
+        <span *ngIf="schedleadareaname!= undefined &&schedleadareaname.length > 50 && schedleadareaname.length < 100"
+          class="badge badge-stable pull-right" style="color:#ff9800;">
+          {{400 - schedleadareaname.length}}
+        </span>
+        <span *ngIf="schedleadareaname!= undefined &&schedleadareaname.length > 100 && schedleadareaname.length <= 150"
+          class="badge badge-stable pull-right" style="color:red;">
+          {{400 - schedleadareaname.length}}
+        </span>
+      </ion-col>
+      <ion-col [hidden]="showmap" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <div>
+          <ion-card style="--background: #fff;padding: 6px;">
+            <div #map id="map"></div>
+          </ion-card>
+        </div>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-button (click)="Updateschedulemeet(dataobjs,schedleadareaname)" style="background-color:#009689"
+          size="full">Submit</ion-button>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

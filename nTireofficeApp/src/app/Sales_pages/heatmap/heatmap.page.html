@@ -1,0 +1,164 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Heat Map</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-segment [(ngModel)]="segmentdata" class="tabviewalignment">
+    <ion-segment-button value="11">
+      <ion-label style="text-transform: none !important;">Individual</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="22">
+      <ion-label style="text-transform: none !important;">Branch</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="segmentdata=='11'">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngIf="usertype== '1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <select style="width:100%" [(ngModel)]="locbranch" class="form-control"
+            (change)="getbranchusers(locbranch,status)">
+            <option value="">Please Select Branch</option>
+            <option *ngFor="let branchlist of branchlist1; let i = index" value="{{branchlist.BRANCH_ID}}">
+              {{branchlist.BRANCH_DESC}}</option>
+          </select>
+
+        </ion-col>
+        <ion-col *ngIf="usertype== '1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <select style="width:100%" (change)="getbranchusers(locbranch,status)" [(ngModel)]="status"
+            class="form-control">
+            <option value="">
+              << Select>>
+            </option>
+            <option value="3">Open</option>
+            <option value="4">Closed</option>
+          </select>
+        </ion-col>
+        <ion-col *ngIf="usertype== '1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <div style="background-color: #fd6b0d;margin-bottom: 5px;overflow:auto">
+
+            <table class="table table-bordered" style="background-color:white;margin-bottom: 0px;">
+              <thead>
+                <tr *ngIf="branchuser_data.length>0"
+                  style="background-color: #fd6b0d !important;color: white;font-weight: 500;">
+
+                  <th style="background-color: #fd6b0d !important;color: white;" *ngFor="let datas of branchuser_data"
+                    (click)="HeatMapRecord(datas.tum_user_id)">{{datas.TUM_USER_NAME}}</th>
+                </tr>
+              </thead>
+            </table>
+
+          </div>
+        </ion-col>
+
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <div *ngIf="HeatMapRecord_data.length==0" style="margin-top: 50%;">
+            <p style="font-weight: bold;text-align: center;">No Record Found</p>
+          </div>
+          <div *ngIf="HeatMapRecord_data.length>0" class="heatmap"
+            style="background-color:#fff;padding:10px;overflow:auto;">
+            <table class="table table-striped"
+              style="padding-top: 10px;font-size:13px;padding-bottom: 0px;width: 100%;">
+              <tr style="background-color: #cbc9c9;">
+                <th colspan="1" style="font-weight:bold;text-align: left;color:#444;padding: 10px;">Product</th>
+                <th colspan="1" style="font-weight:bold;text-align: center;color:#444;padding: 10px;">YTD</th>
+                <th colspan="1" style="font-weight:bold;text-align: center;color:#444; padding: 10px;">MTD</th>
+                <th colspan="1" style="font-weight:bold;text-align: center;color:#444; padding: 10px;">TD </th>
+                <!-- <th colspan="2" style="font-weight:bold;text-align: center;color:#444;padding: 10px;">3 MTD </th> -->
+              </tr>
+              <tbody>
+                <!-- <tr>
+                            <th class="tabletd tablesm " style="padding: 8px !important;font-weight:bold;color:#2e3192;">Cust</th>
+                            <th class="tabletd tablesm" style="padding: 8px !important;font-weight:bold;color:#2e3192;">Cust</th>
+                            <th class="tabletd tablesm" style="padding: 8px !important;font-weight:bold;color:#2e3192;">Cust</th>
+                        </tr> -->
+              </tbody>
+              <tr *ngFor="let data of HeatMapRecord_data">
+                <td class="tabletd tablesm" style="padding: 8px !important;color:#444;text-align:left;">
+                  {{data.TCM_CAMPAIGN_SHORTDESC}}</td>
+                <td class="tabletd tablesm" style="padding: 8px !important;color:#444;text-align:center;">
+                  {{data.YTD_Cust}}</td>
+                <!-- <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;">1</td> -->
+                <td class="tabletd tablesm" style="padding: 8px !important;color:#444;text-align:center;">
+                  {{data.MTD_Cust}}</td>
+                <!-- <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;">1</td> -->
+                <td class="tabletd tablesm" style="padding: 8px !important;color:#444;text-align:center;">
+                  {{data.ToltalCustomers}}</td>
+                <!-- <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;">1</td> -->
+
+                <!-- <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;">1</td> -->
+                <!-- <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;">1</td> -->
+              </tr>
+            </table>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="segmentdata=='22'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <select style="width:100%" [(ngModel)]="branch" class="form-control" (change)="getbranchusers(locbranch)">
+            <option value="">Please Select Branch</option>
+            <option *ngFor="let branchlist of branchlist1; let i = index" value="{{branchlist.BRANCH_ID}}">
+              {{branchlist.BRANCH_DESC}}</option>
+          </select>
+
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <select style="width:100%" [(ngModel)]="status1" class="form-control">
+            <option value="">
+              Please Select Status</option>
+            <option value="3">Open</option>
+            <option value="4">Closed</option>
+          </select>
+        </ion-col>
+        <ion-col style="text-align:center" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-button (click)="getbranchwise()" style="border-radius:5px;    border-radius: 5px;
+          height: 2.5em;
+          font-size: 17px;" size="small">Search</ion-button>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <div *ngIf="HeatMapRecordbranch.length>0">
+            <p style="font-weight: bold;text-align: center;padding-top:15px;">Total Product :
+              {{HeatMapRecordbranch.length}}</p>
+
+            <div style="background-color:#fff">
+              <table style="padding-top: 10px;font-size:13px;padding-bottom: 0px;width:100%">
+                <tr style="background-color: rgba(217, 206, 206, 0.75);">
+                  <th colspan="1" style="font-weight:bold;text-align: left;color:#444;padding: 10px;">Product</th>
+                  <th colspan="1" style="font-weight:bold;text-align: center;color:#444;padding: 10px;">YTD</th>
+                  <th colspan="1" style="font-weight:bold;text-align: center;color:#444; padding: 10px;">MTD</th>
+                  <th colspan="1" style="font-weight:bold;text-align: center;color:#444; padding: 10px;">TD </th>
+                </tr>
+                <tbody>
+
+                </tbody>
+                <tr *ngFor="let data of HeatMapRecordbranch">
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:left;color:#2e3192;">
+                    {{data.TCM_CAMPAIGN_SHORTDESC}}</td>
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192;">
+                    {{data.YTD_Cust}}</td>
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192;">
+                    {{data.MTD_Cust}}</td>
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192;">
+                    {{data.ToltalCustomers}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </ion-col>
+        <div *ngIf="HeatMapRecordbranch.length==0" style="margin-top: 50%;width:100%">
+          <p style="font-weight: bold;text-align: center;">No Record Found</p>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

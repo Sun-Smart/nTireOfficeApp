@@ -1,93 +1,94 @@
 <ion-content>
   <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
       <ion-title>Letter Request</ion-title>
     </ion-toolbar>
   </ion-header>
-    <ion-grid style="padding: 10px;margin: 10px;border-radius: 8px;">
-        <ion-row>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label>Function</ion-label>
-                <ion-input style="background-color: white;
-                color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                  <ion-label>Branch</ion-label>
-                    <ion-input style="background-color: white;
+  <ion-grid style="padding: 10px;margin: 10px;border-radius: 8px;">
+    <ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Function</ion-label>
+        <ion-input style="background-color: white;
+                color: black;" class="form-control" disabled [(ngModel)]="company"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Branch</ion-label>
+        <ion-input style="background-color: white;
                     color: black;" class="form-control" disabled [(ngModel)]="branch"></ion-input>
-                  </ion-col>
+      </ion-col>
 
-                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <ion-label>Name</ion-label>
-                        <ion-input style="background-color: white;
-                        color: black;" class="form-control" disabled  [(ngModel)]="name"></ion-input>
-                      </ion-col>
-                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                          <ion-label>Request Type<span class="validatecolor">*</span></ion-label>
-                          <ion-select [(ngModel)]="requestType"  class="form-control" style="display: flex;">
-                            <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-                             <ion-select-option *ngFor="let item of listletters" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-                          </ion-select>
-                          </ion-col>
-                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                              <ion-label>Reason</ion-label>
-                            <ion-textarea class="form-control"   [(ngModel)]="reason"></ion-textarea>
-                                        <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
-  </ion-col>
-                      </ion-row>
-                      <ion-row>
-                          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Name</ion-label>
+        <ion-input style="background-color: white;
+                        color: black;" class="form-control" disabled [(ngModel)]="name"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Request Type<span class="validatecolor">*</span></ion-label>
+        <ion-select [(ngModel)]="requestType" class="form-control" style="display: flex;">
+          <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+          <ion-select-option *ngFor="let item of listletters" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Reason</ion-label>
+        <ion-textarea class="form-control" [(ngModel)]="reason"></ion-textarea>
+        <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-                            <ion-button color="success" (click)="letterSubmit()">Ok</ion-button>
-                            </ion-col>
-                            <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+        <ion-button 
+        color="success" expand="block" (click)="letterSubmit()">Ok</ion-button>
+      </ion-col>
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-                                <ion-button color="danger" (click)="requestClear()">Clear</ion-button>
-                                </ion-col>
-                                <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+        <ion-button color="danger" expand="block" (click)="requestClear()">Clear</ion-button>
+      </ion-col>
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-                                    <ion-button (click)="letterList()">List</ion-button>
-                                    </ion-col>
-                            </ion-row>
-                      </ion-grid>
-                      <ion-card *ngFor="let items of summarylist; let i = index">
-                          <ion-grid style="padding: 0px;">
-                              <ion-row>
-                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
-                                  {{items.EMP_CODE}}
-                                  </ion-col>
-                                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="text-align:right;">
+        <ion-button color="primary" expand="block" (click)="letterList()">List</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card *ngFor="let items of summarylist; let i = index">
+    <ion-grid style="padding: 0px;">
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+          {{items.EMP_CODE}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="text-align:right;">
 
-                                      </ion-col>
-                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                          Request Date
-                                          </ion-col>
-                                          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                              {{items.REQ_DATE | date :"dd.MM.y"}}
-                                              </ion-col>
-                                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                  Reason
-                                                  </ion-col>
-                                                  <ion-col *ngIf="items.REASON!=undefined" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                      {{items.REASON ||"-"}}
-                                                      </ion-col>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Request Date
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{items.REQ_DATE | date :"dd.MM.y"}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Reason
+        </ion-col>
+        <ion-col *ngIf="items.REASON!=undefined" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{items.REASON ||"-"}}
+        </ion-col>
 
-                                              </ion-row>
-                                              </ion-grid>
-                                              </ion-card>
-                                              <p  style="text-align:center" *ngIf="summarylist.length==0" class="norecord">No Record Found</p>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <p style="text-align:center" *ngIf="summarylist.length==0" class="norecord">No Record Found</p>
 </ion-content>
 <ion-footer class="bar-royal">
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- </ion-footer>
+</ion-footer>
