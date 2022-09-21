@@ -1,5 +1,5 @@
 ion-content {
-  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  --background: url("../../../assets/images/tpbackground.png") repeat !important;
   position: relative;
 }
 
@@ -15,7 +15,6 @@ ion-content {
   // --background: linear-gradient(to top, #ff0084, #33001b);
   position: relative;
 }
-
 
 ion-item {
   margin-top: 7px !important;
@@ -34,45 +33,50 @@ ion-toolbar {
   text-align: center;
 }
 
-ion-label{
+ion-label {
   // color:white !important;
   color: black;
 }
 
-ion-spinner{
+ion-spinner {
   // color:white;
   color: black;
   display: block;
   margin: 15px auto;
 }
 
-.header-md:after{
+.header-md:after {
   background-image: none !important;
 }
 
-ion-card{
+ion-card {
   background: #ffffff;
   margin: 25px;
   border-radius: 5px;
   font-size: 14px;
   // box-shadow: 0 -3px 2px 0 rgb(255 255 255 / 20%), 0 -5px 12px 0 rgb(255 245 245 / 53%) !important;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12)
-;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
 .hrmsmodal {
-  ion-toolbar{
-  --background: blue !important;
+  ion-toolbar {
+    --background: blue !important;
   }
 }
 
 ion-content {
-  --background: url('../../../assets/images/tpbackground.png') repeat !important;
+  --background: url("../../../assets/images/tpbackground.png") repeat !important;
   position: relative;
+}
+
+
+.button-native{
+  background-color: green !important;
+}
+
+.employeefield{
+  background-color: white!important;
+  border:1px solid rgb(201, 194, 194);
+  border-radius: 4px;
 }
