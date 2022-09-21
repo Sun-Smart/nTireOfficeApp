@@ -7,11 +7,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { UpdateleadsPageRoutingModule } from './updateleads-routing.module';
 
 import { UpdateleadsPage } from './updateleads.page';
-import { AddcontactPage } from '../addcontact/addcontact.page';
 const routes: Routes = [
   {
     path: '',
-    component: AddcontactPage
+    component: UpdateleadsPage
   }
 ];
 @NgModule({
