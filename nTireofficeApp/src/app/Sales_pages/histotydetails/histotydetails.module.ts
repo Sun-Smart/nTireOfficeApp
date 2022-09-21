@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
 import { Routes, RouterModule } from '@angular/router';
-import { UpdateleadsPageRoutingModule } from './updateleads-routing.module';
+import { IonicModule } from '@ionic/angular';
 
-import { UpdateleadsPage } from './updateleads.page';
+import { HistotydetailsPageRoutingModule } from './histotydetails-routing.module';
+
+import { HistotydetailsPage } from './histotydetails.page';
 const routes: Routes = [
   {
     path: '',
-    component: UpdateleadsPage
+    component: HistotydetailsPage
   }
 ];
 @NgModule({
@@ -18,9 +18,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateleadsPageRoutingModule,
+    HistotydetailsPageRoutingModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [UpdateleadsPage]
+  declarations: [HistotydetailsPage]
 })
-export class UpdateleadsPageModule {}
+export class HistotydetailsPageModule {}

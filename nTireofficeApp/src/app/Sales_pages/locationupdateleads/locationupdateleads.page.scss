@@ -1,0 +1,19 @@
+select{
+  width:100%;
+}
+ion-input{
+  width:100%
+}ion-icon{
+  float: right;
+  position: absolute;
+  right: 9px;
+  top: 17px;
+  font-size: 24px;
+  cursor: pointer;
+}
+#map{
+  overflow:inherit !important;
+  position: inherit !important;
+  height: 250px;
+  width: 100%;
+}
