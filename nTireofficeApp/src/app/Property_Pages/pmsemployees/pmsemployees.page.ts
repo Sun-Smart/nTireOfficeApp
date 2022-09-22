@@ -30,7 +30,10 @@ export class PmsemployeesPage implements OnInit {
   confirm() {
     this.modal.dismiss(this.name, 'confirm');
   }
-  
+  closemodel(){
+
+    this.modal.dismiss(null, 'cancel');
+  }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
