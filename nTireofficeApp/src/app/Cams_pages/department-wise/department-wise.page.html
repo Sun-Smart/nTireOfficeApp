@@ -14,12 +14,12 @@
   </ion-refresher>
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Function</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="function"></ion-input>
-      </ion-col>
-  
+      </ion-col> -->
+
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Zone</ion-label>
         <select [(ngModel)]="ZoneLoc" class="form-control" style="width:100%" (change)="selzone()">
@@ -28,16 +28,16 @@
           </option>
         </select>
       </ion-col>
-  
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Region</ion-label>
-          <select [(ngModel)]="region" class="form-control" style="width:100%" (change)="selregion()">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let item of detailregion; let i = index" [ngValue]="item.region_id">{{item.region_desc}}
-            </option>
-          </select>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Region</ion-label>
+        <select [(ngModel)]="region" class="form-control" style="width:100%" (change)="selregion()">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option *ngFor="let item of detailregion; let i = index" [ngValue]="item.region_id">{{item.region_desc}}
+          </option>
+        </select>
       </ion-col>
-  
+
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch</ion-label>
         <select [(ngModel)]="branchLoc" class="form-control" style="width:100%">
@@ -45,57 +45,63 @@
           <option *ngFor="let item of detailbranch; let i = index" [ngValue]="item.BRANCH_ID">{{item.BRANCH_DESC}}
           </option>
         </select>
-    </ion-col>
+      </ion-col>
 
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label>Department</ion-label>
-      <select [(ngModel)]="depatment" class="form-control" style="width:100%">
-        <option>&lt;&lt; Select &gt;&gt;</option>
-        <option *ngFor="let item of detaildepatment; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
-        </option>
-      </select>
-  </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Department</ion-label>
+        <select [(ngModel)]="depatment" class="form-control" style="width:100%">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option *ngFor="let item of detaildepatment; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+          </option>
+        </select>
+      </ion-col>
 
-  <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-    <ion-label>Location</ion-label>
-    <select [(ngModel)]="location" class="form-control" style="width:100%">
-      <option>&lt;&lt; Select &gt;&gt;</option>
-      <option *ngFor="let item of locationchk; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
-      </option>
-    </select>
-</ion-col>
-   </ion-row> 
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Location</ion-label>
+        <select [(ngModel)]="location" class="form-control" style="width:100%">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option *ngFor="let item of locationchk; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+          </option>
+        </select>
+      </ion-col>
+    </ion-row>
 
-   <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-    <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
-    <ion-col size="12">
-      <ion-button (click)="processlocationreport()" color="success" expand="block">Search
-      </ion-button>
-    </ion-col> 
-    <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
-  </ion-row>
+    <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+      <ion-col size="12">
+        <ion-button (click)="processlocationreport()" color="success" expand="block">Search
+        </ion-button>
+      </ion-col>
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
+    </ion-row>
 
-    <ion-card *ngFor="let item1 of detailfinals; let i = index" style="background-color:#fff">
-    <ion-grid style="padding: 0px;">
-  <ion-row>
-    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
-    style="background-color: #2e3192!important;color:#fff;padding:12px;">
-    <span class="labelsize" style="color: white;font-size: 14px;font-weight: 500" >{{item1.Branch}}</span>
-  </ion-col>
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
-    style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
-  </ion-col>
 
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-    <p style="font-weight:bold;">Department</p>
-    <span style="font-size: 14px!important;">{{item1.Department}}</span>
-  </ion-col>
+    <ion-card *ngFor="let item1 of detailfinals; let i = index">
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col>
+            <ion-label class="card_header_text">{{item1.Branch}}</ion-label>
+          </ion-col>
 
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-    <p style="font-weight:bold;"> Location</p>
-    <span style="font-size: 14px!important;">{{item1.Location}}</span>
-  </ion-col>
-  <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+          <ion-col>
+            <!-- <ion-label class="card_header_text">{{item1.Branch}}</ion-label> -->
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelHead-text">Department</ion-label>
+            <ion-label class="labelData-text">{{item1.Department}}</ion-label>
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelHead-text"> Location</ion-label>
+            <ion-label class="labelData-text">{{item1.Location}}</ion-label>
+          </ion-col>
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
   <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
     <a (click)="showmore(i)">
       <!-- <a ng-click="showmore(i,items.CALL_ID)"> 
@@ -105,46 +111,47 @@
     </a>
   </ion-col>
   <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2"> -->
-  <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-    <p style="font-weight:bold;">Asset Category</p>
-    <span style="font-size: 14px!important;">{{item1.Category}}</span>
+          <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+    <ion-label class="labelHead-text">Asset Category</ion-label>
+    <ion-label class="labelData-text">{{item1.Category}}</ion-label>
   </ion-col> -->
 
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-    <p style="font-weight:bold;">Asset Count &nbsp;-</p>
-  </ion-col>
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-    <span style="font-size: 14px!important;">{{item1.AssetCount}}</span>
-  </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelHead-text">Asset Count &nbsp;-</ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelData-text">{{item1.AssetCount}}</ion-label>
+          </ion-col>
 
-    <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
-    <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
-      <ion-button (click)="departmodaldttls(item1.Department,item1.Location,item1.Branch)" style="--background:#009689" size="full" >Details
-      </ion-button>
-    </ion-col> 
-    <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="4" size-xl="6">
+            <ion-button (click)="departmodaldttls(item1.Department,item1.Location,item1.Branch)"  class="ion-color-success"
+              color="succes" expand="block">Details
+            </ion-button>
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
 
-  <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
 <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
   <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
       style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
 
 </ion-col> -->
-  </ion-row>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
   </ion-grid>
-  </ion-card>
-  </ion-grid> 
 </ion-content>
 <ion-footer>
-  
+
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- 
-   
- </ion-footer>
+
+
+</ion-footer>

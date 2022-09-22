@@ -463,11 +463,11 @@
 
       <ion-button
         [disabled]="from==undefined || to==undefined || to=='' || nod=='' || fromHour==undefined|| toHour==undefined|| reason==undefined"
-        *ngIf="!disabledvalue" color="success" expand="block" strong (click)="odSubmit()">Ok</ion-button>
+        *ngIf="!disabledvalue" color="success" expand="block"  class="ion-color-success" (click)="odSubmit()">Ok</ion-button>
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-      <ion-button *ngIf="!disabledvalue" (click)="refresh()" color="danger">Cancel</ion-button>
+      <ion-button *ngIf="!disabledvalue" (click)="refresh()" class="ion-color-danger" expand="block">Cancel</ion-button>
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 

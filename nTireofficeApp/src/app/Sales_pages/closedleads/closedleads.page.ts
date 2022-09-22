@@ -146,6 +146,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   reporting: boolean;
   user_type_val;
   imagename: any;
+  username:any;
   private backbuttonSubscription: Subscription;
   constructor(private sanitizer: DomSanitizer, public platform: Platform, public media: Media, private datePipe: DatePipe, public loadingController: LoadingController, private router: Router, private geolocation: Geolocation, public alertController: AlertController, public modalController: ModalController, private callNumber: CallNumber, private file: File, private transfer: FileTransfer, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.segmentdata = 'new';
@@ -177,7 +178,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       //this.userservice.Updateofflinestatus("offline");
 
     });
-
+    this.username=localStorage.getItem('TUM_USER_NAME');
     this.phonecalls();
     // this.checkPermissionCall();
 

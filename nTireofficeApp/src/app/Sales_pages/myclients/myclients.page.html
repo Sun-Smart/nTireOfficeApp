@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Clients</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+
+        <select style="width:100%" [(ngModel)]="branch" class="form-control">
+          <option value="">Please Select Branch</option>
+          <option *ngFor="let branchlist of branchlist1; let i = index" value="{{branchlist.BRANCH_ID}}">
+            {{branchlist.BRANCH_DESC}}</option>
+        </select>
+      </ion-col>
+      <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-button (click)="initmeetimg(branch)" style="--background: #11c1f3" size="full">Get Locations</ion-button>
+      </ion-col> -->
+      <ion-col style="text-align:center" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <button (click)="initmeetimg(branch)" color="success" size="full" style="background-color: rgb(2 154 222);color:#fff;width:100% !important;font-size: 17px;height: 2.8em;
+        border-radius: 10px;">Get Locations</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div>
+    <div class="" id="showdivs">
+      <div class="container">
+        <div id="mapshowimageclient" style="width:100%;height:400px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>

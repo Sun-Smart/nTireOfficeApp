@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <p *ngIf="profile!=undefined" style="text-align:center;"><b>{{profile.Name}}</b></p>
+  <p *ngIf="profile!=undefined" class="totalCount"><b>{{profile.Name}}</b></p>
   <ion-grid style="background: transparent; padding: 10px;margin: 10px;border-radius: 8px;">
 
     <ion-row style="background-color: #ffffff;">
@@ -171,7 +171,7 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Sub Qualification</ion-label>
               <br />
               <ion-select *ngIf="personalToggle==1" [(ngModel)]="emp.subQualification" class="selectTag"
@@ -234,19 +234,12 @@
           <ion-grid>
             <ion-row>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-label>Current Address</ion-label>
+                <ion-label>Country</ion-label>
                 <br />
-                <ion-textarea class="profileinput" *ngIf="currentToggle == 1" rows='2' cols="5"
-                  placeholder='Currrent Address (Use "_" instad of "/" for building no)'
-                  [(ngModel)]="profile.CurrentAddress" [disabled]="currentToggle==0"></ion-textarea>
-                <span *ngIf="currentToggle == 0" class="profileOutput">{{profile.CurrentAddress}}</span>
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-label>City</ion-label>
-                <br />
-                <ion-input *ngIf="currentToggle == 1" class="profileinput" type="text" placeholder="City"
-                  [(ngModel)]="profile.CurrentCity" [disabled]="currentToggle==0"></ion-input>
-                <span *ngIf="currentToggle == 0" class="profileOutput">{{profile.CurrentCity}}</span>
+                <ion-input *ngIf="currentToggle == 1" class="profileinput" type="text" placeholder="Country"
+                  [(ngModel)]="profile.CurrentCountry" [disabled]="currentToggle==0"></ion-input>
+                <span *ngIf="currentToggle == 0 && profile.CurrentCountry!=0">{{profile.CurrentCountry}}</span>
+                <span *ngIf="profile.CurrentCountry==0" class="profileOutput"> </span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label>State</ion-label>
@@ -256,13 +249,20 @@
                 <span *ngIf="currentToggle == 0" class="profileOutput">{{profile.CurrentState}}</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-label>Country</ion-label>
+                <ion-label>City</ion-label>
                 <br />
-                <ion-input *ngIf="currentToggle == 1" class="profileinput" type="text" placeholder="Country"
-                  [(ngModel)]="profile.CurrentCountry" [disabled]="currentToggle==0"></ion-input>
-                <span *ngIf="currentToggle == 0 && profile.CurrentCountry!=0">{{profile.CurrentCountry}}</span>
-                <span *ngIf="profile.CurrentCountry==0" class="profileOutput"> </span>
+                <ion-input *ngIf="currentToggle == 1" class="profileinput" type="text" placeholder="City"
+                  [(ngModel)]="profile.CurrentCity" [disabled]="currentToggle==0"></ion-input>
+                <span *ngIf="currentToggle == 0" class="profileOutput">{{profile.CurrentCity}}</span>
               </ion-col>
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-label>Current Address</ion-label>
+                <br />
+                <ion-textarea class="profileinput" *ngIf="currentToggle == 1" rows='2' cols="5"
+                  placeholder='Currrent Address (Use "_" instad of "/" for building no)'
+                  [(ngModel)]="profile.CurrentAddress" [disabled]="currentToggle==0"></ion-textarea>
+                <span *ngIf="currentToggle == 0" class="profileOutput">{{profile.CurrentAddress}}</span>
+              </ion-col> 
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label>Pincode</ion-label>
                 <br />
@@ -324,19 +324,13 @@
         <ion-card-content>
           <ion-row>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label>Permanent Address</ion-label>
+              <ion-label>Country</ion-label>
               <br />
-              <ion-textarea class="profileinput" *ngIf="permanentToggle == 1" rows='1'
-                placeholder='Permanent Address (Use "_" instad of "/" for building no)'
-                [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle==0"></ion-textarea>
-              <span *ngIf="permanentToggle == 0" class="profileOutput">{{profile.PermanentAddress}}</span>
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label>City</ion-label>
-              <br />
-              <ion-input *ngIf="permanentToggle == 1" class="profileinput" type="text" placeholder="City"
-                [(ngModel)]="profile.PermanentCity" [disabled]="permanentToggle==0"></ion-input>
-              <span *ngIf="permanentToggle == 0" class="profileOutput">{{profile.PermanentCity}}</span>
+              <ion-input *ngIf="permanentToggle == 1" class="profileinput" type="text" placeholder="Country"
+                [(ngModel)]="profile.PermanentCountry" [disabled]="permanentToggle==0"></ion-input>
+              <span *ngIf="profile.PermanentCountry!=0 && permanentToggle == 0"
+                class="profileOutput">{{profile.PermanentCountry}}</span>
+              <span *ngIf="profile.PermanentCountry==0" class="profileOutput"></span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label>State</ion-label>
@@ -346,14 +340,23 @@
               <span *ngIf="permanentToggle == 0" class="profileOutput">{{profile.PermanentState}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label>Country</ion-label>
+              <ion-label>City</ion-label>
               <br />
-              <ion-input *ngIf="permanentToggle == 1" class="profileinput" type="text" placeholder="Country"
-                [(ngModel)]="profile.PermanentCountry" [disabled]="permanentToggle==0"></ion-input>
-              <span *ngIf="profile.PermanentCountry!=0 && permanentToggle == 0"
-                class="profileOutput">{{profile.PermanentCountry}}</span>
-              <span *ngIf="profile.PermanentCountry==0" class="profileOutput"></span>
+              <ion-input *ngIf="permanentToggle == 1" class="profileinput" type="text" placeholder="City"
+                [(ngModel)]="profile.PermanentCity" [disabled]="permanentToggle==0"></ion-input>
+              <span *ngIf="permanentToggle == 0" class="profileOutput">{{profile.PermanentCity}}</span>
             </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-label>Permanent Address</ion-label>
+              <br />
+              <ion-textarea class="profileinput" *ngIf="permanentToggle == 1" rows='1'
+                placeholder='Permanent Address (Use "_" instad of "/" for building no)'
+                [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle==0"></ion-textarea>
+              <span *ngIf="permanentToggle == 0" class="profileOutput">{{profile.PermanentAddress}}</span>
+            </ion-col>
+           
+           
+           
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label>Pincode</ion-label>
               <br />
@@ -408,7 +411,7 @@
                 <span class="error">Valid email is required</span>
               </span>
             </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Mobile</ion-label>
               <br />
               <ion-input *ngIf="contactToggle == 1" class="profileinput" name="Mobile" pattern="[0-9]*" type="number"
@@ -420,7 +423,7 @@
                 <span class="error">Valid Phone number is required</span>
               </span>
             </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Emergency Contact Number</ion-label>
               <br />
               <ion-input *ngIf="contactToggle == 1" class="profileinput" type="number" pattern="/^-?\d+\.?\d*$/"

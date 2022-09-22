@@ -107,6 +107,7 @@ export class LocationupdateleadsPage implements OnInit,OnDestroy {
   appointmentByLead;
   priority;
   private backbuttonSubscription: Subscription;
+  username:any;
   constructor(public alertController: AlertController, private model: ModalController, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, navParams: NavParams, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.showmap = true;
     this.ntireoffice_image = 'http://heribeai.com/MyDesk/UploadDocu/SSTPL/';
@@ -120,6 +121,7 @@ export class LocationupdateleadsPage implements OnInit,OnDestroy {
     this.barval = navParams.get('barval');
     this.lead_id = navParams.get('lead_id');
     this.getdetaills();
+    this.username=localStorage.getItem('TUM_USER_NAME');
   }
   getdetaills() {
     this.token = window.localStorage['token'];
