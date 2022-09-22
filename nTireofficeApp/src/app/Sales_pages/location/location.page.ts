@@ -65,12 +65,14 @@ export class LocationPage implements OnInit {
   allmeetinglocation;
   starttime;
   viewuserid;
+  username:any;
   constructor(public alertController: AlertController, public modalController: ModalController, private router: Router, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
 
     this.branch = undefined;
     this.role = undefined;
     this.Getbranches();
     this.Getrole();
+    this.username=localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {

@@ -2,7 +2,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-title style="text-align: center;">History</ion-title>
-    <i class="fa-solid fa-circle-xmark addcnt_close" name="close-circle" style="float:right" (click)="closemodel()"></i>
+    <i class="fa-solid fa-circle-xmark addcnt_close" name="close-circle"
+      style="float:right;position: relative;right: 11px;" (click)="closemodel()"></i>
     <!-- <ion-icon name="close-circle" (click)="closemodel()" style="float:right"></ion-icon> -->
   </ion-toolbar>
 </ion-header>
@@ -50,19 +51,19 @@
           Lead ID
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.TCC_CUST_ID}}
+          <b class="valuestext">{{items.TCC_CUST_ID}}</b>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Contact Number
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <span>
-            <a (click)="makeCall(items)" style="text-decoration:none !important;cursor:pointer;">{{items.MOBILE}}</a>
+            <a (click)="makeCall(items)" style="text-decoration:none !important;cursor:pointer;"><b>{{items.MOBILE}}</b></a>
             <i style="color:black;">|</i><a ng-if="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
-              style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.OFFPHONE}}&nbsp;</a><a
+              style="text-decoration:none !important;cursor:pointer;">&nbsp;<b>{{items.OFFPHONE}}</b>&nbsp;</a><a
               ng-if="items.OFFPHONE == '011'" style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
             <i style="">|</i><a ng-if="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
-              style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.RESPHONE}}</a>
+              style="text-decoration:none !important;cursor:pointer;">&nbsp;<b>{{items.RESPHONE}}</b></a>
             <a ng-if="items.RESPHONE == '011'" style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
           </span>
         </ion-col>
@@ -71,14 +72,14 @@
           Last Call
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.CREATED_ON | date:'dd-MM-yyyy'}} {{items.created_time}}
+          <b class="valuestext">{{items.CREATED_ON | date:'dd-MM-yyyy'}} {{items.created_time}}</b>
         </ion-col>
         <ion-col *ngIf="items.TCC_RESPONSE_ID!=6" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Next Call
         </ion-col>
         <ion-col *ngIf="items.TCC_RESPONSE_ID!=6" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <span style="font-size: 14px;" *ngIf="items.TCC_NEXT_CALL_DATE!=null">{{items.TCC_NEXT_CALL_DATE |
-            date:'dd-MM-yyyy'}} {{items.call_time}}</span>
+          <span style="font-size: 14px;" *ngIf="items.TCC_NEXT_CALL_DATE!=null"><b class="valuestext">{{items.TCC_NEXT_CALL_DATE |
+            date:'dd-MM-yyyy'}} {{items.call_time}}</b></span>
 
         </ion-col>
 
@@ -87,39 +88,39 @@
           Campaign
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.Campaign}}
+          <b class="valuestext">{{items.Campaign}}</b>
         </ion-col>
         <ion-col *ngIf="items.TCC_RESPONSE_ID==1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Place To Meet
         </ion-col>
         <ion-col *ngIf="items.TCC_RESPONSE_ID==1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.Meeting_address}}
+          <b class="valuestext">{{items.Meeting_address}}</b>
         </ion-col>
         <ion-col *ngIf="items.TCC_LEAD_BY!=null" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Lead By
         </ion-col>
         <ion-col *ngIf="items.TCC_LEAD_BY!=null" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.leadby}}
+          <b class="valuestext">{{items.leadby}}</b>
         </ion-col>
         <ion-col *ngIf="items.TCC_LEAD_BY!=null" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Last Updated By
         </ion-col>
         <ion-col *ngIf="items.TCC_LEAD_BY!=null" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.updatedby}}
+          <b class="valuestext">{{items.updatedby}}</b>
         </ion-col>
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Exp. Closed Date
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{items.EXPECTEDCLOSEDDATE}}
+          <b class="valuestext">{{items.EXPECTEDCLOSEDDATE}}</b>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Expected Amount
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <span *ngIf="items.ExpctedAmount==0">-</span>
-          <span *ngIf="items.ExpctedAmount!=0"> {{items.ExpctedAmount}}</span>
+          <span *ngIf="items.ExpctedAmount==0"><b class="valuestext">-</b></span>
+          <span *ngIf="items.ExpctedAmount!=0"> <b class="valuestext">{{items.ExpctedAmount}}</b></span>
         </ion-col>
 
 
@@ -127,7 +128,7 @@
           <span>Remarks</span>
         </ion-col>
         <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
-          <span>{{items.TCC_AGENT_REMARKS}}</span>
+          <span><b class="valuestext">{{items.TCC_AGENT_REMARKS}}</b></span>
         </ion-col>
         <!-- <ion-col *ngIf="items.TCC_RESPONSE_ID==6" size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
                               <span>  New Lead Uploaded</span>
