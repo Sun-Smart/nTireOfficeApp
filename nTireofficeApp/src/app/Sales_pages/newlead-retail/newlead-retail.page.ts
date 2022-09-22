@@ -1036,14 +1036,14 @@ username:any;
         message: 'Are you sure want to Cancel the Process',
         buttons: [
           {
-            text: 'Cancel',
+            text: 'No',
             role: 'cancel',
             cssClass: 'secondary',
             handler: (blah) => {
               console.log('Confirm Cancel: blah');
             }
           }, {
-            text: 'OK',
+            text: 'Yes',
             handler: () => {
               this.branch = '<< Select >>';
               this.branchlocation = '<< Select >>';

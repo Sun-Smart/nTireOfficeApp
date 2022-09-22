@@ -9,11 +9,11 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Function</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="function"></ion-input>
-      </ion-col>
+      </ion-col> -->
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Company Name<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input class="form-control" [(ngModel)]="companyname"></ion-input>
@@ -23,17 +23,15 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Company address<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <textarea appNewcorporateautocomplete style="width:100%;height:auto;padding:8px;" [(ngModel)]="cropaddress"
-          [options]='options' class="form-control"
-          (onAddressChange)="handleAddressChange($event)"></textarea>
+          [options]='options' class="form-control" (onAddressChange)="handleAddressChange($event)"></textarea>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid>
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
-        <ion-button 
-        color="success" expand="block"  [disabled]="companyname==undefined || cropaddress==undefined" (click)="AddCompany()"
-         >Add Company</ion-button>
+        <ion-button color="success" expand="block" [disabled]="companyname==undefined || cropaddress==undefined"
+          (click)="AddCompany()">Add Company</ion-button>
       </ion-col>
 
     </ion-row>
@@ -41,12 +39,21 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-button tertiary  color="tertiary" expand="block" (click)="AddContact()" >Add Contact</ion-button>
+        <ion-button tertiary color="tertiary" expand="block" [disabled]="companyname==undefined || cropaddress==undefined" (click)="AddContact()">Add Contact</ion-button>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-button 
-        color="danger" expand="block" (click)="clearCorporateForm()" >Clear</ion-button>
+        <ion-button color="danger" expand="block" (click)="clearCorporateForm()">Clear</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>

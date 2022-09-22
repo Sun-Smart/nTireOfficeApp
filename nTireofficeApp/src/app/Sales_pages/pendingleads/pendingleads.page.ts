@@ -147,6 +147,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   user_type_val;
   imagename: any;
   userTypedesc: any;
+  username:any;
   private backbuttonSubscription: Subscription;
   constructor(private sanitizer: DomSanitizer, public platform: Platform, public media: Media, private datePipe: DatePipe, public loadingController: LoadingController, private router: Router, private geolocation: Geolocation, public alertController: AlertController, public modalController: ModalController, private callNumber: CallNumber, private file: File, private transfer: FileTransfer, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
 
@@ -156,7 +157,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.penleadfilter.BRANCH_ID = window.localStorage['TUM_BRANCH_ID'];
     this.penleadfilter.TCC_CUSTOMER_ID = '';
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
-
+    this.username=localStorage.getItem('TUM_USER_NAME');
     this.penleadfilter.CUST_LNAME = '';
     this.penleadfilter.MOBILE = '';
     this.penleadfilter.TCM_CAMPAIGN_SHORTDESC = '';

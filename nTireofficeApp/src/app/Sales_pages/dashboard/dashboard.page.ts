@@ -162,6 +162,7 @@ export class DashboardPage implements OnInit {
           toolTipContent: "<a href = {name}> {label}</a><hr/>Views: {y}",
         },
         options: {
+          is3D:true,
           legend: {
             display: true,
           },
@@ -252,6 +253,8 @@ export class DashboardPage implements OnInit {
 
         },
         options: {
+          is3D:true,
+          zoomEnabled: true,
           legend: {
             display: false
           },
