@@ -49,11 +49,12 @@ import { Observable, of, Subject } from 'rxjs'
 // import { Subject } from 'rxjs/Subject';
 // import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
-import * as RecordRTC from 'recordrtc';
+// import * as RecordRTC from 'recordrtc';
 
 import { isNullOrUndefined } from 'util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageviewPage } from '../imageview/imageview.page';
+import * as RecordRTC from 'recordrtc';
 declare var window: any;
 interface RecordedAudioOutput {
   index: number,

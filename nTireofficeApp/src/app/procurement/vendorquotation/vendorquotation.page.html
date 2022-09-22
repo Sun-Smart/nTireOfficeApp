@@ -12,40 +12,44 @@
   </ion-header>
 
 
-  <p style="text-align:center;color: black;"> vendor Quotation</p>
-  <!-- <ion-grid style="background: #7a3c9129; padding: 10px;margin: 10px;border-radius: 8px;">
+  <!-- <p style="text-align:center;color: black;"> vendor Quotation</p> -->
+  <ion-card>
+    <ion-container class="card_content">
+  <ion-grid>
     <ion-row>
       <ion-col>
           <ion-label>Item Code</ion-label>
         <ion-item>
         <ion-input style="--background: white;" placeholder="Enter Item Code"  id="itemcode" type="text" [(ngModel)]="itemcode" (ionChange)="getvendornames(itemcode)"></ion-input>
       </ion-item>
-
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <div *ngIf="Vendors_Item_List.length!=0">
-  <ion-card *ngFor="let item of Vendors_Item_List" >
+</ion-container>
+</ion-card>
+  <div *ngIf="Vendors_Item_List.length!==0">
+  <ion-card *ngFor="let item of Vendors_Item_List">
     <ion-grid style="padding: 0;">
-      <ion-row style="background: #b200e2;color: white;font-weight: bold;padding: 0 5px;">
+      <ion-row style="background:linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;;
+          color: white !important;
+        text-align: center;">
         <ion-col size="6">
-          <p class="">{{item.QUOTE_REF}}</p>
+          <p class="ptext">{{item.QUOTE_REF}}</p>
 
         </ion-col>
         <ion-col size="6">
-          <p class="" style="text-align: right;">{{item.QUOTE_DATE}}</p>
+          <p class="ptext" style="text-align: right;">{{item.QUOTE_DATE}}</p>
 
         </ion-col>
       </ion-row>
 
-      <ion-row style="color: black; letter-spacing: 1px;">
+      <ion-row style="color: #fff; letter-spacing: 1px;">
         <ion-col size="6">
-          <p>{{item.item_Code}}</p>
+          <p class="ptext"> {{item.item_Code}}</p>
 
         </ion-col>
         <ion-col size="6">
-          <p style="text-align: right;">{{item.RFQCODE}}</p>
+          <p class="ptext" style="text-align: right;">{{item.RFQCODE}}</p>
 
         </ion-col>
       </ion-row>
@@ -53,17 +57,17 @@
       <ion-row>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Req Qty</p>
-          <p style="text-align: center">{{item.QUANTITY}}</p>
+          <p  class="ptext" style="text-align: center">{{item.QUANTITY}}</p>
 
         </ion-col>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Unit Price</p>
-          <p style="text-align: center">{{item.UNIT_PRICE}}</p>
+          <p  class="ptext" style="text-align: center">{{item.UNIT_PRICE}}</p>
 
         </ion-col>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Net Price</p>
-          <p style="text-align: center">{{item.NET_PRICE_PER_UNIT}}</p>
+          <p class="ptext" style="text-align: center ;">{{item.NET_PRICE_PER_UNIT}}</p>
 
         </ion-col>
       </ion-row>
@@ -71,35 +75,28 @@
       <ion-row>
         <ion-col size="9">
           <p style="color: black;font-weight: bold">Expected Date </p>
-          <p>{{item.EXPECTEDDATE}}</p>
+          <p class="ptext">{{item.EXPECTEDDATE}}</p>
 
         </ion-col>
         <ion-col size="3">
-          <p style="color: black;text-align: right;font-weight: bold">Status</p>
-                <p style="text-align: right;">{{item.STATUSVAL}}</p>
+          <p class="ptext" style="color: black;text-align: right;font-weight: bold">Status</p>
+                <p  class="ptext" style="text-align: right;">{{item.STATUSVAL}}</p>
 
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col style="text-align: center;">
-          <ion-button *ngIf="item.statusval=='Closed'" style="min-width: 115px; --background: #009689;font-size: 14px;color: white;"  size="default" (click)="updateVendorsQuot(item)" >Update</ion-button>
-
+          <ion-button *ngIf="item.statusval==='Closed'" style="min-width: 115px; --background: #009689;font-size: 14px;color: white;"  size="default" (click)="updateVendorsQuot(item)" >Update</ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
-
 </div>
-
-  <p style="font-weight: bold;text-align: center;color:white;" *ngIf="Vendors_Item_List.length==0">No record Found</p> -->
-
-
-
+  <p class="ptext" style="font-weight: bold;text-align: center;color:black;" *ngIf="Vendors_Item_List.length===0">No record Found</p>
 </ion-content>
 
 <ion-footer>
-
   <ion-row>
   <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
     © SunSmart Global Inc
@@ -108,6 +105,4 @@
    {{username}}
  </ion-col>
   </ion-row>
-
-
  </ion-footer>

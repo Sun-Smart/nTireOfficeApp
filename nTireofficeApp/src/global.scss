@@ -1093,7 +1093,7 @@ ion-checkbox::part(container) {
   border: 1px solid #0074b8;
 }
 .Input-text-field{
-  border: 1px solid rgb(180, 177, 177); 
+  border: 1px solid rgb(180, 177, 177);
   border-radius: 4px;
   background-color: #fff !important;
   display: inline-block;
@@ -1117,4 +1117,8 @@ ion-checkbox::part(container) {
 .labelData-text{
   font-size: 14px!important;
   font-weight: bold;
+}
+//suneel
+:host(.item-interactive.ion-valid) {
+  --highlight-background: #4c8dff;
 }
