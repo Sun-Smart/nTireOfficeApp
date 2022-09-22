@@ -1120,5 +1120,5 @@ ion-checkbox::part(container) {
 }
 //suneel
 :host(.item-interactive.ion-valid) {
-  --highlight-background: #4c8dff;
+  --highlight-background: #4c8dff !important;
 }

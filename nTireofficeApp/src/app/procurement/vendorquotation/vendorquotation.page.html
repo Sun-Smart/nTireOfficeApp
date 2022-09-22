@@ -31,25 +31,25 @@
   <ion-card *ngFor="let item of Vendors_Item_List">
     <ion-grid style="padding: 0;">
       <ion-row style="background:linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;;
-          color: white !important;
+        color: #fff;
         text-align: center;">
         <ion-col size="6">
-          <p class="ptext">{{item.QUOTE_REF}}</p>
+          <p >{{item.QUOTE_REF}}</p>
 
         </ion-col>
         <ion-col size="6">
-          <p class="ptext" style="text-align: right;">{{item.QUOTE_DATE}}</p>
+          <p  style="text-align: right;">{{item.QUOTE_DATE}}</p>
 
         </ion-col>
       </ion-row>
 
-      <ion-row style="color: #fff; letter-spacing: 1px;">
+      <ion-row style="color: black; letter-spacing: 1px;">
         <ion-col size="6">
-          <p class="ptext"> {{item.item_Code}}</p>
+          <p> {{item.item_Code}}</p>
 
         </ion-col>
         <ion-col size="6">
-          <p class="ptext" style="text-align: right;">{{item.RFQCODE}}</p>
+          <p  style="text-align: right;">{{item.RFQCODE}}</p>
 
         </ion-col>
       </ion-row>
@@ -57,17 +57,17 @@
       <ion-row>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Req Qty</p>
-          <p  class="ptext" style="text-align: center">{{item.QUANTITY}}</p>
+          <p  style="text-align: center">{{item.QUANTITY}}</p>
 
         </ion-col>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Unit Price</p>
-          <p  class="ptext" style="text-align: center">{{item.UNIT_PRICE}}</p>
+          <p   style="text-align: center">{{item.UNIT_PRICE}}</p>
 
         </ion-col>
         <ion-col size="4">
           <p style="color: black;text-align: center;font-weight: bold">Net Price</p>
-          <p class="ptext" style="text-align: center ;">{{item.NET_PRICE_PER_UNIT}}</p>
+          <p  style="text-align: center ;">{{item.NET_PRICE_PER_UNIT}}</p>
 
         </ion-col>
       </ion-row>
@@ -75,12 +75,12 @@
       <ion-row>
         <ion-col size="9">
           <p style="color: black;font-weight: bold">Expected Date </p>
-          <p class="ptext">{{item.EXPECTEDDATE}}</p>
+          <p >{{item.EXPECTEDDATE}}</p>
 
         </ion-col>
         <ion-col size="3">
-          <p class="ptext" style="color: black;text-align: right;font-weight: bold">Status</p>
-                <p  class="ptext" style="text-align: right;">{{item.STATUSVAL}}</p>
+          <p  style="color: black;text-align: right;font-weight: bold">Status</p>
+                <p  style="text-align: right;">{{item.STATUSVAL}}</p>
 
         </ion-col>
       </ion-row>
@@ -93,7 +93,7 @@
     </ion-grid>
   </ion-card>
 </div>
-  <p class="ptext" style="font-weight: bold;text-align: center;color:black;" *ngIf="Vendors_Item_List.length===0">No record Found</p>
+  <p  style="font-weight: bold;text-align: center;color:black;" *ngIf="Vendors_Item_List.length===0">No record Found</p>
 </ion-content>
 
 <ion-footer>
