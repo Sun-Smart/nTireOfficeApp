@@ -493,10 +493,10 @@ const routes: Routes = [
   //   path: 'teammeetings',
   //   loadChildren: () => import('./Sales_pages/teammeetings/teammeetings.module').then( m => m.TeammeetingsPageModule)
   // },
-  {
-    path: 'expensedetails',
-    loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
-  },
+  // {
+  //   path: 'expensedetails',
+  //   loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
+  // },
   // {
   //   path: 'addtravelexpensedetails',
   //   loadChildren: () => import('./Sales_pages/addtravelexpensedetails/addtravelexpensedetails.module').then( m => m.AddtravelexpensedetailsPageModule)
