@@ -44,7 +44,7 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-import * as RecordRTC from 'recordrtc';
+// import * as RecordRTC from 'recordrtc';
 import { Observable, of, Subject } from 'rxjs'
 // import { Subject } from 'rxjs/Subject';
 // import { Observable } from 'rxjs/Observable';
