@@ -65,13 +65,13 @@ this.menuCtrl.enable(true, 'first');
       const ctx = canvas.getContext('2d');
       // var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx ,{
-        type: 'doughnut',
+        type: 'bar',
         data: {
           labels:this.labels2,
           datasets: [{
             label: '# of Tomatoes',
             data:this.data2,
-            backgroundColor:['rgba(151,187,205,1)', 'rgba(220,220,220,1)', 'rgba(247,70,74,1)', 'rgba(70,191,189,1)', 'rgba(253,180,92,1)', 'rgba(148,159,177,1)', 'rgba(77,83,96,1)', 'rgba(103,16,103,1)', 'rgba(165,131,134,1)', '#FF4500', '#800000', '#00BFFF ', '#000000', '#00FF00', '#008080', '#FF00FF']
+            backgroundColor:['rgba(247,70,74,1)', 'rgba(220,220,220,1)','rgba(151,187,205,1)',  'rgba(70,191,189,1)', 'rgba(253,180,92,1)', 'rgba(148,159,177,1)', 'rgba(77,83,96,1)', 'rgba(103,16,103,1)', 'rgba(165,131,134,1)', '#FF4500', '#800000', '#00BFFF ', '#000000', '#00FF00', '#008080', '#FF00FF']
 
           }]
         },
@@ -185,7 +185,8 @@ debugger
         {
 
           data: this.data,
-          backgroundColor: 'rgba(151,187,205,1)',
+          backgroundColor: ['rgb(16, 99, 16)','rgb(68, 49, 9)'],
+
 
         }]
         if (this.sourcechart) {
