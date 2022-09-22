@@ -1118,4 +1118,7 @@ ion-checkbox::part(container) {
   font-size: 14px!important;
   font-weight: bold;
 }
-
+//suneel
+:host(.item-interactive.ion-valid) {
+  --highlight-background: #4c8dff;
+}

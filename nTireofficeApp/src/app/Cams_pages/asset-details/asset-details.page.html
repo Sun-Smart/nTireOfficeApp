@@ -200,9 +200,9 @@
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelHead-text">Certificate Issued</ion-label>
                 <ion-label class="labelData-text"
-                  *ngIf='item1.ASSET_CERTIFICATE_ISSUED=="Y"'>YES</ion-label>
+                  *ngIf='item1.ASSET_CERTIFICATE_ISSUED==="Y"'>YES</ion-label>
                 <ion-label class="labelData-text"
-                  *ngIf='item1.ASSET_CERTIFICATE_ISSUED=="N"'>NO</ion-label>
+                  *ngIf='item1.ASSET_CERTIFICATE_ISSUED==="N"'>NO</ion-label>
                 <ion-label class="labelData-text"
                   *ngIf='!item1.ASSET_CERTIFICATE_ISSUED'>--</ion-label>
               </ion-col>
@@ -210,9 +210,9 @@
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelHead-text">Working Condition</ion-label>
                 <ion-label class="labelData-text"
-                  *ngIf='item1.ASSET_WORKING_CONDITION=="Y"'>YES</ion-label>
+                  *ngIf='item1.ASSET_WORKING_CONDITION==="Y"'>YES</ion-label>
                 <ion-label class="labelData-text"
-                  *ngIf='item1.ASSET_WORKING_CONDITION=="N"'>NO</ion-label>
+                  *ngIf='item1.ASSET_WORKING_CONDITION==="N"'>NO</ion-label>
                 <ion-label class="labelData-text"
                   *ngIf='!item1.ASSET_WORKING_CONDITION'>--</ion-label>
               </ion-col>
@@ -220,9 +220,9 @@
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelHead-text">Asset Mode</ion-label>
                 <ion-label class="labelData-text"
-                  *ngIf='item1.ASSET_MODE==1'>Own</ion-label>
+                  *ngIf='item1.ASSET_MODE===1'>Own</ion-label>
                 <ion-label class="labelData-text"
-                  *ngIf='item1.ASSET_MODE==3'>Lease</ion-label>
+                  *ngIf='item1.ASSET_MODE===3'>Lease</ion-label>
                 <ion-label class="labelData-text"
                   *ngIf='!item1.ASSET_MODE'>--</ion-label>
               </ion-col>
@@ -281,7 +281,7 @@
                 <ion-row>
                   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
                   <ion-col size="12">
-                    <ion-button (click)="updateassetdetails()" class="ion-color-success" color="success" expand="block">
+                    <ion-button (click)="updateassetdetails()" class="ion-color-success" color="success" expand="block" style="color: fff;">
                       Update
                     </ion-button>
                   </ion-col>
