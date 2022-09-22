@@ -93,9 +93,9 @@
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-button *ngIf="this.userTypedesc=='administrator'" (click)="callforalldetails1(segment)" style="--background: #11c1f3" size="full">Search
+            <ion-button *ngIf="this.userTypedesc=='administrator'" (click)="callforalldetails1(segment)"  class="ion-color-success" expand="block">Search
               </ion-button>
-              <ion-button *ngIf="this.userTypedesc!='administrator'" (click)="callforalldetails(segment)" style="--background: #11c1f3" size="full">Search
+              <ion-button *ngIf="this.userTypedesc!='administrator'" (click)="callforalldetails(segment)" class="ion-color-success" expand="block">Search
 
             </ion-button>
           </ion-col>
@@ -317,3 +317,13 @@
   </div>
 
 </ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>

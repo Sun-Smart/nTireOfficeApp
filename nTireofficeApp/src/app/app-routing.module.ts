@@ -495,7 +495,7 @@ const routes: Routes = [
   // },
   // {
   //   path: 'expensedetails',
-  //   loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
+  //   // loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
   // },
   // {
   //   path: 'addtravelexpensedetails',

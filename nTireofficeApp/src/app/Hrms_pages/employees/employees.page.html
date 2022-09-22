@@ -78,33 +78,33 @@
     </ion-row>
   </ion-grid>
 
-  <p *ngIf="loading" style="text-align: center;">Please Wait..</p>
+  <p *ngIf="loading" class="totalCount">Please Wait..</p>
 
-  <p *ngIf="totalemployee" style="text-align:center;"><b>Total Employee : {{totalemployee}}</b></p>
+  <p *ngIf="totalemployee" class="totalCount"><b>Total Employee : {{totalemployee}}</b></p>
 
   <ion-card *ngFor="let item of displayEmployee">
 
     <ion-card-header class="card_header" style="padding: 5px !important;">
       <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_header_text">{{item.EmployeeCode}}</ion-label>
+        <ion-col size="4">
+          <ion-label class="card_header_text"> # : {{item.EmployeeCode}}</ion-label>
         </ion-col>
 
-        <ion-col size="6">
-          <ion-label class="card_header_text">{{item.Name}}</ion-label>
+        <ion-col size="8">
+          <ion-label class="card_header_text">Name : {{item.Name}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-header>
 
     <ion-card-content class="card_content">
-      <ion-row>
+      <ion-row class="ion-justify-content-around">
         <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
             {{item.EmployeeCode}}
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="text-align:right;">
                 {{item.Name}}
                 </ion-col> -->
-        <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+        <ion-col size-sm="2" size="4" size-md="2" size-lg="2" size-xl="2">
           <div *ngIf="item.Sex=='Male'">
             <img style="width: 100%;" class="avatar" src="assets/images/defaultMale.png ">
             <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
@@ -115,57 +115,63 @@
             <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
           </div>
         </ion-col>
-        <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+        <ion-col size="8" style="align-items: center;display: flex;">
           <ion-label class="card_content_label">Designation :</ion-label>
-          <br />
-          <span>{{item.Designation}}</span>
+          <!-- <br /> -->
+          <ion-label class="labelData-text">{{item.Designation}}</ion-label>
         </ion-col>
-        <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
-          <ion-label class="card_content_label">Department :</ion-label>
-          <br />
-          <span>{{item.Department}}</span>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+            <ion-label class="card_content_label labelHead-text">Branch :</ion-label>
+      
+            <ion-label class="labelData-text">{{item.branchtxt}}</ion-label>
+          </ion-col>
+        <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7">
+          <ion-label class="card_content_label labelHead-text">Department :</ion-label>
+          <ion-label class="labelData-text">{{item.Department}}</ion-label>
+        </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="card_content_label labelHead-text">DOB :</ion-label>
+       
+            <ion-label class="labelData-text">{{item.DOB | date: 'dd-MM-yyyy'}}</ion-label>
+          </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text">DOJ :</ion-label>
+       
+          <ion-label class="labelData-text">{{item.DOJ | date: 'dd-MM-yyyy'}}</ion-label>
+        </ion-col>
+       </ion-row>
+       <ion-row>
+       
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="card_content_label labelHead-text">Email ID :</ion-label>
+          <!-- <br /> -->
+          <ion-label class="labelData-text">{{item.Email}}</ion-label>
+        </ion-col>
+       </ion-row>
+       <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
+          <ion-label *ngIf="item.Mobile!=0" class="labelData-text">{{item.Mobile}}</ion-label>
+          <ion-label *ngIf="item.Mobile==0" class="labelData-text"></ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">Branch :</ion-label>
-          <br />
-          <span>{{item.branchtxt}}</span>
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-call"></i> Office</ion-label>
+          <ion-label *ngIf="item.OffPhone!=0" class="labelData-text">{{item.OffPhone}}</ion-label>
+          <ion-label *ngIf="item.OffPhone==0" class="labelData-text"></ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
+          <ion-label class="labelData-text"></ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">DOJ :</ion-label>
-          <br />
-          <span>{{item.DOJ | date: 'dd-MM-yyyy'}}</span>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">DOB :</ion-label>
-          <br />
-          <span>{{item.DOB | date: 'dd-MM-yyyy'}}</span>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">Status :</ion-label>
-          <br />
-          <span>{{item.Status}}</span>
-        </ion-col>
-        <ion-col size-sm="9" size="9" size-md="9" size-lg="9" size-xl="9">
-          <ion-label class="card_content_label">Email ID :</ion-label>
-          <br />
-          <span>{{item.Email}}</span>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label"><i class="icon ion-android-call"></i> Office</ion-label>
-          <br />
-          <span *ngIf="item.OffPhone!=0">{{item.OffPhone}}</span>
-          <span *ngIf="item.OffPhone==0"></span>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label"><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
-          <br />
-          <span *ngIf="item.Mobile!=0">{{item.Mobile}}</span>
-          <span *ngIf="item.Mobile==0"></span>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label"><i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
-          <br />
-          <span></span>
+          <ion-label class="card_content_label labelHead-text">Status :</ion-label>
+          <ion-label class="labelData-text">{{item.Status}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -173,8 +179,8 @@
 
   <ion-card *ngFor="let item of displayEmployee" style="display: none;">
     <ion-card-header class="dashboardhead" style="padding: 10px;">
-      <ion-card-title style="color: white;font-size: 14px;font-weight: bold;">{{item.EmployeeCode}} <span
-          style="float: right;">{{item.Name}}</span></ion-card-title>
+      <ion-card-title style="color: white;font-size: 14px;font-weight: bold;">{{item.EmployeeCode}} <ion-label
+          style="float: right;">{{item.Name}}</ion-label></ion-card-title>
     </ion-card-header>
     <ion-card-content style="padding: 10px;">
       <ion-grid style="padding: 0;">
@@ -197,56 +203,56 @@
             </div>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label>Designation</ion-label>
+            <ion-label class="labelHead-text">Designation</ion-label>
             <br />
-            <span>{{item.Designation}}</span>
+            <ion-label class="labelData-text">{{item.Designation}}</ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label>Department</ion-label>
+            <ion-label class="labelHead-text">Department</ion-label>
             <br />
-            <span>{{item.Department}}</span>
+            <ion-label class="labelData-text">{{item.Department}}</ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label>Branch :</ion-label>
+            <ion-label class="labelHead-text">Branch :</ion-label>
             <br />
-            <span>{{item.branchtxt}}</span>
+            <ion-label class="labelData-text">{{item.branchtxt}}</ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label>DOJ :</ion-label>
+            <ion-label class="labelHead-text">DOJ :</ion-label>
             <br />
-            <span>{{item.DOJ | date: 'dd-MM-yyyy'}}</span>
+            <ion-label class="labelData-text">{{item.DOJ | date: 'dd-MM-yyyy'}}</ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label>DOB :</ion-label>
+            <ion-label class="labelHead-text">DOB :</ion-label>
             <br />
-            <span>{{item.DOB | date: 'dd-MM-yyyy'}}</span>
+            <ion-label class="labelData-text">{{item.DOB | date: 'dd-MM-yyyy'}}</ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label>Status :</ion-label>
+            <ion-label class="labelHead-text">Status :</ion-label>
             <br />
-            <span>{{item.Status}}</span>
+            <ion-label class="labelData-text">{{item.Status}}</ion-label>
           </ion-col>
           <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8">
-            <ion-label>Email ID :</ion-label>
+            <ion-label class="labelHead-text">Email ID :</ion-label>
             <br />
-            <span>{{item.Email}}</span>
+            <ion-label class="labelData-text">{{item.Email}}</ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label><i class="icon ion-android-call"></i> Office</ion-label>
+            <ion-label class="labelHead-text"><i class="icon ion-android-call"></i> Office</ion-label>
             <br />
-            <span *ngIf="item.OffPhone!=0">{{item.OffPhone}}</span>
-            <span *ngIf="item.OffPhone==0"></span>
+            <ion-label *ngIf="item.OffPhone!=0" class="labelData-text">{{item.OffPhone}}</ion-label>
+            <ion-label *ngIf="item.OffPhone==0" class="labelData-text"></ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
+            <ion-label class="labelHead-text"><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
             <br />
-            <span *ngIf="item.Mobile!=0">{{item.Mobile}}</span>
-            <span *ngIf="item.Mobile==0"></span>
+            <ion-label *ngIf="item.Mobile!=0" class="labelData-text">{{item.Mobile}}</ion-label>
+            <ion-label *ngIf="item.Mobile==0" class="labelData-text"></ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <ion-label><i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
+            <ion-label class="labelHead-text"> <i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
             <br />
-            <span></span>
+            <ion-label></ion-label>
           </ion-col>
         </ion-row>
       </ion-grid>

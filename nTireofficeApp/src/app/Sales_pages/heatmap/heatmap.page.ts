@@ -34,10 +34,11 @@ export class HeatmapPage implements OnInit {
   HeatMapRecord_data = [];
   HeatMapRecordbranch1: any;
   HeatMapRecordbranch = [];
+  username:any;
   constructor(public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.usertype = window.localStorage['TUM_USER_TYPE'];
     this.Getbranches();
-
+    this.username=localStorage.getItem('TUM_USER_NAME');
     this.segmentdata = "11";
     this.locbranch = window.localStorage['TUM_BRANCH_ID'];
     this.branch = window.localStorage['TUM_BRANCH_ID'];

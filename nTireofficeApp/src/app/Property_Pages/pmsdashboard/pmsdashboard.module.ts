@@ -13,6 +13,7 @@ import { PmsdashboardPage } from './pmsdashboard.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    
     PmsdashboardPageRoutingModule
   ],
   declarations: [PmsdashboardPage]

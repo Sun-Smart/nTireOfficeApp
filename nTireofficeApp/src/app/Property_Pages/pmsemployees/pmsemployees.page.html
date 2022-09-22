@@ -7,85 +7,272 @@
   </ion-toolbar>
 </ion-header>
 <!-- <div style="display: flex;"> -->
-<ion-content>
-  <div>
-    <ion-button color="tertiary" class="btn" size="small">Additional <br> Charges</ion-button>
-    <ion-button color="tertiary" class="btn" size="small">Payment <br> Status <br> Update</ion-button>
-    <ion-button color="tertiary" class="btn" size="small">Create <br> Issue</ion-button>
-  </div>
+
+  
 
 
-  <ion-card>
-    <ion-card-header class="card_header">
-      <ion-label class="card_header_text">Property Transcation Details</ion-label>
-    </ion-card-header>
-    <ion-card-content style="padding:10px !important;overflow-x: scroll;">
 
-      <table class="table table-striped">
-        <thead>
-          <tr class="table-head">
-            <th>#</th>
-            <th>Pay Description</th>
-            <th>Pay Amount</th>
-            <th>Paid Amount</th>
-            <th>Balance Amount</th>
-            <th>Pay Last Date</th>
-            <th>Late Fee</th>
+  <ion-content class="ion-padding">
+    <ion-button id="open-modal" expand="block">My Task</ion-button>
+    <ion-button id="open-modal0" expand="block">Additonal</ion-button>
+ 
+   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title >My Tasks</ion-title>
+         
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
 
-          </tr>
-        </thead>
-        <tbody class="table-body">
-          <ng-container>
-            <tr>
-              <td>1</td>
-              <td>security Deposit</td>
-              <td>1000</td>
-              <td>800</td>
-              <td>200</td>
-              <td>1/08/2022</td>
-              <td>0</td>
+          <ion-card>
+            <ion-grid>
+        
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button  color="primary">Update</ion-button>
+                </ion-col>
+      
+                <ion-col size="6">
+                  <ion-button color="success" >New</ion-button>
+                </ion-col>
+              </ion-row>
+      
+            </ion-grid>
+            <ion-card-content class="card_content">
+              <ion-grid>
+                <ion-row>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text"> Reference NO :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    
+                 <p>1234</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Property Code :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    
+                    <p>po930</p>
+                   
+                  </ion-col>
+        
+        
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Property Description :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+            <p>Flat for sale</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Issue Category :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    
+                   <p>finding</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Assign Date :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    <p>23/04/2022</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                  
+                      <p class="card_left_text">Assign To:</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+               
+                     <p>Anand</p>
+                  </ion-col>
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Issue Status :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                   
+                            <!-- <option [ngValue]="null"  disabled  selected>--Select--</option> -->
+                            <ion-select placeholder="--Select--" style="padding: 0;">
+                              <ion-select-option value="apples">New</ion-select-option>
+                              <ion-select-option value="oranges">Pending</ion-select-option>
+                              <ion-select-option value="bananas">Completed</ion-select-option>
+                            </ion-select>
+                               
+                             
+                               
 
+                          
+                                
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+         
+            </ion-card-content>
+        
+          </ion-card>
+        
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <ion-modal trigger="open-modal0" >
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="canceled()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title >Additional</ion-title>
+         
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
 
-            </tr>
+          <ion-grid>
+        
+            <ion-row>
+              <ion-col size="8">
+                <ion-searchbar></ion-searchbar>
+              </ion-col>
+    
+              <ion-col size="4">
+                <ion-button  color="primary" 
+                (click)="createModal()" >ADD <ion-icon name="add-circle-outline" style="color: white;"></ion-icon></ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-card>
 
-            <tr>
-              <td>2</td>
-              <td>security Deposit</td>
-              <td>1000</td>
-              <td>800</td>
-              <td>200</td>
-              <td>1/08/2022</td>
-              <td>0</td>
+            <ion-card-header class="card_header"></ion-card-header>
+       
+            
+            <ion-card-content class="card_content">
+              <ion-grid>
+                <ion-row>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text"> Reference NO :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    
+                 <p>1234</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Property Code :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    
+                    <p>po930</p>
+                   
+                  </ion-col>
+        
+        
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Property Description :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+            <p>Flat for sale</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Issue Category :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    
+                   <p>finding</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Assign Date :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                    <p>23/04/2022</p>
+                   
+                  </ion-col>
+        
+                  <ion-col size="7" class="col_height">
+                  
+                      <p class="card_left_text">Assign To:</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+               
+                     <p>Anand</p>
+                  </ion-col>
+                  <ion-col size="7" class="col_height">
+                    
+                      <p class="card_left_text">Issue Status :</p>
+                   
+                  </ion-col>
+                  <ion-col size="5" class="col_height">
+                   
+                            <!-- <option [ngValue]="null"  disabled  selected>--Select--</option> -->
+                            <ion-select placeholder="--Select--" style="padding: 0;">
+                              <ion-select-option value="apples">New</ion-select-option>
+                              <ion-select-option value="oranges">Pending</ion-select-option>
+                              <ion-select-option value="bananas">Completed</ion-select-option>
+                            </ion-select>
+                               
+                             
+                               
 
-            </tr>
+                          
+                                
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+         
+            </ion-card-content>
+        
+          </ion-card>
+        
+        </ion-content>
+      </ng-template>
+    </ion-modal>
 
-            <tr>
-              <td>3</td>
-              <td>security Deposit</td>
-              <td>1000</td>
-              <td>800</td>
-              <td>200</td>
-              <td>1/08/2022</td>
-              <td>0</td>
-
-            </tr>
-
-            <tr>
-              <td>4</td>
-              <td>security Deposit</td>
-              <td>1000</td>
-              <td>800</td>
-              <td>200</td>
-              <td>1/08/2022</td>
-              <td>0</td>
-
-            </tr>
-          </ng-container>
-        </tbody>
-      </table>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+  
+  </ion-content>
 
 
 <ion-footer>

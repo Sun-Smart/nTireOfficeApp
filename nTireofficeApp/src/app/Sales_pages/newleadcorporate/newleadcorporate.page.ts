@@ -136,6 +136,7 @@ export class NewleadcorporatePage implements OnInit {
 
   showmap;
   Images = [];
+  username:any;
   private optionsCamera: CameraOptions = {
     quality: 100,
     targetWidth: 600,
@@ -163,7 +164,7 @@ export class NewleadcorporatePage implements OnInit {
     this.leadssource = 1;
     this.leadby = "S";
 
-
+    this.username=localStorage.getItem('TUM_USER_NAME');
 
     this.Salutation = "<< Select >>";
     this.Getbranches();
@@ -1081,14 +1082,14 @@ export class NewleadcorporatePage implements OnInit {
       message: 'Are you sure want to Cancel the Process',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'No',
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'OK',
+          text: 'Yes',
           handler: () => {
             this.branch = "<< Select >>";
             this.branchlocation = "<< Select >>";

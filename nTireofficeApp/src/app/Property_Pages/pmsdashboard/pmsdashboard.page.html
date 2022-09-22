@@ -1,3 +1,7 @@
+
+
+
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -7,16 +11,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="overflow-x: scroll;">
+<ion-content >
   <!-- <p class="commontextpage">PMS Dashboard Page</p> -->
   <div>
 
 
-
-    <section class="chart-wrapper">
-      <canvas #pieChart id="pieChart"></canvas>
-   </section>
-   
+<ion-card>
+  <canvas id="maintenanceChart" class="chart chart-pie"
+  chart-data="data" chart-labels="chartLabels" legend="true">
+</canvas>
+</ion-card>
+  
 
 
 
