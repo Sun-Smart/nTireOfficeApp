@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { IonicSelectableComponent } from 'ionic-selectable';
-import { IpaddressService } from '../../service/ipaddress.service';
+import { IpaddressService } from 'src/app/ipaddress.service';
 import { UpdatevendoritemPage } from '../updatevendoritem/updatevendoritem.page';
-
+import { IonicSelectableComponent } from 'ionic-selectable';
 @Component({
   selector: 'app-vendorsitems',
   templateUrl: './vendorsitems.page.html',
   styleUrls: ['./vendorsitems.page.scss'],
 })
 export class VendorsitemsPage implements OnInit {
-
-
   Vendors_Item_List_resp:any;
   Vendors_Item_List:any = [];
   documentnew:any = [];
@@ -31,13 +28,13 @@ export class VendorsitemsPage implements OnInit {
   }
   vendoritemsview1(){
 
-     let userid = window.localStorage['TUM_USER_ID'];
+    var userid = window.localStorage['TUM_USER_ID'];
 
-    let usertoken = window.localStorage['usertoken'];
+    var usertoken = window.localStorage['usertoken'];
 
-    let token = window.localStorage['token'];
+    var token = window.localStorage['token'];
 
-    let obj = {
+    var obj = {
       userid: userid,
       usertoken: usertoken,
       access_token: window.localStorage['token']
@@ -49,8 +46,8 @@ export class VendorsitemsPage implements OnInit {
 
       this.vendorcode =this.vendorcode_resp.recordset;
       this.vendorcode.sort((a, b) => a.Vendor_Code.localeCompare(b.Vendor_Code))
-      let vendor_codelist = [];
-      for (let i = 0; i < this.vendorcode.length; i++) {
+      var vendor_codelist = [];
+      for (var i = 0; i < this.vendorcode.length; i++) {
         vendor_codelist.push(this.vendorcode[i].Vendor_Code);
       }
 
@@ -82,12 +79,12 @@ export class VendorsitemsPage implements OnInit {
   vendoritemsview(item){
 
     this.loading = true;
-    let userid = window.localStorage['TUM_USER_ID'];
+    var userid = window.localStorage['TUM_USER_ID'];
 
-    let usertoken = window.localStorage['usertoken'];
+    var usertoken = window.localStorage['usertoken'];
 
-   let token = window.localStorage['token'];
-    let vendorItems = {
+    var token = window.localStorage['token'];
+    var vendorItems = {
       FUNCTION_ID: window.localStorage['FUNCTION_ID'],
       VENDORCODE:item,
       ITEMCODE: '',
@@ -150,4 +147,3 @@ export class VendorsitemsPage implements OnInit {
   }
 
 }
-

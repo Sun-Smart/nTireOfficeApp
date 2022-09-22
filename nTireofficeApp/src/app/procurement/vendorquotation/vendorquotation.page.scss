@@ -3,6 +3,9 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+:host(.item-interactive.ion-valid) {
+  --highlight-background: #1ba4e1 !important;
+}
 
 ion-item {
   margin-top: 7px !important;
@@ -36,12 +39,15 @@ ion-spinner{
 .header-md:after{
   background-image: none !important;
 }
+.ptext{
+  color: rgb(25, 20, 20);
+}
 
 ion-card{
   // background:#ffffffcc;
   background: #fff;
-  margin: 25px;
-  border-radius: 20px;
+  margin: 10px;
+  border-radius: 5px;
   font-size: 14px;
   // box-shadow: 0 -3px 2px 0 rgb(255 255 255 / 20%), 0 -5px 12px 0 rgb(255 245 245 / 53%) !important;
   box-shadow:
