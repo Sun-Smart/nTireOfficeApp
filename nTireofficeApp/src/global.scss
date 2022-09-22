@@ -463,10 +463,10 @@ app-login ion-content {
   background-color: #43c585;
 }
 
-.scroll-x.sc-ion-content-md,
-.scroll-y.sc-ion-content-md {
+// .scroll-x.sc-ion-content-md,
+// .scroll-y.sc-ion-content-md {
   // --background: url(../assets/images/Login/background.png) repeat;
-}
+// }
 
 .button-inner {
   text-transform: none;
@@ -501,11 +501,7 @@ app-login ion-content {
   width: 58%;
 }
 
-// .labelcls1{
-//     background-color: lightgray;
-// }
-.ion-item {
-}
+
 
 // .form-control{
 //     display: block;
@@ -1006,10 +1002,11 @@ ion-menu-button {
   color: #fff !important;
 }
 
-.ion-color-success {
+.ion-color-success::part(native) {
   --ion-color-base: #006600 !important;
   --background: green !important;
-  color: #fff !important;
+  // color: #fff !important;
+  --ion-color-contrast: var(--ion-color-light) !important;
 
 }
 
@@ -1122,3 +1119,4 @@ ion-checkbox::part(container) {
 :host(.item-interactive.ion-valid) {
   --highlight-background: #4c8dff;
 }
+
