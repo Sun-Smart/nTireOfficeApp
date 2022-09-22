@@ -80,18 +80,18 @@
 
   <p *ngIf="loading" style="text-align: center;">Please Wait..</p>
 
-  <p *ngIf="totalemployee" style="text-align:center;"><b>Total Employee : {{totalemployee}}</b></p>
+  <p *ngIf="totalemployee" class="totalCount"><b>Total Employee : {{totalemployee}}</b></p>
 
   <ion-card *ngFor="let item of displayEmployee">
 
     <ion-card-header class="card_header" style="padding: 5px !important;">
       <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_header_text">{{item.EmployeeCode}}</ion-label>
+        <ion-col size="4">
+          <ion-label class="card_header_text"> # : {{item.EmployeeCode}}</ion-label>
         </ion-col>
 
-        <ion-col size="6">
-          <ion-label class="card_header_text">{{item.Name}}</ion-label>
+        <ion-col size="8">
+          <ion-label class="card_header_text">Name : {{item.Name}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-header>
@@ -115,47 +115,45 @@
             <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
           </div>
         </ion-col>
-        <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+        <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
           <ion-label class="card_content_label">Designation :</ion-label>
-          <br />
+          <!-- <br /> -->
           <span>{{item.Designation}}</span>
         </ion-col>
-        <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+            <ion-label class="card_content_label">Branch :</ion-label>
+            <br />
+            <span>{{item.branchtxt}}</span>
+          </ion-col>
+        <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7">
           <ion-label class="card_content_label">Department :</ion-label>
           <br />
           <span>{{item.Department}}</span>
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">Branch :</ion-label>
-          <br />
-          <span>{{item.branchtxt}}</span>
-        </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="card_content_label">DOB :</ion-label>
+            <br />
+            <span>{{item.DOB | date: 'dd-MM-yyyy'}}</span>
+          </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label class="card_content_label">DOJ :</ion-label>
           <br />
           <span>{{item.DOJ | date: 'dd-MM-yyyy'}}</span>
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">DOB :</ion-label>
-          <br />
-          <span>{{item.DOB | date: 'dd-MM-yyyy'}}</span>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label">Status :</ion-label>
-          <br />
-          <span>{{item.Status}}</span>
-        </ion-col>
-        <ion-col size-sm="9" size="9" size-md="9" size-lg="9" size-xl="9">
+       </ion-row>
+       <ion-row>
+       
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <ion-label class="card_content_label">Email ID :</ion-label>
-          <br />
+          <!-- <br /> -->
           <span>{{item.Email}}</span>
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label"><i class="icon ion-android-call"></i> Office</ion-label>
-          <br />
-          <span *ngIf="item.OffPhone!=0">{{item.OffPhone}}</span>
-          <span *ngIf="item.OffPhone==0"></span>
-        </ion-col>
+       </ion-row>
+       <ion-row>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label class="card_content_label"><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
           <br />
@@ -163,9 +161,22 @@
           <span *ngIf="item.Mobile==0"></span>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label"><i class="icon ion-android-call"></i> Office</ion-label>
+          <br />
+          <span *ngIf="item.OffPhone!=0">{{item.OffPhone}}</span>
+          <span *ngIf="item.OffPhone==0"></span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label class="card_content_label"><i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
           <br />
           <span></span>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label">Status :</ion-label>
+          <br />
+          <span>{{item.Status}}</span>
         </ion-col>
       </ion-row>
     </ion-card-content>
