@@ -20,9 +20,9 @@ export class PmsemployeesPage implements OnInit {
 
   ngOnInit() {
   }
-  // cancel() {
-  //   this.modal.dismiss(null, 'cancel');
-  // }
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
   canceled() {
     debugger
     this.modal1.dismiss(null, 'cancell');
