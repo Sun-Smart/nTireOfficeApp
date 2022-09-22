@@ -1,5 +1,14 @@
-.tabviewalignment{
-  height: 40px;
+select,input{
+  width:100%;
+}
+.expensedetail{
+  background: #2e3192;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: -14px;
 }
 ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
@@ -10,3 +19,5 @@ ion-label {
   color: black;
   font-weight: 600 !important;
 }
+
+

@@ -1,0 +1,115 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Team Meetings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+        <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+
+            <select style="width:100%"   [(ngModel)]="branch"  class="form-control">
+                <option value="">Please Select Branch</option>
+                <option *ngFor="let branchlist of branchlist1; let i = index"  value="{{branchlist.BRANCH_ID}}">{{branchlist.BRANCH_DESC}}</option>
+                </select>
+            </ion-col>
+        <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>From Date</ion-label>
+            <ion-input type="date" class="form-control"  [(ngModel)]="fromdate"></ion-input>
+          </ion-col>
+          <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <ion-label>To Date</ion-label>
+                <ion-input type="date" class="form-control"  [(ngModel)]="todate"></ion-input>
+              </ion-col>
+              <!-- <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="text-align:center">
+                  <ion-button (click)="searchAppointment(val,branch,fromdate,todate)"  size="full">Show</ion-button>
+                  <button (click)="searchAppointment(val,branch,fromdate,todate)" class="btn-info" style="font-size: 17px !important;
+                  height: 2.5em  !important;"  size="full">Show</button>
+
+                  </ion-col> -->
+                  <ion-col style="text-align:center" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+                    <button (click)="searchAppointment(val,branch,fromdate,todate)" color="success" size="full" style="background-color: rgb(2 154 222);color:#fff;width:100% !important;font-size: 17px;height: 2.8em;
+                    border-radius: 10px;">Show</button>
+                  </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  <div style="overflow-x:scroll;">
+      <table *ngIf="allmeetingArray.length!=0" id="alluserTable" class="table table-bordered" style="background-color:white;margin-bottom: 0px;">
+
+      <thead>
+        <tr>
+          <th style="background-color:#fd6b0d;color: white;font-weight: 500;">User</th>
+          <th *ngFor="let item of maxArray; let i = index" style="background-color:#fd6b0d;color: white;font-weight: 500;">{{item.Meeting}}</th>
+          </tr>
+       </thead>
+       <tbody *ngFor="let data of allmeetingArray; let i = index">
+       <tr>
+          <td style="font-weight: 500;background-color: #3F51B5;color: white;">{{data.Current_Caller}}</td>
+           <td *ngFor="let item of data.meeting_array; let i = index" [ngStyle]="{'background-color': item.ColorCode}"  (click)="showMeetingDeatils(item,i)">
+
+           <p style="font-weight: 500;
+      text-align: center;">{{item.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE | date:'dd-MM-yyyy'}} {{item.AppointmentTime}}</p></td>
+       </tr>
+       </tbody>
+      </table>
+
+
+      <table *ngIf="allmeetingArray1.length!=0" id="alluserTablebyDate" class="table table-bordered" style="background-color:white;margin-bottom: 0px;">
+
+      <thead>
+        <tr style="background-color: #fd6b0d;color: white;font-weight: 500;">
+          <th>User</th>
+
+          <th *ngFor="let item of maxArray1; let i = index">{{item.Meeting}}</th>
+          </tr>
+       </thead>
+       <tbody *ngFor="let data of allmeetingArray1;let i = index">
+       <tr>
+          <td style="font-weight: 500;background-color: #3F51B5;color: white;">{{data.Current_Caller}}</td>
+           <td *ngFor="let item of data.meeting_array" [ngStyle]="{'background-color': item.ColorCode}" (click)="showMeetingDeatils(item,i)"><p style="font-weight: 500;
+      text-align: center;">{{item.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE | date:'dd-MM-yyyy'}} {{item.AppointmentTime}}</p></td>
+       </tr>
+       </tbody>
+      </table>
+
+
+
+
+      <table id="tableByUser" *ngIf="meetingArray.length!=0" class="table table-bordered" style="background-color:white;margin-bottom: 0px;">
+      <tr style="background-color: #fd6b0d;color: white;font-weight: 500;">
+          <th>User</th>
+          <th *ngFor="let data of meetingArray">{{data.Meeting}}</th>
+       </tr>
+       <tr>
+          <td style="font-weight: 500;background-color: #3F51B5;color: white;">{{meetingArray.User}}</td>
+           <td *ngFor="let data of meetingArray" [ngStyle]="{'background-color': item.ColorCode}" (click)="showMeetingDeatils(data,i)"><p style="font-weight: 500;
+      text-align: center;">{{data.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE | date:'dd-MM-yyyy'}} {{item.AppointmentTime}}</p></td>
+       </tr>
+      </table>
+      <!-- <center id="oneUserAlert" style="margin-top: 100px;"><p *ngIf="meetingArray.length==0" style="font-weight: bold;">No Record Found</p></center> -->
+
+  </div>
+  <p style="margin-top: 100px;">
+    <!-- <span *ngIf="allmeetingArray1.length==0" style="font-weight: bold;">No Record Found</span></p> -->
+      <!-- <p style="margin-top: 100px;">
+        <span *ngIf="allmeetingArray.length==0" style="font-weight: bold;">No Record Found</span></p>
+
+      <p style="margin-top: 100px;">
+        <span *ngIf="allmeetingArray1.length==0" style="font-weight: bold;">No Record Found</span></p> -->
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>
