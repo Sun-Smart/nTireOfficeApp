@@ -14,11 +14,11 @@
   </ion-refresher>
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Function</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="function"></ion-input>
-      </ion-col>
+      </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch</ion-label>
@@ -42,82 +42,87 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code</ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
-          <ion-row>
-              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
-                <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
-                <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+        <ion-row>
+          <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+            <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)">
+            </ion-searchbar>
+            <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+              <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
                   color: gray !important;" (click)="processasset(item)">
-                    {{ item }}
-                  </ion-item>
-                </ion-list>
-              </ion-col>
-              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-                <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
-                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
-                </ion-button>
-              </ion-col>
-          </ion-row>
+                {{ item }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
+              <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
         <!-- </div> -->
-        </ion-col>
+      </ion-col>
 
     </ion-row>
 
-  
-  <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-    <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
-    <ion-col size="12">
-      <ion-button (click)="processreconciliationrep()" color="success" expand="block" >Search
-      </ion-button>
-    </ion-col> 
-    <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
-  </ion-row>
+
+    <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+      <ion-col size="12">
+        <ion-button (click)="processreconciliationrep()" color="success" expand="block">Search
+        </ion-button>
+      </ion-col>
+      <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
+    </ion-row>
+
+    <ion-card *ngFor="let item1 of detailrecons; let i = index">
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col>
+            <ion-label class="card_header_text">{{item1.Asset_Code}}</ion-label>
+          </ion-col>
+
+          <ion-col>
+            <ion-label class="card_header_text">{{item1.Branch}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row>
 
 
-  <ion-card *ngFor="let item1 of detailrecons; let i = index" style="background-color:#fff">
-    <ion-grid style="padding: 0px;">
-  <ion-row>
-    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
-    style="background-color: #2e3192!important;color:#fff;padding:12px;">
-    <span class="labelsize" style="color: white;font-size: 14px;font-weight: 500">{{item1.Asset_Code}}</span>
-  </ion-col>
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
-    style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
-    {{item1.Branch}}
-  </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <p class="labelHead-text">Department</p>
+            <span class="labelData-text">{{item1.Department}}</span>
+          </ion-col>
 
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-  <p style="font-weight:bold;">Department</p>
-  <span style="font-size: 14px!important;">{{item1.Department}}</span>
-  </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <p class="labelHead-text">Asset Description</p>
+            <span class="labelData-text">{{item1.Asset_description}}</span>
+          </ion-col>
 
-  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-    <p style="font-weight:bold;">Asset Description</p>
-    <span style="font-size: 14px!important;">{{item1.Asset_description}}</span>
-    </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <p class="labelHead-text">Last Scan Date</p>
+            <span class="labelData-text" *ngIf='item1.ScanDate'>{{item1.ScanDate}}</span>
+            <span class="labelData-text" *ngIf='!item1.ScanDate'>--</span>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
 
-    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-      <p style="font-weight:bold;">Last Scan Date</p>
-      <span style="font-size: 14px!important;" *ngIf='item1.ScanDate'>{{item1.ScanDate}}</span>
-        <span style="font-size: 14px!important;" *ngIf='!item1.ScanDate'>--</span>
-      </ion-col>  
-</ion-row>
-</ion-grid>
-
-</ion-card>
-  </ion-grid>    
+  </ion-grid>
 </ion-content>
 
 <ion-footer>
-  
+
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- 
-   
- </ion-footer>
+
+
+</ion-footer>

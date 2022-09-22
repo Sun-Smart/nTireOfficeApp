@@ -1003,11 +1003,13 @@ ion-menu-button {
 .ion-color-danger {
   --ion-color-base: rgb(167, 0, 0) !important;
   --background: rgb(167, 0, 0) !important;
+  color: #fff !important;
 }
 
 .ion-color-success {
   --ion-color-base: #006600 !important;
   --background: green !important;
+  color: #fff !important;
 
 }
 
