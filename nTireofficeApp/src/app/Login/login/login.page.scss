@@ -185,7 +185,8 @@ ion-footer {
     color: #0a0a58 !important;
     // border-bottom: 5px solid #EEC20C;
     text-align: center;
-    font-family: sans-serif;
+    font-family: ui-sans-serif;
+    font-size: larger;
 }
 
 :host(.item-has-focus).item-native{
