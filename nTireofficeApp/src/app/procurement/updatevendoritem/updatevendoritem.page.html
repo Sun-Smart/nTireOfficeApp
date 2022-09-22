@@ -1,29 +1,25 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-      <!-- <ion-button (click)="closemodal()"><ion-icon name="close"></ion-icon></ion-button> -->
+      <!-- <ion-menu-button></ion-menu-button> -->
+      <ion-button (click)="closemodal()"><ion-icon name="close"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>Update Vendor Item</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<p style="text-align:center ;color: black;"> update vendor page work in progress</p>
-</ion-content>
-<!-- <ion-content >
-
-  <p style="text-align:center ;"> work in progress</p>
   <ion-grid>
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Item Code</ion-label>
         <ion-input [(ngModel)]="documentnew.itemcode" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+          <!-- [(ngModel)]="documentnew.itemcode" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Item Description</ion-label>
         <ion-input [(ngModel)]="documentnew.itemdesc" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="documentnew.itemdesc" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -32,63 +28,67 @@
           <ion-select-option>&lt;&lt; Select &gt;&gt;</ion-select-option>
           <ion-select-option *ngFor="let items of Vendors_Item_uom" [value]="items.TEXT">{{items.TEXT}}</ion-select-option>
         </ion-select>
-
+         <!-- [(ngModel)]="documentnew.itemuom" -->
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Brand</ion-label>
         <ion-input [(ngModel)]="documentnew.brand" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+         <!-- [(ngModel)]="documentnew.brand" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Model</ion-label>
         <ion-input [(ngModel)]="documentnew.model" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+         <!-- [(ngModel)]="documentnew.model" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>U.Price</ion-label>
         <ion-input [(ngModel)]="documentnew.unitprice" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+         <!-- [(ngModel)]="documentnew.unitprice" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label id="disc">Discount (%)</ion-label>
         <ion-input [(ngModel)]="documentnew.discount" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+         <!-- [(ngModel)]="documentnew.discount" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Lead Time</ion-label>
         <ion-input [(ngModel)]="documentnew.leadtime" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="documentnew.leadtime" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Transport Charge</ion-label>
         <ion-input [(ngModel)]="documentnew.transportchg" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="documentnew.transportchg" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Net Price</ion-label>
         <ion-input [(ngModel)]="documentnew.netprice" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
+         <!-- [(ngModel)]="documentnew.netprice" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>From Qty</ion-label>
         <ion-input [(ngModel)]="documentnew.fromqty" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+         <!-- [(ngModel)]="documentnew.fromqty" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>To Qty</ion-label>
         <ion-input [(ngModel)]="documentnew.toqty" style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-
+         <!-- [(ngModel)]="documentnew.toqty" -->
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Remarks</ion-label>
         <ion-textarea [(ngModel)]="documentnew.remarks" placeholder=" " id="textareaID" style="background-color: #d4d4d4!important;display:inline-block;width:100%;" maxlength="500" onkeyup="checkTestPressure(this)" required="" class="textareaField"></ion-textarea>
         <span class="customCounter">{{500 - documentnew.remarks.length}}</span>
+        <!-- [(ngModel)]="documentnew.remarks" -->
       </ion-col>
 
     </ion-row>
@@ -96,19 +96,7 @@
 
   <ion-button disabled="(documentnew.itemcode=='' || documentnew.itemcode==undefined || documentnew.itemdesc=='' || documentnew.itemdesc==undefined || documentnew.itemuom=='' || documentnew.itemuom==undefined || documentnew.unitprice=='' || documentnew.unitprice==undefined || documentnew.discount=='' || documentnew.tax_levies=='' ||  documentnew.leadtime=='' || documentnew.leadtime==undefined || documentnew.transportchg=='' || documentnew.transportchg==undefined || documentnew.remarks=='' || documentnew.remarks==undefined)" style="min-width: 115px; --background: #009689 !important;display: block;margin: 10px auto;" type="button" (click)="updateVendorDetails(documentnew)"  class="button button-assertive button-small editbut">UPDATE</ion-button>
 
+  <!--  -->
+  <!-- <ion-button style="min-width: 115px; background: #009689 !important;display: block;margin: 0 auto; padding: 10px;" (click)="updateVendorDetails(documentnew)" disabled="(documentnew.itemcode=='' || documentnew.itemcode==undefined || documentnew.itemdesc=='' || documentnew.itemdesc==undefined || documentnew.itemuom=='' || documentnew.itemuom==undefined || documentnew.unitprice=='' || documentnew.unitprice==undefined || documentnew.discount=='' || documentnew.tax_levies=='' ||  documentnew.leadtime=='' || documentnew.leadtime==undefined || documentnew.transportchg=='' || documentnew.transportchg==undefined || documentnew.remarks=='' || documentnew.remarks==undefined)" class="button button-assertive button-small editbut"></ion-button> -->
 
-</ion-content> -->
-
-<ion-footer>
-
-  <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
-  </ion-row>
-
-
- </ion-footer>
+</ion-content>

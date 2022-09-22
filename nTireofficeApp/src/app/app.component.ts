@@ -321,26 +321,11 @@ export class AppComponent {
   ];
 
   public procurement= [
-    {
-      title: 'Update Vendor Item',
-      url: '/updatevendoritem',
-      icon: 'pricetag'
-    },
-    {
-      title: 'Update Vendor Quotation',
-      url: '/updatevendorquot',
 
-      icon: 'create'
-    },
     {
       title: 'Vendor Master',
       url: '/vendormaster',
       icon: 'person'
-    },
-    {
-      title: 'Vendor Payments',
-      url: '/vendorpayments',
-      icon: 'cash'
     },
     {
       title: 'Vendor PO Confirm',
@@ -362,7 +347,33 @@ export class AppComponent {
       url: '/vendorsitems',
       icon: 'flame'
     },
+    {
+      title: 'Vendor Payments',
+      url: '/vendorpayments',
+      icon: 'cash'
+    },
+
+    {
+      title: 'Update Vendor Item',
+      url: '/updatevendoritem',
+      icon: 'pricetag'
+    },
     // new
+
+    {
+      title: 'Update Vendor Item',
+      url: '/updatevendoritem',
+      icon: 'pricetag'
+    },
+    {
+      title: 'Update Vendor Quotation',
+      url: '/updatevendorquot',
+
+      icon: 'create'
+    },
+
+
+
     {
       title: 'Purchase Request',
       url: '/purchase-request',
