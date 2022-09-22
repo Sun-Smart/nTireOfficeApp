@@ -59,7 +59,7 @@
 
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <div *ngIf="HeatMapRecord_data.length==0" style="margin-top: 50%;">
-            <p style="font-weight: bold;text-align: center;">No Record Found</p>
+            <p style="font-weight: bold;text-align: center;" class="totalCount">No Record Found</p>
           </div>
           <div *ngIf="HeatMapRecord_data.length>0" class="heatmap"
             style="background-color:#fff;padding:10px;overflow:auto;">
@@ -156,7 +156,7 @@
           </div>
         </ion-col>
         <div *ngIf="HeatMapRecordbranch.length==0" style="margin-top: 50%;width:100%">
-          <p style="font-weight: bold;text-align: center;">No Record Found</p>
+          <p style="font-weight: bold;text-align: center;" class="totalCount">No Record Found</p>
         </div>
       </ion-row>
     </ion-grid>

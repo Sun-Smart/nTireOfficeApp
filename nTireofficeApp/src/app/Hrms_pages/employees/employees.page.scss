@@ -73,10 +73,21 @@ ion-content {
 
 .button-native{
   background-color: green !important;
+  color: #ffffff;
 }
 
 .employeefield{
   background-color: white!important;
   border:1px solid rgb(201, 194, 194);
   border-radius: 4px;
+}
+
+:host(.button-solid.ion-color) .button-native {
+  background: var(--ion-color-base);
+  color: white;
+}
+
+.searchbtn
+{
+color: #ffffff;
 }
