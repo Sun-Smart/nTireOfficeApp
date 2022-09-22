@@ -27,10 +27,10 @@ ion-item {
     --highlight-background: #fff !important;
     --highlight-color-valid: #fff !important;
     --caret-color: #fff !important;
-    caret-color: #443e3e !important;
+    caret-color: #fff !important;
 }
 .item-interactive.ion-valid{
-    --highlight-background: #fff !important;
+    --highlight-background: rgb(34, 33, 33) !important;
 
 }
 
@@ -183,7 +183,11 @@ ion-footer {
 
 .borderlogin {
     color: #0a0a58 !important;
-    border-bottom: 5px solid #EEC20C;
+    // border-bottom: 5px solid #EEC20C;
     text-align: center;
     font-family: sans-serif;
+}
+
+:host(.item-has-focus).item-native{
+    caret-color: #000 !important;
 }
