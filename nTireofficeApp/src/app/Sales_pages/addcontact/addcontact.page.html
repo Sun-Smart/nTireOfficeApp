@@ -15,20 +15,26 @@
 <!-- 
 <ion-header>
   <ion-toolbar>
-<ion-row>
-  <ion-col size="7">
+    <ion-title style="text-align: center;">Add Contact</ion-title>
+    <i class="fa-solid fa-circle-xmark addcnt_close" name="close-circle" style="float:right;position: relative;right: 11px;" (click)="closemodel()"></i>
+<!-- <ion-row>
+  <ion-col>
     <ion-title>Add Contact</ion-title>
   </ion-col>
-  <ion-col size="5">
+  <ion-col>
     <i class="fa-solid fa-circle-xmark addcnt_close" name="close-circle" (click)="closemodel()"
     ></i>
     <ion-icon name="close-circle-outline" (click)="closemodel()"></ion-icon>
+<<<<<<< HEAD
     <i class="fa fa-times-circle-o" aria-hidden="true" name="close-circle" (click)="closemodel()"
+=======
+    <i class="fa-solid fa-circle-xmark addcnt_close" aria-hidden="true" name="close-circle" (click)="closemodel()"
+>>>>>>> a61c24b31d455713c3a9e0b7de6f8abd603b520a
       style="float:right"></i>
 
     <ion-icon name="close-circle" (click)="closemodel()" style="float:right"></ion-icon>
   </ion-col>
-</ion-row>
+</ion-row> -->
 
 
   </ion-toolbar>
@@ -94,8 +100,13 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+<<<<<<< HEAD
         <ion-button 
         class="ion-color-success" expand="block"
+=======
+        <ion-button
+        color="success" expand="block"
+>>>>>>> a61c24b31d455713c3a9e0b7de6f8abd603b520a
           [disabled]="company==undefined || contactname==undefined || designation==undefined || emailid==undefined || mobilenumber==undefined || validmobile==true || validemail==true"
           (click)="AddContact()" >Submit</ion-button>
       </ion-col>

@@ -22,8 +22,10 @@ export class AddnewcorporatePage implements OnInit {
   function;
   companyname;
   cropaddress;
+  username:any;
   constructor(public modalController: ModalController,public alertController: AlertController,private http: HttpClient,public Ipaddressservice: IpaddressService) {
     this.function=localStorage.getItem('FUNCTION_DESC')+' | '+window.localStorage.TUM_BRANCH_CODE;
+    this.username=localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
