@@ -1099,11 +1099,11 @@ ion-checkbox::part(container) {
   display: inline-block;
 }
 .tool-barHeaderText{
-  color:#fff;
+  color:#fff !important;
   font-size:17px;
 }
 .toolbar-HdrCnclText{
-  color:#fff;
+  color:#fff !important;
   text-align: end;
 }
 .totalCount{
