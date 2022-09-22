@@ -237,7 +237,7 @@ export class DashboardPage implements OnInit {
         {
 
           data: this.sourcedata,
-          backgroundColor: '#42b983',
+          backgroundColor: '#1b6aa8',
 
         }];
       if (this.sourcechart) {
@@ -354,7 +354,7 @@ export class DashboardPage implements OnInit {
             label: 'Total Leads',
             yAxisID: 'A',
             data: this.totalleads,
-            borderColor: '#9966ff',
+            borderColor: '#dd4a68',
 
           },
           {
@@ -366,8 +366,8 @@ export class DashboardPage implements OnInit {
             label: 'Closed Leads',
             yAxisID: 'B',
             data: this.closedleades,
-            borderColor: '#4bc0c0',
-            backgroundColor: ' #4bc0c0'
+            borderColor: '#4a95ba',
+            backgroundColor: ' #4a95ba'
           },
 
           ]
