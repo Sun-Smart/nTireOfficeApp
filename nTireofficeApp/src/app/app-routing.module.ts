@@ -485,36 +485,36 @@ const routes: Routes = [
     path: 'heatmap',
     loadChildren: () => import('./Sales_pages/heatmap/heatmap.module').then( m => m.HeatmapPageModule)
   },
-  // {
-  //   path: 'mymeeting',
-  //   loadChildren: () => import('./Sales_pages/mymeeting/mymeeting.module').then( m => m.MymeetingPageModule)
-  // },
-  // {
-  //   path: 'teammeetings',
-  //   loadChildren: () => import('./Sales_pages/teammeetings/teammeetings.module').then( m => m.TeammeetingsPageModule)
-  // },
-  // {
-  //   path: 'expensedetails',
-  //   // loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
-  // },
-  // {
-  //   path: 'addtravelexpensedetails',
-  //   loadChildren: () => import('./Sales_pages/addtravelexpensedetails/addtravelexpensedetails.module').then( m => m.AddtravelexpensedetailsPageModule)
-  // },
-  // {
-  //   path: 'myclients',
-  //   loadChildren: () => import('./Sales_pages/myclients/myclients.module').then( m => m.MyclientsPageModule)
-  // },
+  {
+    path: 'mymeeting',
+    loadChildren: () => import('./Sales_pages/mymeeting/mymeeting.module').then( m => m.MymeetingPageModule)
+  },
+  {
+    path: 'teammeetings',
+    loadChildren: () => import('./Sales_pages/teammeetings/teammeetings.module').then( m => m.TeammeetingsPageModule)
+  },
+  {
+    path: 'expensedetails',
+    loadChildren: () => import('./Sales_pages/expensedetails/expensedetails.module').then( m => m.ExpensedetailsPageModule)
+  },
+  {
+    path: 'addtravelexpensedetails',
+    loadChildren: () => import('./Sales_pages/addtravelexpensedetails/addtravelexpensedetails.module').then( m => m.AddtravelexpensedetailsPageModule)
+  },
+  {
+    path: 'myclients',
+    loadChildren: () => import('./Sales_pages/myclients/myclients.module').then( m => m.MyclientsPageModule)
+  },
 
 
 
 
 
 
-  // {
-  //   path: 'updateleads',
-  //   loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
-  // },
+  {
+    path: 'updateleads',
+    loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
+  },
 
 
 

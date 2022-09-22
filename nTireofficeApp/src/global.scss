@@ -1091,19 +1091,20 @@ ion-checkbox {
 ion-checkbox::part(container) {
   border-radius: 4px;
   border: 1px solid #0074b8;
+  background: #fff !important;
 }
 .Input-text-field{
-  border: 1px solid rgb(180, 177, 177); 
+  border: 1px solid rgb(180, 177, 177);
   border-radius: 4px;
   background-color: #fff !important;
   display: inline-block;
 }
 .tool-barHeaderText{
-  color:#fff;
+  color:#fff !important;
   font-size:17px;
 }
 .toolbar-HdrCnclText{
-  color:#fff;
+  color:#fff !important;
   text-align: end;
 }
 .totalCount{
@@ -1117,4 +1118,8 @@ ion-checkbox::part(container) {
 .labelData-text{
   font-size: 14px!important;
   font-weight: bold;
+}
+//suneel
+:host(.item-interactive.ion-valid) {
+  --highlight-background: #4c8dff;
 }

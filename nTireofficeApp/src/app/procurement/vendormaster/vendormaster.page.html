@@ -1,55 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Vendor Master</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Vendor Master</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i class="fa fa-filter" aria-hidden="true"></i></span></div>
+<ion-content>
+  <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
+        class="fa fa-filter" aria-hidden="true"></i></span></div>
 
   <ion-card>
- <ion-card-content class="card_content" *ngIf="showfilter">
-  <ion-grid >
-    <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Company Name</ion-label>
-     
-         <ion-input [(ngModel)]="functionname" disabled class="Input-text-field" type="text"></ion-input>
-       
-      </ion-col>
+    <ion-card-content class="card_content" *ngIf="showfilter">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Company Name</ion-label>
 
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label position="stacked">Vendor Code</ion-label>
- 
-              <ionic-selectable item-content [(ngModel)]="VendorCode" [itemValueField]="vendor_id" itemTextField="Vendor_Code" [items]="vendorcode" [canSearch]="true"
-            (onChange)="portChange($event)" (onSelect)="displaydetails($event)" class="Input-text-field">
+            <ion-input [(ngModel)]="functionname" disabled class="Input-text-field" type="text"></ion-input>
+
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label position="stacked">Vendor Code</ion-label>
+
+            <ionic-selectable item-content [(ngModel)]="VendorCode" [itemValueField]="vendor_id"
+              itemTextField="Vendor_Code" [items]="vendorcode" [canSearch]="true" (onChange)="portChange($event)"
+              (onSelect)="displaydetails($event)" class="Input-text-field">
             </ionic-selectable>
-     
-      </ion-col>
 
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Vendor Name</ion-label>
-        
-        <ionic-selectable item-content [(ngModel)]="vendorname" [itemValueField]="vendor_id" itemTextField="Vendor_Name" [items]="vendorcode" [canSearch]="true"
-        (onChange)="portChange($event)" (onSelect)="displaydetails($event)" class="Input-text-field">
-        </ionic-selectable>
-    
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-card-content>
-</ion-card>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Vendor Name</ion-label>
+
+            <ionic-selectable item-content [(ngModel)]="vendorname" [itemValueField]="vendor_id"
+              itemTextField="Vendor_Name" [items]="vendorcode" [canSearch]="true" (onChange)="portChange($event)"
+              (onSelect)="displaydetails($event)" class="Input-text-field">
+            </ionic-selectable>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
   <ion-spinner *ngIf="loading"></ion-spinner>
 
   <div *ngIf="vendormaster&&vendormaster.length>0">
-    <ion-card  *ngFor="let items of vendormaster;let i = index;">
+    <ion-card *ngFor="let items of vendormaster;let i = index;">
       <ion-card-header class="card_header">
-        <ion-label class="card_header_text" >Vendor Code : {{items.Code}}</ion-label>
+        <ion-label class="card_header_text">Vendor Code : {{items.Code}}</ion-label>
       </ion-card-header>
       <ion-card-content class="card_content">
         <ion-grid>
@@ -83,8 +84,7 @@
           </ion-row>
           <ion-row>
             <ion-col style="text-align: center;">
-              <ion-button  
-              color="tertiary" expand="block" (click)="view(items)">View</ion-button>
+              <ion-button color="tertiary" expand="block" (click)="view(items)">View</ion-button>
             </ion-col>
           </ion-row>
 
@@ -98,13 +98,13 @@
 <ion-footer>
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
 
 
- </ion-footer>
+</ion-footer>
