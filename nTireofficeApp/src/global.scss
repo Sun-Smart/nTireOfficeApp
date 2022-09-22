@@ -974,7 +974,7 @@ ion-menu-button {
 
   // button.alert
   .alert-button-group {
-    background: #e71414f0 !important;
+    background: red !important;
   }
 }
 .Cssbutton {
@@ -987,7 +987,7 @@ ion-menu-button {
 
   // button.alert
   .alert-button-group {
-    background: #089408cc !important;
+    background: green !important;
   }
 }
 
@@ -1000,14 +1000,16 @@ ion-menu-button {
   color: #fff;
 }
 
-.ion-color-danger {
-  --ion-color-base: red !important;
-}
+// .ion-color-danger {
+//   --ion-color-base: red !important;
+//   --background: red !important;
+// }
 
-.ion-color-success {
-  --ion-color-base: #32cd32 !important;
-  opacity: 1;
-}
+// .ion-color-success {
+//   --ion-color-base: green !important;
+//   --background: green !important;
+//   opacity: 1;
+// }
 
 ion-card {
   box-shadow: 1px 1px 7px 0px grey;
@@ -1070,10 +1072,7 @@ ion-card {
   padding: 0px;
 }
 
-.textareaField {
-  background-color: #fff !important;
-  display: inline-block;
-}
+
 
 .alert-radio-group {
   background-color: white !important;
@@ -1090,4 +1089,10 @@ ion-checkbox {
 ion-checkbox::part(container) {
   border-radius: 4px;
   border: 1px solid #0074b8;
+}
+.Input-text-field{
+  border: 1px solid rgb(180, 177, 177); 
+  border-radius: 4px;
+  background-color: #fff !important;
+  display: inline-block;
 }

@@ -28,14 +28,14 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>From Date</ion-label>
         <ion-input type="date" class="form-control" [(ngModel)]="fromdate">
-          <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+          <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
         </ion-input>
        
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>To Date</ion-label>
         <ion-input type="date" class="form-control" [(ngModel)]="todate" (focusout)="compdateval()">
-          <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+          <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
         </ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -172,11 +172,11 @@
 
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button (click)="closecompletejob(item1)" style="--background:#009689" size="full" >Close
+                <ion-button (click)="closecompletejob(item1)" class="ion-color-danger" size="full" >Close
                 </ion-button>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button (click)="reopenActionModal(item1)" style="--background:#ff4000" size="full" >Reopen
+                <ion-button (click)="reopenActionModal(item1)" class="ion-color-success" size="full" >Reopen
                 </ion-button>
               </ion-col>
             

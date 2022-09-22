@@ -96,17 +96,17 @@
     <ion-row>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button this.disabledvalue=true; color="success"
+        <ion-button this.disabledvalue=true; color="success" expand="block"
           [disabled]="assestCategory=='' || assestsubCategory=='' || requestDate==undefined || reqbeforedte==undefined || reason==undefined"
           (click)="assestsSubmit()">Ok</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button this.disabledvalue=true; color="danger" (click)="assestCancel()">Cancel</ion-button>
+        <ion-button this.disabledvalue=true; color="danger" expand="block" (click)="assestCancel()">Cancel</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button this.disabledvalue=true; (click)="assesstsList()">List</ion-button>
+        <ion-button this.disabledvalue=true; color="primary" expand="block" (click)="assesstsList()">List</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
