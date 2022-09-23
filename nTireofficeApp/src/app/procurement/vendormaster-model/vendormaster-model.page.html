@@ -23,28 +23,28 @@
     <ion-card-content class="card_content">
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Company Name</ion-label>
+          <ion-label class="card_content_label labelHead-text">Company Name</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;"> {{itemdata.CompanyName||"-"}}</ion-label>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Code</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <ion-label style="font-size: 14px;"> {{itemdata.Code||"-"}}</ion-label>
+          <ion-label class="labelData-text"> {{itemdata.CompanyName||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Address</ion-label>
+          <ion-label class="card_content_label labelHead-text">Code</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">
+          <ion-label class="labelData-text"> {{itemdata.Code||"-"}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Address</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">
             {{itemdata.Address1||"-"}},<br>{{itemdata.Address2||"-"}},<br>{{itemdata.City||"-"}} -
             {{itemdata.ZIPCode||"-"}}</ion-label>
         </ion-col>
@@ -52,55 +52,55 @@
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Web Site</ion-label>
+          <ion-label class="card_content_label labelHead-text">Web Site</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Website||"-"}}</ion-label>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Group</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.GroupName||"-"}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.Website||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Total Employee</ion-label>
+          <ion-label class="card_content_label labelHead-text">Group</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.TotalEmployees||"-"}}</ion-label>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Date of Incorp</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <ion-label style="font-size: 14px;"> {{itemdata.DateOfIncorporation|date:'d/M/yy'}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.GroupName||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Status</ion-label>
+          <ion-label class="card_content_label labelHead-text">Total Employee</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Status}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.TotalEmployees||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Status</ion-label>
+          <ion-label class="card_content_label labelHead-text">Date of Incorp</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Status}}</ion-label>
+          <ion-label class="labelData-text"> {{itemdata.DateOfIncorporation|date:'d/M/yy'}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Status</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">{{itemdata.Status}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Status</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">{{itemdata.Status}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -119,54 +119,54 @@
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Contact Person Name</ion-label>
+          <ion-label class="card_content_label labelHead-text">Contact Person Name</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.PrimaryContactPerson}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.PrimaryContactPerson}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Designation</ion-label>
+          <ion-label class="card_content_label labelHead-text">Designation</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Designation}}</ion-label>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Phone</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.OfficePhone ||"-"}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.Designation}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Mobile</ion-label>
+          <ion-label class="card_content_label labelHead-text">Phone</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Mobile ||"-"}}</ion-label>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Email</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Email}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.OfficePhone ||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label" style="font-weight:bold;">Fax</ion-label>
+          <ion-label class="card_content_label labelHead-text">Mobile</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label style="font-size: 14px;">{{itemdata.Fax||"-"}}</ion-label>
+          <ion-label class="labelData-text">{{itemdata.Mobile ||"-"}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Email</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">{{itemdata.Email}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Fax</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">{{itemdata.Fax||"-"}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-content>

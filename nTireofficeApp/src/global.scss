@@ -1002,7 +1002,7 @@ ion-menu-button {
   color: #fff !important;
 }
 
-.ion-color-success::part(native) {
+.ion-color-success {
   --ion-color-base: #006600 !important;
   --background: green !important;
   // color: #fff !important;

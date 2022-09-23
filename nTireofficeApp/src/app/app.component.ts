@@ -337,34 +337,30 @@ export class AppComponent {
       url: '/vendorquotation',
       icon: 'clipboard'
     },
-    {
-      title: 'Vendor Details',
-      url: '/vendorsdetails',
-      icon: 'list'
-    },
-    {
-      title: 'Vendor Item',
-      url: '/vendorsitems',
-      icon: 'flame'
-    },
+    // {
+    //   title: 'Vendor Details',
+    //   url: '/vendorsdetails',
+    //   icon: 'list'
+    // },
+    // {
+    //   title: 'Vendor Item',
+    //   url: '/vendorsitems',
+    //   icon: 'flame'
+    // },
     {
       title: 'Vendor Payments',
       url: '/vendorpayments',
       icon: 'cash'
     },
 
-    {
-      title: 'Update Vendor Item',
-      url: '/updatevendoritem',
-      icon: 'pricetag'
-    },
+
     // new
 
-    {
-      title: 'Update Vendor Item',
-      url: '/updatevendoritem',
-      icon: 'pricetag'
-    },
+    // {
+    //   title: 'Update Vendor Item',
+    //   url: '/updatevendoritem',
+    //   icon: 'pricetag'
+    // },
     {
       title: 'Update Vendor Quotation',
       url: '/updatevendorquot',
