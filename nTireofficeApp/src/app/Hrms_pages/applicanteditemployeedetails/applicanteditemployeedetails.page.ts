@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ModalController,NavParams} from '@ionic/angular';
 
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { DatePipe} from '@angular/common';
 @Component({
