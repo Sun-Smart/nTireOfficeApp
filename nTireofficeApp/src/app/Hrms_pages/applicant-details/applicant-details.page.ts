@@ -4,7 +4,7 @@ import { CameraService } from 'src/app/service/camera.service';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe} from '@angular/common';

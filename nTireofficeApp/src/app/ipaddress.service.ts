@@ -64,9 +64,16 @@ export class IpaddressService {
     this.getLoginLink = '/dms';
 
     this.serviceurllos = "/los/LOS/";
+
     //Cams
+
     this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
     this.serviceurlCams = "/SSGmobileapi/cams/cams.svc/"
+
+    // this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/CAMS"
+    // this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/"
+
+
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
     // this.serviceurlCams="/mobileapi/cams/cams.svc/"
     this.serviceerpapi = "/dms/DMS/erpapi/";

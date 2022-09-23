@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController } from '@ionic/angular';
 import { validateemail } from '../../../assets/validation.js';
 import { DatePipe } from '@angular/common';
