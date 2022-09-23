@@ -29,13 +29,25 @@ ion-item {
     --caret-color: #fff !important;
     caret-color: #fff !important;
 }
-.item-interactive.ion-valid{
-    --highlight-background: rgb(34, 33, 33) !important;
+// .item-interactive.ion-valid{
+//     --highlight-background: rgb(21, 2, 197) !important;
+//     --highlight-color-valid:#fff !important;
 
+// }
+.userinput{
+    
+    caret-color: #000 !important;
+   
 }
 
+ion-item#loginInput {
+    --highlight-background: #fffcfc !important;
+}
+// :host(.item-interactive.ion-valid) {
+//     --highlight-background: #fff;
+// }
 :host(.item-interactive.ion-valid) {
-    --highlight-background: #fff;
+    --highlight-background: #fff !important;
 }
 
 ion-input {
@@ -191,6 +203,6 @@ ion-footer {
     font-family: "Poppins";
 }
 
-:host(.item-has-focus).item-native{
-    caret-color: #000 !important;
-}
+// :host(.item-has-focus).item-native{
+//     caret-color: rgb(43, 184, 74) !important;
+// }
