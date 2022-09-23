@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prsstatus',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PRSstatusPage implements OnInit {
 
-  constructor() { }
+  showfilter:boolean = true;
+  showviewlist:boolean= false
+  constructor( private router :Router) { }
 
   ngOnInit() {
+  }
+
+  togglefilter(){
+    this.showfilter = !this.showfilter;
+  }
+  next(){
+    this.router.navigate(['/purchase-request'])
+  }
+  Search(){
+    this.showviewlist=true
   }
 
 }

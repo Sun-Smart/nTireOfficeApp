@@ -333,11 +333,11 @@ export class AppComponent {
       icon: 'stats-chart-sharp'
 
     },
-    {
-      title: 'RFP',
-      url: '/rfp',
-      icon: 'logo-steam'
-    },
+    // {
+    //   title: 'RFP',
+    //   url: '/rfp',
+    //   icon: 'logo-steam'
+    // },
     {
       title: 'RFQ',
       url: '/rfq',

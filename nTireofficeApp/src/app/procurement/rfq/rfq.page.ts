@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rfq.page.scss'],
 })
 export class RFQPage implements OnInit {
-
+  showviewlist:boolean=false
   constructor() { }
 
   ngOnInit() {
+  }
+  Submit(){
+    this.showviewlist=true
   }
 
 }
