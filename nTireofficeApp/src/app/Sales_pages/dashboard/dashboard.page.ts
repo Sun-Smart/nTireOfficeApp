@@ -55,7 +55,7 @@ export class DashboardPage implements OnInit {
   total_leads_datan = [];
   closed_leads_datan = [];
   perc_closedn = [];
-  username:any;
+  username: any;
   // This property will save the callback which we can unsubscribe when we leave this view
   public unsubscribeBackEvent: any;
   constructor(private platform: Platform, public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService, private navCtrl: NavController, private menuCtrl: MenuController) {
@@ -68,7 +68,7 @@ export class DashboardPage implements OnInit {
     this.Stagewisegraph(branchid);
     this.Sourcewisegrph(branchid);
     this.productwisegraph(branchid);
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
@@ -162,7 +162,7 @@ export class DashboardPage implements OnInit {
           toolTipContent: "<a href = {name}> {label}</a><hr/>Views: {y}",
         },
         options: {
-          is3D:true,
+          is3D: true,
           legend: {
             display: true,
           },
@@ -237,7 +237,7 @@ export class DashboardPage implements OnInit {
         {
 
           data: this.sourcedata,
-          backgroundColor: '#1b6aa8',
+          backgroundColor: '#46d39a',
 
         }];
       if (this.sourcechart) {
@@ -253,7 +253,7 @@ export class DashboardPage implements OnInit {
 
         },
         options: {
-          is3D:true,
+          is3D: true,
           zoomEnabled: true,
           legend: {
             display: false
@@ -336,6 +336,28 @@ export class DashboardPage implements OnInit {
       console.log(top10);
 
       for (var i = 0; i < top10.length; i++) {
+        if (top10[i].Product == "Corporate Banking Related") {
+          top10[i].Product = "CBR";
+        } else if (top10[i].Product == "REGALIA PLATINUM CARD") {
+          top10[i].Product = "RPC";
+        } else if (top10[i].Product == "Customer Onboarding Application") {
+          top10[i].Product = "COA";
+        } else if (top10[i].Product == "Commercial Vehicle Insurance") {
+          top10[i].Product = "CVI";
+        } else if (top10[i].Product == "Retail products") {
+          top10[i].Product = "RP";
+        } else if (top10[i].Product == "Interview Process APP") {
+          top10[i].Product = "IPA";
+        } else if (top10[i].Product == "Retail Banking Related") {
+          top10[i].Product = "RBR";
+        } else if (top10[i].Product == "Home Loan") {
+          top10[i].Product = "Home Loan";
+        } else if (top10[i].Product == "Credit Cards") {
+          top10[i].Product = "Credit Cards";
+        } else if (top10[i].Product == "test") {
+          top10[i].Product = "Test";
+        }
+
         this.Productlabel.push(top10[i].Product);
         this.totalleads.push(top10[i]['Total Leads']);
         this.closedleades.push(top10[i]['Closed Leads']);
@@ -354,7 +376,7 @@ export class DashboardPage implements OnInit {
             label: 'Total Leads',
             yAxisID: 'A',
             data: this.totalleads,
-            borderColor: '#dd4a68',
+            borderColor: '#e55759',
 
           },
           {
@@ -366,8 +388,8 @@ export class DashboardPage implements OnInit {
             label: 'Closed Leads',
             yAxisID: 'B',
             data: this.closedleades,
-            borderColor: '#4a95ba',
-            backgroundColor: ' #4a95ba'
+            borderColor: '#d8b655',
+            backgroundColor: ' #d8b655'
           },
 
           ]
@@ -429,7 +451,6 @@ export class DashboardPage implements OnInit {
             nottop10[i].Product = nottop10[i].Product.substring(0, 10) + '...';
             console.log(nottop10[i]);
           }
-
           this.labels1n.push(nottop10[i].Product);
           this.total_leads_datan.push(nottop10[i]['Total Leads']);
           this.closed_leads_datan.push(nottop10[i]['Closed Leads']);
@@ -471,7 +492,7 @@ export class DashboardPage implements OnInit {
             mode: 'index',
 
             callbacks: {
-              label (t, d) {
+              label(t, d) {
                 if (t.datasetIndex === 0) {
                   return 'Total Leads' + " " + t.yLabel.toFixed();
                 } else if (t.datasetIndex === 1) {
