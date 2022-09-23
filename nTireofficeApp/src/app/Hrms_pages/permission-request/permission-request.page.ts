@@ -227,8 +227,10 @@ var perm={
           this.company = window.localStorage['FUNCTION_DESC'];
           this.branch=window.localStorage['TUM_BRANCH_CODE']
        var employeeDetails = JSON.parse(resp.toString());
-
+debugger
         this.department = employeeDetails[0].Department;
+        console.log('this.department ',this.department);
+
         this.empID = employeeDetails[0].EmpID;
 
         // this.userID = employeeDetails[0].UserID;

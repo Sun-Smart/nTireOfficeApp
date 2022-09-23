@@ -746,7 +746,7 @@ ion-item {
   text-align: center;
 }
 
-ion-label {
+// ion-label {
   // color: #000;
   // font-weight: 500;
   // width: 100%;
@@ -762,7 +762,7 @@ ion-label {
   /* border-style: solid; */
   // font-size: 15px;
   // top: 11px;
-}
+// }
 
 .dashboardbranch {
   margin-top: 12px;
@@ -1119,10 +1119,4 @@ ion-checkbox::part(container) {
 //suneel
 :host(.item-interactive.ion-valid) {
   --highlight-background: #4c8dff !important;
-}
-
-ion-label {
-  font-family: "Poppins";
-  color: black;
-  font-weight: 600 !important;
 }
