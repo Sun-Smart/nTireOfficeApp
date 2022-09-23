@@ -1018,8 +1018,17 @@ ion-card {
   .card_header_text {
     font-size: 15px;
     color: #ffff !important;
+    padding-right: 50px !important;
   }
 }
+ion-card {
+  .card_header_text1 {
+    font-size: 15px;
+    color: #ffff !important;
+    padding-left: 64px !important;
+  }
+}
+
 
 ion-card {
   .card_header {
@@ -1121,3 +1130,6 @@ ion-checkbox::part(container) {
   --highlight-background: #4c8dff !important;
 }
 
+i.fa.fa-filter {
+  color: #c90000 !important;
+}
