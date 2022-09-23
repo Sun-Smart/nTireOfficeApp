@@ -323,54 +323,6 @@ export class AppComponent {
   public procurement= [
 
     {
-      title: 'Vendor Master',
-      url: '/vendormaster',
-      icon: 'person'
-    },
-    {
-      title: 'Vendor PO Confirm',
-      url: '/vendorpoconfirm',
-      icon: 'checkmark'
-    },
-    {
-      title: 'Vendor Quotation',
-      url: '/vendorquotation',
-      icon: 'clipboard'
-    },
-    // {
-    //   title: 'Vendor Details',
-    //   url: '/vendorsdetails',
-    //   icon: 'list'
-    // },
-    // {
-    //   title: 'Vendor Item',
-    //   url: '/vendorsitems',
-    //   icon: 'flame'
-    // },
-    {
-      title: 'Vendor Payments',
-      url: '/vendorpayments',
-      icon: 'cash'
-    },
-
-
-    // new
-
-    // {
-    //   title: 'Update Vendor Item',
-    //   url: '/updatevendoritem',
-    //   icon: 'pricetag'
-    // },
-    {
-      title: 'Update Vendor Quotation',
-      url: '/updatevendorquot',
-
-      icon: 'create'
-    },
-
-
-
-    {
       title: 'Purchase Request',
       url: '/purchase-request',
       icon: 'pricetag-sharp'
@@ -396,6 +348,18 @@ export class AppComponent {
       url: '/workflow-approval',
       icon: 'code-working-sharp'
     },
+    {
+      title: 'Vendor Quotation',
+      url: '/vendorquotation',
+      icon: 'clipboard'
+    },
+    {
+      title: 'Update Vendor Quotation',
+      url: '/updatevendorquot',
+
+      icon: 'create'
+    },
+
     {
       title: 'Material Request',
       url: '/material-request',
@@ -441,6 +405,49 @@ export class AppComponent {
       url: '/view-invoice-status',
       icon: 'cash-outline'
     },
+
+
+
+
+    {
+      title: 'Vendor Master',
+      url: '/vendormaster',
+      icon: 'person'
+    },
+    {
+      title: 'Vendor PO Confirm',
+      url: '/vendorpoconfirm',
+      icon: 'checkmark'
+    },
+
+    // {
+    //   title: 'Vendor Details',
+    //   url: '/vendorsdetails',
+    //   icon: 'list'
+    // },
+    // {
+    //   title: 'Vendor Item',
+    //   url: '/vendorsitems',
+    //   icon: 'flame'
+    // },
+    // {
+    //   title: 'Vendor Payments',
+    //   url: '/vendorpayments',
+    //   icon: 'cash'
+    // },
+
+
+    // new
+
+    // {
+    //   title: 'Update Vendor Item',
+    //   url: '/updatevendoritem',
+    //   icon: 'pricetag'
+    // },
+
+
+
+
 
   ];
 
