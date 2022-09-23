@@ -747,9 +747,9 @@ ion-item {
 }
 
 ion-label {
-  color: #000;
-  font-weight: 500;
-  width: 100%;
+  // color: #000;
+  // font-weight: 500;
+  // width: 100%;
   /* border-color: #ddd; */
   /* background-color: #fff; */
   /* color: #444; */
@@ -758,10 +758,10 @@ ion-label {
   /* display: block; */
   // margin: -1px;
   /* padding: 16px; */
-  border-width: 1px;
+  // border-width: 1px;
   /* border-style: solid; */
-  font-size: 15px;
-  top: 11px;
+  // font-size: 15px;
+  // top: 11px;
 }
 
 .dashboardbranch {
@@ -1121,3 +1121,8 @@ ion-checkbox::part(container) {
   --highlight-background: #4c8dff !important;
 }
 
+ion-label {
+  font-family: "Poppins";
+  color: black;
+  font-weight: 600 !important;
+}
