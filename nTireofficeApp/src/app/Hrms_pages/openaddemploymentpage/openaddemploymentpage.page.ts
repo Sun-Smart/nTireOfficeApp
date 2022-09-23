@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NavParams} from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import {ModalController} from '@ionic/angular';
 

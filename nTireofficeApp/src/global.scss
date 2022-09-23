@@ -1018,7 +1018,7 @@ ion-card {
   .card_header_text {
     font-size: 15px;
     color: #ffff !important;
-    padding-right: 50px !important;
+    // padding-right: 50px !important;
   }
 }
 ion-card {
@@ -1039,7 +1039,7 @@ ion-card {
       rgb(2, 154, 222) 50%
     ) !important;
     color: white !important;
-    text-align: center;
+    text-align: initial;
     padding: 15px;
   }
 }
