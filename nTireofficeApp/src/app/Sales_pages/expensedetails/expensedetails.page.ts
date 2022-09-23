@@ -114,7 +114,7 @@ export class ExpensedetailsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -180,7 +180,7 @@ export class ExpensedetailsPage implements OnInit {
             const header = new Headers();
             header.append("Content-Type", "application/json");
             let options = new HttpHeaders().set('Content-Type', 'application/json');
-            this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getallappointmentsbyUser/', getappbyuserJSON, {
+            this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointmentsbyUser/', getappbyuserJSON, {
               headers: options,
             }).subscribe(resp => {
               this.allappointments = resp;
@@ -319,7 +319,7 @@ export class ExpensedetailsPage implements OnInit {
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/get_AllappointmentsbyDate/', getleadJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate/', getleadJSON, {
             headers: options,
           }).subscribe(resp => {
             //sales_services.get_AllappointmentsbyDate(this.fromdate, this.todate).then(function(resp) {
@@ -468,7 +468,7 @@ export class ExpensedetailsPage implements OnInit {
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/get_AllappointmentsbyuserDate/', getappbydateJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyuserDate/', getappbydateJSON, {
             headers: options,
           }).subscribe(resp => {
             this.allappointments = resp;
@@ -582,7 +582,7 @@ export class ExpensedetailsPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/get_Allappointments/', getappJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments/', getappJSON, {
       headers: options,
     }).subscribe(resp => {
 
@@ -727,7 +727,7 @@ export class ExpensedetailsPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getAllExpenseDetail/', getExpenseJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getAllExpenseDetail/', getExpenseJSON, {
       headers: options,
     }).subscribe(resp => {
 
@@ -746,7 +746,7 @@ export class ExpensedetailsPage implements OnInit {
         const header = new Headers();
         header.append("Content-Type", "application/json");
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getExpenseDoc/', getExpensedocJSON, {
+        this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getExpenseDoc/', getExpensedocJSON, {
           headers: options,
         }).subscribe(resp => {
 

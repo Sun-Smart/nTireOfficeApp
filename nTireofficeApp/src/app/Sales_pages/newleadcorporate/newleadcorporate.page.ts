@@ -200,7 +200,7 @@ export class NewleadcorporatePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/GetContactDetails/' + this.company_id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'GetContactDetails/' + this.company_id, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -242,7 +242,7 @@ export class NewleadcorporatePage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/getcompany/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getcompany/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.companyname1 = [];
@@ -281,7 +281,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -298,7 +298,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/BranchLocation/' + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'BranchLocation/' + branchid, {
       headers: options,
     }).subscribe(resp => {
 
@@ -315,7 +315,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/getProduct', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
 
@@ -332,7 +332,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/Nametitle', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Nametitle', {
       headers: options,
     }).subscribe(resp => {
 
@@ -349,7 +349,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callpriority', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
 
@@ -366,7 +366,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callrating', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
 
@@ -383,7 +383,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callnature', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callnature', {
       headers: options,
     }).subscribe(resp => {
 
@@ -400,7 +400,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callstage', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callstage', {
       headers: options,
     }).subscribe(resp => {
 
@@ -417,7 +417,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/Leadsource', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Leadsource', {
       headers: options,
     }).subscribe(resp => {
 
@@ -445,7 +445,7 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/customerresponse/' + this.curr_prod_category, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
 
@@ -905,7 +905,7 @@ export class NewleadcorporatePage implements OnInit {
 
         let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-        this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/corporatelead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.company1 + '/' + data.ContactName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentTime + '/' + data.appointmentDate + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '', {
+        this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'corporatelead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.company1 + '/' + data.ContactName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentTime + '/' + data.appointmentDate + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '', {
 
 
           headers: options,
@@ -978,7 +978,7 @@ export class NewleadcorporatePage implements OnInit {
                 // http://mydesk.nextit.in:8173/dms/DMS/sales/
                 let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-                this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/pass_current_loc', passCurrent_locationJSON, {
+                this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pass_current_loc', passCurrent_locationJSON, {
                   headers: options,
                 }).subscribe(resp => {
 
@@ -1047,7 +1047,7 @@ export class NewleadcorporatePage implements OnInit {
                   header1.append("Content-Type", "application/json");
 
                   let options1 = new HttpHeaders().set('Content-Type', 'application/json');
-                  this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/uploadimageforsales', uploadJSON, {
+                  this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'uploadimageforsales', uploadJSON, {
                     headers: options1,
                   }).subscribe(resp => {
                     //console.log("success uploadimageforsales");

@@ -190,7 +190,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales +'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -207,7 +207,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/BranchLocation/' + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurl + 'BranchLocation' + branchid, {
       headers: options,
     }).subscribe(resp => {
 
@@ -227,7 +227,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/getProduct', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
 
@@ -259,7 +259,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/Nametitle', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Nametitle', {
       headers: options,
     }).subscribe(resp => {
 
@@ -276,7 +276,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callpriority', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
 
@@ -293,7 +293,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callrating', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
 
@@ -310,7 +310,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callnature', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callnature', {
       headers: options,
     }).subscribe(resp => {
 
@@ -327,7 +327,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callstage', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callstage', {
       headers: options,
     }).subscribe(resp => {
 
@@ -344,7 +344,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/Leadsource', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Leadsource', {
       headers: options,
     }).subscribe(resp => {
 
@@ -364,7 +364,7 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/customerresponse/' + this.curr_prod_category, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
 
@@ -877,7 +877,7 @@ username:any;
       header.append('Content-Type', 'application/json');
 
       const options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/insertlead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.salutation_name + '.' + data.firstName + '/' + data.lastName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentDate + '/' + data.appointmentTime + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '/' + data.email_id + '/' + data.currency + '', {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'insertlead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.salutation_name + '.' + data.firstName + '/' + data.lastName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentDate + '/' + data.appointmentTime + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '/' + data.email_id + '/' + data.currency + '', {
         headers: options,
       }).subscribe(resp => {
         console.log('mobileapi : ' + JSON.stringify(resp));
@@ -921,7 +921,7 @@ username:any;
           // eslint-disable-next-line @typescript-eslint/no-shadow
           const options = new HttpHeaders().set('Content-Type', 'application/json');
 
-          this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/update_meeting_location', update_meeting_locationJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'update_meeting_location', update_meeting_locationJSON, {
             headers: options,
             // eslint-disable-next-line @typescript-eslint/no-shadow
           }).subscribe(resp => {
@@ -950,7 +950,7 @@ username:any;
               header.append('Content-Type', 'application/json');
 
               const options = new HttpHeaders().set('Content-Type', 'application/json');
-              this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/pass_current_loc', passCurrent_locationJSON, {
+              this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pass_current_loc', passCurrent_locationJSON, {
                 headers: options,
               }).subscribe(resp => {
                 console.log('pass_current_loc' + JSON.stringify(resp));
@@ -997,7 +997,7 @@ username:any;
                 header1.append('Content-Type', 'application/json');
 
                 const options1 = new HttpHeaders().set('Content-Type', 'application/json');
-                this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/uploadimageforsales', uploadJSON, {
+                this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'uploadimageforsales', uploadJSON, {
                   headers: options1,
                 }).subscribe(resp => {
                   console.log('uploadimageforsales' + JSON.stringify(resp));
@@ -1160,7 +1160,7 @@ username:any;
       const header = new Headers();
       header.append('Content-Type', 'application/json');
       const options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/GetEmployee/' + uservalue, {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'GetEmployee/' + uservalue, {
         headers: options,
       }).subscribe(resp => {
         this.uservalid = resp;
@@ -1189,7 +1189,7 @@ username:any;
       const header = new Headers();
       header.append('Content-Type', 'application/json');
       const options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/GetCustomer/' + uservalue, {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'GetCustomer/' + uservalue, {
         headers: options,
       }).subscribe(resp => {
         this.uservalid = resp;
@@ -1218,7 +1218,7 @@ username:any;
       const header = new Headers();
       header.append('Content-Type', 'application/json');
       const options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/GetPartner/' + uservalue, {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'GetPartner/' + uservalue, {
         headers: options,
       }).subscribe(resp => {
         this.uservalid = resp;

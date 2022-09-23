@@ -24,7 +24,7 @@
 /* eslint-disable @typescript-eslint/member-delimiter-style */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { Platform } from '@ionic/angular';
@@ -236,7 +236,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/branch_list_get/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'branch_list_get/', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -277,7 +277,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/getProduct', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
       this.products1 = JSON.parse(resp.toString())
@@ -298,7 +298,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callpriority', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
       this.callpriority1 = JSON.parse(resp.toString())
@@ -318,7 +318,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callrating', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
       this.callrating1 = JSON.parse(resp.toString());
@@ -343,7 +343,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/user_type_get/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'user_type_get/', params, {
       headers: options,
     }).subscribe(resp => {
       //alert(""+JSON.st)
@@ -382,7 +382,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/user_list_get/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'user_list_get/', params, {
       headers: options,
     }).subscribe(resp => {
 
@@ -595,7 +595,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       header.append("Content-Type", "application/json");
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/pendleadsdatalength', pendJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
         headers: options,
       }).subscribe(resp => {
         console.log("pendleadsdatalength : " + JSON.stringify(resp));
@@ -605,7 +605,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
       });
 
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/pendleadsdatalength', pendJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
         headers: options,
       }).subscribe(resp => {
 
@@ -754,7 +754,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/pendleadsdatalength', pendJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
       headers: options,
     }).subscribe(resp => {
       console.log("pendleadsdatalength : " + JSON.stringify(resp));
@@ -764,7 +764,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
     });
 
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/pendleadsdata', pendJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
       headers: options,
     }).subscribe(resp => {
 
@@ -881,7 +881,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/get_image_name', getimageJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_image_name', getimageJSON, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -1131,7 +1131,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/updstendtime/', objdataupdtime, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'updstendtime/', objdataupdtime, {
         headers: options,
       }).subscribe(resp => {
 

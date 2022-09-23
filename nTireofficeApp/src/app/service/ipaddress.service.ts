@@ -10,7 +10,7 @@ export class IpaddressService {
   public serviceurl;
   public companyurl;
   public addcontacturl;
-  public serviceurldms;
+  public serviceurlSales;
   public serviceurllos;
   public serviceurlhrms;
   public serviceurlhrms1;
@@ -42,6 +42,7 @@ export class IpaddressService {
     // this.ipaddress = "http://192.168.43.214:8033";
     //  this.ipaddress1="http://192.168.0.154";
 
+
     // this.serviceurlhrms = "/SSGmobileapi/HRMS/HRMS.svc/";
     // this.serviceurlhrms1 = "/SSGmobileapi/bo/bo.svc/";
     // this.serviceurlhrms2 = "/dms/DMS/cams_hrms_sales/";
@@ -59,8 +60,13 @@ export class IpaddressService {
     this.serviceurlhrms5 = "/dms/DMS/E-attendence/";
 
 
-    this.serviceurl = "/SSGmobileapi/LMS/LMS.svc";
-    this.serviceurldms = "/dms/DMS/sales";
+    // Sales
+    this.serviceurl = "/nTireMobileCoreAPI/api/Sales/";
+    this.serviceurlSales = "/nTireMobileCoreAPI/api/Sales/";
+    
+    // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
+    // this.serviceurlSales = "/dms/DMS/sales/";
+
     this.getLoginLink = '/dms';
 
     this.serviceurllos = "/los/LOS/";
@@ -71,7 +77,7 @@ export class IpaddressService {
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
     // this.serviceurlCams = "/SSGmobileapi/cams/cams.svc/"
 
-    this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/CAMS"
+    this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/Sales"
     this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/"
 
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
