@@ -91,7 +91,7 @@
                                                                       </ion-col>
                                                                         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                                                                           <span style="font-size: 14px!important;">{{loanDataItems.created_on | date:'dd-MM-yyyy'}}</span>
-                                                                          <span><a (click)="showmoreloan(i)"><i id="imageidvals{{0+i}}" class="fa fa-angle-double-down iconcolor" aria-hidden="true" style="border-radius: 50%;width: 26px;height: 26px;text-align: center;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);background-color: #607d8b;padding-top: 4px;font-size: 20px;color: white;float:right;"></i></a></span>
+                                                                          <span><a (click)="showmoreloan(i)"><i id="imageidvals{{0+i}}" class="fas fa-chevron-circle-down iconcolor" aria-hidden="true" style="border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 4px;font-size: 24px;color: #000;float:right;"></i></a></span>
                                                                             </ion-col>
 
 
@@ -126,7 +126,7 @@
                                                             <span *ngIf="loanDataItems.status=='N'">New</span>
                                                              <span *ngIf="loanDataItems.status=='D'">Denied</span>
                                                              <span *ngIf="loanDataItems.status=='R'">Rejected</span>
-                                                            <span><a (click)="showlessnewloan(i)"><i class="fa fa-angle-double-up iconcolor " aria-hidden="true " style="border-radius: 50%;width: 26px;height: 26px;text-align: center;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3);background-color: #607d8b;padding-top: 3px;font-size: 20px;color: white;float:right; "></i></a></span>
+                                                            <span><a (click)="showlessnewloan(i)"><i class="fas fa-chevron-circle-up iconcolor " aria-hidden="true " style="border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;font-size: 24px;color: #000;float:right; "></i></a></span>
                                                             </ion-col>
                                                              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                                                                                     <ion-row>
