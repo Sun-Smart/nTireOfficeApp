@@ -78,7 +78,7 @@ export class MyclientsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -124,7 +124,7 @@ export class MyclientsPage implements OnInit {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/allpendleadsdatabybranch/', getpendleadJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'allpendleadsdatabybranch/', getpendleadJSON, {
         headers: options,
       }).subscribe(resp => {
         console.log("allmeetinglocation : " + JSON.stringify(resp));

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavParams,ModalController} from '@ionic/angular';
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { json } from '@angular-devkit/core';
 declare var $;

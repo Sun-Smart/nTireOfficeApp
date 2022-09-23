@@ -62,7 +62,7 @@ export class AddcontactPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/getcompany/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getcompany/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.companyname1 = [];
@@ -127,7 +127,7 @@ export class AddcontactPage implements OnInit {
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-      this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/addContact' + '/' + this.companyName + '/' + this.function_id + '/' + this.branch_id + '/' + this.contactname + '/' + this.designation + '/' + this.mobilenumber + '/' + this.emailid + '/' + this.officenumber + '/' + this.residencePhone + '/' + this.user_id + '/' + this.userType_id, {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'addContact' + '/' + this.companyName + '/' + this.function_id + '/' + this.branch_id + '/' + this.contactname + '/' + this.designation + '/' + this.mobilenumber + '/' + this.emailid + '/' + this.officenumber + '/' + this.residencePhone + '/' + this.user_id + '/' + this.userType_id, {
         headers: options,
       }).subscribe(resp => {
 

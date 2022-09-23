@@ -86,7 +86,7 @@ export class DashboardPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -125,7 +125,7 @@ export class DashboardPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getdashboard_stagewise/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlSales + 'getdashboard_stagewise/', params, {
       headers: options,
     }).subscribe(resp => {
       console.log("options" + JSON.stringify(resp));
@@ -224,7 +224,7 @@ export class DashboardPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getdashboard_sourcewise/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlSales + 'getdashboard_sourcewise/', params, {
       headers: options,
     }).subscribe(resp => {
       console.log("getdashboard_sourcewise : " + JSON.stringify(resp));
@@ -319,7 +319,7 @@ export class DashboardPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/salesdashboard_productwiseforcast/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlSales + 'salesdashboard_productwiseforcast/', params, {
       headers: options,
     }).subscribe(resp => {
       console.log("salesdashboard_productwiseforcast : " + JSON.stringify(resp));

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -227,8 +227,10 @@ var perm={
           this.company = window.localStorage['FUNCTION_DESC'];
           this.branch=window.localStorage['TUM_BRANCH_CODE']
        var employeeDetails = JSON.parse(resp.toString());
-
+debugger
         this.department = employeeDetails[0].Department;
+        console.log('this.department ',this.department);
+
         this.empID = employeeDetails[0].EmpID;
 
         // this.userID = employeeDetails[0].UserID;

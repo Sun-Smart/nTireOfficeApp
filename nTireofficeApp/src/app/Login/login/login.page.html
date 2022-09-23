@@ -16,14 +16,14 @@
 
           <ion-item id="loginInput" style="background-color: #fff;" class="ion-inputcolor">
             <ion-icon name="mail" style="color: #EEC20C;"></ion-icon>
-            <ion-input placeholder="Enter Email Id" [(ngModel)]="username"></ion-input>
+            <ion-input placeholder="Enter Email Id" class="userinput" [(ngModel)]="username"></ion-input>
             <!-- <ion-icon name="close" *ngIf="username!=null && username!=''" class="loginicon"  (click)="username=null"></ion-icon>  -->
 
           </ion-item>
           <ion-item id="loginInput" style='margin-top: 10px;'>
 
             <ion-icon name="lock-closed" style="color: #EEC20C;"></ion-icon>
-            <ion-input type="{{showValue.type}}" placeholder="Password" [(ngModel)]="password"></ion-input>
+            <ion-input type="{{showValue.type}}"  class="userinput" placeholder="Password" [(ngModel)]="password"></ion-input>
             <!-- <ion-icon name="close" *ngIf="password!=null && password!=''" class="loginicon"  (click)="password=null"></ion-icon> -->
 
             <ion-icon id="showPassword" class="eyeicon" *ngIf="showValue.text=='Hide'" (click)="showPassword()"

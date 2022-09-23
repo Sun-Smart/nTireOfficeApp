@@ -3,9 +3,9 @@ ion-content {
     position: relative;
   }
   .upDown-ion{
-    font-size: 21px;
-    background: #607d8b;
-    color: white;
+    font-size: 24px;
+    /* background: #607d8b; */
+    color: #000;
     border-radius: 50%;
     width: 26px;
     height: 26px;
@@ -13,8 +13,8 @@ ion-content {
     padding-top: 3px;
     position: relative;
     bottom: 4px;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);
-    float:right;
+    /* box-shadow: 0 2px 8px 0 rgb(0 0 0 / 30%), 0 4px 20px 0 rgb(0 0 0 / 30%); */
+    float: right;
   }
   ion-item{
     border: 0px !important;

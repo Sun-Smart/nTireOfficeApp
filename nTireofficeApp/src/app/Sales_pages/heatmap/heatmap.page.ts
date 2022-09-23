@@ -63,7 +63,7 @@ export class HeatmapPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getBranchAccess/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', obj, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -91,7 +91,7 @@ export class HeatmapPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getbranchusers/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getbranchusers/', obj, {
       headers: options,
     }).subscribe(resp => {
       console.log("getbranchusers : " + JSON.stringify(resp));
@@ -119,7 +119,7 @@ export class HeatmapPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getHeatMapRecord/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getHeatMapRecord/', obj, {
       headers: options,
     }).subscribe(resp => {
 
@@ -164,7 +164,7 @@ export class HeatmapPage implements OnInit {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getHeatMapRecordbranchwise/', obj, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getHeatMapRecordbranchwise/', obj, {
         headers: options,
       }).subscribe(resp => {
         console.log("HeatMapRecord_data : " + JSON.stringify(resp));

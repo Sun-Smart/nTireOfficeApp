@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
-import { IpaddressService } from '../../ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { ModalController } from '@ionic/angular';
 import { ReapplyOdPage } from '../reapply-od/reapply-od.page'
 import { json } from '@angular-devkit/core';

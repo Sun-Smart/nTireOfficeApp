@@ -88,7 +88,7 @@ export class LocationPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/locationbranch/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'locationbranch/', obj, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -125,7 +125,7 @@ export class LocationPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/user_type_get/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'user_type_get/', obj, {
       headers: options,
     }).subscribe(resp => {
       this.usertype = resp;
@@ -198,7 +198,7 @@ export class LocationPage implements OnInit {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getallsaleslocation/', getsalelocJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallsaleslocation/', getsalelocJSON, {
         headers: options,
       }).subscribe(resp => {
 
@@ -681,7 +681,7 @@ export class LocationPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getallappointments/', getappointmentsJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments/', getappointmentsJSON, {
       headers: options,
     }).subscribe(resp => {
       this.allmeetinglocation = resp;
