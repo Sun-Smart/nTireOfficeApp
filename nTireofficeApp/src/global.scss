@@ -746,10 +746,10 @@ ion-item {
   text-align: center;
 }
 
-// ion-label {
-  // color: #000;
-  // font-weight: 500;
-  // width: 100%;
+ion-label {
+  color: #000;
+  font-weight: 500;
+  width: 100%;
   /* border-color: #ddd; */
   /* background-color: #fff; */
   /* color: #444; */
@@ -758,11 +758,11 @@ ion-item {
   /* display: block; */
   // margin: -1px;
   /* padding: 16px; */
-  // border-width: 1px;
+  border-width: 1px;
   /* border-style: solid; */
-  // font-size: 15px;
-  // top: 11px;
-// }
+  font-size: 15px;
+  top: 11px;
+}
 
 .dashboardbranch {
   margin-top: 12px;
@@ -1018,8 +1018,17 @@ ion-card {
   .card_header_text {
     font-size: 15px;
     color: #ffff !important;
+    padding-right: 50px !important;
   }
 }
+ion-card {
+  .card_header_text1 {
+    font-size: 15px;
+    color: #ffff !important;
+    padding-left: 64px !important;
+  }
+}
+
 
 ion-card {
   .card_header {
@@ -1119,4 +1128,8 @@ ion-checkbox::part(container) {
 //suneel
 :host(.item-interactive.ion-valid) {
   --highlight-background: #4c8dff !important;
+}
+
+i.fa.fa-filter {
+  color: #c90000 !important;
 }
