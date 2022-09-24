@@ -7,7 +7,8 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { MyprofilePageRoutingModule } from './myprofile-routing.module';
 import { Crop } from '@ionic-native/crop/ngx';
 import { MyprofilePage } from './myprofile.page';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+// import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 
 @NgModule({
   imports: [

@@ -9,11 +9,11 @@
   </ion-header>
   <ion-grid style="padding: 10px;margin: 10px;border-radius: 8px;">
     <ion-row>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>Function</ion-label>
         <ion-input style="background-color: white;
                 color: black;" class="form-control" disabled [(ngModel)]="company"></ion-input>
-      </ion-col>
+      </ion-col> -->
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>Branch</ion-label>
         <ion-input style="background-color: white;
@@ -25,14 +25,14 @@
         <ion-input style="background-color: white;
                         color: black;" class="form-control" disabled [(ngModel)]="name"></ion-input>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Request Type<span class="validatecolor">*</span></ion-label>
         <ion-select [(ngModel)]="requestType" class="form-control" style="display: flex;">
           <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
           <ion-select-option *ngFor="let item of listletters" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
         </ion-select>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Reason</ion-label>
         <ion-textarea class="form-control" [(ngModel)]="reason"></ion-textarea>
         <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
@@ -42,11 +42,11 @@
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
         <ion-button 
-        color="success" expand="block" (click)="letterSubmit()">Ok</ion-button>
+        class="ion-color-success" expand="block" (click)="letterSubmit()">Ok</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button color="danger" expand="block" (click)="requestClear()">Clear</ion-button>
+        <ion-button class="ion-color-danger" expand="block" (click)="requestClear()">Clear</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 

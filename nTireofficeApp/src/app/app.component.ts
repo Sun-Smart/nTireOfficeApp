@@ -227,11 +227,11 @@ export class AppComponent {
       url: '/loan-request',
       icon: 'cash'
     },
-    {
-      title: 'Asset Returns',
-      url: '/assetreturn',
-      icon: 'laptop'
-    },
+    // {
+    //   title: 'Asset Returns',
+    //   url: '/assetreturn',
+    //   icon: 'laptop'
+    // },
     // {
     //   title: 'Online Exam Portal',
     //   url: '/onlineexamportal',

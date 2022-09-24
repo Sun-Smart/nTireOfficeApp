@@ -80,13 +80,13 @@
       </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Branch</ion-label>
+          <ion-label class="ContentName">Branch</ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="branch"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
             <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
@@ -196,13 +196,13 @@
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Request Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Request Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-datetime style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="reqdate"
             displayFormat="MM/DD/YYYY" disabled></ion-datetime>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Vendor Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Vendor Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-searchbar [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)">
           </ion-searchbar>
           <ion-list *ngIf="isVendorItemAvailable" class="searchlist" style="height: 100px !important;">
@@ -280,7 +280,7 @@
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Expected Delivery Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Expected Delivery Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date" [(ngModel)]="expdate"
             [min]="today1">
             <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
@@ -288,22 +288,22 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Expected Expense</ion-label>
+          <ion-label class="ContentName">Expected Expense</ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="expexpense">
           </ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Replacement</ion-label>
+          <ion-label class="ContentName">Replacement</ion-label>
           <select [(ngModel)]="replacement" class="form-control">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option value="T">Temporary</option>
-            <option value="P">Permanent</option>
+            <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+            <option class="ContentName" value="T">Temporary</option>
+            <option class="ContentName" value="P">Permanent</option>
           </select>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="replacement === 'T'">
-          <ion-label>Till Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Till Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date"
             [(ngModel)]="tilldate" [min]="today1">
             <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
@@ -311,7 +311,7 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="replacement === 'T'">
-          <ion-label>Replacement Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Replacement Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
             <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
@@ -335,14 +335,14 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="replacement === 'P'">
-          <ion-label>Replacement Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Replacement Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
             <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
               <ion-searchbar [(ngModel)]="repassetcode" type="text" debounce="500" (ionInput)="getreplaceItems($event)">
               </ion-searchbar>
-              <ion-list *ngIf="isrespItemAvailable" class="searchlist" style="height: 100px !important;">
-                <ion-item *ngFor="let item of Asset_code_det1r" style="background-color: white !important;
+              <ion-list class="ContentName" *ngIf="isrespItemAvailable" class="searchlist" style="height: 100px !important;">
+                <ion-item class="ContentName" *ngFor="let item of Asset_code_det1r" style="background-color: white !important;
                           color: gray !important;" (click)="fetchservsreqreplace(item)">
                   {{ item }}
                 </ion-item>
@@ -446,16 +446,16 @@
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Category </ion-label>
+          <ion-label class="ContentName">Category </ion-label>
           <select [(ngModel)]="servicecategory" class="form-control" style="width:100%">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let item of detailssercat; let i = index" [ngValue]="item.VALUE">{{item.TEXT}}
+            <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+            <option class="ContentName" *ngFor="let item of detailssercat; let i = index" [ngValue]="item.VALUE">{{item.TEXT}}
             </option>
           </select>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-textarea maxlength="400" [(ngModel)]="noofcharsdectest" style="height:auto !important"
             class="form-control">
           </ion-textarea>

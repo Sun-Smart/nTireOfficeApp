@@ -12,94 +12,94 @@
 
   <ion-grid style="padding: 10px;margin: 10px;border-radius: 8px;">
     <ion-row>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>Function<span class="validatecolor">*</span></ion-label>
         <ion-input style="background-color: white;
                 color: black;" class="form-control" [(ngModel)]="company"></ion-input>
-      </ion-col>
+      </ion-col> -->
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Employee Code</ion-label>
+        <ion-label class="ContentName">Employee Code</ion-label>
         <ion-input style="background-color: white;
                     color: black;" class="form-control" [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Employee Name</ion-label>
+        <ion-label class="ContentName" >Employee Name</ion-label>
         <ion-input style="background-color: white;
                         color: black;" class="form-control" [(ngModel)]="name"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Designation</ion-label>
+        <ion-label class="ContentName" >Designation</ion-label>
         <ion-input style="background-color: white;
                             color: black;" class="form-control" [(ngModel)]="designation"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Department</ion-label>
+        <ion-label class="ContentName" >Department</ion-label>
         <ion-input style="background-color: white;
                                 color: black;" class="form-control" [(ngModel)]="department"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Request Reference</ion-label>
+        <ion-label class="ContentName" >Request Reference</ion-label>
         <ion-input class="form-control" disabled [(ngModel)]="loanreqno"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Request Type</ion-label>
+        <ion-label class="ContentName">Request Type</ion-label>
         <ion-select class="form-control" [(ngModel)]="reqtype">
-          <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
-          <ion-select-option value="1">Loan
+          <ion-select-option class="ContentName" value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
+          <ion-select-option class="ContentName" value="1">Loan
           </ion-select-option>
-          <ion-select-option value="2">Advance</ion-select-option>
+          <ion-select-option class="ContentName" value="2">Advance</ion-select-option>
         </ion-select>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Loan Scheme</ion-label>
+        <ion-label class="ContentName">Loan Scheme</ion-label>
         <ion-select class="form-control" (ionChange)="changescheme(loanScheme)" [(ngModel)]="loanScheme">
-          <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-          <ion-select-option *ngFor="let item of schemes" [value]="item.scheme_id">{{item.scheme_desc}}
+          <ion-select-option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+          <ion-select-option class="ContentName" *ngFor="let item of schemes" [value]="item.scheme_id">{{item.scheme_desc}}
           </ion-select-option>
         </ion-select>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Loan Name</ion-label>
+        <ion-label class="ContentName">Loan Name</ion-label>
         <ion-input class="form-control" disabled [(ngModel)]="loanname"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Max Installments</ion-label>
+        <ion-label class="ContentName">Max Installments</ion-label>
         <ion-input type="number" disabled class="form-control" [(ngModel)]="maxinstallment"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Loan Code</ion-label>
+        <ion-label class="ContentName">Loan Code</ion-label>
         <ion-input disabled class="form-control" [(ngModel)]="loancode"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Max Eligibility</ion-label>
+        <ion-label class="ContentName">Max Eligibility</ion-label>
         <ion-input type="number" disabled class="form-control" [(ngModel)]="maxligiblity"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>In Rate</ion-label>
+        <ion-label class="ContentName">In Rate</ion-label>
         <ion-input type="number" disabled class="form-control" [(ngModel)]="intrate"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Loan Amount</ion-label>
+        <ion-label class="ContentName">Loan Amount</ion-label>
         <ion-input type="number" class="form-control" [(ngModel)]="loanamount"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Current Eligibility</ion-label>
+        <ion-label class="ContentName">Current Eligibility</ion-label>
         <ion-input type="number" disabled class="form-control" [(ngModel)]="cureligiblity"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Emi Amount</ion-label>
+        <ion-label class="ContentName">Emi Amount</ion-label>
         <ion-input type="number" disabled class="form-control" [(ngModel)]="emiamount"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='2'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Amount</ion-label>
+        <ion-label class="ContentName">Amount</ion-label>
         <ion-input type="number" class="form-control" [(ngModel)]="advamount"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='2'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>No Of Installments</ion-label>
+        <ion-label class="ContentName">No Of Installments</ion-label>
         <ion-input type="number" class="form-control" (change)="getadvanceemi()" [(ngModel)]="installments"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqtype=='2'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-label>Monthly Deduction</ion-label>
+        <ion-label class="ContentName">Monthly Deduction</ion-label>
         <ion-input type="number" class="form-control" [(ngModel)]="mondeduct"></ion-input>
       </ion-col>
     </ion-row>
@@ -108,13 +108,13 @@
       <ion-col size="6">
         <div style="padding: 12px;display: flex;">
           <ion-checkbox color="primary" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
-          <ion-label>Release</ion-label>
+          <ion-label class="ContentName">Release</ion-label>
         </div>
       </ion-col>
       <ion-col  size="6" >
         <div style="padding: 12px;display: flex;">
 
-          <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span>
+          <ion-label class="ContentName">Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span>
           </ion-label>
         </div>
       </ion-col>
@@ -123,11 +123,11 @@
     <ion-row>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button color="success" expand="block" (click)="loanSubmit()">Ok</ion-button>
+        <ion-button class="ion-color-success" expand="block" (click)="loanSubmit()">Ok</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button color="danger" expand="block" (click)="cancelLoan()">Cancel</ion-button>
+        <ion-button class="ion-color-danger" expand="block" (click)="cancelLoan()">Cancel</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 

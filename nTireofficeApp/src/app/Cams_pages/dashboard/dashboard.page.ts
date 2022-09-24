@@ -65,7 +65,7 @@ this.menuCtrl.enable(true, 'first');
       const ctx = canvas.getContext('2d');
       // var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx ,{
-        type: 'bar',
+        type: 'pie',
         data: {
           labels:this.labels2,
           datasets: [{

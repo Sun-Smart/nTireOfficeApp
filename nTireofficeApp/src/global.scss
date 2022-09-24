@@ -100,6 +100,14 @@ ion-segment ion-label {
   border-radius: 50%;
   background-color: #009688;
 }
+.ContentName{
+  color :#000 !important;
+  font-weight: 700 !important;
+}
+#ContentName{
+  color :#000 !important;
+  font-weight: 700 !important;
+}
 
 .plusicon {
   border-radius: 50%;
@@ -1005,7 +1013,7 @@ ion-menu-button {
 .ion-color-success {
   --ion-color-base: #006600 !important;
   --background: green !important;
-  // color: #fff !important;
+   color: #fff !important;
   --ion-color-contrast: var(--ion-color-light) !important;
 
 }

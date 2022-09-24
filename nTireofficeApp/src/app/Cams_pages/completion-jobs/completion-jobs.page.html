@@ -21,60 +21,60 @@
       </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Branch</ion-label>
+        <ion-label class="ContentName">Branch</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>From Date</ion-label>
+        <ion-label class="ContentName">From Date</ion-label>
         <ion-input type="date" class="form-control" [(ngModel)]="fromdate">
           <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
         </ion-input>
        
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>To Date</ion-label>
+        <ion-label class="ContentName">To Date</ion-label>
         <ion-input type="date" class="form-control" [(ngModel)]="todate" (focusout)="compdateval()">
           <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
         </ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Status</ion-label>
+        <ion-label class="ContentName">Status</ion-label>
         <select [(ngModel)]="Realease_status" class="form-control">
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <option value="Completed">Completed</option>
+          <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+          <option  class="ContentName" value="Completed">Completed</option>
         </select>
         </ion-col>
        
           <!-- </div> -->
          
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Asset Category</ion-label>
+            <ion-label class="ContentName">Asset Category</ion-label>
             <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="getsubCategory(category)">
-              <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let item of product; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+              <option class="ContentName" *ngFor="let item of product; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
               </option>
             </select>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Asset SubCategory</ion-label>
+            <ion-label class="ContentName">Asset SubCategory</ion-label>
             <select [(ngModel)]="subCategory" class="form-control" style="width:100%">
-              <option *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">{{item.SUB_CATEGORY_DESC}}
+              <option class="ContentName" *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">{{item.SUB_CATEGORY_DESC}}
               </option>
             </select>
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>PMJobs</ion-label>
+            <ion-label class="ContentName">PMJobs</ion-label>
             <select [(ngModel)]="jobs" class="form-control" (change)="requestedJobs()">
-              <option>&lt;&lt; Select &gt;&gt;</option>
-              <option value="MT">PM Jobs</option>
-              <option value="AT">Requested Jobs</option>
+              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+              <option class="ContentName" value="MT">PM Jobs</option>
+              <option class="ContentName" value="AT">Requested Jobs</option>
             </select>
             </ion-col>
     </ion-row>
 
-    <p class="totalCount">Total Lead : {{responseDatalength}}</p>
+    <p id="ContentName" class="totalCount">Total Lead : {{responseDatalength}}</p>
 
     <ion-card *ngFor="let item1 of responseData1; let i = index" style="background-color:#fff">
       <ion-card-header class="card_header">

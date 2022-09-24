@@ -27,18 +27,18 @@
     <ion-row>
         <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 <ion-select [(ngModel)]="yeardata" style="display: flex;">
-<ion-select-option value="">Year</ion-select-option>
+<ion-select-option class="ContentName" value="">Year</ion-select-option>
 <ion-select-option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
 </ion-select>
 </ion-col>
 <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
     <ion-select [(ngModel)]="monthdata" style="display: flex;">
-    <ion-select-option value="">Month</ion-select-option>
+    <ion-select-option class="ContentName" value="">Month</ion-select-option>
     <ion-select-option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
     </ion-select>
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-      <ion-button style="--box-shadow:none;color: black;--background: transparent;" (click)="getAttendance()">Search</ion-button>
+      <ion-button class="ContentName" style="--box-shadow:none;color: black;--background: transparent;" (click)="getAttendance()">Search</ion-button>
         </ion-col>
     </ion-row>
 

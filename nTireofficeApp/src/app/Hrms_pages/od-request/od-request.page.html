@@ -175,55 +175,55 @@
 
   <ion-grid *ngIf="ODshow" style="padding: 10px;margin: 10px;border-radius: 8px;">
     <ion-row>
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <label>Company Name<span style="color:red;margin-left: 5px;">*</span></label>
         <ion-input type="text" style="background-color: white;
                           color: black;" class="form-control" [(ngModel)]="company"></ion-input>
 
-      </ion-col>
+      </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label>Branch</label>
+        <label class="ContentName">Branch</label>
         <ion-input type="text" style="background-color: white;
                             color: black;" class="form-control" placeholder="Branch" [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label>Contact Number</label>
+        <label class="ContentName">Contact Number</label>
         <ion-input type="text" style="background-color: white;
       color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label>OD Request Reference<span style="color:red;margin-left: 5px;">*</span></label>
+        <label class="ContentName">OD Request Reference<span style="color:red;margin-left: 5px;">*</span></label>
         <!-- {{disabledvalue}}          -->
         <ion-input style="background-color: white;
   color: black;" disabled type="text" class="form-control" [(ngModel)]="reqref"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label>OD From<span style="color:red;margin-left: 5px;">*</span></label>
+        <label class="ContentName">OD From<span style="color:red;margin-left: 5px;">*</span></label>
         <ion-input type="date" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" displayFormat="hh:mm a"
           class="form-control" [disabled]="disabledvalue" [(ngModel)]="from" note (change)="validateFromDate($event)">
         </ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label>OD To<span style="color:red;margin-left: 5px;">*</span></label>
+        <label class="ContentName">OD To<span style="color:red;margin-left: 5px;">*</span></label>
         <ion-input type="date" min="{{from | date: 'yyyy-MM-dd'}}" [disabled]="disabledvalue" class="form-control"
           [(ngModel)]="to" (change)="validateToDate($event)"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label>Number of Days</label>
+        <label class="ContentName">Number of Days</label>
         <ion-input type="tel" [disabled]="disabledvalue" class="form-control" [(ngModel)]="nod"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label> Hours (From)<span style="color:red;margin-left: 5px;">*</span></label>
+        <label class="ContentName"> Hours (From)<span style="color:red;margin-left: 5px;">*</span></label>
         <ion-input type="time" [disabled]="disabledvalue" class="form-control" placeholder="Branch"
           [(ngModel)]="fromHour"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label> Hours (To)<span style="color:red;margin-left: 5px;">*</span></label>
+        <label class="ContentName"> Hours (To)<span style="color:red;margin-left: 5px;">*</span></label>
         <ion-input type="time" [disabled]="disabledvalue" class="form-control" placeholder="Branch"
           [(ngModel)]="toHour"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <label> Reason<span style="color:red;margin-left: 5px;">*</span></label>
+        <label class="ContentName"> Reason<span style="color:red;margin-left: 5px;">*</span></label>
         <ion-textarea [disabled]="disabledvalue" class="form-control" [(ngModel)]="reason"></ion-textarea>
         <span class="customCounter" *ngIf="reason!=undefined">{{4000 - reason.length}}</span>
       </ion-col>
@@ -231,14 +231,19 @@
     <ion-row>
       <ion-col size="6">
         <div style="padding: 12px;display: flex;">
+<<<<<<< Updated upstream
           <ion-checkbox slot="start" [(ngModel)]="release" [value]=""></ion-checkbox> &nbsp; &nbsp;
           <ion-label>Release</ion-label>
+=======
+          <ion-checkbox slot="start" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+          <ion-label class="ContentName">Release</ion-label>
+>>>>>>> Stashed changes
         </div>
       </ion-col>
       <ion-col  size="6" >
         <div style="padding: 12px;display: flex;">
 
-          <ion-label>Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span>
+          <ion-label class="ContentName" >Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span>
           </ion-label>
         </div>
       </ion-col>
@@ -246,7 +251,7 @@
         <div style="padding: 12px;display: flex;">
           <ion-checkbox slot="start" [(ngModel)]="travelReq" (ionChange)="changevalue()" [value]="true">
           </ion-checkbox>&nbsp;&nbsp;
-          <ion-label>Travel Required</ion-label>
+          <ion-label class="ContentName">Travel Required</ion-label>
         </div>
       </ion-col>
       <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -461,9 +466,9 @@
   <ion-row *ngIf="ODshow">
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-      <ion-button
+  <ion-button class="ion-color-success "
         [disabled]="from==undefined || to==undefined || to=='' || nod=='' || fromHour==undefined|| toHour==undefined|| reason==undefined"
-        *ngIf="!disabledvalue" color="success" expand="block"  class="ion-color-success" (click)="odSubmit()">Ok</ion-button>
+        *ngIf="!disabledvalue"  expand="block"  class="ion-color-success" (click)="odSubmit()">Ok</ion-button>
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 

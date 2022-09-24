@@ -21,19 +21,19 @@
       </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Branch</ion-label>
+        <ion-label class="ContentName">Branch</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="branch"></ion-input>
       </ion-col>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
                 <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
-                <ion-list *ngIf="isItemAvailable" class="searchlist">
-                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+                <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist">
+                  <ion-item  class="ContentName" *ngFor="let item of assetcode1" style="background-color: white !important;
                   color: rgb(17, 16, 16) !important;" (click)="fetchreconcilation(item)">
                     {{ item }}
                   </ion-item>
@@ -49,24 +49,24 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Asset Description</ion-label>
+          <ion-label class="ContentName">Asset Description</ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="descp"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Department</ion-label>
+          <ion-label class="ContentName">Department</ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="department"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-datetime class="form-control"  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" disabled></ion-datetime>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Category</ion-label>
+          <ion-label class="ContentName">Category</ion-label>
           <select [(ngModel)]="categoryissue" class="form-control" style="width:100%">
             <option>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let item of detailsreqcat; let i = index" [ngValue]="item.ISSUEID">{{item.ISSUEDESCRIPTION}}
@@ -75,19 +75,19 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
           <select [(ngModel)]="priority" class="form-control">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option value="3 ">High</option>
-        <option value="4 ">Low</option>
-        <option value="1 ">Medium</option>
-        <option value="2 ">Normal</option>
-        <option value="5 ">Very High</option>
+            <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+            <option class="ContentName" value="3 ">High</option>
+        <option class="ContentName" value="4 ">Low</option>
+        <option class="ContentName" value="1 ">Medium</option>
+        <option class="ContentName" value="2 ">Normal</option>
+        <option class="ContentName" value="5 ">Very High</option>
           </select>
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-label class="ContentName">Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
     <ion-textarea maxlength="200" [(ngModel)]="noofchars" style="height:auto !important" class="form-control">
     </ion-textarea>
     <span *ngIf="noofchars && noofchars != 'undefined' && noofchars.length > 0"

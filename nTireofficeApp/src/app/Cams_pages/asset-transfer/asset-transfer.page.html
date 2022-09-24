@@ -14,14 +14,14 @@
   </ion-refresher>
   <ion-radio-group [(ngModel)]="custType" (ionChange)="customerType($event)">
     <ion-row>
-      <ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-item style="background: none !important;border:none !important;--background-hover:none !important;color:#444" lines="none">
           <ion-radio mode="md" item-left value="YES" color="danger"></ion-radio>
           <ion-label style="padding-left: 5%;">External Transfer</ion-label>
         </ion-item>
       </ion-col>
 
-      <ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-item style="background: none !important;border:none !important;--background-hover:none !important;color:#444" lines="none">
           <ion-radio mode="md" item-left value="NO" color="danger"></ion-radio>
           <ion-label style="padding-left: 5%;">Internal Transfer</ion-label>
@@ -39,7 +39,7 @@
       </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
@@ -61,17 +61,17 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>From Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">From Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="detailfrombranch"></ion-input>
             <input type="hidden" placeholder="" [(ngModel)]="detailfromidbranch"   >
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>To Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">To Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <select [(ngModel)]="tobranch" class="form-control" style="width:100%">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let item of detailtobranch; let i = index" [ngValue]="item.BRANCH_ID">{{item.BRANCH_DESC}}
+            <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+            <option class="ContentName" *ngFor="let item of detailtobranch; let i = index" [ngValue]="item.BRANCH_ID">{{item.BRANCH_DESC}}
             </option>
           </select>
         </ion-col>
@@ -96,7 +96,7 @@
       </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Asset Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Asset Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
@@ -118,25 +118,25 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Asset Description  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Asset Description  <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="detailassetdecpi"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Owner Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Owner Code  <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="detailownercodei"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Department  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-label class="ContentName">Department  <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="departmenttransferi"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Remarks</ion-label>
+          <ion-label class="ContentName">Remarks</ion-label>
   <ion-textarea maxlength="400" [(ngModel)]="remarksi" style="height:auto !important" class="form-control">
   </ion-textarea>
   <span *ngIf="remarksi && remarksi != 'undefined' && remarksi.length > 400"
