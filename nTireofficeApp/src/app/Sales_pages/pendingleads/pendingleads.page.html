@@ -125,7 +125,7 @@
           <!-- <button ion-button block class="start-button" (click)="startRecording(i)">Start Recording</button>
           <ion-button color="danger" (click)="stopRecording(i)">Stop
            Recording</ion-button> -->
-
+     
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label>Lead ID</ion-label>
           </ion-col>
@@ -183,7 +183,7 @@
             Audio
           </ion-col>
           <ion-col *ngIf="audioList.length!=0" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
+            
             <ion-list>
               <ion-item *ngFor="let audio of audioList; index as i;">
                 <p>{{audio.filename}}</p>
@@ -216,7 +216,7 @@
             {{items.Current_Caller}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
+            
             Last Call
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">

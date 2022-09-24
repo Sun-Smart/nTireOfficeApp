@@ -8,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PendingleadsPageRoutingModule } from './pendingleads-routing.module';
 
 import { PendingleadsPage } from './pendingleads.page';
-import { Media } from '@ionic-native/media/ngx';
+import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';

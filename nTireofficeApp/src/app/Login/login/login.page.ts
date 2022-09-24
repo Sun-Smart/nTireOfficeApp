@@ -1,15 +1,3 @@
-/* eslint-disable @typescript-eslint/type-annotation-spacing */
-/* eslint-disable @angular-eslint/use-lifecycle-interface */
-/* eslint-disable quote-props */
-/* eslint-disable @typescript-eslint/dot-notation */
-/* eslint-disable no-debugger */
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/semi */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable object-shorthand */
-/* eslint-disable eqeqeq */
-/* eslint-disable no-var */
-/* eslint-disable @typescript-eslint/quotes */
 import { Component, OnInit ,OnDestroy } from '@angular/core';
 import {IpaddressService} from '../../service/ipaddress.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
