@@ -30,12 +30,12 @@ export class IpaddressService {
     //   this.ipaddress1 = "http://65.0.146.170";
     //  this.ipaddress = "http://65.0.146.170:8034";
 
-    // this.ipaddress1 = "http://prod.herbie.ai";
-    // this.ipaddress ="https://prod.herbie.ai:8033";
+    this.ipaddress1 = "http://prod.herbie.ai";
+    this.ipaddress ="https://prod.herbie.ai:8033";
 
 
-    this.ipaddress1 = "http://demo.herbie.ai";
-    this.ipaddress = "https://demo.herbie.ai:8033";
+    // this.ipaddress1 = "http://demo.herbie.ai";
+    // this.ipaddress = "https://demo.herbie.ai:8033";
 
     // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";

@@ -17,23 +17,22 @@
       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Branch</ion-label>
-        <ion-input style="background-color: white;
-                    color: black;" class="form-control" disabled [(ngModel)]="branch"></ion-input>
+        <ion-input value="custom" class="form-control"  [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Name</ion-label> 
         <ion-input style="background-color: white;
-                        color: black;" class="form-control" disabled [(ngModel)]="name"></ion-input>
+                        color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Contact Number</ion-label>
         <ion-input style="background-color: white;
-                            color: black;" class="form-control" disabled [(ngModel)]="contact"></ion-input>
+                            color: black;" class="form-control"  [(ngModel)]="contact"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Request Reference</ion-label>
         <ion-input style="background-color: white;
-                                color: black;" class="form-control" disabled [(ngModel)]="reqID2"></ion-input>
+                                color: black;" class="form-control"  [(ngModel)]="reqID2"></ion-input>
       </ion-col>
       <ion-col *ngIf="reqdate!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Requested Date</ion-label>
