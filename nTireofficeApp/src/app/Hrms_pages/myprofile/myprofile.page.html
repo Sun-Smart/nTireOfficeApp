@@ -103,7 +103,7 @@
               </button>
               <button style="background: transparent;" *ngIf="personalToggle == 1"
                 (click)="hidePersonalPanel('personal')">
-                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
               </button>
             </ion-col>
           </ion-row>
@@ -120,7 +120,7 @@
 
             </button>
             <button *ngIf="personalToggle == 1"  (click)="hidePersonalPanel('personal')">
-                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
 
             </button>
       </div>
@@ -208,7 +208,7 @@
                 </button>
                 <button style="background: transparent;" *ngIf="currentToggle == 1"
                   (click)="hidePersonalPanel('current')">
-                  <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+                  <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
                 </button>
               </ion-col>
             </ion-row>
@@ -224,7 +224,7 @@
                   <i class="fa fa-times-circle" style="font-size:20px; margin-left:5px; color:red;"></i>
                 </button>
                 <button *ngIf="currentToggle == 1"  (click)="hidePersonalPanel('current')">
-                  <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+                  <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
                 </button>
               </div>
           </ion-item> -->
@@ -293,10 +293,10 @@
               </button>
               <button *ngIf="permanentToggle == 1" style="background: transparent;" id="personalUpdate"
                 (click)="hidePersonalPanel('permanent')">
-                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
               </button>
               <button id="personalEdit" (click)="sameAsCurrent()" *ngIf="permanentToggle == 1"
-                style="color:firebrick;background: transparent; margin: 7px 0;font-weight: bold;letter-spacing: 1px;border: 1px solid firebrick;padding: 5px; border-radius: 5px;">
+                style="color:#ffffff;background: transparent; margin: 7px 0;font-weight: 200;letter-spacing: -1px;border: 1px solid white;padding: 5px; border-radius: 5px;">
                 <!-- <i class="fa fa-clone" style="font-size:20px; margin-left:5px; color:firebrick;"></i>  -->
                 Same as Current
               </button>
@@ -312,7 +312,7 @@
                     <i class="fa fa-times-circle" style="font-size:20px; margin-left:5px; color:red;"></i>
                   </button>
                   <button *ngIf="permanentToggle == 1"  id="personalUpdate" (click)="hidePersonalPanel('permanent')">
-                    <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;"></i>
+                    <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
                   </button>
                   <button  id="personalEdit" (click)="sameAsCurrent()" *ngIf="permanentToggle == 1" style="color:firebrick;">
                     <i class="fa fa-clone" style="font-size:20px; margin-left:5px; color:firebrick;"></i> Same as Current
@@ -389,7 +389,7 @@
               <button *ngIf="contactToggle == 1" id="personalUpdate" (click)="hidePersonalPanel('contact')"
                 [disabled]="!profile.Email || !profile.Mobile" style="margin-top: -13px!important;
                         font-size: 22px!important;background: transparent;">
-                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;margin-top: -13px;
+                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;margin-top: -13px;
                           font-size: 22px;"></i>
               </button>
             </ion-col>
@@ -459,7 +459,7 @@
                   </button>
                   <button *ngIf="contactToggle == 1"  id="personalUpdate" (click)="hidePersonalPanel('contact')" [disabled]="!profile.Email || !profile.Mobile" style="margin-top: -13px!important;
                   font-size: 22px!important;background: transparent;">
-                    <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:green;margin-top: -13px;
+                    <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;margin-top: -13px;
                     font-size: 22px;"></i>
                   </button>
                 </ion-col>
