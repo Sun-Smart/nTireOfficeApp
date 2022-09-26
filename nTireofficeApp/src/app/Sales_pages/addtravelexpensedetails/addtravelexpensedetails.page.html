@@ -72,28 +72,28 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-card *ngFor="let item of allExpense" style="background-color: #fff">
-          <p class="expensedetail card_header">Expense Details</p>
+        <ion-card class="" *ngFor="let item of allExpense" style="background-color: #fff">
+          <p class="expensedetail card_header" >Expense Details</p>
           <ion-grid style="position: relative;top:-24px;">
             <ion-row>
 
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span style="font-weight:bold;">Expense Type</span>
+                <span style="">Expense Type</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span style="font-size: 14px;">{{item.TEXT}}</span>
+                <span style="font-family: 'Poppins';color: black;font-weight: 600 !important;">{{item.TEXT}}</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span style="font-weight:bold;">Expense Cost</span>
+                <span style="">Expense Cost</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span style="font-size: 14px;">{{item.expense_cost}}</span>
+                <span style="font-family: 'Poppins';color: black;font-weight: 600 !important;">{{item.expense_cost}}</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span style="font-weight:bold;">Remarks</span>
+                <span style="">Remarks</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span style="font-size: 14px;">{{item.remarks}}</span>
+                <span style="font-family: 'Poppins';color: black;font-weight: 600 !important;">{{item.remarks}}</span>
               </ion-col>
               <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                                                         <span style="font-weight:bold;">Attachment</span>
