@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-material-issue',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./material-issue.page.scss'],
 })
 export class MaterialIssuePage implements OnInit {
-
+  showviewlist:boolean=false
   constructor() { }
 
   ngOnInit() {
   }
+  Submit(){
+    this.showviewlist=true
+  }
+
+
 
 }

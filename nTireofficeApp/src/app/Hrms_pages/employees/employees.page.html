@@ -106,12 +106,12 @@
                 {{item.Name}}
                 </ion-col> -->
         <ion-col size-sm="2" size="4" size-md="2" size-lg="2" size-xl="2">
-          <div *ngIf="item.Sex=='Male'">
+          <div *ngIf="item.Sex==='Male'">
             <img style="width: 100%;" class="avatar" src="assets/images/defaultMale.png ">
             <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
 
           </div>
-          <div *ngIf="item.Sex=='Female'">
+          <div *ngIf="item.Sex==='Female'">
             <img style="width: 100%;" class="avatar" src="assets/images/defaultFemale.png">
             <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
           </div>
@@ -220,12 +220,12 @@
               {{item.Name}}
               </ion-col> -->
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-            <div *ngIf="item.Sex=='Male'">
+            <div *ngIf="item.Sex==='Male'">
               <img style="width: 50%;margin-left: 10px;" class="avatar" src="assets/images/defaultMale.png ">
               <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
 
             </div>
-            <div *ngIf="item.Sex=='Female'">
+            <div *ngIf="item.Sex==='Female'">
               <img style="width: 50%;margin-left: 10px;" class="avatar" src="assets/images/defaultFemale.png">
               <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
             </div>
@@ -268,14 +268,14 @@
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
             <ion-label class="labelHead-text"><i class="icon ion-android-call"></i> Office</ion-label>
             <br />
-            <ion-label *ngIf="item.OffPhone!=0" class="labelData-text">{{item.OffPhone}}</ion-label>
-            <ion-label *ngIf="item.OffPhone==0" class="labelData-text"></ion-label>
+            <ion-label *ngIf="item.OffPhone!==0" class="labelData-text">{{item.OffPhone}}</ion-label>
+            <ion-label *ngIf="item.OffPhone===0" class="labelData-text"></ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
             <ion-label class="labelHead-text"><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
             <br />
-            <ion-label *ngIf="item.Mobile!=0" class="labelData-text">{{item.Mobile}}</ion-label>
-            <ion-label *ngIf="item.Mobile==0" class="labelData-text"></ion-label>
+            <ion-label *ngIf="item.Mobile!==0" class="labelData-text">{{item.Mobile}}</ion-label>
+            <ion-label *ngIf="item.Mobile===0" class="labelData-text"></ion-label>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
             <ion-label class="labelHead-text"> <i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
@@ -286,7 +286,7 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <p *ngIf="!displayEmployee&&displayEmployee.length == 0" style="text-align:center;"><b>No Data Found</b></p>
+  <p *ngIf="!displayEmployee&&displayEmployee.length === 0" style="text-align:center;"><b>No Data Found</b></p>
 
 </ion-content>
 <ion-footer>

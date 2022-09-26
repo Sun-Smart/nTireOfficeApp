@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/camera": "^5.45.0",
+    "@awesome-cordova-plugins/core": "^5.45.0",
     "@capacitor/android": "4.3.0",
     "@capacitor/app": "4.0.1",
     "@capacitor/core": "4.3.0",
@@ -31,6 +32,7 @@
     "@ionic-native/barcode-scanner": "^5.36.0",
     "@ionic-native/base64": "^5.36.0",
     "@ionic-native/call-number": "^5.36.0",
+    "@ionic-native/camera": "^5.36.0",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/crop": "^5.36.0",
     "@ionic-native/file": "^5.36.0",
@@ -78,12 +80,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
-    "cordova-android": "^10.1.2",
-    "cordova-plugin-android-permissions": "^1.1.4",
-    "cordova-plugin-barcodescanner": "^0.7.4",
-    "cordova-plugin-camera": "^6.0.0",
-    "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-crop": "^0.4.0",
+    "cordova-android": "^6.4.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-file": "^7.0.0",
     "cordova-plugin-geolocation": "^4.1.0",
@@ -132,6 +129,8 @@
       "cordova-plugin-media": {},
       "cordova-plugin-barcodescanner": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }
