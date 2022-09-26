@@ -24,7 +24,7 @@
             <img *ngIf="!item.Photo" src="{{item.Photo}}"> -->
             <!-- <img  src="{{item.Photo}}"  alt="" width="50px" height="50px"> -->
           <!-- </div> -->
-          <div *ngIf="displayUser.length!=0" style="text-align:center">
+          <div *ngIf="displayUser.length!==0" style="text-align:center">
             <div><b>{{displayUser[0].Name}}</b></div>
             <div><span>{{displayUser[0].Designation}}</span>
               <span>-</span> <span>{{displayUser[0].Department}}</span>
@@ -43,7 +43,7 @@
     </ion-card-content>
       </ion-card>
 
-      
+
 
 
   <!-- <ion-grid>
@@ -248,7 +248,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
       <ion-row>
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" *ngFor="let item of empAllRequests">
 
-          <div *ngIf="item.REQUESTTYPE=='Leave Request'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='Leave Request'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
     height: 43px;
     padding-top: 12px;">
@@ -280,7 +280,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
             </ion-row>
           </div>
 
-          <div *ngIf="item.REQUESTTYPE=='C-OFF request'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='C-OFF request'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -314,7 +314,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
           </div>
 
-          <div *ngIf="item.REQUESTTYPE=='Permission Request'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='Permission Request'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -348,7 +348,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
           </div>
 
-          <div *ngIf="item.REQUESTTYPE=='OD Request'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='OD Request'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -384,7 +384,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
           </div>
 
-          <div *ngIf="item.REQUESTTYPE=='Asset Transfer'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='Asset Transfer'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -424,7 +424,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </div>
 
 
-          <div *ngIf="item.REQUESTTYPE=='Asset Service'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='Asset Service'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -471,7 +471,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
 
 
-          <div *ngIf="item.REQUESTTYPE=='Purchase Requisition Slip'"
+          <div *ngIf="item.REQUESTTYPE==='Purchase Requisition Slip'"
             style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
@@ -511,7 +511,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </div>
 
 
-          <div *ngIf="item.REQUESTTYPE=='ERP MRS'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='ERP MRS'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -546,7 +546,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
 
 
-          <div *ngIf="item.REQUESTTYPE=='Purchase Order Request'"
+          <div *ngIf="item.REQUESTTYPE==='Purchase Order Request'"
             style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
@@ -588,7 +588,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
 
 
-          <div *ngIf="item.REQUESTTYPE=='Tender'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='Tender'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -623,7 +623,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               </ion-col>
 
             </ion-row>
-            <div class="nodata" *ngIf="training.length==0">
+            <div class="nodata" *ngIf="training.length===0">
               <div style="color:gray;"><b>No Trainings Found</b></div>
             </div>
 
@@ -631,7 +631,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
 
 
-          <div *ngIf="item.REQUESTTYPE=='LegalCase'" style="background-color:#daf9f9;    margin-top: -17px;">
+          <div *ngIf="item.REQUESTTYPE==='LegalCase'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -651,7 +651,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </div>
 
 
-          <div *ngIf="item.REQUESTTYPE=='Announcement'" style="background-color:#daf9f9;">
+          <div *ngIf="item.REQUESTTYPE==='Announcement'" style="background-color:#daf9f9;">
             <div style="background-color: #cbc9c9;
             height: 43px;
             padding-top: 12px;">
@@ -672,7 +672,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </div>
 
 
-          <div class="nodata" *ngIf="empAllRequests.length==0">
+          <div class="nodata" *ngIf="empAllRequests.length===0">
             <div style="color:gray;"><b>No Requests Found</b></div>
           </div>
 
@@ -1140,7 +1140,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row *ngIf="empPayslips.length!=0">
+      <ion-row *ngIf="empPayslips.length!==0">
         <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
           Month
         </ion-col>
@@ -1171,7 +1171,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </button>
         </ion-col>
       </ion-row>
-      <ion-row class="nodata" *ngIf="empPayslips.length==0">
+      <ion-row class="nodata" *ngIf="empPayslips.length===0">
         <ion-col size="12" style="color:gray;"><b>No Payslips Found</b></ion-col>
       </ion-row>
     </ion-card-content>
@@ -1250,7 +1250,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
         </ion-col>
       </ion-row>
 
-      <div *ngIf="attendanceList&&attendanceList.length!=0">
+      <div *ngIf="attendanceList&&attendanceList.length!==0">
 
         <ion-row style="text-align:center">
           <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
@@ -1278,7 +1278,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
         </ion-row>
       </div>
 
-      <ion-row style="text-align:center" *ngIf="(!attendanceList&&attendanceList.length==0)||nodata">
+      <ion-row style="text-align:center" *ngIf="(!attendanceList&&attendanceList.length===0)||nodata">
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <p>No data found</p>
         </ion-col>
@@ -1390,7 +1390,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row *ngIf="empApprovals.length!=0">
+      <ion-row *ngIf="empApprovals.length!==0">
         <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
           <b>Type</b>
         </ion-col>
@@ -1421,7 +1421,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
         </ion-col>
       </ion-row>
 
-      <ion-row class="nodata" *ngIf="empApprovals.length==0">
+      <ion-row class="nodata" *ngIf="empApprovals.length===0">
         <ion-col style="color:gray;"><b>No Approvals Found</b></ion-col>
       </ion-row>
     </ion-card-content>
@@ -1483,7 +1483,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row *ngIf="training.length!=0">
+      <ion-row *ngIf="training.length!==0">
         <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
           Training Name
         </ion-col>
@@ -1514,7 +1514,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
         </ion-col>
       </ion-row>
 
-      <ion-row class="nodata" *ngIf="training.length==0">
+      <ion-row class="nodata" *ngIf="training.length===0">
         <ion-col style="color:gray;"><b>No Trainings Found</b></ion-col>
       </ion-row>
     </ion-card-content>
@@ -1589,7 +1589,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
 
       </ion-row>
-      <ion-row class="nodata" *ngIf="advanceempgreeting.length==0">
+      <ion-row class="nodata" *ngIf="advanceempgreeting.length===0">
         <ion-col style="color:gray;"><b>No Greetings Found</b></ion-col>
       </ion-row>
     </ion-card-content>

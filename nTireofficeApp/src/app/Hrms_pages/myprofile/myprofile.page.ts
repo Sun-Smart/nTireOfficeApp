@@ -24,6 +24,7 @@ import { ActionSheetController } from '@ionic/angular';
   selector: 'app-myprofile',
   templateUrl: './myprofile.page.html',
   styleUrls: ['./myprofile.page.scss'],
+  providers:[Camera]
 })
 export class MyprofilePage implements OnInit {
   emp_id;

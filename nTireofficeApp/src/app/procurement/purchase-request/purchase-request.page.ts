@@ -28,8 +28,10 @@ export class PurchaseRequestPage implements OnInit {
     this.showfilter = !this.showfilter;
   }
   close(){
-    window.location.reload()
+    // window.location.reload()
     // this.router.navigate(['/purchase-request'])
+    // this.showviewlist=true
+    this.showlineItems=!this.showlineItems
   }
 
 }

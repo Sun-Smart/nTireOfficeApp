@@ -344,8 +344,8 @@ export class AppComponent {
       icon: 'logo-stencil'
     },
     {
-      title: 'Workflow Approval',
-      url: '/workflow-approval',
+      title: 'My Approval',
+      url: '/myapprovals',
       icon: 'code-working-sharp'
     },
     {
