@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ExpensedetailsPageRoutingModule } from './expensedetails-routing.module';
 
 import { ExpensedetailsPage } from './expensedetails.page';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 const routes: Routes = [
   {
     path: '',

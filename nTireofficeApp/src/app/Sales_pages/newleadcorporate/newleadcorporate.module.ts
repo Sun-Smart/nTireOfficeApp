@@ -9,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewleadcorporatePage } from './newleadcorporate.page';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 const routes: Routes = [
   {
     path: '',

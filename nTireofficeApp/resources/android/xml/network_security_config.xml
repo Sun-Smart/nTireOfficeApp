@@ -9,6 +9,6 @@
         <!-- <domain includeSubdomains="true">localhost</domain> -->
              <!--   <domain includeSubdomains="true">prod.herbie.ai</domain> -->
         <domain>prod.herbie.ai</domain>
-        <domain includeSubdomains="true">172.107.203.228</domain>
+        <!-- <domain includeSubdomains="true">172.107.203.228</domain> -->
     </domain-config>
 </network-security-config>
