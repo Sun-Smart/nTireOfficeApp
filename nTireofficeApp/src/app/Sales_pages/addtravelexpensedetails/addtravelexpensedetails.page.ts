@@ -373,6 +373,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
 
 
       this.presentAlert("", "Successfully Saved")
+      this.presentAlert1("", "Successfully Saved")
 
       var dataobj = { custid: this.Customer_ID }
       this.token = window.localStorage['token'];
@@ -440,6 +441,16 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
       message: tittle,
       buttons: ['OK']
     });
