@@ -17,9 +17,11 @@
 
 
 <ion-card>
-  <canvas id="maintenanceChart" class="chart chart-pie"
-  chart-data="data" chart-labels="chartLabels" legend="true">
+  <div style="margin-top:15px;">
+    <canvas id="myChart" class="chart chart-doughnut" width="400" height="400"
+chart-data="data2" chart-labels="labels2 " chart-options="options" chart-dataset-override="datasetOverride" legend="true">
 </canvas>
+  </div>
 </ion-card>
   
 

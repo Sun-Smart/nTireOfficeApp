@@ -219,7 +219,7 @@ export class DepartmentWisePage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      cssClass:'buttonCss',
       message: tittle,
       buttons: ['OK']
     });
@@ -227,6 +227,16 @@ export class DepartmentWisePage implements OnInit {
     await alert.present();
   }
 
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass:'Cssbutton',
+      message: tittle,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
   processlocationreport(){
 
     if(this.ZoneLoc == undefined || this.ZoneLoc == '<< Select >>'){

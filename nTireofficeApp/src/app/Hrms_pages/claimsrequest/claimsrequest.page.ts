@@ -276,6 +276,7 @@ username = window.localStorage.getItem('TUM_USER_NAME');
  if(this.expenseType==""){
   // this.toastmessageService.presentAlert1("","Select Expense Type");
   this.toastmessageService.presentAlert("","Select Expense Type");
+  this.toastmessageService.presentAlert1("","Select Expense Type");
  }
  else if(this.amount==undefined){
   this.toastmessageService.presentAlert1("","Enter Amount");
