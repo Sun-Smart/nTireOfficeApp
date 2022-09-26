@@ -234,6 +234,8 @@
    font-weight: 600;
    font-size: 17px;
    font-family: "Poppins";
+   margin-top: 0px;
+   margin-bottom: 28px;
    // font-family: 'Poppins', sans-serif;
  
    // font-family: 'Poppins';
@@ -1014,6 +1016,7 @@
    --ion-color-base: rgb(167, 0, 0) !important;
    --background: rgb(167, 0, 0) !important;
    color: #fff !important;
+   --color:#fff !important;
  }
  
  .ion-color-success {
@@ -1021,6 +1024,7 @@
    --background: green !important;
    color: #fff !important;
    --ion-color-contrast: var(--ion-color-light) !important;
+   --color:#fff !important;
  
  }
  
