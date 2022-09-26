@@ -12,7 +12,7 @@ declare var $: any;
 import { DomSanitizer } from '@angular/platform-browser';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 
 declare var google: any;
 import { Crop } from '@ionic-native/crop/ngx';
@@ -50,6 +50,8 @@ export class AssetDetailsPage implements OnInit {
   showmap:boolean;
   icheck:any;
   assetucode:any;
+  assestid:any;
+  assestsdepartment:any;
   imagesucessres=[];
   Images = [];
   file = [];
@@ -68,7 +70,7 @@ export class AssetDetailsPage implements OnInit {
   }
   products: any;
   @ViewChild('map') mapElement: ElementRef;
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private crop: Crop, private base64: Base64, private camera: Camera,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public sanitizer: DomSanitizer,private barcodeScanner: BarcodeScanner) {
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private crop: Crop, private base64: Base64, private camera: Camera,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public sanitizer: DomSanitizer,private barcodeScanner: BarcodeScanner) { 
 
       //,private qrScanner: QRScanner
       this.function = localStorage.getItem('FUNCTION_DESC');
@@ -83,8 +85,12 @@ export class AssetDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.assetcode="";
+this.details1=[];
   }
-
+  goHome(){
+    this.router.navigate(['/landing-page']);
+  }
   doRefresh(event){
     this.details1=[];
     this.assetcode='';
@@ -144,8 +150,8 @@ export class AssetDetailsPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-
-
+  
+  
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -154,7 +160,7 @@ export class AssetDetailsPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-
+  
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -198,7 +204,7 @@ export class AssetDetailsPage implements OnInit {
   }).subscribe(resp => {
     console.log(resp);
       this.departmentreqdd = resp[0].Text;
-
+    
   }, error => {
     console.log("error : " + JSON.stringify(error));
 
@@ -209,14 +215,14 @@ export class AssetDetailsPage implements OnInit {
     console.log(resp);
      this.details = resp;
     console.log(this.details);
-
-
+ 
+   
     var alasset = this.details;
 
     if (this.details.length < 1) {
         this.presentAlert("Alert","No Record Found")
         this.myValue = false;
-        this.showmap = false;
+       // this.showmap = false;
     } else {
       this.details1.push(resp[0]);
 
@@ -230,7 +236,7 @@ export class AssetDetailsPage implements OnInit {
             //console.log($scope.deprciationtype);
         }
 
-
+        
         var imgchk = resp[0].ImageUrl;
 
         if(imgchk!=null){
@@ -239,7 +245,7 @@ export class AssetDetailsPage implements OnInit {
           if(imglen < 4){
             this.icheck = null;
           console.log("200")
-
+         
         }else{
           this.icheck = resp[0].ImageUrl;
           console.log("100")
@@ -250,6 +256,9 @@ export class AssetDetailsPage implements OnInit {
       }
 
         this.assetucode = resp[0].ASSET_CODE;
+        this.assestid = resp[0].ASSET_ID;
+        this.assestsdepartment = resp[0].ASSET_DEPARTMENT;
+        
         var assetlat = resp[0].asset_latitude;
         //console.log(assetlat);
         var assetlng = resp[0].asset_longitude;
@@ -277,7 +286,7 @@ export class AssetDetailsPage implements OnInit {
 
       this.myValue = true;
     }
-
+    
   }, error => {
     console.log("error : " + JSON.stringify(error));
 
@@ -287,11 +296,11 @@ export class AssetDetailsPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+  
       message: tittle,
       buttons: ['OK']
     });
-
+  
     await alert.present();
   }
 
@@ -382,7 +391,7 @@ export class AssetDetailsPage implements OnInit {
         var imagepagen = this.image[j];
         console.log(imagepage);
         // var url = "http://herbieai.com:8150/dms/uploadfileappilcantpiccams";
-        var url = "http://demo.herbieai.com:8033/dms/uploadprofileImg";
+        var url = "http://demo.herbie.ai:8034/dms/uploadprofileImg";
         const formData: any = new FormData();
         formData.append("upload", this.file[j], this.image[j]);
 
@@ -394,17 +403,18 @@ export class AssetDetailsPage implements OnInit {
           var obj = {
             'assetcode': this.assetucode,
             'branchid': this.branchID,
+            'assetidrec':this.assestid,
             'functionida': this.functionID,
             'doc_path': imagepagen,
             'access_token': this.accessToken,
             'userid': this.userID,
             'usertoken': this.userToken
         };
-
+        
         console.log(JSON.stringify(obj));
         const header = new Headers();
         header.append("Content-Type", "application/json");
-
+      
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/uploadimage',obj, {
           headers: options,
@@ -414,10 +424,10 @@ export class AssetDetailsPage implements OnInit {
             this.imagesucessres.push(resp);
             //$scope.getuserlist();
         }
-
+          
         }, error => {
           console.log("error : " + JSON.stringify(error));
-
+      
         });
       }
       if (j == this.file.length) {
@@ -431,28 +441,42 @@ export class AssetDetailsPage implements OnInit {
         console.log("location :n" + location);
         var lat = res.coords.latitude;
         var long = res.coords.longitude;
-
+        var todayDate = new Date();
+        var day = todayDate.getDate();
+        var month = todayDate.getMonth() + 1;
+        var year = todayDate.getFullYear();
+        var hh = todayDate.getHours();
+        var mm = todayDate.getMinutes();
+        var ss = todayDate.getSeconds();
+        var finaltodayDate = year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss + "." + "000";
+        var modest = 'M';
         var datauasset = {
-          'assetcode': this.assetucode,
-          'branchid': this.branchID,
-          'functionida': this.functionID,
-          'assetlat': lat,
-          'assetlng': long,
-          'access_token': this.accessToken,
-          'userid': this.userID,
-          'usertoken': this.userToken
+        
+          'branchidu': this.branchID,
+          'functionidrec': this.functionID,
+          'assetidrec':this.assestid,
+      
+          'assetuser': this.userID,
+          'mode': modest,
+          'deprtid':this.assestsdepartment,
+          'isworking':'Y',
+      'recrdte': finaltodayDate,
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
         }
+        console.log('datauasset:'+JSON.stringify(datauasset));
         const header = new Headers();
         header.append("Content-Type", "application/json");
-
+      
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetdetailmap',datauasset, {
+        this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreconciliationnew',datauasset, {
           headers: options,
         }).subscribe(resp => {
           console.log(resp);
           this.detailsmap = resp;
           // console.log($scope.detailsmap);
-          var imgchk = resp[0].ImageUrl;
+          var imgchk =null;
 
           if(imgchk!=null){
             var imglen=imgchk.length;
@@ -460,18 +484,18 @@ export class AssetDetailsPage implements OnInit {
             if(imglen < 4){
               this.icheck = null;
             console.log("200")
-
+           
           }else{
             this.icheck = resp[0].ImageUrl;
             console.log("100")
           }
-
+  
         }else{
           this.icheck = null;
         }
-          var assetlatm = resp[0].asset_latitude;
+          // var assetlatm = resp[0].asset_latitude;
 
-          var assetlngm = resp[0].asset_longitude;
+          // var assetlngm = resp[0].asset_longitude;
 
           var alassetm = this.detailsmap;
 
@@ -481,42 +505,19 @@ export class AssetDetailsPage implements OnInit {
           // });
           // $ionicLoading.hide();
           this.presentAlert("Sucess","Updated Successfully")
-          this.showmap = true;
+         // this.showmap = true;
 
-          var map = new google.maps.Map(document.getElementById('mapshowimage12'), {
-            zoom: 8,
-            center: new google.maps.LatLng(assetlatm, assetlngm)
-        });
-        var contentString = "ASSET CODE: " + this.assetucode;
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-         var latlngsetnew = new google.maps.LatLng(assetlatm, assetlngm);
-        var marker = new google.maps.Marker({
-            position: latlngsetnew,
-            map: map,
-            title: 'Uluru (Ayers Rock)'
-        });
-        marker.addListener('click', function () {
-            infowindow.open(map, marker);
-        });
-        // }
-        this.myValue = true;
+       
 
-        //this.newimage = [];
-
-        //$scope.detailsdept = response.data.recordsets[1];
-        console.log(assetlatm);
-
-
+          
         }, error => {
           console.log("error : " + JSON.stringify(error));
-
+      
         });
-
+        
       }).catch((error) => {
-        // this.presentAlert('', 'Turn on location to processed!');
+        this.presentAlert('', 'Turn on location to processed!');
       });
-    }
+    }    
   }
 }
