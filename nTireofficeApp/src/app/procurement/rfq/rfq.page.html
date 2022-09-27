@@ -55,7 +55,18 @@
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
-        <ion-row>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Bidding/Other</ion-label>
+          <select style="padding: 10px;" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+             <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="Bidding">&lt;&lt; Bidding &gt;&gt;</option>
+            <option value="Other">&lt;&lt; Other &gt;&gt;</option>
+            <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+          </select>
+        </ion-col>
+        <!-- <ion-row>
           <ion-col>
             <ion-col>
               <input type="radio" id="radio" style="--background:#FFF !important">
@@ -68,7 +79,7 @@
               <ion-label class="select_placeholder" id="radio">Other</ion-label>
             </ion-col>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
           <ion-button (click)="Submit()" class="ion-color-success" expand="block">
@@ -178,11 +189,11 @@
             <tr class="table-head">
 
 
-              <th><input type="checkbox" id="checkbox"> </th>
-              <th>RFQ Code</th>
-              <th>Required Date</th>
-              <th>LastDate</th>
-              <th>Manage RFQ</th>
+              <th style="padding: 18px !important;"><input type="checkbox" id="checkbox"> </th>
+              <th style="padding: 18px !important;">RFQ Code</th>
+              <th style="padding: 18px !important;">Required Date</th>
+              <th style="padding: 18px !important;">LastDate</th>
+              <th style="padding: 18px !important;">Manage RFQ</th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -192,7 +203,7 @@
                 <td>RFQ 873/AT</td>
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
-                <td><a   (click)="manageRFQlink()"><ion-icon name="link-outline"></ion-icon></a></td>
+                <td><a   (click)="manageRFQlink()">Find </a></td>
               </tr>
               <tr>
                 <td><input type="checkbox" id="checkbox"></td>
@@ -200,7 +211,7 @@
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
                 <!-- <td>Manage RFQ</td> -->
-                <td><a   (click)="manageRFQlink()"><ion-icon name="link-outline"></ion-icon></a></td>
+                <td><a (click)="manageRFQlink()">Find</a></td>
               </tr>
               <tr>
                 <td><input type="checkbox" id="checkbox"></td>
@@ -208,7 +219,7 @@
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
                 <!-- <td>Manage RFQ</td> -->
-                <td><a  (click)="manageRFQlink()" ><ion-icon name="link-outline"></ion-icon></a></td>
+                <td><a (click)="manageRFQlink()">Find</a></td>
               </tr>
 
             </ng-container>

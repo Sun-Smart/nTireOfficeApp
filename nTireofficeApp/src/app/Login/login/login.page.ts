@@ -67,9 +67,9 @@ export class LoginPage implements OnInit {
           // console.log(resp.data.data);
           console.log(resp['data']);
           var data1 = resp['data'];
-          var userdata = JSON.stringify(resp['data']);
+          var userdata = resp['data'];
           userdata=JSON.parse(userdata);
-          userdata=JSON.parse(userdata);
+          userdata=userdata;
           // this.loadingdismiss();
 
           if(resp['data']['Column1']!=undefined)
