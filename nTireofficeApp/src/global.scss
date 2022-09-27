@@ -1114,9 +1114,11 @@
  }
  
  ion-checkbox::part(container) {
-   border-radius: 4px;
-   border: 1px solid #0074b8;
-   background: #fff !important;
+  border-radius: 4px;
+  border: 1px solid #0074b8;
+  /* background: #ecebeb !important; */
+  --ion-color-contrast: #000 !important;
+   
  }
  
  .Input-text-field {
