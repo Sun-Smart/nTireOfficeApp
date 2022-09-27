@@ -14,11 +14,11 @@ export class EmployeesPage implements OnInit {
 displaydetails($event: Event) {
 throw new Error('Method not implemented.');
 }
-  Designation=[];
+  Designation:any=[];
   function_id;
-  Branch=[];
+  Branch:any=[];
   Department=[];
-  designation ;
+  designation;
   branch ;
   department;
   length;
@@ -52,8 +52,11 @@ VALUE: any;
   }
   //get designation
   getDesignation(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.function_id+"/Designation/0/0/0").then(resp=>{
-      this.Designation = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Designation/0/0/0").then(resp=>{
+    
+      console.log("workin",resp)
+      this.Designation =resp;
+      console.log(this.Designation)
     }, error => {
 
     console.log("error : "+JSON.stringify(error));
@@ -62,8 +65,8 @@ VALUE: any;
   }
   //get branch
   getBranch(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.function_id+"/Branch/%20/0/0").then(resp=>{
-      this.Branch = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Branch/0/0/0").then(resp=>{
+      this.Branch = resp;
       console.log(this.Branch);
     }, error => {
 
@@ -73,7 +76,7 @@ VALUE: any;
   }
   //get department
   getDepartment(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.function_id+"/Department/%20/0/0").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Department/0/0/0").then(resp=>{
       this.Department = JSON.parse(resp.toString());
       console.log(this.Department);
     }, error => {
