@@ -55,6 +55,20 @@
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
+        <ion-row>
+          <ion-col>
+            <ion-col>
+              <input type="radio" id="radio" style="--background:#FFF !important">
+              <ion-label class="select_placeholder" id="radio">Bidding</ion-label>
+            </ion-col>
+          </ion-col>
+          <ion-col>
+            <ion-col>
+              <input type="radio" id="radio" style="--background:#FFF !important">
+              <ion-label class="select_placeholder" id="radio">Other</ion-label>
+            </ion-col>
+          </ion-col>
+        </ion-row>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
           <ion-button (click)="Submit()" class="ion-color-success" expand="block">
@@ -71,7 +85,7 @@
 
   <ion-card *ngIf="showviewlist">
     <ion-card-header class="card_header">
-      <ion-card-title class="card_header_text">Issue Details</ion-card-title>
+      <ion-card-title class="card_header_text" style="text-align:center ;">Issue Details</ion-card-title>
     </ion-card-header>
     <ion-card-content>
 
@@ -79,6 +93,9 @@
         <table class="table table-striped">
           <thead class="card_header">
             <tr class="table-head">
+
+
+              <th><input type="checkbox" id="checkbox"> </th>
 
               <th>PRS Code</th>
               <th>Item Code</th>
@@ -89,7 +106,7 @@
           <tbody class="table-body">
             <ng-container>
               <tr>
-
+                <td><input type="checkbox" id="checkbox"></td>
                 <td>PRS573864533464</td>
                 <td>7865</td>
                 <td>12/09/2020</td>
@@ -98,7 +115,7 @@
               </tr>
 
               <tr>
-
+                <td><input type="checkbox" id="checkbox"></td>
                 <td>PRS573864533468</td>
                 <td>7865</td>
                 <td>12/09/2020</td>
@@ -107,6 +124,7 @@
               </tr>
 
               <tr>
+                <td><input type="checkbox" id="checkbox"></td>
                 <td>PRS573864533464</td>
                 <td>7865</td>
                 <td>12/09/2020</td>
@@ -116,8 +134,95 @@
             </ng-container>
           </tbody>
         </table>
+
+
+
+
       </div>
+
     </ion-card-content>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-col style="text-align: center;">
+          <ion-input type="date" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-success" (click)="raiseRFQ()"  style="margin-top: -18px;" expand="block">Raise RFQ</ion-button>
+        </ion-col>
+      </ion-col>
+
+    </ion-row>
+
+
+
+
+  </ion-card>
+
+
+
+
+
+  <ion-card *ngIf="showrfq">
+    <ion-card-header class="card_header">
+      <ion-card-title class="card_header_text" style="text-align:center ;">Issue Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <div class="table">
+        <table class="table table-striped">
+          <thead class="card_header">
+            <tr class="table-head">
+
+
+              <th><input type="checkbox" id="checkbox"> </th>
+              <th>RFQ Code</th>
+              <th>Required Date</th>
+              <th>LastDate</th>
+              <th>Manage RFQ</th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <ng-container>
+              <tr>
+                <td><input type="checkbox" id="checkbox"></td>
+                <td>RFQ 873/AT</td>
+                <td>12/09/2020</td>
+                <td>12/09/2020</td>
+                <td><a   (click)="manageRFQlink()"><ion-icon name="link-outline"></ion-icon></a></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="checkbox"></td>
+                <td>RFQ 873/AT</td>
+                <td>12/09/2020</td>
+                <td>12/09/2020</td>
+                <!-- <td>Manage RFQ</td> -->
+                <td><a   (click)="manageRFQlink()"><ion-icon name="link-outline"></ion-icon></a></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" id="checkbox"></td>
+                <td>RFQ 873/AT</td>
+                <td>12/09/2020</td>
+                <td>12/09/2020</td>
+                <!-- <td>Manage RFQ</td> -->
+                <td><a  (click)="manageRFQlink()" ><ion-icon name="link-outline"></ion-icon></a></td>
+              </tr>
+
+            </ng-container>
+          </tbody>
+        </table>
+
+
+
+
+      </div>
+
+    </ion-card-content>
+
+
   </ion-card>
 
 </ion-content>
