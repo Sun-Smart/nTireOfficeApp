@@ -6,7 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { validateemail } from '../../../assets/validation.js';
 import { DatePipe } from '@angular/common';
 import {ToastmessageService} from '../../service/toastmessage.service';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { ModalController } from '@ionic/angular';
 import * as $ from 'jquery';
 import { Crop } from '@ionic-native/crop/ngx';
@@ -24,6 +24,7 @@ import { ActionSheetController } from '@ionic/angular';
   selector: 'app-myprofile',
   templateUrl: './myprofile.page.html',
   styleUrls: ['./myprofile.page.scss'],
+  providers:[Camera]
 })
 export class MyprofilePage implements OnInit {
   emp_id;

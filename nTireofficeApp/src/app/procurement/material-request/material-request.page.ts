@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-material-request',
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MaterialRequestPage implements OnInit {
 
-  constructor() { }
+  showlineItems:boolean=true
+  showviewlist:boolean=false
+  showfilter:boolean=true
+  constructor( private router :Router) { }
 
   ngOnInit() {
   }
+
+
+
+  showline(){
+    this.showlineItems=!this.showlineItems
+    // this.showfilter = !this.showfilter;
+  }
+  submit(){
+    this.showviewlist=true
+  }
+
+  togglefilter(){
+    this.showfilter = !this.showfilter;
+  }
+  close(){
+    // this.showviewlist=true
+    this.showlineItems=!this.showlineItems
+
+  }
+
 
 }
