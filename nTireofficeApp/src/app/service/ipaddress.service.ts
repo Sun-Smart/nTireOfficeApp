@@ -10,7 +10,7 @@ export class IpaddressService {
   public serviceurl;
   public companyurl;
   public addcontacturl;
-  public serviceurlSales;
+  public serviceurldms;
   public serviceurllos;
   public serviceurlhrms;
   public serviceurlhrms1;
@@ -21,14 +21,15 @@ export class IpaddressService {
   public serviceurlCams;
   public serviceurlCamsNode;
   public serviceerpapi;
+  public serviceurlSales;
   constructor() {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
 
-    //  this.ipaddress = "http://demo.herbie.ai:8034";
+    //  this.ipaddress = "http://demo.herbie.ai:8033";
 
     //   this.ipaddress1 = "http://65.0.146.170";
-    //  this.ipaddress = "http://65.0.146.170:8034";
+    //  this.ipaddress = "http://65.0.146.170:8033";
 
     this.ipaddress1 = "http://prod.herbie.ai";
     this.ipaddress ="https://prod.herbie.ai:8033";

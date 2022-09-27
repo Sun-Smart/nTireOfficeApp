@@ -10,7 +10,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
 declare const google;
 import { Crop } from '@ionic-native/crop/ngx';
