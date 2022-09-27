@@ -77,9 +77,9 @@ export class DashboardPage implements OnInit {
   Getbranches() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID']
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID'])
     };
 
     const header = new Headers();
@@ -309,10 +309,10 @@ export class DashboardPage implements OnInit {
     this.perc_closedn = [];
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
-      branchid: branchid
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
+      branchid: parseInt(branchid)
     };
 
     const header = new Headers();

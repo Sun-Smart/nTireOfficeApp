@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-undef-init */
 /* eslint-disable prefer-const */
@@ -81,9 +82,9 @@ export class TeammeetingsPage implements OnInit {
   Getbranches() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID']
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID'])
     };
 
     const header = new Headers();

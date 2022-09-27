@@ -15,16 +15,16 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Name</ion-label>
 
-        <ion-input class="ContentName" placeholder="Enter Name" name="name" ngDefaultControl [(ngModel)]="name" class="employeefield"
-          ></ion-input>
+        <ion-input class="ContentName" placeholder="Enter Name" name="name" ngDefaultControl [(ngModel)]="name"
+          class="employeefield"></ion-input>
 
       </ion-col>
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Code</ion-label>
 
-        <ion-input class="ContentName" placeholder="Enter Code" name="code" ngDefaultControl [(ngModel)]="code" class="employeefield"
-          ></ion-input>
+        <ion-input class="ContentName" placeholder="Enter Code" name="code" ngDefaultControl [(ngModel)]="code"
+          class="employeefield"></ion-input>
 
       </ion-col>
 
@@ -36,12 +36,13 @@
 
         <ion-label class="ContentName" position="stacked">Designation</ion-label>
         <ion-item style="color:black;background:white!important">
+          
           <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" name="designation"
             ngDefaultControl [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT"
             [items]="Designation" [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)"
             class="employeefield">
           </ionic-selectable>
-        </ion-item>
+        </ion-item> 
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <!-- <select [(ngModel)]="branch"  class="form-control">
@@ -122,7 +123,7 @@
           <ion-label style="margin-bottom:  26px;" class="labelData-text">{{item.Designation}}</ion-label>
           <br>
 
-          
+
 
         </ion-col>
         <ion-col style="padding-left: 52%;

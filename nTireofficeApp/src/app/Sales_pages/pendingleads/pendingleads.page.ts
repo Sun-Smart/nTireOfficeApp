@@ -107,11 +107,11 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   branchlist: any;
   branchlist1 = [];
   products: any;
-  products1 = [];
+  products1:any = [];
   callpriority: any;
-  callpriority1 = [];
+  callpriority1:any = [];
   callrating: any;
-  callrating1 = [];
+  callrating1:any = [];
   userdata: any;
   userdata1 = [];
   usertype: any;
@@ -280,7 +280,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
-      this.products1 = JSON.parse(resp.toString())
+      this.products1 = JSON.stringify(resp);
+      this.products1 = JSON.parse(this.products1)
 
       this.products1.sort(function (a, b) {
         var c = a.ProductName.toUpperCase();
@@ -301,7 +302,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
-      this.callpriority1 = JSON.parse(resp.toString())
+      this.callpriority1 = JSON.stringify(resp);
+      this.callpriority1 = JSON.parse(this.callpriority1)
       this.callpriority1.sort(function (a, b) {
         var c = a.Text.toUpperCase();
         var d = b.Text.toUpperCase();
@@ -321,7 +323,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
-      this.callrating1 = JSON.parse(resp.toString());
+      this.callrating1 = JSON.stringify(resp);
+      this.callrating1 = JSON.parse(this.callrating1);
       this.callrating1.sort(function (a, b) {
         var c = a.Text.toUpperCase();
         var d = b.Text.toUpperCase();

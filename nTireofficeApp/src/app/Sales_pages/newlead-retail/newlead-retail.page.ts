@@ -1,3 +1,5 @@
+/* eslint-disable space-before-function-paren */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable radix */
 /* eslint-disable eqeqeq */
@@ -42,17 +44,17 @@ export class NewleadRetailPage implements OnInit {
   branch: any;
   branchlocation: any;
   productdata: any;
-  branchlocationlist = [];
+  branchlocationlist: any = [];
   branchlocationlist1 = [];
-  productdataarray = [];
-  saluationarray = [];
-  callpriorityarray = [];
+  productdataarray: any = [];
+  saluationarray: any = [];
+  callpriorityarray: any = [];
 
-  callratingarray = [];
-  callnaturearray = [];
-  callstagearray = [];
-  leadsourcearray = [];
-  nextactionarray = [];
+  callratingarray: any = [];
+  callnaturearray: any = [];
+  callstagearray: any = [];
+  leadsourcearray: any = [];
+  nextactionarray: any = [];
   Salutation: any;
   callpriority: any;
   callrating: any;
@@ -133,7 +135,7 @@ export class NewleadRetailPage implements OnInit {
   Currency: any;
   inputall_imagesdoc = [];
   inputall_images = [];
-username:any;
+  username: any;
   constructor(public actionSheetController: ActionSheetController, private datePipe: DatePipe, public sanitizer: DomSanitizer, public alertController: AlertController, private crop: Crop, private base64: Base64, private camera: Camera, private zone: NgZone, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.exampleText = '';
     this.exampleTextoff = '';
@@ -156,14 +158,13 @@ username:any;
     this.leadby = 'S';
     this.source = 1;
 
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.Salutation = '<< Select >>';
     this.Getbranches();
     this.Getproductdata();
     this.Getsalutation();
     this.Getcallpriority();
-
     this.Getcallrating();
     this.Getcallnature();
     this.Getcallstage();
@@ -181,16 +182,16 @@ username:any;
   Getbranches() {
     const params = {
       access_token: window.localStorage.token,
-      userid: window.localStorage.TUM_USER_ID,
+      userid: parseInt(window.localStorage.TUM_USER_ID),
       usertoken: window.localStorage.usertoken,
-      USER_ID: window.localStorage.TUM_USER_ID
+      USER_ID: parseInt(window.localStorage.TUM_USER_ID)
     };
 
     const header = new Headers();
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales +'getBranchAccess', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -207,15 +208,15 @@ username:any;
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurl + 'BranchLocation' + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'BranchLocation/' + branchid, {
       headers: options,
     }).subscribe(resp => {
-
-      this.branchlocationlist = JSON.parse(resp.toString());
+      this.branchlocationlist = JSON.stringify(resp);
+      this.branchlocationlist = JSON.parse(this.branchlocationlist);
       if (this.branchlocationlist.length == 0) {
         this.presentAlert('Alert', 'This Branch has no location');
       }
-      console.log('branchlocationlist one: ' + JSON.stringify(this.branchlocationlist));
+      // console.log('branchlocationlist one: ' + JSON.stringify(this.branchlocationlist));
 
     }, error => {
       // this.presentAlert('Alert', 'Server Error, Branch Location not loaded.');
@@ -230,8 +231,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
-
-      this.productdataarray = JSON.parse(resp.toString());
+      this.productdataarray = JSON.stringify(resp);
+      this.productdataarray = JSON.parse(this.productdataarray);
       // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       this.productdataarray.sort(function (a, b) {
         const nameA = a.ProductName.toUpperCase(); // ignore upper and lowercase
@@ -262,8 +263,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Nametitle', {
       headers: options,
     }).subscribe(resp => {
-
-      this.saluationarray = JSON.parse(resp.toString());
+      this.saluationarray = JSON.stringify(resp);
+      this.saluationarray = JSON.parse(this.saluationarray);
       console.log('prsaluationarrayoductdataarray: ' + JSON.stringify(this.saluationarray));
 
     }, error => {
@@ -279,8 +280,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callpriorityarray = JSON.parse(resp.toString());
+      this.callpriorityarray = JSON.stringify(resp);
+      this.callpriorityarray = JSON.parse(this.callpriorityarray);
       console.log('callpriorityarray: ' + JSON.stringify(this.callpriorityarray));
 
     }, error => {
@@ -296,8 +297,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callratingarray = JSON.parse(resp.toString());
+      this.callratingarray = JSON.stringify(resp);
+      this.callratingarray = JSON.parse(this.callratingarray);
       console.log('callratingarray: ' + JSON.stringify(this.callratingarray));
 
     }, error => {
@@ -313,8 +314,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callnature', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callnaturearray = JSON.parse(resp.toString());
+      this.callnaturearray = JSON.stringify(resp);
+      this.callnaturearray = JSON.parse(this.callnaturearray);
       console.log('callnaturearray: ' + JSON.stringify(this.callnaturearray));
 
     }, error => {
@@ -330,8 +331,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callstage', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callstagearray = JSON.parse(resp.toString());
+      this.callstagearray = JSON.stringify(resp);
+      this.callstagearray = JSON.parse(this.callstagearray);
       console.log('callstagearray: ' + JSON.stringify(this.callstagearray));
 
     }, error => {
@@ -347,8 +348,8 @@ username:any;
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Leadsource', {
       headers: options,
     }).subscribe(resp => {
-
-      this.leadsourcearray = JSON.parse(resp.toString());
+      this.leadsourcearray = JSON.stringify(resp);
+      this.leadsourcearray = JSON.parse(this.leadsourcearray);
       console.log('leadsourcearray: ' + JSON.stringify(this.leadsourcearray));
 
     }, error => {
@@ -357,20 +358,24 @@ username:any;
     });
   }
   Getnextaction(productdata) {
+    // console.log('productdata ', productdata);
 
     const index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'ProductID', productdata);
-    this.curr_prod_category = this.productdataarray[index].ProductCatID;
+    // console.log('index ', index);
+    this.curr_prod_category = this.productdataarray[index].productCatID;
+    // console.log('this.curr_prod_category ', this.curr_prod_category);
     const header = new Headers();
     header.append('Content-Type', 'application/json');
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'customerresponse/' + this.curr_prod_category, {
+    // /mobileapi/LMS/LMS.svc/customerresponse/
+
+    this.http.get(this.Ipaddressservice.ipaddress + '/nTireMobileCoreAPI/api/Sales/customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
-
-      this.nextactionarray = JSON.parse(resp.toString());
+      this.nextactionarray = JSON.stringify(resp);
+      this.nextactionarray = JSON.parse(this.nextactionarray);
       console.log('nextactionarray: ' + JSON.stringify(this.nextactionarray));
-
     }, error => {
 
       console.log('branchlist1 : ' + JSON.stringify(error));
@@ -883,7 +888,8 @@ username:any;
         console.log('mobileapi : ' + JSON.stringify(resp));
 
         console.log(resp);
-        this.result = JSON.parse(resp.toString());
+        this.result = JSON.stringify(resp);
+        this.result = JSON.parse(this.result);
         //  console.log(this.result);
         // $('#submit_retail').attr('disabled',false);
         if (resp.toString() == '"CampaignBranchaccess Not found"') {
@@ -1084,7 +1090,7 @@ username:any;
   async presentAlertConfirm(heading, tittle) {
     const alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: [
         {
@@ -1147,7 +1153,7 @@ username:any;
   async presentAlert(heading, tittle) {
     const alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: ['OK']
     });

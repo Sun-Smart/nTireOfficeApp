@@ -23,11 +23,9 @@ ion-content {
     color: white !important;
     font-size: 16px;
 }
-.card_header_link_text {
-    a {
-        background-color: transparent;
-        color: white;
-        text-decoration: underline;
+
+.probDetails{
+    ion-button{
+        max-width:fit-content;
     }
 }
-
