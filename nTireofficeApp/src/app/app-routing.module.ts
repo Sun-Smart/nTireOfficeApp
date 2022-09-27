@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () => import('./procurement/updatevendoritem/updatevendoritem.module').then( m => m.UpdatevendoritemPageModule)
   },
   {
+    path: 'manage-rfq',
+    loadChildren: () => import('./procurement/manage-rfq/manage-rfq.module').then( m => m.ManageRfqPageModule)
+  },
+  {
     path: 'updatevendorquot',
     loadChildren: () => import('./procurement/updatevendorquot/updatevendorquot.module').then( m => m.UpdatevendorquotPageModule)
   },

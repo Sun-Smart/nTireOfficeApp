@@ -337,7 +337,14 @@ export class AppComponent {
     //   title: 'RFP',
     //   url: '/rfp',
     //   icon: 'logo-steam'
+    // },    manage-rfq
+
+    // {
+    //   title: 'RFQ',
+    //   url: '/manage-rfq',
+    //   icon: 'logo-stencil'
     // },
+
     {
       title: 'RFQ',
       url: '/rfq',
