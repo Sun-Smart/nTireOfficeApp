@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,7 +9,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx'
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 // import { ChartsModule } from 'chartjs';
@@ -18,9 +20,23 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, ],
-  providers: [StatusBar,LocationAccuracy,SplashScreen,AndroidPermissions,NativeGeocoder,BarcodeScanner,Geolocation,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    HttpClientModule,
+    NgxDatatableModule,
+    FormsModule
+   ],
+
+  providers: [StatusBar,
+    LocationAccuracy,
+    SplashScreen,
+    AndroidPermissions,
+    NativeGeocoder,
+    BarcodeScanner,
+    Geolocation,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

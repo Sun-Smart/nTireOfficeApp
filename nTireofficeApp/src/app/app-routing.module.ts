@@ -160,6 +160,13 @@ const routes: Routes = [
     path: 'pmsreports',
     loadChildren: () => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
   },
+  {
+    path: 'pms-transaction',
+    loadChildren: () => import('./Property_Pages/pms-transaction/pms-transaction.module').then( m => m.PmsTransactionPageModule)
+  },
+
+
+
 
   //Sales Page
   {
@@ -310,6 +317,8 @@ const routes: Routes = [
     path: 'myprofile',
     loadChildren: () => import('./Hrms_pages/myprofile/myprofile.module').then( m => m.MyprofilePageModule)
   },
+
+
 
   // procurement
   {
@@ -505,20 +514,10 @@ const routes: Routes = [
     path: 'myclients',
     loadChildren: () => import('./Sales_pages/myclients/myclients.module').then( m => m.MyclientsPageModule)
   },
-
-
-
-
-
-
   {
     path: 'updateleads',
     loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
   },
-
-
-
-
 
 ];
 
