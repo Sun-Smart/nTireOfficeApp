@@ -17,11 +17,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavParams } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IpaddressService } from '../../service/ipaddress.service';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { fromEvent, Subscription } from 'rxjs';
 import { ActionSheetController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 @Component({
   selector: 'app-addtravelexpensedetails',
@@ -35,7 +37,8 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
   allexpensedetails = [];
   allexpensedetails1;
   validExpense;
-
+  getGeoencoder1;
+  getGeoencoder;
   customer_name;
   call_id;
   product;
@@ -52,6 +55,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
   imagecif;
   expense_id1;
   fileURL;
+  currentlatlon
   image1;
   expense_obj = {
     expense_type: undefined,
@@ -69,7 +73,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
   };
   commonapi_sales;
   private backbuttonSubscription: Subscription;
-  constructor(public actionSheetController: ActionSheetController, public alertController: AlertController, private model: ModalController, private camera: Camera, navParams: NavParams, private http: HttpClient, public Ipaddressservice: IpaddressService) {
+  constructor(public actionSheetController: ActionSheetController, public alertController: AlertController, private model: ModalController, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, private camera: Camera, navParams: NavParams, private http: HttpClient, public Ipaddressservice: IpaddressService) {
 
     this.Customer_ID = navParams.get('Customer_ID');
 
@@ -170,32 +174,26 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
       buttons: [{
         text: 'Load from Library',
         handler: () => {
-          $('#fileinput').trigger('click');
 
-          $('#fileinput').unbind().change(function () {
-            // $('#fileinput').on('change', function () {
-            var filePath = $(this).val();
-            console.log(filePath);
+          //get current position
+          this.geolocation.getCurrentPosition().then((res) => {
 
-            if (filePath != undefined && filePath != "") {
-              var str = filePath;
-            }
-            // alert("" + str.split("\\").pop())
-            //   if(str!=undefined){
-            //   var actualFile = str.split("\\").pop();
-            // }
-            //   console.log("actualFile :" + actualFile);
-            // var File_inputvalue =
-            //self.Images.push(actualFile);
-            self.uploadallfilles();
+            this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
+            let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
+            console.log("location :n" + location);
+            this.getGeoencoder1(res.coords.latitude, res.coords.longitude);
 
+
+
+          }).catch((error) => {
+            // this.presentAlert('', 'Turn on location to processed!');
           });
         }
       },
       {
         text: 'Use Camera',
         handler: () => {
-          this.Attachdocument();
+          this.pickImage();
         }
       },
       {
@@ -205,6 +203,22 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
       ]
     });
     await actionSheet.present();
+  }
+  pickImage() {
+
+    //get current position
+    this.geolocation.getCurrentPosition().then((res) => {
+
+      this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
+      let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
+      console.log("location :n" + location);
+      this.getGeoencoder(res.coords.latitude, res.coords.longitude);
+
+
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
   uploadallfilles() {
 

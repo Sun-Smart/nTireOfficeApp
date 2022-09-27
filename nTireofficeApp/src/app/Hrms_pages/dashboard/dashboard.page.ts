@@ -55,8 +55,8 @@ export class DashboardPage implements OnInit {
   displayEmployee=[];
   empid;
   FUNCTION_ID;
-  year=[];
-  month=[];
+  year:any=[];
+  month:any=[];
   employee_id;
   yeardata;
   monthdata;
@@ -182,8 +182,8 @@ this.backbutton();
      });
    }
    geYears(){
-     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Year/%20/0/0").then(resp=>{
-       this.year = JSON.parse(resp.toString());
+     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Year/0/0/0").then(resp=>{
+       this.year = resp;
 
          }, error => {
 
@@ -192,8 +192,8 @@ this.backbutton();
          });
    }
    geMonths(){
-     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Month/%20/0/0").then(resp=>{
-       this.month = JSON.parse(resp.toString());
+     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Month/0/0/0").then(resp=>{
+       this.month = resp;
 
          }, error => {
 
