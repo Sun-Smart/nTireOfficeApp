@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable object-shorthand */
@@ -59,17 +60,17 @@ export class NewleadcorporatePage implements OnInit {
   branch;
   branchlocation;
   productdata;
-  branchlocationlist = [];
+  branchlocationlist:any = [];
   branchlocationlist1 = [];
-  productdataarray = [];
-  saluationarray = [];
-  callpriorityarray = [];
+  productdataarray:any = [];
+  saluationarray:any = [];
+  callpriorityarray:any = [];
 
-  callratingarray = [];
-  callnaturearray = [];
-  callstagearray = [];
-  leadsourcearray = [];
-  nextactionarray = [];
+  callratingarray :any= [];
+  callnaturearray:any = [];
+  callstagearray:any = [];
+  leadsourcearray:any = [];
+  nextactionarray:any = [];
   Salutation;
   callpriority;
   callrating;
@@ -272,9 +273,9 @@ export class NewleadcorporatePage implements OnInit {
   Getbranches() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID']
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID'])
     };
 
     const header = new Headers();
@@ -301,8 +302,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'BranchLocation/' + branchid, {
       headers: options,
     }).subscribe(resp => {
-
-      this.branchlocationlist = JSON.parse(resp.toString());
+this.branchlocationlist = JSON.stringify(resp);
+      this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
@@ -318,8 +319,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
-
-      this.productdataarray = JSON.parse(resp.toString());
+this.productdataarray = JSON.stringify(resp);
+      this.productdataarray = JSON.parse(this.productdataarray);
       console.log("productdataarray: " + JSON.stringify(this.productdataarray));
 
     }, error => {
@@ -335,8 +336,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Nametitle', {
       headers: options,
     }).subscribe(resp => {
-
-      this.saluationarray = JSON.parse(resp.toString());
+      this.saluationarray = JSON.stringify(resp);
+      this.saluationarray = JSON.parse(this.saluationarray);
       console.log("prsaluationarrayoductdataarray: " + JSON.stringify(this.saluationarray));
 
     }, error => {
@@ -352,8 +353,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callpriorityarray = JSON.parse(resp.toString());
+      this.callpriorityarray = JSON.stringify(resp);
+      this.callpriorityarray = JSON.parse(this.callpriorityarray);
       console.log("callpriorityarray: " + JSON.stringify(this.callpriorityarray));
 
     }, error => {
@@ -369,8 +370,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callratingarray = JSON.parse(resp.toString());
+      this.callratingarray =JSON.stringify(resp);
+      this.callratingarray = JSON.parse(this.callratingarray);
       console.log("callratingarray: " + JSON.stringify(this.callratingarray));
 
     }, error => {
@@ -386,8 +387,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callnature', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callnaturearray = JSON.parse(resp.toString());
+      this.callnaturearray = JSON.stringify(resp);
+      this.callnaturearray = JSON.parse(this.callnaturearray);
       console.log("callnaturearray: " + JSON.stringify(this.callnaturearray));
 
     }, error => {
@@ -403,8 +404,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callstage', {
       headers: options,
     }).subscribe(resp => {
-
-      this.callstagearray = JSON.parse(resp.toString());
+      this.callstagearray = JSON.stringify(resp);
+      this.callstagearray = JSON.parse(this.callstagearray);
       console.log("callstagearray: " + JSON.stringify(this.callstagearray));
 
     }, error => {
@@ -420,8 +421,8 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Leadsource', {
       headers: options,
     }).subscribe(resp => {
-
-      this.leadsourcearray = JSON.parse(resp.toString());
+      this.leadsourcearray = JSON.stringify(resp);
+      this.leadsourcearray = JSON.parse(this.leadsourcearray);
       console.log("leadsourcearray: " + JSON.stringify(this.leadsourcearray));
 
     }, error => {

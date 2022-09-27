@@ -52,7 +52,7 @@ export class AddnewcorporatePage implements OnInit {
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1+'/mobileapi/LMS/LMS.svc/NewCorporate'+'/'+ corp.function_id +'/'+corp.branch_id +'/'+corp.companyName +'/'+corp.address +'/'+corp.pincode +'/'+corp.user_id +'/'+corp.userType_id, {
+    this.http.get(this.Ipaddressservice.ipaddress1+'/nTireMobileCoreAPI/api/NewCorporate'+'/'+ corp.function_id +'/'+corp.branch_id +'/'+corp.companyName +'/'+corp.address +'/'+corp.pincode +'/'+corp.user_id +'/'+corp.userType_id, {
       headers: options,
     }).subscribe(resp => {
 
