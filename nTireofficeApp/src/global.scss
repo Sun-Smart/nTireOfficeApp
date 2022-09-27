@@ -817,7 +817,9 @@
  }
 
  .hydrated {
-   visibility: visible !important;
+  visibility: visible !important;
+  font-weight: inherit;
+  font-size: large;
  }
 
  ion-button {
@@ -1119,7 +1121,7 @@ justify-content: center;
  ion-checkbox::part(container) {
    border-radius: 4px;
    border: 1px solid #0074b8;
-   background: #fff !important;
+  //  background: #fff !important;
  }
 
  .Input-text-field {
@@ -1169,5 +1171,32 @@ justify-content: center;
 
  b, strong {
   font-weight: 600;
-  COLOR: black;
+  color: #000;
 }
+
+.profilehead
+{
+  background: transparent;
+  padding: 0;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.myprofilepersedudetails
+{
+  font-size: 12px !important;
+  color:#000 !important;
+  font-weight: bolder;
+}
+
+.cameraattachment
+{
+  font-size: 40px;
+  position: relative;
+  margin: auto ;
+
+  color: #000;
+}
+
+
+
