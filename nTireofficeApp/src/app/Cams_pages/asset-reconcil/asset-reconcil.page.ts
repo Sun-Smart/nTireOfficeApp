@@ -355,7 +355,7 @@ export class AssetReconcilPage implements OnInit {
     var modest = 'A';
 
     var datarec = {
-      'assetidrec': this.assetidrecon,
+      'assetidrec': parseInt(this.assetidrecon),
       'branchidu': this.branchID,
       'functionidrec': this.functionID,
       'deprtid': this.depid,

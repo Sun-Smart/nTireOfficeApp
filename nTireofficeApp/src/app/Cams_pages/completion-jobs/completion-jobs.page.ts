@@ -128,7 +128,7 @@ export class CompletionJobsPage implements OnInit {
       userid: localStorage.getItem('TUM_USER_ID'),
       'usertoken': localStorage.getItem('usertoken'),
       USER_ID: localStorage.getItem('TUM_USER_ID'),
-      categoryid:event
+      categoryid:parseInt(event)
     };
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationsubcategory',assetCatParms, {
       headers: options,
@@ -153,7 +153,7 @@ export class CompletionJobsPage implements OnInit {
   
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/1/1/%20/%20/%20/%20/%20/MT', {
-  
+                              // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
       headers: options,
     }).subscribe(resp => {
       console.log(resp)

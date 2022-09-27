@@ -79,6 +79,7 @@ export class UserRequestPage implements OnInit {
   }
 
   getItems(ev: any) {
+    debugger;
     this.assetcode1 = [];
     if (ev.target.value == "") {
       this.assetcode1 = [];
@@ -165,7 +166,7 @@ export class UserRequestPage implements OnInit {
 
   fetchreconcilation(assetcode){
 
-        
+        debugger;
     this.assetcode = assetcode;
     this.isItemAvailable = false;
     var data = {
@@ -225,6 +226,7 @@ export class UserRequestPage implements OnInit {
   }
 
   getReferMax(){
+    debugger;
     var check = "a";
     var datar = {
       'assetcoder': check,
@@ -252,6 +254,7 @@ export class UserRequestPage implements OnInit {
   }
 
   processassetre(){
+    debugger;
     var assiss = this.categoryissue;
     console.log(assiss);
 

@@ -50,7 +50,7 @@ this.menuCtrl.enable(true, 'first');
     debugger
       this.result = resp;
 
-      this.CategoryCount = JSON.parse(this.result);
+      this.CategoryCount = this.result;
       console.log(this.CategoryCount);
       this.labels2 = [];
       this.data2 = [];
@@ -69,7 +69,7 @@ this.menuCtrl.enable(true, 'first');
         data: {
           labels:this.labels2,
           datasets: [{
-            label: '# of Tomatoes',
+            label: this.labels2,
             data:this.data2,
             backgroundColor:['rgba(247,70,74,1)', 'rgba(220,220,220,1)','rgba(151,187,205,1)',  'rgba(70,191,189,1)', 'rgba(253,180,92,1)', 'rgba(148,159,177,1)', 'rgba(77,83,96,1)', 'rgba(103,16,103,1)', 'rgba(165,131,134,1)', '#FF4500', '#800000', '#00BFFF ', '#000000', '#00FF00', '#008080', '#FF00FF']
 
@@ -111,7 +111,7 @@ getMaintenanceCountChart = function () {
   }).subscribe(resp => {
     this.Monthresult = resp;
 
-    this.MaintenanceCount = JSON.parse(this.Monthresult);
+    this.MaintenanceCount = this.Monthresult;
     console.log(this.MaintenanceCount);
 
     this.data3 = [];
@@ -166,10 +166,11 @@ debugger
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams+'camsbranchcount',{
     headers: options,
   }).subscribe((resp:any) => {
+    console.log(resp)
     debugger
     this.branchCountresult = resp;
 
-    this.branchCount = JSON.parse(this.branchCountresult);
+    this.branchCount = this.branchCountresult;
     console.log(this.branchCount);
     this.labels = [];
     this.data = [];

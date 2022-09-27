@@ -238,7 +238,7 @@ export class ServiceRequestPage implements OnInit {
     this.assetcode = assetcode;
     this.isItemAvailable = false;
     var data = {
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'assetcode': assetcode,
       'branchid': this.branchID,
       'access_token': this.accessToken,
@@ -543,7 +543,7 @@ export class ServiceRequestPage implements OnInit {
 
 getServiceActegory(){
   var dataservcat = {
-    'functionid':window.localStorage['FUNCTION_ID'],
+    'functionid':parseInt(window.localStorage['FUNCTION_ID']),
     'access_token':this.accessToken,
     'userid':this.userID,
     'usertoken':this.userToken

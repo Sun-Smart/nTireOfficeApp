@@ -145,7 +145,7 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'/Pendingsearchs11/1/1/%20/%20/%20/'+this.userID+'/'+this.usertype+'/%20/%20/MT', {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11/1/1/%20/%20/%20/'+this.userID+'/'+this.usertype+'/%20/%20/MT', {
       
       headers: options,
     }).subscribe(resp => {
@@ -206,8 +206,8 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'/Pendingsearchs11/1/1/'+fromdate+'/'+todate+'/'+ status +'/'+this.userID+'/'+this.usertype+'/'+assetCat+'/'+assetSubCat+'/'+jobs, {
-      
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate='+fromdate+'&tdate='+todate+'&Status='+ status +'&strUserId='+this.userID+'&UserType='+this.usertype+'/'+assetCat+'/'+assetSubCat+'/'+jobs, {
+                                                      // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -275,7 +275,7 @@ getsubCategory(event){
     userid: localStorage.getItem('TUM_USER_ID'),
     'usertoken': localStorage.getItem('usertoken'),
     USER_ID: localStorage.getItem('TUM_USER_ID'),
-    categoryid:event
+    categoryid:parseInt(event)
   };
   this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationsubcategory',assetCatParms, {
     headers: options,
@@ -305,8 +305,8 @@ pendateval() {
         header.append("Content-Type", "application/json");
       
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11/1/1/%20/%20/%20/'+this.userID+'/'+this.usertype+'/%20/%20/MT', {
-      
+        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+this.usertype, {
+                                                            // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
           headers: options,
         }).subscribe(resp => {
               // alert(JSON.stringify(response));

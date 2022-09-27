@@ -27,14 +27,14 @@ const routes: Routes = [
   // {
   //   path: 'invoiceupload',
   //   loadChildren: () => import('./procurement/invoiceupload/invoiceupload.module').then( m => m.InvoiceuploadPageModule)
-  // },
+  // },service-list
+  {
+    path: 'service-list',
+    loadChildren: () => import('./Cams_pages/service-list/service-list.module').then( m => m.ServiceListPageModule)
+  },
   {
     path: 'updatevendoritem',
     loadChildren: () => import('./procurement/updatevendoritem/updatevendoritem.module').then( m => m.UpdatevendoritemPageModule)
-  },
-  {
-    path: 'manage-rfq',
-    loadChildren: () => import('./procurement/manage-rfq/manage-rfq.module').then( m => m.ManageRfqPageModule)
   },
   {
     path: 'updatevendorquot',
@@ -164,13 +164,6 @@ const routes: Routes = [
     path: 'pmsreports',
     loadChildren: () => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
   },
-  {
-    path: 'pms-transaction',
-    loadChildren: () => import('./Property_Pages/pms-transaction/pms-transaction.module').then( m => m.PmsTransactionPageModule)
-  },
-
-
-
 
   //Sales Page
   {
@@ -321,8 +314,6 @@ const routes: Routes = [
     path: 'myprofile',
     loadChildren: () => import('./Hrms_pages/myprofile/myprofile.module').then( m => m.MyprofilePageModule)
   },
-
-
 
   // procurement
   {
@@ -518,10 +509,20 @@ const routes: Routes = [
     path: 'myclients',
     loadChildren: () => import('./Sales_pages/myclients/myclients.module').then( m => m.MyclientsPageModule)
   },
+
+
+
+
+
+
   {
     path: 'updateleads',
     loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
   },
+
+
+
+
 
 ];
 

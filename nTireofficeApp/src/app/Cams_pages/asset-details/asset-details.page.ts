@@ -403,7 +403,7 @@ export class AssetDetailsPage implements OnInit {
         var obj = {
           'assetcode': this.assetucode,
           'branchid': this.branchID,
-          'assetidrec': this.assestid,
+          'assetidrec': parseInt(this.assestid),
           'functionida': this.functionID,
           'doc_path': imagepagen,
           'access_token': this.accessToken,
@@ -454,7 +454,7 @@ export class AssetDetailsPage implements OnInit {
 
           'branchidu': this.branchID,
           'functionidrec': this.functionID,
-          'assetidrec': this.assestid,
+          'assetidrec': parseInt(this.assestid),
 
           'assetuser': this.userID,
           'mode': modest,
