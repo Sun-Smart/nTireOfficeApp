@@ -815,9 +815,10 @@
  .ionicon {
    color: #004073;
  }
-
  .hydrated {
-   visibility: visible !important;
+  visibility: visible !important;
+  font-weight: inherit;
+  font-size: large;
  }
 
  ion-button {
@@ -1201,9 +1202,32 @@ justify-content: center;
 
  b, strong {
   font-weight: 600;
-  COLOR: black;
+  color: #000;
 }
-ion-searchbar{
-  height: 40px;
-  background-color: white;
+
+.profilehead
+{
+  background: transparent;
+  padding: 0;
+  margin: 10px;
+  border-radius: 8px;
 }
+
+.myprofilepersedudetails
+{
+  font-size: 12px !important;
+  color:#000 !important;
+  font-weight: bolder;
+}
+
+.cameraattachment
+{
+  font-size: 40px;
+  position: relative;
+  margin: auto ;
+
+  color: #000;
+}
+
+
+

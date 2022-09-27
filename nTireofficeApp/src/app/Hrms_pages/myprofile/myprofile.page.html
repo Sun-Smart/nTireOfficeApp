@@ -15,7 +15,7 @@
   </ion-header>
 
   <p *ngIf="profile!==undefined" class="totalCount"><b>{{profile.Name}}</b></p>
-  <ion-grid style="background: transparent; padding: 10px;margin: 10px;border-radius: 8px;">
+  <ion-grid class="profilehead">
 
     <ion-row style="background-color: #ffffff;">
       <br />
@@ -73,12 +73,12 @@
         <span>DOJ: {{profile.DOJ | date:'dd-MM-yyyy'}}</span>
       </ion-col>
     </ion-row>
-    <ion-segment [(ngModel)]="segmentdata">
+    <ion-segment [(ngModel)]="segmentdata" >
       <ion-segment-button value="Personal">
-        <ion-label style="font-size: 12px !important;color:#000 !important">PERSONAL DETAILS</ion-label>
+        <ion-label class="myprofilepersedudetails">PERSONAL DETAILS</ion-label>
       </ion-segment-button>
       <ion-segment-button value="education">
-        <ion-label style="font-size: 12px !important;color:#000 !important">EDUCATION & CAREER</ion-label>
+        <ion-label class="myprofilepersedudetails">EDUCATION & CAREER</ion-label>
       </ion-segment-button>
 
     </ion-segment>
@@ -352,8 +352,6 @@
                 [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle===0"></ion-textarea>
               <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentAddress}}</span>
             </ion-col>
-
-
 
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label>Pincode</ion-label>
