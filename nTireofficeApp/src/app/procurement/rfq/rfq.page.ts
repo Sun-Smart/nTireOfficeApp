@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rfq',
@@ -7,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RFQPage implements OnInit {
   showviewlist:boolean=false
-  constructor() { }
+  showrfq:boolean=false
+  constructor(private router :Router) { }
 
   ngOnInit() {
   }
   Submit(){
     this.showviewlist=true
   }
-
+  raiseRFQ(){
+    this.showrfq=true
+    this.showviewlist=false
+  }
+  manageRFQlink(){
+    this.router.navigate(['/manage-rfq'])
+  }
 }
