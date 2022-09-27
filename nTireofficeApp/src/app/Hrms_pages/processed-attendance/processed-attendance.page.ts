@@ -11,8 +11,8 @@ import { AlertController,LoadingController } from '@ionic/angular';
 export class ProcessedAttendancePage implements OnInit {
   empid;
   displayEmployee=[];
-  year=[];
-  month=[];
+  year:any=[];
+  month:any=[];
   FUNCTION_ID;
   yeardata;
   employee_id;
@@ -58,8 +58,8 @@ export class ProcessedAttendancePage implements OnInit {
      });
    }
    geYears(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Year/%20/0/0").then(resp=>{
-      this.year = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Year/0/0/0").then(resp=>{
+      this.year = resp;
 
         }, error => {
 
@@ -68,8 +68,8 @@ export class ProcessedAttendancePage implements OnInit {
         });
   }
   geMonths(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+this.FUNCTION_ID+"/Month/%20/0/0").then(resp=>{
-      this.month = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Month/0/0/0").then(resp=>{
+      this.month = resp;
 
         }, error => {
         console.log("error : "+JSON.stringify(error));
