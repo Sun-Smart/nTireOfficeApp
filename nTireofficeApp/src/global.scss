@@ -1129,6 +1129,8 @@ ion-checkbox::part(container) {
 }
 .labelHead-text{
   display: flex;
+  color: #000;
+  font-weight: 600;
 }
 .labelData-text{
   font-size: 14px!important;
@@ -1141,4 +1143,8 @@ ion-checkbox::part(container) {
 
 i.fa.fa-filter {
   color:#e03737 !important;
+}
+ion-searchbar{
+  height: 40px;
+  background-color: white;
 }

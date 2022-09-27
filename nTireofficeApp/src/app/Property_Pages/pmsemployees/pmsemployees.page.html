@@ -15,15 +15,17 @@
   <ion-content class="ion-padding">
     <ion-button id="open-modal" expand="block">My Task</ion-button>
     <ion-button id="open-modal0" expand="block">Additonal</ion-button>
+    <ion-button expand="block" (click)="transactionModal()">Transaction</ion-button>
  
    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
       <ng-template>
         <ion-header>
           <ion-toolbar>
+            
             <ion-buttons slot="start">
-              <ion-button (click)="cancel()">Cancel</ion-button>
+              <ion-button (click)="taskCancel()">Cancel</ion-button>
             </ion-buttons>
-            <ion-title >My Tasks</ion-title>
+            <ion-title style="text-align: center;">My Tasks</ion-title>
          
           </ion-toolbar>
         </ion-header>
@@ -49,7 +51,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text"> Reference NO :</p>
+                      <ion-label class="labelHead-text"> Reference NO :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -60,7 +62,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Property Code :</p>
+                      <ion-label class="labelHead-text">Property Code :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -73,7 +75,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Property Description :</p>
+                      <ion-label class="labelHead-text">Property Description :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -83,7 +85,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Issue Category :</p>
+                      <ion-label class="labelHead-text">Issue Category :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -94,7 +96,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Assign Date :</p>
+                      <ion-label class="labelHead-text">Assign Date :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -104,7 +106,7 @@
         
                   <ion-col size="7" class="col_height">
                   
-                      <p class="card_left_text">Assign To:</p>
+                      <ion-label class="labelHead-text">Assign To:</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -113,7 +115,7 @@
                   </ion-col>
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Issue Status :</p>
+                      <ion-label class="labelHead-text">Issue Status :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -146,9 +148,9 @@
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-button (click)="closemodel()">Cancel</ion-button>
+              <ion-button (click)="AddCancel()">Cancel</ion-button>
             </ion-buttons>
-            <ion-title >Additional</ion-title>
+            <ion-title style="text-align: center;">Additional</ion-title>
          
           </ion-toolbar>
         </ion-header>
@@ -178,7 +180,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text"> Reference NO :</p>
+                      <ion-label class="labelHead-text"> Reference NO :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -189,7 +191,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Property Code :</p>
+                      <ion-label class="labelHead-text">Property Code :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -202,7 +204,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Property Description :</p>
+                      <ion-label class="labelHead-text">Property Description :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -212,7 +214,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Issue Category :</p>
+                      <ion-label class="labelHead-text">Issue Category :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -223,7 +225,7 @@
         
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Assign Date :</p>
+                      <ion-label class="labelHead-text">Assign Date :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -233,7 +235,7 @@
         
                   <ion-col size="7" class="col_height">
                   
-                      <p class="card_left_text">Assign To:</p>
+                      <ion-label class="labelHead-text">Assign To:</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">
@@ -242,7 +244,7 @@
                   </ion-col>
                   <ion-col size="7" class="col_height">
                     
-                      <p class="card_left_text">Issue Status :</p>
+                      <ion-label class="labelHead-text">Issue Status :</ion-label>
                    
                   </ion-col>
                   <ion-col size="5" class="col_height">

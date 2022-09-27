@@ -4,14 +4,15 @@ import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { AdditionalChargesPage } from './additional-charges/additional-charges.page';
 import { Router } from '@angular/router';
+import { PmsTransactionPage } from '../pms-transaction/pms-transaction.page';
 @Component({
   selector: 'app-pmsemployees',
   templateUrl: './pmsemployees.page.html',
   styleUrls: ['./pmsemployees.page.scss'],
 })
 export class PmsemployeesPage implements OnInit {
-  @ViewChild(IonModal) modal: IonModal;
-  @ViewChild(IonModal) modal1: IonModal;
+
+
   username = window.localStorage.getItem('TUM_USER_NAME');
   name: any;
   message: string;
@@ -20,21 +21,21 @@ export class PmsemployeesPage implements OnInit {
 
   ngOnInit() {
   }
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-  canceled() {
+
+  taskCancel() {
     debugger
-    this.modal1.dismiss(null, 'cancell');
+    this.modalCtrl.dismiss();
+  };
+
+  AddCancel() {
+    this.modalCtrl.dismiss();
+    debugger
+    // this.modal.dismiss(null, 'cancel');
   }
+
   confirm() {
-    this.modal.dismiss(this.name, 'confirm');
+    this.modalCtrl.dismiss(this.name, 'confirm');
   }
-  closemodel(){
-
-    this.modal.dismiss(null, 'cancel');
-  }
-
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
@@ -55,7 +56,12 @@ export class PmsemployeesPage implements OnInit {
 
     }
   }
-
+async transactionModal(){
+  const model = await this.modalCtrl.create({
+    component:PmsTransactionPage,
+  });
+  return await model.present();
+}
 
 
 }
