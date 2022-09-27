@@ -1,9 +1,14 @@
 
 <ion-header>
-  <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;">
-    <ion-title> Issue Status</ion-title>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" >
+        <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Issue Status</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
 
   <ion-card>

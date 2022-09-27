@@ -186,14 +186,6 @@ export class LoginPage implements OnInit {
                 this.loadingdismiss();
                 this.presentAlert('Login failed!','Please check your username & Password!');
               }
-
-
-
-
-
-
-
-
             }
 
         }, error => {

@@ -1,9 +1,20 @@
 <ion-header>
-
-  <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;margin-top: 1px;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" >
+        <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
+    </ion-buttons>
     <ion-title>Create Issue</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<!-- <ion-header>
+
+  <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;margin-top: 1px;">
+    <ion-label (click)="cancel()">Cancel</ion-label>
+    <ion-title>Create Issue</ion-title>
+  </ion-toolbar>
+</ion-header> -->
 
 <ion-content>
 
