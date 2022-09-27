@@ -38,7 +38,8 @@
         <ion-item style="color:black;background:white!important">
           <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" name="designation"
             ngDefaultControl [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT"
-            [items]="Designation" [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)" class="employeefield">
+            [items]="Designation" [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)"
+            class="employeefield">
           </ionic-selectable>
         </ion-item>
       </ion-col>
@@ -73,7 +74,7 @@
       </ion-col>
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-button class ="ion-color-success" expand="block"  (click)="employeeSearch()">Search</ion-button>
+        <ion-button class="ion-color-success" expand="block" (click)="employeeSearch()">Search</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -115,58 +116,85 @@
             <!-- <img  style="width: 50%;margin-left: 10px;" class="avatar" onerror="this.src='assets/Images/defaultMale.png'" src="{{item.profilePhoto}}"> -->
           </div>
         </ion-col>
-        <ion-col size="8">
-          <ion-label class="card_content_label">Designation :</ion-label>
+        <ion-col size="8" style="align-items: center;display: flex;padding-left: 56px;">
+          <ion-label style="position: absolute;" class="card_content_label">Designation :</ion-label>
           <!-- <br /> -->
-          <ion-label class="labelData-text">{{item.Designation}}</ion-label>
-        </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
-            <ion-label class="card_content_label labelHead-text">Branch :</ion-label>
+          <ion-label style="margin-bottom:  26px;" class="labelData-text">{{item.Designation}}</ion-label>
+          <br>
 
-            <ion-label class="labelData-text">{{item.branchtxt}}</ion-label>
-          </ion-col>
-        <ion-col size-sm="7" size="7" size-md="7" size-lg="7" size-xl="7">
+          
+
+        </ion-col>
+        <ion-col style="padding-left: 52%;
+        top: -60px;">
           <ion-label class="card_content_label labelHead-text">Department :</ion-label>
           <ion-label class="labelData-text">{{item.Department}}</ion-label>
         </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <ion-label class="card_content_label labelHead-text">DOB :</ion-label>
 
-            <ion-label class="labelData-text">{{item.DOB | date: 'dd-MM-yyyy'}}</ion-label>
-          </ion-col>
+
+      </ion-row>
+      <ion-row style="
+          margin-top: -41px;">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text">Branch :</ion-label>
+
+          <ion-label class="labelData-text">{{item.branchtxt}}</ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text">DOB :</ion-label>
+
+          <ion-label class="labelData-text">{{item.DOB | date: 'dd-MM-yyyy'}}</ion-label>
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text">Department :</ion-label>
+          <ion-label class="labelData-text">{{item.Department}}</ion-label>
+        </ion-col> -->
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i> Mobile
+          </ion-label>
+          <ion-label *ngIf="item.Mobile!=0" class="labelData-text">{{item.Mobile}}</ion-label>
+          <ion-label *ngIf="item.Mobile==0" class="labelData-text"></ion-label>
+        </ion-col>
+
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text">DOB :</ion-label>
+
+          <ion-label class="labelData-text">{{item.DOB | date: 'dd-MM-yyyy'}}</ion-label>
+        </ion-col> -->
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label class="card_content_label labelHead-text">DOJ :</ion-label>
 
           <ion-label class="labelData-text">{{item.DOJ | date: 'dd-MM-yyyy'}}</ion-label>
         </ion-col>
-       </ion-row>
-       <ion-row>
+      </ion-row>
+      <ion-row>
 
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <ion-label class="card_content_label labelHead-text">Email ID :</ion-label>
           <!-- <br /> -->
           <ion-label class="labelData-text">{{item.Email}}</ion-label>
         </ion-col>
-       </ion-row>
-       <ion-row>
+      </ion-row>
+      <ion-row>
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i> Mobile
+          </ion-label>
+          <ion-label *ngIf="item.Mobile!=0" class="labelData-text">{{item.Mobile}}</ion-label>
+          <ion-label *ngIf="item.Mobile==0" class="labelData-text"></ion-label>
+        </ion-col> -->
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i> Mobile</ion-label>
-          <ion-label *ngIf="item.Mobile!==0" class="labelData-text">{{item.Mobile}}</ion-label>
-          <ion-label *ngIf="item.Mobile===0" class="labelData-text"></ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-call"></i> Office</ion-label>
-          <ion-label *ngIf="item.OffPhone!==0" class="labelData-text">{{item.OffPhone}}</ion-label>
-          <ion-label *ngIf="item.OffPhone===0" class="labelData-text"></ion-label>
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-call"></i> Office
+          </ion-label>
+          <ion-label *ngIf="item.OffPhone!=0" class="labelData-text">{{item.OffPhone}}</ion-label>
+          <ion-label *ngIf="item.OffPhone==0" class="labelData-text"></ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i> Attendance</ion-label>
+          <ion-label class="card_content_label labelHead-text"><i class="icon ion-android-phone-portrait"></i>
+            Attendance</ion-label>
           <ion-label class="labelData-text"></ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -180,7 +208,8 @@
   <ion-card *ngFor="let item of displayEmployee" style="display: none;">
     <ion-card-header class="dashboardhead" style="padding: 10px;">
       <ion-card-title style="color: white;font-size: 14px;font-weight: bold;">{{item.EmployeeCode}} <ion-label
-          style="float: right;">{{item.Name}}</ion-label></ion-card-title>
+          style="float: right;">{{item.Name}}</ion-label>
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content style="padding: 10px;">
       <ion-grid style="padding: 0;">
