@@ -17,7 +17,7 @@ throw new Error('Method not implemented.');
   Designation:any=[];
   function_id;
   Branch:any=[];
-  Department=[];
+  Department:any=[];
   designation;
   branch ;
   department;
@@ -77,7 +77,7 @@ VALUE: any;
   //get department
   getDepartment(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Department/0/0/0").then(resp=>{
-      this.Department = JSON.parse(resp.toString());
+      this.Department = resp;
       console.log(this.Department);
     }, error => {
 

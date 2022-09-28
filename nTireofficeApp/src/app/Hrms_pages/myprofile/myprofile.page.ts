@@ -44,9 +44,9 @@ export class MyprofilePage implements OnInit {
   file;
   photo;
   img;
-  qualification=[];
+  qualification:any=[];
   // file=[];
-  subQualification=[];
+  subQualification:any=[];
   profile={
     Qualification:"",
     DOB:'',
@@ -93,6 +93,7 @@ export class MyprofilePage implements OnInit {
   tempID: string;
   public buttonClicked: boolean = false;
   username = window.localStorage.getItem('TUM_USER_NAME');
+  empID: any;
   constructor( public modalController: ModalController,public alertController: AlertController,
     public toastmessageService:ToastmessageService,private datepipe: DatePipe,public sanitizer: DomSanitizer,private base64: Base64,private crop: Crop,private camera: Camera,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient,public actionSheetController: ActionSheetController) {
     this.emp_id=  window.localStorage['TUM_EMP_CODE'];
@@ -313,6 +314,11 @@ console.log(""+this.profilepic+""+this.image)
       this.profile1 = JSON.parse(resp.toString());
       console.log((resp));
 
+      window.localStorage['em_emp_id']=this.empID;
+      console.log("empid"+ window.localStorage['em_emp_id']);
+      window.localStorage['empid']=this.empID;
+      console.log("empid"+ window.localStorage['empid']);
+      
         if(this.profile1[0].Photo){
           this.photo=this.profile1[0].Photo.split('/');
           console.log(""+this.photo);
@@ -428,8 +434,8 @@ console.log(""+this.profilepic+""+this.image)
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
     };
   getQualification(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"CommonDropdown/"+window.localStorage['FUNCTION_ID'] + "/Qualification/" + "0" + "/0/0").then(resp=>{
-      this.qualification = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Qualification/" + "0" + "/0/0").then(resp=>{
+      this.qualification =resp;
       // this.getSubQualification(this.emp.qualification);
     }, error => {
 
@@ -440,8 +446,8 @@ console.log(""+this.profilepic+""+this.image)
 
   getSubQualification(data){
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"CommonDropdown/"+ window.localStorage['FUNCTION_ID']+  "/" + "SubQualification"+ "/" + "0/"+data+"/0").then(resp=>{
-      this.subQualification = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/"+"SubQualification/"+ "0/"+data+"/0").then(resp=>{
+      this.subQualification = resp;
     }, error => {
 
     console.log("error : "+JSON.stringify(error));
