@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable no-var */
 /* eslint-disable space-before-function-paren */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @typescript-eslint/no-shadow */
@@ -235,8 +237,8 @@ export class NewleadRetailPage implements OnInit {
       this.productdataarray = JSON.parse(this.productdataarray);
       // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       this.productdataarray.sort(function (a, b) {
-        const nameA = a.ProductName.toUpperCase(); // ignore upper and lowercase
-        const nameB = b.ProductName.toUpperCase(); // ignore upper and lowercase
+        const nameA = a.ProductName; // ignore upper and lowercase
+        const nameB = b.ProductName; // ignore upper and lowercase
 
         if (nameA < nameB) {
           return -1;
@@ -360,19 +362,18 @@ export class NewleadRetailPage implements OnInit {
   Getnextaction(productdata) {
     // console.log('productdata ', productdata);
 
-    const index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'ProductID', productdata);
-    // console.log('index ', index);
+    var index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'productID', productdata);
     this.curr_prod_category = this.productdataarray[index].productCatID;
-    // console.log('this.curr_prod_category ', this.curr_prod_category);
     const header = new Headers();
-    header.append('Content-Type', 'application/json');
+    header.append("Content-Type", "application/json");
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
     // /mobileapi/LMS/LMS.svc/customerresponse/
 
-    this.http.get(this.Ipaddressservice.ipaddress + '/nTireMobileCoreAPI/api/Sales/customerresponse/' + this.curr_prod_category, {
+    this.http.get(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +  'customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
+      console.log('testetetetetetete',resp);
       this.nextactionarray = JSON.stringify(resp);
       this.nextactionarray = JSON.parse(this.nextactionarray);
       console.log('nextactionarray: ' + JSON.stringify(this.nextactionarray));
