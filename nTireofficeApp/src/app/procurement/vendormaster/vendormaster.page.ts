@@ -76,12 +76,14 @@ export class VendormasterPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'vendor_detail/', obj).subscribe(res => {
       console.log(res);
       this.loading = false;
+      let res1 =JSON.stringify(res)
       // this.vendordetails_resp = res;
       // this.vendordetails = (this.vendordetails_resp.recordset);
       // this.vendorcode_resp = JSON.stringify(res);
       // this.vendorcode = JSON.parse(this.vendorcode_resp);
-      this.vendormaster_resp = res;
-      this.vendormaster = this.vendormaster_resp.recordset;
+      this.vendormaster_resp = res1;
+      // this.vendormaster = this.vendormaster_resp.recordset;
+      this.vendormaster=JSON.parse(this.vendormaster_resp);
       console.log(this.vendormaster)
       if (this.vendormaster != undefined) {
         this.vendorname = { vendor_id: this.vendormaster[0].Company, Vendor_Name: this.vendormaster[0].CompanyName };
