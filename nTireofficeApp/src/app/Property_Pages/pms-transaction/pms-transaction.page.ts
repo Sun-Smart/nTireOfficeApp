@@ -18,10 +18,10 @@ import { TableSampleService } from '../table-sample.service';
 export class PmsTransactionPage implements OnInit {
 
   options = {checkboxes:true}
-  data :any;
+  data :any =[];
   columns: any = [];
   rows : any
-
+ 
   constructor(private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) { 
 
     this.columns = [

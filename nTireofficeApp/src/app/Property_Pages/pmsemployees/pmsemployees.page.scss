@@ -1,3 +1,8 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+
 ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;

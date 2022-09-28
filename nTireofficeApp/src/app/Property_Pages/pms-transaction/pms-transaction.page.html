@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-card>
+  
   <ion-card-header class="card_header">
     <ion-label class="card_header_text"> Transaction</ion-label>
   </ion-card-header>
@@ -18,6 +19,7 @@
     <div>
       <!-- Theme classes dark, material, bootstrap -->
       <ngx-datatable 
+
       class="material"
       [limit]="8" 
       [rows]="data" 
@@ -25,9 +27,11 @@
       [columns]="columns"
       [columnMode]="'force'" 
       [headerHeight]="50" 
-      [footerHeight]="50">
+      [footerHeight]="50"
+      >
 
       </ngx-datatable>
+    
     </div>
   </ion-card-content>
 </ion-card>
