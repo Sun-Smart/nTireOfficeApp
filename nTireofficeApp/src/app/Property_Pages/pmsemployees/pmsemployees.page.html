@@ -19,16 +19,18 @@
  
    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
       <ng-template>
+
         <ion-header>
           <ion-toolbar>
-            
             <ion-buttons slot="start">
-              <ion-button (click)="taskCancel()">Cancel</ion-button>
+              <ion-button (click)="taskCancel()" >
+                <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
             </ion-buttons>
-            <ion-title style="text-align: center;">My Tasks</ion-title>
-         
+            <ion-title>My Tasks</ion-title>
           </ion-toolbar>
         </ion-header>
+
+   
         <ion-content>
 
           <ion-card>
@@ -40,7 +42,7 @@
                 </ion-col>
 
                 <ion-col size="6">
-                  <ion-button class="ion-color-success" >New</ion-button>
+                  <ion-button class="ion-color-success" (click)="newIssueCreate()" >New</ion-button>
                 </ion-col>
               </ion-row>
 
@@ -127,11 +129,6 @@
                               <ion-select-option value="bananas">Completed</ion-select-option>
                             </ion-select>
 
-
-
-
-
-
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -145,13 +142,14 @@
     </ion-modal>
     <ion-modal trigger="open-modal0" >
       <ng-template>
+
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
-              <ion-button (click)="AddCancel()">Cancel</ion-button>
+              <ion-button (click)="Addcancel()" >
+                <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
             </ion-buttons>
-            <ion-title style="text-align: center;">Additional</ion-title>
-         
+            <ion-title>Additional Charges</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>

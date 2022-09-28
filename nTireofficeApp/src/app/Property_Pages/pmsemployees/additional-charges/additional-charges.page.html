@@ -1,9 +1,11 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()">Cancel</ion-button>
-      <ion-title>Additional Charges</ion-title>
+      <ion-button (click)="cancel()" >
+        <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
     </ion-buttons>
+    <ion-title>Additional Charges</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +26,7 @@
         </ion-col>
         <ion-col size="5" class="col_height">
           
-            <ion-input placeholder="Text Input" class="createInput" ></ion-input>
+            <ion-input placeholder="Text Input" class="form-control createInput" ></ion-input>
          
         </ion-col>
 
@@ -35,7 +37,7 @@
       </ion-col>
       <ion-col size="5" class="col_height">
         
-          <ion-input placeholder="Text Input" class="createInput" ></ion-input>
+          <ion-input placeholder="Text Input" class="form-control createInput" ></ion-input>
        
       </ion-col>
 
@@ -48,7 +50,7 @@
     </ion-col>
     <ion-col size="5" class="col_height">
       
-        <ion-input placeholder="Text Input" class="createInput" ></ion-input>
+        <ion-input placeholder="Text Input" class="form-control createInput" ></ion-input>
      
     </ion-col>
 
