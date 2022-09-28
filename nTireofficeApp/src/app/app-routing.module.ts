@@ -316,6 +316,12 @@ const routes: Routes = [
   },
 
   // procurement
+
+
+  {
+    path: 'manage-rfq',
+    loadChildren: () => import('./procurement/manage-rfq/manage-rfq-routing.module').then( m => m.ManageRfqPageRoutingModule)
+  },
   {
     path: 'purchase-request',
     loadChildren: () => import('./procurement/purchase-request/purchase-request.module').then( m => m.PurchaseRequestPageModule)
