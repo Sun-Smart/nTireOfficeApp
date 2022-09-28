@@ -34,7 +34,7 @@
       <div class="table">
         <table class="table table-striped">
           <thead class="card_header">
-            <tr class="table-head">
+            <tr class="table-head" >
 
 
               <th><input type="checkbox" id="checkbox"> </th>
@@ -54,7 +54,7 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>12/09/2020</td>
-                <td><a (click)="find()"><ion-icon name="search-circle-outline">find</ion-icon></a></td>
+                <td><a (click)="find()">Find</a></td>
               </tr>
 
               <tr>
@@ -63,7 +63,7 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>12/09/2020</td>
-                <td><a (click)="find()"><ion-icon name="search-circle-outline">find</ion-icon></a></td>
+                <td><a (click)="find()">Find</a></td>
               </tr>
 
               <tr>
@@ -72,7 +72,63 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>12/09/2020</td>
-                <td><a (click)="find()"><ion-icon name="search-circle-outline"></ion-icon></a></td>
+                <td><a (click)="find()">Find</a></td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+
+    </ion-card-content>
+
+<br>
+
+    <ion-card-header class="card_header">
+      <ion-card-title class="card_header_text" style="text-align:center ;">Vendor List</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <div class="table">
+        <table class="table table-striped">
+          <thead class="card_header">
+            <tr class="table-head" >
+
+
+              <th style="padding: 15px !important"><input type="checkbox" id="checkbox"> </th>
+              <th style="padding: 15px !important">Vendor Name</th>
+              <th style="padding: 15px !important">QTY</th>
+              <th style="padding: 15px !important">Unit Price</th>
+              <th style="padding: 15px !important">Net Price</th>
+              <th style="padding: 15px !important">Action</th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <ng-container>
+              <tr>
+                <td><input type="checkbox" id="checkbox"></td>
+                <td>RFQ8976</td>
+                <td>13232</td>
+                <td>77</td>
+                <td>98788</td>
+                <td><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+              </tr>
+
+              <tr>
+                <td><input type="checkbox" id="checkbox"></td>
+                <td>RFQ8976</td>
+                <td>7865</td>
+                <td>77</td>
+                <td>87346</td>
+                <td><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+              </tr>
+
+              <tr>
+                <td><input type="checkbox" id="checkbox"></td>
+                <td>RFQ8976</td>
+                <td>7865</td>
+                <td>77</td>
+                <td>76348</td>
+                <td><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
               </tr>
             </ng-container>
           </tbody>
