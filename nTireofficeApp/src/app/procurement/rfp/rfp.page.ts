@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rfp.page.scss'],
 })
 export class RFPPage implements OnInit {
-
+  expression:boolean=false
   constructor() { }
 
   ngOnInit() {

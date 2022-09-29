@@ -320,7 +320,7 @@ const routes: Routes = [
 
   {
     path: 'manage-rfq',
-    loadChildren: () => import('./procurement/manage-rfq/manage-rfq-routing.module').then( m => m.ManageRfqPageRoutingModule)
+    loadChildren: () => import('./procurement/manage-rfq/manage-rfq.module').then( m => m.ManageRfqPageModule)
   },
   {
     path: 'purchase-request',
