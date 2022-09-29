@@ -300,14 +300,14 @@ console.log(""+this.profilepic+""+this.image)
   getEmployeeDetails(){
     var obj = {
       empID: 0,
-      name: "%20",
-      code: this.emp_id,
-      designation: "%20",
-      branch: 0,
-      department: 0,
-      top: 0,
+      name: window.localStorage.getItem("EmployeeName"),
+      code: window.localStorage.getItem("TUM_EMP_CODE"),
+      designation: window.localStorage.getItem("EmpDesignation"),
+      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      department: window.localStorage.getItem("EmpDepartment"),
+      top: 20,
       increment: 1,
-      appURL:'demo.herbie.ai'
+      appURL:'employeedetails'
     }
     console.log(""+obj)
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURL).then(resp=>{
@@ -319,7 +319,6 @@ console.log(""+this.profilepic+""+this.image)
       console.log("empid"+ window.localStorage['em_emp_id']);
       window.localStorage['empid']=this.empID;
       console.log("empid"+ window.localStorage['empid']);
-      
         if(this.profile1[0].Photo){
           this.photo=this.profile1[0].Photo.split('/');
           console.log(""+this.photo);
@@ -803,7 +802,6 @@ console.log(""+this.profilepic+""+this.image)
               this.profile.CurrentPincode = ' ';
             }
 
-
             // API CALLING FOR currentAddress DETAILS
             this.currentAddressObject = {
               empID: window.localStorage['empid'],
@@ -837,8 +835,6 @@ console.log(""+this.profilepic+""+this.image)
             console.log("error : "+JSON.stringify(error));
 
             });
-
-
           }
         } else if (value == "current.cancel") {
           this.currentToggle = 0;

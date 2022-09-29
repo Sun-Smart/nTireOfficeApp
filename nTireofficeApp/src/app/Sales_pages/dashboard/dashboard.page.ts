@@ -115,17 +115,17 @@ export class DashboardPage implements OnInit {
     var exampleArrya = [];
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
-      branchid: branchid
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
+      branchid: parseInt(branchid)
     };
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlSales + 'getdashboard_stagewise/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getdashboard_stagewise', params, {
       headers: options,
     }).subscribe(resp => {
       console.log("options" + JSON.stringify(resp));
@@ -214,17 +214,17 @@ export class DashboardPage implements OnInit {
     var sourcearray = [];
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
-      branchid: branchid
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
+      branchid: parseInt(branchid)
     };
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlSales + 'getdashboard_sourcewise/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getdashboard_sourcewise', params, {
       headers: options,
     }).subscribe(resp => {
       console.log("getdashboard_sourcewise : " + JSON.stringify(resp));
@@ -319,7 +319,7 @@ export class DashboardPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlSales + 'salesdashboard_productwiseforcast/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'salesdashboard_productwiseforcast/', params, {
       headers: options,
     }).subscribe(resp => {
       console.log("salesdashboard_productwiseforcast : " + JSON.stringify(resp));
