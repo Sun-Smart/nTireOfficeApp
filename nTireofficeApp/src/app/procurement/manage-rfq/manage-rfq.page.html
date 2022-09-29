@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button (click)="back()" ></ion-back-button>
     </ion-buttons>
-    <ion-title>manage RFQ</ion-title>
+    <ion-title>Manage RFQ</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+<ion-content >
 
   <ion-card>
     <ion-grid>
@@ -31,7 +32,7 @@
     </ion-card-header>
     <ion-card-content>
 
-      <div class="table">
+      <div class="table" >
         <table class="table table-striped">
           <thead class="card_header">
             <tr class="table-head" >
@@ -44,6 +45,7 @@
               <th>QTY</th>
               <th>Requisition Date</th>
               <th>Action</th>
+
             </tr>
           </thead>
           <tbody class="table-body">
@@ -55,6 +57,7 @@
                 <td>77</td>
                 <td>12/09/2020</td>
                 <td><a (click)="find()">Find</a></td>
+
               </tr>
 
               <tr>
@@ -64,6 +67,7 @@
                 <td>77</td>
                 <td>12/09/2020</td>
                 <td><a (click)="find()">Find</a></td>
+
               </tr>
 
               <tr>
@@ -73,6 +77,7 @@
                 <td>77</td>
                 <td>12/09/2020</td>
                 <td><a (click)="find()">Find</a></td>
+
               </tr>
             </ng-container>
           </tbody>
@@ -91,15 +96,14 @@
       <div class="table">
         <table class="table table-striped">
           <thead class="card_header">
-            <tr class="table-head" >
-
-
-              <th style="padding: 15px !important"><input type="checkbox" id="checkbox"> </th>
-              <th style="padding: 15px !important">Vendor Name</th>
+            <tr class="table-head">
+              <th style="padding: 10px !important"><input type="checkbox" id="checkbox"> </th>
+              <th style="padding: 30px !important">Vendor Name</th>
               <th style="padding: 15px !important">QTY</th>
               <th style="padding: 15px !important">Unit Price</th>
               <th style="padding: 15px !important">Net Price</th>
-              <th style="padding: 15px !important">Action</th>
+              <th  *ngIf="showvendorqrotationaction" style="padding: 15px !important">Action</th>
+              <th  *ngIf="showvendorqrotation" style="padding: 15px !important">Vendor Quotation</th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -110,7 +114,9 @@
                 <td>13232</td>
                 <td>77</td>
                 <td>98788</td>
-                <td><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotationaction"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotation"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
+
               </tr>
 
               <tr>
@@ -119,7 +125,9 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>87346</td>
-                <td><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotationaction"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotation"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
+
               </tr>
 
               <tr>
@@ -128,7 +136,9 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>76348</td>
-                <td><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotationaction"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotation"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
+
               </tr>
             </ng-container>
           </tbody>
@@ -141,7 +151,7 @@
     <ion-row>
       <ion-col>
         <ion-col style="text-align: center;">
-          <ion-button class="ion-color-success"   style="margin-top: -18px;" expand="block">Request Vender Quotation</ion-button>
+          <ion-button class="ion-color-success" (click)="RequestVenderQuotation()"  style="margin-top: -18px;" expand="block">Request Vender Quotation</ion-button>
         </ion-col>
       </ion-col>
       <ion-col>
@@ -154,15 +164,17 @@
           <ion-button class="ion-color-danger"   style="margin-top: -18px;" expand="block">close</ion-button>
         </ion-col>
       </ion-col>
-
     </ion-row>
-
-
-
-
   </ion-card>
-
-
-
-
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>
