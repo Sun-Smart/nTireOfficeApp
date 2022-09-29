@@ -16,6 +16,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
+
 export class DashboardPage implements OnInit {
 
   myrequest:boolean;
@@ -85,7 +86,6 @@ console.log(window.localStorage['token'],"token1")
 console.log(window.localStorage.token,"token2")
     this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
-
     this.employee_id = window.localStorage['em_emp_id'];
     this.yeardata="";
     this.monthdata="";
@@ -97,24 +97,20 @@ console.log(window.localStorage.token,"token2")
     this.getEmployeeALLRequests();
     this.getEmployeePayslip();
     // this.getAttendance();
-
     this.getEmployeeApprovals();
     this.getMyTrainings();
     this.getGreetings();
 
 this.backbutton();
-
   }
+
   backbutton() {
     console.log('backbutton')
     document.addEventListener("backbutton", async () => {
       console.log('backbutton1' + this.router.url)
-
       if (this.router.url =='/hrmsdashboard') {
-
         this.router.navigate(['/hrmsdashboard'])
         var alert1 = await this.alertController.create({
-
           message: 'Are you sure you want to logout',
           buttons: [
             {
@@ -133,16 +129,12 @@ this.backbutton();
                   access_token: localStorage.getItem('token'),
                   userid: localStorage.getItem('TUM_USER_ID'),
                   usertoken: localStorage.getItem('usertoken'),
-
                 };
                 this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj).then(resp => {
                    this.router.navigate(['/login']);
                 }, error => {
                   this.router.navigate(['/login']);
-
                 });
-
-
               }
             }
           ]
@@ -150,7 +142,6 @@ this.backbutton();
 
         await alert1.present();
       // this.logout();
-
       }
       else if (this.router.url === '/login') {
         navigator['app'].exitApp();
@@ -476,7 +467,7 @@ this.backbutton();
   getMyTrainings(){
     var get_obj={
 
-      userid:parseInt(this.userid),
+      userid: parseInt(this.userid),
       usertoken:null,
       access_token:this.token
 }
