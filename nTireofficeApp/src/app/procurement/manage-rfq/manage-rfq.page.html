@@ -97,13 +97,13 @@
         <table class="table table-striped">
           <thead class="card_header">
             <tr class="table-head">
-              <th style="padding: 10px !important"><input type="checkbox" id="checkbox"> </th>
-              <th style="padding: 30px !important">Vendor Name</th>
-              <th style="padding: 15px !important">QTY</th>
-              <th style="padding: 15px !important">Unit Price</th>
-              <th style="padding: 15px !important">Net Price</th>
-              <th  *ngIf="showvendorqrotationaction" style="padding: 15px !important">Action</th>
-              <th  *ngIf="showvendorqrotation" style="padding: 15px !important">Vendor Quotation</th>
+              <th style="padding: 2px !important"><input type="checkbox" id="checkbox"> </th>
+              <th style="padding: 5px !important">Vendor Name</th>
+              <th style="padding: 5px !important">QTY</th>
+              <th style="padding: 5px !important">Unit Price</th>
+              <th style="padding: 5px !important">Net Price</th>
+              <th  *ngIf="showvendorqrotationaction" style="padding: 8px !important ; font-size: 11px;" >Action</th>
+              <th  *ngIf="showvendorqrotation" style="padding: 0px !important">Vendor Quotation</th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -114,8 +114,8 @@
                 <td>13232</td>
                 <td>77</td>
                 <td>98788</td>
-                <td *ngIf="showvendorqrotationaction"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
-                <td *ngIf="showvendorqrotation"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
+                <td *ngIf="showvendorqrotationaction" style="text-align: center;"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotation" style="font-size: 11px;" ><a (click)="VendorQuotation()">Vendor Quotation</a></td>
 
               </tr>
 
@@ -125,8 +125,8 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>87346</td>
-                <td *ngIf="showvendorqrotationaction"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
-                <td *ngIf="showvendorqrotation"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
+                <td *ngIf="showvendorqrotationaction" style="text-align: center;"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotation"style=" font-size: 11px;"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
 
               </tr>
 
@@ -136,8 +136,8 @@
                 <td>7865</td>
                 <td>77</td>
                 <td>76348</td>
-                <td *ngIf="showvendorqrotationaction"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
-                <td *ngIf="showvendorqrotation"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
+                <td *ngIf="showvendorqrotationaction" style="text-align: center;"><a (click)="find()"><ion-icon name="trash-outline"></ion-icon></a></td>
+                <td *ngIf="showvendorqrotation" style="font-size: 11px;"><a (click)="VendorQuotation()">Vendor Quotation</a></td>
 
               </tr>
             </ng-container>

@@ -18,7 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
     BrowserModule,
     PmsTransactionPageRoutingModule
   ],
-  
+
   declarations: [PmsTransactionPage],
   providers:[HttpClient],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
