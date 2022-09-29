@@ -8,7 +8,6 @@ import { MenuController, IonSlides ,NavController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { json } from '@angular-devkit/core';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -32,14 +31,10 @@ export class LoginPage implements OnInit {
     private  menuCtrl: MenuController,private  navCtrl: NavController) {
     this.menuCtrl.enable(false, 'first');
     this.showValue = { "type": "password", "text": "Show" };
-
   }
 
   ngOnInit() {
   }
-
-
-
 
   Loginevent(){
     if(this.username!=undefined && this.password!=undefined){
@@ -50,7 +45,6 @@ export class LoginPage implements OnInit {
     var sessionid="1234567";
     var username=this.username.toUpperCase();
     var password=this.password;
-
 
     var credentials = {
       functionid: 1,
@@ -74,20 +68,13 @@ export class LoginPage implements OnInit {
 
           if(resp['data']['Column1']!=undefined)
           {
-
             var b = resp['data']['Column1'];
             setTimeout(() => {
             this.loadingdismiss();
             this.presentAlert('Alert1',b);
 
             console.log(""+resp['data']['Column1'])
-
-
-
-
               }, 5000);
-
-
           }
 
           // this.loadingdismiss();
@@ -95,7 +82,6 @@ export class LoginPage implements OnInit {
 
           // }else{
             localStorage.setItem('expires', resp['expires']);
-
             localStorage.setItem('token', resp['token']);
             localStorage.setItem('usertoken', resp['usertoken']);
 
@@ -150,7 +136,6 @@ export class LoginPage implements OnInit {
               //      }, ]
               //    });
               //  }
-
              }
 
 
@@ -178,27 +163,29 @@ export class LoginPage implements OnInit {
                   localStorage.setItem('EmpDesignation', userdata[0]['em_emp_designation']);
                   localStorage.setItem('EmpDepartment', userdata[0]['em_emp_department']);
 
-
                   this.route.navigate(['/dashboardCams']);
-                } else {
+                }
+                else
+                {
                   this.loadingdismiss();
                   this.presentAlert('Login failed!','Please check your username & Password!');
                   // this.loadingdismiss();
                 }
                 // this.loadingdismiss();
-              } else {
+              }
+              else
+              {
                 this.loadingdismiss();
                 this.presentAlert('Login failed!','Please check your username & Password!');
               }
             }
-
         }, error => {
           this.loadingdismiss();
           this.presentAlert('Login failed!','Server Error, Please try after sometime!');
-
         });
       }
-      else{
+      else
+      {
         this.presentAlert('','Enter both Username & Password');
       }
   }
@@ -229,7 +216,6 @@ export class LoginPage implements OnInit {
       translucent: true,
       cssClass: 'custom-class custom-loading',
 
-
     });
     return await loading.present();
   }
@@ -247,7 +233,6 @@ export class LoginPage implements OnInit {
     // enable the left menu when leaving the login page
     // this.menuCtrl.enable(true);
   }
-
 
   ngOnDestroy() {
     //this.backButtonSubscription.unsubscribe();

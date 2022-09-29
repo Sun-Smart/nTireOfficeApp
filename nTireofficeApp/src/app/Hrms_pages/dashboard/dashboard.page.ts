@@ -80,8 +80,9 @@ export class DashboardPage implements OnInit {
     this.employName = window.localStorage['em_emp_name']
     console.log(""+ this.emp_id+this.userid);
     this.myrequest=false;
-
-
+console.log(this.token,"token")
+console.log(window.localStorage['token'],"token1")
+console.log(window.localStorage.token,"token2")
     this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
 
@@ -338,6 +339,8 @@ this.backbutton();
       increment: 1,
       appURL:'employeedetails'
     }
+
+
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp=>{
       this.displayUser = JSON.stringify(resp);
       this.displayUser = JSON.parse(this.displayUser);
@@ -473,8 +476,8 @@ this.backbutton();
   getMyTrainings(){
     var get_obj={
 
-      userid:this.userid,
-      usertoken:this.usertoken,
+      userid:parseInt(this.userid),
+      usertoken:null,
       access_token:this.token
 }
 
@@ -596,8 +599,6 @@ this.backbutton();
       item:JSON.stringify(item)
 
       }])
-
-
   }
 
   // downloadDoc(doc) {
