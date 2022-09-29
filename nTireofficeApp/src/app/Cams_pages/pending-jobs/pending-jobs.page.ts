@@ -43,6 +43,8 @@ export class PendingJobsPage implements OnInit {
   username:any;
   jobs:any;
   scannedCode;
+  funtionID;
+  branch_ID;
   constructor(private Tabparams:TabparamserviceService,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router: Router,private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -50,6 +52,8 @@ export class PendingJobsPage implements OnInit {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.username=localStorage.getItem('TUM_USER_NAME');
+    this.funtionID = localStorage.getItem('FUNCTION_ID');
+    this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
 
 
     this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
@@ -145,12 +149,14 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11/1/1/%20/%20/%20/'+this.userID+'/'+this.usertype+'/%20/%20/MT', {
-      
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+ this.usertype +'&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
+                               // Pendingsearchs11?strfunction=1&branch
+                                   // =1&fdate=28-01-2018&tdate=28-09-2022&Status=Pending&strUserId=193&UserType=11
+                               // &drpcategory=null&drptype=6&TASKTYPE=84&AssetCode=MT
       headers: options,
     }).subscribe(resp => {
        this.carddata=resp;
-       this.responseData = JSON.parse(this.carddata);
+       this.responseData = this.carddata;
        console.log(this.responseData);
        this.responseDatalength = this.responseData.length;
        this.branch1 = this.responseData[0].Branch;
@@ -206,7 +212,7 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate='+fromdate+'&tdate='+todate+'&Status='+ status +'&strUserId='+this.userID+'&UserType='+this.usertype+'/'+assetCat+'/'+assetSubCat+'/'+jobs, {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate='+fromdate+'&tdate='+todate+'&Status='+ status +'&strUserId='+this.userID+'&UserType='+window.localStorage.getItem('TUM_USER_TYPE')+'/'+assetCat+'/'+assetSubCat+'/'+jobs, {
                                                       // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
       headers: options,
     }).subscribe(resp => {
@@ -306,7 +312,9 @@ pendateval() {
       
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+this.usertype, {
-                                                            // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
+                                                            
+          
+          // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
           headers: options,
         }).subscribe(resp => {
               // alert(JSON.stringify(response));
