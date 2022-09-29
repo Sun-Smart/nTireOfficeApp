@@ -6,10 +6,7 @@
  * used as an entry point to import other CSS/Sass files to be included in the
  * output CSS.
  * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
-
-
- */
+ * https://ionicframework.com/docs/layout/global-stylesheets*/
 
 
  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
@@ -1029,6 +1026,7 @@
    color: #fff !important;
    --ion-color-contrast: var(--ion-color-light) !important;
    --color:#fff !important;
+   font-weight: bold;
 
  }
 
@@ -1211,3 +1209,14 @@ ion-searchbar{
   height: 40px;
   background-color: white;
 }
+
+
+//Samu
+
+.myprofilesegment
+{
+  font-size: 12px !important;
+  color:#000 !important;
+  font-weight: bold;
+}
+
