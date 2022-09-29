@@ -66,8 +66,12 @@ export class VendorpoconfirmPage implements OnInit {
     }
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'getAllBranches/',obj).subscribe(res=>{
       console.log(res);
-      this.allbranch_res = res;
-      this.allbranch = this.allbranch_res.recordset;
+      let res1 =JSON.stringify(res)
+      this.allbranch_res = res1;
+      console.log(this.allbranch_res)
+
+      this.allbranch=JSON.parse(this.allbranch_res);
+      // this.allbranch = this.allbranch_res.recordset;
     },err=>{
       console.log(err);
     })
