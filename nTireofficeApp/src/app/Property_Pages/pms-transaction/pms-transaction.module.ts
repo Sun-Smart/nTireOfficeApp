@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA  } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -15,9 +15,10 @@ import { BrowserModule } from '@angular/platform-browser';
     IonicModule,
     HttpClientModule,
     NgxDatatableModule,
-    PmsTransactionPageRoutingModule,
-    BrowserModule
+    BrowserModule,
+    PmsTransactionPageRoutingModule
   ],
+  
   declarations: [PmsTransactionPage],
   providers:[HttpClient],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
