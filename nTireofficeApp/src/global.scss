@@ -105,6 +105,7 @@
  .ContentName {
    color: #000 !important;
    font-weight: 700 !important;
+
  }
 
  #ContentName {
@@ -807,9 +808,8 @@
  }
 
  ion-icon {
-   font-size: 25px;
+   font-size: 28px;
    // color: #004073;
-
    // padding-top: 12px;
  }
 
@@ -1041,6 +1041,7 @@
      margin:auto;
 display: flex;
 justify-content: center;
+font-weight: bold ;
 }
      // padding-right: 50px !important;
    }
@@ -1142,19 +1143,24 @@ justify-content: center;
   text-align:center;
   color: #000 !important;
 }
+
 .labelHead-text{
   display: flex;
   color: #000;
-  font-weight: 600;
+  font-weight: 500;
 }
+
+//Samu
 .labelData-text{
   font-size: 14px!important;
   font-weight: bold;
 }
+
 //suneel
 :host(.item-interactive.ion-valid) {
   --highlight-background: #4c8dff !important;
 }
+
 
  .Input-text-field {
    border: 1px solid rgb(180, 177, 177);
