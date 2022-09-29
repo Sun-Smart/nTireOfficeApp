@@ -144,7 +144,8 @@ export class NewleadRetailPage implements OnInit {
     this.exampleTextRes = '';
     this.showmap = true;
     this.function = localStorage.getItem('FUNCTION_DESC');
-    this.branch = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    // this.branch = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    this.branch ='<< Select >>';
     this.BranchLocationdata(this.branch);
     this.branchlocation = '<< Select >>';
     this.productdata = '<< Select >>';
