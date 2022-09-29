@@ -18,6 +18,7 @@ export class PmsemployeesPage implements OnInit {
   name: any;
   message: string;
 
+
   constructor(private modalCtrl: ModalController,private route:Router) { }
 
   ngOnInit() {

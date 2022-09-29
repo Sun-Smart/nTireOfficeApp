@@ -1,4 +1,3 @@
-<ion-content>
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -9,26 +8,51 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-card>
-  <ion-card-header class="card_header">
-    <ion-label class="card_header_text"> Transaction</ion-label>
-  </ion-card-header>
 
-  <ion-card-content>
-    <div>
-      <!-- Theme classes dark, material, bootstrap -->
-      <ngx-datatable 
-      class="material"
-      [limit]="8" 
-      [rows]="data" 
-      [rowHeight]="50" 
-      [columns]="columns"
-      [columnMode]="'force'" 
-      [headerHeight]="50" 
-      [footerHeight]="50">
+<ion-content>
 
-      </ngx-datatable>
-    </div>
-  </ion-card-content>
-</ion-card>
-</ion-content>
+
+  <ion-row>
+    <ion-col>
+      <ion-label class="labelHead-text" style="margin: 10px;">Transaction Details :</ion-label>
+    </ion-col>
+  </ion-row>
+
+
+  
+
+      <div>
+        <ngx-datatable 
+
+        class="material"
+        [headerClass]="ngx-header"
+        [limit]="8" 
+        [rows]="data" 
+        [rowHeight]="50" 
+        [columns]="columns"
+        [columnMode]="'standard'" 
+        [headerHeight]="40" 
+        [footerHeight]="50"
+        [scrollbarH]="true"
+        [sortType]="'multi'"
+        [loadingIndicator]="loadingIndicator"
+        [reorderable]="reorderable"
+        >
+  
+        </ngx-datatable>
+      
+      </div>
+  
+  </ion-content>
+
+
+  <ion-footer >
+    <ion-row>
+    <ion-col size="6">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size="6" style="text-align: right;">
+      {{username}}
+   </ion-col>
+    </ion-row>
+   </ion-footer>

@@ -13,7 +13,7 @@
   </ion-header>
 
   <p *ngIf="profile!==undefined" class="totalCount"><b>{{profile.Name}}</b></p>
-  <ion-grid style="background: transparent; padding: 10px;margin: 10px;border-radius: 8px;">
+  <ion-grid style="background: transparent;border-radius: 8px;">
 
     <ion-row style="background-color: #ffffff;">
       <br />
@@ -73,10 +73,10 @@
     </ion-row>
     <ion-segment [(ngModel)]="segmentdata">
       <ion-segment-button value="Personal">
-        <ion-label style="font-size: 12px !important;color:#000 !important">PERSONAL DETAILS</ion-label>
+        <ion-label class="myprofilesegment">PERSONAL DETAILS</ion-label>
       </ion-segment-button>
       <ion-segment-button value="education">
-        <ion-label style="font-size: 12px !important;color:#000 !important">EDUCATION & CAREER</ion-label>
+        <ion-label class="myprofilesegment">EDUCATION & CAREER</ion-label>
       </ion-segment-button>
 
     </ion-segment>
@@ -255,7 +255,7 @@
                 <ion-label>Current Address</ion-label>
                 <br />
                 <ion-textarea class="profileOutput labelData-text" *ngIf="currentToggle === 1" rows='2' cols="5"
-                  placeholder='Currrent Address (Use "_" instad of "/" for building no)'
+                  placeholder='Currrent Address'
                   [(ngModel)]="profile.CurrentAddress" [disabled]="currentToggle===0"></ion-textarea>
                 <span *ngIf="currentToggle === 0" class="profileOutput labelData-text">{{profile.CurrentAddress}}</span>
               </ion-col>
@@ -346,7 +346,7 @@
               <ion-label>Permanent Address</ion-label>
               <br />
               <ion-textarea class="profileOutput labelData-text" *ngIf="permanentToggle === 1" rows='1'
-                placeholder='Permanent Address (Use "_" instad of "/" for building no)'
+                placeholder='Permanent Address'
                 [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle===0"></ion-textarea>
               <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentAddress}}</span>
             </ion-col>

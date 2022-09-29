@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PmsdashboardPage } from './pmsdashboard.page';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 const routes: Routes = [
   {
@@ -11,7 +12,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  imports: [HttpClientModule,NgxDatatableModule,RouterModule.forChild(routes)],
+  exports: [NgxDatatableModule,RouterModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers:[HttpClient],
 })
 export class PmsdashboardPageRoutingModule {}
