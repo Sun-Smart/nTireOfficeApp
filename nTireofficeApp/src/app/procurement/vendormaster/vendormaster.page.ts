@@ -18,30 +18,30 @@ class Port {
 })
 export class VendormasterPage implements OnInit {
 
-  VendorCode:any;
-  vendordetails:any;
-  vendordetails_resp:any;
-  vendorname:any;
-  address:any;
-  functionname:any =window.localStorage['FUNCTION_DESC'];;
-  vendormaster_resp:any;
-  vendormaster:any;
-  vendorcode:any;
-  vendorcode_resp:any;
-  showfilter:boolean = true;
-  loading:boolean = false;
-username:any;
+  VendorCode: any;
+  vendordetails: any;
+  vendordetails_resp: any;
+  vendorname: any;
+  address: any;
+  functionname: any = window.localStorage['FUNCTION_DESC'];;
+  vendormaster_resp: any;
+  vendormaster: any;
+  vendorcode: any;
+  vendorcode_resp: any;
+  showfilter: boolean = true;
+  loading: boolean = false;
+  username: any;
   constructor(public modalController: ModalController, private http: HttpClient, public Ipaddressservice: IpaddressService,) {
 
 
- this.username=localStorage.getItem('TUM_USER_NAME');
-   }
+    this.username = localStorage.getItem('TUM_USER_NAME');
+  }
 
   ngOnInit() {
 
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.vendoritemsview();
   }
 
@@ -57,7 +57,7 @@ username:any;
     return await modal.present();
   }
 
-  displaydetails(event){
+  displaydetails(event) {
     this.loading = true;
     console.log(event);
     // console.log(this.VendorCode,vendorcode.vendor_id);
@@ -73,35 +73,40 @@ username:any;
       code: event.item.Vendor_Code
     }
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'vendor_detail/',obj).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'vendor_detail/', obj).subscribe(res => {
       console.log(res);
       this.loading = false;
+      let res1 =JSON.stringify(res)
       // this.vendordetails_resp = res;
       // this.vendordetails = (this.vendordetails_resp.recordset);
-      this.vendormaster_resp = res;
-      this.vendormaster =this.vendormaster_resp.recordset;
-      if(this.vendormaster!=undefined){
-       this.vendorname = { vendor_id: this.vendormaster[0].Company, Vendor_Name: this.vendormaster[0].CompanyName };
-       this.VendorCode = { vendor_id:this.vendormaster[0].Company, Vendor_Code: this.vendormaster[0].Code };
+      // this.vendorcode_resp = JSON.stringify(res);
+      // this.vendorcode = JSON.parse(this.vendorcode_resp);
+      this.vendormaster_resp = res1;
+      // this.vendormaster = this.vendormaster_resp.recordset;
+      this.vendormaster=JSON.parse(this.vendormaster_resp);
+      console.log(this.vendormaster)
+      if (this.vendormaster != undefined) {
+        this.vendorname = { vendor_id: this.vendormaster[0].Company, Vendor_Name: this.vendormaster[0].CompanyName };
+        this.VendorCode = { vendor_id: this.vendormaster[0].Company, Vendor_Code: this.vendormaster[0].Code };
 
-    }
+      }
 
 
       //console.log();
       //console.log(response.data.recordset[0].Add1)
       // this.vendorname = this.vendordetails[0].CompanyName;
-    //  this.address = this.vendordetails[0].Address1;
+      //  this.address = this.vendordetails[0].Address1;
       // this.VendorCode = this.vendordetails[0].Code;
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  togglefilter(){
+  togglefilter() {
     this.showfilter = !this.showfilter;
   }
 
-  getvendor(VendorCode){
+  getvendor(VendorCode) {
 
 
     var userid = window.localStorage['TUM_USER_ID'];
@@ -120,17 +125,17 @@ username:any;
     }
     console.log(obj)
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'get_vendordetails/',obj).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'get_vendordetails/', obj).subscribe(res => {
       console.log(res);
       this.vendormaster_resp = res;
 
-      this.vendormaster =this.vendormaster_resp.recordset;
-    },err=>{
+      this.vendormaster = this.vendormaster_resp.recordset;
+    }, err => {
       console.log(err);
     })
   }
 
-  vendoritemsview(){
+  vendoritemsview() {
 
     var userid = window.localStorage['TUM_USER_ID'];
 
@@ -144,11 +149,11 @@ username:any;
       access_token: window.localStorage['token']
     }
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'listvendor_items/',obj).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'listvendor_items/', obj).subscribe(res => {
       console.log(res);
-      this.vendorcode_resp = res;
-
-      this.vendorcode =this.vendorcode_resp.recordset;
+      this.vendorcode_resp = JSON.stringify(res);
+      this.vendorcode = JSON.parse(this.vendorcode_resp);
+      console.log('this.vendorcode ',this.vendorcode)
       this.vendorcode.sort((a, b) => a.Vendor_Code.localeCompare(b.Vendor_Code))
       var vendor_codelist = [];
       for (var i = 0; i < this.vendorcode.length; i++) {
@@ -159,7 +164,7 @@ username:any;
       //   source: vendor_codelist,
       // });
 
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }

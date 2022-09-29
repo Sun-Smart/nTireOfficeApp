@@ -1,3 +1,8 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+
 ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
@@ -31,4 +36,8 @@ td {
 }
 input.searchbar-input.sc-ion-searchbar-md {
   padding-right: 0 !important;
+}
+.sc-ion-searchbar-ios-h{
+  padding: 5px;
+  height: 50px;
 }

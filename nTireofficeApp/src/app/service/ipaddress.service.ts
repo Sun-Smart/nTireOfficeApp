@@ -78,7 +78,10 @@ export class IpaddressService {
     this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/Sales"
     this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/"
 
+
+    //Procurement
     // this.serviceerpapi = "/dms/DMS/erpapi/";
+    this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
   }
 
 

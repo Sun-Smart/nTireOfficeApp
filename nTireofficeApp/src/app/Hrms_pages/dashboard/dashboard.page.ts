@@ -24,7 +24,7 @@ export class DashboardPage implements OnInit {
   myaction:boolean;
   mytraining:boolean;
   mygreeting:boolean;
-  displayUser=[];
+  displayUser:any=[];
   Emailid;
   empID;
   photo;
@@ -42,6 +42,8 @@ export class DashboardPage implements OnInit {
   usertoken;
   token;
   emp_id;
+  employName;
+  employID;
   Wishes;
   advanceempgreeting1;
   advanceempgreeting=[];
@@ -52,7 +54,7 @@ export class DashboardPage implements OnInit {
   currentlatlon;
   username = window.localStorage.getItem('TUM_USER_NAME');
   allemp;
-  displayEmployee=[];
+  displayEmployee:any=[];
   empid;
   FUNCTION_ID;
   year:any=[];
@@ -74,6 +76,8 @@ export class DashboardPage implements OnInit {
     this.token = window.localStorage['token'];
     this.emp_id=  window.localStorage['TUM_EMP_CODE'];
     console.log(""+window.localStorage['TUM_EMP_CODE']);
+    this.employID = window.localStorage['em_emp_id']
+    this.employName = window.localStorage['em_emp_name']
     console.log(""+ this.emp_id+this.userid);
     this.myrequest=false;
 
@@ -160,20 +164,23 @@ this.backbutton();
   }
   getEmployeeList(){
     var obj = {
-       empID: this.empid,
-       name: window.localStorage.getItem("TUM_USER_NAME"),
+       empID: window.localStorage.getItem("EmployeeID"),
+       name: window.localStorage.getItem("EmployeeName"),
        code: window.localStorage.getItem("TUM_EMP_CODE"),
-       designation: "%20",
-       branch: 0,
-       department: 0,
-       top: 0,
-       increment: 1
+       designation: window.localStorage.getItem("EmpDesignation"),
+       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+       department: window.localStorage.getItem("EmpDepartment"),
+       top: 20,
+       increment: 1,
+       appURL:"employeelist"
      }
-  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
-   this.displayEmployee = JSON.parse(resp.toString());
+     console.log(obj,'ramiz')
+  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp=>{
+    this.displayEmployee = JSON.stringify(resp);
+   this.displayEmployee = JSON.parse(this.displayEmployee);
    this.displayEmployee = this.displayEmployee[0];
 
-   console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));
+  //  console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));
 
      }, error => {
 
@@ -321,21 +328,25 @@ this.backbutton();
   //*params="empID,name,code,designation,branch,department,top,increment"
   getEmployeeDetails(){
     var obj = {
-      empID: 0,
-      name: "%20",
-      code: this.emp_id,
-      designation: "%20",
-      branch: 0,
-      department: 0,
-      top: 0,
-      increment: 1
+      empID: window.localStorage.getItem('EmployeeID'),
+      name: window.localStorage.getItem('EmployeeName'),
+      code: window.localStorage.getItem("TUM_EMP_CODE"),
+      designation: window.localStorage.getItem("EmpDesignation") ,
+      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      department:window.localStorage.getItem("EmpDepartment") ,
+      top: 20,
+      increment: 1,
+      appURL:'employeedetails'
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
-      this.displayUser = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp=>{
+      this.displayUser = JSON.stringify(resp);
+      this.displayUser = JSON.parse(this.displayUser);
+      console.log(this.displayUser)
 
-      console.log("displayUser : "+JSON.stringify(this.displayUser));
-          window.localStorage['Emailid']=this.displayUser[0].Email;
+      // console.log("displayUser : "+JSON.stringify(this.displayUser));
+          window.localStorage['Emailid']=this.displayUser.Email;
           this.Emailid=window.localStorage['Emailid']
+          console.log(window.localStorage['Emailid'],'HAPPY')
 
           this.displayUser[0].Branch = window.localStorage['TUM_BRANCH_CODE'];
           this.empID = this.displayUser[0].EmployeeID;
@@ -390,7 +401,7 @@ this.backbutton();
   //*params="employee id"
   getEmployeePayslip(){
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeePayslip/'+ window.localStorage['em_emp_id']).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeePayslip/'+ window.localStorage['TUM_USER_ID']+'/'+'payslip').then(resp=>{
       this.empPayslips = JSON.parse(resp.toString());
       console.log("empPayslips : "+JSON.stringify(this.empPayslips))
 
@@ -440,7 +451,7 @@ this.backbutton();
 //Get emeployee apporovals based on employee id
   //*params="employee id"
   getEmployeeApprovals(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"EmployeeApproval/"+ window.localStorage['em_emp_id']).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+ window.localStorage['EmployeeID']).then(resp=>{
       this.empApprovals = JSON.parse(resp.toString());
           // this.empApprovals = this.empApprovals[0];
           // console.log(this.empApprovals);

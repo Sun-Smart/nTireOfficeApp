@@ -19,7 +19,6 @@ import{OpenAddEducationPage} from'../open-add-education/open-add-education.page'
 import{OpenaddemploymentpagePage} from'../openaddemploymentpage/openaddemploymentpage.page';
 import { ActionSheetController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.page.html',
@@ -306,10 +305,11 @@ console.log(""+this.profilepic+""+this.image)
       branch: 0,
       department: 0,
       top: 0,
-      increment: 1
+      increment: 1,
+      appURL:'demo.herbie.ai'
     }
     console.log(""+obj)
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURL).then(resp=>{
       this.profile = JSON.parse(resp.toString());
       this.profile1 = JSON.parse(resp.toString());
       console.log((resp));

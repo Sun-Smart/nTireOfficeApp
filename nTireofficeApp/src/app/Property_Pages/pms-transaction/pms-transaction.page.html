@@ -1,86 +1,38 @@
+<ion-content>
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="transCancel()">Cancel</ion-button>
+      <ion-button (click)="transCancel()" >
+        <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>PMS Transaction</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-card>
   
+  <ion-card-header class="card_header">
+    <ion-label class="card_header_text"> Transaction</ion-label>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div>
+      <!-- Theme classes dark, material, bootstrap -->
+      <ngx-datatable 
+
+      class="material"
+      [limit]="8" 
+      [rows]="data" 
+      [rowHeight]="50" 
+      [columns]="columns"
+      [columnMode]="'force'" 
+      [headerHeight]="50" 
+      [footerHeight]="50"
+      >
+
+      </ngx-datatable>
     
-        <div class="ion-padding">
-          <!-- Theme classes dark, material, bootstrap -->
-          <ngx-datatable 
-            class="material"
-            [limit]="8" 
-            [rows]="rows" 
-            [rowHeight]="50" 
-            [columns]="columns"
-            [columnMode]="'force'" 
-            [sortType]="'multi'"
-            [headerHeight]="50" 
-            [footerHeight]="50">
-          </ngx-datatable>
-        </div>
-
-      <!-- <div class="table" style="padding: 10px;">
-        <table class="table table-striped">
-          <thead 
-          class="card_header">
-            <tr class="table-head">
-              <th>#</th>
-              <th>Invoice</th>
-              <th>Month</th>
-              <th>Amount</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody class="table-body">
-            <ng-container>
-              <tr>
-                <td>1</td>
-                <td>223</td>
-                <td>july</td>
-                <td>20000</td>
-                <td>Active</td>
-
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>223</td>
-                <td>March</td>
-                <td>20000</td>
-                <td>Active</td>
-
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>223</td>
-                <td>july</td>
-                <td>20000</td>
-                <td>Active</td>
-
-              </tr>
-
-              <tr>
-                <td>4</td>
-                <td>223</td>
-                <td>Nov</td>
-                <td>20000</td>
-                <td>Active</td>
-
-              </tr>
-
-            </ng-container>
-          </tbody>
-        </table>
-      </div> -->
-
-
-
-
+    </div>
+  </ion-card-content>
+</ion-card>
 </ion-content>

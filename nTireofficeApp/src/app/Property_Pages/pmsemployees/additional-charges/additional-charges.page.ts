@@ -7,7 +7,8 @@ import { ModalController } from '@ionic/angular';
 })
 export class AdditionalChargesPage implements OnInit {
   visible:boolean=true;
-  invisible:boolean=false
+  invisible:boolean=false;
+ 
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {

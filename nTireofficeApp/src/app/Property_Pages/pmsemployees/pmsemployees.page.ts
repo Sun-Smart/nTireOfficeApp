@@ -5,6 +5,7 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { AdditionalChargesPage } from './additional-charges/additional-charges.page';
 import { Router } from '@angular/router';
 import { PmsTransactionPage } from '../pms-transaction/pms-transaction.page';
+import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 @Component({
   selector: 'app-pmsemployees',
   templateUrl: './pmsemployees.page.html',
@@ -17,6 +18,7 @@ export class PmsemployeesPage implements OnInit {
   name: any;
   message: string;
 
+
   constructor(private modalCtrl: ModalController,private route:Router) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class PmsemployeesPage implements OnInit {
     this.modalCtrl.dismiss();
   };
 
-  AddCancel() {
+  Addcancel() {
     this.modalCtrl.dismiss();
     debugger
     // this.modal.dismiss(null, 'cancel');
@@ -59,6 +61,12 @@ export class PmsemployeesPage implements OnInit {
 async transactionModal(){
   const model = await this.modalCtrl.create({
     component:PmsTransactionPage,
+  });
+  return await model.present();
+}
+async newIssueCreate(){
+  const model = await this.modalCtrl.create({
+    component : PmsCreateIssuePage,
   });
   return await model.present();
 }

@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IpaddressService} from '../../service/ipaddress.service';
 import { Chart } from 'chart.js';
+import { Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-pmsdashboard',
   templateUrl: './pmsdashboard.page.html',
@@ -9,71 +11,27 @@ import { Chart } from 'chart.js';
 })
 export class PmsdashboardPage implements OnInit {
 //   @ViewChild('pieChart') pieChart: { nativeElement: any; };
+
   students: any[];
   username:any;
-   technologies              : any = {
-   "technologies" : [
-            {
-               'technology' : 'Mobile: Ionic/Angular',
-               'time'       : 50,
-               'color'      : 'rgba(206, 61, 95, 0.5)',
-               'hover'      : 'rgba(199, 108, 129, 0.5)'
-            },
-            {
-               'technology' : 'Front-end: Sass/CSS',
-               'time'       : 15,
-               'color'      : 'rgba(83, 131, 185, 0.5)',
-               'hover'      : 'rgba(122, 160, 202, 0.5)'
-            },
-            {
-               'technology' : 'Server: PHP/MySQL',
-               'time'       : 10,
-               'color'      : 'rgba(198, 147, 194, 0.5)',
-               'hover'      : 'rgba(200, 166, 197, 0.5)'
-            },
-            {
-               'technology' : 'Code Documentation',
-               'time'       : 5,
-               'color'      : 'rgba(54, 116, 152, 0.5)',
-               'hover'      : 'rgba(103, 139, 160, 0.5)'
-            },
-            {
-               'technology' : 'Knowledge: Blogging',
-               'time'       : 10,
-               'color'      : 'rgba(152, 54, 145, 0.5)',
-               'hover'      : 'rgba(152, 89, 149, 0.5)',
-            },
-            {
-               'technology' : 'SEO/Online Marketing',
-               'time'       : 10,
-               'color'      : 'rgba(192, 192, 192, 0.5)',
-               'hover'      : 'rgba(220, 220, 220, 0.5)'
-            }
-  ]
-};		
-public pieChartEl                : any;
-public barChartEl                : any;
-public lineChartEl               : any;
-public chartLabels               : any    = [];
-public chartValues               : any    = [];
-public chartColours              : any    = [];
-public chartHoverColours         : any    = [];
-public chartLoadingEl            : any;
-
   chartLoading: any;
   userid: any;
 
-  constructor( private http: HttpClient,  public Ipaddressservice: IpaddressService) {
+
+  @ViewChild('sourcecanvas1') sourcecanvas1;
+
+  constructor( private http: HttpClient, private platform: Platform, public Ipaddressservice: IpaddressService) {
     this.userid= window.localStorage['TUM_USER_ID'];
-     this.username=localStorage.getItem('TUM_USER_NAME');  this.getCategoryCountChart();    }
+     this.username=localStorage.getItem('TUM_USER_NAME');
+     this.getCategoryCountChart();
+
+     }
+
   ngOnInit() 
   {
   
   }
  
- 
-
-
   getCategoryCountChart = function () {
     debugger;
       var sourcearray=[];
@@ -85,7 +43,7 @@ public chartLoadingEl            : any;
       debugger
         this.result = resp;
   
-        this.CategoryCount = JSON.parse(this.result);
+        this.CategoryCount = this.result;
         console.log(this.CategoryCount);
         this.labels2 = [];
         this.data2 = [];
@@ -104,7 +62,7 @@ public chartLoadingEl            : any;
           data: {
             labels:this.labels2,
             datasets: [{
-              label: '# of Tomatoes',
+              label: this.labels2,
               data:this.data2,
               backgroundColor:['rgba(247,70,74,1)', 'rgba(220,220,220,1)','rgba(151,187,205,1)',  'rgba(70,191,189,1)', 'rgba(253,180,92,1)', 'rgba(148,159,177,1)', 'rgba(77,83,96,1)', 'rgba(103,16,103,1)', 'rgba(165,131,134,1)', '#FF4500', '#800000', '#00BFFF ', '#000000', '#00FF00', '#008080', '#FF00FF']
   
@@ -132,5 +90,7 @@ public chartLoadingEl            : any;
       });
   
   }
+
+
 
 }

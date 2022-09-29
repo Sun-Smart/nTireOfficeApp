@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CommonModule } from '@angular/common';
 
 
 // import { ChartsModule } from 'chartjs';
@@ -25,7 +26,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     HttpClientModule,
     NgxDatatableModule,
-    FormsModule
+    FormsModule,
+    CommonModule
    ],
 
   providers: [StatusBar,
