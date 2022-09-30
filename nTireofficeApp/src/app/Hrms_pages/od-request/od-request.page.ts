@@ -1044,7 +1044,7 @@ this.installment=undefined;
 }
  odSummary(){
    this.refresh();
-  this.router.navigateByUrl('/hrmsodsummary');
+  this.router.navigateByUrl('/odsummary');
 }
 handleAddressChange(event) {
   console.log('handleAddressChange'+JSON.stringify(event));
@@ -1057,3 +1057,4 @@ handleAddressChange1(event) {
  this.edittoPlace=event.formatted_address;
 }
 }
+

@@ -162,7 +162,6 @@ export class LoginPage implements OnInit {
                   localStorage.setItem('EmployeeName', userdata[0]['em_emp_name']);
                   localStorage.setItem('EmpDesignation', userdata[0]['em_emp_designation']);
                   localStorage.setItem('EmpDepartment', userdata[0]['em_emp_department']);
-
                   this.route.navigate(['/dashboardCams']);
                 }
                 else

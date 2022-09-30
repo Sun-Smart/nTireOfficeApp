@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-claimssummary',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./claimssummary.page.scss'],
 })
 export class ClaimssummaryPage implements OnInit {
+  // router: any;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/claimsrequest'])
   }
 
 }

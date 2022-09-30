@@ -616,6 +616,6 @@ if(this.expenseArray.length>0){
     this.expenseArray=[];
   }
   claimList(){
-    this.router.navigateByUrl('/hrmsclaimssummary');
+    this.router.navigateByUrl('/claimssummary');
   }
 }

@@ -46,6 +46,12 @@ export class LoanSummaryPage implements OnInit {
 
   ngOnInit() {
   }
+
+  cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/loan-request'])
+  }
+
   allloandetails(){
     var obj={
       empcode:this.empCode,

@@ -352,7 +352,7 @@ export class LeaveRequestPage implements OnInit {
 
 
   leavesummary(){
-    this.router.navigateByUrl('/hrmsleavesummary');
+    this.router.navigateByUrl('/leavesummary');
   }
 }
 

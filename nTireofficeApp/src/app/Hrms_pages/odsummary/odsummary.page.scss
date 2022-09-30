@@ -52,3 +52,46 @@ ion-card{
   0 41.8px 33.4px rgba(0, 0, 0, 0.086),
   0 100px 80px rgba(0, 0, 0, 0.12);
 }
+
+ion-title{
+  color:#fff !important;
+}
+
+ion-content{
+  ion-toolbar{
+      padding: 0px !important;
+      --background: #019ADE !important;
+  }
+}
+
+.card_left_text {
+  font-family: "Poppins";
+  color: black;
+  font-weight: 600 !important;
+}
+
+ion-grid {
+  background: #fff;
+  padding: 8px;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 7px 0px grey;
+}
+
+
+.card_left_text {
+  font-family: "Poppins";
+  color: black;
+  font-weight: 600 !important;
+}
+ion-content{
+  ion-toolbar{
+      padding: 0px !important;
+      --background: #019ADE !important;
+  }
+}
+.probDetails{
+  ion-button{
+      max-width:fit-content;
+  }
+}
