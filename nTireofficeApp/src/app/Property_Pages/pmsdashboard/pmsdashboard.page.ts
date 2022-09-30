@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IpaddressService } from '../../service/ipaddress.service';
 import { Chart } from 'chart.js';
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { TableSampleService } from '../table-sample.service';
 import { ViewEncapsulation } from '@angular/core';
 
@@ -19,6 +19,7 @@ export class PmsdashboardPage implements OnInit {
   username: any;
   chartLoading: any;
   userid: any;
+  branch:any;
 
   options = { checkboxes: true }
   data: any = [];
@@ -39,46 +40,47 @@ export class PmsdashboardPage implements OnInit {
 
   @ViewChild('sourcecanvas1') sourcecanvas1;
 
-  constructor(private http: HttpClient, private platform: Platform, public Ipaddressservice: IpaddressService, private tableApi: TableSampleService) {
+  constructor(private http: HttpClient, private platform: Platform, public Ipaddressservice: IpaddressService, private tableApi: TableSampleService, private menuCtrl: MenuController) {
     this.userid = window.localStorage['TUM_USER_ID'];
     this.username = localStorage.getItem('TUM_USER_NAME');
-    this.getCategoryCountChart();
+    this.branch = localStorage.getItem('TUM_BRANCH');
+    this.customerPaymentChart();
 
     this.columns = [
-      { name: 'sno',},
-      { name: 'invoice', },
-      { name: 'month', },
-      { name: 'amount', },
-      { name: 'status', },
+      { name: 'sno', width:43},
+      { name: 'invoice', width:70 },
+      { name: 'month',width:70 },
+      { name: 'amount',width:70 },
+      { name: 'status',width:70 },
     ];
 
     this.columnsStatus = [
-      { name: 'sno',},
-      { name: 'readBy', },
-      { name: 'description', },
-      { name: 'status', },
+      { name: 'sno',width:50},
+      { name: 'readBy',width:91 },
+      { name: 'description',width:91 },
+      { name: 'status', width:91},
     ];
 
     this.columnsDetails = [
-      { name: 'sno',},
-      { name: 'propertycode', },
-      { name: 'issuedescription', },
-      { name: 'status', },
+      { name: 'sno',width:50},
+      { name: 'propertycode',width:91 },
+      { name: 'issuedescription',width:91 },
+      { name: 'status', width:91},
     ];
 
     this.columnsVaccant = [
-      { name: 'sno',},
-      { name: 'propertycode', },
-      { name: 'issuedescription', },
-      { name: 'flat', },
+      { name: 'sno',width:50},
+      { name: 'propertycode',width:91 },
+      { name: 'issuedescription', width:91},
+      { name: 'flat',width:91 },
     ];
 
     this.columnsRaised = [
-      { name: 'sno',},
-      { name: 'propertycode', },
-      { name: 'invoice', },
-      { name: 'amount', },
-      { name: 'status', },
+      { name: 'sno',width:43},
+      { name: 'propertycode',width:70 },
+      { name: 'invoice', width:70},
+      { name: 'amount', width:70},
+      { name: 'status',width:70 },
     ];
   }
 
@@ -101,14 +103,14 @@ export class PmsdashboardPage implements OnInit {
 
   }
 
-  getCategoryCountChart = function () {
+  customerPaymentChart = function () {
     debugger;
     var sourcearray = [];
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');     
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + ' customerpayments?strfunction=1&branch=1&userid=1').subscribe(resp => {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction=1&branch=1&userid=1').subscribe(resp => {
       debugger
       this.result = resp;
 
@@ -118,8 +120,8 @@ export class PmsdashboardPage implements OnInit {
       this.data2 = [];
       for (var i = 0; i < this.CategoryCount.length; i++) {
         // $scope.labels2[i] = $scope.CategoryCount[i].AssetCategory + '-' + $scope.CategoryCount[i].AssetCount;
-        this.labels2[i] = this.CategoryCount[i].AssetCategory + ' - ' + this.CategoryCount[i].AssetCount;
-        this.data2[i] = this.CategoryCount[i].AssetCount;
+        this.labels2[i] = 'Invoice Amount =' + this.CategoryCount[i].Invoice + ' - ' + 'OutStanding = ' + this.CategoryCount[i].OutStanding + ' - '  + 'Paid =' + this.CategoryCount[i].Paid;
+        this.data2[i] = this.CategoryCount[i].Year;
       }
       console.log(this.labels2);
       console.log(this.data2);
@@ -133,7 +135,7 @@ export class PmsdashboardPage implements OnInit {
           datasets: [{
             label: this.labels2,
             data: this.data2,
-            backgroundColor: ['rgba(247,70,74,1)', 'rgba(220,220,220,1)', 'rgba(151,187,205,1)', 'rgba(70,191,189,1)', 'rgba(253,180,92,1)', 'rgba(148,159,177,1)', 'rgba(77,83,96,1)', 'rgba(103,16,103,1)', 'rgba(165,131,134,1)', '#FF4500', '#800000', '#00BFFF ', '#000000', '#00FF00', '#008080', '#FF00FF']
+            backgroundColor: ['rgba(247,70,74,1)', 'rgba(151,187,205,1)', 'rgba(70,191,189,1)', 'rgba(253,180,92,1)', 'rgba(148,159,177,1)', 'rgba(77,83,96,1)', 'rgba(103,16,103,1)', 'rgba(165,131,134,1)', '#FF4500', '#800000', '#00BFFF ', '#000000', '#00FF00', '#008080', '#FF00FF']
 
           }]
         },
