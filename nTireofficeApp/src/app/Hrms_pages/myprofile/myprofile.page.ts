@@ -68,7 +68,6 @@ export class MyprofilePage implements OnInit {
     Mobile:0,
     EmergencyContactName:"",
     emp_subqualification:"",
-
   }
    emp={
     qualification:"",
