@@ -72,3 +72,10 @@ ion-content {
   color: #000 !important;
   right: 7px !important;
 }
+
+.profilephoto
+{
+flex: 0 0 calc(calc(5 / var(--ion-grid-columns, 12)) * 100%);
+width: calc(calc(5 / var(--ion-grid-columns, 12)) * 100%);
+max-width: calc(calc(5 / var(--ion-grid-columns, 14)) * 100%);
+}

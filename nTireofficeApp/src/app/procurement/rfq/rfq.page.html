@@ -156,21 +156,18 @@
 
     <ion-row>
       <ion-col>
-        <ion-col style="text-align: center;">
-          <ion-input type="date" class="Input-text-field textareaField"></ion-input>
+
+        <ion-col style="text-align: center">
+          <ion-label style="color:black ;">Last Date</ion-label>
+          <ion-input type="date" style="color:black ;" class="Input-text-field textareaField"></ion-input>
         </ion-col>
       </ion-col>
       <ion-col>
         <ion-col style="text-align: center;">
-          <ion-button class="ion-color-success" (click)="raiseRFQ()"  style="margin-top: -18px;" expand="block">Raise RFQ</ion-button>
+          <ion-button class="ion-color-success" (click)="raiseRFQ()"  expand="block">Raise RFQ</ion-button>
         </ion-col>
       </ion-col>
-
     </ion-row>
-
-
-
-
   </ion-card>
 
 
@@ -189,11 +186,11 @@
             <tr class="table-head">
 
 
-              <th style="padding: 18px !important;"><input type="checkbox" id="checkbox"> </th>
-              <th style="padding: 18px !important;">RFQ Code</th>
-              <th style="padding: 18px !important;">Required Date</th>
-              <th style="padding: 18px !important;">LastDate</th>
-              <th style="padding: 18px !important;">Manage RFQ</th>
+              <th style="padding: 2px !important;"><input type="checkbox" id="checkbox"> </th>
+              <th style="padding: 12px !important;">RFQ Code</th>
+              <th style="padding: 8px !important;">Required Date</th>
+              <th style="padding: 2px !important;">LastDate</th>
+              <th style="padding: 5px !important;">Manage RFQ</th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -203,7 +200,7 @@
                 <td>RFQ 873/AT</td>
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
-                <td><a   (click)="manageRFQlink()">Find </a></td>
+                <td><a   (click)="manageRFQlink()">Manage RFQ </a></td>
               </tr>
               <tr>
                 <td><input type="checkbox" id="checkbox"></td>
@@ -211,7 +208,7 @@
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
                 <!-- <td>Manage RFQ</td> -->
-                <td><a (click)="manageRFQlink()">Find</a></td>
+                <td><a (click)="manageRFQlink()">Manage RFQ</a></td>
               </tr>
               <tr>
                 <td><input type="checkbox" id="checkbox"></td>
@@ -219,7 +216,7 @@
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
                 <!-- <td>Manage RFQ</td> -->
-                <td><a (click)="manageRFQlink()">Find</a></td>
+                <td><a (click)="manageRFQlink()">Manage RFQ</a></td>
               </tr>
 
             </ng-container>
@@ -232,10 +229,7 @@
       </div>
 
     </ion-card-content>
-
-
   </ion-card>
-
 </ion-content>
 
 <ion-footer>
