@@ -25,13 +25,13 @@ export class PmsemployeesPage implements OnInit {
   }
 
   taskCancel() {
-    debugger
+
     this.modalCtrl.dismiss();
   };
 
   Addcancel() {
     this.modalCtrl.dismiss();
-    debugger
+
     // this.modal.dismiss(null, 'cancel');
   }
 
