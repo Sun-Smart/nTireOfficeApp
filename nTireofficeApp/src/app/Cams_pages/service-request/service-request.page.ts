@@ -327,7 +327,7 @@ export class ServiceRequestPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     var dataservv = {
       //'vendorcode':$scope.asstdtlsser.vendorcode,
-      'functionid': this.functionID,
+      'functionid':parseInt( this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -370,7 +370,7 @@ export class ServiceRequestPage implements OnInit {
     console.log(this.vendorcode)
     var dataserv = {
       'vendorcode': this.vendorcode[0],
-      'functionid': this.functionID,
+      'functionid': parseInt(this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
         'usertoken':this.userToken
@@ -487,14 +487,14 @@ export class ServiceRequestPage implements OnInit {
     if (this.assetcode != item) {
 
       var dataser1 = {
-        'functionid':window.localStorage['FUNCTION_ID'],
+        'functionid':parseInt(window.localStorage['FUNCTION_ID']),
         'assetcode': this.repassetcode,
         'branchid': this.branchID,
         'access_token':this.accessToken,
         'userid':this.userID,
         'usertoken':this.userToken
       }
-      const header = new Headers();
+  const header = new Headers();
       header.append("Content-Type", "application/json");
   
       let options = new HttpHeaders().set('Content-Type', 'application/json');

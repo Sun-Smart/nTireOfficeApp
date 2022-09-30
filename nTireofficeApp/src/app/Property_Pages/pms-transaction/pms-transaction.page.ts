@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
@@ -15,27 +15,43 @@ import { TableSampleService } from '../table-sample.service';
 
 export class PmsTransactionPage implements OnInit {
 
+  @ViewChild('rowDetailTpl', { static: true }) rowDetailTpl: TemplateRef<any>;
+
   options = { checkboxes: true }
   data: any = [];
   columns: any = [];
-  rows: any
+  rows: any;
 
-  constructor(private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) {
+  optionsWithRowDetail = {}
+  dataWithRowDetail = [];
+  columnsWithRowDetail: any = [];
+
+  constructor(private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
 
     this.columns = [
-      { name: 'Name', width: "110"  },
-      { name: 'Company', width: "120"  },
-      { name: 'Genre', width: "110"  },
+      { name: 'Name', width: "110", sorting: true },
+      { name: 'Company', width: "120" },
+      { name: 'Genre', width: "110" },
     ];
-   }
 
-  ngOnInit() {
+    this.optionsWithRowDetail = {
+      checkboxes: true,
+      rowDetailTemplate: this.rowDetailTpl
+    }
 
-    this.data = this.tableApi.getData();
-  console.log(this.data)
   }
 
-  transCancel(){
+  ngOnInit() {
+    this.dataWithRowDetail = this.tableApi.getData();
+    console.log(this.data)
+    this.columnsWithRowDetail = [
+      { name: 'Name', width: "110", sorting: true },
+      { name: 'Company', width: "120" },
+      { name: 'Genre', width: "110" },
+    ];
+  }
+
+  transCancel() {
     this.modalCtrl.dismiss();
   }
 }

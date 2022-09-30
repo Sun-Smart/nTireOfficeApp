@@ -25,121 +25,124 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code</ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
-          <ion-row>
-              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
-                <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
-                <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-                  <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
+        <ion-row>
+          <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+            <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)">
+            </ion-searchbar>
+            <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+              <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
                   color: gray !important;" (click)="processasset(item)">
-                    {{ item }}
-                  </ion-item>
-                </ion-list>
-              </ion-col>
-              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-                <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
-                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
-                </ion-button>
-              </ion-col>
-          </ion-row>
+                {{ item }}
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
+            <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
+              <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
         <!-- </div> -->
-        </ion-col>
+      </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Vendor Code</ion-label>
-          <ion-input style="background-color: #d4d4d4!important;" class="form-control"
-            [(ngModel)]="vendorcode"></ion-input>
-        </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Vendor Code</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="vendorcode">
+        </ion-input>
+      </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Date Of Service</ion-label>
-          <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date"
-            [(ngModel)]="reqdate">
-            <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
-          </ion-input>
-        </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Date Of Service</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date" [(ngModel)]="reqdate">
+          <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+        </ion-input>
+      </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
-               
-          <ion-button class="ion-color-success" (click)="processassetservicereqfilter()" style="" size="full" >Search
-          </ion-button>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
-         
-          <ion-button class="ion-color-success" (click)="resetservicereqfilter()" style="" size="full" >Reset
-          </ion-button>
-        </ion-col>
-</ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+
+        <ion-button class="ion-color-success" (click)="processassetservicereqfilter()" style="" size="full">Search
+        </ion-button>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+
+        <ion-button class="ion-color-success" (click)="resetservicereqfilter()" style="" size="full">Reset
+        </ion-button>
+      </ion-col>
+      </ion-row>
+ </ion-grid>
+</ion-content>
 
 <p style="font-weight: bold;text-align:center">Total Lead : {{listviewdetailsLength}}</p>
-<ion-card  *ngFor="let item1 of listviewdetails; let i = index" style="background-color:#fff">
+<ion-card *ngFor="let item1 of listviewdetails; let i = index" style="background-color:#fff">
   <ion-card-header class="card_header">
     <ion-row>
       <ion-col>
-<ion-label class="card_header_text">{{item1.ASSET_CODE1}}</ion-label>
+        <ion-label class="card_header_text">{{item1.ASSET_CODE1}}</ion-label>
       </ion-col>
     </ion-row>
   </ion-card-header>
 
   <ion-card-content>
-<ion-row>
-  <ion-col>
-    <ion-label class="labelHead-text">Vendor Code</ion-label>
-  </ion-col>
-  <ion-col>
-    <ion-label class="labelData-t">{{item1.vendor}}</ion-label>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col>
-    <ion-label  class="labelHead-text">Date Of Service</ion-label>
-  </ion-col>
-  <ion-col>
-    <ion-label class="labelData-t" *ngIf="item1.DATE_OF_SERVICE">{{item1.DATE_OF_SERVICE}}</ion-label>
-    <ion-label class="labelData-t" *ngIf="!item1.DATE_OF_SERVICE">--</ion-label>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col>
-    <ion-label  class="labelHead-text">Delivery Date</ion-label>
-  </ion-col>
-  <ion-col>
-    <ion-label class="labelData-t" *ngIf="item1.EXPECTED_DATE_OF_DELIVERY">{{item1.EXPECTED_DATE_OF_DELIVERY}}</ion-label>
-    <ion-label class="labelData-t" *ngIf="!item1.EXPECTED_DATE_OF_DELIVERY">--</ion-label>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col>
-    <ion-label  class="labelHead-text">Expense</ion-label>
-  </ion-col>
-  <ion-col>
-    <ion-label class="labelData-t" *ngIf="item1.EXPECTED_EXPENSES">{{item1.EXPECTED_EXPENSES}}</ion-label>
-    <ion-label class="labelData-t" *ngIf="!item1.EXPECTED_EXPENSES">--</ion-label>
-  </ion-col>
-</ion-row>
-<ion-row>
-  <ion-col>
-    <ion-label  class="labelHead-text">Status</ion-label>
-  </ion-col>
-  <ion-col>
-    <ion-label class="labelData-t" *ngIf="item1.status">{{item1.status}}</ion-label>
-    <ion-label class="labelData-t" *ngIf="!item1.status">--</ion-label>
-  </ion-col>
-</ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label class="labelHead-text">Vendor Code</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label class="labelData-t">{{item1.vendor}}</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label class="labelHead-text">Date Of Service</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label class="labelData-t" *ngIf="item1.DATE_OF_SERVICE">{{item1.DATE_OF_SERVICE}}</ion-label>
+        <ion-label class="labelData-t" *ngIf="!item1.DATE_OF_SERVICE">--</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label class="labelHead-text">Delivery Date</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label class="labelData-t" *ngIf="item1.EXPECTED_DATE_OF_DELIVERY">{{item1.EXPECTED_DATE_OF_DELIVERY}}
+        </ion-label>
+        <ion-label class="labelData-t" *ngIf="!item1.EXPECTED_DATE_OF_DELIVERY">--</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label class="labelHead-text">Expense</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label class="labelData-t" *ngIf="item1.EXPECTED_EXPENSES">{{item1.EXPECTED_EXPENSES}}</ion-label>
+        <ion-label class="labelData-t" *ngIf="!item1.EXPECTED_EXPENSES">--</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label class="labelHead-text">Status</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label class="labelData-t" *ngIf="item1.status">{{item1.status}}</ion-label>
+        <ion-label class="labelData-t" *ngIf="!item1.status">--</ion-label>
+      </ion-col>
+    </ion-row>
   </ion-card-content>
 </ion-card>
- 
 
-</ion-content>
+
+
 <ion-footer>
-  
+
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- 
-   
- </ion-footer>
+
+
+</ion-footer>
