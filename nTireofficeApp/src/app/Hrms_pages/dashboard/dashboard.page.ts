@@ -445,7 +445,8 @@ this.backbutton();
 //Get emeployee apporovals based on employee id
   //*params="employee id"
   getEmployeeApprovals(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+ window.localStorage['EmployeeID']).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+
+    window.localStorage['EmployeeID']).then(resp=>{
       this.empApprovals = JSON.parse(resp.toString());
           // this.empApprovals = this.empApprovals[0];
           // console.log(this.empApprovals);
