@@ -228,12 +228,12 @@ this.backbutton();
          this.monthdata = "0";
        }
        var obj={
-         empID:this.employee_id,
+         empID: window.localStorage.getItem("EmployeeID"),
          year:this.yeardata,
          month:this.monthdata
 
        }
-       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +"/nTireMobileCoreAPI/api/"+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
 
         this.loadingdismiss();
          this.attendanceList = JSON.parse(resp.toString());
