@@ -152,12 +152,12 @@
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label>Qualification</ion-label>
               <br />
-              <ion-select *ngIf="personalToggle===1" [(ngModel)]="emp.qualification" class="selectTag"
+              <select *ngIf="personalToggle===1" [(ngModel)]="emp.qualification" class="selectTag"
                 style="margin-left: -3px;" id="qualification" (ionChange)="getSubQualification(emp.qualification)">
-                <ion-select-option value="">Qualification</ion-select-option>
-                <ion-select-option *ngFor="let item of qualification" [value]="item.VALUE">{{item.TEXT}}
-                </ion-select-option>
-              </ion-select>
+                <option value="">Qualification</option>
+                <option *ngFor="let item of qualification" [value]="item.VALUE">{{item.TEXT}}
+                </option>
+              </select>
 
               <!-- <ion-label *ngIf="personalToggle==0">Qualification</ion-label>
                       <br> -->
@@ -170,13 +170,13 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label>Sub Qualification</ion-label>
               <br />
-              <ion-select *ngIf="personalToggle===1" [(ngModel)]="emp.subQualification" class="selectTag"
+              <select *ngIf="personalToggle===1" [(ngModel)]="emp.subQualification" class="selectTag"
                 style="margin-left: -3px;" [disabled]="personalToggle===0" id="qualification"
                 (change)="loadSubQualification()">
-                <ion-select-option value="">Sub Qualification</ion-select-option>
-                <ion-select-option *ngFor="let item  of subQualification" [value]="item.VALUE">{{item.TEXT}}
-                </ion-select-option>
-              </ion-select>
+                <option value="">Sub Qualification</option>
+                <option *ngFor="let item  of subQualification" [value]="item.VALUE">{{item.TEXT}}
+                </option>
+              </select>
 
               <!-- <ion-label *ngIf="personalToggle==0">Sub Qualification</ion-label>
                       <br/> -->
