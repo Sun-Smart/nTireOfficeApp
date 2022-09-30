@@ -27,10 +27,10 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Type<span class="validatecolor">*</span></ion-label>
-        <ion-select [(ngModel)]="requestType" class="form-control" style="display: flex;">
-          <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-          <ion-select-option *ngFor="let item of listletters" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-        </ion-select>
+        <select [(ngModel)]="requestType" class="form-control" style="display: flex;">
+          <option value="">&lt;&lt; Select &gt;&gt; </option>
+          <option *ngFor="let item of listletters" [value]="item.VAL">{{item.TEXT}}</option>
+        </select>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Reason</ion-label>
