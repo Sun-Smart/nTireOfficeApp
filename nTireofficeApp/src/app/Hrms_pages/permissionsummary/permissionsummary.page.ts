@@ -34,6 +34,10 @@ export class PermissionsummaryPage implements OnInit {
     this.filterDate(undefined,undefined);
     // this.getRequestRef();
    }
+   cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/permission-request'])
+  }
 
   ngOnInit() {
   }

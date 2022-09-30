@@ -270,7 +270,7 @@ debugger
     }
   }
   permissionList(){
-    this.router.navigateByUrl('/hrmspermissionsummary');
+    this.router.navigateByUrl('/permissionsummary');
   }
 
   permCancel(){
