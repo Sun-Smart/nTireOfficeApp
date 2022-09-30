@@ -45,40 +45,40 @@ export class PmsdashboardPage implements OnInit {
     this.getCategoryCountChart();
 
     this.columns = [
-      { name: 'sno', width: "50"},
-      { name: 'invoice', width: "100" },
-      { name: 'month', width: "100" },
-      { name: 'amount', width: "100" },
-      { name: 'status', width: "100" },
+      { name: 'sno',},
+      { name: 'invoice', },
+      { name: 'month', },
+      { name: 'amount', },
+      { name: 'status', },
     ];
 
     this.columnsStatus = [
-      { name: 'sno', width: "50"},
-      { name: 'readBy', width: "100" },
-      { name: 'description', width: "100" },
-      { name: 'status', width: "100" },
+      { name: 'sno',},
+      { name: 'readBy', },
+      { name: 'description', },
+      { name: 'status', },
     ];
 
     this.columnsDetails = [
-      { name: 'sno', width: "50"},
-      { name: 'propertycode', width: "100" },
-      { name: 'issuedescription', width: "100" },
-      { name: 'status', width: "100" },
+      { name: 'sno',},
+      { name: 'propertycode', },
+      { name: 'issuedescription', },
+      { name: 'status', },
     ];
 
     this.columnsVaccant = [
-      { name: 'sno', width: "50"},
-      { name: 'propertycode', width: "100" },
-      { name: 'issuedescription', width: "100" },
-      { name: 'flat', width: "100" },
+      { name: 'sno',},
+      { name: 'propertycode', },
+      { name: 'issuedescription', },
+      { name: 'flat', },
     ];
 
     this.columnsRaised = [
-      { name: 'sno', width: "50"},
-      { name: 'propertycode', width: "100" },
-      { name: 'invoice', width: "100" },
-      { name: 'amount', width: "100" },
-      { name: 'status', width: "100" },
+      { name: 'sno',},
+      { name: 'propertycode', },
+      { name: 'invoice', },
+      { name: 'amount', },
+      { name: 'status', },
     ];
   }
 
