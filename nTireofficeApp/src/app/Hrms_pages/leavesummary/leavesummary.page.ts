@@ -41,6 +41,10 @@ export class LeavesummaryPage implements OnInit {
   ngOnInit() {
   }
 
+  cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/leave-request'])
+  }
   getLeaveType(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
       this.leavetypearray = JSON.parse(resp.toString());

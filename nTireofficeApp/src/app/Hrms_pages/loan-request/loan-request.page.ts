@@ -371,7 +371,7 @@ this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressserv
 
   }
   loanList(){
-    this.router.navigateByUrl('/hrmsloan-summary');
+    this.router.navigateByUrl('/loan-summary');
 
   }
 }
