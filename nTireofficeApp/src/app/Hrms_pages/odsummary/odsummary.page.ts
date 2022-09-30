@@ -4,6 +4,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 import { ModalController } from '@ionic/angular';
 import { ReapplyOdPage } from '../reapply-od/reapply-od.page'
 import { json } from '@angular-devkit/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-odsummary',
@@ -27,17 +28,27 @@ export class OdsummaryPage implements OnInit {
   reqRef1: any;
   username = window.localStorage.getItem('TUM_USER_NAME');
   traveldetails: { User_ID: any; ODRequestRef: any; userid: any; usertoken: any; access_token: any; TxnReference:any};
-  constructor(public modalController: ModalController,private HttpRequest: HttprequestService,public Ipaddressservice: IpaddressService) {
+  constructor(public modalController: ModalController,private HttpRequest: HttprequestService,
+    private router: Router,
+    public Ipaddressservice: IpaddressService) {
     this.company = window.localStorage['FUNCTION_DESC'];
     this.empID=window.localStorage['em_emp_id'];
     this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
     this.em_emp_id=window.localStorage['em_emp_id'];
     this.status="";
     this.filterDate(undefined,undefined);
+  
 
   }
-
+  // cancel(){
+  //   return this.modalController.dismiss(null, 'cancel');
+  // }
   ngOnInit() {
+  }
+
+    cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/od-request'])
   }
   filterDate(fromdate,todate){
     this.display=[];

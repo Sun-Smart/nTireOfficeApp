@@ -110,7 +110,7 @@ export class LocationWiseAssetPage implements OnInit {
   selzone(){
     var dataz = {
       'functionidrep': this.functionID,
-      'zoneid': this.ZoneLoc,
+      'zoneid': parseInt(this.ZoneLoc),
       'access_token': this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -162,8 +162,8 @@ export class LocationWiseAssetPage implements OnInit {
   selregion(){
     var dataz = {
       'functionidrep': this.functionID,
-      'zoneid': this.ZoneLoc,
-      'regionid' : this.region,
+      'zoneid': parseInt(this.ZoneLoc),
+      'regionid' : parseInt(this.region),
       'access_token': this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -203,7 +203,7 @@ export class LocationWiseAssetPage implements OnInit {
   selcatdrop(){
     var datac = {
       'functionidrep': this.functionID,
-      'categoryid': this.category,
+      'categoryid': parseInt(this.category),
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken':this.userToken
@@ -258,11 +258,11 @@ export class LocationWiseAssetPage implements OnInit {
     }
     var datafinal = {
       'functionidrep': this.functionID,
-      'fzoneid': LocZone,
-      'fregionid': region1,
-      'fbranchid': branchLoc1,
-      'fassetcatid': category1,
-      'fassetsubcatid': subcategory1,
+      'fzoneid': parseInt(LocZone),
+      'fregionid': parseInt(region1),
+      'fbranchid': 1,
+      'fassetcatid': parseInt(category1),
+      'fassetsubcatid': parseInt(subcategory1),
       'access_token':window.localStorage['token'],
       'userid':this.userID,
       'usertoken':this.userToken

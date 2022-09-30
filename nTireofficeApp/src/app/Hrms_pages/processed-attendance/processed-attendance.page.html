@@ -24,16 +24,16 @@
         <ion-grid style="background-color: #f8f8f8;">
       <ion-row>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-  <ion-select [(ngModel)]="yeardata" style="display: flex;">
-  <ion-select-option value="">Year</ion-select-option>
-  <ion-select-option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
-  </ion-select>
+  <select class="st-3" [(ngModel)]="yeardata" style="display: flex;">
+  <option value="">Year</option>
+  <option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</option>
+  </select>
   </ion-col>
   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-      <ion-select [(ngModel)]="monthdata" style="display: flex;">
-      <ion-select-option value="">Month</ion-select-option>
-      <ion-select-option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</ion-select-option>
-      </ion-select>
+      <select class="st-3" [(ngModel)]="monthdata" style="display: flex;">
+      <option value="">Month</option>
+      <option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</option>
+      </select>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
         <ion-button class="ContentName" style="--box-shadow:none;--background:transparent;color:black;" (click)="getAttendance()">Search</ion-button>

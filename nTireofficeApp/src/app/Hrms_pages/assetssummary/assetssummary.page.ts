@@ -5,6 +5,7 @@ import {ToastmessageService} from '../../service/toastmessage.service';
 import { ModalController } from '@ionic/angular';
 import {ReapplyassetPage} from '../reapplyasset/reapplyasset.page';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assetssummary',
@@ -26,7 +27,7 @@ export class AssetssummaryPage implements OnInit {
   empID;
   company;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(public modalController: ModalController,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
+  constructor(public modalController: ModalController,private router: Router,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
     this.company = window.localStorage['FUNCTION_DESC'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
     this.empID=window.localStorage['em_emp_id'];
@@ -38,6 +39,11 @@ export class AssetssummaryPage implements OnInit {
 
   }
   ngOnInit() {
+  }
+
+  cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/assetrequest'])
   }
  //get asset category
  getAssetCategory(){

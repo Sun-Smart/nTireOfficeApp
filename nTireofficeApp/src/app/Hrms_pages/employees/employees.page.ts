@@ -53,7 +53,7 @@ VALUE: any;
   //get designation
   getDesignation(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Designation/0/0/0").then(resp=>{
-    
+
       console.log("workin",resp)
       this.Designation =resp;
       console.log(this.Designation)
@@ -131,15 +131,23 @@ VALUE: any;
       this.length = 0;
 
        this.obj = {
-          empID: "0",
-          name: name,
-          code: code,
-          designation: designation,
-          branch: branch,
-          department: department,
-          top: this.length,
-          increment: increment
+          // empID: "0",
+          // name: name,
+          // code: code,
+          // designation: designation,
+          // branch: branch,
+          // department: department,
+          // top: this.length,
+          // increment: increment
            //increment: 2000
+           empID: window.localStorage.getItem("EmployeeID"),
+           name: window.localStorage.getItem("EmployeeName"),
+           code: window.localStorage.getItem("TUM_EMP_CODE"),
+           designation: window.localStorage.getItem("EmpDesignation"),
+           branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+           department: window.localStorage.getItem("EmpDepartment"),
+           top: this.length,
+           increment: increment
         }
     console.log(this.obj);
  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment).then(resp=>{

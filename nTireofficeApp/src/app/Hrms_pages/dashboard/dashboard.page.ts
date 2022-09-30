@@ -228,12 +228,12 @@ this.backbutton();
          this.monthdata = "0";
        }
        var obj={
-         empID:this.employee_id,
+         empID: window.localStorage.getItem("EmployeeID"),
          year:this.yeardata,
          month:this.monthdata
 
        }
-       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +"/nTireMobileCoreAPI/api/"+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
 
         this.loadingdismiss();
          this.attendanceList = JSON.parse(resp.toString());
@@ -445,7 +445,8 @@ this.backbutton();
 //Get emeployee apporovals based on employee id
   //*params="employee id"
   getEmployeeApprovals(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+ window.localStorage['EmployeeID']).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+
+    window.localStorage['EmployeeID']).then(resp=>{
       this.empApprovals = JSON.parse(resp.toString());
           // this.empApprovals = this.empApprovals[0];
           // console.log(this.empApprovals);
