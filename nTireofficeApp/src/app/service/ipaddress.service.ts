@@ -84,7 +84,9 @@ export class IpaddressService {
     // this.serviceerpapi = "/dms/DMS/erpapi/";
     this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
 
-    
+
+
+
     // Property
 
     this.serviceurlProperty = "/nTireMobileCoreAPI/api/Property/"

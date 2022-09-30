@@ -10,65 +10,70 @@ export class TableSampleService {
     public getData() {
         return [
             {
-                "name": "Escape Room",
-                "company": "Columbia Pictures",
-                "genre": "Horror"
+                "Category": "Escape Room",
+                "QTY": "12",
+                "UpPrice": "Horror",
+                "disc%": "30%",
+                "tax1": "8765",
+                "tax2": "654678",
+                "Tc": "American Hangman",
+                "Base V": "Hangman Productions",
+                "Bid V": "Thriller",
+                "Exp Date": "12/09/2022",
+                "Delivary Date": "12/09/2022",
             },
             {
-                "name": "Rust Creek",
-                "company": "IFC Films",
-                "genre": "Drama"
+              "Category": "Escape Room",
+              "QTY": "12",
+              "UpPrice": "Horror",
+              "disc%": "30%",
+              "tax1": "8765",
+              "tax2": "654678",
+              "Tc": "American Hangman",
+              "Base V": "Hangman Productions",
+              "Bid V": "Thriller",
+              "Exp Date": "12/09/2022",
+              "Delivary Date": "12/09/2022",
             },
             {
-                "name": "American Hangman",
-                "company": "Hangman Productions",
-                "genre": "Thriller"
+              "Category": "Escape Room",
+              "QTY": "12",
+              "UpPrice": "Horror",
+              "disc%": "30%",
+              "tax1": "8765",
+              "tax2": "654678",
+              "Tc": "American Hangman",
+              "Base V": "Hangman Productions",
+              "Bid V": "Thriller",
+              "Exp Date": "12/09/2022",
+              "Delivary Date": "12/09/2022",
             },
             {
-                "name": "The Upside",
-                "company": "STX Entertainment",
-                "genre": "Comedy"
+              "Category": "Escape Room",
+              "QTY": "12",
+              "UpPrice": "Horror",
+              "disc%": "30%",
+              "tax1": "8765",
+              "tax2": "654678",
+              "Tc": "American Hangman",
+              "Base V": "Hangman Productions",
+              "Bid V": "Thriller",
+              "Exp Date": "12/09/2022",
+              "Delivary Date": "12/09/2022",
             },
             {
-                "name": "Replicas",
-                "company": "Entertainment Studios",
-                "genre": "Sci-Fi"
+              "Category": "Escape Room",
+                "QTY": "12",
+                "UpPrice": "Horror",
+                "disc%": "30%",
+                "tax1": "8765",
+                "tax2": "654678",
+                "Tc": "American Hangman",
+                "Base V": "Hangman Productions",
+                "Bid V": "Thriller",
+                "Exp Date": "12/09/2022",
+                "Delivary Date": "12/09/2022",
             },
-            {
-                "name": "After Darkness",
-                "company": "Grindstone Group",
-                "genre": "Drama"
-            },
-            {
-                "name": "Glass",
-                "company": "Universal Pictures",
-                "genre": "Superhero"
-            },
-            {
-                "name": "Close",
-                "company": "Netflix",
-                "genre": "Action"
-            },
-            {
-                "name": "The Final Wish",
-                "company": "BondIt Capital",
-                "genre": "Horror"
-            },
-            {
-                "name": "Serenity",
-                "company": "Aviron Pictures",
-                "genre": "Drama"
-            },
-            {
-                "name": "Miss Bala",
-                "company": "Columbia Pictures",
-                "genre": "Thriller"
-            },
-            {
-                "name": "Velvet Buzzsaw",
-                "company": "Netflix",
-                "genre": "Comedy"
-            }
         ]
     }
 
