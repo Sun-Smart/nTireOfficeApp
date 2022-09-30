@@ -79,7 +79,10 @@ export class PendingJobsPage implements OnInit {
   }
 
   getItems(ev: any) {
+    console.log(ev.target.value)
     this.assetcode1 = [];
+    console.log(this.assetcode1)
+
     if (ev.target.value == "") {
       this.assetcode1 = [];
       this.isItemAvailable = false;
@@ -139,6 +142,8 @@ export class PendingJobsPage implements OnInit {
   adddata(item) {
 
     this.assetCode = item;
+    console.log(this.assetCode );
+    
     this.isItemAvailable = false;
     }
 
@@ -172,7 +177,7 @@ export class PendingJobsPage implements OnInit {
    // this.responseData = {};
 
    if(this.Realease_status == "<< Select >>" || this.Realease_status == undefined){
-    var status = " ";
+    var status = "  ";
    }else{
     status= this.Realease_status
    }
@@ -187,6 +192,7 @@ export class PendingJobsPage implements OnInit {
     var assetCat = ' ';
    }else{
     assetCat= this.category
+    console.log(assetCat)
    }
 
    if(this.subCategory == "<< Select >>" || this.subCategory == undefined){
@@ -212,8 +218,8 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate='+fromdate+'&tdate='+todate+'&Status='+ status +'&strUserId='+this.userID+'&UserType='+window.localStorage.getItem('TUM_USER_TYPE')+'/'+assetCat+'/'+assetSubCat+'/'+jobs, {
-                                                      // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+fromdate+'&tdate='+todate+'&Status='+ status +'&strUserId='+this.userID+'&UserType='+this.usertype+'&drpcategory='+assetCat+'&drptype='+assetSubCat+' &TASKTYPE='+jobs+'&AssetCode=MT'+this.assetCode, {
+                                                                                                                                                                                                                                                                    // &TASKTYPE=84&AssetCode=MT
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -311,7 +317,7 @@ pendateval() {
         header.append("Content-Type", "application/json");
       
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+this.usertype, {
+        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+this.fromdate+'&tdate='+this.todate+'&Status=P&strUserId='+this.userID+'&UserType='+this.usertype, {
                                                             
           
           // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
