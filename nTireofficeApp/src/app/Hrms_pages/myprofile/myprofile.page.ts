@@ -670,6 +670,9 @@ console.log(""+this.profilepic+""+this.image)
     debugger;
     console.log(value);
 
+    //Samu -> Now hiding by doubt
+    // this.profile.FirstName = '';
+
         // PERSONAL CONDITIONS
         if (value == "personal") {
           if (this.personalToggle == 0) {
