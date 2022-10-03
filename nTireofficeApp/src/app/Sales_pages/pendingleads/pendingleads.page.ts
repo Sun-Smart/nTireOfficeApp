@@ -236,7 +236,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'branch_list_get/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'branch_list_get', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;

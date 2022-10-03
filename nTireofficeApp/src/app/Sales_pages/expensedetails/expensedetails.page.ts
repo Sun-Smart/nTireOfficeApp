@@ -115,7 +115,7 @@ export class ExpensedetailsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -320,7 +320,7 @@ export class ExpensedetailsPage implements OnInit {
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate/', getleadJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate', getleadJSON, {
             headers: options,
           }).subscribe(resp => {
             //sales_services.get_AllappointmentsbyDate(this.fromdate, this.todate).then(function(resp) {
@@ -583,7 +583,7 @@ export class ExpensedetailsPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments/', getappJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments', getappJSON, {
       headers: options,
     }).subscribe(resp => {
 

@@ -36,9 +36,8 @@ throw new Error('Method not implemented.');
 VALUE: any;
   constructor(public loadingController: LoadingController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService) {
     this.function_id=window.localStorage["FUNCTION_ID"];
-    this.designation="";
-    this.branch="";
-    this.department="";
+    this.designation=window.localStorage.getItem("EmpDesignation");
+    this.department=window.localStorage.getItem("EmpDepartment");
   }
 
   ngOnInit() {
@@ -95,6 +94,7 @@ VALUE: any;
     var designation;
     var branch;
     var department;
+
     console.log("designation:"+this.designation,"branch:"+this.branch,"dept:"+this.department);
 
     if (this.name == undefined || this.name == '') {
@@ -147,10 +147,11 @@ VALUE: any;
            branch: window.localStorage.getItem("TUM_BRANCH_ID"),
            department: window.localStorage.getItem("EmpDepartment"),
            top: this.length,
-           increment: increment
+           increment: increment,
+           appURL: 'employeesearch'
         }
     console.log(this.obj);
- this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment).then(resp=>{
+ this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment + "/" + this.obj.appURL).then(resp=>{
   this.loadingdismiss();
   this.loading = false;
   this.allemp = JSON.parse(resp.toString());
@@ -197,18 +198,18 @@ VALUE: any;
     });
 
     var obj1 = {
-      empID: "0",
-      name: name,
-      code: code,
-      designation: designation,
-      branch: branch,
-      department: department,
-      top: 0,
-
-       increment: 3000
+           empID: window.localStorage.getItem("EmployeeID"),
+           name: window.localStorage.getItem("EmployeeName"),
+           code: window.localStorage.getItem("TUM_EMP_CODE"),
+           designation: window.localStorage.getItem("EmpDesignation"),
+           branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+           department: window.localStorage.getItem("EmpDepartment"),
+           top: this.length,
+           increment: increment,
+           appURL: 'employeesearch'
     }
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj1.empID + "/" + obj1.name + "/" + obj1.code + "/" + obj1.designation + "/" + obj1.branch + "/" + obj1.department + "/" + obj1.top + "/" + obj1.increment).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj1.empID + "/" + obj1.name + "/" + obj1.code + "/" + obj1.designation + "/" + obj1.branch + "/" + obj1.department + "/" + obj1.top + "/" + obj1.increment + "/" + obj1.appURL ).then(resp=>{
       this.loading = false;
       this.totalemployee=JSON.parse(resp.toString()).length;
      }, error => {

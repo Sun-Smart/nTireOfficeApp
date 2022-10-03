@@ -109,7 +109,7 @@ export class MymeetingPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/', getapppostJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post', getapppostJSON, {
       headers: options,
     }).subscribe(resp => {
       this.allmeetinglocation = resp;

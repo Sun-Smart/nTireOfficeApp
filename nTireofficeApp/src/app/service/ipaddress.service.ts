@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -23,6 +24,7 @@ export class IpaddressService {
   public serviceerpapi;
   public serviceurlSales;
   public serviceurlProperty;
+  public insertserviceurl;
   constructor() {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
@@ -63,6 +65,7 @@ export class IpaddressService {
 
     // Sales
     this.serviceurl = "/nTireMobileCoreAPI/api/Sales/";
+    this.insertserviceurl = "/nTireMobileCoreAPI/api/Sales/getcompany/";
     this.serviceurlSales = "/nTireMobileCoreAPI/api/Sales/";
 
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
@@ -84,7 +87,9 @@ export class IpaddressService {
     // this.serviceerpapi = "/dms/DMS/erpapi/";
     this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
 
-    
+
+
+
     // Property
 
     this.serviceurlProperty = "/nTireMobileCoreAPI/api/Property/"

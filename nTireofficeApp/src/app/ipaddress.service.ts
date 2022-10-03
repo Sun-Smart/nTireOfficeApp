@@ -21,6 +21,7 @@ export class IpaddressService {
   public serviceurlCams;
   public serviceurlCamsNode;
   public serviceerpapi;
+  public serviceurlerp
   constructor() {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
@@ -31,12 +32,12 @@ export class IpaddressService {
     //  this.ipaddress = "http://65.0.146.170:8034";
 
 
-    this.ipaddress1 = "http://prod.herbie.ai";
-    this.ipaddress ="https://prod.herbie.ai:8033";
+    // this.ipaddress1 = "http://prod.herbie.ai";
+    // this.ipaddress ="https://prod.herbie.ai:8033";
 
 
-    // this.ipaddress1 = "http://demo.herbie.ai";
-    // this.ipaddress ="https://demo.herbie.ai:8033";
+    this.ipaddress1 = "http://demo.herbie.ai";
+    this.ipaddress ="https://demo.herbie.ai:8033";
 
 // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";
@@ -76,6 +77,14 @@ export class IpaddressService {
 
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
     // this.serviceurlCams="/mobileapi/cams/cams.svc/"
-    this.serviceerpapi = "/dms/DMS/erpapi/";
+
+        //procurement
+        //prod
+        // this.serviceerpapi = "/dms/DMS/erpapi/";
+//demo
+    // this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
+
+
+
   }
 }
