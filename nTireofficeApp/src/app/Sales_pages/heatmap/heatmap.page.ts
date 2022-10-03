@@ -64,10 +64,11 @@ export class HeatmapPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', obj, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlist = resp;
+      this.branchlist = JSON.stringify(resp);
+      this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
 
@@ -83,21 +84,21 @@ export class HeatmapPage implements OnInit {
     this.branchuser_data = [];
     var obj = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       locbranch: location,
       status: status
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getbranchusers/', obj, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getbranchusers', obj, {
       headers: options,
     }).subscribe(resp => {
       console.log("getbranchusers : " + JSON.stringify(resp));
-      this.branchuser_data1 = resp;
-
+      this.branchuser_data1 = JSON.stringify(resp);
+      this.branchuser_data1 = JSON.parse(this.branchuser_data1);
       this.branchuser_data1.forEach(element => {
         this.branchuser_data.push(element);
       });
@@ -124,8 +125,8 @@ export class HeatmapPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
 
-      this.HeatMapRecord_data1 = resp;
-
+      this.HeatMapRecord_data1 = JSON.stringify(resp);
+      this.HeatMapRecord_data1 = JSON.parse(this.HeatMapRecord_data1);
       this.HeatMapRecord_data1.forEach(element => {
         this.HeatMapRecord_data.push(element);
 
@@ -156,21 +157,21 @@ export class HeatmapPage implements OnInit {
       this.HeatMapRecordbranch = [];
       var obj = {
         access_token: window.localStorage['token'],
-        userid: window.localStorage['TUM_USER_ID'],
+        userid: parseInt(window.localStorage['TUM_USER_ID']),
         'usertoken': window.localStorage['usertoken'],
-        USER_ID: window.localStorage['TUM_USER_ID'],
-        BranchID: this.branch,
+        USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
+        BranchID: parseInt(this.branch),
         status: this.status1
       };
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getHeatMapRecordbranchwise/', obj, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getHeatMapRecordbranchwise', obj, {
         headers: options,
       }).subscribe(resp => {
         console.log("HeatMapRecord_data : " + JSON.stringify(resp));
-        this.HeatMapRecordbranch1 = resp;
-
+        this.HeatMapRecordbranch1 = JSON.stringify(resp);
+        this.HeatMapRecordbranch1 = JSON.parse(this.HeatMapRecordbranch1);
         this.HeatMapRecordbranch1.forEach(element => {
           this.HeatMapRecordbranch.push(element);
 

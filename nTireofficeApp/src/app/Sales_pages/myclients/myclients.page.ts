@@ -53,7 +53,7 @@ export class MyclientsPage implements OnInit {
   DateTime;
   latlngvals;
   branch;
-  username:any;
+  username: any;
   geoencoderOptions: NativeGeocoderOptions = {
     useLocale: true,
     maxResults: 5
@@ -61,7 +61,7 @@ export class MyclientsPage implements OnInit {
   constructor(public alertController: AlertController, private nativeGeocoder: NativeGeocoder, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.branch = "";
     this.Getbranches();
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
@@ -78,7 +78,7 @@ export class MyclientsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -99,7 +99,7 @@ export class MyclientsPage implements OnInit {
   async presentAlert1(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: ['OK']
     });
@@ -114,17 +114,17 @@ export class MyclientsPage implements OnInit {
       var locations = [];
       this.BRANCH_ID = locbranch;
       console.log(this.BRANCH_ID)
-      var userid = window.localStorage['TUM_USER_ID'];
+      var userid = parseInt(window.localStorage['TUM_USER_ID']);
       this.token = window.localStorage['token'];
-      var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
-      var getpendleadJSONtmp = { user_id: userid, locbranch: this.BRANCH_ID }
+      var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
+      var getpendleadJSONtmp = { user_id: userid, locbranch: parseInt(this.BRANCH_ID) }
       var getpendleadJSON = Object.assign(getpendleadJSONtmp, tokenJSON);
       console.log(getpendleadJSON);
       // sales_services.getapponitments(userid).then(function(resp) {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'allpendleadsdatabybranch/', getpendleadJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'allpendleadsdatabybranch', getpendleadJSON, {
         headers: options,
       }).subscribe(resp => {
         console.log("allmeetinglocation : " + JSON.stringify(resp));
@@ -182,7 +182,7 @@ export class MyclientsPage implements OnInit {
             for (var i = 0; i < locations.length; i++) {
               if (locations[i][0] == 'meeting') {
                 var data = locations[i];
-                console.log('maps maps ',new google.maps.LatLng(data));
+                console.log('maps maps ', new google.maps.LatLng(data));
 
                 var myLatlng = new google.maps.LatLng(data[1], data[2]);
                 lat_lng.push(myLatlng);

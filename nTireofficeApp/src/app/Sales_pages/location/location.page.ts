@@ -80,9 +80,9 @@ export class LocationPage implements OnInit {
   Getbranches() {
     var obj = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       functionidrep: window.localStorage['FUNCTION_ID']
     };
     const header = new Headers();
@@ -117,9 +117,9 @@ export class LocationPage implements OnInit {
   Getrole() {
     var obj = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       functionidrep: window.localStorage['FUNCTION_ID']
     };
     const header = new Headers();
@@ -675,7 +675,7 @@ export class LocationPage implements OnInit {
     this.SalesUserid = localStorage.getItem("sales_id");
     console.log(this.SalesUserid);
     var salesidTemp = { user_id: this.SalesUserid };
-    var tokenJSON = { access_token: window.localStorage['token'], userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: window.localStorage['token'], userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getappointmentsJSON = Object.assign(salesidTemp, tokenJSON);
     const header = new Headers();

@@ -38,7 +38,7 @@ export class MyprofilePage implements OnInit {
     correctOrientation: true //Corrects Android orientation quirks
   }
   validemail: boolean;
-  profile1=[];
+  profile1:any=[];
   image;
   Images=[];
   file;
@@ -47,7 +47,7 @@ export class MyprofilePage implements OnInit {
   qualification:any=[];
   // file=[];
   subQualification:any=[];
-  profile={
+  profile: any={
     Qualification:"",
     DOB:'',
     emp_qualification:"",
@@ -298,20 +298,21 @@ console.log(""+this.profilepic+""+this.image)
 
   getEmployeeDetails(){
     var obj = {
-      empID: 0,
+      empID: window.localStorage.getItem("EmployeeID"),
       name: window.localStorage.getItem("EmployeeName"),
       code: window.localStorage.getItem("TUM_EMP_CODE"),
       designation: window.localStorage.getItem("EmpDesignation"),
       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
       department: window.localStorage.getItem("EmpDepartment"),
       top: 20,
-      increment: 1,
-      appURL:'employeedetails'
+      increment: 0,
+      appURL:'employeedetails',
+      appURLs:'0'
     }
     console.log(""+obj)
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURL).then(resp=>{
-      this.profile = JSON.parse(resp.toString());
-      this.profile1 = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURLs).then(resp=>{
+      this.profile = resp;
+      this.profile1 = resp;
       console.log((resp));
 
       window.localStorage['em_emp_id']=this.empID;
@@ -456,7 +457,7 @@ console.log(""+this.profilepic+""+this.image)
 
   getEducationDaetails(){
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/EducationDetails/" +"0/"+ data+ "/0").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/EducationDetails/" +"0/"+"0/"+"0").then(resp=>{
       this.EducationDetails = resp;
     }, error => {
 
@@ -465,7 +466,7 @@ console.log(""+this.profilepic+""+this.image)
     });
   }
   getcarrierDaetails(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/CommonDropdown/CareerDetails/" +"0/"+ data+ "/0").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/CommonDropdown/CareerDetails/" +"0/"+"0/"+"0").then(resp=>{
       this.CareerDetails = resp;
     }, error => {
 
@@ -612,7 +613,7 @@ console.log(""+this.profilepic+""+this.image)
            var deleteObj = {
                 ID: value,
                 Type: "EducationDetails",
-                empID: window.localStorage['empid']
+                empID:window.localStorage.getItem("EmployeeID"),
               };
               this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+"EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp=>{
                 this.toastmessageService.presentAlert1("","Education Details Removed");
@@ -648,7 +649,7 @@ console.log(""+this.profilepic+""+this.image)
            var deleteObj = {
                 ID: value,
                 Type: "CareerDetails",
-                empID: window.localStorage['empid']
+                empID: window.localStorage.getItem("EmployeeID"),
               };
               this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+"EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp=>{
                 this.toastmessageService.presentAlert1("","Career Details Removed");
@@ -667,7 +668,11 @@ console.log(""+this.profilepic+""+this.image)
     }
 
   hidePersonalPanel(value){
+    debugger;
     console.log(value);
+
+    //Samu -> Now hiding by doubt
+    // this.profile.FirstName = '';
 
         // PERSONAL CONDITIONS
         if (value == "personal") {
@@ -733,7 +738,7 @@ console.log(""+this.profilepic+""+this.image)
      var dob = this.datepipe.transform(this.profile.DOB,"MM-dd-yyyy")
 
             this.personalDetailsObject = {
-              empID: window.localStorage['empid'],
+              empID: window.localStorage.getItem("EmployeeID"),
               Type: "PersonalDetails",
               FirstName: this.profile.FirstName,
               LastName: this.profile.LastName,
@@ -803,7 +808,7 @@ console.log(""+this.profilepic+""+this.image)
 
             // API CALLING FOR currentAddress DETAILS
             this.currentAddressObject = {
-              empID: window.localStorage['empid'],
+              empID: window.localStorage.getItem("EmployeeID"),
               Type: "CurrentAddress",
               Address: (this.profile.CurrentAddress),
               City: this.profile.CurrentCity,
@@ -874,7 +879,7 @@ console.log(""+this.profilepic+""+this.image)
 
             // API CALLING FOR PERSONAL DETAILS
             this.PermanentAddressObject = {
-              empID: window.localStorage['empid'],
+              empID: window.localStorage.getItem("EmployeeID"),
               Type: "PermanentAddress",
               Address: (this.profile.PermanentAddress),
               City: this.profile.PermanentCity,
@@ -915,12 +920,10 @@ console.log(""+this.profilepic+""+this.image)
         }
 
         //CONTACT CONDITIONS
+
         if (value == "contact") {
 
-          if(this.profile.Mobile.toString().length!=10){
-alert("Enter Mobile Number and Contact Number Correctly");
-          }
-          else{
+
           if (this.contactToggle == 0) {
             this.contactToggle = 1;
             // console.log("Edit");
@@ -948,7 +951,7 @@ alert("Enter Mobile Number and Contact Number Correctly");
 
             // API CALLING FOR CONTACT DETAILS
             this.ContactDetailsObject = {
-              empID: window.localStorage['empid'],
+              empID:window.localStorage.getItem("EmployeeID"),
               Type: "ContactDetails",
               Email: this.profile.Email,
               Mobile: this.profile.Mobile,
@@ -980,7 +983,7 @@ alert("Enter Mobile Number and Contact Number Correctly");
 
 
           }
-        }
+
 
         } else if (value == "contact.cancel") {
           this.contactToggle = 0;

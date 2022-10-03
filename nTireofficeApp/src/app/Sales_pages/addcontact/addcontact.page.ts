@@ -68,11 +68,13 @@ export class AddcontactPage implements OnInit {
       this.companyname1 = [];
       this.isItemAvailable = false;
       // set val to the value of the searchbar
-      this.companiesstr = JSON.parse(resp.toString());
+      this.companiesstr = JSON.stringify(resp);
+      this.companiesstr = JSON.parse(this.companiesstr);
+      // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
 
-        this.companyname1.push(this.companiesstr[i].CompanyName);
+        this.companyname1.push(this.companiesstr[i].companyName);
       }
       const val = ev.target.value;
 
@@ -105,8 +107,8 @@ export class AddcontactPage implements OnInit {
   officenumber;
   AddContact() {
     for (var i = 0; i < this.companiesstr.length; i++) {
-      if (this.company == this.companiesstr[i].CompanyName) {
-        this.companyName = this.companiesstr[i].ID;
+      if (this.company == this.companiesstr[i].companyName) {
+        this.companyName = this.companiesstr[i].id;
       }
 
     }

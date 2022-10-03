@@ -30,9 +30,9 @@ export class LeavesummaryPage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(public modalController: ModalController,private router: Router,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService,public loadingController: LoadingController,) {
     this.company = window.localStorage['FUNCTION_DESC'];
-    this.empID=window.localStorage['em_emp_id'];
+    this.empID=window.localStorage['EmployeeID'];
     this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
-    this.em_emp_id=window.localStorage['em_emp_id'];
+    this.em_emp_id=window.localStorage['EmployeeID'];
     this.status="";
     this.getLeaveType();
     this.filterDate(undefined,undefined);
@@ -49,9 +49,7 @@ export class LeavesummaryPage implements OnInit {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
       this.leavetypearray = JSON.parse(resp.toString());
      }, error => {
-
      console.log("error : "+JSON.stringify(error));
-
      });
   }
 
@@ -73,7 +71,7 @@ export class LeavesummaryPage implements OnInit {
       var toDate = this.formatDate(todate);
       this.loadingdismiss();
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "LeaveType").then(resp=>{
 
    this.loadingdismiss();
       if (resp != "No Records found") {
@@ -85,9 +83,9 @@ export class LeavesummaryPage implements OnInit {
         var status = this.display[0].Status;
         this.error = "";
 
-      } else {
-
-
+      }
+      else
+      {
         this.display = [];
         this.error = "No Records Found";
         this.loadingdismiss();
@@ -162,7 +160,7 @@ this.loadingdismiss();
     if(this.fromDate!=undefined){
     var fromDate = this.formatDate(this.fromDate);
     var toDate = this.formatDate(this.toDate);
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "LeaveType" ).then(resp=>{
 
       this.loadingdismiss();
          if (resp != "No Records found") {
@@ -177,14 +175,11 @@ this.loadingdismiss();
                this.error = "No data found";
              }
              return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
-
            });
            var status = this.display[0].Status;
            this.error = "";
-
-         } else {
-
-
+         } else
+         {
            this.display = [];
            this.error = "No Records Found";
            this.loadingdismiss();
@@ -202,7 +197,6 @@ this.loadingdismiss();
             this.error = "No data found";
           }
           return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
-
         });
       }
 

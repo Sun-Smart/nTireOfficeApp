@@ -24,6 +24,15 @@ export class LoginPage implements OnInit {
   today:any;
   // backButtonSubscription: any;
    isLoading = false;
+  //  userdata=[]
+  data1=[]
+
+suneel=[
+  {"BranchAccess":"1,10094","FunAccess":"1,10088,10095,10096,10097,10101,10102,10103,10104,","DepartmentAccess":"30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30","DesignationAccess":"1,3,4,5,6,7,8,9,10,11,14,16,17,19,21,22,23,24,26,1","Passworddate":"5","TUM_USER_ID":"1","CurrentDate":"10/2/2022 11:36:27 PM","FUNCTION_ID":"1","TUM_USER_PWD":"0x09","TUM_USER_TYPE":"1","TUM_USER_STATUS":"A","TUM_VALIDITY_TO":"1/5/2023 12:00:00 AM","TUM_USER_CODE":"E0001","TUM_USER_NAME":"SundarRajan","TUM_FORCE_LOGON":"N","TUM_BRANCH_ID":"1","CurrentDeviceID":"","TUM_USER_MOBILE":"971-","FUNCTION_DESC":"SSTPL","BRANCH_CODE":"DUBAI","BRANCH_LATLONG":"12.9801,80.2184","is_inbound":"","ZONE_ID":"3","THEME":"Mystic Black","TUM_USER_SETTING":"3","USERDATEFORMAT":"2","DATEFORMATCODE":"","DATEFORMATTEXT":"","LANGUAGE":"English","TUM_DF_PROJECT_ID":"","UPDATED_ON":"02/10/2022 23:36:27","tum_user_photo":"","USERTYPE_DESC":"administrator","TUM_REPORTING_TO":"1","em_emp_id":"30302","em_emp_name":"SUNDAR","em_branch_id":"1","em_emp_department":"4","em_emp_designation":"1",}
+]
+
+
+
   constructor(private platform: Platform,
     private httpresponse:HttprequestService,
     public loadingController: LoadingController,private  route: Router,public alertController: AlertController,private http: HttpClient,
@@ -57,13 +66,18 @@ export class LoginPage implements OnInit {
          debugger
          this.httpresponse.PostRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.getLoginLink+'/loginMobileLos',credentials,).then(resp=>{
          debugger
-          // console.log(resp);
-          // console.log(resp.data.data);
+          // console.log(this.suneel);
+          // console.log(this.suneel[0].BranchAccess);
+
+          console.log(resp["data"]["TUM_FORCE_LOGON"]);
           console.log(resp['data']);
-          var data1 = resp['data'];
-          var userdata = resp['data'];
-          userdata=JSON.parse(userdata);
-          userdata=userdata;
+           this.data1 = resp['data'];
+         var userdata = this.data1
+          // userdata=JSON.parse(userdata);
+          userdata=this.suneel;
+          console.log(userdata[0].BranchAccess)
+          // this.suneel=userdata
+          console.log(this.suneel[0].BranchAccess)
           // this.loadingdismiss();
 
           if(resp['data']['Column1']!=undefined)

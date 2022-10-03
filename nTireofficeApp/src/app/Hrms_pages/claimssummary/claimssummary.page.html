@@ -28,10 +28,10 @@
                       </ion-col>
                       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                           <ion-label>Request Category</ion-label>
-                          <ion-select [(ngModel)]="requestCat" class="form-control">
-                            <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-                            <ion-select-option *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-                        </ion-select>
+                          <select [(ngModel)]="requestCat" class="form-control">
+                            <option value="">&lt;&lt; Select &gt;&gt; </option>
+                            <option *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
+                        </select>
                           </ion-col>
                           <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                               <ion-label>Description</ion-label>

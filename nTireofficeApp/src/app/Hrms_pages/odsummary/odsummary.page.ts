@@ -17,8 +17,8 @@ export class OdsummaryPage implements OnInit {
   FUNCTION_ID;
   em_emp_id;
   error;
-  display=[];
-  display1=[];
+  display:any=[];
+  display1:any=[];
   status;
   fromDate;
   toDate;
@@ -32,9 +32,10 @@ export class OdsummaryPage implements OnInit {
     private router: Router,
     public Ipaddressservice: IpaddressService) {
     this.company = window.localStorage['FUNCTION_DESC'];
-    this.empID=window.localStorage['em_emp_id'];
+    this.empID=window.localStorage['EmployeeID'];
     this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
     this.em_emp_id=window.localStorage['em_emp_id'];
+    
     this.status="";
     this.filterDate(undefined,undefined);
   
@@ -51,6 +52,10 @@ export class OdsummaryPage implements OnInit {
     this.router.navigate(['/od-request'])
   }
   filterDate(fromdate,todate){
+    var obj = {
+      empID: window.localStorage.getItem("EmployeeID"),
+     
+    }
     this.display=[];
      if (fromdate == undefined || fromdate == "") {
        fromDate = "01-01-1990";
@@ -63,12 +68,13 @@ export class OdsummaryPage implements OnInit {
      } else {
        var toDate = this.formatDate(todate);
      }
-     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchOd/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then(resp=>{
+    
+     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+"/"+"searchOd/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then(resp=>{
        if (resp != "No Records found") {
 
-         this.display = JSON.parse(resp.toString());
+         this.display =resp;
          console.log(""+JSON.stringify(this.display));
-         this.display1=JSON.parse(resp.toString());
+         this.display1=resp;
         //  for(let i = 0;i<this.display.length;i++){
         //   this.ReqRef = this.display[i].ReqRef;
         //   this.Userid = this.display[i].UserID

@@ -191,8 +191,8 @@ export class NewleadcorporatePage implements OnInit {
     this.company = item;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
-      if (this.company == this.companiesstr[i].CompanyName) {
-        this.company_id = this.companiesstr[i].ID;
+      if (this.company == this.companiesstr[i].companyName) {
+        this.company_id = this.companiesstr[i].id;
       }
 
     }
@@ -204,7 +204,7 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'GetContactDetails/' + this.company_id, {
       headers: options,
     }).subscribe(resp => {
-      this.respContact = resp;
+      this.respContact = JSON.stringify(resp);
 
       this.contact1 = JSON.parse(this.respContact);
       console.log(this.contact1);
@@ -249,11 +249,13 @@ export class NewleadcorporatePage implements OnInit {
       this.companyname1 = [];
       this.isItemAvailable = false;
       // set val to the value of the searchbar
-      this.companiesstr = JSON.parse(resp.toString());
+      this.companiesstr = JSON.stringify(resp);
+      this.companiesstr = JSON.parse(this.companiesstr);
+      // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
 
-        this.companyname1.push(this.companiesstr[i].CompanyName);
+        this.companyname1.push(this.companiesstr[i].companyName);
       }
       const val = ev.target.value;
 
@@ -282,10 +284,11 @@ export class NewleadcorporatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlist = resp;
+      this.branchlist = JSON.stringify(resp);
+      this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
@@ -440,8 +443,8 @@ this.productdataarray = JSON.stringify(resp);
   }
   Getnextaction(productdata) {
 
-    var index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'ProductID', productdata);
-    this.curr_prod_category = this.productdataarray[index].ProductCatID;
+    var index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'productID', productdata);
+    this.curr_prod_category = this.productdataarray[index].productCatID;
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -449,8 +452,9 @@ this.productdataarray = JSON.stringify(resp);
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
-
-      this.nextactionarray = JSON.parse(resp.toString());
+      this.nextactionarray = JSON.stringify(resp);
+      this.nextactionarray = JSON.parse(this.nextactionarray);
+      // this.nextactionarray = JSON.parse(resp.toString());
       console.log("nextactionarray: " + JSON.stringify(this.nextactionarray));
 
     }, error => {
