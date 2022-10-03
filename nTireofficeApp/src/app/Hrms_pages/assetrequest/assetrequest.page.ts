@@ -235,6 +235,6 @@ this.reqbeforedte=undefined;
 this.reason=undefined;
   }
   assesstsList(){
-    this.router.navigateByUrl('/hrmsassestssummary')
+    this.router.navigateByUrl('/assetssummary')
   }
 }

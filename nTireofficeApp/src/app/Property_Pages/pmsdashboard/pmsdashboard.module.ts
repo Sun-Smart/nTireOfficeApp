@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { PmsdashboardPageRoutingModule } from './pmsdashboard-routing.module';
 import { PmsdashboardPage } from './pmsdashboard.page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
+
 // import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
@@ -16,7 +18,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     IonicModule,
     HttpClientModule,
     NgxDatatableModule,
-    PmsdashboardPageRoutingModule
+    PmsdashboardPageRoutingModule,
+   
   ],
   declarations: [PmsdashboardPage],
   providers:[HttpClient],

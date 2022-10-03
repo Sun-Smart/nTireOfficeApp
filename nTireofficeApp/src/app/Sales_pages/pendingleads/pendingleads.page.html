@@ -52,7 +52,7 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="penleadfilter.TCM_CAMPAIGN_SHORTDESC" class="form-control" style="width:100%">
               <option value=""> &lt;&lt; Select Product &gt;&gt; </option>
-              <option *ngFor="let pro of products1; let i = index" [ngValue]="pro.ProductName">{{pro.ProductName}}
+              <option *ngFor="let pro of products1; let i = index" [ngValue]="pro.productName">{{pro.productName}}
               </option>
             </select>
           </ion-col>
@@ -60,13 +60,13 @@
             <select [(ngModel)]="penleadfilter.TCC_LEAD_PRIORITY" class="form-control" style="width:100%">
               <option value=""> &lt;&lt; Call Priority &gt;&gt; </option>
 
-              <option *ngFor="let call of callpriority1; let i = index" [ngValue]="call.Value">{{call.Text}}</option>
+              <option *ngFor="let call of callpriority1; let i = index" [ngValue]="call.value">{{call.text}}</option>
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="penleadfilter.TCC_LEAD_RATING" class="form-control" style="width:100%">
               <option value=""> &lt;&lt; Call Rating &gt;&gt; </option>
-              <option *ngFor="let rating of callrating1; let i = index" [ngValue]="rating.Value">{{rating.Text}}
+              <option *ngFor="let rating of callrating1; let i = index" [ngValue]="rating.value">{{rating.text}}
               </option>
             </select>
           </ion-col>
@@ -125,7 +125,7 @@
           <!-- <button ion-button block class="start-button" (click)="startRecording(i)">Start Recording</button>
           <ion-button color="danger" (click)="stopRecording(i)">Stop
            Recording</ion-button> -->
-     
+
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label>Lead ID</ion-label>
           </ion-col>
@@ -183,7 +183,7 @@
             Audio
           </ion-col>
           <ion-col *ngIf="audioList.length!=0" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            
+
             <ion-list>
               <ion-item *ngFor="let audio of audioList; index as i;">
                 <p>{{audio.filename}}</p>
@@ -216,7 +216,7 @@
             {{items.Current_Caller}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            
+
             Last Call
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">

@@ -20,10 +20,10 @@ export class ManageRfqPage implements OnInit {
     this.router.navigate(['/vendorsdetails'])
 
   }
-  VendorQuotation() {
-    // this.RequestVenderQuotation==true
-    // showvendorqrotation
-  }
+  // VendorQuotation() {
+  //   // this.RequestVenderQuotation==true
+  //   // showvendorqrotation
+  // }
   RequestVenderQuotation() {
     this.showvendorqrotation = true;
     this.showvendorqrotationaction = false;
@@ -32,5 +32,9 @@ export class ManageRfqPage implements OnInit {
   back() {
     this.router.navigate(['/rfq'])
   }
+  VendorQuotation(){
 
+  this.router.navigate(['/vendor-quotation'])
+
+  }
 }

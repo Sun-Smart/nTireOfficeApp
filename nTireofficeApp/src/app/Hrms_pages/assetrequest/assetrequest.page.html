@@ -18,44 +18,44 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Branch</ion-label>
         <ion-input style="background-color: white;
-                color: black;" class="form-control" disabled [(ngModel)]="branch"></ion-input>
+                color: black;" class="form-control"  [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">EMP Code<span class="validatecolor">*</span></ion-label>
         <ion-input style="background-color: white;
-                  color: black;" class="form-control" disabled [(ngModel)]="empCode"></ion-input>
+                  color: black;" class="form-control"  [(ngModel)]="empCode"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Name<span class="validatecolor">*</span></ion-label>
         <ion-input style="background-color: white;
-                    color: black;" class="form-control" disabled [(ngModel)]="name"></ion-input>
+                    color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
       </ion-col>
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Reference<span class="validatecolor">*</span></ion-label>
         <ion-input style="background-color: white;
-                            color: black;" class="form-control" disabled [(ngModel)]="reqID"></ion-input>
+                            color: black;" class="form-control"  [(ngModel)]="reqID"></ion-input>
       </ion-col>
       <ion-col *ngIf="ASSETCODE!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Asset Code<span class="validatecolor">*</span></ion-label>
-        <ion-input class="form-control" disabled [(ngModel)]="ASSETCODE"></ion-input>
+        <ion-input class="form-control"  [(ngModel)]="ASSETCODE"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Assest Category<span class="validatecolor">*</span></ion-label>
-        <ion-select *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory"
+        <select *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory"
           (ionChange)="getAssestsSubcat(assestCategory)" class="form-control">
-          <ion-select-option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-          <ion-select-option class="ContentName" *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</ion-select-option>
-        </ion-select>
+          <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
+          <option class="ContentName" *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</option>
+        </select>
         <ion-input *ngIf="ASSETCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETCATEGORY">
         </ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Assest Subcategory<span class="validatecolor">*</span></ion-label>
-        <ion-select class="ContentName" *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory" class="form-control">
-          <ion-select-option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-          <ion-select-option class="ContentName" *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</ion-select-option>
-        </ion-select>
+        <select class="ContentName" *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory" class="form-control">
+          <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
+          <option class="ContentName" *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</option>
+        </select>
         <ion-input *ngIf="ASSETSUBCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETSUBCATEGORY">
         </ion-input>
       </ion-col>

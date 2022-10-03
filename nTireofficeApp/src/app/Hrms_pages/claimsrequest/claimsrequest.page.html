@@ -18,7 +18,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Branch</ion-label>
         <ion-input style="background-color: white;
-                    color: black;" class="form-control" disabled [(ngModel)]="branch"></ion-input>
+                    color: black;" class="form-control"  [(ngModel)]="branch"></ion-input>
       </ion-col>
       <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                       <ion-label>Date</ion-label>
@@ -27,26 +27,26 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Name<span class="validatecolor">*</span></ion-label>
         <ion-input style="background-color: white;
-                            color: black;" class="form-control" disabled [(ngModel)]="name"></ion-input>
+                            color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Category<span claretailss="validatecolor">*</span></ion-label>
-        <ion-select class="ContentName" placeholder="Select Request Category" [(ngModel)]="requestCat" class="form-control"
+        <select class="ContentName" placeholder="Select Request Category" [(ngModel)]="requestCat" class="form-control"
           style="display: flex;">
-          <ion-select-option  class="ContentName"  value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-          <ion-select-option   class="ContentName" *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</ion-select-option>
-        </ion-select>
+          <option  class="ContentName"  value="">&lt;&lt; Select &gt;&gt; </option>
+          <option   class="ContentName" *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
+        </select>
       </ion-col>
 
       <ion-col *ngIf="requestCat=='2'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Ref <span class="validatecolor">*</span></ion-label>
 
-        <ion-select class="ContentName" placeholder="Select Request Ref" style="display: flex;" [(ngModel)]="reqRef" class="form-control"
+        <select class="ContentName" placeholder="Select Request Ref" style="display: flex;" [(ngModel)]="reqRef" class="form-control"
           (change)="requestRefChange()">
-          <ion-select-option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
+          <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
 
-          <ion-select-option class="ContentName" style="color : black;" *ngFor="let item of ReferenceData">{{item.TxnReference}}</ion-select-option>
-        </ion-select>
+          <option class="ContentName" style="color : black;" *ngFor="let item of ReferenceData">{{item.TxnReference}}</option>
+        </select>
 
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
