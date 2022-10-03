@@ -42,14 +42,14 @@
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>Status<span class="validatecolor">*</span></ion-label>
-        <ion-select [(ngModel)]="status" class="form-control" (ionChange)="changeOrder();">
-          <ion-select-option value="">&lt;&lt; Select &gt;&gt;</ion-select-option>
-          <ion-select-option>Approved</ion-select-option>
-          <ion-select-option>Pending</ion-select-option>
-          <ion-select-option>New</ion-select-option>
-          <ion-select-option>Cancelled</ion-select-option>
-          <ion-select-option>Denied</ion-select-option>
-        </ion-select>
+        <select [(ngModel)]="status" class="form-control" (ionChange)="changeOrder();">
+          <option value="">&lt;&lt; Select &gt;&gt;</option>
+          <option>Approved</option>
+          <option>Pending</option>
+          <option>New</option>
+          <option>Cancelled</option>
+          <option>Denied</option>
+        </select>
       </ion-col>
     </ion-row>
 

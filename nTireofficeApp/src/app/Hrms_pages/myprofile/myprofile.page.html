@@ -346,7 +346,7 @@
               <ion-label>Permanent Address</ion-label>
               <br />
               <ion-textarea class="profileOutput labelData-text" *ngIf="permanentToggle === 1" rows='1'
-                placeholder='Permanent Address'
+               placeholder='Permanent Address'
                 [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle===0"></ion-textarea>
               <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentAddress}}</span>
             </ion-col>
