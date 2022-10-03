@@ -229,9 +229,9 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   Getbranches() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID']
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID'])
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -284,8 +284,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       this.products1 = JSON.parse(this.products1)
 
       this.products1.sort(function (a, b) {
-        var c = a.ProductName.toUpperCase();
-        var d = b.ProductName.toUpperCase();
+        var c = a.productName.toUpperCase();
+        var d = b.productName.toUpperCase();
         return c > d ? 1 : -1;
       });
 
@@ -305,8 +305,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       this.callpriority1 = JSON.stringify(resp);
       this.callpriority1 = JSON.parse(this.callpriority1)
       this.callpriority1.sort(function (a, b) {
-        var c = a.Text.toUpperCase();
-        var d = b.Text.toUpperCase();
+        var c = a.text.toUpperCase();
+        var d = b.text.toUpperCase();
         return c > d ? 1 : -1;
       });
 
@@ -326,8 +326,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       this.callrating1 = JSON.stringify(resp);
       this.callrating1 = JSON.parse(this.callrating1);
       this.callrating1.sort(function (a, b) {
-        var c = a.Text.toUpperCase();
-        var d = b.Text.toUpperCase();
+        var c = a.text.toUpperCase();
+        var d = b.text.toUpperCase();
         return c > d ? 1 : -1;
       });
     }, error => {
@@ -338,9 +338,9 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   Getusertype() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
 
     };
     const header = new Headers();
@@ -376,9 +376,9 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.userdata1 = [];
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
       branch_id: branch_id
     };
@@ -559,11 +559,11 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
       this.token = window.localStorage['token'];
 
-      var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+      var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
       var pendJSON;
       pendJSON = Object.assign(tokenJSON, this.penleadfilter);
-      var user_id_nw = window.localStorage['TUM_USER_ID'];
+      var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
 
 
@@ -575,7 +575,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
         limit: 50,
 
 
-        BRANCH_ID: window.localStorage['TUM_BRANCH_ID'],
+        BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
         MOBILE: this.penleadfilter.MOBILE,
@@ -718,11 +718,11 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
     this.token = window.localStorage['token'];
 
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var pendJSON;
     pendJSON = Object.assign(tokenJSON, this.penleadfilter);
-    var user_id_nw = window.localStorage['TUM_USER_ID'];
+    var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
 
 
@@ -734,7 +734,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       limit: 50,
 
 
-      BRANCH_ID: window.localStorage['TUM_BRANCH_ID'],
+      BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,

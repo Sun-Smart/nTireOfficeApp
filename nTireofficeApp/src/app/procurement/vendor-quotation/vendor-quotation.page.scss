@@ -6,6 +6,10 @@ ion-content {
     --background: url('../../../assets/images/tpbackground.png') repeat !important;
     position: relative;
   }
+
+  .plabel{
+    font-weight: bold;
+   }
 .ngx-datatable.material .datatable-header .datatable-header-cell {
     background-color: #1ba4e1!important;
     color: #fff !important;

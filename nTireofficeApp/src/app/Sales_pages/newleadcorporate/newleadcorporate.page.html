@@ -28,15 +28,15 @@
         <select [(ngModel)]="branchlocation" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.locationID">
-            {{location.Locationname}}</option>
+            {{location.locationname}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Product <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="productdata" (change)="Getnextaction(productdata)" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let product of productdataarray; let i = index" [ngValue]="product.ProductID">
-            {{product.ProductName}}</option>
+          <option *ngFor="let product of productdataarray; let i = index" [ngValue]="product.productID">
+            {{product.productName}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -52,8 +52,8 @@
         <ion-label>Contact Name<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="ContactName" (change)="Getnumber(ContactName)" class="form-control">
           <option value="<<Select>>">&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let contact of contact1; let i = index" [ngValue]="contact.ContactName">
-            {{contact.ContactName}}</option>
+          <option *ngFor="let contact of contact1; let i = index" [ngValue]="contact.contactName">
+            {{contact.contactName}}</option>
         </select>
       </ion-col>
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -102,7 +102,7 @@
         <ion-label>Call Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callpriority" class="form-control">
 
-          <option *ngFor="let prioriy of callpriorityarray; let i = index" [ngValue]="prioriy.Value">{{prioriy.Text}}
+          <option *ngFor="let prioriy of callpriorityarray; let i = index" [ngValue]="prioriy.value">{{prioriy.text}}
           </option>
         </select>
       </ion-col>
@@ -110,7 +110,7 @@
         <ion-label>Call Rating <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callrating" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let rating of callratingarray; let i = index" [ngValue]="rating.Value">{{rating.Text}}
+          <option *ngFor="let rating of callratingarray; let i = index" [ngValue]="rating.value">{{rating.text}}
           </option>
         </select>
       </ion-col>
@@ -118,7 +118,7 @@
         <ion-label>Call Nature <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callnature" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let nature of callnaturearray; let i = index" [ngValue]="nature.Value">{{nature.Text}}
+          <option *ngFor="let nature of callnaturearray; let i = index" [ngValue]="nature.value">{{nature.text}}
           </option>
         </select>
       </ion-col>
@@ -126,14 +126,14 @@
         <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="callstage" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.Value">{{stage.Text}}</option>
+          <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.value">{{stage.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Lead Source</ion-label>
         <select [(ngModel)]="source" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.Value">{{lead.Text}}</option>
+          <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.value">{{lead.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
