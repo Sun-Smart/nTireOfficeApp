@@ -90,6 +90,7 @@ username = window.localStorage.getItem('TUM_USER_NAME');
        userid:this.userID,
        usertoken:this.usertoken,
        access_token:this.token,
+       appURL : 'getrequestcategoryclaims'
       }
       this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getRequestCategoryClaims/",Catobj).then(resp=>{
         this.Reqcategory1=resp;

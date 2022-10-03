@@ -10,7 +10,7 @@ import { AlertController,LoadingController } from '@ionic/angular';
 })
 export class ProcessedAttendancePage implements OnInit {
   empid;
-  displayEmployee=[];
+  displayEmployee : any =[];
   year:any=[];
   month:any=[];
   FUNCTION_ID;
@@ -36,17 +36,20 @@ export class ProcessedAttendancePage implements OnInit {
   }
   getEmployeeList(){
     var obj = {
-       empID: this.empid,
-       name: "%20",
-       code: "%20",
-       designation: "%20",
-       branch: 0,
-       department: 0,
+       empID: window.localStorage.getItem("EmployeeID"),
+       name: window.localStorage.getItem("EmployeeName"),
+       code: window.localStorage.getItem("TUM_EMP_CODE"),
+       designation: window.localStorage.getItem("EmpDesignation"),
+       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+       department: window.localStorage.getItem("EmpDepartment"),
        top: 0,
-       increment: 1
+       increment: 20,
+       appURL: 'employeelist'
      }
-  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
-   this.displayEmployee = JSON.parse(resp.toString());
+  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp=>{
+  //  this.displayEmployee = JSON.parse(resp.toString());
+   this.displayEmployee = resp;
+
    this.displayEmployee = this.displayEmployee[0];
 
    console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));

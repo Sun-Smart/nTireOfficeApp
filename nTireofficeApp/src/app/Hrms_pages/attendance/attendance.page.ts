@@ -48,7 +48,7 @@ export class AttendancePage implements OnInit {
       // branch: 0,
       top: 20,
       increment: 0,
-      appURL:0,
+      appURL:'employeelist'
     }
  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURL).then(resp=>{
   this.displayEmployee = resp;
