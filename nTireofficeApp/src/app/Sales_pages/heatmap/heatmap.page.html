@@ -79,7 +79,7 @@
                             <th class="tabletd tablesm" style="padding: 8px !important;font-weight:bold;color:#2e3192;">Cust</th>
                         </tr> -->
               </tbody>
-              <tr *ngFor="let data of HeatMapRecord_data">
+              <tr *ngFor="let data of HeatMapRecord_data" style="color: #000 !important;">
                 <td class="tabletd tablesm" style="padding: 8px !important;color:#444;text-align:left;">
                   {{data.TCM_CAMPAIGN_SHORTDESC}}</td>
                 <td class="tabletd tablesm" style="padding: 8px !important;color:#444;text-align:center;">
@@ -141,14 +141,14 @@
                 <tbody>
 
                 </tbody>
-                <tr *ngFor="let data of HeatMapRecordbranch">
-                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:left;color:#2e3192;">
+                <tr *ngFor="let data of HeatMapRecordbranch" style="color: #000 !important;">
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:left;color:#2e3192 !important;;">
                     {{data.TCM_CAMPAIGN_SHORTDESC}}</td>
-                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192;">
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192 !important;;">
                     {{data.YTD_Cust}}</td>
-                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192;">
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192 !important;;">
                     {{data.MTD_Cust}}</td>
-                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192;">
+                  <td class="tabletd tablesm" style="padding: 8px !important;text-align:center;color:#2e3192 !important;;">
                     {{data.ToltalCustomers}}</td>
                 </tr>
               </table>

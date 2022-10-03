@@ -83,7 +83,7 @@ export class MymeetingPage implements OnInit {
 
     this.allmeetinglocation = "";
     var locations = [];
-    var userid = window.localStorage['TUM_USER_ID'];
+    var userid = parseInt(window.localStorage['TUM_USER_ID']);
     var date = new Date(from_datemeet);
 
     // var day = date.getDate();
@@ -99,7 +99,7 @@ export class MymeetingPage implements OnInit {
     to_datemeet = ('0' + date1.getDate()).slice(-2) + '/' + ('0' + (date1.getMonth() + 1)).slice(-2) + '/' + date1.getFullYear();
 
     this.token = window.localStorage['token'];
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getapppostJSONtmp = { user_id: userid, from_datemeet: from_datemeet, to_datemeet: to_datemeet }
     var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
@@ -112,7 +112,8 @@ export class MymeetingPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post', getapppostJSON, {
       headers: options,
     }).subscribe(resp => {
-      this.allmeetinglocation = resp;
+      this.allmeetinglocation = JSON.stringify(resp);
+      this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
       console.log(this.allmeetinglocation);
 
       if (this.allmeetinglocation == '') {
