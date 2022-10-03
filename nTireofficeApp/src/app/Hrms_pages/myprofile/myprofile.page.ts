@@ -612,7 +612,7 @@ console.log(""+this.profilepic+""+this.image)
            var deleteObj = {
                 ID: value,
                 Type: "EducationDetails",
-                empID: window.localStorage['empid']
+                empID:window.localStorage.getItem("EmployeeID"),
               };
               this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+"EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp=>{
                 this.toastmessageService.presentAlert1("","Education Details Removed");
@@ -648,7 +648,7 @@ console.log(""+this.profilepic+""+this.image)
            var deleteObj = {
                 ID: value,
                 Type: "CareerDetails",
-                empID: window.localStorage['empid']
+                empID: window.localStorage.getItem("EmployeeID"),
               };
               this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+"EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp=>{
                 this.toastmessageService.presentAlert1("","Career Details Removed");
@@ -667,6 +667,7 @@ console.log(""+this.profilepic+""+this.image)
     }
 
   hidePersonalPanel(value){
+    debugger;
     console.log(value);
 
         // PERSONAL CONDITIONS
@@ -733,7 +734,7 @@ console.log(""+this.profilepic+""+this.image)
      var dob = this.datepipe.transform(this.profile.DOB,"MM-dd-yyyy")
 
             this.personalDetailsObject = {
-              empID: window.localStorage['empid'],
+              empID: window.localStorage.getItem("EmployeeID"),
               Type: "PersonalDetails",
               FirstName: this.profile.FirstName,
               LastName: this.profile.LastName,
@@ -803,7 +804,7 @@ console.log(""+this.profilepic+""+this.image)
 
             // API CALLING FOR currentAddress DETAILS
             this.currentAddressObject = {
-              empID: window.localStorage['empid'],
+              empID: window.localStorage.getItem("EmployeeID"),
               Type: "CurrentAddress",
               Address: (this.profile.CurrentAddress),
               City: this.profile.CurrentCity,
@@ -874,7 +875,7 @@ console.log(""+this.profilepic+""+this.image)
 
             // API CALLING FOR PERSONAL DETAILS
             this.PermanentAddressObject = {
-              empID: window.localStorage['empid'],
+              empID: window.localStorage.getItem("EmployeeID"),
               Type: "PermanentAddress",
               Address: (this.profile.PermanentAddress),
               City: this.profile.PermanentCity,
@@ -915,12 +916,10 @@ console.log(""+this.profilepic+""+this.image)
         }
 
         //CONTACT CONDITIONS
+
         if (value == "contact") {
 
-          if(this.profile.Mobile.toString().length!=10){
-alert("Enter Mobile Number and Contact Number Correctly");
-          }
-          else{
+
           if (this.contactToggle == 0) {
             this.contactToggle = 1;
             // console.log("Edit");
@@ -948,7 +947,7 @@ alert("Enter Mobile Number and Contact Number Correctly");
 
             // API CALLING FOR CONTACT DETAILS
             this.ContactDetailsObject = {
-              empID: window.localStorage['empid'],
+              empID:window.localStorage.getItem("EmployeeID"),
               Type: "ContactDetails",
               Email: this.profile.Email,
               Mobile: this.profile.Mobile,
@@ -980,7 +979,7 @@ alert("Enter Mobile Number and Contact Number Correctly");
 
 
           }
-        }
+
 
         } else if (value == "contact.cancel") {
           this.contactToggle = 0;

@@ -8,6 +8,7 @@ import { MenuController, IonSlides ,NavController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
 import { json } from '@angular-devkit/core';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -31,10 +32,14 @@ export class LoginPage implements OnInit {
     private  menuCtrl: MenuController,private  navCtrl: NavController) {
     this.menuCtrl.enable(false, 'first');
     this.showValue = { "type": "password", "text": "Show" };
+
   }
 
   ngOnInit() {
   }
+
+
+
 
   Loginevent(){
     if(this.username!=undefined && this.password!=undefined){
@@ -46,6 +51,7 @@ export class LoginPage implements OnInit {
     var username=this.username.toUpperCase();
     var password=this.password;
 
+
     var credentials = {
       functionid: 1,
        user_lower: username,
@@ -55,35 +61,41 @@ export class LoginPage implements OnInit {
           ip: ip
          };
          debugger
-         this.httpresponse.PostRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.getLoginLink+'/loginMobileLos',credentials,).then(resp=>{
+         this.httpresponse.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.getLoginLink+'/loginMobileLos/',credentials,).then(resp=>{
          debugger
           // console.log(resp);
           // console.log(resp.data.data);
           console.log(resp['data']);
           var data1 = resp['data'];
           var userdata = resp['data'];
-          userdata=JSON.parse(userdata);
-          userdata=userdata;
           // this.loadingdismiss();
 
           if(resp['data']['Column1']!=undefined)
           {
+
             var b = resp['data']['Column1'];
             setTimeout(() => {
             this.loadingdismiss();
             this.presentAlert('Alert1',b);
 
             console.log(""+resp['data']['Column1'])
+
+
+
+
               }, 5000);
+
+
           }
 
           // this.loadingdismiss();
           // if(userdata['TUM_FORCE_LOGON']=='Y'){
 
           // }else{
-            localStorage.setItem('expires', resp['expires']);
-            localStorage.setItem('token', resp['token']);
-            localStorage.setItem('usertoken', resp['usertoken']);
+            localStorage.setItem('expires', resp['expires'].toString());
+
+            localStorage.setItem('token', resp['token'].toString());
+            localStorage.setItem('usertoken', resp['usertoken'].toString());
 
             if (window.localStorage['TUM_USER_TYPE'] == 8) {
 
@@ -136,56 +148,59 @@ export class LoginPage implements OnInit {
               //      }, ]
               //    });
               //  }
+
              }
 
 
-     if (typeof (userdata[0]['TUM_USER_NAME']) == 'undefined') {
+     if (typeof (userdata['TUM_USER_NAME']) == 'undefined') {
       this.presentAlert('','Wrong Credential');
             }
 
 
-              else if (userdata[0]['TUM_USER_STATUS'] == 'A') {
-                if (userdata[0]['TUM_USER_NAME'].toUpperCase() === username || userdata[0]['TUM_USER_CODE'].toUpperCase() ===username) {
+              else if (userdata['TUM_USER_STATUS'] == 'A') {
+                if (userdata['TUM_USER_NAME'].toUpperCase() === username || userdata['TUM_USER_CODE'].toUpperCase() ===username) {
 
-                  localStorage.setItem('TUM_USER_ID', userdata[0]['TUM_USER_ID']);
-                  localStorage.setItem('TUM_USER_TYPE', userdata[0]['TUM_USER_TYPE']);
-                  localStorage.setItem('TUM_BRANCH_ID', userdata[0]['TUM_BRANCH_ID']);
-                  localStorage.setItem('TUM_BRANCH_CODE', userdata[0]['BRANCH_CODE']);
-                  localStorage.setItem('TUM_USER_CODE', userdata[0]['TUM_USER_CODE']);
-                  localStorage.setItem('TUM_USER_NAME', userdata[0]['TUM_USER_NAME']);
-                  localStorage.setItem('TUM_EMP_CODE', userdata[0]['TUM_USER_CODE']);
-                  localStorage.setItem('FUNCTION_DESC', userdata[0]['FUNCTION_DESC']);
-                  localStorage.setItem('FUNCTION_ID', userdata[0]['FUNCTION_ID']);
-                  localStorage.setItem('BRANCH_LATLONG', userdata[0]['BRANCH_LATLONG']);
-                  localStorage.setItem('DashName', userdata[0]['TUM_USER_NAME']);
-                  localStorage.setItem('EmployeeID', userdata[0]['em_emp_id']);
-                  localStorage.setItem('EmployeeName', userdata[0]['em_emp_name']);
-                  localStorage.setItem('EmpDesignation', userdata[0]['em_emp_designation']);
-                  localStorage.setItem('EmpDepartment', userdata[0]['em_emp_department']);
+                  localStorage.setItem('TUM_USER_ID', userdata['TUM_USER_ID']);
+                  localStorage.setItem('TUM_USER_TYPE', userdata['TUM_USER_TYPE']);
+                  localStorage.setItem('TUM_BRANCH_ID', userdata['TUM_BRANCH_ID']);
+                  localStorage.setItem('TUM_BRANCH_CODE', userdata['BRANCH_CODE']);
+                  localStorage.setItem('TUM_USER_CODE', userdata['TUM_USER_CODE']);
+                  localStorage.setItem('TUM_USER_NAME', userdata['TUM_USER_NAME']);
+                  localStorage.setItem('TUM_EMP_CODE', userdata['TUM_USER_CODE']);
+                  localStorage.setItem('FUNCTION_DESC', userdata['FUNCTION_DESC']);
+                  localStorage.setItem('FUNCTION_ID', userdata['FUNCTION_ID']);
+                  localStorage.setItem('BRANCH_LATLONG', userdata['BRANCH_LATLONG']);
+                  localStorage.setItem('DashName', userdata['TUM_USER_NAME']);
+
 
                   this.route.navigate(['/dashboardCams']);
-                }
-                else
-                {
+                } else {
                   this.loadingdismiss();
                   this.presentAlert('Login failed!','Please check your username & Password!');
                   // this.loadingdismiss();
                 }
                 // this.loadingdismiss();
-              }
-              else
-              {
+              } else {
                 this.loadingdismiss();
                 this.presentAlert('Login failed!','Please check your username & Password!');
               }
+
+
+
+
+
+
+
+
             }
+
         }, error => {
           this.loadingdismiss();
           this.presentAlert('Login failed!','Server Error, Please try after sometime!');
+
         });
       }
-      else
-      {
+      else{
         this.presentAlert('','Enter both Username & Password');
       }
   }
@@ -216,6 +231,7 @@ export class LoginPage implements OnInit {
       translucent: true,
       cssClass: 'custom-class custom-loading',
 
+
     });
     return await loading.present();
   }
@@ -234,7 +250,11 @@ export class LoginPage implements OnInit {
     // this.menuCtrl.enable(true);
   }
 
+
   ngOnDestroy() {
     //this.backButtonSubscription.unsubscribe();
   }
 }
+
+
+

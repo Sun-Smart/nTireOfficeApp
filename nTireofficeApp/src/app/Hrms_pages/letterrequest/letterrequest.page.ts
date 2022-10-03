@@ -78,7 +78,6 @@ export class LetterrequestPage implements OnInit {
     LETTER_TYPE:this.requestType,
     REASON:this.reason,
     STATUS:"P"
-
     }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "insertletter_request/",letter_request).then(resp=>{
      this.reqID = resp[0].inserted_id;
@@ -107,9 +106,7 @@ if (this.STATUS == "P") {
   });
 }
      }, error => {
-
      console.log("error : "+JSON.stringify(error));
-
      });
   }
   letterList(){

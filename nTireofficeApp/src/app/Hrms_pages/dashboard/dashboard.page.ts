@@ -16,7 +16,6 @@ import { AlertController, LoadingController } from '@ionic/angular';
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-
 export class DashboardPage implements OnInit {
 
   myrequest:boolean;
@@ -86,6 +85,7 @@ console.log(window.localStorage['token'],"token1")
 console.log(window.localStorage.token,"token2")
     this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
+
     this.employee_id = window.localStorage['em_emp_id'];
     this.yeardata="";
     this.monthdata="";
@@ -97,20 +97,24 @@ console.log(window.localStorage.token,"token2")
     this.getEmployeeALLRequests();
     this.getEmployeePayslip();
     // this.getAttendance();
+
     this.getEmployeeApprovals();
     this.getMyTrainings();
     this.getGreetings();
 
 this.backbutton();
-  }
 
+  }
   backbutton() {
     console.log('backbutton')
     document.addEventListener("backbutton", async () => {
       console.log('backbutton1' + this.router.url)
+
       if (this.router.url =='/hrmsdashboard') {
+
         this.router.navigate(['/hrmsdashboard'])
         var alert1 = await this.alertController.create({
+
           message: 'Are you sure you want to logout',
           buttons: [
             {
@@ -129,12 +133,16 @@ this.backbutton();
                   access_token: localStorage.getItem('token'),
                   userid: localStorage.getItem('TUM_USER_ID'),
                   usertoken: localStorage.getItem('usertoken'),
+
                 };
                 this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj).then(resp => {
                    this.router.navigate(['/login']);
                 }, error => {
                   this.router.navigate(['/login']);
+
                 });
+
+
               }
             }
           ]
@@ -142,6 +150,7 @@ this.backbutton();
 
         await alert1.present();
       // this.logout();
+
       }
       else if (this.router.url === '/login') {
         navigator['app'].exitApp();
@@ -228,12 +237,12 @@ this.backbutton();
          this.monthdata = "0";
        }
        var obj={
-         empID: window.localStorage.getItem("EmployeeID"),
+         empID:this.employee_id,
          year:this.yeardata,
          month:this.monthdata
 
        }
-       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +"/nTireMobileCoreAPI/api/"+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
 
         this.loadingdismiss();
          this.attendanceList = JSON.parse(resp.toString());
@@ -445,8 +454,7 @@ this.backbutton();
 //Get emeployee apporovals based on employee id
   //*params="employee id"
   getEmployeeApprovals(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+
-    window.localStorage['EmployeeID']).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+ window.localStorage['EmployeeID']).then(resp=>{
       this.empApprovals = JSON.parse(resp.toString());
           // this.empApprovals = this.empApprovals[0];
           // console.log(this.empApprovals);
@@ -587,7 +595,7 @@ this.backbutton();
 
   //go to my approval page
   viewModal(item){
-    this.router.navigate(['/hrmsmyapprovals', {
+    this.router.navigate(['/myapprovals', {
       item:JSON.stringify(item)
 
       }])

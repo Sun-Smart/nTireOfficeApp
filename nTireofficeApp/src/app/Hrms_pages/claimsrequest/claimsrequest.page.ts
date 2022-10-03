@@ -111,7 +111,6 @@ username = window.localStorage.getItem('TUM_USER_NAME');
        usertoken:this.usertoken,
        access_token:this.token,
        EM_EMP_ID:this.empid
-
       }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getrequestReferencedata/",Refobj).then(resp=>{
       this.ReferenceData1=resp;
@@ -616,6 +615,6 @@ if(this.expenseArray.length>0){
     this.expenseArray=[];
   }
   claimList(){
-    this.router.navigateByUrl('/hrmsclaimssummary');
+    this.router.navigateByUrl('/claimssummary');
   }
 }
