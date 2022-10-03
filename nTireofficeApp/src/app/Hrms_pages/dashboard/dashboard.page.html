@@ -1225,6 +1225,8 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
             Search</ion-button>
         </ion-col>
       </ion-row>
+      <!-- <ion-input></ion-input> -->
+      <p *ngIf="shownull" style="text-align: center; color:black"> No record found</p>
 
       <div *ngIf="attendanceList&&attendanceList.length!==0">
 

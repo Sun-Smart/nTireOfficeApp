@@ -62,6 +62,7 @@ export class DashboardPage implements OnInit {
   employee_id;
   yeardata;
   monthdata;
+  shownull:boolean=false
   // attendanceList=[];
   nodata:boolean;
   backButtonSubscription: any;
@@ -86,7 +87,7 @@ console.log(window.localStorage.token,"token2")
     this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
 
-    this.employee_id = window.localStorage['em_emp_id'];
+    this.employee_id = window.localStorage['EmployeeID'];
     this.yeardata="";
     this.monthdata="";
     this.getEmployeeList();
@@ -227,6 +228,7 @@ this.backbutton();
      return await this.loadingController.dismiss();
   }
    getAttendance(){
+    debugger
      this.nodata=false;
      this.presentLoadingWithOptions();
        // console.log(this.attendance.empID);
@@ -242,11 +244,17 @@ this.backbutton();
          month:this.monthdata
 
        }
-       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp:any)=>{
 
         this.loadingdismiss();
-         this.attendanceList = JSON.parse(resp.toString());
+        console.log(resp)
 
+        debugger
+        //  this.attendanceList = JSON.parse(resp.toString());
+         this.attendanceList =JSON.parse(resp);
+         if(resp=false || resp==false){
+          this.shownull=true
+         }
          console.log(""+JSON.stringify(this.attendanceList));
          if(this.attendanceList.length==0){
            this.nodata = true;
@@ -454,8 +462,10 @@ this.backbutton();
 //Get emeployee apporovals based on employee id
   //*params="employee id"
   getEmployeeApprovals(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+ window.localStorage['EmployeeID']).then(resp=>{
-      this.empApprovals = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms +"/EmployeeApproval/"+ window.localStorage['EmployeeID']).then((resp:any)=>{
+      // this.empApprovals = JSON.parse(resp.toString());
+      this.empApprovals = JSON.parse(resp);
+
           // this.empApprovals = this.empApprovals[0];
           // console.log(this.empApprovals);
 

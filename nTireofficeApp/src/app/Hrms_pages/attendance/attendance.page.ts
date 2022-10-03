@@ -23,11 +23,9 @@ export class AttendancePage implements OnInit {
   nodata:boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController) {
-
-    this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
 
-    this.employee_id = window.localStorage['empid'];
+    this.employee_id = window.localStorage['EmployeeID'];
     this.yeardata="";
     this.monthdata="";
     this.getEmployeeList();
@@ -97,11 +95,12 @@ export class AttendancePage implements OnInit {
         month:this.monthdata
 
       }
-      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp:any)=>{
 
 this.loadingdismiss();
-        this.attendanceList = JSON.parse(resp.toString());
-
+        // this.attendanceList = JSON.parse(resp.toString());
+        this.attendanceList = JSON.parse(resp);
+console.log(resp)
         console.log(""+JSON.stringify(this.attendanceList));
         if(this.attendanceList.length==0){
           this.nodata = true;
