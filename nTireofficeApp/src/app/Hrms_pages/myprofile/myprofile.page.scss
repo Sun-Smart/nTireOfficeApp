@@ -86,3 +86,6 @@ max-width: calc(calc(5 / var(--ion-grid-columns, 14)) * 100%);
   .hrms_header{
 margin-bottom: -23px;
   }
+::ng-deep.native-textarea.sc-ion-textarea-md{
+  height: 50px;
+}
