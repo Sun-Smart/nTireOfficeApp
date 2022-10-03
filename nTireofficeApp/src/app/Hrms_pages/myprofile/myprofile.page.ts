@@ -38,7 +38,7 @@ export class MyprofilePage implements OnInit {
     correctOrientation: true //Corrects Android orientation quirks
   }
   validemail: boolean;
-  profile1=[];
+  profile1:any=[];
   image;
   Images=[];
   file;
@@ -47,7 +47,7 @@ export class MyprofilePage implements OnInit {
   qualification:any=[];
   // file=[];
   subQualification:any=[];
-  profile={
+  profile: any={
     Qualification:"",
     DOB:'',
     emp_qualification:"",
@@ -298,20 +298,21 @@ console.log(""+this.profilepic+""+this.image)
 
   getEmployeeDetails(){
     var obj = {
-      empID: 0,
+      empID: window.localStorage.getItem("EmployeeID"),
       name: window.localStorage.getItem("EmployeeName"),
       code: window.localStorage.getItem("TUM_EMP_CODE"),
       designation: window.localStorage.getItem("EmpDesignation"),
       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
       department: window.localStorage.getItem("EmpDepartment"),
       top: 20,
-      increment: 1,
-      appURL:'employeedetails'
+      increment: 0,
+      appURL:'employeedetails',
+      appURLs:'0'
     }
     console.log(""+obj)
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURL).then(resp=>{
-      this.profile = JSON.parse(resp.toString());
-      this.profile1 = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURLs).then(resp=>{
+      this.profile = resp;
+      this.profile1 = resp;
       console.log((resp));
 
       window.localStorage['em_emp_id']=this.empID;
@@ -456,7 +457,7 @@ console.log(""+this.profilepic+""+this.image)
 
   getEducationDaetails(){
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/EducationDetails/" +"0/"+ data+ "/0").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/EducationDetails/" +"0/"+"0/"+"0").then(resp=>{
       this.EducationDetails = resp;
     }, error => {
 
@@ -465,7 +466,7 @@ console.log(""+this.profilepic+""+this.image)
     });
   }
   getcarrierDaetails(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/CommonDropdown/CareerDetails/" +"0/"+ data+ "/0").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/CommonDropdown/CareerDetails/" +"0/"+"0/"+"0").then(resp=>{
       this.CareerDetails = resp;
     }, error => {
 
