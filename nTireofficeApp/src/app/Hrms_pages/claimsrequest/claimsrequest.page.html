@@ -119,13 +119,13 @@
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Expense Type<span class="validatecolor">*</span></ion-label>
-        <ion-select id="ContentName" style="display: flex; " class="form-control"
+        <select id="ContentName" style="display: flex; " class="form-control"
           [(ngModel)]="expenseType">
-          <ion-select-option class="ContentName" value="Select">&lt;&lt; Select &gt;&gt; </ion-select-option>
-          <ion-select-option class="ContentName" value="1">Food</ion-select-option>
-          <ion-select-option  class="ContentName" value="2">Travel</ion-select-option>
-          <ion-select-option class="ContentName" value="3">Hotel</ion-select-option>
-        </ion-select>
+          <option class="ContentName" value="Select">&lt;&lt; Select &gt;&gt; </option>
+          <option class="ContentName" value="1">Food</option>
+          <option  class="ContentName" value="2">Travel</option>
+          <option class="ContentName" value="3">Hotel</option>
+        </select>
       </ion-col>
       <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                       <ion-label>Expense Type</ion-label>
