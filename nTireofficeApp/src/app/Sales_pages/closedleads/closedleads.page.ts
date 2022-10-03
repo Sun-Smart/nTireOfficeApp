@@ -101,11 +101,11 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   branchlist: any;
   branchlist1 = [];
   products: any;
-  products1 = [];
+  products1:any = [];
   callpriority: any;
-  callpriority1 = [];
+  callpriority1:any = [];
   callrating: any;
-  callrating1 = [];
+  callrating1:any = [];
   userdata: any;
   userdata1 = [];
   usertype: any;
@@ -129,7 +129,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     TCC_LEAD_RATING: "",
     TCM_CAMPAIGN_SHORTDESC: "",
     TCC_LEAD_BY: "",
-    BRANCH_ID: window.localStorage['TUM_BRANCH_ID'],
+    BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
     CUST_FNAME: "",
   };
   geoencoderOptions: NativeGeocoderOptions = {
@@ -152,7 +152,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.BRANCH_ID = window.localStorage['TUM_BRANCH_ID'];
+    this.penleadfilter.BRANCH_ID = parseInt(window.localStorage['TUM_BRANCH_ID']);
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.penleadfilter.TCC_CUSTOMER_ID = '';
     this.penleadfilter.CUST_LNAME = '';
@@ -218,9 +218,9 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   Getbranches() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID']
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID'])
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -269,11 +269,12 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
-      this.products1 = JSON.parse(resp.toString());
+      this.products1 = JSON.stringify(resp);
+      this.products1 = JSON.parse(this.products1);
 
       this.products1.sort(function (a, b) {
-        var c = a.ProductName.toUpperCase();
-        var d = b.ProductName.toUpperCase();
+        var c = a.productName.toUpperCase();
+        var d = b.productName.toUpperCase();
         return c > d ? 1 : -1;
       });
 
@@ -290,10 +291,12 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
-      this.callpriority1 = JSON.parse(resp.toString());
+      this.callpriority1 = JSON.stringify(resp);
+      this.callpriority1 = JSON.parse(this.callpriority1);
+      // this.callpriority1 = JSON.parse(resp.toString());
       this.callpriority1.sort(function (a, b) {
-        var c = a.Text.toUpperCase();
-        var d = b.Text.toUpperCase();
+        var c = a.text.toUpperCase();
+        var d = b.text.toUpperCase();
         return c > d ? 1 : -1;
       });
 
@@ -310,10 +313,12 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
-      this.callrating1 = JSON.parse(resp.toString());
+      this.callrating1 = JSON.stringify(resp);
+      this.callrating1 = JSON.parse(this.callrating1);
+      // this.callrating1 = JSON.parse(resp.toString());
       this.callrating1.sort(function (a, b) {
-        var c = a.Text.toUpperCase();
-        var d = b.Text.toUpperCase();
+        var c = a.text.toUpperCase();
+        var d = b.text.toUpperCase();
         return c > d ? 1 : -1;
       });
     }, error => {
@@ -325,9 +330,9 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   Getusertype() {
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
 
     };
     const header = new Headers();
@@ -363,11 +368,11 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.userdata1 = [];
     var params = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branch_id: branch_id
+      branch_id: parseInt(branch_id)
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -498,11 +503,11 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
     this.token = window.localStorage['token'];
 
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var pendJSON;
     pendJSON = Object.assign(tokenJSON, this.penleadfilter);
-    var user_id_nw = window.localStorage['TUM_USER_ID'];
+    var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
     var tmpPendJson = {
       user_id: user_id_nw,
@@ -512,7 +517,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       limit: 50,
 
 
-      BRANCH_ID: window.localStorage['TUM_BRANCH_ID'],
+      BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: "",
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,
@@ -644,7 +649,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     var obj1 = {
       callid: id
     };
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getimageJSON = Object.assign(obj1, tokenJSON);
     const header = new Headers();

@@ -578,8 +578,8 @@ export class TeammeetingsPage implements OnInit {
 
     this.meetingCount = [];
     this.token = window.localStorage['token'];
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
-    var dataobj = { BRANCH_ID: branchid }
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
+    var dataobj = { BRANCH_ID: parseInt(branchid) }
     var getappJSON = Object.assign(dataobj, tokenJSON);
     console.log(getappJSON)
     const header = new Headers();
