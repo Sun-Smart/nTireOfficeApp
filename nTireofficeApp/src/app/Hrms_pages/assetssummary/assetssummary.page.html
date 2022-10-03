@@ -26,28 +26,28 @@
                   <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                     <ion-label>Assest Category<span class="validatecolor">*</span></ion-label>
                     <!-- "filterAsset('subcat')" -->
-                    <ion-select [(ngModel)]="assestCategory" (ionChange)="getAssestsSubcat()" class="form-control">
-                      <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-                       <ion-select-option *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</ion-select-option>
-                    </ion-select>
+                    <select [(ngModel)]="assestCategory" (ionChange)="getAssestsSubcat()" class="form-control">
+                      <option value="">&lt;&lt; Select &gt;&gt; </option>
+                       <option *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</option>
+                    </select>
                     </ion-col>
                     <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                       <ion-label>Assest Subcategory<span class="validatecolor">*</span></ion-label>
-                      <ion-select [(ngModel)]="assestsubCategory" (ionChange)="filterAsset('filter')" class="form-control">
-                        <ion-select-option value="">&lt;&lt; Select &gt;&gt; </ion-select-option>
-                         <ion-select-option *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</ion-select-option>
-                      </ion-select>
+                      <select [(ngModel)]="assestsubCategory" (ionChange)="filterAsset('filter')" class="form-control">
+                        <option value="">&lt;&lt; Select &gt;&gt; </option>
+                         <option *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</option>
+                      </select>
                       </ion-col>
                               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                                 <ion-label>Status<span class="validatecolor">*</span></ion-label>
-                               <ion-select [(ngModel)]="status" (ionChange)="changeOrder()" class="form-control">
-                                  <ion-select-option value selected="">&lt;&lt; Select &gt;&gt;</ion-select-option>
-                              <ion-select-option>Approved</ion-select-option>
-                              <ion-select-option>Pending</ion-select-option>
-                              <ion-select-option>New</ion-select-option>
-                              <ion-select-option>Cancelled</ion-select-option>
-                              <ion-select-option>Denied</ion-select-option>
-                               </ion-select>
+                               <select [(ngModel)]="status" (ionChange)="changeOrder()" class="form-control">
+                                  <option value selected="">&lt;&lt; Select &gt;&gt;</option>
+                              <option>Approved</option>
+                              <option>Pending</option>
+                              <option>New</option>
+                              <option>Cancelled</option>
+                              <option>Denied</option>
+                               </select>
                                 </ion-col>
                   </ion-row>
                   </ion-grid>
