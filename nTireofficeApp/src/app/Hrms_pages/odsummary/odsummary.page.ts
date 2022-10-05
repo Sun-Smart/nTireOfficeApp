@@ -35,10 +35,10 @@ export class OdsummaryPage implements OnInit {
     this.empID=window.localStorage['EmployeeID'];
     this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
     this.em_emp_id=window.localStorage['em_emp_id'];
-    
+
     this.status="";
     this.filterDate(undefined,undefined);
-  
+
 
   }
   // cancel(){
@@ -54,7 +54,7 @@ export class OdsummaryPage implements OnInit {
   filterDate(fromdate,todate){
     var obj = {
       empID: window.localStorage.getItem("EmployeeID"),
-     
+
     }
     this.display=[];
      if (fromdate == undefined || fromdate == "") {
@@ -68,7 +68,7 @@ export class OdsummaryPage implements OnInit {
      } else {
        var toDate = this.formatDate(todate);
      }
-    
+
      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+"/"+"searchOd/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then(resp=>{
        if (resp != "No Records found") {
 

@@ -121,7 +121,7 @@ export class LoginPage implements OnInit {
             localStorage.setItem('EmployeeName', res[0]['em_emp_name']);
             localStorage.setItem('EmpDesignation', res[0]['em_emp_designation']);
             localStorage.setItem('EmpDepartment', res[0]['em_emp_department']);
-            localStorage.setItem('EmpDepartment', res[0]['em_branch_id']);
+            localStorage.setItem('TUM_BRANCH_ID', res[0]['em_branch_id']);
           })
           if (window.localStorage['TUM_USER_TYPE'] == 8) {
             this.usertype = true;

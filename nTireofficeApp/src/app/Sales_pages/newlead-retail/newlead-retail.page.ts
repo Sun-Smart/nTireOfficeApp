@@ -1180,9 +1180,9 @@ export class NewleadRetailPage implements OnInit {
           this.show_color = ' assertive';
         }
         else {
-          this.userid = JSON.parse(this.uservalid);
+          this.userid = this.uservalid;
           //this.userid = this.userid[0].ID;
-          this.userid = this.userid[0].em_emp_id;
+          this.userid = this.userid.usercode;
           console.log(this.userid);
           this.show_request = 'valid';
           this.show_color = 'balanced';
@@ -1209,8 +1209,8 @@ export class NewleadRetailPage implements OnInit {
           this.show_color = ' assertive';
         }
         else {
-          this.userid = JSON.parse(this.uservalid);
-          this.userid = this.userid[0].ID;
+          this.userid = this.uservalid;
+          this.userid = this.userid.ID;
           //this.userid = this.userid[0].em_emp_id;
           console.log(this.userid);
           this.show_request = 'valid';
@@ -1238,9 +1238,9 @@ export class NewleadRetailPage implements OnInit {
           this.show_color = ' assertive';
         }
         else {
-          this.userid = JSON.parse(this.uservalid);
+          this.userid = this.uservalid;
           //this.userid = this.userid[0].ID;
-          this.userid = this.userid[0].em_emp_id;
+          this.userid = this.userid.em_emp_id;
           console.log(this.userid);
           this.show_request = 'valid';
           this.show_color = 'balanced';

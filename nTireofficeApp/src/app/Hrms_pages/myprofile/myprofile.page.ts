@@ -306,11 +306,11 @@ console.log(""+this.profilepic+""+this.image)
       department: window.localStorage.getItem("EmpDepartment"),
       top: 20,
       increment: 0,
-      appURL:'employeedetails',
-      appURLs:'0'
+      appURL:'0',
+      appURLs:'employeedetails'
     }
     console.log(""+obj)
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURLs).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+obj.empID +"/"+obj.name+ "/"+obj.code+"/"+obj.designation+"/"+obj.branch+"/"+obj.department+"/"+obj.top+"/"+obj.increment+"/"+obj.appURLs).then(resp=>{
       this.profile = resp;
       this.profile1 = resp;
       console.log((resp));
@@ -415,7 +415,6 @@ console.log(""+this.profilepic+""+this.image)
             console.error('Error cropping image', error);
           }
         );
-
     }, (err) => {
       // Handle error
     })
@@ -430,28 +429,23 @@ console.log(""+this.profilepic+""+this.image)
     for(var i = 0; i < binary.length; i++) {
     array.push(binary.charCodeAt(i));
     }
-
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
     };
   getQualification(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Qualification/" + "0" + "/0/0").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Qualification/" + "0"+"/0/0").then(resp=>{
       this.qualification =resp;
       // this.getSubQualification(this.emp.qualification);
     }, error => {
-
     console.log("error : "+JSON.stringify(error));
-
     });
   }
 
   getSubQualification(data){
-
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/SubQualification/"+ "0/"+data+"/0").then(resp=>{
+    debugger;
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/SubQualification/"+ "0/"+"0/"+"/0").then(resp=>{
       this.subQualification = resp;
     }, error => {
-
     console.log("error : "+JSON.stringify(error));
-
     });
   }
 
@@ -479,8 +473,6 @@ console.log(""+this.profilepic+""+this.image)
 
     if(this.buttonClicked == true)
     {
-
-
       this.profile.PermanentAddress = this.profile.CurrentAddress;
       this.profile.PermanentCity = this.profile.CurrentCity;
       this.profile.PermanentState = this.profile.CurrentState;
@@ -489,7 +481,6 @@ console.log(""+this.profilepic+""+this.image)
 
     }
     else{
-
       this.profile.PermanentAddress = '';
       this.profile.PermanentCity = '';
       this.profile.PermanentState = '';
@@ -694,10 +685,11 @@ console.log(""+this.profilepic+""+this.image)
               this.profile.DOB=splitfirst[2]+'-'+splitfirst[0]+'-'+splitfirst[1];
               console.log(""+this.profile.DOB)
             }
-            var indexval=this.qualification.findIndex(x => x.VALUE == this.profile.emp_qualification)
-            this.emp.qualification=this.qualification[indexval].VALUE
-
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"CommonDropdown/"+ window.localStorage['FUNCTION_ID']+  "/" + "SubQualification"+ "/" + "0/"+this.qualification[indexval].VALUE+"/0").then(resp=>{
+            var indexval=this.qualification.findIndex(x => x.VALUE == this.profile.emp_qualification);
+            console.log('dddd',this.qualification);
+            this.emp.qualification=this.qualification[0].VALUE;
+            console.log('dddddsds',this.emp.qualification)
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"CommonDropdown/"+ window.localStorage['FUNCTION_ID']+  "/" + "SubQualification"+ "/" + "0/"+this.qualification[0].VALUE+"/0").then(resp=>{
               this.subQualification = JSON.parse(resp.toString());
               var indexval1=this.subQualification.findIndex(x => x.VALUE == this.profile.emp_subqualification)
 
