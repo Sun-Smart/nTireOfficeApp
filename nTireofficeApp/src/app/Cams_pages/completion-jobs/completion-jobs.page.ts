@@ -56,6 +56,8 @@ export class CompletionJobsPage implements OnInit {
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    console.log(this.branchID);
+    
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
 
@@ -152,7 +154,7 @@ export class CompletionJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
   
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch=1'+this.branchID+'&fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
                                                                                                              // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
                                                                                                       // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
       headers: options,
@@ -307,6 +309,7 @@ async reopenActionModal(obj){
   }
 
   compdateval(){
+    debugger
     this.responseData1=[];
     var from = this.fromdate;
     var from_timestamp = new Date(from).getTime();
@@ -330,8 +333,13 @@ async reopenActionModal(obj){
           headers: options,
         }).subscribe(resp => {
           this.carddata=resp;
+          console.log(this.carddata);
+          debugger;
+          
           this.responseData2 = this.carddata;
+          debugger;
           console.log(this.responseData2);
+          debugger;
          for (var i = 0; i < this.responseData2.length; i++) {
           //console.log(this.responseData1);
             var newtemp = this.responseData2[i].pm_due_date.split("/");
@@ -349,8 +357,11 @@ async reopenActionModal(obj){
           //this.remove_array.sort((a, b) => {return b - a });
           this.remove_array.sort(function(a, b) { return b - a });
           for (var j = 0; j < this.remove_array.length; j++) {
+            console.log(this.remove_array[j]);
+            
             
             this.responseData1=this.responseData2.splice(this.remove_array[j], 1);
+            console.log(this.remove_array[j]);
             this.responseDatalength = this.responseData1.length;
             console.log(this.responseData1)
           }  

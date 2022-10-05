@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -162,7 +162,7 @@ export class DepartmentWisePage implements OnInit {
   selzone(){
     var dataz = {
       'functionidrep': this.functionID,
-      'zoneid': this.ZoneLoc,
+      'zoneid': parseInt(this.ZoneLoc),
       'access_token': this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -189,8 +189,8 @@ export class DepartmentWisePage implements OnInit {
   selregion(){
     var dataz = {
       'functionidrep': this.functionID,
-      'zoneid': this.ZoneLoc,
-      'regionid' : this.region,
+      'zoneid': parseInt(this.ZoneLoc),
+      'regionid' : parseInt(this.region),
       'access_token': this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -246,37 +246,37 @@ export class DepartmentWisePage implements OnInit {
     }
 
     if(this.region == undefined || this.region == '<< Select >>'){
-      var region1= '';
+      var region1= '0';
     }else{
       region1= this.region;
     }
 
     if(this.branchLoc == undefined || this.branchLoc == '<< Select >>'){
-      var branchLoc1= '';
+      var branchLoc1= '0';
     }else{
       branchLoc1= this.branchLoc;
     }
 
     if(this.depatment == undefined || this.depatment == '<< Select >>'){
-      var depatment1= '';
+      var depatment1= '0';
     }else{
       depatment1= this.depatment;
     }
 
     if(this.location == undefined || this.location == '<< Select >>'){
-      var location1= '';
+      var location1= '0';
     }else{
       location1= this.location;
     }
     var datafinal = {
       'functionidrep': this.functionID,
-      'fzoneid': LocZone,
-      'fregionid': region1,
-      'fbranchid': branchLoc1,
+      'fzoneid': parseInt(LocZone),
+      'fregionid': parseInt(region1),
+      'fbranchid': parseInt(branchLoc1),
       // 'fassetcatid':$scope.asstdtlocation.category,
       // 'fassetsubcatid':$scope.asstdtlocation.subcategory,
-      'depatmentid': depatment1,
-      'locationidd': location1,
+      'depatmentid': parseInt(depatment1),
+      'locationidd': parseInt(location1),
       'access_token':window.localStorage['token'],
       'userid':this.userID,
       'usertoken':this.userToken

@@ -65,7 +65,7 @@
     <ion-row style="background-color: #ffffff;
     border-top: 1px solid lightgrey;">
       <ion-col style="text-align: center;">
-        <span>DOB: {{profile.DOB | date:'dd-MM-yyyy'}}</span>
+        <!-- <span>DOB: {{profile.DOB | date:'dd-MM-yyyy'}}</span> -->
       </ion-col>
       <ion-col style="text-align: center;">
         <span>DOJ: {{profile.DOJ | date:'dd-MM-yyyy'}}</span>
@@ -153,7 +153,7 @@
               <ion-label>Qualification</ion-label>
               <br />
               <select *ngIf="personalToggle===1" [(ngModel)]="emp.qualification" class="selectTag"
-                style="margin-left: -3px;" id="qualification" (ionChange)="getSubQualification(emp.qualification)">
+                style="margin-left: -3px;" id="qualification" (change)="getSubQualification(emp.qualification)">
                 <option value="">Qualification</option>
                 <option *ngFor="let item of qualification" [value]="item.VALUE">{{item.TEXT}}
                 </option>
@@ -172,7 +172,7 @@
               <br />
               <select *ngIf="personalToggle===1" [(ngModel)]="emp.subQualification" class="selectTag"
                 style="margin-left: -3px;" [disabled]="personalToggle===0" id="qualification"
-                (change)="loadSubQualification()">
+                (ionChange)="loadSubQualification()">
                 <option value="">Sub Qualification</option>
                 <option *ngFor="let item  of subQualification" [value]="item.VALUE">{{item.TEXT}}
                 </option>
@@ -274,7 +274,6 @@
       <!-- Permenenet Adress -->
       <ion-card>
         <ion-card-header class="card_header" style="padding: 0 !important;">
-
           <ion-row>
             <ion-col size="8" style="line-height: 2;">
               <ion-label class="card_header_text">Permanent Address</ion-label>
@@ -292,7 +291,7 @@
                 (click)="hidePersonalPanel('permanent')">
                 <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
               </button>
-              <button id="personalEdit" (click)="sameAsCurrent()" *ngIf="permanentToggle == 1"
+              <button id="personalEdit" (click)="sameAsCurrent()" *ngIf="permanentToggle === 1"
                 style="color:#ffffff;background: transparent; margin: 7px 0;font-weight: 200;letter-spacing: -1px;border: 1px solid white;padding: 5px; border-radius: 5px;">
                 <!-- <i class="fa fa-clone" style="font-size:20px; margin-left:5px; color:firebrick;"></i>  -->
                 Same as Current
