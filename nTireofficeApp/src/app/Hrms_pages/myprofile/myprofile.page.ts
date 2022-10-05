@@ -310,7 +310,7 @@ console.log(""+this.profilepic+""+this.image)
       appURLs:'0'
     }
     console.log(""+obj)
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURLs).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+obj.empID +"/"+obj.name+ "/"+obj.code+"/"+obj.designation+"/"+obj.branch+"/"+obj.department+"/"+obj.top+"/"+obj.increment+"/"+obj.appURLs).then(resp=>{
       this.profile = resp;
       this.profile1 = resp;
       console.log((resp));
