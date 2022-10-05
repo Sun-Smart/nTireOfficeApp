@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-menu-button></ion-menu-button> -->
+      <ion-button (click)="closemodal()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>updateprsstatus</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">PRS Code</ion-label>
+          <ion-input type="text" [(ngModel)]="prscode" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Item Code</ion-label>
+          <ion-input type="text" [(ngModel)]="prscode" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Requisition Date</ion-label>
+          <input type="date" [(ngModel)]="Requisitiondate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">QTY</ion-label>
+          <ion-input type="text" [(ngModel)]="QTY" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Unit Price</ion-label>
+          <ion-input type="text" [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Net Price</ion-label>
+          <ion-input type="text" [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Status</ion-label>
+          <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="New">New</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Denied">Denied</option>
+            <option value="Under Process">Under Process</option>
+            <option value="Cancelled">Cancelled</option>
+            <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+          </select>
+        </ion-col>
+        <!-- <ion-col style="text-align: center;">
+          <ion-button class="ion-color-primary" routerLink="/purchase-request" expand="block">New</ion-button>
+        </ion-col> -->
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-success" expand="block" (click)="update()">
+            <!-- <ion-icon style="color:white ;" name="search-outline"></ion-icon> -->
+            Update
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+
+
+
+</ion-content>

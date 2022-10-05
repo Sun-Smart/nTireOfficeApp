@@ -30,11 +30,28 @@
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">Requisition Date</ion-label>
+            <ion-input type="date"  disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Mode</ion-label>
+            <ion-label class="plabel">PRS Code</ion-label>
+            <ion-input type="text"  disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">PRS Mode</ion-label>
             <select style="padding: 10px;" class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
+              <option value="Quotation"> Quotation</option>
+              <option value="Direct"> Direct</option>
+              <option value="Blanket"> Blanket</option>
+              <option value="Tender">Tender</option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>
