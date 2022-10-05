@@ -90,12 +90,12 @@ export class ProcessedAttendancePage implements OnInit {
       this.monthdata = "0";
     }
     var obj={
-      empID:this.employee_id,
+      empID: window.localStorage.getItem('EmployeeID'),
       year:this.yeardata,
       month:this.monthdata
-
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
       this.loadingdismiss();
       this.attendanceList = JSON.parse(resp.toString());
       if(this.attendanceList.length == 0){
@@ -123,17 +123,13 @@ getDateObj(value){
 async presentLoadingWithOptions() {
   const loading = await this.loadingController.create({
     spinner: 'crescent',
-
     message: 'Please wait...',
     translucent: true,
     cssClass: 'custom-class custom-loading',
-
-
   });
   return await loading.present();
 }
 async   loadingdismiss() {
-
    return await this.loadingController.dismiss();
 }
 

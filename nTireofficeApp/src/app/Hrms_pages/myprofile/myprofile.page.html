@@ -153,7 +153,7 @@
               <ion-label>Qualification</ion-label>
               <br />
               <select *ngIf="personalToggle===1" [(ngModel)]="emp.qualification" class="selectTag"
-                style="margin-left: -3px;" id="qualification" (ionChange)="getSubQualification(emp.qualification)">
+                style="margin-left: -3px;" id="qualification" (change)="getSubQualification(emp.qualification)">
                 <option value="">Qualification</option>
                 <option *ngFor="let item of qualification" [value]="item.VALUE">{{item.TEXT}}
                 </option>
@@ -172,7 +172,7 @@
               <br />
               <select *ngIf="personalToggle===1" [(ngModel)]="emp.subQualification" class="selectTag"
                 style="margin-left: -3px;" [disabled]="personalToggle===0" id="qualification"
-                (change)="loadSubQualification()">
+                (ionChange)="loadSubQualification()">
                 <option value="">Sub Qualification</option>
                 <option *ngFor="let item  of subQualification" [value]="item.VALUE">{{item.TEXT}}
                 </option>
@@ -274,7 +274,6 @@
       <!-- Permenenet Adress -->
       <ion-card>
         <ion-card-header class="card_header" style="padding: 0 !important;">
-
           <ion-row>
             <ion-col size="8" style="line-height: 2;">
               <ion-label class="card_header_text">Permanent Address</ion-label>
