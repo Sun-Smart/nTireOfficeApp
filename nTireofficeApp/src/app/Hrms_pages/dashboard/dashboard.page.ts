@@ -173,7 +173,7 @@ this.backbutton();
        branch: window.localStorage.getItem("TUM_BRANCH_ID"),
        department: window.localStorage.getItem("EmpDepartment"),
        top: 20,
-       increment: 1,
+       increment: 0,
        appURL:"employeelist"
      }
      console.log(obj,'ramiz')
@@ -344,8 +344,8 @@ this.backbutton();
       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
       department:window.localStorage.getItem("EmpDepartment") ,
       top: 20,
-      increment: 1,
-      appURL:'employeedetails'
+      increment: 0,
+      appURL:0
     }
 
 
