@@ -83,7 +83,7 @@ export class LocationPage implements OnInit {
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
-      functionidrep: window.localStorage['FUNCTION_ID']
+      functionid: parseInt(window.localStorage['FUNCTION_ID'])
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -186,12 +186,13 @@ export class LocationPage implements OnInit {
       // setInterval(function() {
       console.log("inside")
       var getsalelocJSONtmp = {
-        user_type: user_type,
-        branch: branch,
+        user_type: parseInt(user_type),
+        branch: parseInt(branch),
         TUM_USER_CODE: window.localStorage['TUM_EMP_CODE']
 
       }
-      var tokenJSON = { access_token: window.localStorage['token'], userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+      this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
+      var tokenJSON = { access_token: window.localStorage['token'], userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
 
       var getsalelocJSON = Object.assign(getsalelocJSONtmp, tokenJSON);
 

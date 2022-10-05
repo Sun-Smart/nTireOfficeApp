@@ -29,7 +29,7 @@ export class HeatmapPage implements OnInit {
 
   branchuser_data1: any;
   branchuser_data = [];
-  locbranch;
+  branchid;
   status;
   HeatMapRecord_data1: any;
   HeatMapRecord_data = [];
@@ -41,11 +41,11 @@ export class HeatmapPage implements OnInit {
     this.Getbranches();
     this.username=localStorage.getItem('TUM_USER_NAME');
     this.segmentdata = "11";
-    this.locbranch = window.localStorage['TUM_BRANCH_ID'];
+    this.branchid = window.localStorage['TUM_BRANCH_ID'];
     this.branch = window.localStorage['TUM_BRANCH_ID'];
     this.status = "3";
     this.status1 = "3";
-    this.getbranchusers(this.locbranch, this.status);
+    this.getbranchusers(this.branchid, this.status);
     if (this.usertype != '1') {
 
       this.HeatMapRecord(localStorage['TUM_USER_ID']);
@@ -87,7 +87,7 @@ export class HeatmapPage implements OnInit {
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
-      locbranch: location,
+      branchid: parseInt(location),
       status: status
     };
     const header = new Headers();
@@ -112,10 +112,10 @@ export class HeatmapPage implements OnInit {
     this.HeatMapRecord_data = [];
     var obj = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
-      tum_user_id: user_id,
+      tum_user_id: parseInt(user_id),
       status: this.status
     };
     const header = new Headers();
