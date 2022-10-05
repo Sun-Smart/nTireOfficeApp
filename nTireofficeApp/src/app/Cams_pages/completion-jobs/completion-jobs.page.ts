@@ -152,13 +152,14 @@ export class CompletionJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
   
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/1/1/%20/%20/%20/%20/%20/MT', {
-                              // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch=1'+this.branchID+'&fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
+                                                                                                             // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
+                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
       this.carddata=resp;
-      this.responseData1 = JSON.parse(this.carddata);
+      this.responseData1 = this.carddata;
       console.log(this.responseData1.length);
     this.responseDatalength = this.responseData1.length;
     }, error => {
@@ -175,7 +176,9 @@ export class CompletionJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/1/1/%20/%20/%20/%20/%20/'+this.jobs, {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE='+this.jobs+'&AssetCode=null', {
+                                                                                                         // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
+                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null         
       
       headers: options,
     }).subscribe(resp => {
@@ -321,12 +324,13 @@ async reopenActionModal(obj){
         header.append("Content-Type", "application/json");
     
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/1/1/%20/%20/%20/%20/%20/MT',{
-          
+        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate='+this.fromdate+'&tdate='+this.todate+'&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null',{
+                                                                                                             // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
+                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
           headers: options,
         }).subscribe(resp => {
           this.carddata=resp;
-          this.responseData2 = JSON.parse(this.carddata);
+          this.responseData2 = this.carddata;
           console.log(this.responseData2);
          for (var i = 0; i < this.responseData2.length; i++) {
           //console.log(this.responseData1);

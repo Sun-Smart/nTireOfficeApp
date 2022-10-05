@@ -228,31 +228,31 @@ export class LocationWiseAssetPage implements OnInit {
   processlocationreport(){
 
     if(this.ZoneLoc == undefined || this.ZoneLoc == '<< Select >>'){
-      var LocZone= '';
+      var LocZone= '0';
     }else{
       LocZone= this.ZoneLoc;
     }
 
     if(this.region == undefined || this.region == '<< Select >>'){
-      var region1= '';
+      var region1= '0';
     }else{
       region1= this.region;
     }
 
     if(this.branchLoc == undefined || this.branchLoc == '<< Select >>'){
-      var branchLoc1= '';
+      var branchLoc1= '0';
     }else{
       branchLoc1= this.branchLoc;
     }
 
     if(this.category == undefined || this.category == '<< Select >>'){
-      var category1= '';
+      var category1= '0';
     }else{
       category1= this.category;
     }
 
     if(this.subcategory == undefined || this.subcategory == '<< Select >>'){
-      var subcategory1= '';
+      var subcategory1= '0';
     }else{
       subcategory1= this.subcategory;
     }

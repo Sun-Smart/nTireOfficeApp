@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row>
   <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-    <ion-label class="ContentName">Reason <span style="color:red;margin-left: 5px;">*</span></ion-label>
+    <ion-label class="ContentName" >Reason <span style="color:red;margin-left: 5px;">*</span></ion-label>
 <ion-textarea maxlength="500" [(ngModel)]="reason" style="height:auto !important" class="form-control">
 </ion-textarea>
 <span *ngIf="reason && reason != 'undefined' && reason.length > 0"
@@ -25,7 +25,7 @@ class="customCounter">{{500 - reason.length}}</span>
 </ion-row>
 <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
   <!-- <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col> -->
-  <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+  <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
     <ion-button (click)="reopenok()" [disabled]="(reason == undefined || doi==undefined)" text-center style="--background:#009689" size="full">Save
     </ion-button>
   </ion-col>
