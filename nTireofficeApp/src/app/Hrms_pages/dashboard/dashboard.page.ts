@@ -509,7 +509,7 @@ this.backbutton();
     var get_obj={
 
       userid:parseInt(this.userid),
-      usertoken:this.usertoken,
+      usertoken:localStorage.getItem('TUM_USER_ID'),
       access_token:this.token
 }
 
