@@ -91,11 +91,11 @@ export class ExpensedetailsPage implements OnInit {
   checkdata;
   branchlist: any;
   branchlist1 = [];
-  username:any;
+  username: any;
   private backbuttonSubscription: Subscription;
   constructor(private nativeGeocoder: NativeGeocoder, public alertController: AlertController, public modalController: ModalController, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService, private geolocation: Geolocation) {
     this.brach = localStorage.getItem('BRANCH_ID');
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     this.IsVisible = true;
     this.brach = "";
     this.Getbranches();
@@ -312,10 +312,10 @@ export class ExpensedetailsPage implements OnInit {
           $('#alluserTablebyDate').show();
           $('#alluserTable').hide();
           this.meetingArray = [];
-
+          this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
           var dataJSONtmp = { fromdate: this.fromdate, todate: this.todate, BRANCH_ID: parseInt(this.brach) }
           this.token = window.localStorage['token'];
-          var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+          var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
           var getleadJSON = Object.assign(dataJSONtmp, tokenJSON);
           const header = new Headers();
           header.append("Content-Type", "application/json");
