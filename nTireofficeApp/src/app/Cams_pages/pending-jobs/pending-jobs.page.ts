@@ -149,6 +149,7 @@ export class PendingJobsPage implements OnInit {
 
 
     getCards() {
+      debugger;
 
       const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -177,54 +178,57 @@ export class PendingJobsPage implements OnInit {
    // this.responseData = {};
 
    if(this.Realease_status == "<< Select >>" || this.Realease_status == undefined){
-    var status = "  ";
+    var status = "null";
    }else{
     status= this.Realease_status
    }
 
    if(this.jobs == "<< Select >>" || this.jobs == undefined){
-    var jobs = 'MT';
+    var jobs = 'null';
    }else{
     jobs= this.jobs
    }
 
    if(this.category == "<< Select >>" || this.category == undefined){
-    var assetCat = ' ';
+    var assetCat = 'null';
    }else{
     assetCat= this.category
     console.log(assetCat)
    }
 
    if(this.subCategory == "<< Select >>" || this.subCategory == undefined){
-    var assetSubCat = ' ';
+    var assetSubCat = 'null';
    }else{
     assetSubCat= this.subCategory
    }
 
    if(this.fromdate == "<< Select >>" || this.fromdate == undefined){
-    var fromdate = ' ';
+    var fromdate = 'null';
    }else{
     this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd-MM-yyyy');
     fromdate= this.fromdate2
    }
 
    if(this.todate == "<< Select >>" || this.todate == undefined){
-    var todate = ' ';
+    var todate = 'null';
    }else{
     this.todate2 = this.datePipe.transform(this.todate, 'dd-MM-yyyy');
     todate= this.todate2
    }
+   console.log(this.assetCode);
+   const Newasset = this.assetCode;
+   
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+fromdate+'&tdate='+todate+'&Status='+ status +'&strUserId='+this.userID+'&UserType='+this.usertype+'&drpcategory='+assetCat+'&drptype='+assetSubCat+' &TASKTYPE='+jobs+'&AssetCode=MT'+this.assetCode, {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+fromdate+'&tdate='+todate+'&Status='+status+'&strUserId='+this.userID+'&UserType='+this.usertype+'&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs, {
                                                                                                                                                                                                                                                                     // &TASKTYPE=84&AssetCode=MT
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
       this.carddata=resp;
-      this.responseData = JSON.parse(this.carddata);
+      this.responseData =this.carddata;
       console.log(this.responseData);
       this.responseDatalength = this.responseData.length;
       this.branch1 = this.responseData[0].Branch;

@@ -273,6 +273,7 @@ export class ServiceListPage implements OnInit {
       this.vendorcode = '';
       this.reqdate = '';
     }, error => {
+      
       console.log("error : " + JSON.stringify(error));
   
     });

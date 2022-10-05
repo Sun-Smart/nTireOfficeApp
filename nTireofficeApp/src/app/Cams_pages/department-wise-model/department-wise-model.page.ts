@@ -29,6 +29,7 @@ export class DepartmentWiseModelPage implements OnInit {
   locId;
   brnchnme;
   detailfinalsmodals;
+  departmentDetails: Object;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -73,7 +74,7 @@ export class DepartmentWiseModelPage implements OnInit {
     }).subscribe(resp => {
       console.log(resp)
       this.detailfinalsmodals = resp;
-   
+   this.departmentDetails = resp;
       console.log(this.detailfinalsmodals);
   
     }, error => {

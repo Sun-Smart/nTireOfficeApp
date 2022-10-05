@@ -22,6 +22,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers:[DatePipe],
-  declarations: [CompletionJobsReopenPage]
+    declarations: [CompletionJobsReopenPage]
 })
 export class CompletionJobsReopenPageModule {}

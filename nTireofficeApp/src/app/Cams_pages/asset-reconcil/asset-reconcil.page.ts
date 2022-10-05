@@ -358,7 +358,7 @@ export class AssetReconcilPage implements OnInit {
       'assetidrec': parseInt(this.assetidrecon),
       'branchidu': this.branchID,
       'functionidrec': this.functionID,
-      'deprtid': this.depid,
+      'deprtid': parseInt(this.depid),
       'assetuser': this.assetuser,
       'mode': modest,
       'recrdte': finaltodayDate,
