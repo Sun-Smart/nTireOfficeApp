@@ -107,7 +107,6 @@ export class LoginPage implements OnInit {
 
           // this.loadingdismiss();
           // if(userdata['TUM_FORCE_LOGON']=='Y'){
-
           // }else{
           this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.tokenlogin + '/Login/GetUserToken/' + resp.TUM_USER_NAME + '/' + password).subscribe((res) => {
             console.log('check token', res);
