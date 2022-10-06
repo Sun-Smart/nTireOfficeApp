@@ -22,6 +22,7 @@ export class IpaddressService {
   public serviceurlCamsNode;
   public serviceerpapi;
   public serviceurlerp
+    serviceurlProperty: any;
   constructor() {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
