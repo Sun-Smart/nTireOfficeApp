@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable new-parens */
@@ -249,7 +250,7 @@ export class MymeetingPage implements OnInit {
 
   }
   initMap(markers) {
-
+debugger;
     console.log(markers)
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
