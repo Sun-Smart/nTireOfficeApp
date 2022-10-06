@@ -58,7 +58,8 @@ export class LoanRequestPage implements OnInit {
   disabledvalue;
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private router: Router,private route:ActivatedRoute,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
-    this.userid = window.localStorage['TUM_USER_ID'];
+    // this.userid = window.localStorage['TUM_USER_ID'];
+     this.userid = parseInt(window.localStorage['TUM_USER_ID'])
     this.usertoken = window.localStorage['usertoken'];
     this.token=window.localStorage['token'];
     this.empID=window.localStorage['empID'];
@@ -81,7 +82,7 @@ export class LoanRequestPage implements OnInit {
   this.loanScheme="";
   }
   getEmployeeDetails(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"GetEmployees/"+this.empCode).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/GetEmployees/"+this.empCode).then(resp=>{
       console.log(resp);
       if (resp == "Employee not Exist") {
   this.toastmessageService.presentAlert1("","Employee Does not Exist");

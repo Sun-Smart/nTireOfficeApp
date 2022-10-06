@@ -313,7 +313,7 @@ export class ExpensedetailsPage implements OnInit {
           $('#alluserTable').hide();
           this.meetingArray = [];
           this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
-          var dataJSONtmp = { fromdate: this.fromdate, todate: this.todate, BRANCH_ID: parseInt(this.brach) }
+          var dataJSONtmp = { fdate: this.fromdate, tdate: this.todate, BRANCHID: parseInt(this.brach) }
           this.token = window.localStorage['token'];
           var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
           var getleadJSON = Object.assign(dataJSONtmp, tokenJSON);
@@ -574,7 +574,7 @@ export class ExpensedetailsPage implements OnInit {
 
     this.meetingCount = [];
 
-    var dataobj = { BRANCH_ID: parseInt(branchid) }
+    var dataobj = { BRANCHID: parseInt(branchid) }
     this.token = window.localStorage['token'];
 
     var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
@@ -717,12 +717,12 @@ export class ExpensedetailsPage implements OnInit {
     this.branch_id = data.BRANCH_ID;
     this.documents = [];
     var dataobj = {
-      custid: this.customer_id,
+      custid: parseInt(this.customer_id),
 
     }
     this.token = window.localStorage['token'];
 
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getExpenseJSON = Object.assign(dataobj, tokenJSON);
     const header = new Headers();

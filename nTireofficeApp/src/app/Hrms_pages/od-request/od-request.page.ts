@@ -93,7 +93,7 @@ export class OdRequestPage implements OnInit {
    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
    this.token=window.localStorage['token'];
    this.userID = window.localStorage['TUM_USER_ID'];
-   this.usertoken= window.localStorage['usertoken'];
+   this.usertoken= window.localStorage['TUM_USER_ID'];
    this.name = window.localStorage['TUM_USER_NAME'];
    this.empCode= window.localStorage['TUM_EMP_CODE'];
    // console.log(this.coff.name);
@@ -234,10 +234,10 @@ if(this.reqref !=undefined){
    }
    getTravelMode(){
     var travelobj={
-      'FunctionID':this.FUNCTION_ID,
+      'FunctionID': parseInt(this.FUNCTION_ID),
       'access_token':this.token,
-      'userid': this.userID,
-      'usertoken':this.usertoken
+      'userid': parseInt(this.userID),
+      'usertoken': parseInt(this.usertoken)
     }
 
   this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getTravelMode/",travelobj).then(resp=>{
@@ -257,10 +257,10 @@ if(this.reqref !=undefined){
    }
    getAdvancedCurrency(){
        var currencyobj={
-        'function_id':this.FUNCTION_ID,
+        'functionid': parseInt(this.FUNCTION_ID),
         'access_token':this.token,
-        'userid': this.userID,
-        'usertoken':this.usertoken
+        'userid': parseInt(this.userID),
+        'usertoken': parseInt(this.usertoken)
       }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getCurrencyType/",currencyobj).then(resp=>{
       this.currencylist1=resp;

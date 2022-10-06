@@ -82,6 +82,7 @@ export class NewleadRetailPage implements OnInit {
   source: any;
   remarks: any;
   closedDate: any;
+  appointmentDate:any;
   expectedAmount: any;
   leadBy: any;
   prod_cat: any;
@@ -145,7 +146,7 @@ export class NewleadRetailPage implements OnInit {
     this.showmap = true;
     this.function = localStorage.getItem('FUNCTION_DESC');
     // this.branch = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
-    this.branch ='<< Select >>';
+    this.branch = '<< Select >>';
     this.BranchLocationdata(this.branch);
     this.branchlocation = '<< Select >>';
     this.productdata = '<< Select >>';
@@ -371,10 +372,10 @@ export class NewleadRetailPage implements OnInit {
     const options = new HttpHeaders().set('Content-Type', 'application/json');
     // /mobileapi/LMS/LMS.svc/customerresponse/
 
-    this.http.get(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +  'customerresponse/' + this.curr_prod_category, {
+    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
-      console.log('testetetetetetete',resp);
+      console.log('testetetetetetete', resp);
       this.nextactionarray = JSON.stringify(resp);
       this.nextactionarray = JSON.parse(this.nextactionarray);
       console.log('nextactionarray: ' + JSON.stringify(this.nextactionarray));
@@ -848,9 +849,9 @@ export class NewleadRetailPage implements OnInit {
         functionid: window.localStorage.FUNCTION_ID,
         userTypeid: window.localStorage.TUM_USER_TYPE,
         branch_id: window.localStorage.TUM_BRANCH_ID,
-        appointmentDate: appdata,
+        // appointmentDate: appdata,
         closedDate: this.closedDate,
-        appointmentTime: strTime,
+        // appointmentTime: strTime,
         campaign: this.campaign,
         OffPhone: this.OffPhone,
         ResPhone: this.ResPhone,
@@ -884,7 +885,8 @@ export class NewleadRetailPage implements OnInit {
       header.append('Content-Type', 'application/json');
 
       const options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'insertlead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.salutation_name + '.' + data.firstName + '/' + data.lastName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentDate + '/' + data.appointmentTime + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '/' + data.email_id + '/' + data.currency + '', {
+      // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'insertlead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.salutation_name + '.' + data.firstName + '/' + data.lastName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentDate + '/' + data.appointmentTime + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '/' + data.email_id + '/' + data.currency + '', {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'insertlead' + '/?functionid=' + data.functionid + '&BRANCH_ID=' + data.branch_id + '&productcategoryid=' + data.prod_cat + '&productid=' + data.product_id + '&campaignid=' + camp_id + '&customerfname=' + data.firstName + '&customerlname=' + data.lastName + '&mobile=' + data.mobile + '&OfficePhone=' + data.OffPhone + '&ResidencePhone=' + data.ResPhone + '&callpriorityid=' + data.priority + '&callratingid=' + data.rating + '&callnatureid=' + data.nature + '&leadsourceid=' + data.source + '&callstageid=' + data.stage + '&customerresponse=' + data.response + '&NextCallDate=' + data.followdate + '&time=' + data.followtime + '&remarks=' + data.remarks + '&ExpectedClose=' + data.closedDate + '&ExpectedAmount=' + data.expectedAmount + '&Leadby=' + data.leadBy + '&UserID=' + data.uservalue + '&userType=' + data.userTypeid + '&LocationId=' + data.LocationId + '&EmailId=' + data.email_id + '&Currency=' + data.currency + '', {
         headers: options,
       }).subscribe(resp => {
         console.log('mobileapi : ' + JSON.stringify(resp));
@@ -911,11 +913,14 @@ export class NewleadRetailPage implements OnInit {
 
 
           const obj = {
-            LeadID: lead_id_new, LatLong: this.appointmentLatLong, Address: this.placetomeet,
+            LeadID: lead_id_new,
+            // LatLong: this.appointmentLatLong,
+            LatLong: null,
+            Address: this.placetomeet,
             access_token: window.localStorage.token,
-            userid: window.localStorage.TUM_USER_ID,
+            userid: parseInt(window.localStorage.TUM_USER_ID),
             usertoken: window.localStorage.usertoken,
-            USER_ID: window.localStorage.TUM_USER_ID
+            USER_ID: parseInt(window.localStorage.TUM_USER_ID)
           };
           console.log(obj);
 
@@ -947,7 +952,7 @@ export class NewleadRetailPage implements OnInit {
 
               const passCurrent_locationJSON = {
                 latlong: this.currentlatlon,
-                custid: this.lead_id,
+                CustId: this.lead_id,
                 access_token: window.localStorage.token,
                 userid: window.localStorage.TUM_USER_ID,
                 usertoken: window.localStorage.usertoken,

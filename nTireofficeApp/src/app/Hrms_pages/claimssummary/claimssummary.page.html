@@ -2,132 +2,134 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-button (click)="cancel()" >
+        <ion-button (click)="cancel()">
           <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon>
         </ion-button>
       </ion-buttons>
       <ion-title>Claim Summary</ion-title>
     </ion-toolbar>
   </ion-header>
-    <ion-grid style=" background: #fff; padding: 8px;margin: 15px;border-radius: 8px;box-shadow: 1px 1px 7px 0px grey;">
-        <ion-row>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label>Company Name</ion-label>
-                <ion-input style="background-color: white;
-                color: black;" class="form-control" disabled  [(ngModel)]="company"></ion-input>
-              </ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                  <ion-label>Branch</ion-label>
-                    <ion-input style="background-color: white;
-                    color: black;" class="form-control" disabled  [(ngModel)]="branch"></ion-input>
-                  </ion-col>
-                  <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                      <ion-label>Name</ion-label>
-                        <ion-input style="background-color: white;
-                        color: black;" class="form-control" disabled  [(ngModel)]="name"></ion-input>
-                      </ion-col>
-                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                          <ion-label>Request Category</ion-label>
-                          <select [(ngModel)]="requestCat" class="form-control">
-                            <option value="">&lt;&lt; Select &gt;&gt; </option>
-                            <option *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
-                        </select>
-                          </ion-col>
-                          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+  <ion-grid style=" background: #fff; padding: 8px;margin: 15px;border-radius: 8px;box-shadow: 1px 1px 7px 0px grey;">
+    <ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Company Name</ion-label>
+        <ion-input style="background-color: white;
+                color: black;" class="form-control" disabled [(ngModel)]="company"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Branch</ion-label>
+        <ion-input style="background-color: white;
+                    color: black;" class="form-control" disabled [(ngModel)]="branch"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Name</ion-label>
+        <ion-input style="background-color: white;
+                        color: black;" class="form-control" disabled [(ngModel)]="name"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Request Category</ion-label>
+        <select [(ngModel)]="requestCat" class="form-control">
+          <option value="">&lt;&lt; Select &gt;&gt; </option>
+          <option *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
+        </select>
+      </ion-col>
+      <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                               <ion-label>Description</ion-label>
                                 <ion-textarea class="form-control"   [(ngModel)]="description"></ion-textarea>
                               </ion-col> -->
-                              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                  <ion-label>Status</ion-label>
-                                  <select class="form-control"  [(ngModel)]="status">
-                                      <option value="">&lt;&lt; Select &gt;&gt; </option>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>Status</ion-label>
+        <select class="form-control" [(ngModel)]="status">
+          <option value="">&lt;&lt; Select &gt;&gt; </option>
 
-                                      <option value='N'>New</option>
-                                      <option value='P'>Pending</option>
-                                      <option value='A'>Approved</option>
-                                      <option value='U'>Under Process</option>
-                                      <option value='D'>Denied</option>
-                                  </select>
-                                  </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-button (click)="getClaimSummary()" color="success">Search</ion-button>
-                 </ion-row>
-                </ion-grid>
-                 <p style='text-align: center;'>{{error}}</p>
-                 <ion-card *ngFor="let odData of claimSummary; let i = index">
-                    <ion-grid style="padding: 0px;">
-                   <ion-row>
-                          <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumn">
-                              {{odData.Employee_Code}} - {{odData.Employee_Name}}
-                            </ion-col>
-                            <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" class="leadscolumn" style="text-align:right;">
-                                {{odData.branch_desc}}
-                                </ion-col>
-                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                    Category
-                                    </ion-col>
-                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                        {{odData.text}}
-                                        </ion-col>
-                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                            Expense Reference
-                                            </ion-col>
-                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                {{odData.EXPENSE_REF}}
-                                                </ion-col>
-                                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                    Expense Date
-                                                    </ion-col>
-                                                    <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                        {{odData.EXPENSE_DATE}}
-                                                        </ion-col>
-                                                        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                            Expense Category
-                                                            </ion-col>
-                                                            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                {{odData.EXPENSE_CATEGORY}}
-                                                                </ion-col>
-                                                                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                    Amount
-                                                                    </ion-col>
-                                                                      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                          {{odData.AMOUNT}}
-                                                                          </ion-col>
-                                                                          <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                              Description
-                                                                              </ion-col>
-                                                                              <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                                  {{odData.DESCRIPTION}}
-                                                                                  </ion-col>
-                                                                                  <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                                      Status
-                                                                                      </ion-col>
-                                                                                      <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                                          {{odData.Status}}
-                                                                                          </ion-col>
-                                                                                  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                                                                                  <ion-row>
-                                                                                      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                                                                                      <ion-button color='success' (click)="openModal(coffData)" [disabled]="odData.Status=='Pending' || odData.Status == 'Approved' || odData.Status == 'Cancelled'">UPADATE </ion-button>
-                                                                                      </ion-col>
+          <option value='N'>New</option>
+          <option value='P'>Pending</option>
+          <option value='A'>Approved</option>
+          <option value='U'>Under Process</option>
+          <option value='D'>Denied</option>
+        </select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-button (click)="getClaimSummary()" color="success">Search</ion-button>
+    </ion-row>
+  </ion-grid>
+  <p style='text-align: center;'>{{error}}</p>
+  <ion-card *ngFor="let odData of claimSummary; let i = index">
+    <ion-grid style="padding: 0px;">
+      <ion-row>
+        <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumn">
+          {{odData.Employee_Code}} - {{odData.Employee_Name}}
+        </ion-col>
+        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" class="leadscolumn" style="text-align:right;">
+          {{odData.branch_desc}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Category
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.text}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Expense Reference
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.EXPENSE_REF}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Expense Date
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.EXPENSE_DATE}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Expense Category
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.EXPENSE_CATEGORY}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Amount
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.AMOUNT}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Description
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.DESCRIPTION}}
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          Status
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          {{odData.Status}}
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-row>
+            <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <ion-button color='success' (click)="openModal(coffData)"
+                [disabled]="odData.Status=='Pending' || odData.Status == 'Approved' || odData.Status == 'Cancelled'">
+                UPADATE </ion-button>
+            </ion-col>
 
-                                                                                    </ion-row>
-                                                                                 </ion-col>
-                                    </ion-row>
-                                    </ion-grid>
-                                    </ion-card>
-                                    <!-- <p  style="text-align:center" *ngIf="claimSummary.length==0" class="norecord">No Record Found</p> -->
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <p  style="text-align:center" *ngIf="claimSummary.length==0" class="norecord">No Record Found</p>
 
 </ion-content>
 
 <ion-footer>
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- </ion-footer>
+</ion-footer>

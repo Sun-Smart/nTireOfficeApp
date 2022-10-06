@@ -22,10 +22,10 @@ export class LeavesummaryPage implements OnInit {
   em_emp_id;
   fromDate;
   toDate;
-  display=[];
+  display:any=[];
   error;
-  display1=[];
-  display2=[];
+  display1:any=[];
+  display2:any=[];
   status;
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(public modalController: ModalController,private router: Router,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService,public loadingController: LoadingController,) {
@@ -71,18 +71,18 @@ export class LeavesummaryPage implements OnInit {
       var toDate = this.formatDate(todate);
       this.loadingdismiss();
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "LeaveType").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "general leave").then(resp=>{
 
    this.loadingdismiss();
       if (resp != "No Records found") {
 
-        this.display = JSON.parse(resp.toString());
+        this.display = resp;
         this.loadingdismiss();
-        this.display1=JSON.parse(resp.toString());
+        this.display1=resp;
         // console.log($scope.display)
         var status = this.display[0].Status;
         this.error = "";
-
+console.log(resp)
       }
       else
       {
@@ -101,7 +101,7 @@ this.loadingdismiss();
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
-
+      duration: 1000,
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
@@ -160,14 +160,15 @@ this.loadingdismiss();
     if(this.fromDate!=undefined){
     var fromDate = this.formatDate(this.fromDate);
     var toDate = this.formatDate(this.toDate);
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "LeaveType" ).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "general leave" ).then(resp=>{
 
       this.loadingdismiss();
          if (resp != "No Records found") {
 
-           this.display = JSON.parse(resp.toString());
+           this.display = resp;
            this.loadingdismiss();
-           this.display2=JSON.parse(resp.toString());
+           this.display2=resp;
+           console.log(resp)
            // console.log($scope.display)
            this.error=''
            this.display = this.display2.filter((data) => {
@@ -187,7 +188,6 @@ this.loadingdismiss();
        }, error => {
        alert('Server Error, Data not loaded.')
        console.log("error : "+JSON.stringify(error));
-
    this.loadingdismiss();
        });
       }

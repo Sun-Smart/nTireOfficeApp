@@ -117,7 +117,7 @@ export class MyclientsPage implements OnInit {
       var userid = parseInt(window.localStorage['TUM_USER_ID']);
       this.token = window.localStorage['token'];
       var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
-      var getpendleadJSONtmp = { user_id: userid, locbranch: parseInt(this.BRANCH_ID) }
+      var getpendleadJSONtmp = { user_id: userid, branchid: parseInt(this.BRANCH_ID) }
       var getpendleadJSON = Object.assign(getpendleadJSONtmp, tokenJSON);
       console.log(getpendleadJSON);
       // sales_services.getapponitments(userid).then(function(resp) {
@@ -128,7 +128,8 @@ export class MyclientsPage implements OnInit {
         headers: options,
       }).subscribe(resp => {
         console.log("allmeetinglocation : " + JSON.stringify(resp));
-        this.allmeetinglocation = resp;
+        this.allmeetinglocation = JSON.stringify(resp);
+        this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
         console.log(this.allmeetinglocation);
         if (this.allmeetinglocation == '') {
           this.NoRecord = "No Record Found";

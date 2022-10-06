@@ -122,21 +122,21 @@ console.log(""+JSON.stringify(this.addCareerObject))
   this.toDate = date1[0]+"-"+tomonth;
 
 
-  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"EmployeeUpdate/"+window.localStorage['empid']+'/'+ 'CareerDetails'+"/"+this.addCareerObject.Employer+"/"+this.fromdate+"/"+this.toDate +"/"+this.addCareerObject.Designation+"/"+this.addCareerObject.Salary+"/"+this.addCareerObject.ID+"/"+0+'/'+0).then(resp=>{
-    
+  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/"+window.localStorage['EmployeeID']+'/'+ 'CareerDetails'+"/"+this.addCareerObject.Employer+"/"+this.fromdate+"/"+this.toDate +"/"+this.addCareerObject.Designation+"/"+this.addCareerObject.Salary+"/"+this.addCareerObject.ID+"/"+0+'/'+0).then(resp=>{
+
     console.log(""+JSON.stringify(resp));
     // console.log(""+JSON.parse(resp))
     console.log(""+resp[0]['Column1']);
     console.log(""+resp['Column1']);
     this.response = resp;
-    this.repsonse1 = JSON.parse(this.response);
+    this.repsonse1 = this.response;
 
     if(this.repsonse1[0]['Column1']== "Successfully Saved" || this.repsonse1[0]['Column1'] == "Successfully Updated" )
     {
       if (this.tempID == "0") {
-        this.toastmessageService.presentAlert1("","Career Added Successfully");
+        this.toastmessageService.presentAlert("","Career Added Successfully");
      } else {
-      this.toastmessageService.presentAlert1("","Career Updated Successfully");
+      this.toastmessageService.presentAlert("","Career Updated Successfully");
      }
 
    this.model.dismiss();

@@ -23,7 +23,7 @@ export class LeaveRequestPage implements OnInit {
   FUNCTION_ID;
   em_emp_id;
   leaveType;
-  leavetypearray=[];
+  leavetypearray:any=[];
   leaveBal;
   preApprovalDays;
   dat_valid;
@@ -56,7 +56,7 @@ export class LeaveRequestPage implements OnInit {
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
     this.company = window.localStorage['FUNCTION_DESC'];
    this.branch=window.localStorage['TUM_BRANCH_CODE'];
-    this.em_emp_id=window.localStorage['em_emp_id'];
+    this.em_emp_id=window.localStorage['EmployeeID'];
     this.TUM_USER_ID= window.localStorage['TUM_USER_ID'];
     console.log(this.TUM_USER_ID);
     this.usertoken = window.localStorage['usertoken'];
@@ -133,7 +133,7 @@ export class LeaveRequestPage implements OnInit {
 
   getLeaveType(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
-      this.leavetypearray = JSON.parse(resp.toString());
+      this.leavetypearray = resp;
      }, error => {
 
      console.log("error : "+JSON.stringify(error));

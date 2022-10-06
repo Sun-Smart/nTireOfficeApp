@@ -41,6 +41,8 @@ VALUE: any;
   }
 
   ngOnInit() {
+
+    // this.employeeSearch();
   }
 
   ionViewDidEnter(){
@@ -154,7 +156,7 @@ VALUE: any;
  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment + "/" + this.obj.appURL).then(resp=>{
   this.loadingdismiss();
   this.loading = false;
-  this.allemp = JSON.parse(resp.toString());
+  this.allemp = resp;
          this.displayEmployee =this.displayEmployee.concat(this.allemp);
          console.log("displayEmployee : "+JSON.stringify( this.displayEmployee));
 
@@ -210,6 +212,7 @@ VALUE: any;
     }
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj1.empID + "/" + obj1.name + "/" + obj1.code + "/" + obj1.designation + "/" + obj1.branch + "/" + obj1.department + "/" + obj1.top + "/" + obj1.increment + "/" + obj1.appURL ).then(resp=>{
+      console.log(resp)
       this.loading = false;
       this.totalemployee=JSON.parse(resp.toString()).length;
      }, error => {

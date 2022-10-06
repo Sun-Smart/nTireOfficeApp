@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable new-parens */
@@ -101,7 +102,7 @@ export class MymeetingPage implements OnInit {
     this.token = window.localStorage['token'];
     var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
-    var getapppostJSONtmp = { user_id: userid, from_datemeet: from_datemeet, to_datemeet: to_datemeet }
+    var getapppostJSONtmp = { user_id: userid, fdate: from_datemeet, tdate: to_datemeet }
     var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
     console.log("getapppostJSON : " + JSON.stringify(getapppostJSON));
     const header = new Headers();
@@ -249,7 +250,7 @@ export class MymeetingPage implements OnInit {
 
   }
   initMap(markers) {
-
+debugger;
     console.log(markers)
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;

@@ -54,10 +54,10 @@ export class PmsdashboardPage implements OnInit {
     ];
 
     this.columnsStatus = [
-      { name: 'sno',},
-      { name: 'readBy', },
-      { name: 'description', },
-      { name: 'status', },
+      { name: 'issuecode',},
+      { name: 'issuedate', },
+      { name: 'issuedescription', },
+      { name: 'Status', },
     ];
 
     this.columnsDetails = [
@@ -88,8 +88,17 @@ export class PmsdashboardPage implements OnInit {
     this.data = this.tableApi.getDashbTable1();
     console.log(this.data);
 
-    this.dataStatus = this.tableApi.getDashbTable2();
-    console.log(this.dataStatus);
+
+
+this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=1&branch=1&userid=1').subscribe((res:any)=>{
+console.log(res)
+this.dataStatus=res
+
+
+})
+
+    // this.dataStatus = this.tableApi.getDashbTable2();
+    // console.log(this.dataStatus);
 
     this.dataDetails = this.tableApi.getDashbTable3();
     console.log(this.dataDetails);

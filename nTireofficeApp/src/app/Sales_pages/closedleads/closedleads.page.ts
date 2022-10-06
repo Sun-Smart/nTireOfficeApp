@@ -258,7 +258,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
 
     });
-    this.penleadfilter.BRANCH_ID = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    this.penleadfilter.BRANCH_ID = parseInt(window.localStorage['TUM_BRANCH_ID']);
   }
 
   GetProduct() {
@@ -512,11 +512,14 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     var tmpPendJson = {
       user_id: user_id_nw,
       userid: user_id_nw,
-      response: values,
-      offset: this.pendleaddetails.length,
-      limit: 50,
-
-
+      response: values.toString(),
+      offset: this.pendleaddetails.length.toString(),
+      limit: "50",
+      Name:"",
+      CAMPAIGNNAME:"",
+      PRIORITY:"",
+      RATING:"",
+      LEADBY:"",
       BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: "",
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
