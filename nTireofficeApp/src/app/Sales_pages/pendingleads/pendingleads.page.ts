@@ -570,15 +570,18 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       var tmpPendJson = {
         user_id: "",
         userid: user_id_nw,
-        response: values,
-        offset: this.pendleaddetails.length,
-        limit: 50,
-
+        response: values.toString(),
+        offset: this.pendleaddetails.length.toString(),
+        limit: "50",
+        PRIORITY:"",
+        RATING:"",
+        LEADBY:"",
 
         BRANCH_ID: parseInt(this.penleadfilter.BRANCH_ID),
+        Name:"",CAMPAIGNNAME:"",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
-        MOBILE: parseInt(this.penleadfilter.MOBILE),
+        MOBILE: this.penleadfilter.MOBILE,
         access_token: this.token,
 
         'usertoken': window.localStorage['usertoken'],
@@ -729,15 +732,18 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     var tmpPendJson = {
       user_id: user_id_nw,
       userid: user_id_nw,
-      response: values,
-      offset: this.pendleaddetails.length,
-      limit: 50,
-
-
+      response: values.toString(),
+      offset: this.pendleaddetails.length.toString(),
+      limit: "50",
+      PRIORITY:"",
+      RATING:"",
+      LEADBY:"",
+      Name:"",
+      CAMPAIGNNAME:"",
       BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
-      MOBILE: parseInt(this.penleadfilter.MOBILE),
+      MOBILE: this.penleadfilter.MOBILE,
       access_token: this.token,
 
       'usertoken': window.localStorage['usertoken'],

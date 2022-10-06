@@ -303,7 +303,7 @@ export class TeammeetingsPage implements OnInit {
           this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
           var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
 
-          var dataJSONtmp2 = { fdate: this.fromdate, tdate: this.todate, BRANCH_ID: parseInt(branchid) }
+          var dataJSONtmp2 = { fdate: this.fromdate, tdate: this.todate, BRANCHID: parseInt(branchid) }
           var getappbydateJSON6 = Object.assign(dataJSONtmp2, tokenJSON);
           const header = new Headers();
           header.append("Content-Type", "application/json");
@@ -579,7 +579,7 @@ export class TeammeetingsPage implements OnInit {
     this.meetingCount = [];
     this.token = window.localStorage['token'];
     var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
-    var dataobj = { BRANCH_ID: parseInt(branchid) }
+    var dataobj = { BRANCHID: parseInt(branchid) }
     var getappJSON = Object.assign(dataobj, tokenJSON);
     console.log(getappJSON)
     const header = new Headers();
