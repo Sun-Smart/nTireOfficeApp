@@ -29,11 +29,36 @@
     </ion-card>
   
 
+    <ion-row >
+      <ion-col>
+        <ion-label class="labelHead-text" style="margin: 10px;font-weight: 600;">Issue Details :</ion-label>
+      </ion-col>
+    </ion-row>
+    <div style="margin: auto 12px;">
+      <ngx-datatable 
 
+      class="material"
+      [headerClass]="ngx-header"
+      [limit]="8" 
+      [rows]="data" 
+      [rowHeight]="50" 
+      [columns]="columns"
+      [columnMode]="'standard'" 
+      [headerHeight]="40" 
+      [footerHeight]="40"
+      [scrollbarH]="true"
+      [sortType]="'multi'"
+      [loadingIndicator]="loadingIndicator"
+      [reorderable]="reorderable"
+      >
 
+      </ngx-datatable>
+    
+    </div>
 
+  
 
-    <ion-card>
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Issue Details</ion-card-title>
       </ion-card-header>
@@ -54,11 +79,8 @@
           [scrollbarH]="true"
           [sortType]="'multi'"
           [loadingIndicator]="loadingIndicator"
-          [reorderable]="reorderable"
-          >
-    
+          [reorderable]="reorderable">
           </ngx-datatable>
-        
         </div>
         
         <div class="table" style="display: none;">
@@ -118,18 +140,39 @@
       </ion-card-content>
     </ion-card>
 
+    <ion-row >
+      <ion-col>
+        <ion-label class="labelHead-text" style="margin:10px;font-weight: 600;">Issue Status :</ion-label>
+      </ion-col>
+    </ion-row>
 
-<div>
-    <ion-card>
+    <div style="margin: auto 12px;">
+      <ngx-datatable
+      class="material"
+      [headerClass]="ngx-header"
+      [limit]="8" 
+      [rows]="dataStatus" 
+      [rowHeight]="50" 
+      [columns]="columnsStatus"
+      [columnMode]="'standard'" 
+      [headerHeight]="40" 
+      [footerHeight]="40"
+      [scrollbarH]="true"
+      [sortType]="'multi'"
+      [loadingIndicator]="loadingIndicator"
+      [reorderable]="reorderable">
+      </ngx-datatable>
+    </div>
 
+
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Issue Status</ion-card-title>
       </ion-card-header>
       <ion-card-content >
 
         <div>
-          <ngx-datatable 
-  
+          <ngx-datatable
           class="material"
           [headerClass]="ngx-header"
           [limit]="8" 
@@ -142,11 +185,8 @@
           [scrollbarH]="true"
           [sortType]="'multi'"
           [loadingIndicator]="loadingIndicator"
-          [reorderable]="reorderable"
-          >
-    
+          [reorderable]="reorderable">
           </ngx-datatable>
-        
         </div>
 
         <div class="table" style="display: none;">
@@ -206,22 +246,48 @@
       </ion-card-content>
 
     </ion-card>
-  </div>
 
 
 
   <ion-card >
     <div class="dashboardhead" style="padding: 10px;">
-       Property Status
+        Eployeer
       </div>
       <div style="margin-top:15px;">
-        <canvas #sourcecanvas1 id="sourcecanvas1"></canvas>
+        <canvas id="myChart1" class="chart chart-doughnut" width="400" height="400"
+chart-data="data2" chart-labels="labels2 " chart-options="options" chart-dataset-override="datasetOverride" legend="true">
+</canvas>
       </div>
 
   </ion-card>
 
 
-    <ion-card>
+  <ion-row >
+    <ion-col>
+      <ion-label class="labelHead-text" style="margin:10px;font-weight: 600;">Property Details :</ion-label>
+    </ion-col>
+  </ion-row>
+
+  <div style="margin: auto 12px;">
+    <ngx-datatable 
+    class="material"
+    [headerClass]="ngx-header"
+    [limit]="8" 
+    [rows]="dataDetails" 
+    [rowHeight]="50" 
+    [columns]="columnsDetails"
+    [columnMode]="'standard'" 
+    [headerHeight]="40" 
+    [footerHeight]="40"
+    [scrollbarH]="true"
+    [sortType]="'multi'"
+    [loadingIndicator]="loadingIndicator"
+    [reorderable]="reorderable"
+    >
+    </ngx-datatable>
+  </div>
+
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Property Details</ion-card-title>
       </ion-card-header>
@@ -300,23 +366,16 @@
   </div>
 
   <div>
-    <ion-row class="ion-justify-content-around" style=" margin: 5%;text-align: center;">
-      <ion-col size="4" class="first">
-        <h3 class="count">22k</h3>
-        <ion-label class="label">Total</ion-label>
-      </ion-col>
 
-      <ion-col size="4" class=" second">
-        <h3 class="count">22k</h3>
-        <ion-label class="label">Occupied</ion-label>
-      </ion-col>
-
-
-      <ion-col size="4" class="third">
-        <h3 class="count">22k</h3>
-        <ion-label class="label">Vacant</ion-label>
-      </ion-col>
-    </ion-row>
+    <ion-card >
+      <div class="dashboardhead" style="padding: 10px;">
+         Property Status
+        </div>
+        <div style="margin-top:15px;">
+          <canvas #sourcecanvas1 id="sourcecanvas1"></canvas>
+        </div>
+  
+    </ion-card>
 
 
 
@@ -413,7 +472,33 @@
     </ion-card>
 
 
-    <ion-card>
+    <ion-row >
+      <ion-col>
+        <ion-label class="labelHead-text" style="margin:10px;font-weight: 600;">Invoice Raised :</ion-label>
+      </ion-col>
+    </ion-row>
+    
+    <div style="margin: auto 12px;">
+      <ngx-datatable 
+      class="material"
+      [headerClass]="ngx-header"
+      [limit]="8" 
+      [rows]="dataRaised" 
+      [rowHeight]="50" 
+      [columns]="columnsRaised"
+      [columnMode]="'standard'" 
+      [headerHeight]="40" 
+      [footerHeight]="40"
+      [scrollbarH]="true"
+      [sortType]="'multi'"
+      [loadingIndicator]="loadingIndicator"
+      [reorderable]="reorderable"
+      >
+      </ngx-datatable>
+    </div>
+
+
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Invoice Raised</ion-card-title>
       </ion-card-header>
