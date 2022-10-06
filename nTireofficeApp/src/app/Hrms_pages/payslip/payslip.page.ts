@@ -48,7 +48,7 @@ export class PayslipPage implements OnInit {
     if (this.monthdata == "") {
       this.monthdata = "0";
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeSalaryRegularEarnings/" +  this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeSalaryRegularEarnings/" +  this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
       this.paySlipEarnings = JSON.parse(resp.toString());
        this.loadingdismiss();
 
@@ -78,7 +78,7 @@ export class PayslipPage implements OnInit {
 
         });
 
-        this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeSalaryRegularDeduction/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
+        this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeSalaryRegularDeduction/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
 
           this.paySlipDeduction = JSON.parse(resp.toString());
           // console.log(this.paySlipDeduction);

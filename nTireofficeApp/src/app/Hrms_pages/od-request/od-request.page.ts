@@ -257,7 +257,7 @@ if(this.reqref !=undefined){
    }
    getAdvancedCurrency(){
        var currencyobj={
-        'function_id': parseInt(this.FUNCTION_ID),
+        'functionid': parseInt(this.FUNCTION_ID),
         'access_token':this.token,
         'userid': parseInt(this.userID),
         'usertoken': parseInt(this.usertoken)
