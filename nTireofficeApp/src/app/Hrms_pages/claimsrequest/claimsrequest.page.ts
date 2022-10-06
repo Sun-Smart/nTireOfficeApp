@@ -114,9 +114,11 @@ username = window.localStorage.getItem('TUM_USER_NAME');
        userid: parseInt(this.userID),
        usertoken:this.usertoken,
        access_token:this.token,
-       EM_EMP_ID:this.empid
+       //EmpId: window.localStorage.getItem('EmployeeID')
+      EmpId: parseInt(window.localStorage.getItem('EmployeeID'))
+
       }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getrequestReferencedata/",Refobj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getrequestReferencedata",Refobj).then(resp=>{
       this.ReferenceData1=resp;
       this.ReferenceData1.forEach(element => {
         this.ReferenceData.push(element)
