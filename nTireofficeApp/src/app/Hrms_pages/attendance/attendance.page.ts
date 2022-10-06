@@ -38,12 +38,12 @@ export class AttendancePage implements OnInit {
 
   getEmployeeList(){
    var obj = {
-      empID: window.localStorage.getItem("EmployeeID"),
+      empID: parseInt(window.localStorage.getItem("EmployeeID")),
       name: window.localStorage.getItem("EmployeeName"),
       code: window.localStorage.getItem("TUM_EMP_CODE"),
       department: window.localStorage.getItem("EmpDepartment"),
       designation: window.localStorage.getItem("EmpDesignation"),
-      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      branch:parseInt( window.localStorage.getItem("TUM_BRANCH_ID")),
       // designation: "20",
       // branch: 0,
       top: 20,
