@@ -72,7 +72,7 @@ export class DashboardPage implements OnInit {
     // this.menuCtrl.enable(true, 'first');
     this.menuCtrl.enable(true, 'first');
     this.attendance = {};
-    this.userid = window.localStorage.TUM_USER_ID;
+    this.userid =parseInt( window.localStorage.TUM_USER_ID);
     this.usertoken = window.localStorage.usertoken;
     this.token = window.localStorage['token'];
     this.emp_id=  window.localStorage['TUM_EMP_CODE'];
@@ -85,7 +85,7 @@ console.log(this.token,"token")
 console.log(window.localStorage['token'],"token1")
 console.log(window.localStorage.token,"token2")
     this.empid=window.localStorage['empid'];
-    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
+    this.FUNCTION_ID=parseInt(window.localStorage['FUNCTION_ID']) ;
 
     this.employee_id = window.localStorage['EmployeeID'];
     this.yeardata="";
@@ -170,7 +170,7 @@ this.backbutton();
        name: window.localStorage.getItem("EmployeeName"),
        code: window.localStorage.getItem("TUM_EMP_CODE"),
        designation: window.localStorage.getItem("EmpDesignation"),
-       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+       branch: parseInt(window.localStorage.getItem("TUM_BRANCH_ID")),
        department: window.localStorage.getItem("EmpDepartment"),
        top: 20,
        increment: 0,
@@ -341,7 +341,7 @@ this.backbutton();
       name: window.localStorage.getItem('EmployeeName'),
       code: window.localStorage.getItem("TUM_EMP_CODE"),
       designation: window.localStorage.getItem("EmpDesignation") ,
-      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      branch: parseInt(window.localStorage.getItem("TUM_BRANCH_ID")),
       department:window.localStorage.getItem("EmpDepartment") ,
       top: 20,
       increment: 0,
@@ -394,8 +394,8 @@ this.backbutton();
   getEmployeeALLRequests(){
     this.empAllRequests=[];
       var obj={
-          TUM_USER_ID:window.localStorage['TUM_USER_ID'],
-          FUNCTION_ID:window.localStorage['FUNCTION_ID']
+          TUM_USER_ID:parseInt(window.localStorage['TUM_USER_ID']),
+          FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID'])
       }
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms1+"Boworkflowusersummary/"+ obj.TUM_USER_ID+'/'+obj.FUNCTION_ID).then(resp=>{
       this.empAllRequests1 = JSON.parse(resp.toString());
@@ -509,7 +509,7 @@ this.backbutton();
     var get_obj={
 
       userid:parseInt(this.userid),
-      usertoken:localStorage.getItem('TUM_USER_ID'),
+      usertoken:parseInt(localStorage.getItem('TUM_USER_ID')),
       access_token:this.token
 }
 

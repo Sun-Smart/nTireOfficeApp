@@ -58,10 +58,10 @@ export class OpenAddEducationPage implements OnInit {
 
 
   constructor(private model:ModalController,navParams: NavParams,public toastmessageService:ToastmessageService,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient) {
-    this.userId=window.localStorage['TUM_USER_ID'];
+    this.userId=parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken=window.localStorage['usertoken'];
     this.token=window.localStorage['token'];
-    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
+    this.FUNCTION_ID=parseInt(window.localStorage['FUNCTION_ID']);
     this.getHighestQualification();
     this.item=navParams.get('item');
 
