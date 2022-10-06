@@ -746,10 +746,12 @@ console.log(""+this.profilepic+""+this.image)
             };
             console.log(this.personalDetailsObject)
 
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeUpdate/" + this.personalDetailsObject.empID + "/" + this.personalDetailsObject.Type + "/" + this.personalDetailsObject.FirstName + "/" + this.personalDetailsObject.LastName + "/" + this.personalDetailsObject.DOB + "/" + this.personalDetailsObject.Qualification + "/" + this.personalDetailsObject.SubQualification + "/null/null/null").then(resp=>{
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeUpdate/" + this.personalDetailsObject.empID + "/" + this.personalDetailsObject.Type + "/" + this.personalDetailsObject.FirstName + "/" + this.personalDetailsObject.LastName + "/" + this.personalDetailsObject.DOB + "/" + this.personalDetailsObject.Qualification + "/" + this.personalDetailsObject.SubQualification + "/0/0/0").then(resp=>{
+              this.getEmployeeDetails();
               var data = JSON.parse(resp.toString());
 
                 if (data[0].Column1 == "Successfully Updated") {
+
                   // Store the Data and Display the success message to user
                   this.error = "";
 
@@ -821,6 +823,7 @@ console.log(""+this.profilepic+""+this.image)
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/" +  this.currentAddressObject.empID + "/" +  this.currentAddressObject.Type + "/" +  this.currentAddressObject.Address + "/" +  this.currentAddressObject.City + "/" +  this.currentAddressObject.State + "/" +  this.currentAddressObject.Country + "/" +  this.currentAddressObject.Pincode + "/0/0/0").then(resp=>{
               var data = JSON.parse(resp.toString());
 
+
                 if (data[0].Column1 == "Successfully Updated") {
                   // Store the Data and Display the success message to user
                   this.error = "";
@@ -890,6 +893,7 @@ console.log(""+this.profilepic+""+this.image)
             // API CALLING FOR PermanentAddress DETAILS
 
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/" + this.PermanentAddressObject.empID + "/" + this.PermanentAddressObject.Type + "/" + this.PermanentAddressObject.Address + "/" + this.PermanentAddressObject.City + "/" + this.PermanentAddressObject.State + "/" + this.PermanentAddressObject.Country + "/" + this.PermanentAddressObject.Pincode + "/0/0/0").then(resp=>{
+
               var data = JSON.parse(resp.toString());
               // console.log(response);
               if (data[0].Column1 == "Successfully Updated") {
@@ -959,6 +963,7 @@ console.log(""+this.profilepic+""+this.image)
             // console.log("ContactDetails Detail Object " + this.ContactDetailsObject);
             // API CALLING FOR ContactDetails DETAILS
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/" + this.ContactDetailsObject.empID + "/" + this.ContactDetailsObject.Type + "/" + this.ContactDetailsObject.Email + "/" + this.ContactDetailsObject.Mobile + "/0/" + this.ContactDetailsObject.EmergencyContactName + "/" + this.ContactDetailsObject.EmergencyContactNumber + "/0/0/0").then(resp=>{
+
               var data = JSON.parse(resp.toString());
               // console.log(response);
               if (data[0].Column1 == "Successfully Updated") {
