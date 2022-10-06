@@ -18,7 +18,8 @@ export class PRSstatusPage implements OnInit {
   status:String;
   todate:String;
   fromdate:String;
-  editprs:boolean=false
+  editprs:boolean=false;
+  loading:boolean=false
   constructor(private router: Router, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
@@ -44,6 +45,7 @@ export class PRSstatusPage implements OnInit {
 
 
   Search() {
+    this.loading=true
     console.log(this.prscode)
     console.log(this.status)
     console.log(this.todate)
@@ -84,6 +86,7 @@ export class PRSstatusPage implements OnInit {
 
     };
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
+      this.loading=false
       this.getresponse = res;
       console.log("Response", res)
       console.log("Response", res)
