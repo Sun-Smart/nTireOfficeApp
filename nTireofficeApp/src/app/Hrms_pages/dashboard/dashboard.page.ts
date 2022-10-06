@@ -251,7 +251,7 @@ this.backbutton();
 
         debugger
         //  this.attendanceList = JSON.parse(resp.toString());
-         this.attendanceList =JSON.parse(resp);
+         this.attendanceList =resp;
          if(resp=false || resp==false){
           this.shownull=true
          }
