@@ -1,25 +1,42 @@
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
 
 ion-content {
-    --background: url('../../../assets/images/tpbackground.png') repeat !important;
+    --background: url("../../../assets/images/tpbackground.png") repeat !important;
     position: relative;
-  }
+}
 .ngx-datatable.material .datatable-header .datatable-header-cell {
-    background-color: #1ba4e1!important;
+    background-color: #1ba4e1 !important;
     color: #fff !important;
     padding: 10px;
     text-align: center;
 }
 
-ion-card-header+.card-content-ios {
+ion-card-header + .card-content-ios {
     padding-top: 10px;
 }
-.ngx-datatable.material{
-    margin: 5% !important;
+.ngx-datatable.material {
+    margin: 5%;
 }
-.ngx-datatable .datatable-body .datatable-body-row>div {
+.ngx-datatable .datatable-body .datatable-body-row > div {
     display: flex;
     border-bottom: 1px #efebeb solid;
+}
+.ngx-datatable.material .datatable-header .datatable-header-cell {
+    background-color: #1ba4e1 !important;
+    color: #fff !important;
+    padding: 10px;
+    text-align: center;
+    text-transform: capitalize;
+}
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+    text-align: center;
+    padding: 0.9rem 1.2rem;
+    vertical-align: top;
+    border-top: 0;
+    color: rgba(0, 0, 0, 0.87);
+    transition: width 0.3s ease;
+    font-size: 14px;
+    font-weight: 400;
 }
