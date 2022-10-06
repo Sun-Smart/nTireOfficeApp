@@ -93,7 +93,7 @@ export class OdRequestPage implements OnInit {
    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
    this.token=window.localStorage['token'];
    this.userID = window.localStorage['TUM_USER_ID'];
-   this.usertoken= window.localStorage['usertoken'];
+   this.usertoken= window.localStorage['TUM_USER_ID'];
    this.name = window.localStorage['TUM_USER_NAME'];
    this.empCode= window.localStorage['TUM_EMP_CODE'];
    // console.log(this.coff.name);
