@@ -56,7 +56,7 @@ export class LeaveRequestPage implements OnInit {
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
     this.company = window.localStorage['FUNCTION_DESC'];
    this.branch=window.localStorage['TUM_BRANCH_CODE'];
-    this.em_emp_id=window.localStorage['em_emp_id'];
+    this.em_emp_id=window.localStorage['EmployeeID'];
     this.TUM_USER_ID= window.localStorage['TUM_USER_ID'];
     console.log(this.TUM_USER_ID);
     this.usertoken = window.localStorage['usertoken'];

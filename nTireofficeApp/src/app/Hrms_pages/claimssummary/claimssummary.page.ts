@@ -25,10 +25,10 @@ export class ClaimssummaryPage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private router: Router,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
     this.function_id=window.localStorage["FUNCTION_ID"];
-    this.userID = window.localStorage['TUM_USER_ID'];
+    this.userID = parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken = window.localStorage['usertoken'];
     this.token=window.localStorage['token'];
-   this.TUM_BRANCH_ID=window.localStorage['TUM_BRANCH_ID'],
+   this.TUM_BRANCH_ID=parseInt(window.localStorage['TUM_BRANCH_ID']),
     this.empCode= window.localStorage['TUM_EMP_CODE'];
     this.requestCat="";
     this.getEmployeeDetails();
@@ -58,7 +58,7 @@ export class ClaimssummaryPage implements OnInit {
         this.name = window.localStorage['TUM_USER_NAME'];
 
         this.company = window.localStorage['FUNCTION_DESC'];
-        this.branch=window.localStorage['TUM_BRANCH_CODE']
+        this.branch=parseInt(window.localStorage['TUM_BRANCH_CODE'])
        var employeeDetails = JSON.parse(resp.toString());
 
         this.department = employeeDetails[0].Department;
