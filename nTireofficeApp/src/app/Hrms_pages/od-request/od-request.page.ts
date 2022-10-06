@@ -234,10 +234,10 @@ if(this.reqref !=undefined){
    }
    getTravelMode(){
     var travelobj={
-      'FunctionID':this.FUNCTION_ID,
+      'FunctionID': parseInt(this.FUNCTION_ID),
       'access_token':this.token,
-      'userid': this.userID,
-      'usertoken':this.usertoken
+      'userid': parseInt(this.userID),
+      'usertoken': parseInt(this.usertoken)
     }
 
   this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getTravelMode/",travelobj).then(resp=>{
@@ -257,10 +257,10 @@ if(this.reqref !=undefined){
    }
    getAdvancedCurrency(){
        var currencyobj={
-        'function_id':this.FUNCTION_ID,
+        'function_id': parseInt(this.FUNCTION_ID),
         'access_token':this.token,
-        'userid': this.userID,
-        'usertoken':this.usertoken
+        'userid': parseInt(this.userID),
+        'usertoken': parseInt(this.usertoken)
       }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getCurrencyType/",currencyobj).then(resp=>{
       this.currencylist1=resp;

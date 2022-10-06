@@ -23,7 +23,7 @@ export class LeaveRequestPage implements OnInit {
   FUNCTION_ID;
   em_emp_id;
   leaveType;
-  leavetypearray=[];
+  leavetypearray:any=[];
   leaveBal;
   preApprovalDays;
   dat_valid;
@@ -133,7 +133,7 @@ export class LeaveRequestPage implements OnInit {
 
   getLeaveType(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
-      this.leavetypearray = JSON.parse(resp.toString());
+      this.leavetypearray = resp;
      }, error => {
 
      console.log("error : "+JSON.stringify(error));
