@@ -1,20 +1,21 @@
 <ion-content>
   <ion-header>
     <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
       <ion-title>My Attendance</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-card *ngIf="displayEmployee!=undefined">
     <ion-grid>
       <ion-row style="text-align:center">
-          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-              <strong style="color:#2e3192;">{{displayEmployee.EmployeeCode}} -- {{displayEmployee.FirstName}} {{displayEmployee.LastName}}</strong>
-              <p>{{displayEmployee.Designation}}</p>
-              <p>{{displayEmployee.Department}}</p>
-      </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <strong style="color:#2e3192;">{{displayEmployee.EmployeeCode}} -- {{displayEmployee.FirstName}}
+            {{displayEmployee.LastName}}</strong>
+          <p>{{displayEmployee.Designation}}</p>
+          <p>{{displayEmployee.Department}}</p>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
@@ -22,29 +23,30 @@
   <ion-card>
     <ion-card-header style="padding: 0 !important;">
       <ion-grid style="background-color: #f8f8f8;">
-    <ion-row>
-        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-<select class="st-2" [(ngModel)]="yeardata">
-<option class="ContentName" value="">Year</option>
-<option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</option>
-</select>
-</ion-col>
-<ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-    <select class="st-2" [(ngModel)]="monthdata">
-    <option class="ContentName" value="">Month</option>
-    <option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</option>
-    </select>
-    </ion-col>
-    <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-      <ion-button class="ContentName" style="--box-shadow:none;color: black;--background: transparent;" (click)="getAttendance()">Search</ion-button>
-        </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-card-header>
+        <ion-row>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+            <select class="st-2" [(ngModel)]="yeardata">
+              <option class="ContentName" value="">Year</option>
+              <option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+            <select class="st-2" [(ngModel)]="monthdata">
+              <option class="ContentName" value="">Month</option>
+              <option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</option>
+            </select>
+          </ion-col>
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+            <ion-button class="ContentName" style="--box-shadow:none;color: black;--background: transparent;"
+              (click)="getAttendance()">Search</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
 
 
 
-<!-- <ion-card-content>
+    <ion-card-content>
   <p *ngIf="loading" style="text-align: center;">Please Wait..</p>
   <div *ngIf="attendanceList&&attendanceList.length!=0">
   <ion-grid>
@@ -73,23 +75,23 @@
     </ion-row>
   </ion-grid>
 </div>
-  </ion-card-content> -->
+  </ion-card-content>
 
   </ion-card>
   <ion-row style="text-align:center" *ngIf="(!attendanceList&&attendanceList.length==0)||nodata">
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <p>No data found</p>
-        </ion-col>
-    </ion-row>
+    <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <p>No data found</p>
+    </ion-col>
+  </ion-row>
 </ion-content>
 
 <ion-footer>
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
- </ion-footer>
+</ion-footer>

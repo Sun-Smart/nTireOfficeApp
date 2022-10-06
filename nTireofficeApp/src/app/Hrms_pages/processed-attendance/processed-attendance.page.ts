@@ -17,7 +17,7 @@ export class ProcessedAttendancePage implements OnInit {
   yeardata;
   employee_id;
   monthdata;
-  attendanceList=[];
+  attendanceList:any=[];
   nodata:boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController,) {
@@ -97,11 +97,11 @@ export class ProcessedAttendancePage implements OnInit {
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
       this.loadingdismiss();
-      this.attendanceList = JSON.parse(resp.toString());
+      this.attendanceList = resp;
       if(this.attendanceList.length == 0){
         this.nodata = true;
       }
-
+console.log(resp)
       for (var i = 0; i < this.attendanceList.length; i++) {
         this.attendanceList[i].TxnDate = this.getDateObj(this.attendanceList[i].TxnDate)
       }
