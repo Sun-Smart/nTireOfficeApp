@@ -46,11 +46,11 @@ export class PmsdashboardPage implements OnInit {
     this.getBranchCountChart();
 
     this.columns = [
-      { name: 'sno',},
-      { name: 'invoice', },
-      { name: 'month', },
-      { name: 'amount', },
-      { name: 'status', },
+      { name: 'sno', width: "50"},
+      { name: 'invoice', width: "90" },
+      { name: 'month', width: "90" },
+      { name: 'amount', width: "70"},
+      { name: 'status', width: "90"},
     ];
 
     this.columnsStatus = [
