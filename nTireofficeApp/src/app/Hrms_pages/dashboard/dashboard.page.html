@@ -43,9 +43,6 @@
     </ion-card-content>
       </ion-card>
 
-
-
-
   <!-- <ion-grid>
     <ion-row>
       <ion-card class="dashboardprofilecard">
@@ -241,9 +238,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 </ion-col>
   </ion-row> -->
 
-
   <!-- User profile -->
-
 
   <!-- My request -->
   <ion-card *ngIf='myrequest'>
@@ -351,8 +346,6 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               </ion-col>
             </ion-row>
 
-
-
           </div>
 
           <div *ngIf="item.REQUESTTYPE==='OD Request'" style="background-color:#daf9f9;    margin-top: -17px;">
@@ -380,15 +373,11 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Status ~ </b><span><b style="color: #ffc900;">{{item.Status}}</b></span></p>
 
-
               </ion-col>
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Reason ~ </b><span>{{item.COLUMN4}}</span></p>
               </ion-col>
             </ion-row>
-
-
-
           </div>
 
           <div *ngIf="item.REQUESTTYPE==='Asset Transfer'" style="background-color:#daf9f9;    margin-top: -17px;">
@@ -411,25 +400,17 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Status ~ </b></p>
                 <p><b style="color: #ffc900;">{{item.Status}}</b></p>
-
               </ion-col>
-
             </ion-row>
             <ion-row style="padding: 0px;margin-top: -14px;">
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Transfer Type ~ </b><span>{{item.COLUMN4}}</span></p>
-
               </ion-col>
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Branch ~ </b><span>{{item.COLUMN2}}-{{item.COLUMN3}}</span></p>
-
               </ion-col>
-
             </ion-row>
-
-
           </div>
-
 
           <div *ngIf="item.REQUESTTYPE==='Asset Service'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
@@ -505,18 +486,14 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Status ~</b></p>
                 <p><b style="color: #ffc900;">{{item.Status}}</b></p>
-
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size-sm="12" size="6" size-md="12" size-lg="12" size-xl="12">
                 <p><b>Reason For Purchase ~ </b><span>{{item.COLUMN3}}</span></p>
-
               </ion-col>
             </ion-row>
-
           </div>
-
 
           <div *ngIf="item.REQUESTTYPE==='ERP MRS'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
@@ -543,15 +520,9 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Status ~</b></p>
                 <p><b style="color: #ffc900;">{{item.Status}}</b></p>
-
               </ion-col>
             </ion-row>
-
-
           </div>
-
-
-
 
           <div *ngIf="item.REQUESTTYPE==='Purchase Order Request'"
             style="background-color:#daf9f9;    margin-top: -17px;">
@@ -577,7 +548,6 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               <ion-col size-sm="3" size="6" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Status ~</b></p>
                 <p><b style="color: #ffc900;">{{item.Status}}</b></p>
-
               </ion-col>
             </ion-row>
             <ion-row style="padding: 0px;margin-top:-14px;">
@@ -589,11 +559,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                 <p><b>Vendor Name ~ </b><span>{{item.COLUMN5}}</span></p>
               </ion-col>
             </ion-row>
-
-
           </div>
-
-
 
           <div *ngIf="item.REQUESTTYPE==='Tender'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
@@ -612,11 +578,9 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
                 <p><b>Tender Code ~</b></p>
                 <p>{{item.COLUMN1}}</p>
               </ion-col>
-
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Status ~</b></p>
                 <p><b style="color: #ffc900;">{{item.Status}}</b></p>
-
               </ion-col>
             </ion-row>
 
@@ -626,17 +590,12 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               </ion-col>
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Tender Start Date ~ </b><span>{{item.COLUMN4}}</span></p>
-
               </ion-col>
-
             </ion-row>
             <div class="nodata" *ngIf="training.length===0">
               <div style="color:gray;"><b>No Trainings Found</b></div>
             </div>
-
           </div>
-
-
 
           <div *ngIf="item.REQUESTTYPE==='LegalCase'" style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
@@ -656,7 +615,6 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               </ion-col>
             </ion-row>
           </div>
-
 
           <div *ngIf="item.REQUESTTYPE==='Announcement'" style="background-color:#daf9f9;">
             <div style="background-color: #cbc9c9;
@@ -678,13 +636,10 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
             </ion-row>
           </div>
 
-
           <div class="nodata" *ngIf="empAllRequests.length===0">
             <div style="color:gray;"><b>No Requests Found</b></div>
           </div>
-
         </ion-col>
-
 
       </ion-row>
     </ion-card-content>
@@ -998,8 +953,6 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </div>
 
 
-
-
           <div *ngIf="item.REQUESTTYPE=='Purchase Order Request'"
             style="background-color:#daf9f9;    margin-top: -17px;">
             <div style="background-color: #cbc9c9;
@@ -1272,6 +1225,8 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
             Search</ion-button>
         </ion-col>
       </ion-row>
+      <!-- <ion-input></ion-input> -->
+      <p *ngIf="shownull" style="text-align: center; color:black"> No record found</p>
 
       <div *ngIf="attendanceList&&attendanceList.length!==0">
 

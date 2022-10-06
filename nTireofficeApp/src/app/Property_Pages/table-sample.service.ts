@@ -14,7 +14,7 @@ export class TableSampleService {
                 "QTY": "12",
                 "UpPrice": "Horror",
                 "disc%": "30%",
-                "tax1": "8765",
+                "tax1": "876576578",
                 "tax2": "654678",
                 "Tc": "American Hangman",
                 "Base V": "Hangman Productions",

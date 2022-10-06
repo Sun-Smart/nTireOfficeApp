@@ -69,11 +69,18 @@ export class CompletionJobsReopenPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.activityr=this.data.CMD_ACTIVITY_ID;
+    console.log(this.activityr)
     this.assetr=this.data.CMD_ASSET_ID;
-    this.pmrrefr=this.data.pmr_reference;
-    this.wrkno=this.data.WorkorderNo;
+    console.log(this.assetr);
     
-console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
+    this.pmrrefr=this.data.pmr_reference;
+    console.log(this.pmrrefr);
+    
+    this.wrkno=this.data.WorkorderNo;
+    console.log(this.wrkno);
+
+    
+// console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
 
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {   
       headers: options,

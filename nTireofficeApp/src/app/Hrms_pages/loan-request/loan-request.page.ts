@@ -81,7 +81,7 @@ export class LoanRequestPage implements OnInit {
   this.loanScheme="";
   }
   getEmployeeDetails(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"GetEmployees/"+this.empCode).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/GetEmployees/"+this.empCode).then(resp=>{
       console.log(resp);
       if (resp == "Employee not Exist") {
   this.toastmessageService.presentAlert1("","Employee Does not Exist");

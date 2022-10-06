@@ -11,7 +11,7 @@ import { AlertController,LoadingController } from '@ionic/angular';
 })
 export class AttendancePage implements OnInit {
   allemp;
-  displayEmployee=[];
+  displayEmployee: any=[];
   empid;
   FUNCTION_ID;
   year:any=[];
@@ -23,11 +23,9 @@ export class AttendancePage implements OnInit {
   nodata:boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController) {
-
-    this.empid=window.localStorage['empid'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
 
-    this.employee_id = window.localStorage['empid'];
+    this.employee_id = window.localStorage['EmployeeID'];
     this.yeardata="";
     this.monthdata="";
     this.getEmployeeList();
@@ -40,17 +38,20 @@ export class AttendancePage implements OnInit {
 
   getEmployeeList(){
    var obj = {
-      empID: this.empid,
-      name: window.localStorage.getItem("TUM_USER_NAME"),
+      empID: window.localStorage.getItem("EmployeeID"),
+      name: window.localStorage.getItem("EmployeeName"),
       code: window.localStorage.getItem("TUM_EMP_CODE"),
-      designation: "%20",
-      branch: 0,
-      department: 0,
-      top: 0,
-      increment: 1
+      department: window.localStorage.getItem("EmpDepartment"),
+      designation: window.localStorage.getItem("EmpDesignation"),
+      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      // designation: "20",
+      // branch: 0,
+      top: 20,
+      increment: 0,
+      appURL:'employeelist'
     }
- this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment).then(resp=>{
-  this.displayEmployee = JSON.parse(resp.toString());
+ this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment+"/"+obj.appURL).then(resp=>{
+  this.displayEmployee = resp;
   this.displayEmployee = this.displayEmployee[0];
 
   console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));
@@ -97,11 +98,12 @@ export class AttendancePage implements OnInit {
         month:this.monthdata
 
       }
-      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp:any)=>{
 
 this.loadingdismiss();
-        this.attendanceList = JSON.parse(resp.toString());
-
+        // this.attendanceList = JSON.parse(resp.toString());
+        this.attendanceList = JSON.parse(resp);
+console.log(resp)
         console.log(""+JSON.stringify(this.attendanceList));
         if(this.attendanceList.length==0){
           this.nodata = true;

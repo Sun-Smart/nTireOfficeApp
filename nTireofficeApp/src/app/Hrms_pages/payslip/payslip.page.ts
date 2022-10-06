@@ -25,8 +25,9 @@ export class PayslipPage implements OnInit {
   FUNCTION_ID;
   segmentdata;
   username = window.localStorage.getItem('TUM_USER_NAME');
+  EmployeeID: string;
   constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController,) {
-        this.empid=window.localStorage['empid'];
+        this.empid= window.localStorage.getItem('EmployeeID')
         this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
         this.segmentdata="earnings";
         this.yeardata="";
@@ -103,7 +104,7 @@ export class PayslipPage implements OnInit {
     if (this.monthdata == "") {
       this.monthdata = "0";
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "EmployeeLeaveDetails/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeLeaveDetails/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
       this.loadingdismiss();
       this.empData = JSON.parse(resp.toString());
           // console.log(this.empData);

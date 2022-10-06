@@ -90,6 +90,7 @@ username = window.localStorage.getItem('TUM_USER_NAME');
        userid:this.userID,
        usertoken:this.usertoken,
        access_token:this.token,
+       appURL : 'getrequestcategoryclaims'
       }
       this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getRequestCategoryClaims/",Catobj).then(resp=>{
         this.Reqcategory1=resp;
@@ -111,7 +112,6 @@ username = window.localStorage.getItem('TUM_USER_NAME');
        usertoken:this.usertoken,
        access_token:this.token,
        EM_EMP_ID:this.empid
-
       }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getrequestReferencedata/",Refobj).then(resp=>{
       this.ReferenceData1=resp;
@@ -168,10 +168,6 @@ username = window.localStorage.getItem('TUM_USER_NAME');
       this.travelData2.forEach(element => {
         this.travelData.push(element);
       });
-
-
-
-
       console.log("ReferenceData : "+JSON.stringify(this.ReferenceData));
      }, error => {
 
@@ -182,8 +178,6 @@ username = window.localStorage.getItem('TUM_USER_NAME');
 
   Camera(type){
     this.imagecif = Math.floor((Math.random() * 1000000000000000) + 1);
-
-
     this.CameraService.camerafunction(type).then(imageData=>{
 
       console.log("imageData : "+imageData);

@@ -93,7 +93,7 @@ export class OdRequestPage implements OnInit {
    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
    this.token=window.localStorage['token'];
    this.userID = window.localStorage['TUM_USER_ID'];
-   this.usertoken= window.localStorage['usertoken'];
+   this.usertoken= window.localStorage['TUM_USER_ID'];
    this.name = window.localStorage['TUM_USER_NAME'];
    this.empCode= window.localStorage['TUM_EMP_CODE'];
    // console.log(this.coff.name);
@@ -274,7 +274,10 @@ if(this.reqref !=undefined){
      });
    }
    getEmployeeDetails(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"GetEmployees/"+this.empCode).then(resp=>{
+    var obj={
+      code: window.localStorage.getItem("TUM_EMP_CODE"),
+    }
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/"+"GetEmployees/"+obj.code).then(resp=>{
 
       if (resp == "Employee not Exist") {
   this.toastmessageService.presentAlert1("","Employee Does not Exist");
@@ -285,7 +288,7 @@ if(this.reqref !=undefined){
 
           this.company = window.localStorage['FUNCTION_DESC'];
           this.branch=window.localStorage['TUM_BRANCH_CODE']
-       var employeeDetails = JSON.parse(resp.toString());
+       var employeeDetails = resp;
 
       //  this.designation = employeeDetails[0].DESCRIPTION;
       //   this.department = employeeDetails[0].Department;

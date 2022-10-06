@@ -82,21 +82,17 @@ export class AssetrequestPage implements OnInit {
         this.disabledvalue = true;
       }
    });
-
    }
 
   ngOnInit() {
   }
-
 
   //get asset category
   getAssetCategory(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "LoadAssetCategory/"+this.FUNCTION_ID+ "").then(resp=>{
       this.categoryData = JSON.parse(resp.toString());
      }, error => {
-
      console.log("error : "+JSON.stringify(error));
-
      });
   }
   //get assests sub category
@@ -106,9 +102,7 @@ export class AssetrequestPage implements OnInit {
       this.subCategoryData = JSON.parse(resp.toString());
       console.log(this.subCategoryData);
      }, error => {
-
      console.log("error : "+JSON.stringify(error));
-
      });
   }
 

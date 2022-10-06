@@ -80,10 +80,10 @@ export class LocationPage implements OnInit {
   Getbranches() {
     var obj = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
-      functionidrep: window.localStorage['FUNCTION_ID']
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
+      functionid: parseInt(window.localStorage['FUNCTION_ID'])
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -117,9 +117,9 @@ export class LocationPage implements OnInit {
   Getrole() {
     var obj = {
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       functionidrep: window.localStorage['FUNCTION_ID']
     };
     const header = new Headers();
@@ -186,12 +186,13 @@ export class LocationPage implements OnInit {
       // setInterval(function() {
       console.log("inside")
       var getsalelocJSONtmp = {
-        user_type: user_type,
-        branch: branch,
+        user_type: parseInt(user_type),
+        branch: parseInt(branch),
         TUM_USER_CODE: window.localStorage['TUM_EMP_CODE']
 
       }
-      var tokenJSON = { access_token: window.localStorage['token'], userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+      this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
+      var tokenJSON = { access_token: window.localStorage['token'], userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
 
       var getsalelocJSON = Object.assign(getsalelocJSONtmp, tokenJSON);
 
@@ -675,7 +676,7 @@ export class LocationPage implements OnInit {
     this.SalesUserid = localStorage.getItem("sales_id");
     console.log(this.SalesUserid);
     var salesidTemp = { user_id: this.SalesUserid };
-    var tokenJSON = { access_token: window.localStorage['token'], userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: window.localStorage['token'], userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getappointmentsJSON = Object.assign(salesidTemp, tokenJSON);
     const header = new Headers();

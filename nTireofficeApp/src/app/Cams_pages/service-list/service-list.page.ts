@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -273,6 +273,7 @@ export class ServiceListPage implements OnInit {
       this.vendorcode = '';
       this.reqdate = '';
     }, error => {
+      
       console.log("error : " + JSON.stringify(error));
   
     });

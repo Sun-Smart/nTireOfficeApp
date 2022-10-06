@@ -23,40 +23,62 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Branch</ion-label>
-            <select style="padding: 10px;" disabled=""
+            <select style="padding: 10px;"   [(ngModel)]="branch" disabled=""
               style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
               class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">Requisition Date</ion-label>
+            <ion-input type="date"   [(ngModel)]="Requisitiondate" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Mode</ion-label>
-            <select style="padding: 10px;" class="Input-text-field textareaField">
+            <ion-label class="plabel">PRS Code</ion-label>
+            <ion-input type="text"   [(ngModel)]="prscode" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">PRS Mode</ion-label>
+            <select style="padding: 10px;" [(ngModel)]="prsmode" class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
+              <option value="Quotation"> Quotation</option>
+              <option value="Direct"> Direct</option>
+              <option value="Blanket"> Blanket</option>
+              <option value="Tender">Tender</option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>
 
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">requestby</ion-label>
+            <ion-input type="text" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Reference If Any</ion-label>
-            <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+            <ion-input type="text" [(ngModel)]="referenceifany" class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Reason For Purchase</ion-label>
-            <ion-input type="text" class="Input-text-field textareaField"
-              (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)">
-            </ion-input>
+            <ion-input type="text"  [(ngModel)]="reasonpurchase" class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.unitprice" -->
           </ion-col>
 
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Order</ion-label>
-            <select style="padding: 10px;" class="Input-text-field textareaField">
+            <select style="padding: 10px;" [(ngModel)]="order" class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
@@ -64,9 +86,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">RFP Comments</ion-label>
-            <ion-input type="text" class="Input-text-field textareaField"
-              (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)">
-            </ion-input>
+            <ion-input type="text"   [(ngModel)]="rfpcomments" class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.unitprice" -->
           </ion-col>
 
@@ -79,10 +99,10 @@
 
 
           <ion-card style="width: -webkit-fill-available;" *ngIf="showviewlist">
-            <ion-card-header class="card_header">
+            <ion-card-header class="card_header" *ngFor="let item of data" >
               <ion-row>
-                <ion-col size="9">
-                  <ion-label class="plabel" style="color:white ;"> Description </ion-label>
+                <ion-col size="9" >
+                  <ion-label class="plabel" style="color:white ;"> {{item.Description}} </ion-label>
                 </ion-col>
                 <ion-col size="3">
                   <ion-label class="card_header_text">
@@ -93,19 +113,16 @@
                   </ion-label>
                 </ion-col>
 
-
-
-
               </ion-row>
             </ion-card-header>
 
-            <ion-card-content class="card_content">
+            <ion-card-content class="card_content" *ngFor="let item of data">
               <ion-row>
                 <ion-col size="6">
                   <ion-label class="card_content_label labelHead-text">Category :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text"> {{itemdata.CompanyName||"-"}}</ion-label> -->
+                  <ion-label class="labelData-text"> {{item.Category||"-"}}</ion-label>
                 </ion-col>
               </ion-row>
 
@@ -114,7 +131,7 @@
                   <ion-label class="card_content_label labelHead-text">Item/Service :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text"> {{itemdata.Code||"-"}}</ion-label> -->
+                  <ion-label class="labelData-text"> {{item.item||"-"}}</ion-label>
                 </ion-col>
               </ion-row>
 
@@ -134,7 +151,7 @@
                   <ion-label class="card_content_label labelHead-text">QTY :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text">{{itemdata.Website||"-"}}</ion-label> -->
+                  <ion-label class="labelData-text">{{item.qty||"-"}}</ion-label>
                 </ion-col>
               </ion-row>
 
@@ -143,7 +160,7 @@
                   <ion-label class="card_content_label labelHead-text">Unit Price :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text">{{itemdata.GroupName||"-"}}</ion-label> -->
+                  <ion-label class="labelData-text">{{item.unitprice||"-"}}</ion-label>
                 </ion-col>
               </ion-row>
 
@@ -152,7 +169,7 @@
                   <ion-label class="card_content_label labelHead-text">Net Price :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text">{{itemdata.TotalEmployees||"-"}}</ion-label> -->
+                  <ion-label class="labelData-text">{{item.netprice||"-"}}</ion-label>
                 </ion-col>
               </ion-row>
 
@@ -161,7 +178,7 @@
                   <ion-label class="card_content_label labelHead-text">Required Before :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text"> {{itemdata.DateOfIncorporation|date:'d/M/yy'}}</ion-label> -->
+                  <ion-label class="labelData-text"> {{item.Requiredbefore|date:'d/M/yy'}}</ion-label>
                 </ion-col>
               </ion-row>
 
@@ -170,7 +187,7 @@
                   <ion-label class="card_content_label labelHead-text">Item Detailed Description :</ion-label>
                 </ion-col>
                 <ion-col size="6">
-                  <!-- <ion-label class="labelData-text">{{itemdata.Status}}</ion-label> -->
+                  <ion-label class="labelData-text">{{item.itemdescription}}</ion-label>
                 </ion-col>
               </ion-row>
             </ion-card-content>
@@ -226,7 +243,7 @@
       <ion-row>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Category</ion-label>
-          <select style="padding: 10px;" class="Input-text-field textareaField">
+          <select style="padding: 10px;" [(ngModel)]="Category" class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
@@ -234,14 +251,14 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Item/Service</ion-label>
-          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text"  [(ngModel)]="Item" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Description</ion-label>
-          <ion-textarea placeholder=" " id="textareaID" class="Input-text-field textareaField" style="width:100%;"
+          <ion-textarea placeholder=" " [(ngModel)]="Description" id="textareaID" class="Input-text-field textareaField" style="width:100%;"
             maxlength="150" required=""></ion-textarea>
           <!-- (ionSelect)="resize()" -->
           <!-- (keyup)="checkTestPressure(this)" -->
@@ -253,14 +270,14 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">QTY</ion-label>
-          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text"  [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Unit Price</ion-label>
-          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text"  [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
@@ -268,20 +285,20 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Net Price</ion-label>
-          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text"  [(ngModel)]="netprice" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Required Before</ion-label>
-          <ion-input type="date" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="date"  [(ngModel)]="Requiredbefore" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel"> Item Detailed Description</ion-label>
-          <ion-textarea placeholder=" " id="textareaID" class="Input-text-field textareaField" style="width:100%;"
+          <ion-textarea placeholder=" " id="textareaID" [(ngModel)]="itemdescription"  class="Input-text-field textareaField" style="width:100%;"
             maxlength="150" required=""></ion-textarea>
           <!-- (ionSelect)="resize()" -->
           <!-- (keyup)="checkTestPressure(this)" -->

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -23,6 +24,9 @@ export class IpaddressService {
   public serviceerpapi;
   public serviceurlSales;
   public serviceurlProperty;
+  public insertserviceurl;
+  tokenlogin: string;
+  hrmslogindata: string;
   constructor() {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
@@ -38,6 +42,8 @@ export class IpaddressService {
     this.ipaddress1 = "https://demo.herbie.ai";
     this.ipaddress = "https://demo.herbie.ai";
 
+    this.tokenlogin = "/nTireMobileCoreAPI/api";
+this.hrmslogindata = "/nTireMobileCoreAPI/api";
     // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";
     // this.ipaddress = "http://192.168.43.214:8033";
@@ -63,6 +69,7 @@ export class IpaddressService {
 
     // Sales
     this.serviceurl = "/nTireMobileCoreAPI/api/Sales/";
+    this.insertserviceurl = "/nTireMobileCoreAPI/api/Sales/getcompany/";
     this.serviceurlSales = "/nTireMobileCoreAPI/api/Sales/";
 
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";

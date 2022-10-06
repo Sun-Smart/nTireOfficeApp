@@ -17,31 +17,31 @@
         <ion-input style="background-color: white;
                 color: black;" class="form-control" [(ngModel)]="company"></ion-input>
       </ion-col> -->
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Employee Code</ion-label>
         <ion-input style="background-color: white;
                     color: black;" class="form-control" [(ngModel)]="branch"></ion-input>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Employee Name</ion-label>
         <ion-input style="background-color: white;
                         color: black;" class="form-control" [(ngModel)]="name"></ion-input>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Designation</ion-label>
         <ion-input style="background-color: white;
                             color: black;" class="form-control" [(ngModel)]="designation"></ion-input>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Department</ion-label>
         <ion-input style="background-color: white;
                                 color: black;" class="form-control" [(ngModel)]="department"></ion-input>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Request Reference</ion-label>
         <ion-input class="form-control"  [(ngModel)]="loanreqno"></ion-input>
       </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Type</ion-label>
         <select class="form-control" [(ngModel)]="reqtype">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt;</option>
@@ -50,7 +50,7 @@
           <option class="ContentName" value="2">Advance</option>
         </select>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Loan Scheme</ion-label>
         <select class="form-control" (ionChange)="changescheme(loanScheme)" [(ngModel)]="loanScheme">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
@@ -58,47 +58,47 @@
           </option>
         </select>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Loan Name</ion-label>
         <ion-input class="form-control"  [(ngModel)]="loanname"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Max Installments</ion-label>
         <ion-input type="number"  class="form-control" [(ngModel)]="maxinstallment"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Loan Code</ion-label>
         <ion-input  class="form-control" [(ngModel)]="loancode"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Max Eligibility</ion-label>
         <ion-input type="number"  class="form-control" [(ngModel)]="maxligiblity"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">In Rate</ion-label>
         <ion-input type="number"  class="form-control" [(ngModel)]="intrate"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Loan Amount</ion-label>
         <ion-input type="number" class="form-control" [(ngModel)]="loanamount"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Current Eligibility</ion-label>
         <ion-input type="number"  class="form-control" [(ngModel)]="cureligiblity"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='1'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Emi Amount</ion-label>
         <ion-input type="number"  class="form-control" [(ngModel)]="emiamount"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='2'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='2'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Amount</ion-label>
         <ion-input type="number" class="form-control" [(ngModel)]="advamount"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='2'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='2'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">No Of Installments</ion-label>
         <ion-input type="number" class="form-control" (change)="getadvanceemi()" [(ngModel)]="installments"></ion-input>
       </ion-col>
-      <ion-col *ngIf="reqtype=='2'" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+      <ion-col *ngIf="reqtype=='2'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Monthly Deduction</ion-label>
         <ion-input type="number" class="form-control" [(ngModel)]="mondeduct"></ion-input>
       </ion-col>

@@ -69,12 +69,12 @@ export class TeammeetingsPage implements OnInit {
   StartAddress;
   DistanceTravel;
   branch;
-  username:any;
+  username: any;
   constructor(public alertController: AlertController, public modalController: ModalController, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.branch = "";
     this.Getbranches();
     this.getAllMeeting(window.localStorage['TUM_BRANCH_ID']);
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
@@ -91,7 +91,7 @@ export class TeammeetingsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -300,15 +300,15 @@ export class TeammeetingsPage implements OnInit {
           $('#alluserTable').hide();
           this.meetingArray = [];
           this.token = window.localStorage['token'];
+          this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
+          var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
 
-          var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
-
-          var dataJSONtmp2 = { fromdate: this.fromdate, todate: this.todate, BRANCH_ID: branchid }
+          var dataJSONtmp2 = { fdate: this.fromdate, tdate: this.todate, BRANCH_ID: parseInt(branchid) }
           var getappbydateJSON6 = Object.assign(dataJSONtmp2, tokenJSON);
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate/', getappbydateJSON6, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate', getappbydateJSON6, {
             headers: options,
           }).subscribe(resp => {
             console.log(resp)
@@ -578,14 +578,14 @@ export class TeammeetingsPage implements OnInit {
 
     this.meetingCount = [];
     this.token = window.localStorage['token'];
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
-    var dataobj = { BRANCH_ID: branchid }
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
+    var dataobj = { BRANCH_ID: parseInt(branchid) }
     var getappJSON = Object.assign(dataobj, tokenJSON);
     console.log(getappJSON)
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments/', getappJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments', getappJSON, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)

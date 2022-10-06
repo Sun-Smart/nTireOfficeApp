@@ -91,11 +91,11 @@ export class ExpensedetailsPage implements OnInit {
   checkdata;
   branchlist: any;
   branchlist1 = [];
-  username:any;
+  username: any;
   private backbuttonSubscription: Subscription;
   constructor(private nativeGeocoder: NativeGeocoder, public alertController: AlertController, public modalController: ModalController, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService, private geolocation: Geolocation) {
     this.brach = localStorage.getItem('BRANCH_ID');
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     this.IsVisible = true;
     this.brach = "";
     this.Getbranches();
@@ -115,7 +115,7 @@ export class ExpensedetailsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -171,7 +171,7 @@ export class ExpensedetailsPage implements OnInit {
           } else {
             $('#alluserTable').hide();
             $('#tableCard').hide();
-            this.user_id = obj.TUM_USER_ID;
+            this.user_id = parseInt(obj.TUM_USER_ID);
             this.meetingArray = [];
             this.token = window.localStorage['token'];
             var dataobj = { user_id: this.user_id }
@@ -312,15 +312,15 @@ export class ExpensedetailsPage implements OnInit {
           $('#alluserTablebyDate').show();
           $('#alluserTable').hide();
           this.meetingArray = [];
-
-          var dataJSONtmp = { fromdate: this.fromdate, todate: this.todate, BRANCH_ID: this.brach }
+          this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
+          var dataJSONtmp = { fdate: this.fromdate, tdate: this.todate, BRANCH_ID: parseInt(this.brach) }
           this.token = window.localStorage['token'];
-          var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+          var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
           var getleadJSON = Object.assign(dataJSONtmp, tokenJSON);
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate/', getleadJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_AllappointmentsbyDate', getleadJSON, {
             headers: options,
           }).subscribe(resp => {
             //sales_services.get_AllappointmentsbyDate(this.fromdate, this.todate).then(function(resp) {
@@ -574,16 +574,16 @@ export class ExpensedetailsPage implements OnInit {
 
     this.meetingCount = [];
 
-    var dataobj = { BRANCH_ID: branchid }
+    var dataobj = { BRANCH_ID: parseInt(branchid) }
     this.token = window.localStorage['token'];
 
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getappJSON = Object.assign(dataobj, tokenJSON);
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments/', getappJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments', getappJSON, {
       headers: options,
     }).subscribe(resp => {
 
