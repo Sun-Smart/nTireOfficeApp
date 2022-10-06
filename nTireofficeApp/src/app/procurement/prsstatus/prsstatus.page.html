@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -6,8 +6,6 @@
     <ion-title>PRS Status</ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
   <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
         class="fa fa-filter" aria-hidden="true"></i></span></div>
@@ -16,7 +14,7 @@
       <ion-row>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Company Name</ion-label>
-        <ion-input  disabled="" style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"  type="text" class="Input-text-field textareaField"></ion-input>
+        <ion-input  disabled="" style="  background-color: #d4d4d4!important; display:inline-block;padding: 8px;"  type="text" class="Input-text-field textareaField"></ion-input>
       </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -30,31 +28,31 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Code</ion-label>
-          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text" [(ngModel)]="prscode" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">From Date</ion-label>
-          <input type="date" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">To Date</ion-label>
-          <input type="date" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <input type="date" [(ngModel)]="todate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
-
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Status</ion-label>
-          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
-        </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select style="padding: 10px;"
-            style="display:inline-block;padding: 8px;"
+          <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="New">New</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Denied">Denied</option>
+            <option value="Under Process">Under Process</option>
+            <option value="Cancelled">Cancelled</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
@@ -64,7 +62,8 @@
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" expand="block" (click)="Search()">
             <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-            Search</ion-button>
+            Search
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -75,7 +74,7 @@
 
 
   <ion-card style="width: -webkit-fill-available;" *ngIf="showviewlist">
-    <ion-card-header class="card_header">
+    <!-- <ion-card-header class="card_header">
       <ion-row>
         <ion-col size="9">
           <ion-label class="plabel" style="color:white ;">item code Description </ion-label>
@@ -93,24 +92,42 @@
 
 
       </ion-row>
-    </ion-card-header>
+    </ion-card-header> -->
+  </ion-card>
+  <ion-card>
+    <ion-card-content class="card_content" *ngFor="let item of getresponse">
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col size="9">
+            <ion-label class="plabel" style="color:white ;">{{item.ITEM_DETAILED_DESCRIPTION}} </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label class="card_header_text">
 
-    <ion-card-content class="card_content">
+              <ion-icon [routerLink]="['/updateprsstatus',item.PRS_CODE]" routerLinkActive="router-link-active"  style="color: #fff;" name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
+              <ion-icon style="color: red;" name="trash-outline"></ion-icon>
+            </ion-label>
+            <ion-label class="card_header_text">
+              <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
       <ion-row>
         <ion-col size="6">
           <ion-label class="card_content_label labelHead-text">PRS Code :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text"> {{itemdata.CompanyName||"-"}}</ion-label> -->
+          <ion-label class="labelData-text"> {{ item.PRS_CODE||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">Item Code  :</ion-label>
+          <ion-label class="card_content_label labelHead-text">Item Code :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text"> {{itemdata.Code||"-"}}</ion-label> -->
+          <ion-label class="labelData-text"> {{item.item_Code||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
@@ -130,47 +147,41 @@
           <ion-label class="card_content_label labelHead-text">Requisition Date :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{itemdata.Website||"-"}}</ion-label> -->
+          <ion-label class="labelData-text">{{item.REQUESTED_DATE||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">QTY :</ion-label>
+          <ion-label class="card_content_label labelHead-text">Requested By :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{itemdata.GroupName||"-"}}</ion-label> -->
+          <ion-label class="labelData-text">{{item.REQUESTED_BY||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">unitprice :</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{itemdata.TotalEmployees||"-"}}</ion-label> -->
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">Net Price :</ion-label>
-        </ion-col>
-        <ion-col size="6">
-          <!-- <ion-label class="labelData-text"> {{itemdata.DateOfIncorporation|date:'d/M/yy'}}</ion-label> -->
-        </ion-col>
-      </ion-row>
 
       <ion-row>
         <ion-col size="6">
           <ion-label class="card_content_label labelHead-text">Status :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{itemdata.Status}}</ion-label> -->
+          <ion-label class="labelData-text">{{item.STATUS}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Current Status :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">{{item.CURRENT_STATUS}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
+
 
 
   <!-- <ion-button class="button button-small button-block  button-full button-balanced schedulebutn"

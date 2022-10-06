@@ -83,6 +83,7 @@ export class ServiceRequestPage implements OnInit {
   scannedCode1;
   username:any;
   today1;
+  newExpense: number;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
 
      //,private qrScanner: QRScanner
@@ -584,7 +585,7 @@ processassetservicereq(){
   if (this.servicecategory == "" || this.servicecategory == undefined ||this.servicecategory == "<< Select >>") {
     var categ = 0;
   } else {
-    categ = this.servicecategory;
+    categ = parseInt(this.servicecategory);
 
   }
   if (this.noofcharsdectest == undefined) {
@@ -596,13 +597,14 @@ processassetservicereq(){
   if (this.repassetid == undefined) {
     var repid = 0;
   } else {
-    repid = this.repassetid;
+    repid = parseInt(this.repassetid);
 
   }
   if (this.expexpense == undefined) {
     var exp = 0;
   } else {
-    exp = this.expexpense;
+    exp = parseInt(this.expexpense);
+    // this.newExpense = exp;
 
   }
   if (this.replacement == undefined || this.replacement == "" || this.replacement == '<< Select >>') {
@@ -633,7 +635,7 @@ processassetservicereq(){
   if (this.insuamount == null) {
     var insuamt = 0;
   } else {
-    insuamt = this.insuamount;
+    insuamt = parseInt(this.insuamount);
 
   }
 
@@ -653,8 +655,8 @@ processassetservicereq(){
     'serfunctionid': this.functionID,
     'serbranchid': this.branchID,
     'serassetcode': assetcodeservice,
-    'serassetid': this.assetid,
-    'servendorid': this.vendorid,
+    'serassetid': parseInt(this.assetid),
+    'servendorid': parseInt(this.vendorid),
     'servendorcode': this.vendorcode[0],
     //'servendorcode':$scope.asstdtlsser.vendorcode,
     'serdateofservice': dater,

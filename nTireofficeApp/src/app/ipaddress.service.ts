@@ -82,8 +82,8 @@ export class IpaddressService {
         //prod
         // this.serviceerpapi = "/dms/DMS/erpapi/";
 //demo
-    // this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
-
+    this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
+    // https://demo.herbie.ai/nTireMobileCoreAPI/api/ERP/get_PRS_search
 
 
   }

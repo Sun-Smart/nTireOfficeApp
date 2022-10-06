@@ -528,10 +528,21 @@ const routes: Routes = [
   {
     path: 'updateleads',
     loadChildren: () => import('./Sales_pages/updateleads/updateleads.module').then(m => m.UpdateleadsPageModule)
-  },  {
+  },
+  {
     path: 'vendor-quotation',
     loadChildren: () => import('./procurement/vendor-quotation/vendor-quotation.module').then( m => m.VendorQuotationPageModule)
   },
+
+  {
+    path: 'updateprsstatus/:id',
+    loadChildren: () => import('./procurement/updateprsstatus/updateprsstatus.module').then( m => m.UpdateprsstatusPageModule)
+  },
+  {
+    path: 'updateprsstatus',
+    loadChildren: () => import('./procurement/updateprsstatus/updateprsstatus.module').then( m => m.UpdateprsstatusPageModule)
+  },
+
 
 
 

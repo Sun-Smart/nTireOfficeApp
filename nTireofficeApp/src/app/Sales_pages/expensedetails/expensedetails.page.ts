@@ -313,7 +313,7 @@ export class ExpensedetailsPage implements OnInit {
           $('#alluserTable').hide();
           this.meetingArray = [];
           this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
-          var dataJSONtmp = { fromdate: this.fromdate, todate: this.todate, BRANCH_ID: parseInt(this.brach) }
+          var dataJSONtmp = { fdate: this.fromdate, tdate: this.todate, BRANCH_ID: parseInt(this.brach) }
           this.token = window.localStorage['token'];
           var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
           var getleadJSON = Object.assign(dataJSONtmp, tokenJSON);
