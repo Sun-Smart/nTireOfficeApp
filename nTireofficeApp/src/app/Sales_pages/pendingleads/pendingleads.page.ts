@@ -160,7 +160,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.BRANCH_ID = window.localStorage['TUM_BRANCH_ID'];
+    this.penleadfilter.BRANCH_ID = "";
     this.penleadfilter.TCC_CUSTOMER_ID = '';
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.username=localStorage.getItem('TUM_USER_NAME');
@@ -269,7 +269,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
 
     });
-    this.penleadfilter.BRANCH_ID = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    this.penleadfilter.BRANCH_ID = parseInt(this.penleadfilter.BRANCH_ID);
   }
 
   GetProduct() {
@@ -380,7 +380,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branch_id: branch_id
+      branch_id: parseInt(branch_id)
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -575,10 +575,10 @@ export class PendingleadsPage implements OnInit,OnDestroy {
         limit: 50,
 
 
-        BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
+        BRANCH_ID: parseInt(this.penleadfilter.BRANCH_ID),
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
-        MOBILE: this.penleadfilter.MOBILE,
+        MOBILE: parseInt(this.penleadfilter.MOBILE),
         access_token: this.token,
 
         'usertoken': window.localStorage['usertoken'],
@@ -737,7 +737,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
-      MOBILE: this.penleadfilter.MOBILE,
+      MOBILE: parseInt(this.penleadfilter.MOBILE),
       access_token: this.token,
 
       'usertoken': window.localStorage['usertoken'],

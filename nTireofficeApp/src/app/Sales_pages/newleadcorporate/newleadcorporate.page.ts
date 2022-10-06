@@ -874,9 +874,9 @@ this.productdataarray = JSON.stringify(resp);
           branchloc = this.branchlocation;
         }
         var data = {
-          functionid: window.localStorage["FUNCTION_ID"],
-          userTypeid: window.localStorage['TUM_USER_TYPE'],
-          branch_id: window.localStorage['TUM_BRANCH_ID'],
+          functionid: parseInt(window.localStorage["FUNCTION_ID"]),
+          userTypeid: parseInt(window.localStorage['TUM_USER_TYPE']),
+          branch_id: parseInt(window.localStorage['TUM_BRANCH_ID']),
           ContactName: this.ContactName,
           mobile: this.mobile,
           OffPhone: this.OffPhone,
@@ -902,7 +902,7 @@ this.productdataarray = JSON.stringify(resp);
           leadBy: this.leadby,
           LocationId: branchloc
 
-        }
+        };
         var prod_id = parseInt(data.product_id);
         var camp_id = prod_id + 1;
         const header = new Headers();
