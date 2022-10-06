@@ -76,23 +76,26 @@ username = window.localStorage.getItem('TUM_USER_NAME');
     this.expenseType="";
     this.requestCat="";
     this.getReqref();
-    this.getReqcategory();
+
     this.getEmployeeDetails();
     this.getExpenseType();
    }
 
   ngOnInit() {
+    this.getReqcategory();
   }
   getReqcategory(){
     var Catobj={
       User_ID:this.userID,
-      FunctionID:this.function_id,
-       userid:this.userID,
+      FunctionID: parseInt(this.function_id),
+       userid: parseInt(this.userID),
        usertoken:this.usertoken,
        access_token:this.token,
        appURL : 'getrequestcategoryclaims'
       }
       this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getRequestCategoryClaims/",Catobj).then(resp=>{
+
+        console.log(resp)
         this.Reqcategory1=resp;
         this.Reqcategory1.forEach(element => {
           this.Reqcategory.push(element)
@@ -107,8 +110,8 @@ username = window.localStorage.getItem('TUM_USER_NAME');
   getReqref(){
     var Refobj={
       User_ID:this.userID,
-      FunctionID:this.function_id,
-       userid:this.userID,
+      FunctionID: parseInt(this.function_id),
+       userid: parseInt(this.userID),
        usertoken:this.usertoken,
        access_token:this.token,
        EM_EMP_ID:this.empid
@@ -128,16 +131,19 @@ username = window.localStorage.getItem('TUM_USER_NAME');
 
   getEmployeeDetails(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/GetEmployees/"+this.empCode).then(resp=>{
+      console.log(resp)
       if (resp == "Employee not Exist") {
   this.toastmessageService.presentAlert1("","Employee Does not Exist");
 
       } else {
+        console.log(resp)
           this.status = "P";
         this.name = window.localStorage['TUM_USER_NAME'];
 
         this.company = window.localStorage['FUNCTION_DESC'];
         this.branch=window.localStorage['TUM_BRANCH_CODE']
-       var employeeDetails = JSON.parse(resp.toString());
+      //  var employeeDetails = JSON.parse(resp.toString());
+       var employeeDetails = resp;
 
         this.department = employeeDetails[0].Department;
         this.empID = employeeDetails[0].EmpID;
@@ -156,7 +162,8 @@ username = window.localStorage.getItem('TUM_USER_NAME');
   requestRefChange(){
     var Odobj={
       User_ID:window.localStorage['TUM_USER_ID'],
-     userid:window.localStorage['TUM_USER_ID'],
+    //  userid:window.localStorage['TUM_USER_ID'],
+    userid:parseInt(window.localStorage['TUM_USER_ID']),
        usertoken:this.usertoken,
        access_token:this.token,
        Reference:this.reqRef
@@ -249,8 +256,8 @@ username = window.localStorage.getItem('TUM_USER_NAME');
   getExpenseType(){
     var Odobj={
       User_ID:this.userID,
-      FunctionID:this.function_id,
-     userid:this.userID,
+      FunctionID: parseInt(this.function_id),
+     userid: parseInt(this.userID),
        usertoken:this.usertoken,
        access_token:this.token,
      }
@@ -262,7 +269,7 @@ username = window.localStorage.getItem('TUM_USER_NAME');
       console.log("ReferenceData : "+JSON.stringify(this.ReferenceData));
      }, error => {
 
-     console.log("error : "+JSON.stringify(error));
+    //  console.log("error : "+JSON.stringify(error));
 
      });
   }
@@ -370,7 +377,8 @@ this.base64image = undefined;
                         this.exp_id=resp[0].EXP_id;
                         this.EXPREF_ID=resp[0].EXPREF_ID;
                        var expenseobj={
-                        FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                        // FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                        FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID']),
                         BRANCH_ID:window.localStorage['TUM_BRANCH_ID'],
                         Expenseid:this.expenseid+1,
                         Exp_id:this.exp_id+1,
@@ -379,7 +387,8 @@ this.base64image = undefined;
                         Remarks:element.EXPENSE_REMARKS,
                         UserId:window.localStorage['TUM_USER_ID'],
                         RequestRef:this.reqrefid,
-                        userid:window.localStorage['TUM_USER_ID'],
+                        // userid:window.localStorage['TUM_USER_ID'],
+                        userid:parseInt(window.localStorage['TUM_USER_ID']),
                         usertoken:window.localStorage['usertoken'],
                         access_token:window.localStorage['token']
                        }
@@ -398,7 +407,8 @@ this.base64image = undefined;
                                 console.log(this.EXPENSE_ID);
                                 var path = 'https://sunsmart.in/mydesk/Uploaddocu/SSTPL/'+imgname ;
                                  var docobj={
-                                FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                                // FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                                FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID']),
                                 module_id:50101,
                                 pk1:this.EXPENSE_ID,
                                 pk2:this.expenseid,
@@ -408,7 +418,8 @@ this.base64image = undefined;
                                 doc_desc:'',
                                 doc_path: path,
                                 uploaded_by:window.localStorage['TUM_USER_ID'],
-                                userid:window.localStorage['TUM_USER_ID'],
+                                // userid:window.localStorage['TUM_USER_ID'],
+                                userid:parseInt(window.localStorage['TUM_USER_ID']),
                                 usertoken:window.localStorage['usertoken'],
                                 access_token:window.localStorage['token']
                                }
@@ -427,7 +438,8 @@ this.base64image = undefined;
                               }
 
                                 var claimsobj={
-                                    FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                                    // FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                                    FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID']),
                                     BRANCH_ID:window.localStorage['TUM_BRANCH_ID'],
                                     EMP_ID:window.localStorage['em_emp_id'],
                                     EXPENSE_REF:this.reqrefid,
@@ -445,7 +457,8 @@ this.base64image = undefined;
                                     USER_ID:window.localStorage['TUM_USER_ID'],
                                     IPADDRESS:0,
                                     request_ref:this.reqrefid,
-                                    userid:window.localStorage['TUM_USER_ID'],
+                                    // userid:window.localStorage['TUM_USER_ID'],
+                                    userid:parseInt(window.localStorage['TUM_USER_ID']),
                                     usertoken:window.localStorage['usertoken'],
                                     access_token:window.localStorage['token']
                                 }
@@ -492,7 +505,8 @@ if(this.expenseArray.length>0){
             this.exp_id=resp[0].EXP_id;
             this.EXPREF_ID=resp[0].EXPREF_ID;
            var expenseobj={
-            FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+            // FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+            FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID']),
             BRANCH_ID:window.localStorage['TUM_BRANCH_ID'],
             Expenseid:this.expenseid+1,
             Exp_id:this.exp_id+1,
@@ -501,7 +515,8 @@ if(this.expenseArray.length>0){
             Remarks:element.EXPENSE_REMARKS,
             UserId:window.localStorage['TUM_USER_ID'],
             RequestRef:this.reqrefid,
-            userid:window.localStorage['TUM_USER_ID'],
+            // userid:window.localStorage['TUM_USER_ID'],
+            userid:parseInt(window.localStorage['TUM_USER_ID']),
             usertoken:window.localStorage['usertoken'],
             access_token:window.localStorage['token']
            }
@@ -520,7 +535,8 @@ if(this.expenseArray.length>0){
                     console.log(this.EXPENSE_ID);
                     var path = 'https://sunsmart.in/mydesk/Uploaddocu/SSTPL/'+imgname ;
                      var docobj={
-                    FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                    // FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                    FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID']),
                     module_id:50101,
                     pk1:this.EXPENSE_ID,
                     pk2:this.expenseid,
@@ -530,7 +546,8 @@ if(this.expenseArray.length>0){
                     doc_desc:'',
                     doc_path: path,
                     uploaded_by:window.localStorage['TUM_USER_ID'],
-                    userid:window.localStorage['TUM_USER_ID'],
+                    // userid:window.localStorage['TUM_USER_ID'],
+                    userid: parseInt(window.localStorage['TUM_USER_ID']),
                     usertoken:window.localStorage['usertoken'],
                     access_token:window.localStorage['token']
                    }
@@ -548,7 +565,8 @@ if(this.expenseArray.length>0){
                     this.amount=0;
                   }
                     var claimsobj={
-                        FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                        // FUNCTION_ID:window.localStorage['FUNCTION_ID'],
+                        FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID']),
                         BRANCH_ID:window.localStorage['TUM_BRANCH_ID'],
                         EMP_ID:window.localStorage['em_emp_id'],
                         EXPENSE_REF:this.reqrefid,
@@ -566,7 +584,8 @@ if(this.expenseArray.length>0){
                         USER_ID:window.localStorage['TUM_USER_ID'],
                         IPADDRESS:0,
                         request_ref:this.reqrefid,
-                        userid:window.localStorage['TUM_USER_ID'],
+                        // userid:window.localStorage['TUM_USER_ID'],
+                        userid:parseInt(window.localStorage['TUM_USER_ID']),
                         usertoken:window.localStorage['usertoken'],
                         access_token:window.localStorage['token']
                     }
