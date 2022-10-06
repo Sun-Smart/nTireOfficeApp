@@ -104,7 +104,7 @@ export class PayslipPage implements OnInit {
     if (this.monthdata == "") {
       this.monthdata = "0";
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeLeaveDetails/" + this.EmployeeID + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeLeaveDetails/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
       this.loadingdismiss();
       this.empData = JSON.parse(resp.toString());
           // console.log(this.empData);
