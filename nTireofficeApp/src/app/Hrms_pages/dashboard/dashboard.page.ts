@@ -691,9 +691,9 @@ this.backbutton();
       let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
       console.log("location :n" + location);
       var input_obj = {
-        'TUM_USER_CODE': window.localStorage['TUM_USER_CODE'],
+        'TUM_USER_CODE':parseInt( window.localStorage['TUM_USER_CODE']),
         'current_location': this.currentlatlon,
-      userid:window.localStorage['TUM_USER_ID'],
+      userid:parseInt(window.localStorage['TUM_USER_ID']),
       usertoken:window.localStorage['usertoken'],
         access_token:window.localStorage['token'] };
 

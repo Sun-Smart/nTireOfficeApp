@@ -100,14 +100,15 @@ export class AttendancePage implements OnInit {
       }
       this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp:any)=>{
 
-this.loadingdismiss();
+      this.loadingdismiss();
         // this.attendanceList = JSON.parse(resp.toString());
-        this.attendanceList = JSON.parse(resp);
-console.log(resp)
+        this.attendanceList = resp;
+          console.log(resp)
         console.log(""+JSON.stringify(this.attendanceList));
         if(this.attendanceList.length==0){
           this.nodata = true;
         }
+        debugger
           for (var i = 0; i < this.attendanceList.length; i++) {
             this.attendanceList[i].TxnDate = this.getDateObj(this.attendanceList[i].TxnDate)
           }
