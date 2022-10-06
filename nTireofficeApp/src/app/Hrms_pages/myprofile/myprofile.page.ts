@@ -39,6 +39,8 @@ export class MyprofilePage implements OnInit {
   }
   validemail: boolean;
   profile1:any=[];
+  showprofile: boolean=false;
+  showimage: boolean=true;
   image;
   Images=[];
   file;
@@ -258,6 +260,15 @@ export class MyprofilePage implements OnInit {
               });
 console.log(""+this.profilepic+""+this.image)
 // alert("blob"+this.profilepic+""+this.image)
+
+
+if(this.profilepic != undefined || this.profilepic !== undefined  || this.profilepic == null || this.profilepic ==""){
+  this.showimage = false;
+  this.showprofile=true;
+
+}else{
+  alert('error image')
+}
               var url =this.Ipaddressservice.ipaddress+'/dms/uploadprofileImg';
            const formData: any = new FormData();
            formData.append("upload", this.file,this.image);

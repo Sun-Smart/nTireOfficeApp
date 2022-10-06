@@ -309,6 +309,8 @@ export class DepartmentWisePage implements OnInit {
   }
 
   departmodaldttls(deptId:any,locId:any,brnchnme:any){
+   
+    
     console.log(deptId);
     console.log(locId);
     console.log(brnchnme);

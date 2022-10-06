@@ -26,18 +26,22 @@ export class LetterrequestPage implements OnInit {
   FUNCTION_ID;
   branchId;
   emp_code;
+  DEPARTMENT_ID;
+  DESIGNATION_ID;
+
   username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
     this.name = window.localStorage['TUM_USER_NAME'];
     this.company = window.localStorage['FUNCTION_DESC'];
-     this.branch=window.localStorage['TUM_BRANCH_CODE'];
-     this.userId=window.localStorage['TUM_USER_ID'];
+     this.branch=  window.localStorage['TUM_BRANCH_CODE'];
+     this.userId= parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken=window.localStorage['usertoken'];
     this.token=window.localStorage['token'];
-    this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
-    this.branchId=window.localStorage['TUM_BRANCH_ID'];
+    this.FUNCTION_ID= parseInt(window.localStorage['FUNCTION_ID']);
+    this.branchId= parseInt(window.localStorage['TUM_BRANCH_ID']);
     this.emp_code=window.localStorage['TUM_EMP_CODE'];
-
+this.DEPARTMENT_ID = window.localStorage.getItem['EmpDepartment'];
+this.DESIGNATION_ID = window.localStorage.getItem['EmpDesignation']
 
 
     this.requestType="";
@@ -49,7 +53,7 @@ export class LetterrequestPage implements OnInit {
   }
   reqType(){
     var obj = {
-      userid: this.userId,
+      userid: parseInt(this.userId),
       usertoken: this.usertoken,
       access_token:  this.token
     }
@@ -111,7 +115,7 @@ if (this.STATUS == "P") {
   }
   letterList(){
     var obj = {
-      userid: this.userId,
+      userid: parseInt(this.userId),
       usertoken: this.usertoken,
       access_token:  this.token
     }
