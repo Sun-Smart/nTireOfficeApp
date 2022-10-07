@@ -87,7 +87,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getexpdetails/', getappbyuserJSON1, {
+    this.http.post(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlSales +'/getexpdetails/', getappbyuserJSON1, {
       headers: options,
     }).subscribe(resp => {
 
@@ -130,7 +130,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getAllExpenseDetail/', getExpenseJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales +'getAllExpenseDetail/', getExpenseJSON, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -149,7 +149,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
         const header = new Headers();
         header.append("Content-Type", "application/json");
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getExpenseDoc/', getExpensedocJSON, {
+        this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'getExpenseDoc/', getExpensedocJSON, {
           headers: options,
         }).subscribe(resp => {
           this.exdata = resp;
@@ -375,7 +375,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
       const header1 = new Headers();
       header1.append("Content-Type", "application/json");
       let options1 = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/insert_expense_details/', insertExpenseJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'insert_expense_details/', insertExpenseJSON, {
         headers: options1,
       }).subscribe(resp => {
         this.model.dismiss();
@@ -402,7 +402,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getAllExpenseDetail/', getExpenseJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'getAllExpenseDetail/', getExpenseJSON, {
         headers: options,
       }).subscribe(resp => {
         console.log(resp);
@@ -421,7 +421,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/getExpenseDoc/', getExpensedocJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'/getExpenseDoc/', getExpensedocJSON, {
             headers: options,
           }).subscribe(resp => {
             this.exdata = resp;

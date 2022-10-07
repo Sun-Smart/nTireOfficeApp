@@ -134,9 +134,9 @@ console.log(""+JSON.stringify(this.addCareerObject))
     if(this.repsonse1[0]['Column1']== "Successfully Saved" || this.repsonse1[0]['Column1'] == "Successfully Updated" )
     {
       if (this.tempID == "0") {
-        this.toastmessageService.presentAlert1("","Career Added Successfully");
+        this.toastmessageService.presentAlert("","Career Added Successfully");
      } else {
-      this.toastmessageService.presentAlert1("","Career Updated Successfully");
+      this.toastmessageService.presentAlert("","Career Updated Successfully");
      }
 
    this.model.dismiss();

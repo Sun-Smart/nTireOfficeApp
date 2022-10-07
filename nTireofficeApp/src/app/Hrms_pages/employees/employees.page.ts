@@ -41,6 +41,8 @@ VALUE: any;
   }
 
   ngOnInit() {
+
+    // this.employeeSearch();
   }
 
   ionViewDidEnter(){
@@ -210,6 +212,7 @@ VALUE: any;
     }
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj1.empID + "/" + obj1.name + "/" + obj1.code + "/" + obj1.designation + "/" + obj1.branch + "/" + obj1.department + "/" + obj1.top + "/" + obj1.increment + "/" + obj1.appURL ).then(resp=>{
+      console.log(resp)
       this.loading = false;
       this.totalemployee=JSON.parse(resp.toString()).length;
      }, error => {

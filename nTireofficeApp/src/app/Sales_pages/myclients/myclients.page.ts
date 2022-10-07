@@ -128,7 +128,8 @@ export class MyclientsPage implements OnInit {
         headers: options,
       }).subscribe(resp => {
         console.log("allmeetinglocation : " + JSON.stringify(resp));
-        this.allmeetinglocation = resp;
+        this.allmeetinglocation = JSON.stringify(resp);
+        this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
         console.log(this.allmeetinglocation);
         if (this.allmeetinglocation == '') {
           this.NoRecord = "No Record Found";

@@ -29,6 +29,10 @@ const routes: Routes = [
   //   loadChildren: () => import('./procurement/invoiceupload/invoiceupload.module').then( m => m.InvoiceuploadPageModule)
   // },service-list
   {
+    path:'department-wise-model',
+    loadChildren: ()  =>  import('./Cams_pages/department-wise-model/department-wise-model.module').then(m  =>m.DepartmentWiseModelPageModule)
+  },
+  {
     path: 'service-list',
     loadChildren: () => import('./Cams_pages/service-list/service-list.module').then( m => m.ServiceListPageModule)
   },
