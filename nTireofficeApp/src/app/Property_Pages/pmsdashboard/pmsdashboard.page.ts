@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IpaddressService } from '../../service/ipaddress.service';
 import { Chart } from 'chart.js';
 import { Platform } from '@ionic/angular';
@@ -15,8 +15,6 @@ import { ViewEncapsulation } from '@angular/core';
 export class PmsdashboardPage implements OnInit {
   //   @ViewChild('pieChart') pieChart: { nativeElement: any; };
 
-
-
   students: any[];
   username: any;
   chartLoading: any;
@@ -24,42 +22,37 @@ export class PmsdashboardPage implements OnInit {
 
   options = { checkboxes: true }
   data: any = [];
-  dataStatus: any = [];
-  dataDetails: any = [];
-  dataVaccant: any = [];
-  dataRaised: any = [];
+  dataStatus : any =[];
+  dataDetails : any =[];
+  dataVaccant : any =[];
+  dataRaised : any =[];
 
 
   columns: any = [];
   columnsStatus: any = [];
   columnsDetails: any = [];
   columnsVaccant: any = [];
-  columnsRaised: any = [];
+  columnsRaised : any = [];
   rows: any
-
   barChart: any;
 
 
   @ViewChild('sourcecanvas1') sourcecanvas1;
   @ViewChild('sourcecanvas2') sourcecanvas2;
   @ViewChild('sourcecanvas3') sourcecanvas3;
-  @ViewChild('sourcecanvas1') public sourcecanvas1: ElementRef;
-  @ViewChild('sourcecanvas2') public sourcecanvas2: ElementRef;
-  // @ViewChild('barCanvas') public barCanvas: ElementRef;
 
   constructor(private http: HttpClient, private platform: Platform, public Ipaddressservice: IpaddressService, private tableApi: TableSampleService) {
     this.userid = window.localStorage['TUM_USER_ID'];
     this.username = localStorage.getItem('TUM_USER_NAME');
-    this.getcustomerChart();
+    this.customerPayment();
     this.getBranchCountChart();
     this.getEmployeeCountChart();
     this.getToBevaccantChart();
     // this.getCategoryCountChart();
     this.getBranchCountChart();
-    this.customerPayment();
 
     this.columns = [
-      { name: 'sno', },
+      { name: 'sno',},
       { name: 'invoice', },
       { name: 'month', },
       { name: 'amount', },
@@ -67,29 +60,28 @@ export class PmsdashboardPage implements OnInit {
     ];
 
     this.columnsStatus = [
-      { name: 'issuecode', },
+      { name: 'issuecode',},
       { name: 'issuedate', },
       { name: 'issuedescription', },
-      { name: 'Tenant', },
       { name: 'Status', },
     ];
 
     this.columnsDetails = [
-      { name: 'sno', },
+      { name: 'sno',},
       { name: 'propertycode', },
       { name: 'issuedescription', },
       { name: 'status', },
     ];
 
     this.columnsVaccant = [
-      { name: 'sno', },
+      { name: 'sno',},
       { name: 'propertycode', },
       { name: 'issuedescription', },
       { name: 'flat', },
     ];
 
     this.columnsRaised = [
-      { name: 'sno', },
+      { name: 'sno',},
       { name: 'propertycode', },
       { name: 'invoice', },
       { name: 'amount', },
@@ -104,12 +96,12 @@ export class PmsdashboardPage implements OnInit {
 
 
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=1&branch=1&userid=1').subscribe((res: any) => {
-      console.log(res)
-      this.dataStatus = res
+this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=1&branch=1&userid=1').subscribe((res:any)=>{
+console.log(res)
+this.dataStatus=res
 
 
-    })
+})
 
     // this.dataStatus = this.tableApi.getDashbTable2();
     // console.log(this.dataStatus);
@@ -125,123 +117,108 @@ export class PmsdashboardPage implements OnInit {
 
   }
 
-  getcustomerChart = function () {
+  customerPayment = function () {
     debugger
-      var sourcearray=[];
-      const header = new Headers();
-      header.append("Content-Type", "application/json");
-    
-      let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty+'customerpayments?strfunction=1&branch=1&userid=1',{
-        headers: options,
-      }).subscribe((resp:any) => {
-        console.log(resp)
-        debugger
-        this.branchCountresult1 = resp;
-    
-        this.customerbar = this.branchCountresult1;
-        console.log(this.customerbar);
-        this.labels = [];
-        this.data = [];
-        for (var i = 0; i < this.customerbar.length; i++) {
-          this.labels[i] = this.customerbar[i].Year;
-      
-          this.FieldName1 = this.customerbar[i].Invoice;
-          this.FieldName2 = this.customerbar[i].OutStanding;
-          this.FieldName3 = this.customerbar[i].Paid;
-          console.log( this.FieldName1);
-          console.log( this.FieldName2);
-          console.log( this.FieldName3);
-          
-   
-          if( this.labels[i] = this.customerbar[i].Year)
-          {
-         
-            this. data[i] =this.FieldName1;
-            
-          }
-          if(      this.labels[i] = this.customerbar[i].Year )
-          {
-      
-            this. data[i] =this.FieldName2;
-            
-          }
-          if(    this.labels[i] = this.customerbar[i].Year )
-          {
-        
-            this. data[i] =this.FieldName3;
-         
-          }
-     
-          // $scope.data.push($scope.colorpie[i].color);
+    var sourcearray = [];
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction=1&branch=1&userid=1', {
+      headers: options,
+    }).subscribe((resp: any) => {
+      console.log(resp)
+      debugger
+      this.customerPaymenhtresult = resp;
+
+      this.customerPayment = this.customerPaymenhtresult;
+      console.log(this.customerPayment[0].Invoice);
+      this.labels = [];
+      this.data = [];
+
+      for (var i = 0; i < this.customerPayment.length; i++) {
+        this.labels[i] = this.customerPayment[i].Year;
+        // this.FieldName1 = this.customerPayment[i].Invoice;
+        // this.FieldName2 = this.customerPayment[i].OutStanding;
+        // this.FieldName3 = this.customerPayment[i].Paid
+        this.data[i] = 'Invoice -' + this.customerPayment[i].Invoice + ', ' + 'OutStanding -' + this.customerPayment[i].OutStanding + ', ' + 'Paid -' +  this.customerPayment[i].Paid;
+        // $scope.data.push($scope.colorpie[i].color);
       }
-        console.log(this.labels);
-        console.log(this.data);
-    
-           sourcearray = [
-            {
-    
-              data: this.data,
-              backgroundColor: ['rgb(16, 99, 16)','rgb(68, 49, 9)','rgb(0,128,128)'],
-    
-    
+console.log(this.data);
+
+    //   console.log(this.labels);
+    //   console.log(JSON.stringify(this.data[0]));
+    //  var  test =JSON.stringify(this.data[0]);
+    //  test = JSON.parse(test);
+    //  test = JSON.parse(test);
+    //  console.log(test);
+      if (this.barchart) {
+        this.barchart.destroy();
+      }
+
+      this.barchart = new Chart(this.sourcecanvas2.nativeElement, {
+        type: 'bar',
+        data: {
+          labels: this.labels,
+          datasets: [{
+            barPercentage: 0.4,
+            barThickness: '20',
+            label: "Invoice",
+            stack: "Base",
+            backgroundColor: "#E1BA24",
+            data: [this.customerPayment[0].Invoice,this.customerPayment[0].Invoice]
+          }, {
+            barPercentage: 0.4,
+            barThickness: '20',
+            label: "OutStanding",
+            stack: "Sensitivity",
+            backgroundColor: "#2A93CE",
+            data: [this.customerPayment[0].OutStanding,this.customerPayment[1].OutStanding]
+          },
+          {
+            barPercentage: 0.4,
+            barThickness: '20',
+            label: "Paid",
+            stack: "solid",
+            backgroundColor: "#004073",
+            data: [this.customerPayment[0].Paid,this.customerPayment[1].Paid]
+          }]
+        },
+        options: {
+          legend: {
+            display: true
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                fontSize: 10
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                display: true,
+                labelString: window.localStorage['TUM_BRANCH_CODE'],
+
+              }
             }]
-            if (this.sourcechartcustomer) {
-              this.sourcechartcustomer.destroy();
-          }
-          this.sourcechartcustomer = new Chart(this.sourcecanvas3.nativeElement, {
-    
-            type: 'bar',
-    
-            data: {
-              labels: this.labels,
-              datasets: sourcearray,
-    
+          },
+          tooltips: {
+
+            callbacks: {
+              title: function (tooltipItem, data) {
+                return data['labels'][tooltipItem[0]['index']];
+              },
+              label: function (tooltipItem, data) {
+                return data.datasets[0]['label'] + " : " + data['datasets'][0]['data'][tooltipItem['index']];
+              },
+
             },
-            options: {
-              legend: {
-                display: false
-              },
-              scales: {
-                xAxes: [{
-                  ticks: {
-                    fontSize: 10
-                  }
-                }],
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true,
-                    display: true,
-                    labelString: window.localStorage['TUM_BRANCH_CODE'],
-    
-                  }
-                }]
-              },
-              tooltips: {
-    
-                callbacks: {
-                  title: function (tooltipItem, data) {
-                    return data['labels'][tooltipItem[0]['index']];
-                  },
-                  label: function (tooltipItem, data) {
-                    return "Target" + " : " + data['datasets'][0]['data'][tooltipItem['index']];
-                  },
-    
-                },
-    
-    
-    
-              },
-            }
-    
-          });
-    
-        }, error => {
-    
-    
-        });
-    
-    }
+          },
+        }
+      })
+    });
+  }
 
 
   getEmployeeCountChart = function () {
@@ -390,199 +367,96 @@ export class PmsdashboardPage implements OnInit {
 
   // }
 
-  customerPayment = function () {
-    debugger
-    var sourcearray = [];
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction=1&branch=1&userid=1', {
-      headers: options,
-    }).subscribe((resp: any) => {
-      console.log(resp)
-      debugger
-      this.customerPaymenhtresult = resp;
-
-      this.customerPayment = this.customerPaymenhtresult;
-      console.log(this.customerPayment);
-      this.labels = [];
-      this.data = [];
-
-      for (var i = 0; i < this.customerPayment.length; i++) {
-        this.labels[i] = this.customerPayment[i].Year;
-        this.FieldName1 = this.customerPayment[i].Invoice;
-        this.FieldName2 = this.customerPayment[i].OutStanding;
-        this.FieldName3 = this.customerPayment[i].Paid
-        this.data[i] = 'Invoice -' + this.customerPayment[i].Invoice + ', ' + 'OutStanding -' + this.customerPayment[i].OutStanding + ', ' + 'Paid -' +  this.customerPayment[i].Paid;
-        // $scope.data.push($scope.colorpie[i].color);
-      }
-console.log(this.FieldName1);
-
-    //   console.log(this.labels);
-    //   console.log(JSON.stringify(this.data[0]));
-    //  var  test =JSON.stringify(this.data[0]);
-    //  test = JSON.parse(test);
-    //  test = JSON.parse(test);
-    //  console.log(test);
-      if (this.barchart) {
-        this.barchart.destroy();
-      }
-
-      this.barchart = new Chart(this.sourcecanvas2.nativeElement, {
-        type: 'bar',
-        data: {
-          labels: this.labels,
-          datasets: [{
-            barPercentage: 0.4,
-            barThickness: '20',
-            label: "Type 1",
-            stack: "Base",
-            backgroundColor: "#E1BA24",
-            data: this.customerPayment[1].Invoice
-          }, {
-            barPercentage: 0.4,
-            barThickness: '20',
-            label: "Type 2",
-            stack: "Sensitivity",
-            backgroundColor: "#2A93CE",
-            data: this.customerPayment[1].OutStanding
-          },
-          {
-            barPercentage: 0.4,
-            barThickness: '20',
-            label: "Type 3",
-            stack: "solid",
-            backgroundColor: "#004073",
-            data: this.customerPayment[1].Paid
-          }]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontSize: 10
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                display: true,
-                labelString: window.localStorage['TUM_BRANCH_CODE'],
-
-              }
-            }]
-          },
-          tooltips: {
-
-            callbacks: {
-              title: function (tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
-              },
-              label: function (tooltipItem, data) {
-                return "Target" + " : " + data['datasets'][0]['data'][tooltipItem['index']];
-              },
-
-            },
-          },
-        }
-      })
-    });
-  }
-
   getBranchCountChart = function () {
     debugger
-    var sourcearray = [];
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction=1&branch=1&userid=1', {
-      headers: options,
-    }).subscribe((resp: any) => {
-      console.log(resp)
-      debugger
-      this.branchCountresult = resp;
-
-      this.branchCount = this.branchCountresult;
-      console.log(this.branchCount);
-      this.labels = [];
-      this.data = [];
-      for (var i = 0; i < this.branchCount.length; i++) {
-        this.labels[i] = this.branchCount[i].Property_Status + ' - ' + this.branchCount[i].OutStanding + ' - ' + this.branchCount[i].Paid;
+      var sourcearray=[];
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+    
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty+'propertystatus?strfunction=1&branch=1&userid=1',{
+        headers: options,
+      }).subscribe((resp:any) => {
+        console.log(resp)
+        debugger
+        this.branchCountresult = resp;
+    
+        this.branchCount = this.branchCountresult;
+        console.log(this.branchCount);
+        this.labels = [];
+        this.data = [];
+        for (var i = 0; i < this.branchCount.length; i++) {
+          this.labels[i] = this.branchCount[i].Property_Status;
         this.data[i] = this.branchCount[i].No_of_Property;
-        // $scope.data.push($scope.colorpie[i].color);
+          // $scope.data.push($scope.colorpie[i].color);
       }
-      console.log(this.labels);
-      console.log(this.data);
-
-      sourcearray = [
-        {
-
-          data: this.data,
-          backgroundColor: ['rgb(16, 99, 16)', 'rgb(68, 49, 9)'],
-
-
-        }]
-      if (this.sourcechart) {
-        this.sourcechart.destroy();
-      }
-      this.sourcechart = new Chart(this.sourcecanvas1.nativeElement, {
-
-        type: 'bar',
-
-        data: {
-          labels: this.label,
-          datasets: sourcearray,
-
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            xAxes: [{
-              ticks: {
-                fontSize: 10
-              }
-            }],
-            yAxes: [{
-              ticks: {
-                beginAtZero: true,
-                display: true,
-                labelString: window.localStorage['TUM_BRANCH_CODE'],
-
-              }
+        console.log(this.labels);
+        console.log(this.data);
+    
+           sourcearray = [
+            {
+    
+              data: this.data,
+              backgroundColor: ['rgb(16, 99, 16)','rgb(68, 49, 9)'],
+    
+    
             }]
-          },
-          tooltips: {
-
-            callbacks: {
-              title: function (tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
-              },
-              label: function (tooltipItem, data) {
-                return "Target" + " : " + data['datasets'][0]['data'][tooltipItem['index']];
-              },
-
+            if (this.sourcechart) {
+              this.sourcechart.destroy();
+          }
+          this.sourcechart = new Chart(this.sourcecanvas1.nativeElement, {
+    
+            type: 'bar',
+    
+            data: {
+              labels: this.labels,
+              datasets: sourcearray,
+    
             },
-
-
-
-          },
-        }
-
-      });
-
-    }, error => {
-
-
-    });
-
-  }
+            options: {
+              legend: {
+                display: false
+              },
+              scales: {
+                xAxes: [{
+                  ticks: {
+                    fontSize: 10
+                  }
+                }],
+                yAxes: [{
+                  ticks: {
+                    beginAtZero: true,
+                    display: true,
+                    labelString: window.localStorage['TUM_BRANCH_CODE'],
+    
+                  }
+                }]
+              },
+              tooltips: {
+    
+                callbacks: {
+                  title: function (tooltipItem, data) {
+                    return data['labels'][tooltipItem[0]['index']];
+                  },
+                  label: function (tooltipItem, data) {
+                    return "Target" + " : " + data['datasets'][0]['data'][tooltipItem['index']];
+                  },
+    
+                },
+    
+    
+    
+              },
+            }
+    
+          });
+    
+        }, error => {
+    
+    
+        });
+    
+    }
 
 
 
@@ -623,7 +497,7 @@ console.log(this.FieldName1);
               if (this.sourcechart1) {
                 this.sourcechart.destroy();
             }
-            this.sourcechart1 = new Chart(this.sourcecanvas2.nativeElement, {
+            this.sourcechart1 = new Chart(this.sourcecanvas3.nativeElement, {
       
               type: 'bar',
       
