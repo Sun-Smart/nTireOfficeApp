@@ -13,7 +13,7 @@ export class PayslipPage implements OnInit {
   monthdata;
   empid;
   empData:any=[];
-  paySlipEarnings=[];
+  paySlipEarnings:any=[];
   error;
   signal;
   totalEarnings;
@@ -49,9 +49,9 @@ export class PayslipPage implements OnInit {
       this.monthdata = "0";
     }
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeSalaryRegularEarnings/" +  this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
-      this.paySlipEarnings = JSON.parse(resp.toString());
+      this.paySlipEarnings = resp;
        this.loadingdismiss();
-
+console.log(resp)
            console.log(this.paySlipEarnings);
           if (this.paySlipEarnings.length==0) {
             this.error = "No data found";
