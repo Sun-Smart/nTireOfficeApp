@@ -229,11 +229,11 @@
             <span style="font-size: 14px;">{{items.TCC_NEXT_CALL_DATE | date:'dd/MM/yyyy'}} {{items.call_time}}</span>
 
           </ion-col>
-          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+          <ion-col size="6">
             <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
               style="font-size: 14px;color:green;">{{items.PriorityText}}</span>
           </ion-col>
-          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+          <ion-col size="6">
             <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
               style="font-size: 14px;color:red;">{{items.Ratingtext}}</span>
           </ion-col>
@@ -242,7 +242,7 @@
               <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
 
               <i id="imageidvals{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
-                style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+                style="font-size: 21px;margin-left: 270px !important;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
             </a>
           </ion-col>
           <div id="dividvals{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
@@ -284,7 +284,7 @@
                 size-xl="6">
                 {{formattedadd[i]}}
               </ion-col>
-              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                 <b>Attachment</b>
               </ion-col>
               <ion-col *ngIf="filename[i]!=undefined && filename[i].length!=0" style="overflow:auto;display:flex;"
@@ -293,7 +293,7 @@
                   <img src={{commonapi_sales}}{{image}} (click)="imageview(image)" style="width:150px;height:150px;"
                     (click)="downloadImage(image)" />
                 </span>
-              </ion-col>
+              </ion-col> -->
 
               <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
                 <span>Remarks</span>

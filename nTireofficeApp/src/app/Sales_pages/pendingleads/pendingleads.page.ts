@@ -640,7 +640,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
             var date = this.pendleaddetails[i].CreatedOn1;
             console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
             var timesp = date.split('T');
-            var time2 = timesp[1].split('.');
+            var time2 = timesp[1].split('.').pop();
 
             var d1 = new Date(timesp[0] + " " + time2[0]);
             var d2 = new Date(d1);
@@ -802,7 +802,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
           var date = this.pendleaddetails[i].CreatedOn1;
           console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
           var timesp = date.split('T');
-          var time2 = timesp[1].split('.');
+          var time2 = timesp[1].split('.').join(' ');
 
           var d1 = new Date(timesp[0] + " " + time2[0]);
           var d2 = new Date(d1);
@@ -881,9 +881,9 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
     // console.log(idvalue);
     var obj1 = {
-      callid: id
+      callid: parseInt(id)
     }
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getimageJSON = Object.assign(obj1, tokenJSON);
     const header = new Headers();
