@@ -54,7 +54,7 @@
            <td *ngFor="let item of data.meeting_array; let i = index" [ngStyle]="{'background-color': item.ColorCode}"  (click)="showMeetingDeatils(item,i)">
 
            <p style="font-weight: 500;
-      text-align: center;">{{item.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE | date:'dd-MM-yyyy'}} {{item.AppointmentTime}}</p></td>
+      text-align: center;">{{item.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE}} {{item.AppointmentTime}}</p></td>
        </tr>
        </tbody>
       </table>
@@ -73,7 +73,7 @@
        <tr>
           <td style="font-weight: 500;background-color: #3F51B5;color: white;">{{data.Current_Caller}}</td>
            <td *ngFor="let item of data.meeting_array" [ngStyle]="{'background-color': item.ColorCode}" (click)="showMeetingDeatils(item,i)"><p style="font-weight: 500;
-      text-align: center;">{{item.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE | date:'dd-MM-yyyy'}} {{item.AppointmentTime}}</p></td>
+      text-align: center;">{{item.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE}} {{item.AppointmentTime}}</p></td>
        </tr>
        </tbody>
       </table>
@@ -89,7 +89,7 @@
        <tr>
           <td style="font-weight: 500;background-color: #3F51B5;color: white;">{{meetingArray.User}}</td>
            <td *ngFor="let data of meetingArray" [ngStyle]="{'background-color': item.ColorCode}" (click)="showMeetingDeatils(data,i)"><p style="font-weight: 500;
-      text-align: center;">{{data.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE | date:'dd-MM-yyyy'}} {{item.AppointmentTime}}</p></td>
+      text-align: center;">{{data.BRANCH_CODE}}</p><p style="font-weight: 500;text-align: center;">{{item.TCC_NEXT_CALL_DATE}} {{item.AppointmentTime}}</p></td>
        </tr>
       </table>
       <!-- <center id="oneUserAlert" style="margin-top: 100px;"><p *ngIf="meetingArray.length==0" style="font-weight: bold;">No Record Found</p></center> -->

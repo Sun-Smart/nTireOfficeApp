@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-var */
 /* eslint-disable space-before-function-paren */
@@ -82,7 +83,7 @@ export class NewleadRetailPage implements OnInit {
   source: any;
   remarks: any;
   closedDate: any;
-  appointmentDate:any;
+  appointmentDate: any;
   expectedAmount: any;
   leadBy: any;
   prod_cat: any;
@@ -823,7 +824,7 @@ export class NewleadRetailPage implements OnInit {
 
 
       }
-      if (this.nextaction == 6 || this.nextaction == 5 || this.nextaction == 4 || this.nextaction == 7 || this.nextaction == 8 || this.nextaction == 9) {
+      if (appdata == '' || this.nextaction == 6 || this.nextaction == 5 || this.nextaction == 4 || this.nextaction == 7 || this.nextaction == 8 || this.nextaction == 9) {
         // eslint-disable-next-line no-var
         var appdata = ' ';
         strTime = ' ';
@@ -845,13 +846,25 @@ export class NewleadRetailPage implements OnInit {
       else {
         currency = this.Currency;
       }
+      var followdate1;
+      if (appdata == " " || appdata == undefined || appdata == "NaN-NaN-NaN") {
+        followdate1 = "01-01-1990";
+      } else {
+        followdate1 = appdata;
+      }
+      var followtime1;
+      if (strTime == " " || strTime == undefined) {
+        followtime1 = "12-00";
+      } else {
+        followtime1 = strTime;
+      }
       const data = {
         functionid: window.localStorage.FUNCTION_ID,
         userTypeid: window.localStorage.TUM_USER_TYPE,
         branch_id: window.localStorage.TUM_BRANCH_ID,
-        // appointmentDate: appdata,
+        appointmentDate: appdata,
         closedDate: this.closedDate,
-        // appointmentTime: strTime,
+        appointmentTime: strTime,
         campaign: this.campaign,
         OffPhone: this.OffPhone,
         ResPhone: this.ResPhone,
@@ -860,8 +873,8 @@ export class NewleadRetailPage implements OnInit {
         expectedAmount: this.expectedAmount,
 
         uservalue: this.uservalue,
-        followdate: this.followdate,
-        followtime: this.followtime,
+        followdate: followdate1,
+        followtime: followtime1,
         prod_cat: this.curr_prod_category,
         product_id: this.productdata,
         salutation_name: this.salutation_name,
@@ -901,7 +914,7 @@ export class NewleadRetailPage implements OnInit {
 
         }
         else {
-          const resultstrarray = this.result.split(' ');
+          const resultstrarray = this.result.split(" ");
           let lead_id_new = resultstrarray[4];
           lead_id_new = parseInt(lead_id_new);
 
@@ -913,13 +926,13 @@ export class NewleadRetailPage implements OnInit {
 
 
           const obj = {
-            LeadID: lead_id_new,
+            'LeadID': parseInt(lead_id_new),
             // LatLong: this.appointmentLatLong,
-            LatLong: null,
-            Address: this.placetomeet,
+            'LatLong': this.appointmentLatLong,
+            'Address': this.placetomeet,
             access_token: window.localStorage.token,
             userid: parseInt(window.localStorage.TUM_USER_ID),
-            usertoken: window.localStorage.usertoken,
+            'usertoken': window.localStorage.usertoken,
             USER_ID: parseInt(window.localStorage.TUM_USER_ID)
           };
           console.log(obj);

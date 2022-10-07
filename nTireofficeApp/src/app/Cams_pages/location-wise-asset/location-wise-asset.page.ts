@@ -260,7 +260,7 @@ export class LocationWiseAssetPage implements OnInit {
       'functionidrep': this.functionID,
       'fzoneid': parseInt(LocZone),
       'fregionid': parseInt(region1),
-      'fbranchid': 1,
+      'fbranchid': parseInt(branchLoc1),
       'fassetcatid': parseInt(category1),
       'fassetsubcatid': parseInt(subcategory1),
       'access_token':window.localStorage['token'],
