@@ -96,7 +96,7 @@ VALUE: any;
     var designation;
     var branch;
     var department;
-
+console.log(this.employeeSearch)
     console.log("designation:"+this.designation,"branch:"+this.branch,"dept:"+this.department);
 
     if (this.name == undefined || this.name == '') {
@@ -149,11 +149,11 @@ VALUE: any;
            branch: window.localStorage.getItem("TUM_BRANCH_ID"),
            department: window.localStorage.getItem("EmpDepartment"),
            top: this.length,
-           increment: increment,
-           appURL: 'employeesearch'
+           increment: 3000,
+          //  appURL: 'employeesearch'
         }
     console.log(this.obj);
- this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment + "/" + this.obj.appURL).then(resp=>{
+ this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment ).then(resp=>{
   this.loadingdismiss();
   this.loading = false;
   this.allemp = resp;
@@ -226,7 +226,7 @@ VALUE: any;
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
-
+      duration: 500,
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
