@@ -114,7 +114,7 @@ export class HeatmapPage implements OnInit {
       access_token: window.localStorage['token'],
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
-      USER_ID: window.localStorage['TUM_USER_ID'],
+      USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       tum_user_id: parseInt(user_id),
       status: this.status
     };

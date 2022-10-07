@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable object-shorthand */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 /* eslint-disable space-before-function-paren */
 /* eslint-disable eqeqeq */
@@ -30,7 +32,7 @@ import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geoc
   templateUrl: './addtravelexpensedetails.page.html',
   styleUrls: ['./addtravelexpensedetails.page.scss'],
 })
-export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
+export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
   Customer_ID;
   Images = [];
   token;
@@ -78,16 +80,17 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
     this.Customer_ID = navParams.get('Customer_ID');
 
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    var dataobj1 = { FUNCTION_ID: window.localStorage['FUNCTION_ID'], status: 'A' };
+    var functionid = parseInt(window.localStorage['FUNCTION_ID']);
+    var dataobj1 = { FUNCTIONID: functionid, status: 'A' };
     this.token = window.localStorage['token'];
-
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var userid = parseInt(window.localStorage['TUM_USER_ID']);
+    var tokenJSON = { access_token: this.token, userid: userid, 'usertoken': window.localStorage['usertoken'] };
 
     var getappbyuserJSON1 = Object.assign(dataobj1, tokenJSON);
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlSales +'/getexpdetails/', getappbyuserJSON1, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + '/getexpdetails/', getappbyuserJSON1, {
       headers: options,
     }).subscribe(resp => {
 
@@ -120,8 +123,8 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
     this.token = window.localStorage['token'];
 
     var tokenJSON1 = {
-      custid: this.Customer_ID,
-      access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken']
+      custid: parseInt(this.Customer_ID),
+      access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken']
     };
 
     var getExpenseJSON = tokenJSON1;
@@ -130,7 +133,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales +'getAllExpenseDetail/', getExpenseJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getAllExpenseDetail/', getExpenseJSON, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -149,7 +152,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
         const header = new Headers();
         header.append("Content-Type", "application/json");
         let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'getExpenseDoc/', getExpensedocJSON, {
+        this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getExpenseDoc/', getExpensedocJSON, {
           headers: options,
         }).subscribe(resp => {
           this.exdata = resp;
@@ -375,7 +378,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
       const header1 = new Headers();
       header1.append("Content-Type", "application/json");
       let options1 = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'insert_expense_details/', insertExpenseJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'insert_expense_details/', insertExpenseJSON, {
         headers: options1,
       }).subscribe(resp => {
         this.model.dismiss();
@@ -402,7 +405,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'getAllExpenseDetail/', getExpenseJSON, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getAllExpenseDetail/', getExpenseJSON, {
         headers: options,
       }).subscribe(resp => {
         console.log(resp);
@@ -421,7 +424,7 @@ export class AddtravelexpensedetailsPage implements OnInit,OnDestroy {
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress  + this.Ipaddressservice.serviceurlSales +'/getExpenseDoc/', getExpensedocJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + '/getExpenseDoc/', getExpensedocJSON, {
             headers: options,
           }).subscribe(resp => {
             this.exdata = resp;
