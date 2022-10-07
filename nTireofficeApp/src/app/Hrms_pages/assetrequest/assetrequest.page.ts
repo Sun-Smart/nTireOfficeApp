@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
-import {ToastmessageService} from '../../service/toastmessage.service';
+import { ToastmessageService } from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-assetrequest',
@@ -23,8 +23,8 @@ export class AssetrequestPage implements OnInit {
   usertoken;
 
   FUNCTION_ID;
-  categoryData=[];
-  subCategoryData=[];
+  categoryData: any = [];
+  subCategoryData: any = [];
   assestCategory;
   assestsubCategory;
   reqID;
@@ -47,90 +47,93 @@ export class AssetrequestPage implements OnInit {
   release: boolean;
   disabledvalue: boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private router: Router,private route:ActivatedRoute,private datepipe: DatePipe,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
+  constructor(private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.status = "P";
-    this.userID=window.localStorage['TUM_USER_ID'];
-    this.empCode= window.localStorage['TUM_EMP_CODE'];
+    this.userID = window.localStorage['TUM_USER_ID'];
+    this.empCode = window.localStorage['TUM_EMP_CODE'];
 
-    this.empID=window.localStorage['em_emp_id'];
+    this.empID = window.localStorage['em_emp_id'];
     this.usertoken = window.localStorage['usertoken'];
-   this.status = "P";
-   this.release=false;
+    this.status = "P";
+    this.release = false;
     this.name = window.localStorage['TUM_USER_NAME'];
-   this.company = window.localStorage['FUNCTION_DESC'];
-    this.branch=window.localStorage['TUM_BRANCH_CODE'];
-    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
-    this.TUM_BRANCH_ID=window.localStorage['TUM_BRANCH_ID'];
-    this.reqID=" ";
-    this.assestCategory="";
-    this.assestsubCategory="";
+    this.company = window.localStorage['FUNCTION_DESC'];
+    this.branch = window.localStorage['TUM_BRANCH_CODE'];
+    this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
+    this.TUM_BRANCH_ID = window.localStorage['TUM_BRANCH_ID'];
+    this.reqID = " ";
+    this.assestCategory = "";
+    this.assestsubCategory = "";
     this.disabledvalue = false;
-    this.dat_valid= {
+    this.dat_valid = {
       currentDate: new Date()
     };
     this.getAssetCategory();
     this.urldata = this.route.params.subscribe(params => {
-      this.asstRequest=JSON.parse(params.item);
-      if(this.asstRequest!=undefined){
-        this.ASSETCATEGORY=this.asstRequest.ASSETCATEGORY;
-        this.ASSETSUBCATEGORY=this.asstRequest.ASSETSUBCATEGORY;
-        this.ASSETCODE=this.asstRequest.ASSETCODE;
-        this.reason=this.asstRequest.REASON;
-        this.returnDate=this.asstRequest.REQUESTON;
-        this.reqID=this.asstRequest.RequestRef;
-        this.workflow_no=this.asstRequest.workflow_no;
+      this.asstRequest = JSON.parse(params.item);
+      if (this.asstRequest != undefined) {
+        this.ASSETCATEGORY = this.asstRequest.ASSETCATEGORY;
+        this.ASSETSUBCATEGORY = this.asstRequest.ASSETSUBCATEGORY;
+        this.ASSETCODE = this.asstRequest.ASSETCODE;
+        this.reason = this.asstRequest.REASON;
+        this.returnDate = this.asstRequest.REQUESTON;
+        this.reqID = this.asstRequest.RequestRef;
+        this.workflow_no = this.asstRequest.workflow_no;
         this.disabledvalue = true;
       }
-   });
-   }
+    });
+  }
 
   ngOnInit() {
   }
 
   //get asset category
-  getAssetCategory(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "LoadAssetCategory/"+this.FUNCTION_ID+ "").then(resp=>{
-      this.categoryData = JSON.parse(resp.toString());
-     }, error => {
-     console.log("error : "+JSON.stringify(error));
-     });
+  getAssetCategory() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetCategory").then(resp => {
+      this.categoryData = resp;
+      
+      console.log(this.categoryData)
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
+    });
+
   }
   //get assests sub category
-  getAssestsSubcat(value){
-    this.subCategoryData=[];
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "LoadAssetSubCategory/"+this.FUNCTION_ID +"/"+ value).then(resp=>{
-      this.subCategoryData = JSON.parse(resp.toString());
+  getAssestsSubcat(value) {
+    console.log(value)
+    // this.subCategoryData = [];
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + this.FUNCTION_ID + "/" + value).then(resp => {
+      this.subCategoryData = resp;
       console.log(this.subCategoryData);
-     }, error => {
-     console.log("error : "+JSON.stringify(error));
-     });
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
+    });
   }
 
-  assestsSubmit(){
-    this.requestDate = this.datepipe.transform(this.requestDate,"yyyy-MM-dd");
-    this.returnDate = this.datepipe.transform(this.returnDate,"yyyy-MM-dd");
-    this.reqbeforedte = this.datepipe.transform(this.reqbeforedte,"yyyy-MM-dd");
+  assestsSubmit() {
+    this.requestDate = this.datepipe.transform(this.requestDate, "yyyy-MM-dd");
+    this.returnDate = this.datepipe.transform(this.returnDate, "yyyy-MM-dd");
+    this.reqbeforedte = this.datepipe.transform(this.reqbeforedte, "yyyy-MM-dd");
     var date1 = this.formatDate(this.requestDate);
     var date2 = this.formatDate(new Date(this.returnDate));
     var date3 = this.formatDate(new Date(this.reqbeforedte));
     //  if (this.status == undefined) {
     //   this.status = "P";
     // }
-    if(this.release ==true)
-    {
-     this.status= 'P';
+    if (this.release == true) {
+      this.status = 'P';
     }
-    else{
-      this.status= 'N';
+    else {
+      this.status = 'N';
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "SaveAssets/"+this.FUNCTION_ID+"/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date3 + "/" + date2 + "/"+ this.reason + "/" + this.status).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date3 + "/" + date2 + "/" + this.reason + "/" + this.status).then(resp => {
       if (resp == '"Attendance not available"') {
-        this.toastmessageService.presentAlert1("Request Not Sent","Attendance is not available on the requested date");
+        this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date");
 
-       } else if (resp == '"Employee Office Hrs should not be less that Total Office Hrs"') {
-        this.toastmessageService.presentAlert1("Request Not Sent","Employee Office Hrs should not be less that Total Office Hrs");
-          } else if (resp == '"COFF Request already available for this date"') {
-            this.toastmessageService.presentAlert1("Request Not Sent","COFF Request already available for this date");
+      } else if (resp == '"Employee Office Hrs should not be less that Total Office Hrs"') {
+        this.toastmessageService.presentAlert1("Request Not Sent", "Employee Office Hrs should not be less that Total Office Hrs");
+      } else if (resp == '"COFF Request already available for this date"') {
+        this.toastmessageService.presentAlert1("Request Not Sent", "COFF Request already available for this date");
 
       } else {
 
@@ -141,7 +144,7 @@ export class AssetrequestPage implements OnInit {
         this.rreqid3 = split[0];
         // console.log(""+this.reqID);
         this.reqID2 = this.rreqid3.split(',');
-        this.reqID= this.reqID2[1];
+        this.reqID = this.reqID2[1];
         // console.log(""+ this.rreqid3+""+ this.reqID2)
         this.workflowTable = split[2];
         this.userID = this.userID;
@@ -160,15 +163,15 @@ export class AssetrequestPage implements OnInit {
         // this.reqID = split[0];
 
         if (split[1] == "Asset Request Saved Successfully") {
-          this.toastmessageService.presentAlert1("Request Sent","Request saved Successfully <br> Req Ref : "+ this.rreqid3 );
+          this.toastmessageService.presentAlert1("Request Sent", "Request saved Successfully <br> Req Ref : " + this.rreqid3);
 
           this.reqtype = 'null';
           if (this.status == "P") {
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms1+"WorkFlowAuth/" + this.rreqid3 + "/" + this.reqtype + "/null/null/" + this.userID + "/1/" + this.workflowTable).then(resp=>{
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms1 + "WorkFlowAuth/" + this.rreqid3 + "/" + this.reqtype + "/null/null/" + this.userID + "/1/" + this.workflowTable).then(resp => {
 
             }, error => {
 
-            console.log("error : "+JSON.stringify(error));
+              console.log("error : " + JSON.stringify(error));
 
             });
           }
@@ -185,30 +188,30 @@ export class AssetrequestPage implements OnInit {
             usertoken: '',
             access_token: ''
           }
-          reportobj.Userid=this.userID
-          reportobj.from=this.requestDate
-          reportobj.to=this.reqbeforedte
-          reportobj.typerequest=typerequest
-          reportobj.userid=this.userID
-          reportobj.usertoken=this.usertoken
-          reportobj.access_token=window.localStorage.token
+          reportobj.Userid = this.userID
+          reportobj.from = this.requestDate
+          reportobj.to = this.reqbeforedte
+          reportobj.typerequest = typerequest
+          reportobj.userid = this.userID
+          reportobj.usertoken = this.usertoken
+          reportobj.access_token = window.localStorage.token
           var perdate = null;
-          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms2+"getreportingto/",reportobj).then(resp=>{
+          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms2 + "getreportingto/", reportobj).then(resp => {
 
           }, error => {
 
-          console.log("error : "+JSON.stringify(error));
+            console.log("error : " + JSON.stringify(error));
 
           });
 
         }
       }
-     }, error => {
+    }, error => {
 
-     console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-     });
-     this.assestCancel();
+    });
+    this.assestCancel();
   }
   formatDate(value) {
     value = new Date(value);
@@ -226,15 +229,15 @@ export class AssetrequestPage implements OnInit {
     value = day + "-" + month + "-" + year;
     return value;
   }
-  assestCancel(){
-    this.assestCategory="";
-    this.assestsubCategory="";
-this.requestDate=undefined;
-this.returnDate=undefined;
-this.reqbeforedte=undefined;
-this.reason=undefined;
+  assestCancel() {
+    this.assestCategory = "";
+    this.assestsubCategory = "";
+    this.requestDate = undefined;
+    this.returnDate = undefined;
+    this.reqbeforedte = undefined;
+    this.reason = undefined;
   }
-  assesstsList(){
+  assesstsList() {
     this.router.navigateByUrl('/assetssummary')
   }
 }

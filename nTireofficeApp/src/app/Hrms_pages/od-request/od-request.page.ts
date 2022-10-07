@@ -245,6 +245,7 @@ if(this.reqref !=undefined){
     this.TavelmodeType1=resp;
     // this.TavelmodeType1 = this.TavelmodeType1_res.recordset;
     console.log(""+JSON.stringify(resp))
+    console.log(resp)
     this.TavelmodeType1.forEach(element => {
       this.TavelmodeType.push(element);
     });

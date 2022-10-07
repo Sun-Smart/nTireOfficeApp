@@ -89,14 +89,14 @@ export class OdsummaryPage implements OnInit {
           var status = element.Status;
 
           var odref={
-            User_ID:this.Userid,
-            ODRequestRef:this.ReqRef,
-             userid:window.localStorage['TUM_USER_ID'],
+            User_ID:parseInt(this.Userid),
+            ODRequestRef:parseInt(this.ReqRef),
+             userid:parseInt(window.localStorage['TUM_USER_ID']),
              usertoken:window.localStorage['usertoken'],
              access_token:window.localStorage['token']
             }
 
-          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlhrms2+ "getODRequestRef/",odref).then(resp=>{
+          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlhrms2+ "getODRequestRef",odref).then(resp=>{
             // console.log(""+JSON.stringify(resp));
             // this.reqRefDetail = JSON.stringify(resp);
             this.reqRef1 =  resp[0]['TxnReference'];
@@ -134,7 +134,7 @@ export class OdsummaryPage implements OnInit {
    getRequestRef(i)
    {
     var odref={
-      User_ID:this.Userid,
+      User_ID:parseInt(this.Userid),
       ODRequestRef:this.ReqRef,
        userid:window.localStorage['TUM_USER_ID'],
        usertoken:window.localStorage['usertoken'],

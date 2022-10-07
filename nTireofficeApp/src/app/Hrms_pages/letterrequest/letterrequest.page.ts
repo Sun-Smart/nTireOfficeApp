@@ -57,7 +57,7 @@ this.DESIGNATION_ID = window.localStorage.getItem['EmpDesignation']
       usertoken: this.usertoken,
       access_token:  this.token
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "letter_dropdown/",obj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "letter_dropdown",obj).then(resp=>{
       this.listletters1 = resp;
       this.listletters1.forEach(element => {
         this.listletters.push(element);
