@@ -120,7 +120,7 @@ export class LocationPage implements OnInit {
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
-      functionidrep: window.localStorage['FUNCTION_ID']
+      functionid: parseInt(window.localStorage['FUNCTION_ID'])
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
