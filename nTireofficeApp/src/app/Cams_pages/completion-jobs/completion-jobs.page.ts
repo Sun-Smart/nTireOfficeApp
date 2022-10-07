@@ -44,7 +44,7 @@ export class CompletionJobsPage implements OnInit {
   category;
   subCategory;
   username:any;
-  remove_array=[];
+  remove_array:any=[];
   responseData2=[];
   constructor(public modalController:ModalController,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router: Router) {
 
@@ -352,23 +352,29 @@ async reopenActionModal(obj){
             } else {
               console.log(i);
              this.remove_array.push(i);
+             console.log(this.remove_array);
+             
             }
           }
           //this.remove_array.sort((a, b) => {return b - a });
-          this.remove_array.sort(function(a, b) { return b - a });
-          for (var j = 0; j < this.remove_array.length; j++) {
-            console.log(this.remove_array[j]);
+          // this.remove_array.sort(function(a, b) { return b - a });
+          // for (var j = 0; j < this.remove_array.length; j++) {
+          //   console.log(this.remove_array[j]);
             
             
-            this.responseData1=this.responseData2.splice(this.remove_array[j], 1);
-            console.log(this.remove_array[j]);
-            this.responseDatalength = this.responseData1.length;
-            console.log(this.responseData1)
-          }  
+          //   this.responseData1=this.responseData2.splice(this.remove_array[j], 1);
+          //   console.log(this.remove_array[j]);
+          //   this.responseDatalength = this.responseData1.length;
+          //   console.log(this.responseData1)
+          // }  
+          this.responseData1=this.responseData2.splice(this.remove_array[i]);
+          console.log(this.responseData1);
+          
         }, error => {
     
           console.log(JSON.stringify(error));
         });
+         console.log(this.responseData1)
       }else{
       this.presentAlert('Invalid date','From date should be lesser than To date!');
       }
