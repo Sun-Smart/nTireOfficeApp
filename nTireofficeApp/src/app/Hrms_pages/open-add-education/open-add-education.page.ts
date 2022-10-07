@@ -44,9 +44,10 @@ export class OpenAddEducationPage implements OnInit {
   }
   from: any;
   to: any;
+  obj;
   specialization: any;
-  fromdate: any;
-  toDate: any;
+  fromdate;
+  toDate;
   institution: any;
   percentage: any;
   category: any;
@@ -55,6 +56,7 @@ export class OpenAddEducationPage implements OnInit {
   repsonse1: any;
   EducationLabel: string;
   educationID: any;
+  employeid: any;
 
 
   constructor(private model:ModalController,navParams: NavParams,public toastmessageService:ToastmessageService,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient) {
@@ -66,19 +68,24 @@ export class OpenAddEducationPage implements OnInit {
     this.item=navParams.get('item');
 
 
+
     if(this.item!=undefined){
       this.tempID = "1";
       this.specialization=this.item.Specialization;
-      this.fromdate=new Date(this.item.From).toISOString().substring(0, 10);;
+      console.log(this.fromdate)
+      console.log(this.toDate)
+      this.fromdate=new Date(this.item.From).toISOString().substring(0, 10);
       console.log(""+this.fromdate)
       this.fromdate = this.fromdate.split('-');
       this.fromdate = this.fromdate[0]+'-'+this.fromdate[1];
 
       console.log(""+this.fromdate)
-      this.toDate=new Date(this.item.To).toISOString().substring(0, 10);;
+      this.toDate=new Date(this.item.To).toISOString().substring(0, 10);
       console.log(""+this.fromdate)
       this.toDate = this.toDate.split('-');
       this.toDate = this.toDate[0]+'-'+this.toDate[1];
+      console.log(this.fromdate)
+      console.log(this.toDate)
       this.institution=this.item.Institute;
       this.percentage=this.item.Percentage;
       this.educationID = this.item.ID;
@@ -99,6 +106,8 @@ export class OpenAddEducationPage implements OnInit {
     currentDate: new Date()
   };
   ngOnInit() {
+    this.employeid=window.localStorage['EmployeeID'];
+
   }
   getHighestQualification(){
     var datag = {
@@ -106,7 +115,7 @@ export class OpenAddEducationPage implements OnInit {
       access_token:this.token,
       userid:this.userId,
        usertoken:this.usertoken,
-       functid:this.FUNCTION_ID
+       functionid:this.FUNCTION_ID
      }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"hrmeducationcategory/",datag).then(resp=>{
       this.hrmedudetaiscat1 =resp;
@@ -139,17 +148,19 @@ export class OpenAddEducationPage implements OnInit {
        id = this.educationID;
       console.log(this.tempID);
     }
-    var date = this.fromdate.split('-');
-    this.fromdate = date[0]+"-"+date[1];
+    // var date = this.fromdate.split('-');
+    // this.fromdate = date[0]+"-"+date[1];
     console.log(""+this.fromdate)
+    
 
 
 
-var date1 = this.toDate.split('-');
-this.toDate = date1[0]+"-"+date1[1] ;
+
+// var date1 = this.toDate.split('-');
+// this.toDate = date1[0]+"-"+date1[1] ;
 
     this.addEducationObject = {
-      empID1: window.localStorage['empid'],
+      
       Type: "EducationDetails",
       //Category: this.education.Category,
       Category: this.category,
@@ -158,7 +169,10 @@ this.toDate = date1[0]+"-"+date1[1] ;
       To: this.toDate,
       Institute: this.institution,
       Percentage1: this.percentage,
-      ID: id
+      ID: id,
+      empID1:this.employeid
+     
+      
     }
     console.log(this.addEducationObject);
 
@@ -166,23 +180,23 @@ this.toDate = date1[0]+"-"+date1[1] ;
     // http://sunsmart.in/mobileapi/HRMS/HRMS.svc/EmployeeUpdate
 
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"EmployeeUpdate/"+window.localStorage['empid']+'/'+ 'EducationDetails'+"/"+this.addEducationObject.Category+"/"+this.addEducationObject.Specialization+"/"+this.addEducationObject.From +"/"+this.addEducationObject.To+"/"+this.addEducationObject.Institute+"/"+this.addEducationObject.Percentage1+"/"+this.addEducationObject.ID+"/"+0).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/"+this.employeid+'/'+ 'EducationDetails'+"/"+this.addEducationObject.Category+"/"+this.addEducationObject.Specialization+"/"+this.addEducationObject.From +"/"+this.addEducationObject.To+"/"+this.addEducationObject.Institute+"/"+this.addEducationObject.Percentage1+"/"+this.addEducationObject.ID+"/"+0).then(resp=>{
       console.log(""+JSON.stringify(resp));
       // this.response = JSON.parse(resp);
       this.response = resp;
-      this.repsonse1 = JSON.parse(this.response);
+      var data=JSON.stringify(this.response)
+      this.repsonse1 = JSON.parse(data);
       // console.log(""+JSON.parse(resp))
       console.log(""+this.repsonse1[0]['Column1']);
-
 
       if(this.repsonse1[0]['Column1'] == "Successfully Saved" || this.repsonse1[0]['Column1'] == "Successfully Updated" )
       {
 
     //  alert("Education Added Successfully");
     if (this.tempID == "0") {
-      this.toastmessageService.presentAlert1("","Education Added Successfully");
+      this.toastmessageService.presentAlert("","Education Added Successfully");
    } else {
-    this.toastmessageService.presentAlert1("","Education Updated Successfully");
+    this.toastmessageService.presentAlert("","Education Updated Successfully");
    }
 
      this.model.dismiss();

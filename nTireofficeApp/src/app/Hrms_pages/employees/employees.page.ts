@@ -89,7 +89,7 @@ VALUE: any;
 
   employeeSearch(){
     this.loading = true;
-    // this.presentLoadingWithOptions();
+    this.presentLoadingWithOptions();
     // this.switch = 1;
    var name;
     var code;
@@ -157,6 +157,7 @@ VALUE: any;
   this.loadingdismiss();
   this.loading = false;
   this.allemp = resp;
+  console.log(resp)
          this.displayEmployee =this.displayEmployee.concat(this.allemp);
          console.log("displayEmployee : "+JSON.stringify( this.displayEmployee));
 
