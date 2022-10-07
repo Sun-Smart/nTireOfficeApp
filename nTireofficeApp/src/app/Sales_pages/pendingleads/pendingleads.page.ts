@@ -135,7 +135,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     TCC_LEAD_RATING: "",
     TCM_CAMPAIGN_SHORTDESC: "",
     TCC_LEAD_BY: "",
-    BRANCH_ID: window.localStorage['TUM_BRANCH_ID'],
+    branchid: window.localStorage['TUM_BRANCH_ID'],
     CUST_FNAME: "",
   };
   geoencoderOptions: NativeGeocoderOptions = {
@@ -160,7 +160,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.BRANCH_ID = "";
+    this.penleadfilter.branchid = "";
     this.penleadfilter.TCC_CUSTOMER_ID = '';
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.username=localStorage.getItem('TUM_USER_NAME');
@@ -269,7 +269,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
 
     });
-    this.penleadfilter.BRANCH_ID = parseInt(this.penleadfilter.BRANCH_ID);
+    this.penleadfilter.branchid = parseInt(this.penleadfilter.branchid);
   }
 
   GetProduct() {
@@ -380,7 +380,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branch_id: parseInt(branch_id)
+      branchid: parseInt(branch_id)
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -577,7 +577,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
         RATING:"",
         LEADBY:"",
 
-        BRANCH_ID: parseInt(this.penleadfilter.BRANCH_ID),
+        branchid: parseInt(this.penleadfilter.branchid),
         Name:"",CAMPAIGNNAME:"",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -640,7 +640,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
             var date = this.pendleaddetails[i].CreatedOn1;
             console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
             var timesp = date.split('T');
-            var time2 = timesp[1].split('.');
+            var time2 = timesp[1].split('.').pop();
 
             var d1 = new Date(timesp[0] + " " + time2[0]);
             var d2 = new Date(d1);
@@ -740,7 +740,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       LEADBY:"",
       Name:"",
       CAMPAIGNNAME:"",
-      BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
+      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,
@@ -881,9 +881,9 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
     // console.log(idvalue);
     var obj1 = {
-      callid: id
+      callid: parseInt(id)
     }
-    var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
     var getimageJSON = Object.assign(obj1, tokenJSON);
     const header = new Headers();

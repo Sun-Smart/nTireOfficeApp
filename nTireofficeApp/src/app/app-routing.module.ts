@@ -176,6 +176,27 @@ const routes: Routes = [
     path: 'pmsreports',
     loadChildren: () => import('./Property_Pages/pmsreports/pmsreports.module').then(m => m.PmsreportsPageModule)
   },
+  {
+    path: 'property-condact-list',
+    loadChildren: () => import('./Property_Pages/property-condact-list/property-condact-list.module').then( m => m.PropertyCondactListPageModule)
+  },
+  {
+    path: 'document-expiry-report',
+    loadChildren: () => import('./Property_Pages/document-expiry-report/document-expiry-report.module').then( m => m.DocumentExpiryReportPageModule)
+  },
+  {
+    path: 'issue-ledger',
+    loadChildren: () => import('./Property_Pages/issue-ledger/issue-ledger.module').then( m => m.IssueLedgerPageModule)
+  },
+  {
+    path: 'payment-details',
+    loadChildren: () => import('./Property_Pages/payment-details/payment-details.module').then( m => m.PaymentDetailsPageModule)
+  },
+  {
+    path: 'pms-list',
+    loadChildren: () => import('./Property_Pages/pms-list/pms-list.module').then( m => m.PmsListPageModule)
+  },
+
 
   //Sales Page
   {
@@ -550,12 +571,6 @@ const routes: Routes = [
     path: 'updateprsstatus',
     loadChildren: () => import('./procurement/updateprsstatus/updateprsstatus.module').then( m => m.UpdateprsstatusPageModule)
   },
-
-
-
-
-
-
 
 ];
 

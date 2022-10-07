@@ -17,15 +17,18 @@
 
 
     <ion-card >
-      <div class="dashboardhead" style="padding: 10px;">
-          Customer Payments
-        </div>
-        <div style="margin-top:15px;">
-          <canvas id="myChart" class="chart chart-doughnut" width="400" height="400"
+      <ion-card-header class="card_header">
+        <ion-card-title class="card_header_text">Customer Payments</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+
+        
+   
+          <canvas #sourcecanvas2 id="sourcecanvas2" class="chart chart-doughnut" width="400" height="400"
   chart-data="data2" chart-labels="labels2 " chart-options="options" chart-dataset-override="datasetOverride" legend="true">
 </canvas>
-        </div>
-
+  
+</ion-card-content>
     </ion-card>
   
 
@@ -33,7 +36,7 @@
 
 
 
-    <ion-card>
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Issue Details</ion-card-title>
       </ion-card-header>
@@ -127,7 +130,7 @@
       </ion-card-header>
       <ion-card-content >
 
-        <div >
+        <div>
           <ngx-datatable 
   
           class="material"
@@ -209,19 +212,20 @@
   </div>
 
 
-
   <ion-card >
     <div class="dashboardhead" style="padding: 10px;">
-       Property Status
+        Emloyeer
       </div>
       <div style="margin-top:15px;">
-        <canvas #sourcecanvas1 id="sourcecanvas1"></canvas>
+        <canvas id="myChart1" class="chart chart-doughnut" width="400" height="400"
+chart-data="data2" chart-labels="labels2 " chart-options="options" chart-dataset-override="datasetOverride" legend="true">
+</canvas>
       </div>
 
   </ion-card>
 
 
-    <ion-card>
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Property Details</ion-card-title>
       </ion-card-header>
@@ -300,28 +304,32 @@
   </div>
 
   <div>
-    <ion-row class="ion-justify-content-around" style=" margin: 5%;text-align: center;">
-      <ion-col size="4" class="first">
-        <h3 class="count">22k</h3>
-        <ion-label class="label">Total</ion-label>
-      </ion-col>
 
-      <ion-col size="4" class=" second">
-        <h3 class="count">22k</h3>
-        <ion-label class="label">Occupied</ion-label>
-      </ion-col>
-
-
-      <ion-col size="4" class="third">
-        <h3 class="count">22k</h3>
-        <ion-label class="label">Vacant</ion-label>
-      </ion-col>
-    </ion-row>
+    <ion-card >
+      <div class="dashboardhead" style="padding: 10px;">
+         Property Status
+        </div>
+        <div style="margin-top:15px;">
+          <canvas #sourcecanvas1 id="sourcecanvas1"></canvas>
+        </div>
+  
+    </ion-card>
 
 
 
 
-    <ion-card>
+    <ion-card >
+      <div class="dashboardhead" style="padding: 10px;">
+        To Be Vaccant
+        </div>
+        <div style="margin-top:15px;">
+          <canvas #sourcecanvas3 id="sourcecanvas3"></canvas>
+        </div>
+  
+    </ion-card>
+
+
+    <ion-card style="display: none;">
       <ion-card-content class="card_header">
         <ion-row>
           <ion-col size="6" style="padding: 14px;">
@@ -413,7 +421,7 @@
     </ion-card>
 
 
-    <ion-card>
+    <ion-card style="display: none;">
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Invoice Raised</ion-card-title>
       </ion-card-header>

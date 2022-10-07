@@ -1,7 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
-import { AlertController,LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-payslip',
@@ -12,137 +13,179 @@ export class PayslipPage implements OnInit {
   yeardata;
   monthdata;
   empid;
-  empData:any=[];
-  paySlipEarnings=[];
+  empData: any = [];
+  paySlipEarnings:any= [];
   error;
   signal;
   totalEarnings;
-  paySlipDeduction=[];
+  paySlipDeduction = [];
   totalDeductions;
   netEarnings;
-  year:any=[];
-  month:any=[];
+  year: any = [];
+  month: any = [];
   FUNCTION_ID;
   segmentdata;
   username = window.localStorage.getItem('TUM_USER_NAME');
   EmployeeID: string;
-  constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController,) {
-        this.empid= window.localStorage.getItem('EmployeeID')
-        this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
-        this.segmentdata="earnings";
-        this.yeardata="";
-    this.monthdata="";
-        this.geYears();
-        this.geMonths();
-   }
+  constructor(private HttpRequest: HttprequestService, private httpclient: HttpClient, public Ipaddressservice: IpaddressService, public loadingController: LoadingController,) {
+    this.empid = window.localStorage.getItem('EmployeeID')
+    this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
+    this.segmentdata = "earnings";
+    this.yeardata = "";
+    this.monthdata = "";
+    this.geYears();
+    this.geMonths();
+    // this.getPaySlip();
+  }
 
   ngOnInit() {
   }
 
-  getPaySlip(){
+  getPaySlip() {
     this.getLeaveDetails();
     this.loadingdismiss();
+    debugger
     if (this.yeardata == "") {
-      this.yeardata  = "0";
+      this.yeardata = "0";
     }
     if (this.monthdata == "") {
       this.monthdata = "0";
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeSalaryRegularEarnings/" +  this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
-      this.paySlipEarnings = JSON.parse(resp.toString());
-       this.loadingdismiss();
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
 
-           console.log(this.paySlipEarnings);
-          if (this.paySlipEarnings.length==0) {
-            this.error = "No data found";
-            this.signal = 0;
 
-          } else {
+    this.httpclient.get('https://demo.herbie.ai/nTireMobileCoreAPISSG/api/HRMS/EmployeeSalaryRegularEarnings/' + this.empid + "/" + this.yeardata + "/" + this.monthdata,{ responseType: 'text'}).subscribe((res: any) => {
+      // let data = JSON.stringify(res);
+      // data = JSON.parse(data)
+      // console.log('response new get  ', data);
+      // console.log(resp)
+      this.paySlipEarnings = res.json();
+      console.log('this.paySlipEarnings ',this.paySlipEarnings)
+      // this.paySlipEarnings = JSON.parse(this.paySlipEarnings)
+      console.log(this.paySlipEarnings)
+      console.log(this.paySlipEarnings.DESCRIPTIONS)
+      this.loadingdismiss();
+      // if (this.paySlipEarnings.length == 0) {
+      //   this.error = "No data found";
+      //   this.signal = 0;
 
-            var total = 0;
-            for (var i = 0; i < this.paySlipEarnings.length; i++) {
+      // } else {
 
-              total += parseFloat(this.paySlipEarnings[i].AMOUNT);
-              this.paySlipEarnings[i].AMOUNT = parseFloat(this.paySlipEarnings[i].AMOUNT).toFixed(2);
-            }
-            this.totalEarnings = total;
+      //   var total = 0;
+      //   for (var i = 0; i < this.paySlipEarnings.length; i++) {
 
-            this.error = "";
-            this.signal = 1;
+      //     total += parseFloat(this.paySlipEarnings[i].AMOUNT);
+      //     this.paySlipEarnings[i].AMOUNT = parseFloat(this.paySlipEarnings[i].AMOUNT).toFixed(2);
+      //   }
+      //   this.totalEarnings = total;
 
-          }
+      //   this.error = "";
+      //   this.signal = 1;
 
-        }, error => {
+      // }
+    }, (error) => {
 
-        console.log("error : "+JSON.stringify(error));
+    })
 
-        });
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeSalaryRegularEarnings/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then((resp: any) => {
+      // this.paySlipEarnings = JSON.parse(resp.toString());
+      console.log(resp)
+      this.paySlipEarnings = JSON.stringify(resp);
+      this.paySlipEarnings = JSON.parse(this.paySlipEarnings)
+      console.log(this.paySlipEarnings)
+      this.loadingdismiss();
+      if (this.paySlipEarnings.length == 0) {
+        this.error = "No data found";
+        this.signal = 0;
 
-        this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeSalaryRegularDeduction/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
+      } else {
 
-          this.paySlipDeduction = JSON.parse(resp.toString());
-          // console.log(this.paySlipDeduction);
+        var total = 0;
+        for (var i = 0; i < this.paySlipEarnings.length; i++) {
 
-          var total = 0;
-          for (var i = 0; i < this.paySlipDeduction.length; i++) {
-            total += parseFloat(this.paySlipDeduction[i].AMOUNT);
-          }
-          this.totalDeductions = total;
+          total += parseFloat(this.paySlipEarnings[i].AMOUNT);
+          this.paySlipEarnings[i].AMOUNT = parseFloat(this.paySlipEarnings[i].AMOUNT).toFixed(2);
+        }
+        this.totalEarnings = total;
 
-          this.netEarnings = parseFloat(this.totalEarnings) - parseFloat(this.totalDeductions);
-            }, error => {
+        this.error = "";
+        this.signal = 1;
 
-            console.log("error : "+JSON.stringify(error));
+      }
 
-            });
+    }, error => {
+
+      console.log("error : " + JSON.stringify(error));
+
+    });
+
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeSalaryRegularDeduction/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then((resp: any) => {
+
+      // this.paySlipDeduction = JSON.parse(resp.toString());
+      this.paySlipDeduction = resp;
+
+      console.log(this.paySlipDeduction);
+
+      var total = 0;
+      for (var i = 0; i < this.paySlipDeduction.length; i++) {
+        total += parseFloat(this.paySlipDeduction[i].AMOUNT);
+      }
+      this.totalDeductions = total;
+
+      this.netEarnings = parseFloat(this.totalEarnings) - parseFloat(this.totalDeductions);
+    }, error => {
+
+      console.log("error : " + JSON.stringify(error));
+
+    });
   }
-  getLeaveDetails(){
+  getLeaveDetails() {
     // this.presentLoadingWithOptions();
     if (this.yeardata == "") {
-      this.yeardata  = "0";
+      this.yeardata = "0";
     }
     if (this.monthdata == "") {
       this.monthdata = "0";
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeLeaveDetails/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeLeaveDetails/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp => {
       this.loadingdismiss();
       this.empData = resp;
-          // console.log(this.empData);
-          this.empData = this.empData[0];
+      // console.log(this.empData);
+      this.empData = this.empData[0];
 
 
 
-        }, error => {
-          this.loadingdismiss();
-        console.log("error : "+JSON.stringify(error));
+    }, error => {
+      this.loadingdismiss();
+      console.log("error : " + JSON.stringify(error));
 
-        });
+    });
   }
-  geYears(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Year/0/0/0").then(resp=>{
+  geYears() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Year/0/0/0").then(resp => {
       this.year = resp;
 
-        }, error => {
+    }, error => {
 
-        console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-        });
+    });
   }
-  geMonths(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Month/0/0/0").then(resp=>{
+  geMonths() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Month/0/0/0").then(resp => {
       this.month = resp;
 
-        }, error => {
+    }, error => {
 
-        console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-        });
+    });
   }
 
 
 
- inWords (amount) {
-  var words = new Array();
+  inWords(amount) {
+    var words = new Array();
     words[0] = '';
     words[1] = 'One';
     words[2] = 'Two';
@@ -177,68 +220,68 @@ export class PayslipPage implements OnInit {
     var n_length = number.length;
     var words_string = "";
     if (n_length <= 9) {
-        var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
-        var received_n_array = new Array();
-        for (var i = 0; i < n_length; i++) {
-            received_n_array[i] = number.substr(i, 1);
+      var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+      var received_n_array = new Array();
+      for (var i = 0; i < n_length; i++) {
+        received_n_array[i] = number.substr(i, 1);
+      }
+      for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
+        n_array[i] = received_n_array[j];
+      }
+      for (var i = 0, j = 1; i < 9; i++, j++) {
+        if (i == 0 || i == 2 || i == 4 || i == 7) {
+          if (n_array[i] == 1) {
+            n_array[j] = 10 + parseInt(n_array[j].toString());
+            n_array[i] = 0;
+          }
         }
-        for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
-            n_array[i] = received_n_array[j];
+      }
+      var value;
+      for (var i = 0; i < 9; i++) {
+        if (i == 0 || i == 2 || i == 4 || i == 7) {
+          value = n_array[i] * 10;
+        } else {
+          value = n_array[i];
         }
-        for (var i = 0, j = 1; i < 9; i++, j++) {
-            if (i == 0 || i == 2 || i == 4 || i == 7) {
-                if (n_array[i] == 1) {
-                    n_array[j] = 10 + parseInt(n_array[j].toString());
-                    n_array[i] = 0;
-                }
-            }
+        if (value != 0) {
+          words_string += words[value] + " ";
         }
-      var  value;
-        for (var i = 0; i < 9; i++) {
-            if (i == 0 || i == 2 || i == 4 || i == 7) {
-                value = n_array[i] * 10;
-            } else {
-                value = n_array[i];
-            }
-            if (value != 0) {
-                words_string += words[value] + " ";
-            }
-            if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Crores ";
-            }
-            if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Lakhs ";
-            }
-            if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
-                words_string += "Thousand ";
-            }
-            if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
-                words_string += "Hundred and ";
-            } else if (i == 6 && value != 0) {
-                words_string += "Hundred ";
-            }
+        if ((i == 1 && value != 0) || (i == 0 && value != 0 && n_array[i + 1] == 0)) {
+          words_string += "Crores ";
         }
-        words_string = words_string.split("  ").join(" ");
+        if ((i == 3 && value != 0) || (i == 2 && value != 0 && n_array[i + 1] == 0)) {
+          words_string += "Lakhs ";
+        }
+        if ((i == 5 && value != 0) || (i == 4 && value != 0 && n_array[i + 1] == 0)) {
+          words_string += "Thousand ";
+        }
+        if (i == 6 && value != 0 && (n_array[i + 1] != 0 && n_array[i + 2] != 0)) {
+          words_string += "Hundred and ";
+        } else if (i == 6 && value != 0) {
+          words_string += "Hundred ";
+        }
+      }
+      words_string = words_string.split("  ").join(" ");
     }
     return words_string;
-}
+  }
 
 
-async presentLoadingWithOptions() {
-  const loading = await this.loadingController.create({
-    spinner: 'crescent',
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
 
-    message: 'Please wait...',
-    translucent: true,
-    cssClass: 'custom-class custom-loading',
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
 
 
-  });
-  return await loading.present();
-}
-async   loadingdismiss() {
+    });
+    return await loading.present();
+  }
+  async loadingdismiss() {
 
-   return await this.loadingController.dismiss();
-}
+    return await this.loadingController.dismiss();
+  }
 
 }

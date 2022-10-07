@@ -129,7 +129,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     TCC_LEAD_RATING: "",
     TCM_CAMPAIGN_SHORTDESC: "",
     TCC_LEAD_BY: "",
-    BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
+    branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
     CUST_FNAME: "",
   };
   geoencoderOptions: NativeGeocoderOptions = {
@@ -152,7 +152,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.BRANCH_ID = parseInt(window.localStorage['TUM_BRANCH_ID']);
+    this.penleadfilter.branchid = parseInt(window.localStorage['TUM_BRANCH_ID']);
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.penleadfilter.TCC_CUSTOMER_ID = '';
     this.penleadfilter.CUST_LNAME = '';
@@ -258,7 +258,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
 
     });
-    this.penleadfilter.BRANCH_ID = parseInt(window.localStorage['TUM_BRANCH_ID']);
+    this.penleadfilter.branchid = parseInt(window.localStorage['TUM_BRANCH_ID']);
   }
 
   GetProduct() {
@@ -372,7 +372,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branch_id: parseInt(branch_id)
+      branchid: parseInt(branch_id)
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -520,7 +520,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       PRIORITY:"",
       RATING:"",
       LEADBY:"",
-      BRANCH_ID: parseInt(window.localStorage['TUM_BRANCH_ID']),
+      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: "",
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,
@@ -578,6 +578,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
           this.pendleaddetails[i].RESPHONE = '-';
         }
         if (this.pendleaddetails[i].CreatedOn != undefined) {
+          debugger;
 
           var date = this.pendleaddetails[i].CreatedOn1;
 
