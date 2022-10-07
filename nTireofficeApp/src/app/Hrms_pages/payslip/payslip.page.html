@@ -84,11 +84,11 @@
             </ion-row>
             <ion-row *ngFor="let item of paySlipEarnings">
                 <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                    <strong>{{item.DESCRIPTIONS}}</strong>
+                    <strong>{{item.DESCRIPTIONS | json}}</strong>
 
                   </ion-col>
                   <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="text-align: center;">
-                      <strong>{{item.AMOUNT}}</strong>
+                      <strong>{{item.AMOUNT | json}}</strong>
 
                     </ion-col>
                       </ion-row>

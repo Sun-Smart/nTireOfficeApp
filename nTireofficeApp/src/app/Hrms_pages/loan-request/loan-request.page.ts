@@ -120,7 +120,7 @@ export class LoanRequestPage implements OnInit {
      usertoken:this.usertoken,
      access_token:this.token
      }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getdesignation/",obj1).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getdesignation",obj1).then(resp=>{
       this.designationemp = resp;
       console.log(this.designationemp );
       this.empname = this.designationemp[0].em_emp_name;
