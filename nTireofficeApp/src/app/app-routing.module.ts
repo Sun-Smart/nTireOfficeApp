@@ -545,7 +545,11 @@ const routes: Routes = [
   {
     path: 'updateprsstatus',
     loadChildren: () => import('./procurement/updateprsstatus/updateprsstatus.module').then( m => m.UpdateprsstatusPageModule)
+  },  {
+    path: 'pms-list',
+    loadChildren: () => import('./Property_Pages/pms-list/pms-list.module').then( m => m.PmsListPageModule)
   },
+
 
 
 
