@@ -76,14 +76,14 @@ this.DESIGNATION_ID = window.localStorage.getItem['EmpDesignation']
       access_token: this.token,
     FUNCTION_ID:this.FUNCTION_ID,
      BRANCH_ID:this.branchId,
-    DEPARTMENT_ID: '1',
-      DESIGNATION_ID:'1',
+    DEPARTMENT_ID: 1,
+      DESIGNATION_ID:1,
       EMP_CODE: this.emp_code,
-    LETTER_TYPE:this.requestType,
+    LETTER_TYPE: parseInt(this.requestType),
     REASON:this.reason,
     STATUS:"P"
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "insertletter_request/",letter_request).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "insertletter_request",letter_request).then(resp=>{
      this.reqID = resp[0].inserted_id;
      this.toastmessageService.presentAlert("","Request Updated Successfully");
    this.letterList();
@@ -119,7 +119,7 @@ if (this.STATUS == "P") {
       usertoken: this.usertoken,
       access_token:  this.token
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "summaryletter_request/",obj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+ "summaryletter_request",obj).then(resp=>{
      this.summarylist1 = resp;
      this.summarylist1.forEach(element => {
       this.summarylist.push(element);
