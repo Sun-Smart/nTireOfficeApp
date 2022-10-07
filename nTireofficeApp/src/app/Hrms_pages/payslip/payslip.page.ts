@@ -12,7 +12,7 @@ export class PayslipPage implements OnInit {
   yeardata;
   monthdata;
   empid;
-  empData=[];
+  empData:any=[];
   paySlipEarnings=[];
   error;
   signal;
@@ -106,7 +106,7 @@ export class PayslipPage implements OnInit {
     }
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeLeaveDetails/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then(resp=>{
       this.loadingdismiss();
-      this.empData = JSON.parse(resp.toString());
+      this.empData = resp;
           // console.log(this.empData);
           this.empData = this.empData[0];
 

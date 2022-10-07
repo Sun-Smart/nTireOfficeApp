@@ -125,7 +125,7 @@
       </ion-card-header>
       <ion-card-content >
 
-        <div>
+        <div >
           <ngx-datatable 
   
           class="material"
@@ -207,14 +207,14 @@
   </div>
 
 
+
   <ion-card >
     <div class="dashboardhead" style="padding: 10px;">
         Emloyeer
+       Property Status
       </div>
       <div style="margin-top:15px;">
-        <canvas id="myChart1" class="chart chart-doughnut" width="400" height="400"
-chart-data="data2" chart-labels="labels2 " chart-options="options" chart-dataset-override="datasetOverride" legend="true">
-</canvas>
+        <canvas #sourcecanvas1 id="sourcecanvas1"></canvas>
       </div>
 
   </ion-card>
@@ -299,16 +299,23 @@ chart-data="data2" chart-labels="labels2 " chart-options="options" chart-dataset
   </div>
 
   <div>
+    <ion-row class="ion-justify-content-around" style=" margin: 5%;text-align: center;">
+      <ion-col size="4" class="first">
+        <h3 class="count">22k</h3>
+        <ion-label class="label">Total</ion-label>
+      </ion-col>
 
-    <ion-card >
-      <div class="dashboardhead" style="padding: 10px;">
-         Property Status
-        </div>
-        <div style="margin-top:15px;">
-          <canvas #sourcecanvas1 id="sourcecanvas1"></canvas>
-        </div>
-  
-    </ion-card>
+      <ion-col size="4" class=" second">
+        <h3 class="count">22k</h3>
+        <ion-label class="label">Occupied</ion-label>
+      </ion-col>
+
+
+      <ion-col size="4" class="third">
+        <h3 class="count">22k</h3>
+        <ion-label class="label">Vacant</ion-label>
+      </ion-col>
+    </ion-row>
 
 
 
