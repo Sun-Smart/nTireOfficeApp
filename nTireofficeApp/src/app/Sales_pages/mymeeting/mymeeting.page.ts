@@ -30,8 +30,8 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
 import { LocationupdateleadsPage } from '../locationupdateleads/locationupdateleads.page';
-declare var google: any;
-
+// declare var google: any;
+declare const google: any;
 @Component({
   selector: 'app-mymeeting',
   templateUrl: './mymeeting.page.html',
@@ -115,6 +115,8 @@ export class MymeetingPage implements OnInit {
     }).subscribe(resp => {
       this.allmeetinglocation = JSON.stringify(resp);
       this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
+      this.allmeetinglocation = this.allmeetinglocation;
+      // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
       console.log(this.allmeetinglocation);
 
       if (this.allmeetinglocation == '') {
