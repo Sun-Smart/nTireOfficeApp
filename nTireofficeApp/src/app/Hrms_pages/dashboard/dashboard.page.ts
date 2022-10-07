@@ -565,7 +565,6 @@ this.backbutton();
   //Get mygreetings based on userid and and usertoken and access_token
   //*params="userid,usertoken,access_token"
   getGreetings(){
-    alert("323")
     debugger
     console.log(this.monthnumber)
     var get_obj={

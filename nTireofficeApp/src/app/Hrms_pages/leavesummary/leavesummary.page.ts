@@ -14,7 +14,7 @@ import {ReapplyleavePage} from '../reapplyleave/reapplyleave.page';
   styleUrls: ['./leavesummary.page.scss'],
 })
 export class LeavesummaryPage implements OnInit {
-  leavetypearray=[];
+  leavetypearray:any=[];
   leaveType;
   company;
   empID;
@@ -47,7 +47,8 @@ export class LeavesummaryPage implements OnInit {
   }
   getLeaveType(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
-      this.leavetypearray = JSON.parse(resp.toString());
+      this.leavetypearray = JSON.stringify(resp)
+      this.leavetypearray = JSON.parse(this.leavetypearray);
      }, error => {
      console.log("error : "+JSON.stringify(error));
      });
