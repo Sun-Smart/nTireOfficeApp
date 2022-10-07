@@ -802,7 +802,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
           var date = this.pendleaddetails[i].CreatedOn1;
           console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
           var timesp = date.split('T');
-          var time2 = timesp[1].split('.').join(' ');
+          var time2 = timesp[1].split('.');
 
           var d1 = new Date(timesp[0] + " " + time2[0]);
           var d2 = new Date(d1);
