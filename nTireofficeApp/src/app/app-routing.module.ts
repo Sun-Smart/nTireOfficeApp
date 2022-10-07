@@ -89,6 +89,10 @@ const routes: Routes = [
     loadChildren: () => import('./Cams_pages/completion-jobs/completion-jobs.module').then(m => m.CompletionJobsPageModule)
   },
   {
+    path: 'completion-jobs-reopen',
+    loadChildren: ()  =>  import('./Cams_pages/completion-jobs-reopen/completion-jobs-reopen.module').then(m=>m.CompletionJobsReopenPageModule)
+  },
+  {
     path: 'asset-reconcil',
     loadChildren: () => import('./Cams_pages/asset-reconcil/asset-reconcil.module').then(m => m.AssetReconcilPageModule)
   },
