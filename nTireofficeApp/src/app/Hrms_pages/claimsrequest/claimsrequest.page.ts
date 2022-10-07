@@ -352,7 +352,7 @@ this.base64image = undefined;
     }
      var obj={
               TxnReference:this.reqRef,
-               userid:this.userID,
+               userid: parseInt(this.userID),
                usertoken:this.usertoken,
                access_token:this.token,
                 }

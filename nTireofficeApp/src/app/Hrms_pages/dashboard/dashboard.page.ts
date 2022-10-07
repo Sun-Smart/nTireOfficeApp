@@ -298,7 +298,7 @@ this.backbutton();
          this.monthdata = "0";
        }
        var obj={
-         empID:this.employee_id,
+         empID: window.localStorage.getItem('EmployeeID'),
          year:this.yeardata,
          month:this.monthdata
 
@@ -565,7 +565,6 @@ this.backbutton();
   //Get mygreetings based on userid and and usertoken and access_token
   //*params="userid,usertoken,access_token"
   getGreetings(){
-    alert("323")
     debugger
     console.log(this.monthnumber)
     var get_obj={

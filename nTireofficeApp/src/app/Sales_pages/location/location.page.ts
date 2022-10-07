@@ -65,14 +65,14 @@ export class LocationPage implements OnInit {
   allmeetinglocation;
   starttime;
   viewuserid;
-  username:any;
+  username: any;
   constructor(public alertController: AlertController, public modalController: ModalController, private router: Router, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
 
     this.branch = undefined;
     this.role = undefined;
     this.Getbranches();
     this.Getrole();
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
@@ -120,7 +120,7 @@ export class LocationPage implements OnInit {
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
-      functionidrep: window.localStorage['FUNCTION_ID']
+      functionid: parseInt(window.localStorage['FUNCTION_ID'])
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -200,11 +200,11 @@ export class LocationPage implements OnInit {
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallsaleslocation/', getsalelocJSON, {
-        headers: options,
+        headers: options, responseType: 'text'
       }).subscribe(resp => {
 
         this.allsaleslocation = resp;
-        console.log(this.allsaleslocation)
+        console.log('this.allsaleslocation ', this.allsaleslocation)
 
         //var Employee_Userid = localStorage.getItem("user_id");
         //var salesuserid = window.localStorage['Sales_userid'];
@@ -768,7 +768,7 @@ export class LocationPage implements OnInit {
 
 
     }, error => {
-       alert("error : "+JSON.stringify(error));
+      alert("error : " + JSON.stringify(error));
 
     });
 

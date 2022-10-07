@@ -1,3 +1,5 @@
+/* eslint-disable no-debugger */
+/* eslint-disable no-cond-assign */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-shadow */
@@ -60,17 +62,17 @@ export class NewleadcorporatePage implements OnInit {
   branch;
   branchlocation;
   productdata;
-  branchlocationlist:any = [];
+  branchlocationlist: any = [];
   branchlocationlist1 = [];
-  productdataarray:any = [];
-  saluationarray:any = [];
-  callpriorityarray:any = [];
+  productdataarray: any = [];
+  saluationarray: any = [];
+  callpriorityarray: any = [];
 
-  callratingarray :any= [];
-  callnaturearray:any = [];
-  callstagearray:any = [];
-  leadsourcearray:any = [];
-  nextactionarray:any = [];
+  callratingarray: any = [];
+  callnaturearray: any = [];
+  callstagearray: any = [];
+  leadsourcearray: any = [];
+  nextactionarray: any = [];
   Salutation;
   callpriority;
   callrating;
@@ -137,7 +139,7 @@ export class NewleadcorporatePage implements OnInit {
 
   showmap;
   Images = [];
-  username:any;
+  username: any;
   private optionsCamera: CameraOptions = {
     quality: 100,
     targetWidth: 600,
@@ -165,7 +167,7 @@ export class NewleadcorporatePage implements OnInit {
     this.leadssource = 1;
     this.leadby = "S";
 
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.Salutation = "<< Select >>";
     this.Getbranches();
@@ -305,7 +307,7 @@ export class NewleadcorporatePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'BranchLocation/' + branchid, {
       headers: options,
     }).subscribe(resp => {
-this.branchlocationlist = JSON.stringify(resp);
+      this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
@@ -322,7 +324,7 @@ this.branchlocationlist = JSON.stringify(resp);
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
-this.productdataarray = JSON.stringify(resp);
+      this.productdataarray = JSON.stringify(resp);
       this.productdataarray = JSON.parse(this.productdataarray);
       console.log("productdataarray: " + JSON.stringify(this.productdataarray));
 
@@ -373,7 +375,7 @@ this.productdataarray = JSON.stringify(resp);
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
-      this.callratingarray =JSON.stringify(resp);
+      this.callratingarray = JSON.stringify(resp);
       this.callratingarray = JSON.parse(this.callratingarray);
       console.log("callratingarray: " + JSON.stringify(this.callratingarray));
 
@@ -513,7 +515,7 @@ this.productdataarray = JSON.stringify(resp);
       });
 
     jquery('#fileinput').trigger('click');
-    jquery('#fileinput').unbind().change(function() {
+    jquery('#fileinput').unbind().change(function () {
       // jquery('#fileinput').on('change', function () {
       var filePath = jquery(this).val();
       console.log(filePath);
@@ -539,7 +541,7 @@ this.productdataarray = JSON.stringify(resp);
 
     //  alert("item.DOCUMENTID :"+item.DOCUMENTID+":"+this.fieldname)
     var fileArray = new Array();
-    var names = jquery.map(files1, function(val) {
+    var names = jquery.map(files1, function (val) {
 
       fileArray.push(val);
 
@@ -556,11 +558,11 @@ this.productdataarray = JSON.stringify(resp);
       console.log('getBase64:' + this.getBase64(files1));
       var reader = new FileReader();
       reader.readAsDataURL(files1);
-      reader.onload = function() {
+      reader.onload = function () {
         self.Images.push(reader.result);
 
       };
-      reader.onerror = function(error) {
+      reader.onerror = function (error) {
         console.log('Error: ', error);
       };
       const file = jquery('#fileinput').prop("files")[0];
@@ -572,10 +574,10 @@ this.productdataarray = JSON.stringify(resp);
   getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function() {
+    reader.onload = function () {
       return reader.result;
     };
-    reader.onerror = function(error) {
+    reader.onerror = function (error) {
       console.log('Error: ', error);
     };
   }
@@ -746,6 +748,7 @@ this.productdataarray = JSON.stringify(resp);
     this.Images.splice(index, 1);
   }
   Submitcorporate() {
+    debugger;
     if ((this.branch == '<< Select >>' || this.productdata == '<< Select >>' || this.company == undefined || this.ContactName == undefined || this.mobile == undefined || this.company == undefined || this.ContactName == undefined || this.callpriority == undefined || this.callrating == '<< Select >>' || this.callnature == '<< Select >>' || this.callstage == '<< Select >>' || this.nextaction == '<< Select >>' || this.leadby == '<< Select >>' || this.remarks == undefined) || (this.nextaction == '1' && (this.placetomeet == undefined || this.followtime == undefined || this.followdate == undefined)) || (this.nextaction == '2' && (this.followtime == undefined || this.followdate == undefined)) || (this.leadby == 'E' && (this.Employeeid == undefined)) || (this.leadby == 'C' && (this.custname == undefined)) || (this.leadby == 'P' && (this.leadByval == undefined))) {
 
       this.presentAlert('', 'Enter Mandatory Fields');
@@ -809,7 +812,7 @@ this.productdataarray = JSON.stringify(resp);
         }
 
 
-        var rad = function(x) {
+        var rad = function (x) {
           return x * Math.PI / 180;
         };
         this.prod_cat = this.productdata;
@@ -861,7 +864,7 @@ this.productdataarray = JSON.stringify(resp);
         if (this.closedDate == "NaN-NaN-NaN" || this.closedDate == '') {
           this.closedDate = ' ';
         }
-        if (this.nextaction == 6 || this.nextaction == 5 || this.nextaction == 4 || this.nextaction == 7 || this.nextaction == 8 || this.nextaction == 9) {
+        if (appdata == '' || this.nextaction == 6 || this.nextaction == 5 || this.nextaction == 4 || this.nextaction == 7 || this.nextaction == 8 || this.nextaction == 9) {
 
           var appdata = ' ';
           var strTime = ' ';
@@ -873,6 +876,18 @@ this.productdataarray = JSON.stringify(resp);
         else {
           branchloc = this.branchlocation;
         }
+        var appdata1;
+        if (appdata == " ") {
+          appdata1 = "01-01-1990";
+        } else {
+          appdata1 = appdata;
+        }
+        var strTime1;
+        if (strTime == " ") {
+          strTime1 = "12-00";
+        } else {
+          strTime1 = strTime;
+        }
         var data = {
           functionid: parseInt(window.localStorage["FUNCTION_ID"]),
           userTypeid: parseInt(window.localStorage['TUM_USER_TYPE']),
@@ -880,10 +895,10 @@ this.productdataarray = JSON.stringify(resp);
           ContactName: this.ContactName,
           mobile: this.mobile,
           OffPhone: this.OffPhone,
-          ResPhone: this.ResPhone,
-          appointmentDate: appdata,
+          ResPhone: "0",
+          appointmentDate: appdata1,
           closedDate: this.closedDate,
-          appointmentTime: strTime,
+          appointmentTime: strTime1,
           company1: this.company,
           campaign: this.campaign,
           source: this.source,
@@ -908,17 +923,15 @@ this.productdataarray = JSON.stringify(resp);
         const header = new Headers();
         header.append("Content-Type", "application/json");
 
-        let options = new HttpHeaders().set('Content-Type', 'application/json');
-
-        this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'corporatelead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.company1 + '/' + data.ContactName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentTime + '/' + data.appointmentDate + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '', {
-
-
-          headers: options,
-        }).subscribe(resp => {
+        // let options = new HttpHeaders().set('Content-Type', 'application/json');
+        debugger;
+        this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'corporatelead' + '/' + data.functionid + '/' + data.branch_id + '/' + data.prod_cat + '/' + data.product_id + '/' + camp_id + '/' + data.company1 + '/' + data.ContactName + '/' + data.mobile + '/' + data.OffPhone + '/' + data.ResPhone + '/' + data.priority + '/' + data.rating + '/' + data.nature + '/' + data.source + '/' + data.stage + '/' + data.response + '/' + data.appointmentTime + '/' + data.appointmentDate + '/' + data.remarks + '/' + data.closedDate + '/' + data.expectedAmount + '/' + data.leadBy + '/' + data.uservalue + '/' + data.userTypeid + '/' + data.LocationId + '').subscribe(resp => {
           console.log("mobileapi : " + JSON.stringify(resp));
-
+          debugger;
           console.log(resp);
-          this.result = JSON.parse(resp.toString());
+          // this.result = JSON.parse(resp.toString());
+          this.result = JSON.stringify(resp);
+          this.result = JSON.parse(this.result);
           //  console.log(jqueryscope.result);
           // jquery('#submit_retail').attr('disabled',false);
           if (resp.toString() == '"CampaignBranchaccess Not found"') {
@@ -938,11 +951,11 @@ this.productdataarray = JSON.stringify(resp);
             var obj = {
               'LeadID': lead_id_new, 'LatLong': this.appointmentLatLong, 'Address': this.placetomeet,
               access_token: window.localStorage['token'],
-              userid: window.localStorage['TUM_USER_ID'],
+              userid: parseInt(window.localStorage['TUM_USER_ID']),
               'usertoken': window.localStorage['usertoken'],
 
             };
-            console.log("update_meeting_locationJSON : " + JSON.stringify(obj))
+            console.log("update_meeting_locationJSON : " + JSON.stringify(obj));
             var update_meeting_locationJSON = obj;
             const header = new Headers();
             header.append("Content-Type", "application/json");
@@ -969,9 +982,9 @@ this.productdataarray = JSON.stringify(resp);
 
                 var passCurrent_locationJSON = {
                   latlong: this.currentlatlon,
-                  custid: this.lead_id,
+                  CustId: this.lead_id,
                   access_token: window.localStorage['token'],
-                  userid: window.localStorage['TUM_USER_ID'],
+                  userid: parseInt(window.localStorage['TUM_USER_ID']),
                   'usertoken': window.localStorage['usertoken'],
                   Token: window.localStorage['usertoken']
                 };
@@ -1029,7 +1042,7 @@ this.productdataarray = JSON.stringify(resp);
                   console.log('form data variable :   ' + formData.toString());
                   this.http.post(url, formData)
 
-                    .subscribe(files => console.log('files', files))
+                    .subscribe(files => console.log('files', files));
                   var objupload = {
                     'pk1': this.lead_id,
                     'doc_name': this.image[i],
@@ -1037,15 +1050,15 @@ this.productdataarray = JSON.stringify(resp);
                     'doc_path': "E:/APPLICATIONS/MyDesk/nTireoffice/UploadDocu/SSTPL" + this.image[i],
 
                     'uploaded_by': window.localStorage['TUM_USER_ID'],
-                    'FUNCTION_ID': window.localStorage['FUNCTION_ID'],
+                    'FUNCTIONID': parseInt(window.localStorage['FUNCTION_ID']),
                     'file_size': this.file[i].size,
                     access_token: window.localStorage['token'],
-                    userid: window.localStorage['TUM_USER_ID'],
+                    userid: parseInt(window.localStorage['TUM_USER_ID']),
                     'usertoken': window.localStorage['usertoken'],
 
                   };
 
-                  console.log("objupload : " + JSON.stringify(objupload))
+                  console.log("objupload : " + JSON.stringify(objupload));
 
                   var uploadJSON = objupload;
                   const header1 = new Headers();
@@ -1187,7 +1200,7 @@ this.productdataarray = JSON.stringify(resp);
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: ['OK']
     });
@@ -1198,11 +1211,11 @@ this.productdataarray = JSON.stringify(resp);
     currentDate: new Date()
   };
   Getnumber(contactname) {
-    this.mobile=undefined;
+    this.mobile = undefined;
     console.log(contactname);
     console.log("contact1 : " + JSON.stringify(this.contact1));
     this.contact1.forEach(element => {
-      if(contactname==element.ContactName){
+      if (contactname == element.ContactName) {
         this.mobile = element.Mobile;
       }
     });
@@ -1224,7 +1237,7 @@ this.productdataarray = JSON.stringify(resp);
   timeValidation(val) {
 
     var element = val;
-    var compare_dates = function(date1, date2) {
+    var compare_dates = function (date1, date2) {
       if (date1 > date2) return true;
       else if (date1 < date2) return false;
       else return false;

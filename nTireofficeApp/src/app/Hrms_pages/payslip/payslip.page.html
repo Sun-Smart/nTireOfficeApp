@@ -31,7 +31,7 @@
 
 </ion-grid>
 </ion-card>
-<ion-card *ngIf="this.empData.length != 0">
+<ion-card *ngIf="this.empData.length !== 0">
   <ion-row style="margin: 9px;background: #efeeee;text-align:center;">
     <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <strong>Total Days</strong>
@@ -52,7 +52,7 @@
       </ion-row>
 </ion-card>
 
-<ion-card *ngIf="this.paySlipEarnings.length != 0">
+<ion-card *ngIf="this.paySlipEarnings.length !== 0">
   <ion-card-header style="padding: 0;">
     <ion-segment [(ngModel)]="segmentdata">
         <ion-segment-button value="earnings">
@@ -65,7 +65,7 @@
       </ion-segment>
     </ion-card-header>
     <ion-card-content>
-<div *ngIf="segmentdata=='earnings'">
+<div *ngIf="segmentdata==='earnings'">
     <!-- <h6>
         Earnings
     </h6> -->
@@ -84,11 +84,11 @@
             </ion-row>
             <ion-row *ngFor="let item of paySlipEarnings">
                 <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                    <strong>{{item.DESCRIPTIONS}}</strong>
+                    <strong>{{item.DESCRIPTIONS | json}}</strong>
 
                   </ion-col>
                   <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="text-align: center;">
-                      <strong>{{item.AMOUNT}}</strong>
+                      <strong>{{item.AMOUNT | json}}</strong>
 
                     </ion-col>
                       </ion-row>
@@ -105,7 +105,7 @@
                         </ion-grid>
 
 </div>
-<div *ngIf="segmentdata=='deduction'">
+<div *ngIf="segmentdata==='deduction'">
     <!-- <ion-item>
         Deductions
       </ion-item> -->
@@ -146,7 +146,7 @@
 </div>
 </ion-card-content>
 </ion-card>
-<ion-card *ngIf="this.paySlipEarnings.length != 0">
+<ion-card *ngIf="this.paySlipEarnings.length !== 0">
   <ion-card-content>
   <ion-grid>
     <ion-row>
@@ -158,13 +158,13 @@
               <b> {{totalEarnings - totalDeductions|currency:" "}}</b>
 
             </ion-col>
-            <textarea *ngIf="totalEarnings!=undefined" rows="2 " style="text-transform:capitalize; text-transform: capitalize;width: 100%; text-align: end; border: none; resize: none; "> {{inWords(totalEarnings - totalDeductions)}}</textarea>
+            <textarea *ngIf="totalEarnings!==undefined" rows="2 " style="text-transform:capitalize; text-transform: capitalize;width: 100%; text-align: end; border: none; resize: none; "> {{inWords(totalEarnings - totalDeductions)}}</textarea>
 
               </ion-row>
   </ion-grid>
 </ion-card-content>
 </ion-card>
-<p  style="text-align:center" *ngIf="!this.empData&&this.empData.length==0" class="norecord">No Record Found</p>
+<p  style="text-align:center" *ngIf="!this.empData&&this.empData.length===0" class="norecord">No Record Found</p>
 <p class="padding " style="margin-top:10px; "><b>{{error}}</b></p>
 </ion-content>
 <ion-footer>

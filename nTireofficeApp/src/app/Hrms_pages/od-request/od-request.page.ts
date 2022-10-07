@@ -288,12 +288,13 @@ if(this.reqref !=undefined){
           this.name = window.localStorage['TUM_USER_NAME'];
 
           this.company = window.localStorage['FUNCTION_DESC'];
-          this.branch=window.localStorage['TUM_BRANCH_CODE']
+          this.branch=window.localStorage['TUM_BRANCH_CODE'];
        var employeeDetails = resp;
 
       //  this.designation = employeeDetails[0].DESCRIPTION;
       //   this.department = employeeDetails[0].Department;
-         this.empID = employeeDetails[0].EmpID;
+        //  this.empID = employeeDetails[0].EmpID;
+        this.empID=parseInt(window.localStorage['EmployeeID'])
 
         // this.userID = employeeDetails[0].UserID;
         this.contact = employeeDetails[0].ContactPhone;
@@ -848,7 +849,7 @@ var self=this;
               }
                 var advanceobj={
                     REQ_ID:this.reqID,
-                    EMPID:window.localStorage['empid'],
+                    EMPID:window.localStorage['EmployeeID'],
                     REQUEST_TYPE:2,
                     SCHEME_ID:0,
                     MAX_INSTALLMENTS:this.installment,
@@ -875,10 +876,7 @@ var self=this;
                  });
             }
 
-
             // this.refresh();
-
-
 
             var typerequest = "OD Request";
             var perdate = null;
