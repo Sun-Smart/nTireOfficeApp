@@ -101,11 +101,11 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   branchlist: any;
   branchlist1 = [];
   products: any;
-  products1:any = [];
+  products1: any = [];
   callpriority: any;
-  callpriority1:any = [];
+  callpriority1: any = [];
   callrating: any;
-  callrating1:any = [];
+  callrating1: any = [];
   userdata: any;
   userdata1 = [];
   usertype: any;
@@ -121,7 +121,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   pendingleadsdatalength: any;
 
   penleadfilter = {
-    TCC_CUSTOMER_ID: "",
+    TCC_CUSTOMER_ID: 0,
     TCC_CUST_LEAD_ID: "",
     CUST_LNAME: "",
     MOBILE: "",
@@ -146,7 +146,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   reporting: boolean;
   user_type_val;
   imagename: any;
-  username:any;
+  username: any;
   private backbuttonSubscription: Subscription;
   constructor(private sanitizer: DomSanitizer, public platform: Platform, public media: Media, private datePipe: DatePipe, public loadingController: LoadingController, private router: Router, private geolocation: Geolocation, public alertController: AlertController, public modalController: ModalController, private callNumber: CallNumber, private file: File, private transfer: FileTransfer, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.segmentdata = 'new';
@@ -154,7 +154,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
     this.penleadfilter.branchid = parseInt(window.localStorage['TUM_BRANCH_ID']);
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
-    this.penleadfilter.TCC_CUSTOMER_ID = '';
+    this.penleadfilter.TCC_CUSTOMER_ID = 0;
     this.penleadfilter.CUST_LNAME = '';
     this.penleadfilter.MOBILE = '';
     this.penleadfilter.TCM_CAMPAIGN_SHORTDESC = '';
@@ -178,7 +178,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       //this.userservice.Updateofflinestatus("offline");
 
     });
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     this.phonecalls();
     // this.checkPermissionCall();
 
@@ -214,6 +214,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
+
   }
   Getbranches() {
     var params = {
@@ -474,7 +475,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.pendleaddetails = [];
 
     if (this.penleadfilter.TCC_CUSTOMER_ID == null || this.penleadfilter.TCC_CUSTOMER_ID == undefined) {
-      this.penleadfilter.TCC_CUSTOMER_ID = '';
+      this.penleadfilter.TCC_CUSTOMER_ID = 0;
     }
     if (this.penleadfilter.TCC_CUST_LEAD_ID == null || this.penleadfilter.TCC_CUST_LEAD_ID == undefined) {
       this.penleadfilter.TCC_CUST_LEAD_ID = '';
@@ -515,11 +516,11 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       response: values.toString(),
       offset: this.pendleaddetails.length.toString(),
       limit: "50",
-      Name:"",
-      CAMPAIGNNAME:"",
-      PRIORITY:"",
-      RATING:"",
-      LEADBY:"",
+      Name: "",
+      CAMPAIGNNAME: "",
+      PRIORITY: "",
+      RATING: "",
+      LEADBY: "",
       branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: "",
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -1040,7 +1041,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: ['OK']
     });

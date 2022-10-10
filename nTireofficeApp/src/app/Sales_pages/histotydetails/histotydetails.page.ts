@@ -30,6 +30,7 @@ export class HistotydetailsPage implements OnInit {
   constructor(private datePipe: DatePipe, private model: ModalController, private callNumber: CallNumber, navParams: NavParams, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     console.log(navParams.get('item'));
     this.item = navParams.get('item');
+    localStorage.setItem('customer-lead_id', this.item.customer_lead_id);
     if (this.item.TCC_NEXT_CALL_DATE != null) {
       this.nextdate = this.item.TCC_NEXT_CALL_DATE;
     }
@@ -76,23 +77,25 @@ export class HistotydetailsPage implements OnInit {
     // console.log('showhistforuser after'+JSON.stringify(this.showhistforuser));
   }
   Gethistorydata() {
+
     var params = {
-      "TCC_CUST_ID": this.item.TCC_CUSTOMER_ID,
+      TCC_CUST_ID: parseInt(this.item.TCC_CUSTOMER_ID),
       "Token": window.localStorage['token'],
       access_token: window.localStorage['token'],
-      userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
-
-      // TCC_CUST_LEAD_ID:this.item.customer_lead_id,
-      user_id: window.localStorage['TUM_USER_ID'],
-
-      "TCC_CUST_LEAD_ID": this.item.customer_lead_id,
-      "CUST_LNAME": "",
-      "TCC_LEAD_PRIORITY": "",
-      "TCC_LEAD_BY": "",
-      response: 6,
-      offset: 0,
-      limit: 50
+      customer_lead_id: parseInt(window.localStorage['customer-lead_id']),
+      TCC_CUST_LEAD_ID: window.localStorage['customer-lead_id'],
+      TCC_CUSTOMER_ID: parseInt(this.item.TCC_CUSTOMER_ID),
+      TCC_CAMPAIGN_ID: parseInt(this.item.TCC_CAMPAIGN_ID),
+      user_id: parseInt(window.localStorage['TUM_USER_ID']),
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
+      // TCC_CUST_LEAD_ID: window.localStorage['customer-lead_id'],
+      CUST_LNAME: "",
+      TCC_LEAD_PRIORITY: "",
+      TCC_LEAD_BY: "",
+      response: "6",
+      offset: "0",
+      limit: "50"
     };
     var updateleadHistoryJSON = Object.assign(this.item, params);
     console.log("params : " + JSON.stringify(updateleadHistoryJSON));
@@ -129,8 +132,8 @@ export class HistotydetailsPage implements OnInit {
         element.TCC_AGENT_REMARKS = element.TCC_AGENT_REMARKS;
         var date = element.CREATED_ON;
 
-        var timesp = date.split('T');
-        var time2 = timesp[1].split('.');
+        var timesp = date;
+        var time2 = timesp[1];
 
         var d1 = new Date(timesp[0] + " " + time2[0]);
         var d2 = new Date(d1);
