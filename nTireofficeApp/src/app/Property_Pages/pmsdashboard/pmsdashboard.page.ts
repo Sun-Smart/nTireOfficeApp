@@ -56,15 +56,10 @@ export class PmsdashboardPage implements OnInit {
       { name: 'issuecode', },
       { name: 'issuedate', },
       { name: 'issuedescription', },
-      { name: 'Status', },
+      { name: 'status', },
+      { name: 'tenant', }
     ];
 
-    this.columnsDetails = [
-      { name: 'sno', },
-      { name: 'propertycode', },
-      { name: 'issuedescription', },
-      { name: 'status', },
-    ];
   }
 
   ngOnInit() {
