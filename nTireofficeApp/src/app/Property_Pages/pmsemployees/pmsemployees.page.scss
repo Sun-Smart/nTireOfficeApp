@@ -41,3 +41,17 @@ input.searchbar-input.sc-ion-searchbar-md {
   padding: 5px;
   height: 50px;
 }
+ion-radio-group{
+  ion-item{
+    border: none !important;
+  }
+}
+ion-item {
+  --background-hover: black !important;
+  --background: rgba(44, 144, 160, 0) !important;
+  /* --color: #111; */
+  --font-weight: bold;
+  --font-weight: 600;
+   border: 0 !important; 
+  /* border-radius: 5px; */
+}
