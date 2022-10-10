@@ -77,8 +77,6 @@ export class PmsdashboardPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=1&branch=1&userid=1').subscribe((res: any) => {
       console.log(res)
       this.dataStatus = res
-
-
     })
 
     // this.dataStatus = this.tableApi.getDashbTable2();
@@ -97,7 +95,7 @@ export class PmsdashboardPage implements OnInit {
 
   customerPayment = function () {
     debugger
-    var sourcearray = [];
+ 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -193,7 +191,6 @@ export class PmsdashboardPage implements OnInit {
       })
     });
   }
-
 
   getEmployeeCountChart = function () {
     debugger;
@@ -397,25 +394,23 @@ export class PmsdashboardPage implements OnInit {
               }
             }]
           },
-          // tooltips: {
+          tooltips: {
 
-          //   callbacks: {
-          //     title: function (tooltipItem, data) {
-          //       return data['labels'][tooltipItem[0]['index']];
-          //     },
-          //     label: function (tooltipItem, data) {
-          //       return data.datasets[0]['label'] + " : " + data['datasets'][0]['data'][tooltipItem['index']];
-          //     },
+            callbacks: {
+              title: function (tooltipItem, data) {
+                return data['labels'][tooltipItem[0]['index']];
+              },
+              label: function (tooltipItem, data) {
+                return  "Target : " + data['datasets'][0]['data'][tooltipItem['index']];
+              },
 
-          //   },
-          // },
+            },
+          },
         }
       });
     }, error => {
     });
   }
-
-
 
   getToBevaccantChart = function () {
     debugger
