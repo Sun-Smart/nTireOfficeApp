@@ -68,7 +68,11 @@ export class LeaveRequestPage implements OnInit {
     this.getLeaveType();
     this.urldata = this.route.params.subscribe(params => {
 
-      this.leavedata=JSON.parse(params.item);
+      // this.leavedata=JSON.parse(params.item);
+       let data1=JSON.stringify(params.item);
+      this.leavedata=JSON.parse(data1);
+
+
       if(this.leavedata!=undefined){
         this.LEAVEFRMDATE=this.leavedata.Leavefrmdate;
         this.LEAVEFRMDATE=this.leavedata.Leavefrmdate.split('/');
@@ -115,7 +119,8 @@ export class LeaveRequestPage implements OnInit {
 
           this.company = window.localStorage['FUNCTION_DESC'];
           this.branch=window.localStorage['TUM_BRANCH_CODE']
-       var employeeDetails = JSON.parse(resp.toString());
+      //  var employeeDetails = JSON.parse(resp.toString());
+      var employeeDetails = resp;
 
         this.department = employeeDetails[0].Department;
         this.empID = employeeDetails[0].EmpID;
@@ -232,11 +237,10 @@ export class LeaveRequestPage implements OnInit {
     var session = 0;
     var nod = this.noofDays;
     var reason = this.reason;
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SaveLeave/"+ this.FUNCTION_ID + "/" + this.TUM_USER_ID + "/" + window.localStorage['empid'] + "/@/" + typeSelected + "/" + fromDate + "/" + toDate + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.status).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SaveLeave/"+ this.FUNCTION_ID + "/" + this.TUM_USER_ID + "/" + window.localStorage['EmployeeID'] + "/@/" + typeSelected + "/" + fromDate + "/" + toDate + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.status).then(resp=>{
       if (resp == '"Attendance not available"') {
         // console.log("Gotcha : " + resp);
      this.toastmessageService.presentAlert1("Request Not Sent","Attendance is not available on the requested date")
-
 
       }
       else if (resp == '"Your request is on holiday, please choose different date"') {

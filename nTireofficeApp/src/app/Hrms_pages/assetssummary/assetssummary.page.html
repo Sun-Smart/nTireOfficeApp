@@ -26,7 +26,7 @@
                   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                     <ion-label>Assest Category<span class="validatecolor">*</span></ion-label>
                     <!-- "filterAsset('subcat')" -->
-                    <select [(ngModel)]="assestCategory" (ionChange)="getAssestsSubcat()" class="form-control">
+                    <select [(ngModel)]="assestCategory" (click)="getAssestsSubcat()" class="form-control">
                       <option value="">&lt;&lt; Select &gt;&gt; </option>
                        <option *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</option>
                     </select>
@@ -35,7 +35,7 @@
                       <ion-label>Assest Subcategory<span class="validatecolor">*</span></ion-label>
                       <select [(ngModel)]="assestsubCategory" (ionChange)="filterAsset('filter')" class="form-control">
                         <option value="">&lt;&lt; Select &gt;&gt; </option>
-                         <option *ngFor="let item of subCategoryData" [value]="item.id">{{item.Text}}</option>
+                         <option *ngFor="let item of subCategoryData" [value]="item.id">{{item.TEXT}}</option>
                       </select>
                       </ion-col>
                               <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
