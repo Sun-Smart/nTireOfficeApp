@@ -337,12 +337,12 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card *ngFor="let items of pendleaddetails; let i = index" style="background-color:#fff">
+    <!-- <ion-card *ngFor="let items of pendleaddetails; let i = index" style="background-color:#fff">
       <ion-grid style="padding: 0px;">
         <ion-row>
-          <!-- <button ion-button block class="start-button" (click)="startRecording(i)">Start Recording</button>
+          <button ion-button block class="start-button" (click)="startRecording(i)">Start Recording</button>
           <ion-button color="danger" (click)="stopRecording(i)">Stop
-           Recording</ion-button> -->
+           Recording</ion-button>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
             style="background-color: #2e3192!important;color:#fff;padding:12px;">
             {{items.CustFullName}}
@@ -351,6 +351,17 @@
             style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
             #{{items.CUST_LEAD_ID}}
           </ion-col>
+          <ion-card-header class="card_header" style="width: 100%;">
+            <ion-row>
+              <ion-col>
+                <ion-label class="card_header_text">{{items.CustFullName}}</ion-label>
+              </ion-col>
+    
+              <ion-col>
+                <ion-label class="card_header_text">  #{{items.CUST_LEAD_ID}}</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             Lead ID
           </ion-col>
@@ -411,10 +422,10 @@
 
             </ion-list>
             <div style="margin-top: -20px;">
-              <!-- <button ion-button block class="start-button" *ngIf="!items.isRecording && !items.blobUrl" (click)="startRecording(i)">Start Recording</button> -->
+              <button ion-button block class="start-button" *ngIf="!items.isRecording && !items.blobUrl" (click)="startRecording(i)">Start Recording</button>
               <ion-button color="danger" *ngIf="items.isRecording && !items.blobUrl" (click)="stopRecording(i)">Stop
                 Recording</ion-button>
-              <!-- <div *ngIf="items.isRecording && !items.blobUrl"> {{recordedTime}} </div> -->
+              <div *ngIf="items.isRecording && !items.blobUrl"> {{recordedTime}} </div>
               <div>
                 <audio *ngIf="!items.isRecording && items.blobUrl" controls controlsList="nodownload"
                   style="position: relative;left: -50px;width:208px">
@@ -453,7 +464,7 @@
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <a (click)="showmore(i,items.CALL_ID)">
-              <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
+              <a ng-click="showmore(i,items.CALL_ID)">
 
               <i id="imageidvals{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
                 style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
@@ -480,7 +491,7 @@
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <span *ngIf="items.ClosedDate != '1900-01-01'">{{items.ClosedDate|date:'dd/MM/yyyy'}}</span>
-                <!-- <span *ngIf="items.ClosedDate != '1900-01-01'">-</span> -->
+                <span *ngIf="items.ClosedDate != '1900-01-01'">-</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Expected Amount
@@ -549,7 +560,7 @@
           </div>
         </ion-row>
       </ion-grid>
-    </ion-card>
+    </ion-card> -->
   </div>
 
 </ion-content>
