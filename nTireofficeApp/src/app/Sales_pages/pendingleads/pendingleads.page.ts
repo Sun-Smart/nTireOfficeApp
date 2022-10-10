@@ -615,7 +615,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
         headers: options,
       }).subscribe(resp => {
 
-        console.log("pendleaddetails1 : " + JSON.stringify(resp));
+        // console.log("pendleaddetails1 : " + JSON.stringify(resp));
         this.loadingdismiss();
         this.pendleaddetails1.push(resp);
         this.pendleaddetails1.forEach(element => {
@@ -777,7 +777,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       headers: options,
     }).subscribe(resp => {
 
-      console.log("pendleaddetails1 : " + JSON.stringify(resp));
+      // console.log("pendleaddetails1 : " + JSON.stringify(resp));
       this.loadingdismiss();
       this.pendleaddetails1.push(resp);
       this.pendleaddetails1.forEach(element => {
