@@ -56,11 +56,11 @@ export class LoanSummaryPage implements OnInit {
     var obj={
       empcode:this.empCode,
       usertype:this.usertype,
-      userid:this.userid,
+      userid: parseInt(this.userid),
       usertoken:this.usertoken,
       access_token:this.token
       }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlhrms2+ "LoanRequestSummary/",obj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlhrms2+ "LoanRequestSummary",obj).then(resp=>{
       if (resp != "No Records found") {
 
         this.display1 = resp;
@@ -129,11 +129,11 @@ export class LoanSummaryPage implements OnInit {
 
     var obj1={
       emp_code:this.empCode,
-      userid:this.userid,
+      userid: parseInt(this.userid),
      usertoken:this.usertoken,
      access_token:this.token
      }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getdesignation/",obj1).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getdesignation",obj1).then(resp=>{
       this.designationemp = resp;
       console.log(""+this.designationemp );
       this.empname = this.designationemp[0].em_emp_name;

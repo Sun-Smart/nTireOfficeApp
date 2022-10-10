@@ -62,7 +62,7 @@ export class ClaimssummaryPage implements OnInit {
         this.name = window.localStorage['TUM_USER_NAME'];
 
         this.company = window.localStorage['FUNCTION_DESC'];
-        this.branch=parseInt(window.localStorage['TUM_BRANCH_CODE'])
+        this.branch=window.localStorage['TUM_BRANCH_CODE']
        var employeeDetails = JSON.parse(resp.toString());
 
         this.department = employeeDetails[0].Department;

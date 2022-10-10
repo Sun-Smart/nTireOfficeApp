@@ -834,7 +834,6 @@ console.log(""+this.profilepic+""+this.image)
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/" +  this.currentAddressObject.empID + "/" +  this.currentAddressObject.Type + "/" +  this.currentAddressObject.Address + "/" +  this.currentAddressObject.City + "/" +  this.currentAddressObject.State + "/" +  this.currentAddressObject.Country + "/" +  this.currentAddressObject.Pincode + "/0/0/0").then(resp=>{
               var data = JSON.parse(resp.toString());
 
-
                 if (data[0].Column1 == "Successfully Updated") {
                   // Store the Data and Display the success message to user
                   this.error = "";

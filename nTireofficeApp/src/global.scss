@@ -91,20 +91,14 @@ ion-segment ion-label {
   text-transform: uppercase !important;
 }
 
-.circleicon {
-  position: fixed;
-  bottom: 20px;
-  right: 12px;
-  padding: 10px;
-  color: #fff;
-  border-radius: 50%;
-  background-color: #009688;
-}
+ label {
+   //color: black !important;
+ }
 
-.ContentName {
-  color: #000 !important;
-  font-weight: 700 !important;
-}
+ ion-checkbox {
+   --size: 20px;
+   //--background-checked: #0074b8;
+ }
 
 #ContentName {
   color: #000 !important;

@@ -57,6 +57,7 @@ export class LoanRequestPage implements OnInit {
   release: any;
   disabledvalue;
   username = window.localStorage.getItem('TUM_USER_NAME');
+  getemployeid: any;
   constructor(private router: Router,private route:ActivatedRoute,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
     // this.userid = window.localStorage['TUM_USER_ID'];
      this.userid = parseInt(window.localStorage['TUM_USER_ID'])
@@ -111,6 +112,8 @@ export class LoanRequestPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getemployeid=parseInt(window.localStorage['EmployeeID'])
+    console.log(this.getemployeid)
   }
   getDesignation(){
 
@@ -120,7 +123,7 @@ export class LoanRequestPage implements OnInit {
      usertoken:this.usertoken,
      access_token:this.token
      }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getdesignation/",obj1).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getdesignation",obj1).then(resp=>{
       this.designationemp = resp;
       console.log(this.designationemp );
       this.empname = this.designationemp[0].em_emp_name;
@@ -165,7 +168,7 @@ export class LoanRequestPage implements OnInit {
      usertoken:this.usertoken,
      access_token:this.token
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getloanscheme/",loanobj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getloanscheme",loanobj).then(resp=>{
       this.schemes1 = resp;
       console.log(this.schemes1);
       this.schemes1.forEach(element => {
@@ -253,6 +256,8 @@ export class LoanRequestPage implements OnInit {
   }
 
   loanSubmit(){
+
+    console.log(this.getemployeid)
     if (this.reqtype == 2) {
       var amount = this.advamount;
       var moninstall = this.installments;
@@ -280,25 +285,31 @@ export class LoanRequestPage implements OnInit {
 
 
     var OBJ = {
-      emp_id: window.localStorage['em_emp_id'],
+      emp_id: this.getemployeid,
       req_type: this.reqtype,
-      scheme_id: schemeid,
-      MonthLy_installment: moninstall,
-      Amount: amount,
+      scheme_id: schemeid.toString(),
+      // MonthLy_installment: moninstall,
+      // Amount: amount,
+      // Status:  this.status,
+      // Monthly_deduct: emiamount,
+
+      MonthLy_installment: '',
+      Amount: '',
       Status:  this.status,
-      Monthly_deduct: emiamount,
+      Monthly_deduct: '',
       Rev_loan:'',
-      CreatedBy: this.userid,
+      CreatedBy: this.userid.toString(),
       user_id: this.userid,
       Createdon: new Date(),
       Updatedon: new Date(),
       ipaddress: '192.168.0.47',
       isdeferral: 'P',
-      deferralmode: 0,
+      deferralmode: "0",
       function_id: functionid,
       access_token:window.localStorage['token'],
       userid:this.userid,
-      usertoken:this.usertoken
+      usertoken:this.usertoken,
+
 
     }
     console.log(OBJ)
@@ -321,7 +332,7 @@ this.perdate = "Loan";
 else{
 this.perdate="Advance";
 }
-this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"insertloanadvancedetails/",OBJ).then(resp=>{
+this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"insertloanadvancedetails",OBJ).then(resp=>{
   this.loanreqno=Object.values(resp[0]);
   this.toastmessageService.presentAlert1("Request Sent","Your Loan Request with Ref No. "+this.loanreqno+" has been Saved Successfully!");
 

@@ -29,17 +29,33 @@
             <ion-label>Spcelization<span class="validatecolor">*</span></ion-label>
             <ion-input class="form-control" [(ngModel)]="specialization"></ion-input>
           </ion-col>
-          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>From<span class="validatecolor">*</span></ion-label>
-            <ion-input type="month" class="form-control" [(ngModel)]="fromdate"></ion-input>
+            <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
 
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>To<span class="validatecolor">*</span></ion-label>
-            <ion-input type="month" max="{{dat_valid.currentDate | date: 'yyyy-mm'}}" class="form-control"
+            <ion-input type="date" max="{{dat_valid.currentDate | date: 'yyyy-mm-dd'}}" class="form-control"
+              [(ngModel)]="toDate"></ion-input>
+
+          </ion-col> -->
+
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-label>From<span class="validatecolor">*</span></ion-label>
+            <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
+
+          </ion-col>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+            <ion-label>To<span class="validatecolor">*</span></ion-label>
+            <ion-input type="date" max="{{dat_valid.currentDate | date: 'yyyy-mm-dd'}}" class="form-control"
               [(ngModel)]="toDate"></ion-input>
 
           </ion-col>
+
+
+
+
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>Institution<span class="validatecolor">*</span></ion-label>
             <ion-input class="form-control" [(ngModel)]="institution"></ion-input>

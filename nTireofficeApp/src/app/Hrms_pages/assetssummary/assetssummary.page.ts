@@ -6,6 +6,7 @@ import { ModalController } from '@ionic/angular';
 import {ReapplyassetPage} from '../reapplyasset/reapplyasset.page';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 
 @Component({
   selector: 'app-assetssummary',
@@ -13,16 +14,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./assetssummary.page.scss'],
 })
 export class AssetssummaryPage implements OnInit {
-  categoryData=[];
-  subCategoryData=[];
+  categoryData : any=[];
+  subCategoryData:any=[];
   FUNCTION_ID;
   assestCategory;
   assestsubCategory;
   status;
-  display=[];
+  display : any=[];
   fromDate;
   toDate;
-  display1=[];
+  display1 : any=[];
   error;
   empID;
   company;
@@ -30,7 +31,7 @@ export class AssetssummaryPage implements OnInit {
   constructor(public modalController: ModalController,private router: Router,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
     this.company = window.localStorage['FUNCTION_DESC'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
-    this.empID=window.localStorage['em_emp_id'];
+    this.empID=window.localStorage['EmployeeID'];
     this.assestCategory="";
     this.assestsubCategory="";
     this.status="";
@@ -46,21 +47,35 @@ export class AssetssummaryPage implements OnInit {
     this.router.navigate(['/assetrequest'])
   }
  //get asset category
- getAssetCategory(){
-  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "LoadAssetCategory/"+this.FUNCTION_ID+ "").then(resp=>{
-    this.categoryData = JSON.parse(resp.toString());
-   }, error => {
+//  getAssetCategory(){
+//   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/LoadAssetCategory/"+this.FUNCTION_ID+ "" + Value).then(resp=>{
+//     this.categoryData = JSON.parse(resp.toString());
+//    }, error => {
 
-   console.log("error : "+JSON.stringify(error));
+//    console.log("error : "+JSON.stringify(error));
 
-   });
+//    });
+// }
+
+
+getAssetCategory() {
+  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetCategory").then(resp => {
+    this.categoryData = resp;
+
+    console.log(this.categoryData)
+  }, error => {
+    console.log("error : " + JSON.stringify(error));
+  });
+
 }
 //get assests sub category
 getAssestsSubcat(){
+  debugger
   this.subCategoryData=[];
   this.assestsubCategory="";
-  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "LoadAssetSubCategory/"+this.FUNCTION_ID +"/"+ this.assestCategory).then(resp=>{
-    this.subCategoryData = JSON.parse(resp.toString());
+  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/LoadAssetSubCategory/"+this.FUNCTION_ID +"/"+ this.assestCategory).then(resp=>{
+    this.subCategoryData = resp;
+    console.log(resp)
    }, error => {
 
    console.log("error : "+JSON.stringify(error));
@@ -87,10 +102,10 @@ this.getAssestsSubcat();
   if (this.assestsubCategory == "") {
     this.assestsubCategory = "0";
   }
-   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "SearchAssets/" + this.empID + "/" + fromDate + "/" + toDate + "/" + this.assestCategory + "/" +this.assestsubCategory).then(resp=>{
+   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/SearchAssets/" + this.empID + "/" + fromDate + "/" + toDate + "/" + this.assestCategory + "/" +this.assestsubCategory).then(resp=>{
      if (resp != "No Records found") {
-       this.display = JSON.parse(resp.toString());
-       this.display1=JSON.parse(resp.toString());
+       this.display = resp;
+       this.display1= resp;
        // console.log($scope.display)
        var status = this.display[0].Status;
        this.error = "";

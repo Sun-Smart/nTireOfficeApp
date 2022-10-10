@@ -55,7 +55,10 @@ this.dat_valid= {
 };
 
 this.urldata = this.route.params.subscribe(params => {
-  this.permissiondata=JSON.parse(params.item);
+  // this.permissiondata=JSON.parse(params.item);
+  this. permissiondata=JSON.stringify(params.item);
+  // this.permissiondata=JSON.parse(permissiondata);
+
   if(this.permissiondata!=undefined){
 
     this.reqID2=this.permissiondata.Txnreference;
@@ -226,7 +229,9 @@ var perm={
 
           this.company = window.localStorage['FUNCTION_DESC'];
           this.branch=window.localStorage['TUM_BRANCH_CODE']
-       var employeeDetails = JSON.parse(resp.toString());
+      //  var employeeDetails = JSON.parse(resp.toString());
+      var employeeDetails = resp;
+
 debugger
         this.department = employeeDetails[0].Department;
         console.log('this.department ',this.department);

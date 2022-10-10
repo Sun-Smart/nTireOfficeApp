@@ -66,10 +66,62 @@ export class DashboardPage implements OnInit {
   // attendanceList=[];
   nodata:boolean;
   backButtonSubscription: any;
+  monthnumber;
   // username = window.localStorage.getItem('TUM_USER_NAME');
   constructor(private fileOpener: FileOpener,private androidPermissions: AndroidPermissions,
   public toastmessageService:ToastmessageService,public loadingController:LoadingController,private transfer: FileTransfer, private file: File,private router: Router,private HttpRequest:HttprequestService,public Ipaddressservice:IpaddressService,private  menuCtrl: MenuController,private  navCtrl: NavController,private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,public alertController: AlertController) {
     // this.menuCtrl.enable(true, 'first');
+
+
+
+    var date = new Date().toString();
+
+    var arr1 = date.split(' ');
+    var arr2 = arr1[1].split(',');
+    console.log('date ',date)
+    console.log('date: ', arr1[0]);
+    console.log('month: ', arr2[0]);
+    console.log('year: ', arr2[1]);
+    debugger
+    if(arr2[0]=="Jan"){
+       this.monthnumber=1
+    }
+    else if(arr2[0]=="Feb"){
+      this.monthnumber=2
+    }
+    else if(arr2[0]=="Mar"){
+      this.monthnumber=3
+    }
+    else if(arr2[0]=="Apr"){
+      this.monthnumber=4
+    }
+    else if(arr2[0]=="May"){
+      this.monthnumber=5
+    }
+    else if(arr2[0]=="Jun"){
+      this.monthnumber=6
+    }
+    else if(arr2[0]=="Jul"){
+      this.monthnumber=7
+    }
+    else if(arr2[0]=="Aug"){
+      this.monthnumber=8
+    }
+    else if(arr2[0]=="Sep"){
+      this.monthnumber=9
+    }
+    else if(arr2[0]=="Oct"){
+      this.monthnumber=10
+    }
+    else if(arr2[0]=="Nov"){
+      this.monthnumber=11
+    }
+    else if(arr2[0]=="Dec"){
+      this.monthnumber=12
+    }
+    console.log(this.monthnumber)
+
+
     this.menuCtrl.enable(true, 'first');
     this.attendance = {};
     this.userid =parseInt( window.localStorage.TUM_USER_ID);
@@ -104,6 +156,13 @@ console.log(window.localStorage.token,"token2")
     this.getGreetings();
 
 this.backbutton();
+
+
+
+  // var date = this.fromdate.split('-');
+    // this.fromdate = date[0]+"-"+date[1];
+    // console.log(""+this.fromdate)
+
 
   }
   backbutton() {
@@ -239,7 +298,7 @@ this.backbutton();
          this.monthdata = "0";
        }
        var obj={
-         empID:this.employee_id,
+         empID: window.localStorage.getItem('EmployeeID'),
          year:this.yeardata,
          month:this.monthdata
 
@@ -506,11 +565,15 @@ this.backbutton();
   //Get mygreetings based on userid and and usertoken and access_token
   //*params="userid,usertoken,access_token"
   getGreetings(){
+    debugger
+    console.log(this.monthnumber)
     var get_obj={
 
       userid:parseInt(this.userid),
       usertoken:parseInt(localStorage.getItem('TUM_USER_ID')),
-      access_token:this.token
+      access_token:this.token,
+      month:this.monthnumber
+      // month:getd
 }
 
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getbirthdaywishesMydesk",get_obj).then(resp=>{
