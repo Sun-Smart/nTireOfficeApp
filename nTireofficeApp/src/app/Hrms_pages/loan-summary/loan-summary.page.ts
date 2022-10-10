@@ -37,7 +37,7 @@ export class LoanSummaryPage implements OnInit {
     this.token=window.localStorage['token'];
 
     this.empCode= window.localStorage['TUM_EMP_CODE'];
-    this.usertype = window.localStorage['TUM_USER_TYPE'];
+    this.usertype =parseInt(  window.localStorage['TUM_USER_TYPE']);
     this.company = window.localStorage['FUNCTION_DESC'];
     this.request_type="";
     this.allloandetails();
