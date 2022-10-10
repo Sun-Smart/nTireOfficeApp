@@ -15,8 +15,8 @@ import { AlertController,LoadingController } from '@ionic/angular';
 })
 export class PermissionsummaryPage implements OnInit {
   company;
-  display=[];
-  display1=[];
+  display:any=[];
+  display1:any=[];
   fromDate;
   toDate;
   error;
@@ -28,7 +28,7 @@ export class PermissionsummaryPage implements OnInit {
   constructor(public modalController: ModalController,private router: Router,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService,public loadingController: LoadingController,
     ) {
     this.company = window.localStorage['FUNCTION_DESC'];
-    this.empID=window.localStorage['em_emp_id'];
+    this.empID=window.localStorage['EmployeeID'];
     this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
     this.status="";
     this.filterDate(undefined,undefined);
@@ -56,12 +56,15 @@ export class PermissionsummaryPage implements OnInit {
      } else {
        var toDate = this.formatDate(todate);
      }
-     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then(resp=>{
+     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then((resp:any)=>{
       this.loadingdismiss();
        if (resp != "No Records found") {
 
-         this.display = JSON.parse(resp.toString());
-         this.display1=JSON.parse(resp.toString());
+        //  this.display = JSON.parse(resp.toString());
+        this.display = resp;
+
+        //  this.display1=JSON.parse(resp);
+        this.display1=JSON.stringify(resp);
          // console.log($scope.display)
          var status = this.display[0].Status;
          this.error = "";
@@ -80,9 +83,13 @@ export class PermissionsummaryPage implements OnInit {
    }
    changeOrder(){
     this.error=''
-    this.display = this.display1.filter((data) => {
+    debugger
+    // console.log(Object.values(this.display1).filter(user => this.display1.Status === 1));
+    // console.log(Object.values(this.display1).filter((data:any)=> this.display1.Status === 1));
+    this.display = Object.values(this.display1).filter((data:any) => {
+      console.log(data)
 
-      return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
+      return data.Status.indexOf(this.status) > -1;
 
     });
 
@@ -196,6 +203,7 @@ export class PermissionsummaryPage implements OnInit {
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
+      duration: 500
     });
     return await loading.present();
   }
