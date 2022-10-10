@@ -6,19 +6,19 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./additional-charges.page.scss'],
 })
 export class AdditionalChargesPage implements OnInit {
-  showView:boolean=false;
+  showView: boolean = false;
 
- 
+
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
-  submit(){
+  submit() {
     debugger;
     this.showView = true;
 
-      }
-      cancel() {
-        return this.modalCtrl.dismiss(null, 'cancel');
-      }
+  }
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'cancel');
+  }
 }
