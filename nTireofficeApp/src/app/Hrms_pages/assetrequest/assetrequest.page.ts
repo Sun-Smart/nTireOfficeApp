@@ -52,7 +52,7 @@ export class AssetrequestPage implements OnInit {
     this.userID = window.localStorage['TUM_USER_ID'];
     this.empCode = window.localStorage['TUM_EMP_CODE'];
 
-    this.empID = window.localStorage['em_emp_id'];
+    this.empID = parseInt( window.localStorage['EmployeeID']);
     this.usertoken = window.localStorage['usertoken'];
     this.status = "P";
     this.release = false;
@@ -70,7 +70,8 @@ export class AssetrequestPage implements OnInit {
     };
     this.getAssetCategory();
     this.urldata = this.route.params.subscribe(params => {
-      this.asstRequest = JSON.parse(params.item);
+      // this.asstRequest = JSON.parse(params.item);
+      this.asstRequest = JSON.stringify(params.item);
       if (this.asstRequest != undefined) {
         this.ASSETCATEGORY = this.asstRequest.ASSETCATEGORY;
         this.ASSETSUBCATEGORY = this.asstRequest.ASSETSUBCATEGORY;
@@ -91,7 +92,7 @@ export class AssetrequestPage implements OnInit {
   getAssetCategory() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetCategory").then(resp => {
       this.categoryData = resp;
-      
+
       console.log(this.categoryData)
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -101,8 +102,10 @@ export class AssetrequestPage implements OnInit {
   //get assests sub category
   getAssestsSubcat(value) {
     console.log(value)
+    let getvalue =value
+    console.log(getvalue)
     // this.subCategoryData = [];
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + this.FUNCTION_ID + "/" + value).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + this.FUNCTION_ID + "/" + getvalue).then(resp => {
       this.subCategoryData = resp;
       console.log(this.subCategoryData);
     }, error => {
@@ -117,6 +120,7 @@ export class AssetrequestPage implements OnInit {
     var date1 = this.formatDate(this.requestDate);
     var date2 = this.formatDate(new Date(this.returnDate));
     var date3 = this.formatDate(new Date(this.reqbeforedte));
+    this.reqID=null
     //  if (this.status == undefined) {
     //   this.status = "P";
     // }
@@ -126,7 +130,7 @@ export class AssetrequestPage implements OnInit {
     else {
       this.status = 'N';
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date3 + "/" + date2 + "/" + this.reason + "/" + this.status).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date3 + "/" + date2 + "/" + this.reason + "/" + this.status).then(resp => {
       if (resp == '"Attendance not available"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date");
 

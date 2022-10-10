@@ -51,13 +51,6 @@ export class PmsdashboardPage implements OnInit {
     // this.getCategoryCountChart();
     this.getBranchCountChart();
 
-    this.columns = [
-      { name: 'sno',},
-      { name: 'invoice', },
-      { name: 'month', },
-      { name: 'amount', },
-      { name: 'status', },
-    ];
 
     this.columnsStatus = [
       { name: 'issuecode',},
@@ -70,21 +63,6 @@ export class PmsdashboardPage implements OnInit {
       { name: 'sno',},
       { name: 'propertycode', },
       { name: 'issuedescription', },
-      { name: 'status', },
-    ];
-
-    this.columnsVaccant = [
-      { name: 'sno',},
-      { name: 'propertycode', },
-      { name: 'issuedescription', },
-      { name: 'flat', },
-    ];
-
-    this.columnsRaised = [
-      { name: 'sno',},
-      { name: 'propertycode', },
-      { name: 'invoice', },
-      { name: 'amount', },
       { name: 'status', },
     ];
   }
@@ -207,10 +185,10 @@ console.log(this.data);
 
             callbacks: {
               title: function (tooltipItem, data) {
-                return data['labels'][tooltipItem[0]['index']];
+                return data.datasets['labels'][tooltipItem[0]['index']];
               },
               label: function (tooltipItem, data) {
-                return data.datasets[0]['label'] + " : " + data['datasets'][0]['data'][tooltipItem['index']];
+                return data[0]['label'] + " : " + data['datasets'][0]['data'][tooltipItem['index']];
               },
 
             },
@@ -395,23 +373,17 @@ console.log(this.data);
     
            sourcearray = [
             {
-    
               data: this.data,
               backgroundColor: ['rgb(16, 99, 16)','rgb(68, 49, 9)'],
-    
-    
             }]
             if (this.sourcechart) {
               this.sourcechart.destroy();
           }
           this.sourcechart = new Chart(this.sourcecanvas1.nativeElement, {
-    
             type: 'bar',
-    
             data: {
               labels: this.labels,
               datasets: sourcearray,
-    
             },
             options: {
               legend: {
@@ -428,12 +400,10 @@ console.log(this.data);
                     beginAtZero: true,
                     display: true,
                     labelString: window.localStorage['TUM_BRANCH_CODE'],
-    
                   }
                 }]
               },
               tooltips: {
-    
                 callbacks: {
                   title: function (tooltipItem, data) {
                     return data['labels'][tooltipItem[0]['index']];
@@ -441,21 +411,12 @@ console.log(this.data);
                   label: function (tooltipItem, data) {
                     return "Target" + " : " + data['datasets'][0]['data'][tooltipItem['index']];
                   },
-    
                 },
-    
-    
-    
               },
             }
-    
           });
-    
         }, error => {
-    
-    
         });
-    
     }
 
 

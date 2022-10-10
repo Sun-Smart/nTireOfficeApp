@@ -4,9 +4,9 @@ import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AlertController,MenuController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {IpaddressService} from './service/ipaddress.service';
+import { IpaddressService } from './service/ipaddress.service';
 // import { Router } from '@angular/router';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
@@ -30,10 +30,15 @@ export class AppComponent {
   list5: boolean;
   list6: boolean;
   CamsList: boolean;
+  pmssubmenu:boolean=false
   pms: boolean;
   user_role: any;
   chkadmin: boolean;
   username: any = window.localStorage.getItem('TUM_USER_NAME');
+
+  reportMenu: any;
+  showSubmenu: boolean = false;
+  showForce : boolean;
 
   public salespages = [
 
@@ -97,6 +102,7 @@ export class AppComponent {
       title: 'My Clients',
       url: '/myclients',
       icon: 'person-outline'
+
     },
   ];
 
@@ -251,7 +257,7 @@ export class AppComponent {
   ];
 
 
-  public erppages=[
+  public erppages = [
     {
       title: 'Physcial Inventory',
       url: '/pyscialinvetory',
@@ -270,19 +276,19 @@ export class AppComponent {
       icon: 'home'
     },
     {
-        title: 'Asset Details',
-        url: '/asset-details',
-        icon: 'document-outline'
-      }
-    ,{
+      title: 'Asset Details',
+      url: '/asset-details',
+      icon: 'document-outline'
+    }
+    , {
       title: 'Pending Jobs',
       url: '/pending-jobs',
       icon: 'hourglass'
-    },{
+    }, {
       title: 'Completion of Jobs',
       url: '/completion-jobs',
       icon: 'briefcase'
-    },{
+    }, {
       title: 'Asset Reconciliation',
       url: '/asset-reconcil',
       icon: 'book'
@@ -296,23 +302,23 @@ export class AppComponent {
       title: 'User Request',
       url: '/user-request',
       icon: 'person'
-    },{
+    }, {
       title: 'Service Request',
       url: '/service-request',
       icon: 'cog'
-    },{
+    }, {
       title: 'LocationWise Asset Report',
       url: '/location-wise-asset',
       icon: 'pin'
-    },{
+    }, {
       title: 'Asset Transfer',
       url: '/asset-transfer',
       icon: 'newspaper-outline'
-    },{
+    }, {
       title: 'Reconciliation Report',
       url: '/reconciliation-report',
       icon: 'list'
-    },{
+    }, {
       title: 'Department Location Wise Report',
       url: '/department-wise',
       icon: 'laptop'
@@ -320,7 +326,7 @@ export class AppComponent {
 
   ];
 
-  public procurement= [
+  public procurement = [
 
     {
       title: 'Purchase Request',
@@ -412,10 +418,6 @@ export class AppComponent {
       url: '/view-invoice-status',
       icon: 'cash-outline'
     },
-
-
-
-
     {
       title: 'Vendor Master',
       url: '/vendormaster',
@@ -451,14 +453,9 @@ export class AppComponent {
     //   url: '/updatevendoritem',
     //   icon: 'pricetag'
     // },
-
-
-
-
-
   ];
 
-  public Dmspage =[
+  public Dmspage = [
 
   ];
 
@@ -480,19 +477,46 @@ export class AppComponent {
     },
     {
       title: 'Reports',
-      url: '/pmsreports',
-      icon: 'create'
-    }
+      // url: '',
+      icon: 'create',
+      subPages: [
+        {
+          title: 'Property List',
+          url: '/pms-list',
+          icon: 'list-circle'
+        },
+        {
+          title: 'Payment Details',
+          url: '/payment-details',
+          icon: 'document-text'
+        },
+        {
+          title: 'Issue Ledger',
+          url: '/issue-ledger',
+          icon: 'newspaper'
+        },
+        {
+          title: 'Document Expiry Report',
+          url: '/document-expiry-report',
+          icon: 'documents'
+        },
+        {
+          title: 'Property Contact List',
+          url: '/property-condact-list',
+          icon: 'call'
+        },
+
+      ]}
   ];
 
-  showSubmenu: boolean = false;
+
 
   @ViewChild(IonRouterOutlet) routerOutlet: IonRouterOutlet;
   constructor(private locationAccuracy: LocationAccuracy,
     private router: Router,
     private platform: Platform,
-    private splashScreen: SplashScreen,private androidPermissions: AndroidPermissions,
-    private statusBar: StatusBar,public alertController: AlertController,private http: HttpClient,
+    private splashScreen: SplashScreen, private androidPermissions: AndroidPermissions,
+    private statusBar: StatusBar, public alertController: AlertController, private http: HttpClient,
     public Ipaddressservice: IpaddressService,
     public menuCtrl: MenuController
   ) {
@@ -525,27 +549,27 @@ export class AppComponent {
 
     if (this.splashScreen) {
       setTimeout(() => {
-          this.splashScreen.hide();
+        this.splashScreen.hide();
       }, 100);
-  }
+    }
 
-    this.user_name=localStorage.getItem('TUM_USER_NAME');
+    this.user_name = localStorage.getItem('TUM_USER_NAME');
     this.router.events.subscribe(event => {
       if (event.constructor.name === "NavigationEnd") {
         this.name = (<any>event).url.split("/").slice(-1)[0];
 
-        console.log("event.constructor.name :"+event.constructor.name)
+        console.log("event.constructor.name :" + event.constructor.name)
 
-        if(this.name =='login'){
-        this.logoutbtn=true;
-        //navigator['app'].exitApp();
+        if (this.name == 'login') {
+          this.logoutbtn = true;
+          //navigator['app'].exitApp();
 
         }
-        else if(this.name ==''){
-          this.logoutbtn=true;
+        else if (this.name == '') {
+          this.logoutbtn = true;
         }
-        else{
-          this.logoutbtn=false;
+        else {
+          this.logoutbtn = false;
         }
 
       }
@@ -570,15 +594,19 @@ export class AppComponent {
 
   }
 
-  ngOnInit(){
-    this.user_role  = window.localStorage.getItem('TUM_USER_TYPE');
+  ngOnInit() {
+    this.user_role = window.localStorage.getItem('TUM_USER_TYPE');
     console.log(this.user_role);
-    if(this.user_role == '1'||this.user_role == '46'||this.user_role == '37'||this.user_role == '44'||this.user_role == '47'||this.user_role == '45'){
+    if (this.user_role == '1' || this.user_role == '46' || this.user_role == '37' || this.user_role == '44' || this.user_role == '47' || this.user_role == '45') {
       this.chkadmin = true;
     }
+
+
+
+
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
 
   }
 
@@ -607,7 +635,7 @@ export class AppComponent {
     this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
       () => {
         // When GPS Turned ON call method to get Accurate location coordinates
-     //   this.getLocationCoordinates()
+        //   this.getLocationCoordinates()
       },
       error => alert('Please turn on the location for further purpose')
     );
@@ -646,7 +674,7 @@ export class AppComponent {
     }
   }
 
- async logout(): Promise<void>{
+  async logout(): Promise<void> {
     var alert1 = await this.alertController.create({
 
       message: 'Are you sure you want to logout',
@@ -663,7 +691,7 @@ export class AppComponent {
 
           handler: () => {
 
-          var logout_obj = {
+            var logout_obj = {
               access_token: localStorage.getItem('token'),
               userid: localStorage.getItem('TUM_USER_ID'),
               usertoken: localStorage.getItem('usertoken'),
@@ -671,20 +699,20 @@ export class AppComponent {
             };
 
             const header = new Headers();
-           header.append("Content-Type", "application/json");
-         let options = new HttpHeaders().set('Content-Type', 'application/json');
-           this.http.post(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj, {
-             headers: options,
-           }).subscribe(resp => {
+            header.append("Content-Type", "application/json");
+            let options = new HttpHeaders().set('Content-Type', 'application/json');
+            this.http.post(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj, {
+              headers: options,
+            }).subscribe(resp => {
 
-            localStorage.clear();
-            this.router.navigate(['/login']);
+              localStorage.clear();
+              this.router.navigate(['/login']);
 
-       }, error => {
-        localStorage.clear();
-        this.router.navigate(['/login']);
+            }, error => {
+              localStorage.clear();
+              this.router.navigate(['/login']);
 
-           });
+            });
 
           }
         }
@@ -693,116 +721,135 @@ export class AppComponent {
 
     await alert1.present();
   }
-  menutoogle(){
+  menutoogle() {
 
-    if(this.list==true){
-      this.list=false;
+    if (this.list == true) {
+      this.list = false;
     }
-    else{
-      this.list=true;
-    }
-
-
-  }
-  menutoogle1(){
-
-    if(this.list1==true){
-      this.list1=false;
-    }
-    else{
-      this.list1=true;
+    else {
+      this.list = true;
     }
 
 
   }
-  menutoogle2(){
+  menutoogle1() {
 
-    if(this.list2==true){
-      this.list2=false;
+    if (this.list1 == true) {
+      this.list1 = false;
     }
-    else{
-      this.list2=true;
-    }
-
-
-  }
-  menutoogle3(){
-
-    if(this.list3==true){
-      this.list3=false;
-    }
-    else{
-      this.list3=true;
+    else {
+      this.list1 = true;
     }
 
 
   }
+  menutoogle2() {
 
-  menutoogle5(){
-
-    if(this.list5==true){
-      this.list5=false;
+    if (this.list2 == true) {
+      this.list2 = false;
     }
-    else{
-      this.list5=true;
+    else {
+      this.list2 = true;
+    }
+
+
+  }
+  menutoogle3() {
+
+    if (this.list3 == true) {
+      this.list3 = false;
+    }
+    else {
+      this.list3 = true;
     }
 
 
   }
 
+  menutoogle5() {
 
-  menutoogle6(){
-
-    if(this.list6==true){
-      this.list6=false;
+    if (this.list5 == true) {
+      this.list5 = false;
     }
-    else{
-      this.list6=true;
+    else {
+      this.list5 = true;
     }
 
 
   }
 
-  menutoogle4(){
+
+  menutoogle6() {
+
+    if (this.list6 == true) {
+      this.list6 = false;
+    }
+    else {
+      this.list6 = true;
+    }
+
+
+  }
+
+  menutoogle4() {
     this.router.navigateByUrl('/hrmsmyapprovals');
     this.menuCtrl.close();
   }
 
-  menutoogleCams(){
+  menutoogleCams() {
 
-    if(this.CamsList==true){
-      this.CamsList=false;
+    if (this.CamsList == true) {
+      this.CamsList = false;
     }
-    else{
-      this.CamsList=true;
-    }
-  }
-
-
-  menutooglepms(){
-
-    if(this.pms==true){
-      this.pms=false;
-    }
-    else{
-      this.pms=true;
+    else {
+      this.CamsList = true;
     }
   }
 
 
+  menutooglepms() {
+debugger
+    if (this.pms == true) {
+      this.pms = false;
+    }
+    else {
+      this.pms = true;
+    }
+  }
 
 
-//   menutoogle(data){
 
-//     this.showSubmenu = !this.showSubmenu;
-// if(data==5){
-//   this.router.navigateByUrl('/hrmsmyapprovals');
+  
 
-// }
-// else{
-//   this.list=data;
-// }
-//   }
+  menuItemHandler(): void {
+    this.showSubmenu = !this.showSubmenu;
+  }
+
+  showreports(){
+    alert("567")
+
+
+
+
+
+    this.pmssubmenu=!this.pmssubmenu
+    this.pmssubmenu=true
+  }
+
+
+
+
+  //   menutoogle(data){
+
+  //     this.showSubmenu = !this.showSubmenu;
+  // if(data==5){
+  //   this.router.navigateByUrl('/hrmsmyapprovals');
+
+  // }
+  // else{
+  //   this.list=data;
+  // }
+  //   }
 
 }
 

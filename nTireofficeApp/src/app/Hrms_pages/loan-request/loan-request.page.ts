@@ -57,6 +57,7 @@ export class LoanRequestPage implements OnInit {
   release: any;
   disabledvalue;
   username = window.localStorage.getItem('TUM_USER_NAME');
+  getemployeid: any;
   constructor(private router: Router,private route:ActivatedRoute,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
     // this.userid = window.localStorage['TUM_USER_ID'];
      this.userid = parseInt(window.localStorage['TUM_USER_ID'])
@@ -111,6 +112,8 @@ export class LoanRequestPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getemployeid=parseInt(window.localStorage['EmployeeID'])
+    console.log(this.getemployeid)
   }
   getDesignation(){
 
@@ -253,6 +256,8 @@ export class LoanRequestPage implements OnInit {
   }
 
   loanSubmit(){
+
+    console.log(this.getemployeid)
     if (this.reqtype == 2) {
       var amount = this.advamount;
       var moninstall = this.installments;
@@ -280,13 +285,18 @@ export class LoanRequestPage implements OnInit {
 
 
     var OBJ = {
-      emp_id: window.localStorage.getItem['EmployeeID'],
+      emp_id: this.getemployeid,
       req_type: this.reqtype,
       scheme_id: schemeid.toString(),
-      MonthLy_installment: moninstall,
-      Amount: amount,
+      // MonthLy_installment: moninstall,
+      // Amount: amount,
+      // Status:  this.status,
+      // Monthly_deduct: emiamount,
+
+      MonthLy_installment: '',
+      Amount: '',
       Status:  this.status,
-      Monthly_deduct: emiamount,
+      Monthly_deduct: '',
       Rev_loan:'',
       CreatedBy: this.userid.toString(),
       user_id: this.userid,
@@ -298,7 +308,8 @@ export class LoanRequestPage implements OnInit {
       function_id: functionid,
       access_token:window.localStorage['token'],
       userid:this.userid,
-      usertoken:this.usertoken
+      usertoken:this.usertoken,
+
 
     }
     console.log(OBJ)
