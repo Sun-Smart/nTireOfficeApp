@@ -578,7 +578,6 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
           this.pendleaddetails[i].RESPHONE = '-';
         }
         if (this.pendleaddetails[i].CreatedOn != undefined) {
-          debugger;
 
           var date = this.pendleaddetails[i].CreatedOn1;
 
