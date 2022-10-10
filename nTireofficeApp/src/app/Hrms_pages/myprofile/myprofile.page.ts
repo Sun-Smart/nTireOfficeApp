@@ -817,6 +817,8 @@ console.log(""+this.profilepic+""+this.image)
               this.profile.CurrentPincode = ' ';
             }
 
+
+            console.log("this.profile.CurrentCountry" + this.profile.CurrentCountry);
             // API CALLING FOR currentAddress DETAILS
             this.currentAddressObject = {
               empID: window.localStorage.getItem("EmployeeID"),
@@ -828,12 +830,13 @@ console.log(""+this.profilepic+""+this.image)
               Pincode: this.profile.CurrentPincode
             };
 
-            // console.log("currentAddress Detail Object " + this.currentAddressObject);
+            console.log("currentAddress Detail Object " + this.currentAddressObject);
             // API CALLING FOR currentAddress DETAILS
-
+console.log(this.currentAddressObject.empID + "/" +  this.currentAddressObject.Type + "/" +  this.currentAddressObject.Address + "/" +  this.currentAddressObject.City + "/" +  this.currentAddressObject.State + "/" +  this.currentAddressObject.Country + "/" +  this.currentAddressObject.Pincode + "/0/0/0")
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/" +  this.currentAddressObject.empID + "/" +  this.currentAddressObject.Type + "/" +  this.currentAddressObject.Address + "/" +  this.currentAddressObject.City + "/" +  this.currentAddressObject.State + "/" +  this.currentAddressObject.Country + "/" +  this.currentAddressObject.Pincode + "/0/0/0").then(resp=>{
-              var data = JSON.parse(resp.toString());
-
+              console.log("test",resp);
+              var data = resp;
+console.log("test",data);
                 if (data[0].Column1 == "Successfully Updated") {
                   // Store the Data and Display the success message to user
                   this.error = "";
@@ -904,7 +907,9 @@ console.log(""+this.profilepic+""+this.image)
 
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeUpdate/" + this.PermanentAddressObject.empID + "/" + this.PermanentAddressObject.Type + "/" + this.PermanentAddressObject.Address + "/" + this.PermanentAddressObject.City + "/" + this.PermanentAddressObject.State + "/" + this.PermanentAddressObject.Country + "/" + this.PermanentAddressObject.Pincode + "/0/0/0").then(resp=>{
 
-              var data = JSON.parse(resp.toString());
+              // var data = JSON.parse(resp.toString());
+              var data = resp;
+
               // console.log(response);
               if (data[0].Column1 == "Successfully Updated") {
                 // Store the Data and Display the success message to user

@@ -32,7 +32,7 @@ export class DashboardPage implements OnInit {
   error;
   empAllRequests1;
   empAllRequests=[];
-  empPayslips=[];
+  empPayslips : any=[];
   attendance;
   attendanceList=[];
   empApprovals=[];
@@ -457,7 +457,9 @@ this.backbutton();
           FUNCTION_ID:parseInt(window.localStorage['FUNCTION_ID'])
       }
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms1+"Boworkflowusersummary/"+ obj.TUM_USER_ID+'/'+obj.FUNCTION_ID).then(resp=>{
-      this.empAllRequests1 = JSON.parse(resp.toString());
+      // this.empAllRequests1 = JSON.parse(resp.toString());
+      this.empAllRequests1 = resp;
+
       console.log(this.empAllRequests1);
       this.empAllRequests = this.empAllRequests1.Table1;
       console.log(this.empAllRequests);
@@ -472,7 +474,9 @@ this.backbutton();
   getEmployeePayslip(){
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeePayslip/'+ window.localStorage['TUM_USER_ID']+'/'+'payslip').then(resp=>{
-      this.empPayslips = JSON.parse(resp.toString());
+      // this.empPayslips = JSON.parse(resp.toString());
+      this.empPayslips = resp;
+
       console.log("empPayslips : "+JSON.stringify(this.empPayslips))
 
       if (this.empPayslips.length == 0 || this.empPayslips == undefined) {
