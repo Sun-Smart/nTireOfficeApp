@@ -2,3 +2,17 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+
+ion-card {
+  .card_header1 {
+    background-image: linear-gradient(
+      to left,
+      rgb(34, 191, 241),
+      rgb(2, 154, 222) 50%,
+      rgb(2, 154, 222) 50%
+    ) !important;
+    color: white !important;
+    font-size: x-large;
+    padding: 0px !important;
+  }
+}

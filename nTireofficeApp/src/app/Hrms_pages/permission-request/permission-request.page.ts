@@ -116,13 +116,13 @@ this.toHour = this.time[1];
 
 var perm={
   contact:this.contact,
-  reqID:this.reqID,
+  reqID:"0",
   userID:this.userID,
   empID:this.empID,
   status:this.status
 }
 
-   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"SavePermission/" + window.localStorage['FUNCTION_ID'] + "/" + perm.empID + "/" + perm.reqID + "/" + date + "/" + permDate + "/" + fromHour + "/" + toHour + "/" + this.contact + "/" + this.reason + "/" + this.status).then(resp=>{
+   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/" + window.localStorage['FUNCTION_ID'] + "/" + perm.empID + "/" + perm.reqID + "/" + date + "/" + permDate + "/" + fromHour + "/" + toHour + "/" + this.contact + "/" + this.reason + "/" + this.status).then(resp=>{
 
     if (resp == '"Permission is not enabled for this Employee"') {
       // console.log("Gotcha : " + resp);
