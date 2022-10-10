@@ -40,6 +40,8 @@ export class PermissionsummaryPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.empID=window.localStorage['EmployeeID'];
   }
   filterDate(fromdate,todate){
     this.display=[];
