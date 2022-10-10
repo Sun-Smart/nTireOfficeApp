@@ -81,7 +81,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
 
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
     var functionid = parseInt(window.localStorage['FUNCTION_ID']);
-    var dataobj1 = { FUNCTIONID: functionid, status: 'A' };
+    var dataobj1 = { functionid: functionid, status: 'A' };
     this.token = window.localStorage['token'];
     var userid = parseInt(window.localStorage['TUM_USER_ID']);
     var tokenJSON = { access_token: this.token, userid: userid, 'usertoken': window.localStorage['usertoken'] };
@@ -90,7 +90,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + '/getexpdetails/', getappbyuserJSON1, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getexpdetails', getappbyuserJSON1, {
       headers: options,
     }).subscribe(resp => {
 
@@ -123,7 +123,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     this.token = window.localStorage['token'];
 
     var tokenJSON1 = {
-      custid: parseInt(this.Customer_ID),
+      Custid: parseInt(this.Customer_ID),
       access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken']
     };
 
@@ -146,7 +146,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
         var dataobj = { expense_id: this.expense_id1 }
         this.token = window.localStorage['token'];
 
-        var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+        var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
         var getExpensedocJSON = Object.assign(dataobj, tokenJSON);
         const header = new Headers();
@@ -339,7 +339,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       this.validExpense = 'true';
 
       var insert_obj = {
-        FunctionID: localStorage.getItem('FUNCTION_ID'),
+        functionid: localStorage.getItem('FUNCTION_ID'),
 
         CUSTOMER_ID: this.Customer_ID,
         CUSTOMER_NAME: this.customer_name,
@@ -370,7 +370,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
 
       this.token = window.localStorage['token'];
 
-      var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+      var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
 
       var insertExpenseJSON = Object.assign(insert_obj, tokenJSON);
@@ -392,12 +392,12 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       this.presentAlert("", "Successfully Saved")
       this.presentAlert1("", "Successfully Saved")
 
-      var dataobj = { custid: this.Customer_ID }
+      var dataobj = { Custid: parseInt(this.Customer_ID) }
       this.token = window.localStorage['token'];
 
       var tokenJSON1 = {
-        FUNCTION_ID: window.localStorage['FUNCTION_ID'],
-        access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken']
+        functionid: parseInt(window.localStorage['FUNCTION_ID']),
+        access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken']
       };
 
       var getExpenseJSON = Object.assign(dataobj, tokenJSON1);
@@ -418,13 +418,13 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
           var dataobj = { expense_id: this.expense_id1 }
           this.token = window.localStorage['token'];
 
-          var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+          var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 
           var getExpensedocJSON = Object.assign(dataobj, tokenJSON);
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
-          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + '/getExpenseDoc/', getExpensedocJSON, {
+          this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getExpenseDoc/', getExpensedocJSON, {
             headers: options,
           }).subscribe(resp => {
             this.exdata = resp;

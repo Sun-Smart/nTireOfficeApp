@@ -1,3 +1,6 @@
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable no-debugger */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/dot-notation */
@@ -39,13 +42,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
   currentlatlon;
   map: any;
   service = new google.maps.places.AutocompleteService();
-  callpriorityarray = [];
+  callpriorityarray: any = [];
 
-  callratingarray = [];
-  callnaturearray = [];
-  callstagearray = [];
-  leadsourcearray = [];
-  nextactionarray = [];
+  callratingarray: any = [];
+  callnaturearray: any = [];
+  callstagearray: any = [];
+  leadsourcearray: any = [];
+  nextactionarray: any = [];
   //Geocoder configuration
   geoencoderOptions: NativeGeocoderOptions = {
     useLocale: true,
@@ -116,19 +119,19 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     START_TIME: "",
     Stage: "",
     TCC_CALLER_ID: "",
-    TCC_CAMPAIGN_ID: "",
-    TCC_CUSTOMER_ID: "",
-    TCC_LAST_CALLED: "",
-    TCC_LEAD_NATURE: "",
-    TCC_LEAD_RATING: "",
-    TCC_LEAD_SOURCE: "",
-    TCC_LEAD_STAGE: "",
+    TCC_CAMPAIGN_ID: parseInt(""),
+    TCC_CUSTOMER_ID: parseInt(""),
+    TCC_LAST_CALLED: parseInt(""),
+    TCC_LEAD_NATURE: parseInt(""),
+    TCC_LEAD_RATING: parseInt(""),
+    TCC_LEAD_SOURCE: parseInt(""),
+    TCC_LEAD_STAGE: parseInt(""),
 
     TCC_RESPONSE: "",
     TCM_CAMPAIGN_SHORTDESC: "",
     TCM_PRODUCT_CODE: "",
     TCM_PRODUCT_DESC: "",
-    customer_lead_id: "",
+    customer_lead_id: parseInt(""),
     priority: "",
     producttypeTEXT: "Banking"
   };
@@ -158,8 +161,8 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     TCC_LEAD_PRIORITY: "",
     TCC_LEAD_BY: "",
     response: "",
-    offset: 0,
-    limit: 50,
+    offset: "0",
+    limit: "50",
     TCC_CUST_LEAD_ID: ""
   };
   addbaselocno;
@@ -240,12 +243,12 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.START_TIME = this.item.START_TIME;
     this.dataobjs.Stage = this.item.Stage;
     this.dataobjs.TCC_CALLER_ID = this.item.TCC_CALLER_ID;
-    this.dataobjs.TCC_CAMPAIGN_ID = this.item.TCC_CAMPAIGN_ID;
-    this.dataobjs.TCC_CUSTOMER_ID = this.item.TCC_CUSTOMER_ID;
-    this.dataobjs.TCC_LAST_CALLED = this.item.TCC_LAST_CALLED;
-    this.dataobjs.TCC_LEAD_NATURE = this.item.TCC_LEAD_NATURE;
-    this.dataobjs.TCC_LEAD_RATING = this.item.TCC_LEAD_RATING;
-    this.dataobjs.TCC_LEAD_SOURCE = this.item.TCC_LEAD_SOURCE;
+    this.dataobjs.TCC_CAMPAIGN_ID = parseInt(this.item.TCC_CAMPAIGN_ID);
+    this.dataobjs.TCC_CUSTOMER_ID = parseInt(this.item.TCC_CUSTOMER_ID);
+    this.dataobjs.TCC_LAST_CALLED = parseInt(this.item.TCC_LAST_CALLED);
+    this.dataobjs.TCC_LEAD_NATURE = parseInt(this.item.TCC_LEAD_NATURE);
+    this.dataobjs.TCC_LEAD_RATING = parseInt(this.item.TCC_LEAD_RATING);
+    this.dataobjs.TCC_LEAD_SOURCE = parseInt(this.item.TCC_LEAD_SOURCE);
     this.dataobjs.TCC_LEAD_STAGE = this.item.TCC_LEAD_STAGE;
 
     if (this.item.Remarks != null) {
@@ -257,7 +260,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.TCM_CAMPAIGN_SHORTDESC = this.item.TCM_CAMPAIGN_SHORTDESC;
     this.dataobjs.TCM_PRODUCT_CODE = this.item.TCM_PRODUCT_CODE;
     this.dataobjs.TCM_PRODUCT_DESC = this.item.TCM_PRODUCT_DESC;
-    this.dataobjs.customer_lead_id = this.item.customer_lead_id;
+    this.dataobjs.customer_lead_id = parseInt(this.item.customer_lead_id);
     this.dataobjs.priority = this.item.priority;
     this.dataobjs.producttypeTEXT = this.item.producttypeTEXT;
 
@@ -281,12 +284,14 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callpriority', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
 
-      this.callpriorityarray = JSON.parse(resp.toString());
-      console.log("callpriorityarray: " + JSON.stringify(this.callpriorityarray));
+      // this.callpriorityarray = JSON.parse(resp.toString());
+      this.callpriorityarray = JSON.stringify(resp);
+      this.callpriorityarray = JSON.parse(this.callpriorityarray);
+      // console.log("callpriorityarray: " + JSON.stringify(this.callpriorityarray));
 
     }, error => {
 
@@ -298,11 +303,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callrating', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
 
-      this.callratingarray = JSON.parse(resp.toString());
+      // this.callratingarray = JSON.parse(resp.toString());
+      this.callratingarray = JSON.stringify(resp);
+      this.callratingarray = JSON.parse(this.callratingarray);
       console.log("callratingarray: " + JSON.stringify(this.callratingarray));
 
     }, error => {
@@ -315,11 +322,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callnature', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callnature', {
       headers: options,
     }).subscribe(resp => {
 
-      this.callnaturearray = JSON.parse(resp.toString());
+      // this.callnaturearray = JSON.parse(resp.toString());
+      this.callnaturearray = JSON.stringify(resp);
+      this.callnaturearray = JSON.parse(this.callnaturearray);
       console.log("callnaturearray: " + JSON.stringify(this.callnaturearray));
 
     }, error => {
@@ -332,11 +341,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/callstage', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callstage', {
       headers: options,
     }).subscribe(resp => {
 
-      this.callstagearray = JSON.parse(resp.toString());
+      // this.callstagearray = JSON.parse(resp.toString());
+      this.callstagearray = JSON.stringify(resp);
+      this.callstagearray = JSON.parse(this.callstagearray);
       console.log("callstagearray: " + JSON.stringify(this.callstagearray));
 
     }, error => {
@@ -349,11 +360,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + '/mobileapi/LMS/LMS.svc/Leadsource', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'Leadsource', {
       headers: options,
     }).subscribe(resp => {
 
-      this.leadsourcearray = JSON.parse(resp.toString());
+      // this.leadsourcearray = JSON.parse(resp.toString());
+      this.leadsourcearray = JSON.stringify(resp);
+      this.leadsourcearray = JSON.parse(this.leadsourcearray);
       console.log("leadsourcearray: " + JSON.stringify(this.leadsourcearray));
 
     }, error => {
@@ -393,6 +406,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     });
   }
   Updateschedulemeet(objdatval, address) {
+    debugger;
     console.log(objdatval);
     console.log(address);
     this.presentLoadingWithOptions();
@@ -417,7 +431,9 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     else if (objdatval.nextactionval == '2' && (objdatval.schedmeetdate == undefined || this.followtime == undefined)) {
       this.presentAlert("", "Please Enter Date & Time");
     }
-    else if (objdatval.nextactionval == '1' && (this.schedleadareaname == undefined || objdatval.schedmeetdate == undefined || this.followtime == undefined)) {
+    // else if (objdatval.nextactionval == '1' && (this.schedleadareaname == undefined || objdatval.schedmeetdate == undefined || this.followtime == undefined)) {
+    else if (objdatval.nextactionval == '1' && (objdatval.schedmeetdate == undefined || this.followtime == undefined)) {
+      debugger;
       this.presentAlert("", "Please Enter Place To Meet & Meeting Date & Meeting Time");
     }
     else {
@@ -466,8 +482,8 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
         // console.log(objdataupd.TCC_LOCATION_TO_MEET);
       }
       this.token = window.localStorage['token'];
-
-      var tokenJSON = { access_token: this.token, userid: window.localStorage['TUM_USER_ID'], 'usertoken': window.localStorage['usertoken'] };
+      var userid = parseInt(window.localStorage['TUM_USER_ID'])
+      var tokenJSON = { access_token: this.token, userid: userid, 'usertoken': window.localStorage['usertoken'] };
 
       console.log(this.objdataupd);
       if (this.barval == 1) {
@@ -482,7 +498,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/updpendleadsdata/', updateleadJSON1, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'updpendleadsdata/', updateleadJSON1, {
         headers: options,
       }).subscribe(resp => {
         if (resp == 'Updated Successfully') {
@@ -547,7 +563,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     } else {
 
       var customerid = this.item.TCC_CUSTOMER_ID;
-      var custleadid = this.item.customer_lead_id;
+      var custleadid = parseInt(this.item.customer_lead_id);
       var callid = this.item.CALL_ID;
       var idvals = 2;
       var btnval = '';
@@ -673,7 +689,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                     END_TIME: "",
                     Location_Desc: "",
                     access_token: "",
-                    userid: "",
+                    userid: parseInt(""),
                     usertoken: "",
                   };
                   objdataupdtime.TCC_CUST_ID = customerid;
@@ -684,14 +700,14 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                   objdataupdtime.END_TIME = currenttime;
                   objdataupdtime.Location_Desc = areaname;
                   objdataupdtime.access_token = window.localStorage['token'];
-                  objdataupdtime.userid = window.localStorage['TUM_USER_ID'];
+                  objdataupdtime.userid = parseInt(window.localStorage['TUM_USER_ID']);
                   objdataupdtime.usertoken = window.localStorage['usertoken'];
 
                   console.log(objdataupdtime);
                   const header = new Headers();
                   header.append("Content-Type", "application/json");
                   let options = new HttpHeaders().set('Content-Type', 'application/json');
-                  this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/updstendtime/', objdataupdtime, {
+                  this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'updstendtime/', objdataupdtime, {
                     headers: options,
                   }).subscribe(resp => {
                     if (resp == 'start time updated') {
@@ -815,6 +831,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
 
     const alert = await this.alertController.create({
       header: heading,
+      cssClass: 'buttonCss',
       message: tittle,
       buttons: [
         {

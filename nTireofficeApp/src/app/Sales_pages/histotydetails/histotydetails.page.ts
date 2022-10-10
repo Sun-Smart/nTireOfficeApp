@@ -100,7 +100,7 @@ export class HistotydetailsPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + '/dms/DMS/sales/gethistorydata/', updateleadHistoryJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'gethistorydata/', updateleadHistoryJSON, {
       headers: options,
     }).subscribe(resp => {
       this.showhistforuser1 = resp;
