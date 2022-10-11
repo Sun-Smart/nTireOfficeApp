@@ -242,8 +242,14 @@
             <a (click)="showmore(i,items.CALL_ID)">
               <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
 
-              <i id="imageidvals{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
-                style="font-size: 21px;margin-left: 270px !important;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i>
+              <i id="imageidvals{{0+i}}" class="fas fa-chevron-circle-down" aria-hidden="true"
+              style="  font-size: 24px;
+              color: #000;
+              left: 260px;
+              position: relative;
+              bottom: 4px;
+              box-shadow: rgb(0 0 0 / 30%) -1px 6px 11px -11px, rgb(0 0 0 / 30%) -9px 8px 20px -5px;
+              display: inline-block;"></i>
             </a>
           </ion-col>
           <div id="dividvals{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
@@ -303,8 +309,14 @@
                 <span><b>{{items.Remarks}}</b></span>
               </ion-col>
               <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-                <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
-                    style="font-size: 21px;left: 270px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);"></i></a>
+                <a (click)="showless(i)"><i class="fas fa-chevron-circle-up" aria-hidden="true"
+                  style="  font-size: 24px;
+                  color: #000;
+                  left: 260px;
+                  position: relative;
+                  bottom: 4px;
+                  box-shadow: rgb(0 0 0 / 30%) -1px 6px 11px -11px, rgb(0 0 0 / 30%) -9px 8px 20px -5px;
+                  display: inline-block;"></i></a>
 
               </ion-col>
               <ion-row size="12" style="width: 100%;">

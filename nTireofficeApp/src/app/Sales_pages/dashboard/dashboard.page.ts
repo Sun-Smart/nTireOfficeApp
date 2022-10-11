@@ -68,10 +68,11 @@ export class DashboardPage implements OnInit {
     this.Stagewisegraph(branchid);
     this.Sourcewisegrph(branchid);
     this.productwisegraph(branchid);
-    this.username = localStorage.getItem('TUM_USER_NAME');
+
   }
 
   ngOnInit() {
+    this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   Getbranches() {
@@ -89,8 +90,8 @@ export class DashboardPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlist = resp;
-
+      this.branchlist = JSON.stringify(resp);
+      this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));

@@ -206,14 +206,14 @@ export class TeammeetingsPage implements OnInit {
                       var el = new Date();
                       var parts = app_date.split('T');
                       var parts2 = parts[1];
-                      var parts3 = parts2.split(':');
+                      var parts3 = parts2?.split(':');
                       // console.log(parts3)
-                      var sHours = parts3[0]
-                      var sMinutes = parts3[1]
+                      // var sHours = parts3[0]
+                      // var sMinutes = parts3[1]
                       var seconds = 0;
 
-                      el.setHours(sHours);
-                      el.setMinutes(sMinutes);
+                      // el.setHours(sHours);
+                      // el.setMinutes(sMinutes);
                       el.setSeconds(seconds);
                       // console.log(el);
 
@@ -379,13 +379,13 @@ export class TeammeetingsPage implements OnInit {
                   var el = new Date();
                   var parts = app_date.split('T');
                   var parts2 = parts[1];
-                  var parts3 = parts2.split(':');
+                  var parts3 = parts2?.split(':');
                   // console.log(parts3)
-                  var sHours = parts3[0]
-                  var sMinutes = parts3[1]
+                  // var sHours = parts3[0]
+                  // var sMinutes = parts3[1]
 
-                  el.setHours(sHours);
-                  el.setMinutes(sMinutes);
+                  // el.setHours(sHours);
+                  // el.setMinutes(sMinutes);
                   el.setSeconds(0);
                   // console.log(el);
 
@@ -495,13 +495,13 @@ export class TeammeetingsPage implements OnInit {
                     var el = new Date();
                     var parts = app_date.split('T');
                     var parts2 = parts[1];
-                    var parts3 = parts2.split(':');
+                    var parts3 = parts2?.split(':');
                     // console.log(parts3)
-                    var sHours = parts3[0]
-                    var sMinutes = parts3[1]
+                    // var sHours = parts3[0]
+                    // var sMinutes = parts3[1]
 
-                    el.setHours(sHours);
-                    el.setMinutes(sMinutes);
+                    // el.setHours(sHours);
+                    // el.setMinutes(sMinutes);
                     el.setSeconds(0);
                     // console.log(el);
 
@@ -591,7 +591,8 @@ export class TeammeetingsPage implements OnInit {
       console.log(resp)
 
 
-      this.allMeetings = resp;
+      this.allMeetings = JSON.stringify(resp);
+      this.allMeetings = JSON.parse(this.allMeetings);
       this.allUsername = [];
       this.allmeetingArray = [];
       this.lastlocationmeet = [];
@@ -660,13 +661,13 @@ export class TeammeetingsPage implements OnInit {
             var el = new Date();
             var parts = app_date.split('T');
             var parts2 = parts[1];
-            var parts3 = parts2.split(':');
+            var parts3 = parts2?.split(':');
             // console.log(parts3)
-            var sHours = parts3[0]
-            var sMinutes = parts3[1]
+            // var sHours = parts3[0]
+            // var sMinutes = parts3[1]
 
-            el.setHours(sHours);
-            el.setMinutes(sMinutes);
+            // el.setHours(sHours);
+            // el.setMinutes(sMinutes);
             el.setSeconds(0);
             // console.log(el);
 
@@ -775,8 +776,9 @@ export class TeammeetingsPage implements OnInit {
     var meetDate = ('0' + this.nextcalldate.getDate()).slice(-2) + '/' + ('0' + (this.nextcalldate.getMonth() + 1)).slice(-2) + '/' + this.nextcalldate.getFullYear();
     var parts = data.TCC_NEXT_CALL_DATE.split('T');
     var parts2 = parts[1];
-    var parts3 = parts2.split(':');
-    var date = new Date(0, 0, 0, parts3[0], parts3[1], 0);
+    var parts3 = parts2?.split(':') || [];
+    // var date = new Date(0, 0, 0, parts3[0], parts3[1], 0);
+    var date = new Date();
     var meetTime = this.datePipe.transform(date, 'hh:mm a');
     nextcall = meetDate + ' ' + meetTime;
     console.log(nextcall);
@@ -884,9 +886,9 @@ export class TeammeetingsPage implements OnInit {
     if (time) {
       var parts = time.split('T');
       var parts2 = parts[1];
-      var parts3 = parts2.split(':');
+      var parts3 = parts2?.split(':') || [];
     }
-    var date = new Date(0, 0, 0, parts3[0], parts3[1], 0);
+    var date = new Date();
 
     return this.datePipe.transform(date, 'hh:mm a');
 
