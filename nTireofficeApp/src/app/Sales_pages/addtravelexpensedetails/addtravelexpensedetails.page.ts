@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable radix */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -42,10 +43,10 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
   getGeoencoder1;
   getGeoencoder;
   customer_name;
-  call_id: number;
-  product:number;
+  call_id;
+  product;
   product_desc;
-  campaign:number;
+  campaign;
   campaign_desc;
   branch_id;
   image = [];
@@ -342,18 +343,24 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
         functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
 
         CUSTOMER_ID: this.Customer_ID,
-        CUSTOMER_NAME: this.customer_name,
-        CALL_ID: this.call_id,
-        PRODUCT: this.product,
-        PRODUCT_DESC: this.product_desc,
-        CAMPAIGN: this.campaign,
-        CAMPAIGN_DESC: this.campaign_desc,
-        CUSTOMER_REF:"",
+        // CUSTOMER_NAME: this.customer_name.toString(),
+        CUSTOMER_NAME: "",
+        // CALL_ID: parseInt(this.call_id),
+        CALL_ID: 0,
+        // PRODUCT: parseInt(this.product),
+        PRODUCT: 0,
+        // PRODUCT_DESC: this.product_desc.toString(),
+        PRODUCT_DESC: "",
+        // CAMPAIGN: parseInt(this.campaign),
+        CAMPAIGN: 0,
+        // CAMPAIGN_DESC: this.campaign_desc.toString(),
+        CAMPAIGN_DESC: "",
+        CUSTOMER_REF: "",
         Remarks: data.remarks,
         status: 'P',
 
         createdby: parseInt(localStorage.getItem('TUM_USER_ID')),
-        updatedby:parseInt( localStorage.getItem('TUM_USER_ID')),
+        updatedby: parseInt(localStorage.getItem('TUM_USER_ID')),
         // BRANCH_ID: this.branch_id,
         branchid: parseInt(window.localStorage['TUM_USER_ID']),
         expense_type: data.expense_type.toString(),
@@ -375,6 +382,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
 
 
       var insertExpenseJSON = Object.assign(insert_obj, tokenJSON);
+      debugger;
       console.log("insertExpenseJSON : " + JSON.stringify(insertExpenseJSON));
       const header1 = new Headers();
       header1.append("Content-Type", "application/json");
