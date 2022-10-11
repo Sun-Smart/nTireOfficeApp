@@ -80,38 +80,33 @@ export class TableSampleService {
     public getDashbTable1() {
         return [
             {
-                "sno": "1.",
-                "invoice": "224",
-                "month": "August",
-                "amount": "3000",
+                "prscode": "1.",
+                "itemcode": "224",
+                "requisitiondate": "August",
                 "status": "Active"
             },
             {
-                "sno": " 2.",
-                "invoice": "225",
-                "month": "Sept",
-                "amount": "4000",
+                "prscode": "1.",
+                "itemcode": "224",
+                "requisitiondate": "August",
                 "status": "Active"
             },
             {
-                "sno": "3.",
-                "invoice": "226",
-                "month": "October",
-                "amount": "5000",
+                "prscode": "1.",
+                "itemcode": "224",
+                "requisitiondate": "August",
                 "status": "Active"
             },
             {
-                "sno": "4.",
-                "invoice": "227",
-                "month": "November",
-                "amount": "6000",
+                "prscode": "1.",
+                "itemcode": "224",
+                "requisitiondate": "August",
                 "status": "Active"
             },
             {
-                "sno": "5.",
-                "invoice": "228",
-                "month": "December",
-                "amount": "7000",
+                "prscode": "1.",
+                "itemcode": "224",
+                "requisitiondate": "August",
                 "status": "Active"
             }
         ]

@@ -100,7 +100,15 @@
     </ion-card-header>
     <ion-card-content>
 
-      <div class="table">
+      <div>
+        <ngx-datatable class="material" [headerClass]="ngx-header" [limit]="8" [rows]="data" [rowHeight]="50"
+          [columns]="columnsStatus" [columnMode]="'standard'" [headerHeight]="40" [footerHeight]="40"
+          [scrollbarH]="true" [sortType]="'multi'" [loadingIndicator]="loadingIndicator"
+          [reorderable]="reorderable" (checkboxClick)="onCheckboxClick($event)" [options]="options"   [tableId]="'checkbox'"> 
+        </ngx-datatable>
+      </div>
+
+      <div class="table" style="display: none;">
         <table class="table table-striped">
           <thead class="card_header">
             <tr class="table-head">

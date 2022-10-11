@@ -8,6 +8,7 @@ import { PmsdashboardPage } from './pmsdashboard.page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
+
 // import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
