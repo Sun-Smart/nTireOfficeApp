@@ -178,38 +178,32 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       buttons: [{
         text: 'Load from Library',
         handler: () => {
+          $('#fileinput').trigger('click');
 
-          //get current position
-          this.geolocation.getCurrentPosition().then((res) => {
+          $('#fileinput').unbind().change(function () {
+            // $('#fileinput').on('change', function () {
+            var filePath = $(this).val();
+            console.log(filePath);
 
-            this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
-            let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
-            console.log("location :n" + location);
-            this.getGeoencoder1(res.coords.latitude, res.coords.longitude);
+            if (filePath != undefined && filePath != "") {
+              var str = filePath;
+            }
+            // alert("" + str.split("\\").pop())
+            //   if(str!=undefined){
+            //   var actualFile = str.split("\\").pop();
+            // }
+            //   console.log("actualFile :" + actualFile);
+            // var File_inputvalue =
+            //self.Images.push(actualFile);
+            self.uploadallfilles();
 
-
-
-          }).catch((error) => {
-            // this.presentAlert('', 'Turn on location to processed!');
           });
         }
       },
       {
         text: 'Use Camera',
         handler: () => {
-          // this.pickImage();
-          this.geolocation.getCurrentPosition().then((res) => {
-
-            this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
-            let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
-            console.log("location :n" + location);
-            this.getGeoencoder1(res.coords.latitude, res.coords.longitude);
-
-
-
-          }).catch((error) => {
-            // this.presentAlert('', 'Turn on location to processed!');
-          });
+          this.Attachdocument();
         }
       },
       {
