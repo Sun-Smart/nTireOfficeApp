@@ -196,7 +196,19 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       {
         text: 'Use Camera',
         handler: () => {
-          this.pickImage();
+          // this.pickImage();
+          this.geolocation.getCurrentPosition().then((res) => {
+
+            this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
+            let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
+            console.log("location :n" + location);
+            this.getGeoencoder1(res.coords.latitude, res.coords.longitude);
+
+
+
+          }).catch((error) => {
+            // this.presentAlert('', 'Turn on location to processed!');
+          });
         }
       },
       {
@@ -207,22 +219,22 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     });
     await actionSheet.present();
   }
-  pickImage() {
+  // pickImage() {
 
-    //get current position
-    this.geolocation.getCurrentPosition().then((res) => {
+  //   //get current position
+  //   this.geolocation.getCurrentPosition().then((res) => {
 
-      this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
-      let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
-      console.log("location :n" + location);
-      this.getGeoencoder(res.coords.latitude, res.coords.longitude);
+  //     this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
+  //     let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
+  //     console.log("location :n" + location);
+  //     // this.getGeoencoder(res.coords.latitude, res.coords.longitude);
 
 
 
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-  }
+  //   }).catch((error) => {
+  //     console.log('Error getting location', error);
+  //   });
+  // }
   uploadallfilles() {
 
     let self = this;
