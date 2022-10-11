@@ -1,37 +1,79 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TableSampleService } from 'src/app/Property_Pages/table-sample.service';
-import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-rfq',
   templateUrl: './rfq.page.html',
   styleUrls: ['./rfq.page.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class RFQPage implements OnInit {
-  showviewlist:boolean=false;
-  showrfq:boolean=false;
 
-  options = { checkboxes: true }
-  data: any = [];
-  columnsStatus: any = [];
+  showviewlist:boolean=false
+  showrfq:boolean=false
 
-  constructor(private router :Router, private tableApi:TableSampleService) { 
+  indeterminateState: boolean;
+  checkParent: boolean;
+  Checkboxes: any;
 
-    this.columnsStatus = [
-      { name: 'prscode', width: "80" },
-      { name: 'itemcode', width: "90"  },
-      { name: 'requisitiondate',  },
-      { name: 'status', width: "70"   },
-    ];
+  constructor(private router :Router) {
+    // this.Checkboxes = [
+    //   {
+    //     name: "PRS Code",
+    //     prscode: "PRS573864533464",
+    //     itemcode: "7865",
+    //     requisitiondate: "12/09/2020",
+    //     isItemChecked: false
+    //   }, {
+    //     name: "PRS Code",
+    //     prscode: "PRS573864533464",
+    //     itemcode: "7865",
+    //     requisitiondate: "12/09/2020",
+    //     isItemChecked: false
+    //   }, {
+    //     name: "PRS Code",
+    //     prscode: "PRS573864533464",
+    //     itemcode: "7865",
+    //     requisitiondate: "12/09/2020",
+    //     isItemChecked: false
+    //   }, {
+    //     name: "PRS Code",
+    //     prscode: "PRS573864533464",
+    //     itemcode: "7865",
+    //     requisitiondate: "12/09/2020",
+    //     isItemChecked: false
+    //   }
+    // ];
+  }
+  checkCheckbox() {
+    setTimeout(() => {
+      this.Checkboxes.forEach(item => {
+        item.isItemChecked = this.checkParent;
+      });
+    });
+  }
+  verifyEvent() {
+    const allItems = this.Checkboxes.length;
+    let selected = 0;
+    this.Checkboxes.map(item => {
+      if (item.isItemChecked) selected++;
+    });
+    if (selected > 0 && selected < allItems) {
+      // One item is selected among all checkbox elements
+      this.indeterminateState = true;
+      this.checkParent = false;
+    } else if (selected == allItems) {
+      // All item selected
+      this.checkParent = true;
+      this.indeterminateState = false;
+    } else {
+      // No item is selected
+      this.indeterminateState = false;
+      this.checkParent = false;
+    }
   }
 
+
   ngOnInit() {
-
-    this.data = this.tableApi.getDashbTable1();
-    console.log(this.data);
-
   }
   Submit(){
     this.showviewlist=true
@@ -43,7 +85,5 @@ export class RFQPage implements OnInit {
   manageRFQlink(){
     this.router.navigate(['/manage-rfq'])
   }
-  onCheckboxClick(selectCheckBoxArr) { 
-    alert(JSON.stringify(selectCheckBoxArr));
-}
+
 }
