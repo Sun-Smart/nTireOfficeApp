@@ -42,10 +42,10 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
   getGeoencoder1;
   getGeoencoder;
   customer_name;
-  call_id;
-  product;
+  call_id: number;
+  product:number;
   product_desc;
-  campaign;
+  campaign:number;
   campaign_desc;
   branch_id;
   image = [];
@@ -339,7 +339,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       this.validExpense = 'true';
 
       var insert_obj = {
-        functionid: localStorage.getItem('FUNCTION_ID'),
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
 
         CUSTOMER_ID: this.Customer_ID,
         CUSTOMER_NAME: this.customer_name,
@@ -348,21 +348,22 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
         PRODUCT_DESC: this.product_desc,
         CAMPAIGN: this.campaign,
         CAMPAIGN_DESC: this.campaign_desc,
+        CUSTOMER_REF:"",
+        Remarks: data.remarks,
+        status: 'P',
 
-        REMARKS: data.remarks,
-        STATUS: 'P',
-
-        createdby: localStorage.getItem('TUM_USER_ID'),
-        updatedby: localStorage.getItem('TUM_USER_ID'),
-        BRANCH_ID: this.branch_id,
-        expense_type: data.expense_type,
-        expense_cost: data.expense_cost,
+        createdby: parseInt(localStorage.getItem('TUM_USER_ID')),
+        updatedby:parseInt( localStorage.getItem('TUM_USER_ID')),
+        // BRANCH_ID: this.branch_id,
+        branchid: parseInt(window.localStorage['TUM_USER_ID']),
+        expense_type: data.expense_type.toString(),
+        expense_cost: data.expense_cost.toString(),
         remarks: data.remarks,
         document: "https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/" + this.image1,
         file_array: "https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/" + this.image1,
         //file_array:this.image1,
         document_desc: "expense_document",
-        document_remarks: "expense_document"
+        document_remarks: "expense_document",
         //CostId:
       };
 
@@ -390,7 +391,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
 
 
       this.presentAlert("", "Successfully Saved")
-      this.presentAlert1("", "Successfully Saved")
+      // this.presentAlert1("", "Successfully Saved")
 
       var dataobj = { Custid: parseInt(this.Customer_ID) }
       this.token = window.localStorage['token'];
