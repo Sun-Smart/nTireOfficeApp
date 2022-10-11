@@ -717,7 +717,7 @@ export class ExpensedetailsPage implements OnInit {
     this.branch_id = data.BRANCH_ID;
     this.documents = [];
     var dataobj = {
-      custid: parseInt(this.customer_id),
+      Custid: parseInt(this.customer_id),
 
     }
     this.token = window.localStorage['token'];

@@ -127,7 +127,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   pendingleadsdatalength: any;
 
   penleadfilter = {
-    TCC_CUSTOMER_ID: "",
+    TCC_CUSTOMER_ID: 0,
     TCC_CUST_LEAD_ID: "",
     CUST_LNAME: "",
     MOBILE: "",
@@ -160,8 +160,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.branchid = "";
-    this.penleadfilter.TCC_CUSTOMER_ID = '';
+    this.penleadfilter.branchid = window.localStorage['TUM_BRANCH_ID'];
+    this.penleadfilter.TCC_CUSTOMER_ID = 0;
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.username=localStorage.getItem('TUM_USER_NAME');
     this.penleadfilter.CUST_LNAME = '';
@@ -269,7 +269,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
 
     });
-    this.penleadfilter.branchid = parseInt(this.penleadfilter.branchid);
+    this.penleadfilter.branchid = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
   }
 
   GetProduct() {
@@ -531,7 +531,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
 
       if (this.penleadfilter.TCC_CUSTOMER_ID == null || this.penleadfilter.TCC_CUSTOMER_ID == undefined) {
-        this.penleadfilter.TCC_CUSTOMER_ID = '';
+        this.penleadfilter.TCC_CUSTOMER_ID = 0;
       }
 
       if (this.penleadfilter.CUST_LNAME == null || this.penleadfilter.CUST_LNAME == undefined) {
@@ -577,7 +577,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
         RATING:"",
         LEADBY:"",
 
-        branchid: parseInt(this.penleadfilter.branchid),
+        branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
         Name:"",CAMPAIGNNAME:"",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -693,7 +693,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
 
     if (this.penleadfilter.TCC_CUSTOMER_ID == null || this.penleadfilter.TCC_CUSTOMER_ID == undefined) {
-      this.penleadfilter.TCC_CUSTOMER_ID = '';
+      this.penleadfilter.TCC_CUSTOMER_ID = 0;
     }
 
     if (this.penleadfilter.CUST_LNAME == null || this.penleadfilter.CUST_LNAME == undefined) {
@@ -881,7 +881,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
 
     // console.log(idvalue);
     var obj1 = {
-      callid: parseInt(id)
+      callid: id.toString()
     }
     var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
 

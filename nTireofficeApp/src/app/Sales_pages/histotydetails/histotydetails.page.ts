@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable id-blacklist */
 /* eslint-disable eqeqeq */
 /* eslint-disable @typescript-eslint/dot-notation */
