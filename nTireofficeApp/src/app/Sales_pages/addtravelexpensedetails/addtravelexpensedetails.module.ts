@@ -9,6 +9,8 @@ import { AddtravelexpensedetailsPageRoutingModule } from './addtravelexpensedeta
 import { AddtravelexpensedetailsPage } from './addtravelexpensedetails.page';
 import { Routes, RouterModule } from '@angular/router';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
 const routes: Routes = [
   {
     path: '',
@@ -24,6 +26,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [AddtravelexpensedetailsPage],
-  providers:[Camera]
+  providers:[Crop,Base64,Camera]
 })
 export class AddtravelexpensedetailsPageModule {}

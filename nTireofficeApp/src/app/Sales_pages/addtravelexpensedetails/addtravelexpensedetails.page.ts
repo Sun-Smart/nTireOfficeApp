@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable radix */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -177,26 +178,32 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       buttons: [{
         text: 'Load from Library',
         handler: () => {
+          $('#fileinput').trigger('click');
 
-          //get current position
-          this.geolocation.getCurrentPosition().then((res) => {
+          $('#fileinput').unbind().change(function () {
+            // $('#fileinput').on('change', function () {
+            var filePath = $(this).val();
+            console.log(filePath);
 
-            this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
-            let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
-            console.log("location :n" + location);
-            this.getGeoencoder1(res.coords.latitude, res.coords.longitude);
+            if (filePath != undefined && filePath != "") {
+              var str = filePath;
+            }
+            // alert("" + str.split("\\").pop())
+            //   if(str!=undefined){
+            //   var actualFile = str.split("\\").pop();
+            // }
+            //   console.log("actualFile :" + actualFile);
+            // var File_inputvalue =
+            //self.Images.push(actualFile);
+            self.uploadallfilles();
 
-
-
-          }).catch((error) => {
-            // this.presentAlert('', 'Turn on location to processed!');
           });
         }
       },
       {
         text: 'Use Camera',
         handler: () => {
-          this.pickImage();
+          this.Attachdocument();
         }
       },
       {
@@ -207,22 +214,22 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     });
     await actionSheet.present();
   }
-  pickImage() {
+  // pickImage() {
 
-    //get current position
-    this.geolocation.getCurrentPosition().then((res) => {
+  //   //get current position
+  //   this.geolocation.getCurrentPosition().then((res) => {
 
-      this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
-      let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
-      console.log("location :n" + location);
-      this.getGeoencoder(res.coords.latitude, res.coords.longitude);
+  //     this.currentlatlon = res.coords.latitude + "," + res.coords.longitude;
+  //     let location = 'lat ' + res.coords.latitude + ' lang ' + res.coords.longitude;
+  //     console.log("location :n" + location);
+  //     // this.getGeoencoder(res.coords.latitude, res.coords.longitude);
 
 
 
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-  }
+  //   }).catch((error) => {
+  //     console.log('Error getting location', error);
+  //   });
+  // }
   uploadallfilles() {
 
     let self = this;
@@ -339,30 +346,37 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
       this.validExpense = 'true';
 
       var insert_obj = {
-        functionid: localStorage.getItem('FUNCTION_ID'),
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
 
         CUSTOMER_ID: this.Customer_ID,
-        CUSTOMER_NAME: this.customer_name,
-        CALL_ID: this.call_id,
-        PRODUCT: this.product,
-        PRODUCT_DESC: this.product_desc,
-        CAMPAIGN: this.campaign,
-        CAMPAIGN_DESC: this.campaign_desc,
+        // CUSTOMER_NAME: this.customer_name.toString(),
+        CUSTOMER_NAME: "",
+        // CALL_ID: parseInt(this.call_id),
+        CALL_ID: 0,
+        // PRODUCT: parseInt(this.product),
+        PRODUCT: 0,
+        // PRODUCT_DESC: this.product_desc.toString(),
+        PRODUCT_DESC: "",
+        // CAMPAIGN: parseInt(this.campaign),
+        CAMPAIGN: 0,
+        // CAMPAIGN_DESC: this.campaign_desc.toString(),
+        CAMPAIGN_DESC: "",
+        CUSTOMER_REF: "",
+        Remarks: data.remarks,
+        status: 'P',
 
-        REMARKS: data.remarks,
-        STATUS: 'P',
-
-        createdby: localStorage.getItem('TUM_USER_ID'),
-        updatedby: localStorage.getItem('TUM_USER_ID'),
-        BRANCH_ID: this.branch_id,
-        expense_type: data.expense_type,
-        expense_cost: data.expense_cost,
+        createdby: parseInt(localStorage.getItem('TUM_USER_ID')),
+        updatedby: parseInt(localStorage.getItem('TUM_USER_ID')),
+        // BRANCH_ID: this.branch_id,
+        branchid: parseInt(window.localStorage['TUM_USER_ID']),
+        expense_type: data.expense_type.toString(),
+        expense_cost: data.expense_cost.toString(),
         remarks: data.remarks,
         document: "https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/" + this.image1,
         file_array: "https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/" + this.image1,
         //file_array:this.image1,
         document_desc: "expense_document",
-        document_remarks: "expense_document"
+        document_remarks: "expense_document",
         //CostId:
       };
 
@@ -374,6 +388,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
 
 
       var insertExpenseJSON = Object.assign(insert_obj, tokenJSON);
+      debugger;
       console.log("insertExpenseJSON : " + JSON.stringify(insertExpenseJSON));
       const header1 = new Headers();
       header1.append("Content-Type", "application/json");
@@ -390,7 +405,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
 
 
       this.presentAlert("", "Successfully Saved")
-      this.presentAlert1("", "Successfully Saved")
+      // this.presentAlert1("", "Successfully Saved")
 
       var dataobj = { Custid: parseInt(this.Customer_ID) }
       this.token = window.localStorage['token'];
