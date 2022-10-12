@@ -7,7 +7,7 @@ ion-content {
  }
  th {
   // background-color: #f2f2f2 !important;
-  color: #ffffff;
+  color:black;
   padding: 2px !important;
   background-image: none !important;
   // font-size: large !important;
@@ -27,6 +27,7 @@ td {
 ion-card-header+.card-content-md {
   padding-top: 0;
   margin-left: -5%;
+  margin-right: -5%;
 }
 
 .ngx-datatable.material .datatable-header .datatable-header-cell {
