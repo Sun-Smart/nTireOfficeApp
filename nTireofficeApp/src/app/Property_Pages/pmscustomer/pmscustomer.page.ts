@@ -16,7 +16,7 @@ export class PmscustomerPage implements OnInit {
   name: string = '';
   username: any;
   filterTerm: string;
-
+  showfilter: boolean = true;
 
 
   Propertyname;
@@ -88,9 +88,11 @@ export class PmscustomerPage implements OnInit {
     });
     return await model.present();
   }
+  togglefilter() {
+    this.showfilter = !this.showfilter;
+  }
 
-
-  propertyCode(e) {
+  propertyCodE(e) {
 
     var body = {
       userid: this.userId,
