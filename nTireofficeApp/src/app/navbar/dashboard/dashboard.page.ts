@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable no-var */
 import { Component, ViewChild } from '@angular/core';
 
 // import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AlertController,MenuController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 // import { Router } from '@angular/router';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
@@ -18,25 +21,25 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage  {
+export class DashboardPage {
   name;
   isLogin;
   currentRoute;
   logoutbtn;
   user_name;
-  list:boolean;
-  list1:boolean;
-  list2:boolean;
-  list3:boolean;
-  list5:boolean;
-  list6:boolean;
-  CamsList:boolean;
-  user_role:any;
-  chkadmin:boolean;
-  username:any;
+  list: boolean;
+  list1: boolean;
+  list2: boolean;
+  list3: boolean;
+  list5: boolean;
+  list6: boolean;
+  CamsList: boolean;
+  user_role: any;
+  chkadmin: boolean;
+  username: any;
 
   public salespages = [
-   
+
     {
       title: 'Dashboard',
       url: '/dashboard',
@@ -52,7 +55,7 @@ export class DashboardPage  {
       url: '/addnewcorporate',
       icon: 'briefcase'
     },
-    
+
     {
       title: 'New Lead-Corporate',
       url: '/newleadcorporate',
@@ -99,10 +102,10 @@ export class DashboardPage  {
       icon: 'contact'
     },
   ];
-  
+
 
   public cobapages = [
-    
+
     {
       title: 'New Lead-Retail ',
       url: '/coba-new-lead',
@@ -247,11 +250,11 @@ export class DashboardPage  {
       url: '/hrmsletterrequest',
       icon: 'document'
     }
-    
+
   ];
 
- 
-  public erppages=[
+
+  public erppages = [
     {
       title: 'Physcial Inventory',
       url: '/pyscialinvetory',
@@ -268,48 +271,48 @@ export class DashboardPage  {
       title: 'Dashboard',
       url: '/dashboardCams',
       icon: 'home'
-    },{
-        title: 'Asset Details',
-        url: '/asset-details',
-        icon: 'paper'
-      }
-    ,{
-      title: 'Pending Jobs',
-      url: '/pending-jobs',
-      icon: 'hourglass'
-    },{
-      title: 'Completion of Jobs',
-      url: '/completion-jobs',
-      icon: 'briefcase'
-    },{
-      title: 'Asset Reconciliation',
-      url: '/asset-reconcil',
-      icon: 'book'
-    },{
+    }, {
       title: 'Asset Details',
       url: '/asset-details',
       icon: 'paper'
-    },{
+    }
+    , {
+      title: 'Pending Jobs',
+      url: '/pending-jobs',
+      icon: 'hourglass'
+    }, {
+      title: 'Completion of Jobs',
+      url: '/completion-jobs',
+      icon: 'briefcase'
+    }, {
+      title: 'Asset Reconciliation',
+      url: '/asset-reconcil',
+      icon: 'book'
+    }, {
+      title: 'Asset Details',
+      url: '/asset-details',
+      icon: 'paper'
+    }, {
       title: 'User Request',
       url: '/user-request',
       icon: 'person'
-    },{
+    }, {
       title: 'Service Request',
       url: '/service-request',
       icon: 'cog'
-    },{
+    }, {
       title: 'LocationWise Asset Report',
       url: '/location-wise-asset',
       icon: 'pin'
-    },{
+    }, {
       title: 'Asset Transfer',
       url: '/asset-transfer',
       icon: 'jet'
-    },{
+    }, {
       title: 'Reconciliation Report',
       url: '/reconciliation-report',
       icon: 'list'
-    },{
+    }, {
       title: 'Department Location Wise Report',
       url: '/department-wise',
       icon: 'laptop'
@@ -317,7 +320,7 @@ export class DashboardPage  {
 
   ];
 
-  public procurement= [
+  public procurement = [
     // {
     //   title: 'Update Vendor Item',
     //   url: '/updatevendoritem',
@@ -358,72 +361,72 @@ export class DashboardPage  {
       url: '/vendorsitems',
       icon: 'flame'
     },
-    
-    
-    
+
+
+
   ]
   showSubmenu: boolean = false;
- 
+
   @ViewChild(IonRouterOutlet) routerOutlet: IonRouterOutlet;
   constructor(private locationAccuracy: LocationAccuracy,
-    private router:Router,
+    private router: Router,
     private platform: Platform,
-    private splashScreen: SplashScreen,private androidPermissions: AndroidPermissions,
-    private statusBar: StatusBar,public alertController: AlertController,private http: HttpClient,public Ipaddressservice:IpaddressService,
+    private splashScreen: SplashScreen, private androidPermissions: AndroidPermissions,
+    private statusBar: StatusBar, public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService,
     public menuCtrl: MenuController
   ) {
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     // this.platform.backButton.subscribeWithPriority(0, () => {
-    
+
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
     //     this.routerOutlet.pop();
     //   } else if (this.router.url === '/LoginPage') {
-     
+
     //     navigator['app'].exitApp();
     //   } else {
-      
+
     //     this.logout();
     //   }
     // });
 
     platform.ready().then(() => {
-    
+
       statusBar.styleDefault();
       splashScreen.hide();
 
       androidPermissions.requestPermissions(
         [
           androidPermissions.PERMISSION.RECORD_AUDIO
-         
+
         ]
       );
     });
 
     if (this.splashScreen) {
       setTimeout(() => {
-          this.splashScreen.hide();
+        this.splashScreen.hide();
       }, 100);
-  }
-    
-    this.user_name=localStorage.getItem('TUM_USER_NAME');
+    }
+
+    this.user_name = localStorage.getItem('TUM_USER_NAME');
     this.router.events.subscribe(event => {
       if (event.constructor.name === "NavigationEnd") {
         this.name = (<any>event).url.split("/").slice(-1)[0];
 
-        console.log("event.constructor.name :"+event.constructor.name)
-       
-        if(this.name=='login'){
-        this.logoutbtn=true;
-        //navigator['app'].exitApp();
-       
+        console.log("event.constructor.name :" + event.constructor.name)
+
+        if (this.name == 'login') {
+          this.logoutbtn = true;
+          //navigator['app'].exitApp();
+
         }
-        else if(this.name==''){
-          this.logoutbtn=true;
+        else if (this.name == '') {
+          this.logoutbtn = true;
         }
-        else{
-          this.logoutbtn=false;
+        else {
+          this.logoutbtn = false;
         }
-     
+
       }
     });
     this.initializeApp();
@@ -440,22 +443,22 @@ export class DashboardPage  {
         }
       },
       err => {
-       
+
       }
     );
-    
+
   }
-  
-  ngOnInit(){
-    this.user_role  = window.localStorage.getItem('TUM_USER_TYPE');
+
+  ngOnInit() {
+    this.user_role = window.localStorage.getItem('TUM_USER_TYPE');
     console.log(this.user_role);
-    if(this.user_role == '1'||this.user_role == '46'||this.user_role == '37'||this.user_role == '44'||this.user_role == '47'||this.user_role == '45'){
+    if (this.user_role == '1' || this.user_role == '46' || this.user_role == '37' || this.user_role == '44' || this.user_role == '47' || this.user_role == '45') {
       this.chkadmin = true;
     }
   }
 
-  ionViewWillEnter(){
-  
+  ionViewWillEnter() {
+
   }
 
   requestGPSPermission() {
@@ -482,7 +485,7 @@ export class DashboardPage  {
     this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
       () => {
         // When GPS Turned ON call method to get Accurate location coordinates
-     //   this.getLocationCoordinates()
+        //   this.getLocationCoordinates()
       },
       error => alert('Please turn on the location for further purpose')
     );
@@ -498,17 +501,17 @@ export class DashboardPage  {
   //     alert('Error getting location' + error);
   //   });
   // }
- 
+
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleBlackOpaque();
       setTimeout(() => {
         this.splashScreen.hide();
       }, 100);
-      
+
     });
   }
- 
+
   ionViewDidEnter() {
 
     if (this.platform.is('android')) {
@@ -520,150 +523,150 @@ export class DashboardPage  {
       this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
     }
 
-    
+
   }
- async logout(){
+  async logout() {
     var alert1 = await this.alertController.create({
-     
+      backdropDismiss: false,
       message: 'Are you sure you want to logout',
       buttons: [
+
         {
           text: 'No',
           role: 'cancel',
-        
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Yes',
-      
+
           handler: () => {
-            
-          var logout_obj = {
+
+            var logout_obj = {
               access_token: localStorage.getItem('token'),
               userid: localStorage.getItem('TUM_USER_ID'),
               usertoken: localStorage.getItem('usertoken'),
 
             };
-           
+
             const header = new Headers();
-           header.append("Content-Type", "application/json");
-         let options = new HttpHeaders().set('Content-Type', 'application/json');
-           this.http.post(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj, {
-             headers: options,
-           }).subscribe(resp => {
-          
-            localStorage.clear();
-            this.router.navigate(['/login']);
-            
-       }, error => {
-        localStorage.clear();
-        this.router.navigate(['/login']);
-        
-           });
-         
+            header.append("Content-Type", "application/json");
+            let options = new HttpHeaders().set('Content-Type', 'application/json');
+            this.http.post(this.Ipaddressservice.ipaddress + '/Collections/Collections/logout/', logout_obj, {
+              headers: options,
+            }).subscribe(resp => {
+
+              localStorage.clear();
+              this.router.navigate(['/login']);
+
+            }, error => {
+              localStorage.clear();
+              this.router.navigate(['/login']);
+
+            });
+
           }
         }
       ]
     });
-  
+
     await alert1.present();
   }
-  menutoogle(){
+  menutoogle() {
 
-    if(this.list==true){
-      this.list=false;
+    if (this.list == true) {
+      this.list = false;
     }
-    else{
-      this.list=true;
-    }
-
-
-  }
-  menutoogle1(){
-
-    if(this.list1==true){
-      this.list1=false;
-    }
-    else{
-      this.list1=true;
+    else {
+      this.list = true;
     }
 
 
   }
-  menutoogle2(){
+  menutoogle1() {
 
-    if(this.list2==true){
-      this.list2=false;
+    if (this.list1 == true) {
+      this.list1 = false;
     }
-    else{
-      this.list2=true;
-    }
-
-
-  }
-  menutoogle3(){
-
-    if(this.list3==true){
-      this.list3=false;
-    }
-    else{
-      this.list3=true;
+    else {
+      this.list1 = true;
     }
 
 
   }
+  menutoogle2() {
 
-  menutoogle5(){
-
-    if(this.list5==true){
-      this.list5=false;
+    if (this.list2 == true) {
+      this.list2 = false;
     }
-    else{
-      this.list5=true;
+    else {
+      this.list2 = true;
+    }
+
+
+  }
+  menutoogle3() {
+
+    if (this.list3 == true) {
+      this.list3 = false;
+    }
+    else {
+      this.list3 = true;
     }
 
 
   }
 
-  menutoogle6(){
+  menutoogle5() {
 
-    if(this.list6==true){
-      this.list6=false;
+    if (this.list5 == true) {
+      this.list5 = false;
     }
-    else{
-      this.list6=true;
+    else {
+      this.list5 = true;
     }
 
 
   }
 
-  menutoogle4(){
+  menutoogle6() {
+
+    if (this.list6 == true) {
+      this.list6 = false;
+    }
+    else {
+      this.list6 = true;
+    }
+
+
+  }
+
+  menutoogle4() {
     this.router.navigateByUrl('/hrmsmyapprovals');
     this.menuCtrl.close();
   }
 
-  menutoogleCams(){
+  menutoogleCams() {
 
-    if(this.CamsList==true){
-      this.CamsList=false;
+    if (this.CamsList == true) {
+      this.CamsList = false;
     }
-    else{
-      this.CamsList=true;
+    else {
+      this.CamsList = true;
     }
   }
-//   menutoogle(data){
-    
-//     this.showSubmenu = !this.showSubmenu;
-// if(data==5){
-//   this.router.navigateByUrl('/hrmsmyapprovals');
-  
-// }
-// else{
-//   this.list=data;
-// }
-//   }
-  
+  //   menutoogle(data){
+
+  //     this.showSubmenu = !this.showSubmenu;
+  // if(data==5){
+  //   this.router.navigateByUrl('/hrmsmyapprovals');
+
+  // }
+  // else{
+  //   this.list=data;
+  // }
+  //   }
+
 }
 
 

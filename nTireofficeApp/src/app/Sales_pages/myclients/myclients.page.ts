@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/prefer-for-of */
@@ -54,6 +55,7 @@ export class MyclientsPage implements OnInit {
   latlngvals;
   branch;
   username: any;
+  showhidenorecords:boolean = true;
   geoencoderOptions: NativeGeocoderOptions = {
     useLocale: true,
     maxResults: 5

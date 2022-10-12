@@ -8,8 +8,13 @@ import { ModalController } from '@ionic/angular';
 })
 export class PmsListPage implements OnInit {
 
+  showfilter:boolean=true;
+
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
+  }
+  togglefilter(){
+    this.showfilter = !this.showfilter
   }
 }

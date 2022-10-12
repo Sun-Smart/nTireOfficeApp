@@ -98,7 +98,7 @@ export class DepartmentWisePage implements OnInit {
         // $scope.locationlistnew.push($scope.asstdtlocation.detailz[i].ZONE_DESC);
         this.ZONE_DESC= this.detailz[i].zoneid + '--' + this.detailz[i].ZONE_DESC;
         this.locationlistnew.push(this.ZONE_DESC);
-     
+
     }
 
     }, error => {
@@ -220,10 +220,11 @@ export class DepartmentWisePage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -231,10 +232,11 @@ export class DepartmentWisePage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'Cssbutton',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
   processlocationreport(){
@@ -309,8 +311,8 @@ export class DepartmentWisePage implements OnInit {
   }
 
   departmodaldttls(deptId:any,locId:any,brnchnme:any){
-   
-    
+
+
     console.log(deptId);
     console.log(locId);
     console.log(brnchnme);

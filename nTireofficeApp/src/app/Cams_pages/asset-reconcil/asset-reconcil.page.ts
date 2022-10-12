@@ -124,7 +124,7 @@ export class AssetReconcilPage implements OnInit {
 
   // scancoderecon(){
   //   console.log('scan');
-   
+
   //   this.qrScanner.prepare()
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
@@ -141,7 +141,7 @@ export class AssetReconcilPage implements OnInit {
   //          this.cotenthide=true;
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -246,10 +246,11 @@ export class AssetReconcilPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -269,7 +270,7 @@ export class AssetReconcilPage implements OnInit {
 
       const header = new Headers();
       header.append("Content-Type", "application/json");
-  
+
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/reconassetdetail',data, {
         headers: options,
@@ -302,10 +303,10 @@ export class AssetReconcilPage implements OnInit {
       }, error => {
         //this.presentAlert('Alert','Server Error,Contact not loaded');
         console.log("error : " + JSON.stringify(error));
-  
+
       });
-  
-  
+
+
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreq',data, {
         headers: options,
       }).subscribe(resp => {
@@ -332,7 +333,7 @@ export class AssetReconcilPage implements OnInit {
         }
       }, error => {
         console.log("error : " + JSON.stringify(error));
-  
+
       });
     }else{
       this.myValuerecon = false;

@@ -78,6 +78,7 @@ export class AddnewcorporatePage implements OnInit {
     var alert = await this.alertController.create({
       cssClass:'buttonCss',
       header: heading,
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

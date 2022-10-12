@@ -41,7 +41,11 @@ export class PmsdashboardPage implements OnInit {
   @ViewChild('sourcecanvas2') sourcecanvas2;
   @ViewChild('sourcecanvas3') sourcecanvas3;
 
-  constructor(private http: HttpClient, private platform: Platform, public Ipaddressservice: IpaddressService, private tableApi: TableSampleService) {
+  constructor(private http: HttpClient, 
+    private platform: Platform, 
+    public  Ipaddressservice: IpaddressService, 
+    private tableApi: TableSampleService)
+     {
     this.userid = window.localStorage['TUM_USER_ID'];
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.customerPayment();

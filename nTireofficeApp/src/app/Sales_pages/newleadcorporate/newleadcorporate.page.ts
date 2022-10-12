@@ -1098,6 +1098,7 @@ export class NewleadcorporatePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Cancel the Process',
+      backdropDismiss:false,
       buttons: [
         {
           text: 'No',
@@ -1150,6 +1151,7 @@ export class NewleadcorporatePage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       message: tittle,
+      backdropDismiss:false,
       buttons: [
         {
           text: 'Cancel',
@@ -1201,6 +1203,7 @@ export class NewleadcorporatePage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

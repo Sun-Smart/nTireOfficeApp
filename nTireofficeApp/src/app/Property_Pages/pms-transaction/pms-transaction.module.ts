@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { PmsTransactionPageRoutingModule } from './pms-transaction-routing.module';
 import { PmsTransactionPage } from './pms-transaction.page';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
     IonicModule,
     HttpClientModule,
     NgxDatatableModule,
-    BrowserModule,
+    // BrowserModule,
     PmsTransactionPageRoutingModule
   ],
 

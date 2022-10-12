@@ -196,6 +196,14 @@ const routes: Routes = [
     path: 'pms-list',
     loadChildren: () => import('./Property_Pages/pms-list/pms-list.module').then( m => m.PmsListPageModule)
   },
+  {
+    path: 'my-task',
+    loadChildren: () => import('./Property_Pages/my-task/my-task.module').then( m => m.MyTaskPageModule)
+  },
+  {
+    path: 'additional-page',
+    loadChildren: () => import('./Property_Pages/additional-page/additional-page.module').then( m => m.AdditionalPagePageModule)
+  },
 
 
   //Sales Page
@@ -570,7 +578,13 @@ const routes: Routes = [
   {
     path: 'updateprsstatus',
     loadChildren: () => import('./procurement/updateprsstatus/updateprsstatus.module').then( m => m.UpdateprsstatusPageModule)
+  },  {
+    path: 'reciept-master-page',
+    loadChildren: () => import('./Property_Pages/reciept-master-page/reciept-master-page.module').then( m => m.RecieptMasterPagePageModule)
   },
+
+
+
 
 ];
 

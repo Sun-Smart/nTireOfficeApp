@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable radix */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
@@ -70,7 +71,7 @@ interface RecordedAudioOutput {
   templateUrl: './pendingleads.page.html',
   styleUrls: ['./pendingleads.page.scss'],
 })
-export class PendingleadsPage implements OnInit,OnDestroy {
+export class PendingleadsPage implements OnInit, OnDestroy {
   segment;
   everybody;
   recording: boolean = false;
@@ -107,11 +108,11 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   branchlist: any;
   branchlist1 = [];
   products: any;
-  products1:any = [];
+  products1: any = [];
   callpriority: any;
-  callpriority1:any = [];
+  callpriority1: any = [];
   callrating: any;
-  callrating1:any = [];
+  callrating1: any = [];
   userdata: any;
   userdata1 = [];
   usertype: any;
@@ -153,7 +154,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   user_type_val;
   imagename: any;
   userTypedesc: any;
-  username:any;
+  username: any;
   private backbuttonSubscription: Subscription;
   constructor(private sanitizer: DomSanitizer, public platform: Platform, public media: Media, private datePipe: DatePipe, public loadingController: LoadingController, private router: Router, private geolocation: Geolocation, public alertController: AlertController, public modalController: ModalController, private callNumber: CallNumber, private file: File, private transfer: FileTransfer, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
 
@@ -163,7 +164,7 @@ export class PendingleadsPage implements OnInit,OnDestroy {
     this.penleadfilter.branchid = window.localStorage['TUM_BRANCH_ID'];
     this.penleadfilter.TCC_CUSTOMER_ID = 0;
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     this.penleadfilter.CUST_LNAME = '';
     this.penleadfilter.MOBILE = '';
     this.penleadfilter.TCM_CAMPAIGN_SHORTDESC = '';
@@ -573,12 +574,12 @@ export class PendingleadsPage implements OnInit,OnDestroy {
         response: values.toString(),
         offset: this.pendleaddetails.length.toString(),
         limit: "50",
-        PRIORITY:"",
-        RATING:"",
-        LEADBY:"",
+        PRIORITY: "",
+        RATING: "",
+        LEADBY: "",
 
         branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
-        Name:"",CAMPAIGNNAME:"",
+        Name: "", CAMPAIGNNAME: "",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
         MOBILE: this.penleadfilter.MOBILE,
@@ -735,11 +736,11 @@ export class PendingleadsPage implements OnInit,OnDestroy {
       response: values.toString(),
       offset: this.pendleaddetails.length.toString(),
       limit: "50",
-      PRIORITY:"",
-      RATING:"",
-      LEADBY:"",
-      Name:"",
-      CAMPAIGNNAME:"",
+      PRIORITY: "",
+      RATING: "",
+      LEADBY: "",
+      Name: "",
+      CAMPAIGNNAME: "",
       branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -980,6 +981,9 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   }
 
   async Gethistorydetails(item) {
+    debugger;
+    item.CALL_ID = parseInt(item.CALL_ID);
+    item.Campaign = 0;
     console.log("" + JSON.stringify(item))
     const modal = await this.modalController.create({
       component: HistotydetailsPage,
@@ -1272,7 +1276,8 @@ export class PendingleadsPage implements OnInit,OnDestroy {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });

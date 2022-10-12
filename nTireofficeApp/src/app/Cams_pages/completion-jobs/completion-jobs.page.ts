@@ -48,7 +48,7 @@ export class CompletionJobsPage implements OnInit {
   responseData2=[];
   constructor(public modalController:ModalController,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router: Router) {
 
-    
+
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -57,7 +57,7 @@ export class CompletionJobsPage implements OnInit {
     this.accessToken = localStorage.getItem('token');
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     console.log(this.branchID);
-    
+
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
 
@@ -69,7 +69,7 @@ export class CompletionJobsPage implements OnInit {
     this.jobs="<< Select >>";
     this.getAssertCatergory();
     this.getReferMax();
-  
+
    }
 
   ngOnInit() {
@@ -92,9 +92,9 @@ export class CompletionJobsPage implements OnInit {
   getAssertCatergory(){
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-  
+
     var assetCatParms = {
       functionidrep: localStorage.getItem('FUNCTION_ID'),
       access_token: localStorage.getItem('token'),
@@ -109,21 +109,21 @@ export class CompletionJobsPage implements OnInit {
       //var fulldata = resp.data;
       this.product = resp;
       console.log(this.product);
-  
+
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
-  
+
   getsubCategory(event){
     console.log(event)
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-  
+
     var assetCatParms = {
       functionidrep: localStorage.getItem('FUNCTION_ID'),
       access_token: localStorage.getItem('token'),
@@ -139,20 +139,20 @@ export class CompletionJobsPage implements OnInit {
       //var fulldata = resp.data;
       this.subCategoryresp = resp;
       console.log(this.subCategoryresp);
-  
+
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
-  
+
   completioncards(){
     console.log(event)
-  
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
                                                                                                              // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
@@ -167,7 +167,7 @@ export class CompletionJobsPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
 
@@ -180,8 +180,8 @@ export class CompletionJobsPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE='+this.jobs+'&AssetCode=null', {
                                                                                                          // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
-                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null         
-      
+                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
+
       headers: options,
     }).subscribe(resp => {
       this.carddata=resp;
@@ -189,7 +189,7 @@ export class CompletionJobsPage implements OnInit {
       console.log(this.responseData1);
       this.responseDatalength = this.responseData1.length;
       this.branch1 = this.responseData1[0].Branch;
-        
+
     }, error => {
 
       console.log(JSON.stringify(error));
@@ -296,6 +296,7 @@ async presentAlert(heading, tittle) {
   var alert = await this.alertController.create({
     header: heading,
     cssClass:'buttonCss',
+    backdropDismiss:false,
     message: tittle,
     buttons: ['OK']
   });
@@ -316,7 +317,7 @@ async reopenActionModal(obj){
     console.log(from_timestamp);
     var to = this.todate;
     var to_timestamp = new Date(to).getTime();
-    
+
     console.log(from_timestamp);
     console.log(to_timestamp);
 
@@ -325,7 +326,7 @@ async reopenActionModal(obj){
       if (from_timestamp <= to_timestamp) {
         const header = new Headers();
         header.append("Content-Type", "application/json");
-    
+
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate='+this.fromdate+'&tdate='+this.todate+'&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null',{
                                                                                                              // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
@@ -335,7 +336,7 @@ async reopenActionModal(obj){
           this.carddata=resp;
           console.log(this.carddata);
           debugger;
-          
+
           this.responseData2 = this.carddata;
           debugger;
           console.log(this.responseData2);
@@ -353,25 +354,25 @@ async reopenActionModal(obj){
               console.log(i);
              this.remove_array.push(i);
              console.log(this.remove_array);
-             
+
             }
           }
           //this.remove_array.sort((a, b) => {return b - a });
           // this.remove_array.sort(function(a, b) { return b - a });
           // for (var j = 0; j < this.remove_array.length; j++) {
           //   console.log(this.remove_array[j]);
-            
-            
+
+
           //   this.responseData1=this.responseData2.splice(this.remove_array[j], 1);
           //   console.log(this.remove_array[j]);
           //   this.responseDatalength = this.responseData1.length;
           //   console.log(this.responseData1)
-          // }  
+          // }
           this.responseData1=this.responseData2.splice(this.remove_array[i]);
           console.log(this.responseData1);
-          
+
         }, error => {
-    
+
           console.log(JSON.stringify(error));
         });
          console.log(this.responseData1)
@@ -384,4 +385,4 @@ async reopenActionModal(obj){
     }
   }
 }
-  
+

@@ -159,6 +159,7 @@ export class AddcontactPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

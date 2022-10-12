@@ -335,7 +335,7 @@ export class AppComponent {
       title: 'Department Location Wise Report',
       url: '/department-wise',
       icon: 'laptop'
-    }
+    },
 
   ];
 
@@ -485,14 +485,31 @@ export class AppComponent {
     },
     {
       title: 'Employees',
-      url: '/pmsemployees',
-      icon: 'person-add'
+      // url: '/pmsemployees',
+      icon: 'person-add',
+      employeeSubPages: [
+        {
+          title: 'My Task',
+          url: '/my-task',
+          icon: 'list-circle'
+        },
+        {
+          title: 'Additional',
+          url: '/additional-page',
+          icon: 'document-text'
+        },
+        {
+          title: 'Transaction',
+          url: '/pms-transaction',
+          icon: 'newspaper'
+        },
+      ]
     },
     {
       title: 'Reports',
       // url: '',
       icon: 'create',
-      subPages: [
+      reportSubPages: [
         {
           title: 'Property List',
           url: '/pms-list',
@@ -546,6 +563,7 @@ export class AppComponent {
     public menuCtrl: MenuController
   ) {
     this.getParent = localStorage.getItem('ParentMenu');
+    // this.checkMenu();
     // this.platform.backButton.subscribeWithPriority(0, () => {
 
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
@@ -560,7 +578,7 @@ export class AppComponent {
     // });
 
     platform.ready().then(() => {
-      this.checkMenu();
+
       statusBar.styleDefault();
       splashScreen.hide();
 

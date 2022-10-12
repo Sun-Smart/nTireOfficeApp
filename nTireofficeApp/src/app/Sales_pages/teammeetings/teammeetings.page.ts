@@ -579,6 +579,11 @@ export class TeammeetingsPage implements OnInit {
     this.meetingCount = [];
     this.token = window.localStorage['token'];
     var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
+    if (localStorage.getItem('TUM_BRANCH_ID') == "") {
+      branchid = 0;
+    } else {
+      branchid = branchid;
+    }
     var dataobj = { BRANCHID: parseInt(branchid) }
     var getappJSON = Object.assign(dataobj, tokenJSON);
     console.log(getappJSON)
@@ -865,6 +870,7 @@ export class TeammeetingsPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'teammeeting',
+      backdropDismiss: false,
       message: '<div><table style="width: 100%;text-align: left;font-size:15px"><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Customer Name</td><td>' + CustFullName + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Customer Id</td><td>' + TCC_CUSTOMER_ID + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Contact Number</td><td>' + MOBILE + ' | ' + offphone + ' | ' + RESPHONE + '</td></tr></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Current Caller</td><td>' + Current_Caller + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Last Call</td><td>' + lastcall + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Next Call</td><td>' + nextcall + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Priority</td><td>' + PriorityText + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Rating</td><td>' + Ratingtext + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Campaign</td><td>' + Campaign + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Remarks</td><td>' + Remarks + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Start Place</td><td>' + StartAddress + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Meeting Place</td><td>' + formattedadd + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Distance</td><td>' + DistanceTravel + '</td></tr></table></div>',
       buttons: ['Cancel']
     });
@@ -875,6 +881,7 @@ export class TeammeetingsPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
