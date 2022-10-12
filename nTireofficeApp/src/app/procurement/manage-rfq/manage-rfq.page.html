@@ -37,8 +37,7 @@
             <tr class="table-head" >
 
 
-              <th><input type="checkbox" id="checkbox"> </th>
-
+              <th><input type="checkbox" id="checkbox" [checked] ="selectAllissue" (change)="selectAllissueCheckbox(selectAllissue)"> </th>
               <th>RFQ Code</th>
               <th>Item Code</th>
               <th>QTY</th>
@@ -50,7 +49,7 @@
           <tbody class="table-body">
             <ng-container>
               <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td><input type="checkbox" id="checkbox" [checked] ="selectAllissue"></td>
                 <td>RFQ8976</td>
                 <td>7865</td>
                 <td>77</td>
@@ -60,7 +59,7 @@
               </tr>
 
               <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td><input type="checkbox" id="checkbox" [checked] ="selectAllissue"></td>
                 <td>RFQ8976</td>
                 <td>7865</td>
                 <td>77</td>
@@ -70,7 +69,7 @@
               </tr>
 
               <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td><input type="checkbox" id="checkbox" [checked] ="selectAllissue"></td>
                 <td>RFQ8976</td>
                 <td>7865</td>
                 <td>77</td>
@@ -96,7 +95,7 @@
         <table class="table table-striped">
           <thead class="card_header">
             <tr class="table-head">
-              <th style="padding: 2px !important"><input type="checkbox" id="checkbox"> </th>
+              <th style="padding: 2px !important"><input type="checkbox" id="checkbox" [checked] ="selectAllvendor" (change)="selectAllvendorCheckbox(selectAllvendor)"> </th>
               <th style="padding: 5px !important">Vendor Name</th>
               <th style="padding: 5px !important">QTY</th>
               <th style="padding: 5px !important">Unit Price</th>
@@ -108,7 +107,7 @@
           <tbody class="table-body">
             <ng-container>
               <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td><input type="checkbox" id="checkbox" [checked] ="selectAllvendor"> </td>
                 <td>RFQ8976</td>
                 <td>13232</td>
                 <td>77</td>
@@ -119,7 +118,7 @@
               </tr>
 
               <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td><input type="checkbox" id="checkbox" [checked] ="selectAllvendor"></td>
                 <td>RFQ8976</td>
                 <td>7865</td>
                 <td>77</td>
@@ -130,7 +129,7 @@
               </tr>
 
               <tr>
-                <td><input type="checkbox" id="checkbox"></td>
+                <td><input type="checkbox" id="checkbox" [checked] ="selectAllvendor"></td>
                 <td>RFQ8976</td>
                 <td>7865</td>
                 <td>77</td>

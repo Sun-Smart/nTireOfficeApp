@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./property-condact-list.page.scss'],
 })
 export class PropertyCondactListPage implements OnInit {
-
+  showfilter:boolean=true;
   constructor() { }
 
   ngOnInit() {
   }
-
+  togglefilter(){
+    this.showfilter = !this.showfilter
+  }
 }

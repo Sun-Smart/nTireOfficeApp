@@ -44,7 +44,7 @@ export class IpaddressService {
     this.ipaddress = "https://demo.herbie.ai";
 
     this.tokenlogin = "/nTireMobileCoreAPISSG/api";
-this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
+    this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
     // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";
     // this.ipaddress = "http://192.168.43.214:8033";
@@ -78,26 +78,26 @@ this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
 
     this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
     this.serviceurllos = "/los/LOS/";
-
+    this.dynamicmenu = '/nTireMobileCoreAPI/api';
     //Cams
 
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
     // this.serviceurlCams = "/SSGmobileapi/cams/cams.svc/"
 
-    this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/CAMS"
-    this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/"
+    this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/CAMS";
+    this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/";
 
 
     //Procurement
     // this.serviceerpapi = "/dms/DMS/erpapi/";
-    this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
+    this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/";
 
     this.dynamicmenu ="/nTireMobileCoreAPI/api";
 
 
     // Property
 
-    this.serviceurlProperty = "/nTireMobileCoreAPI/api/Property/"
+    this.serviceurlProperty = "/nTireMobileCoreAPI/api/Property/";
 
 
   }
