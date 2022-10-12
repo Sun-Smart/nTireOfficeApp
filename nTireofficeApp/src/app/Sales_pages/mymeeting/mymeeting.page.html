@@ -1,42 +1,45 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>My Meetings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-grid>
-  <ion-row>
-      <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>From Date</ion-label>
-          <ion-input type="date" class="form-control"  [(ngModel)]="fromdate"></ion-input>
-        </ion-col>
-        <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <ion-label>To Date</ion-label>
-              <ion-input type="date" class="form-control"  [(ngModel)]="todate"></ion-input>
-            </ion-col>
-            <ion-col  size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="text-align:center">
-                <!-- <ion-button (click)="Getmeetings(fromdate,todate)"  size="full">Search</ion-button> -->
-                <button (click)="Getmeetings(fromdate,todate)" class="btn-info" style="background-color: rgb(2 154 222) !important;height: 2.8em;width:100% !important;font-size: 17px;" size="full">Search</button>
+        <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-label>To Date</ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="todate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="text-align:center">
+        <!-- <ion-button (click)="Getmeetings(fromdate,todate)"  size="full">Search</ion-button> -->
+        <button (click)="Getmeetings(fromdate,todate)" class="btn-info"
+          style="background-color: rgb(2 154 222) !important;height: 2.8em;width:100% !important;font-size: 17px;"
+          size="full">Search</button>
 
-                </ion-col>
+      </ion-col>
 
-  </ion-row>
-</ion-grid>
-<div style="text-align: center">
-  <b class="totalCount">{{NoRecord}}</b>
-</div>
-<div>
-  <div class="" id="showdivs">
-    <div class="container">
-      <div id="mapshowimage12" style="width:100%;height:400px;">
+    </ion-row>
+  </ion-grid>
+  <div style="text-align: center;margin-top: 50px;">
+    <!-- <b class="totalCount">{{NoRecord}}</b> -->
+    <b class="totalCount" *ngIf="showhidenorecords">No meetings found</b>
+  </div>
+  <div>
+    <div class="" id="showdivs">
+      <div class="container">
+        <div id="mapshowimage12" style="width:100%;height:400px;">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </ion-content>
 <ion-footer>
