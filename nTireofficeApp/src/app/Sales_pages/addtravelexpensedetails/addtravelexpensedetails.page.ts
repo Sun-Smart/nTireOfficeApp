@@ -275,7 +275,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     }
   };
   uploadingFiledocument() {
-    var url = this.Ipaddressservice.ipaddress + '/los/uploadfile';
+    var url = this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'uploadfile';
     const formData: any = new FormData();
     formData.append("upload", this.file, this.image1);
 
