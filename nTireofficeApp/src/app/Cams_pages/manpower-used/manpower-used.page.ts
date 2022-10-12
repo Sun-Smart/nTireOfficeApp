@@ -37,7 +37,7 @@ export class ManpowerUsedPage implements OnInit {
   manpowerrecord:any;
   rowuniqid:any;
 
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -73,7 +73,7 @@ export class ManpowerUsedPage implements OnInit {
 
       const header = new Headers();
       header.append("Content-Type", "application/json");
-    
+
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpoweskilldtl',data, {
         headers: options,
@@ -83,14 +83,14 @@ export class ManpowerUsedPage implements OnInit {
       }, error => {
         //this.presentAlert('Alert','Server Error,Contact not loaded');
         console.log("error : " + JSON.stringify(error));
-    
-      });  
+
+      });
   }
 
   manskill(){
     var datae = {
-       
-        
+
+
       'branchid': this.branchID,
       'functionid':this.functionID,
       'usertype':this.usertype,
@@ -101,7 +101,7 @@ export class ManpowerUsedPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerrefdtl',datae, {
       headers: options,
@@ -111,12 +111,12 @@ export class ManpowerUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    });  
+
+    });
   }
 
   manpowerinsert(){
-    
+
     //var nomhrs=this.datePipe.transform(this.nomhours, 'HH:mm:ss');;
     var empref = this.empref;
     console.log(empref);
@@ -139,8 +139,8 @@ export class ManpowerUsedPage implements OnInit {
 //console.log(manref);
 
 var dataem = {
-       
-        
+
+
   'branchid': this.branchID,
   'functionid':this.functionID,
   'userskill':this.skill,
@@ -188,17 +188,17 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
- 
+
  async deleteItem(data, index){
-   
+
   this.rowuniqid=data.rowuniqueid;
   console.log(this.rowuniqid)
   if(this.empref == '<< Select >>'){
@@ -209,6 +209,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
   const alert = await this.alertController.create({
     header: 'Delete!',
     message: 'Are yoy sure want to delete',
+    backdropDismiss:false,
     buttons: [
       {
         text: 'Cancel',
@@ -221,7 +222,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
       }, {
         text: 'Ok',
         handler: () => {
-          var datamdd = { 
+          var datamdd = {
             'branchid': window.localStorage['TUM_BRANCH_ID'],
             'functionid':window.localStorage['FUNCTION_ID'],
             'assetid':this.urldata.CMD_ASSET_ID,
@@ -232,12 +233,12 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
             'userid':this.userID,
             'usertoken':this.userToken,
             'uniqid':this.rowuniqid,
-           
+
          };
          console.log(datamdd);
          const header = new Headers();
          header.append("Content-Type", "application/json");
-         
+
          let options = new HttpHeaders().set('Content-Type', 'application/json');
          this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerdelete',datamdd, {
            headers: options,
@@ -248,7 +249,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
          }, error => {
            //this.presentAlert('Alert','Server Error,Contact not loaded');
            console.log("error : " + JSON.stringify(error));
-         
+
          });
         }
       }
@@ -260,7 +261,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
 
 manpoweralldata(){
 
-  var dataea = {   
+  var dataea = {
     'branchid': this.branchID,
     'functionid':this.functionID,
     'assetid':this.urldata.CMD_ASSET_ID,

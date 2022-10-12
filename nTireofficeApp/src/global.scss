@@ -1242,3 +1242,6 @@ ion-searchbar {
   margin: 10px;
   font-size: 18px;
 }
+.alert-button.ion-focused.sc-ion-alert-ios, .alert-tappable.ion-focused.sc-ion-alert-ios {
+  background: var(--ion-color-step-100, red) !important;
+}

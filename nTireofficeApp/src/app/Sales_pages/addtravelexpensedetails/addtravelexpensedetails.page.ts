@@ -473,6 +473,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
@@ -483,6 +484,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

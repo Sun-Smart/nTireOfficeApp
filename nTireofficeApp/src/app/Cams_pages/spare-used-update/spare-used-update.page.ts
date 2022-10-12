@@ -36,7 +36,7 @@ export class SpareUsedUpdatePage implements OnInit {
   quantity;
   doi;
   cost;
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private model:ModalController,navParams: NavParams) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private model:ModalController,navParams: NavParams) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -55,7 +55,7 @@ export class SpareUsedUpdatePage implements OnInit {
   }
 
   closemodel(){
-     
+
     this.model.dismiss();
   }
 
@@ -65,7 +65,7 @@ export class SpareUsedUpdatePage implements OnInit {
     this.quantity=this.data.sparequantity;
     this.doi= this.data.doi;
     this.cost = this.data.SPARECOST;
-    var dataes = {  
+    var dataes = {
       'branchid': this.branchID,
       'functionid':this.functionID,
       'access_token':this.accessToken,
@@ -75,7 +75,7 @@ export class SpareUsedUpdatePage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtl',dataes, {
       headers: options,
@@ -85,8 +85,8 @@ export class SpareUsedUpdatePage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    });  
+
+    });
   }
 
   matrialdtle(mat){
@@ -99,11 +99,11 @@ export class SpareUsedUpdatePage implements OnInit {
       'userid':this.userID,
       'usertoken':this.userToken
     }
-    
+
     console.log(dataesp);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtlval',dataesp, {
       headers: options,
@@ -115,8 +115,8 @@ export class SpareUsedUpdatePage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    });  
+
+    });
   }
 
   spareCostvalidate(qty){
@@ -146,13 +146,13 @@ export class SpareUsedUpdatePage implements OnInit {
       'userid':this.userID,
       'usertoken':this.userToken
 
-     
+
     }
     console.log(dataem);
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareupdateapp',dataem, {
       headers: options,
@@ -163,18 +163,18 @@ export class SpareUsedUpdatePage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    }); 
+
+    });
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 }

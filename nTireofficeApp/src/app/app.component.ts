@@ -546,6 +546,7 @@ export class AppComponent {
     public menuCtrl: MenuController
   ) {
     this.getParent = localStorage.getItem('ParentMenu');
+    this.checkMenu();
     // this.platform.backButton.subscribeWithPriority(0, () => {
 
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
@@ -560,7 +561,7 @@ export class AppComponent {
     // });
 
     platform.ready().then(() => {
-      this.checkMenu();
+
       statusBar.styleDefault();
       splashScreen.hide();
 

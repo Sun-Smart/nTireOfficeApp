@@ -35,7 +35,7 @@ export class ConsumableUpdatePage implements OnInit {
   scrapqty;
   cost;
 
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private model:ModalController,navParams: NavParams) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private model:ModalController,navParams: NavParams) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -63,15 +63,15 @@ export class ConsumableUpdatePage implements OnInit {
     this.cost=this.data.SPARECOST;
   }
   closemodel(){
-     
+
     this.model.dismiss();
   }
 
   updateconsumable(){
 
     var dataemu = {
-       
-        
+
+
       'branchid': this.branchID,
       'functionid': this.functionID,
       //'slno':$scope.spares.sno,
@@ -85,7 +85,7 @@ export class ConsumableUpdatePage implements OnInit {
       'scrapqty':this.scrapqty,
       'rowuniqid':this.data.mmp_rowuniqueid1,
       //'spareqty':$scope.spares.quantity,
-      
+
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -93,7 +93,7 @@ export class ConsumableUpdatePage implements OnInit {
     console.log(dataemu);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/consumableupdateapp',dataemu, {
       headers: options,
@@ -104,18 +104,18 @@ export class ConsumableUpdatePage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    }); 
+
+    });
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 }
