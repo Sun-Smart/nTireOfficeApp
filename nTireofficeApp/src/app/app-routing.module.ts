@@ -578,7 +578,11 @@ const routes: Routes = [
   {
     path: 'updateprsstatus',
     loadChildren: () => import('./procurement/updateprsstatus/updateprsstatus.module').then( m => m.UpdateprsstatusPageModule)
+  },  {
+    path: 'reciept-master-page',
+    loadChildren: () => import('./Property_Pages/reciept-master-page/reciept-master-page.module').then( m => m.RecieptMasterPagePageModule)
   },
+
 
 
 

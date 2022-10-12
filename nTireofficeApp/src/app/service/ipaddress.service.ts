@@ -92,7 +92,7 @@ export class IpaddressService {
     // this.serviceerpapi = "/dms/DMS/erpapi/";
     this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/";
 
-
+    this.dynamicmenu ="/nTireMobileCoreAPI/api";
 
 
     // Property
