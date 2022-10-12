@@ -104,7 +104,7 @@ export class HistotydetailsPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'gethistorydata/', updateleadHistoryJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'gethistorydata', updateleadHistoryJSON, {
       headers: options,
     }).subscribe(resp => {
       this.showhistforuser1 = resp;
@@ -133,25 +133,25 @@ export class HistotydetailsPage implements OnInit {
         element.TCC_AGENT_REMARKS = element.TCC_AGENT_REMARKS;
         var date = element.CREATED_ON;
 
-        var timesp = date;
-        var time2 = timesp[1];
+        // var timesp = date;
+        // var time2 = timesp[1];
 
-        var d1 = new Date(timesp[0] + " " + time2[0]);
-        var d2 = new Date(d1);
-        d2.setMinutes(d2.getMinutes() + 30);
-        console.log('getMinutes' + d2);
+        // var d1 = new Date(timesp[0] + " " + time2[0]);
+        // var d2 = new Date(d1);
+        // d2.setMinutes(d2.getMinutes() + 30);
+        // console.log('getMinutes' + d2);
 
-        var penddata = this.datePipe.transform(d2, "hh:mm a");
-        console.log('penddata' + penddata);
-        var created_time = penddata;
-        var time = created_time.split(' ');
+        // var penddata = this.datePipe.transform(d2, "hh:mm a");
+        // console.log('penddata' + penddata);
+        // var created_time = penddata;
+        // var time = created_time.split(' ');
 
-        if (time[1] == 'AM') {
-          element.created_time = time[0] + " " + 'PM';
-        }
-        else {
-          element.created_time = time[0] + " " + 'AM';
-        }
+        // if (time[1] == 'AM') {
+        //   element.created_time = time[0] + " " + 'PM';
+        // }
+        // else {
+        //   element.created_time = time[0] + " " + 'AM';
+        // }
 
 
         if (this.nextdate != undefined) {
@@ -194,19 +194,20 @@ export class HistotydetailsPage implements OnInit {
   }
   formatTime(time) {
     if (time) {
-      var parts = time.split('T');
+      var parts = time?.split('T');
       var parts2 = parts[1];
-      var parts3 = parts2.split(':');
+      var parts3 = parts2?.split(':');
     }
-    var date = new Date(0, 0, 0, parts3[0], parts3[1], 0);
+    // var date = new Date(0, 0, 0, parts3[0], parts3[1], 0);
 
-    return this.datePipe.transform(date, 'hh:mm a');
+    // return this.datePipe.transform(date, 'hh:mm a');
+    return;
 
   };
   dateconversion1(time) {
-    var parts = time.split('T');
+    var parts = time?.split('T');
     var parts2 = parts[1];
-    var parts3 = parts2.split(':');
+    var parts3 = parts2?.split(':');
 
     var date = new Date(0, 0, 0, parts3[0], parts3[1], 0);
     return date;
