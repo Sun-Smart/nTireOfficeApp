@@ -750,6 +750,8 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   }
 
   async Gethistorydetails(item) {
+    item.CALL_ID = parseInt(item.CALL_ID);
+    item.Campaign = 0;
     console.log("" + JSON.stringify(item));
     const modal = await this.modalController.create({
       component: HistotydetailsPage,

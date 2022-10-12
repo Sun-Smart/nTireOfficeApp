@@ -77,7 +77,8 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     Action_req: "",
     BRANCH_DESC: "",
     BRANCH_ID: "",
-    CALL_ID: "",
+    // CALL_ID: parseInt(""),
+    CALL_ID: parseInt(""),
     CUSTACCNO: "",
     CUSTOMER_FNAME: "",
     CUSTOMER_LNAME: "",
@@ -85,7 +86,8 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     CUST_CONT_PER: "",
     CUST_LEAD_ID: "",
 
-    Campaign: "",
+    // Campaign: "",
+    Campaign: 0,
 
     ClosedDate1: null,
     CreatedOn: "",
@@ -201,7 +203,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.Action_req = "";
     this.dataobjs.BRANCH_DESC = "";
     this.dataobjs.BRANCH_ID = "";
-    this.dataobjs.CALL_ID = this.item.CALL_ID;
+    this.dataobjs.CALL_ID = parseInt(this.item.CALL_ID);
     this.dataobjs.CUSTACCNO = this.item.CUSTACCNO;
     this.dataobjs.CUSTOMER_FNAME = this.item.CUSTOMER_FNAME;
     this.dataobjs.CUSTOMER_LNAME = this.item.CUSTOMER_LNAME;
@@ -564,7 +566,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
 
       var customerid = this.item.TCC_CUSTOMER_ID;
       var custleadid = parseInt(this.item.customer_lead_id);
-      var callid = this.item.CALL_ID;
+      var callid = parseInt(this.item.CALL_ID);
       var idvals = 2;
       var btnval = '';
       var meetLatLong = this.item.TCC_LOCATION_TO_MEET;
@@ -683,7 +685,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                   var objdataupdtime = {
                     TCC_CUST_ID: "",
                     TCC_CUST_LEAD_ID: "",
-                    TCC_CALL_ID: "",
+                    TCC_CALL_ID: parseInt(""),
                     OBJ_ID: "",
                     START_TIME: "",
                     END_TIME: "",
@@ -694,7 +696,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                   };
                   objdataupdtime.TCC_CUST_ID = customerid;
                   objdataupdtime.TCC_CUST_LEAD_ID = custleadid;
-                  objdataupdtime.TCC_CALL_ID = callid;
+                  objdataupdtime.TCC_CALL_ID = parseInt(callid);
                   objdataupdtime.OBJ_ID = idvals;
                   objdataupdtime.START_TIME = currenttime;
                   objdataupdtime.END_TIME = currenttime;
