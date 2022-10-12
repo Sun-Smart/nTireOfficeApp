@@ -51,7 +51,7 @@ export class PmsTransactionPage implements OnInit {
     ];
   }
 
-  transCancel() {
-    this.modalCtrl.dismiss();
+  async transCancel() {
+  await  this.modalCtrl.dismiss('','');
   }
 }

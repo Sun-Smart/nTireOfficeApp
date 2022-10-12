@@ -58,12 +58,7 @@ export class PmsemployeesPage implements OnInit {
 
     }
   }
-async transactionModal(){
-  const model = await this.modalCtrl.create({
-    component:PmsTransactionPage,
-  });
-  return await model.present();
-}
+
 async newIssueCreate(){
   const model = await this.modalCtrl.create({
     component : PmsCreateIssuePage,
