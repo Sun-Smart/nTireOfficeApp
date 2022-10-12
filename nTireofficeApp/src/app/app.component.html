@@ -47,7 +47,11 @@
 
       <ion-list class="menulsit" *ngIf="list1" no-lines>
         <ion-menu-toggle>
+          <div *ngFor="let p of salespages">
 
+            <ion-item lines="none" class="sideNav-itemList" [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon class="sideNav-Icon" slot="start" [name]="p.icon">
+              </ion-icon>
 
           <ion-item lines="none" *ngFor="let p of salespages" class="sideNav-itemList" [routerDirection]="'root'"
             [routerLink]="[p.url]">
@@ -60,6 +64,7 @@
           </ion-item>
 
 
+          </div>
         </ion-menu-toggle>
 
       </ion-list>
@@ -196,9 +201,8 @@
       <div class="menulsit" *ngIf="pms" no-lines>
         <div *ngFor="let p of Property">
           <ion-menu-toggle>
-
-            <ion-item lines="none" *ngIf="p.title !='Reports'" class="sideNav-itemList" [routerDirection]="'root'"
-              [routerLink]="[p.url]" [routerLinkActive]="['active-menu']">
+            <ion-item lines="none" *ngIf="p.title !='Reports' && p.title !='Employees'" class="sideNav-itemList"
+              [routerDirection]="'root'" [routerLink]="[p.url]" [routerLinkActive]="['active-menu']">
               <ion-icon name="{{p.icon}}" class="sideNav-Icon" slot="start">
               </ion-icon>
               <ion-label class="sideNav-itemLabel">
@@ -207,8 +211,10 @@
             </ion-item>
           </ion-menu-toggle>
 
-          <ion-item button *ngIf="p.subPages?.length > 0" (click)="p.open = !p.open" [class.active-parent]="p.open"
-            detail="false" lines="none" class="sideNav-itemList">
+          <!-- Sub Pages for Employees -->
+
+          <ion-item button *ngIf="p.employeeSubPages?.length > 0" (click)="p.open = !p.open"
+            [class.active-parent]="p.open" detail="false" lines="none" class="sideNav-itemList">
             <ion-icon name="{{p.icon}}" class="sideNav-Icon" slot="start"> </ion-icon>
             <ion-label class="sideNav-itemLabel">
               {{p.title}}
@@ -220,7 +226,33 @@
 
           <ion-list *ngIf="p.open" style="margin-left: 50px;">
             <ion-menu-toggle>
-              <ion-item *ngFor="let sub of p.subPages" [routerDirection]="'root'" [routerLink]="[sub.url]"
+              <ion-item *ngFor="let empsub of p.employeeSubPages" [routerDirection]="'root'" [routerLink]="[empsub.url]"
+                [routerLinkActive]="['active-menu']" style="border: none;">
+
+                <ion-icon slot="start" [name]="empsub.icon" class="sideNav-Icon"></ion-icon>
+                <ion-label class="sideNav-itemLabel">
+                  {{empsub.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+
+          <!-- Sub Pages for Reports -->
+
+          <ion-item button *ngIf="p.reportSubPages?.length > 0" (click)="p.open = !p.open"
+            [class.active-parent]="p.open" detail="false" lines="none" class="sideNav-itemList">
+            <ion-icon name="{{p.icon}}" class="sideNav-Icon" slot="start"> </ion-icon>
+            <ion-label class="sideNav-itemLabel">
+              {{p.title}}
+            </ion-label>
+
+            <ion-icon slot="end" name="arrow-dropdown" *ngIf="p.open"></ion-icon>
+            <ion-icon slot="end" name="arrow-dropright" *ngIf="!p.open"></ion-icon>
+          </ion-item>
+
+          <ion-list *ngIf="p.open" style="margin-left: 50px;">
+            <ion-menu-toggle>
+              <ion-item *ngFor="let sub of p.reportSubPages" [routerDirection]="'root'" [routerLink]="[sub.url]"
                 [routerLinkActive]="['active-menu']" style="border: none;">
 
                 <ion-icon slot="start" [name]="sub.icon" class="sideNav-Icon"></ion-icon>
