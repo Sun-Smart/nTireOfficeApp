@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { AdditionalChargesPage } from './additional-charges/additional-charges.page';
+import { AdditionalChargesPage } from '../additional-page/additional-charges/additional-charges.page';
 import { Router } from '@angular/router';
 import { PmsTransactionPage } from '../pms-transaction/pms-transaction.page';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';

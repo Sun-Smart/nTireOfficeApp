@@ -25,6 +25,7 @@ export class PmsTransactionPage implements OnInit {
   optionsWithRowDetail = {}
   dataWithRowDetail = [];
   columnsWithRowDetail: any = [];
+  showfilter: boolean = true;
 
   constructor(private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
 
@@ -54,4 +55,9 @@ export class PmsTransactionPage implements OnInit {
   async transCancel() {
   await  this.modalCtrl.dismiss('','');
   }
+
+  togglefilter() {
+    this.showfilter = !this.showfilter;
+  }
+
 }

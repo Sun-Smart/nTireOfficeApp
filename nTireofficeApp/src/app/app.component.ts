@@ -335,7 +335,7 @@ export class AppComponent {
       title: 'Department Location Wise Report',
       url: '/department-wise',
       icon: 'laptop'
-    }
+    },
 
   ];
 
@@ -563,7 +563,7 @@ export class AppComponent {
     public menuCtrl: MenuController
   ) {
     this.getParent = localStorage.getItem('ParentMenu');
-    this.checkMenu();
+    // this.checkMenu();
     // this.platform.backButton.subscribeWithPriority(0, () => {
 
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
