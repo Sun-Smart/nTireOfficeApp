@@ -14,7 +14,7 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class JobDetailPage implements OnInit {
 
-  
+
   userID:any;
   usertype:any;
   function:any;
@@ -55,7 +55,7 @@ export class JobDetailPage implements OnInit {
   endDate;
   taskCarried;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService) {
-   
+
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -76,7 +76,7 @@ export class JobDetailPage implements OnInit {
     // var year = todayDate.getFullYear();
     // var finaltodayDate = month + "/" + day + "/" + year;
     // this.today1 = finaltodayDate;
-    
+
    }
 
   ngOnInit() {
@@ -101,13 +101,13 @@ export class JobDetailPage implements OnInit {
 
     this.loginuser = window.localStorage['TUM_USER_NAME'];
     console.log(workOrderNum)
-    
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'/Pendingsearchs11/1/1/%20/%20/%20/'+this.userID+'/'+this.usertype+'/%20/%20/MT', {
-      
+
       headers: options,
     }).subscribe(resp => {
 
@@ -149,7 +149,7 @@ export class JobDetailPage implements OnInit {
         console.log(datare);
         const header = new Headers();
         header.append("Content-Type", "application/json");
-      
+
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/reopencomments',datare, {
           headers: options,
@@ -162,7 +162,7 @@ export class JobDetailPage implements OnInit {
         }, error => {
           //this.presentAlert('Alert','Server Error,Contact not loaded');
           console.log("error : " + JSON.stringify(error));
-      
+
         });
 
     }, error => {
@@ -171,7 +171,7 @@ export class JobDetailPage implements OnInit {
     });
   }
 
-  
+
 
 findWithAttr(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
@@ -224,10 +224,10 @@ if(releaseStatus==true){
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'/CAMS_PENDING_COMPLETED/'+finaltodayDate+'/01/02/1/0/0/0/0/0/0/'+finaltodayDate+'/'+finaltodayDate+'/'+this.remarks+'/1/2/100/'+this.pmrref+'/'+this.assetid+'/'+this.activityid+'/1/1/'+this.relstatus , {
-      
+
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
@@ -237,13 +237,13 @@ if(releaseStatus==true){
         this.presentAlert("Success","Successfully Completed!")
         //  $state.go('app.complete');
 
-        
+
       //  $scope.modal.hide();
       } else {}
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
+
     });
 
   }else{
@@ -259,7 +259,7 @@ if(releaseStatus==true){
 async presentAlert(heading, tittle) {
   var alert = await this.alertController.create({
     header: heading,
-
+    backdropDismiss:false,
     message: tittle,
     buttons: ['OK']
   });

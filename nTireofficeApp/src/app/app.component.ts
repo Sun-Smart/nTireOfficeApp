@@ -1,3 +1,16 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable prefer-const */
+/* eslint-disable no-debugger */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @angular-eslint/use-lifecycle-interface */
+/* eslint-disable max-len */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-var */
 import { Component, ViewChild } from '@angular/core';
 
 // import { Platform } from '@ionic/angular';
@@ -30,7 +43,7 @@ export class AppComponent {
   list5: boolean;
   list6: boolean;
   CamsList: boolean;
-  pmssubmenu:boolean=false
+  pmssubmenu: boolean = false
   pms: boolean;
   user_role: any;
   chkadmin: boolean;
@@ -38,7 +51,7 @@ export class AppComponent {
 
   reportMenu: any;
   showSubmenu: boolean = false;
-  showForce : boolean;
+  showForce: boolean;
 
   public salespages = [
 
@@ -523,12 +536,24 @@ export class AppComponent {
           icon: 'call'
         },
 
-      ]}
+      ]
+    }
   ];
 
 
 
   @ViewChild(IonRouterOutlet) routerOutlet: IonRouterOutlet;
+  parentMenu: Object;
+  getParentMenu: any;
+  showParentMenu: any;
+  listParentMenu: string;
+  listParentMenu1: string;
+  listParentMenu2: string;
+  listParentMenu3: string;
+  listParentMenu4: string;
+  listParentMenu5: string;
+  getParent: any;
+  getParse: any;
   constructor(private locationAccuracy: LocationAccuracy,
     private router: Router,
     private platform: Platform,
@@ -537,7 +562,8 @@ export class AppComponent {
     public Ipaddressservice: IpaddressService,
     public menuCtrl: MenuController
   ) {
-
+    this.getParent = localStorage.getItem('ParentMenu');
+    this.checkMenu();
     // this.platform.backButton.subscribeWithPriority(0, () => {
 
     //   if (this.routerOutlet && this.routerOutlet.canGoBack()) {
@@ -575,7 +601,7 @@ export class AppComponent {
       if (event.constructor.name === "NavigationEnd") {
         this.name = (<any>event).url.split("/").slice(-1)[0];
 
-        console.log("event.constructor.name :" + event.constructor.name)
+        console.log("event.constructor.name :" + event.constructor.name);
 
         if (this.name == 'login') {
           this.logoutbtn = true;
@@ -610,13 +636,32 @@ export class AppComponent {
     );
 
   }
-
+  checkMenu() {
+    this.getParse = JSON.parse(this.getParent);
+    this.getParse.forEach(element => {
+      this.showParentMenu = element.MENU_DESC;
+      if (element.MENU_DESC == "HRMS") {
+        this.listParentMenu1 = "HRMS";
+      } else if (element.MENU_DESC == "Sales Leads") {
+        this.listParentMenu2 = "Sales Leads";
+      } else if (element.MENU_DESC == "CAMS") {
+        this.listParentMenu3 = "CAMS";
+      } else if (element.MENU_DESC == "eProcure") {
+        this.listParentMenu4 = "Procurement";
+      } else if (element.MENU_DESC == "FM") {
+        this.listParentMenu5 = "Property";
+      }
+    });
+  }
   ngOnInit() {
+    debugger;
     this.user_role = window.localStorage.getItem('TUM_USER_TYPE');
+    var userid = window.localStorage.getItem('TUM_EMP_CODE');
     console.log(this.user_role);
     if (this.user_role == '1' || this.user_role == '46' || this.user_role == '37' || this.user_role == '44' || this.user_role == '47' || this.user_role == '45') {
       this.chkadmin = true;
     }
+
 
 
 
@@ -825,7 +870,7 @@ export class AppComponent {
 
 
   menutooglepms() {
-debugger
+    debugger
     if (this.pms == true) {
       this.pms = false;
     }
@@ -836,21 +881,21 @@ debugger
 
 
 
-  
+
 
   menuItemHandler(): void {
     this.showSubmenu = !this.showSubmenu;
   }
 
-  showreports(){
+  showreports() {
     alert("567")
 
 
 
 
 
-    this.pmssubmenu=!this.pmssubmenu
-    this.pmssubmenu=true
+    this.pmssubmenu = !this.pmssubmenu
+    this.pmssubmenu = true
   }
 
 

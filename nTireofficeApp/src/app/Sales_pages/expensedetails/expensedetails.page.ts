@@ -831,7 +831,7 @@ export class ExpensedetailsPage implements OnInit {
   async presentAlert(heading, CustFullName, TCC_CUSTOMER_ID, MOBILE, offphone, RESPHONE, Current_Caller, lastcall, nextcall, PriorityText, Ratingtext, Campaign, Remarks, formattedadd, Customer_ID, checkdata) {
     var alert = await this.alertController.create({
       header: heading,
-
+      backdropDismiss:false,
       message: '<div><table style="width: 100%;text-align: left;font-size:15px"><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Customer Name</td><td>' + CustFullName + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Customer Id</td><td>' + TCC_CUSTOMER_ID + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Contact Number</td><td>' + MOBILE + ' | ' + offphone + ' | ' + RESPHONE + '</td></tr></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Current Caller</td><td>' + Current_Caller + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Last Call</td><td>' + lastcall + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Next Call</td><td>' + nextcall + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Priority</td><td>' + PriorityText + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Rating</td><td>' + Ratingtext + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Campaign</td><td>' + Campaign + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Remarks</td><td>' + Remarks + '</td></tr><tr><td style="padding-top: 5px;padding-bottom: 5px;font-weight: bold;color: #fff;width: 125px;">Meeting Place</td><td>' + formattedadd + '</td></tr></table></div>',
       buttons: [
         {
@@ -891,6 +891,7 @@ export class ExpensedetailsPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

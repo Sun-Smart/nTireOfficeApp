@@ -377,7 +377,7 @@ if(data.ClosedDate!=undefined && data.ClosedDate!=""){
   async presentAlert(heading,tittle) {
     var alert = await this.alertController.create({
       header: heading,
-
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
@@ -416,6 +416,7 @@ if(data.ClosedDate!=undefined && data.ClosedDate!=""){
     const alert = await this.alertController.create({
       header: heading,
       message: tittle,
+      backdropDismiss:false,
       buttons: [
         {
           text: 'Ok',

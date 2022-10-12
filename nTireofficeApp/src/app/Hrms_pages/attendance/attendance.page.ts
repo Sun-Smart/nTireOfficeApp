@@ -128,7 +128,7 @@ export class AttendancePage implements OnInit {
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
-
+      duration: 500,
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',

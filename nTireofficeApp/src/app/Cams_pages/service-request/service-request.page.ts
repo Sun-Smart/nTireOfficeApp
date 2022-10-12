@@ -110,9 +110,9 @@ export class ServiceRequestPage implements OnInit {
     this.reqdate = finaltodayDate;
     // this.ServiceExpensenew = [];
     // this.ServiceExpensenew=$rootScope.ServiceExpname;
-    
+
   //    if(this.ServiceExpensenew!=undefined){
-       
+
   //    this.RequestRef=this.ServiceExpensenew[0].RequestRef;
   //    this.ASSETCODEASSETDESCRIPTION=this.ServiceExpensenew[0].ASSETCODEASSETDESCRIPTION;
   //    this.RequestDate=this.ServiceExpensenew[0].RequestDate;
@@ -120,21 +120,21 @@ export class ServiceRequestPage implements OnInit {
   //    this.DATEOFSERVICE=this.ServiceExpensenew[0].DATEOFSERVICE;
   //    this.EXPECTEDDATEOFDELIVERY=this.ServiceExpensenew[0].EXPECTEDDATEOFDELIVERY;
   //    this.SERVICETYPE=this.ServiceExpensenew[0].SERVICETYPE;
-     
+
   //    console.log(this.RequestDate);
-     
+
   //    this.Status=this.ServiceExpensenew[0].Status;
   //    this.workflow_no=this.ServiceExpensenew[0].workflow_no;
   //  }
   //  // alert("RequestRef"+$scope.RequestRef);
   //    if(this.RequestRef!=undefined){
-       
+
       //  this.ServiceRefshow=true;
       //  this.Serviceshow=false;
-       
+
     //  }
     //  else{
-       
+
        this.ServiceRefshow=false;
        this.Serviceshow=true;
     //  }
@@ -202,8 +202,8 @@ export class ServiceRequestPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-  
-  
+
+
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -212,7 +212,7 @@ export class ServiceRequestPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -258,7 +258,7 @@ export class ServiceRequestPage implements OnInit {
     console.log(resp);
     this.departmentreqs = resp[0].Text;
     console.log(this.departmentreqs);
-    
+
   }, error => {
     console.log("error : " + JSON.stringify(error));
 
@@ -286,7 +286,7 @@ export class ServiceRequestPage implements OnInit {
       console.log(this.assetid);
       this.myValue = true;
     }
-    
+
   }, error => {
     console.log("error : " + JSON.stringify(error));
 
@@ -297,10 +297,11 @@ export class ServiceRequestPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'Cssbutton',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -342,8 +343,8 @@ export class ServiceRequestPage implements OnInit {
       for (var i = 0; i < this.vendor_code_det.length; i++) {
         // $scope.user_type1 = $scope.user_type[i].DESCRIPTION;
         this.vendor_code_det1.push(this.vendor_code_det[i].Vendor_Code+' - '+this.vendor_code_det[i].Vendor_Name);
-  
-  
+
+
       }
       const val = ev.target.value;
 
@@ -360,7 +361,7 @@ export class ServiceRequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    
+
   }
 
   fetchservsvendorreq(item){
@@ -379,7 +380,7 @@ export class ServiceRequestPage implements OnInit {
     console.log(dataserv);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicevendorlist',dataserv, {
       headers: options,
@@ -393,7 +394,7 @@ export class ServiceRequestPage implements OnInit {
         console.log(this.vendorid);
     }, error => {
       console.log("error : " + JSON.stringify(error));
-  
+
     });
 
   }
@@ -424,8 +425,8 @@ export class ServiceRequestPage implements OnInit {
       for (var i = 0; i < this.Asset_code_detr.length; i++) {
         // $scope.user_type1 = $scope.user_type[i].DESCRIPTION;
         this.Asset_code_det1r.push(this.Asset_code_detr[i].ASSET_CODE);
-  
-  
+
+
       }
       const val = ev.target.value;
 
@@ -442,7 +443,7 @@ export class ServiceRequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    
+
 
   }
   // scancodeuserservrep(){
@@ -450,8 +451,8 @@ export class ServiceRequestPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-  
-  
+
+
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -460,7 +461,7 @@ export class ServiceRequestPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -497,7 +498,7 @@ export class ServiceRequestPage implements OnInit {
       }
   const header = new Headers();
       header.append("Content-Type", "application/json");
-  
+
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetserreqdept',dataser1, {
         headers: options,
@@ -509,7 +510,7 @@ export class ServiceRequestPage implements OnInit {
       }, error => {
         //this.presentAlert('Alert','Server Error,Contact not loaded');
         console.log("error : " + JSON.stringify(error));
-  
+
       });
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicelistreplace',dataser1, {
         headers: options,
@@ -517,7 +518,7 @@ export class ServiceRequestPage implements OnInit {
         console.log(resp)
 
         this.repdatalist=resp;
-        
+
         //$scope.detailsser1 = response.data[0];
         // var alassetrsrepc = this.repdatalist;
         // console.log(alassetrsrepc.length);
@@ -534,7 +535,7 @@ export class ServiceRequestPage implements OnInit {
       }, error => {
         //this.presentAlert('Alert','Server Error,Contact not loaded');
         console.log("error : " + JSON.stringify(error));
-  
+
       });
 
   }else{
@@ -621,7 +622,7 @@ processassetservicereq(){
     } else {
      var sertilldte = this.datePipe.transform(this.tilldate, 'dd-MM-yyyy');
     }
-  
+
   }else{
     var sertilldte = "";
   }

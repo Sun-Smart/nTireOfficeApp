@@ -275,7 +275,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     }
   };
   uploadingFiledocument() {
-    var url = this.Ipaddressservice.ipaddress + '/los/uploadfile';
+    var url = this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'uploadfile';
     const formData: any = new FormData();
     formData.append("upload", this.file, this.image1);
 
@@ -473,6 +473,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
@@ -483,6 +484,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

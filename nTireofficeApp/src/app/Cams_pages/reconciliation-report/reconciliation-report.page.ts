@@ -116,8 +116,8 @@ export class ReconciliationReportPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-  
-  
+
+
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -126,7 +126,7 @@ export class ReconciliationReportPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -156,11 +156,11 @@ export class ReconciliationReportPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -199,7 +199,7 @@ var status='';
     }
     this.detailrecons = [];
     console.log(datarep);
-  
+
 
   const header = new Headers();
   header.append("Content-Type", "application/json");

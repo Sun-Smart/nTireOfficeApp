@@ -780,7 +780,7 @@ this.backbutton();
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-
+backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
