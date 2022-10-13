@@ -42,7 +42,7 @@ export class EmployeesPage implements OnInit {
 
   ngOnInit() {
 
-    this.employeeSearch();
+    // this.employeeSearch();
   }
 
   ionViewDidEnter() {
