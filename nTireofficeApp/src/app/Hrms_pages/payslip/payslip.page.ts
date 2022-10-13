@@ -27,7 +27,7 @@ export class PayslipPage implements OnInit {
   segmentdata;
   username = window.localStorage.getItem('TUM_USER_NAME');
   EmployeeID: string;
-  constructor(private HttpRequest: HttprequestService, private httpclient: HttpClient, public Ipaddressservice: IpaddressService, public loadingController: LoadingController,) {
+  constructor(private HttpRequest: HttprequestService, private httpclient: HttpClient, public alertController: AlertController,  public Ipaddressservice: IpaddressService, public loadingController: LoadingController,) {
     this.empid = window.localStorage.getItem('EmployeeID')
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
     this.segmentdata = "earnings";
@@ -39,21 +39,38 @@ export class PayslipPage implements OnInit {
   }
 
   ngOnInit() {
+  };
+
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   getPaySlip() {
     this.getLeaveDetails();
     this.loadingdismiss();
     debugger
-    if (this.yeardata == "") {
+    if (this.yeardata == undefined) {
       this.yeardata = "0";
     }
-    if (this.monthdata == "") {
+    if (this.monthdata == undefined) {
       this.monthdata = "0";
+    };
+
+    if((this.yeardata == '' && this.monthdata == '') || (this.yeardata != '' && this.monthdata == '') || (this.yeardata == '' && this.monthdata !== '')){
+      this.presentAlert(' ', 'Please Select Year & Month');
+
+    }else{
+      this.presentLoadingWithOptions();
     }
+
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-
-
     this.httpclient.get('https://demo.herbie.ai/nTireMobileCoreAPISSG/api/HRMS/EmployeeSalaryRegularEarnings/' + this.empid + "/" + this.yeardata + "/" + this.monthdata,{ responseType: 'text'}).subscribe((res: any) => {
       // let data = JSON.stringify(res);
       // data = JSON.parse(data)
@@ -138,6 +155,7 @@ export class PayslipPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
+    
   }
   getLeaveDetails() {
     // this.presentLoadingWithOptions();
