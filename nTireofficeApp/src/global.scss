@@ -91,10 +91,6 @@ ion-segment ion-label {
   text-transform: uppercase !important;
 }
 
- label {
-   //color: black !important;
- }
-
  ion-checkbox {
    --size: 20px;
    //--background-checked: #0074b8;
@@ -1240,4 +1236,8 @@ ion-searchbar {
 }
 .alert-button.ion-focused.sc-ion-alert-ios, .alert-tappable.ion-focused.sc-ion-alert-ios {
    background: var(--ion-color-step-100, red) !important;
+}
+//stobart dropdown left aligment//
+#selectbutton{
+  padding-left: 0px;
 }

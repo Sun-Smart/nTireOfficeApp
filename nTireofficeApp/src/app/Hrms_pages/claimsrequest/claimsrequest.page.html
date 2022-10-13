@@ -17,8 +17,7 @@
       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Branch</ion-label>
-        <ion-input style="background-color: white;
-                    color: black;" class="form-control"  [(ngModel)]="branch"></ion-input>
+        <ion-input class="form-control"   style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" disabled [(ngModel)]="branch"></ion-input>
       </ion-col>
       <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                       <ion-label>Date</ion-label>
@@ -26,12 +25,11 @@
                       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Name<span class="validatecolor">*</span></ion-label>
-        <ion-input style="background-color: white;
-                            color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
+        <ion-input class="form-control"  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" disabled  [(ngModel)]="name"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Request Category<span claretailss="validatecolor">*</span></ion-label>
-        <select class="ContentName" placeholder="Select Request Category" [(ngModel)]="requestCat" class="form-control"
+        <ion-label class="ContentName">Request Category<span class="validatecolor">*</span></ion-label>
+        <select class="ContentName" id="selectbutton" placeholder="Select Request Category" [(ngModel)]="requestCat" class="form-control"
           style="display: flex;">
           <option  class="ContentName"  value="">&lt;&lt; Select &gt;&gt; </option>
           <option   class="ContentName" *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
@@ -41,7 +39,7 @@
       <ion-col *ngIf="requestCat=='2'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Ref <span class="validatecolor">*</span></ion-label>
 
-        <select class="ContentName" placeholder="Select Request Ref" style="display: flex;" [(ngModel)]="reqRef" class="form-control"
+        <select class="ContentName" id="selectbutton" placeholder="Select Request Ref" style="display: flex;" [(ngModel)]="reqRef" class="form-control"
           (change)="requestRefChange()">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
 
@@ -61,6 +59,7 @@
 
       <ion-col size="6">
         <ion-checkbox color="primary" [(ngModel)]="release" [value]="false"></ion-checkbox>&nbsp;&nbsp;
+        
         <ion-label class="ContentName">Release</ion-label>
       </ion-col>
 
@@ -119,7 +118,7 @@
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Expense Type<span class="validatecolor">*</span></ion-label>
-        <select id="ContentName" style="display: flex; " class="form-control"
+        <select id="ContentName" id="selectbutton" style="display: flex; " class="form-control"
           [(ngModel)]="expenseType">
           <option class="ContentName" value="Select">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" value="1">Food</option>

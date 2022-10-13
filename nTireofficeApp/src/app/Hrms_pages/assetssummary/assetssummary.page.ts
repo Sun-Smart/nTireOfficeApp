@@ -14,6 +14,7 @@ import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors
   styleUrls: ['./assetssummary.page.scss'],
 })
 export class AssetssummaryPage implements OnInit {
+  showfilter: boolean = true;
   categoryData : any=[];
   subCategoryData:any=[];
   FUNCTION_ID;
@@ -130,6 +131,9 @@ this.getAssestsSubcat();
     this.error = "No data found";
   }
 }
+togglefilter() {
+  this.showfilter = !this.showfilter;
+}
 
 async openModal(value){
   // this.traveldetails={
@@ -199,4 +203,6 @@ async cancelRequest(permData){
   });
   await alert.present();
 }
+
+
 }
