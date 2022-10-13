@@ -69,34 +69,7 @@ export class VendorQuotationPage implements OnInit {
       { name: 'DelivaryDate', width: "120"  },
       { name: 'Action', width: "120"  },
   ];
-  constructor(private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) {
-
-    // this.columns = [
-    //   { name: 'Category', width: "110"  },
-    //   { name: 'QTY', width: "120"  },
-    //   { name: 'UpPrice', width: "120"  },
-    //   { name: 'disc%', width: "120"  },
-    //   { name: 'tax1', width: "120"  },
-    //   { name: 'tax2', width: "110"  },
-    //   { name: 'Tc', width: "110"  },
-    //   { name: 'BaseV', width: "120"  },
-    //   { name: 'BidV', width: "120"  },
-    //   { name: 'ExpDate', width: "120"  },
-    //   { name: 'DelivaryDate', width: "120"  },
-    //   { name: 'Action', width: "120"  },
-
-    // ];
-
-
-
-
-
-
-
-
-
-
-   }
+  constructor(private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) { }
 
   ngOnInit() {
     this.data= [

@@ -376,7 +376,7 @@ export class AppComponent {
     },
     {
       title: 'Vendor Quotation',
-      url: '/vendorquotation',
+      url: '/vendor-quotation',
       icon: 'clipboard'
     },
     {

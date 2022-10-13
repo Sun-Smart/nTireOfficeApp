@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from '../table-sample.service';
+import { RecieptMasterPagePage } from '../reciept-master-page/reciept-master-page.page';
 
 @Component({
   selector: 'app-pms-transaction',
@@ -60,4 +61,13 @@ export class PmsTransactionPage implements OnInit {
     this.showfilter = !this.showfilter;
   }
 
+  async viewReciept() {
+    debugger;
+
+    const model = await this.modalCtrl.create({
+
+      component: RecieptMasterPagePage,
+    });
+    return await model.present();
+  }
 }

@@ -10,10 +10,12 @@ export class RFQPage implements OnInit {
 
   showviewlist:boolean=false
   showrfq:boolean=false
+  selectAll:boolean = false;
 
   indeterminateState: boolean;
   checkParent: boolean;
   Checkboxes: any;
+  checkboxes:any=[];
 
   constructor(private router :Router) {
     // this.Checkboxes = [
@@ -44,13 +46,23 @@ export class RFQPage implements OnInit {
     //   }
     // ];
   }
-  checkCheckbox() {
-    setTimeout(() => {
-      this.Checkboxes.forEach(item => {
-        item.isItemChecked = this.checkParent;
-      });
-    });
+  CheckAllOptions() {
+    if (this.checkboxes.every(val => val.checked == true))
+      this.checkboxes.forEach(val => { val.checked = false });
+    else
+      this.checkboxes.forEach(val => { val.checked = true });
   }
+
+  selectAllCheckbox(value) {
+    console.log(value);
+    if(value == false) {
+      this.selectAll = true;
+    }
+    else {
+      this.selectAll = false;
+    }
+  }
+
   verifyEvent() {
     const allItems = this.Checkboxes.length;
     let selected = 0;

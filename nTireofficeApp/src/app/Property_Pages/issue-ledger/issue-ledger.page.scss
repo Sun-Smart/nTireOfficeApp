@@ -4,3 +4,8 @@ ion-content {
     --background: url('../../../assets/images/tpbackground.png') repeat !important;
     position: relative;
   }
+  .sc-ion-searchbar-ios-h {
+    padding: 0px !important;
+    height: 36px !important;
+    border-radius: 10px !important;
+}

@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 export class ManageRfqPage implements OnInit {
   showvendorqrotation:boolean = false;
   showvendorqrotationaction:boolean = true;
+  selectAllissue:boolean = false;
+  selectAllvendor:boolean = false;
+
 
   constructor(private router: Router) { }
 
@@ -29,6 +32,25 @@ export class ManageRfqPage implements OnInit {
     this.showvendorqrotationaction = false;
   }
 
+  selectAllissueCheckbox(value) {
+    console.log(value);
+    if(value == false) {
+      this.selectAllissue = true;
+    }
+    else {
+      this.selectAllissue = false;
+    }
+  }
+
+  selectAllvendorCheckbox(value) {
+    console.log(value);
+    if(value == false) {
+      this.selectAllvendor = true;
+    }
+    else {
+      this.selectAllvendor = false;
+    }
+  }
   back() {
     this.router.navigate(['/rfq'])
   }

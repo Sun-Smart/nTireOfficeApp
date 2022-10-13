@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment-details.page.scss'],
 })
 export class PaymentDetailsPage implements OnInit {
-
+  showfilter:boolean=true;
   constructor() { }
 
   ngOnInit() {
   }
-
+  togglefilter(){
+    this.showfilter = !this.showfilter
+  }
 }
