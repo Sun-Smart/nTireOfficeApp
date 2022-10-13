@@ -7,8 +7,9 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./pms-list.page.scss'],
 })
 export class PmsListPage implements OnInit {
+  showfilter: boolean = true;
 
-  showfilter:boolean=true;
+
 
   constructor(private modalCtrl: ModalController) { }
 

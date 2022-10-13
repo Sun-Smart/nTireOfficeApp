@@ -294,7 +294,7 @@ export class UserRequestPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.presentAlert("Success","sucessfully request raised issue ref number :"+this.refmaxnum+"");
+      this.presentAlert("Success","Sucessfully Request Raised Issue Ref Number :"+this.refmaxnum+"");
       this.descp='';
       this.department='';
       this.assetcode='';
