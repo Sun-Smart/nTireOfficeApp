@@ -13,6 +13,7 @@ export class PayslipPage implements OnInit {
   yeardata;
   monthdata;
   empid;
+  displayEmployee: any = [];
   empData: any = [];
   paySlipEarnings:any= [];
   error;
@@ -35,12 +36,38 @@ export class PayslipPage implements OnInit {
     this.monthdata = "";
     this.geYears();
     this.geMonths();
+    this.getEmployeeList();
     // this.getPaySlip();
   }
 
   ngOnInit() {
   };
+  getEmployeeList() {
+    var obj = {
+      empID: window.localStorage.getItem("EmployeeID"),
+      name: window.localStorage.getItem("EmployeeName"),
+      code: window.localStorage.getItem("TUM_EMP_CODE"),
+      designation: window.localStorage.getItem("EmpDesignation"),
+      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      department: window.localStorage.getItem("EmpDepartment"),
+      top: 0,
+      increment: 20,
+      appURL: 'employeelist'
+    }
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + '/EmployeeSearch/' + obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp => {
+      //  this.displayEmployee = JSON.parse(resp.toString());
+      this.displayEmployee = resp;
 
+      this.displayEmployee = this.displayEmployee[0];
+
+      console.log("displayEmployee : " + JSON.stringify(this.displayEmployee));
+
+    }, error => {
+
+      console.log("error : " + JSON.stringify(error));
+
+    });
+  }
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,

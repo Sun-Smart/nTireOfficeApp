@@ -9,6 +9,20 @@
       <ion-title>Pay Slip</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card>
+    <ion-grid *ngIf="displayEmployee!=undefined">
+      <ion-row style="text-align:center">
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <strong style="color:#2e3192;">{{displayEmployee.EmployeeCode}} -- {{displayEmployee.FirstName}} {{displayEmployee.LastName}}</strong>
+              <p class="ContentName">{{displayEmployee.Designation}}</p>
+              <p class="ContentName">{{displayEmployee.Department}}</p>
+      </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  
   <ion-card>
     <ion-grid style="background-color: #f8f8f8;">
   <ion-row>
