@@ -4,7 +4,7 @@ import { IpaddressService} from '../../ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
-import {TabparamserviceService} from '../../tabparamservice.service'
+import {TabparamserviceService} from '../../service/tabparamservice.service'
 import { ActivatedRoute} from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ManPowerUpdatePage} from '../man-power-update/man-power-update.page'

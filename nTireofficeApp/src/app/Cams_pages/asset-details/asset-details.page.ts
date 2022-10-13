@@ -505,6 +505,7 @@ export class AssetDetailsPage implements OnInit {
           //     template: "<center> Updated Successfully </center>",
           // });
           // $ionicLoading.hide();
+          debugger;
           this.presentAlert("Sucess", "Updated Successfully")
           // this.showmap = true;
 

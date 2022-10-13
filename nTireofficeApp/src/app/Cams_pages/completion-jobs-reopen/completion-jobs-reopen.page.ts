@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -82,7 +82,11 @@ export class CompletionJobsReopenPage implements OnInit {
 
 // console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
 
+<<<<<<< Updated upstream
     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {
+=======
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {   
+>>>>>>> Stashed changes
       headers: options,
     }).subscribe(resp => {
        this.presentAlert('Alert','Successfully Reopened');

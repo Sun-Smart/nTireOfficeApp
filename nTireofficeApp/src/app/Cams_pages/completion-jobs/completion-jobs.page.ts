@@ -258,7 +258,7 @@ if(item.CMD_ACTIVITY_ID == null || item.CMD_ASSET_ID == null){
     'functionidrep': functionreport1,
     'branchid': brnchlreport1,
     'activityid': item.CMD_ACTIVITY_ID,
-    'assetid': item.CMD_ASSET_ID,
+    'assetid': parseInt(item.CMD_ASSET_ID),
     'createdby': userid,
     'frequency': item.amd_frequency,
     'actualhours': item.amd_maintenance_duration,
