@@ -91,6 +91,7 @@ export class ProcessedAttendancePage implements OnInit {
   }
   getAttendance() {
     this.nodata = false;
+    this.attendanceList = [];
     
     // console.log(this.attendance.empID);
     if (this.yeardata == undefined) {
