@@ -59,6 +59,7 @@ export class LoanRequestPage implements OnInit {
   disabledvalue;
   username = window.localStorage.getItem('TUM_USER_NAME');
   getemployeid: any;
+  schemeid: any;
   constructor(private alertController: AlertController, private router: Router, private route: ActivatedRoute, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     // this.userid = window.localStorage['TUM_USER_ID'];
     this.userid = parseInt(window.localStorage['TUM_USER_ID'])
@@ -281,12 +282,12 @@ export class LoanRequestPage implements OnInit {
     if (this.reqtype == 2) {
       var amount = this.advamount;
       var moninstall = this.installments;
-      var schemeid = 0;
+      var schemeid = "0";
       var emiamount = this.mondeduct;
       var eligibilityamount = this.maxligiblity;
 
     } else {
-      schemeid = this.loanScheme;
+      this.schemeid = this.loanScheme;
       var amount = this.loanamount;
       var moninstall = this.maxinstallment;
       var emiamount = this.emiamount;
@@ -301,30 +302,41 @@ export class LoanRequestPage implements OnInit {
     else {
       this.status = 'N';
     }
+    if (this.advamount == null || this.advamount == undefined || this.advamount == '') {
+      this.advamount = "0"
+    }
+    if (this.schemeid == null || this.schemeid == undefined || this.schemeid == "") {
+      this.schemeid = "0"
+    }
+
+    let getdate = new Date();
+    var nowdate = getdate.toISOString().replace('Z', '').replace('T', ' ');
+
 
 
     var OBJ = {
-      emp_id: this.getemployeid,
+      EmpId: this.getemployeid,
       req_type: this.reqtype,
-      scheme_id: schemeid.toString(),
+
+      scheme_id: this.schemeid,
       // MonthLy_installment: moninstall,
       // Amount: amount,
       // Status:  this.status,
       // Monthly_deduct: emiamount,
 
-      MonthLy_installment: '',
-      Amount: '',
+      MonthLy_installment: '0',
+      Amount: this.advamount,
       Status: this.status,
-      Monthly_deduct: '',
-      Rev_loan: '',
+      Monthly_deduct: '0',
+      Rev_loan: '0',
       CreatedBy: this.userid.toString(),
       user_id: this.userid,
-      Createdon: new Date(),
-      Updatedon: new Date(),
+      Createdon: nowdate,
+      Updatedon: nowdate,
       ipaddress: '192.168.0.47',
       isdeferral: 'P',
       deferralmode: "0",
-      function_id: functionid,
+      functionid: functionid,
       access_token: window.localStorage['token'],
       userid: this.userid,
       usertoken: this.usertoken,
@@ -353,7 +365,7 @@ export class LoanRequestPage implements OnInit {
     }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "insertloanadvancedetails", OBJ).then(resp => {
       this.loanreqno = Object.values(resp[0]);
-      this.toastmessageService.presentAlert1("Request Sent", "Your Loan Request with Ref No. " + this.loanreqno + " has been Saved Successfully!");
+      this.toastmessageService.presentAlert("Request Sent", "Your Loan Request with Ref No. " + this.loanreqno + " has been Saved Successfully!");
 
       console.log(this.loanreqno[0]);
       if (this.reqtype == 1) {
