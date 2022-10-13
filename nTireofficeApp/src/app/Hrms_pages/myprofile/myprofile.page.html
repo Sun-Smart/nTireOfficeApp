@@ -18,7 +18,7 @@
     <ion-row style="background-color: #ffffff;">
       <br />
       <ion-col class="profilephoto">
-        <div  style="background:rgba(181, 179, 179, 0.31);">
+        <div style="background:rgba(181, 179, 179, 0.31);">
           <img *ngIf="showprofile" src="{{profilepic}}" onerror="this.src='assets/Images/defaultMale.png'">
           <!-- <img  [src]="sanitizer.bypassSecurityTrustUrl(profilepic)" onerror="this.src='assets/Images/defaultMale.png'"/> -->
           <img *ngIf="showimage" src="assets/images/defaultMale.png" />
@@ -73,7 +73,7 @@
     </ion-row>
     <ion-segment [(ngModel)]="segmentdata">
       <ion-segment-button value="Personal">
-        <ion-label  style="color:black !important"class="myprofilesegment">PERSONAL DETAILS</ion-label>
+        <ion-label style="color:black !important" class="myprofilesegment">PERSONAL DETAILS</ion-label>
       </ion-segment-button>
       <ion-segment-button value="education">
         <ion-label style="color:black !important" class="myprofilesegment">EDUCATION & CAREER</ion-label>
@@ -86,8 +86,8 @@
       <ion-card>
         <ion-card-header class="card_header" style="padding: 0px !important;">
           <ion-row>
-            <ion-col size="6"   style="line-height: 2;" >
-              <ion-label  class="card_header_text" style="color: #fff !important;">Personal Details</ion-label>
+            <ion-col size="6" style="line-height: 2;">
+              <ion-label class="card_header_text" style="color: #fff !important;">Personal Details</ion-label>
             </ion-col>
             <ion-col size="6" style="text-align: end;">
               <button (click)="hidePersonalPanel('personal')" style="background: transparent;"
@@ -128,15 +128,15 @@
           <ion-row>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label class="labelHead-text">First Name</ion-label>
-              <ion-input type="text" class="profileOutput labelData-text" *ngIf="personalToggle === 1" placeholder="First Name"
-                [(ngModel)]="profile.FirstName" [disabled]="personalToggle === 0"></ion-input>
+              <ion-input type="text" class="profileOutput labelData-text" *ngIf="personalToggle === 1"
+                placeholder="First Name" [(ngModel)]="profile.FirstName" [disabled]="personalToggle === 0"></ion-input>
               <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.FirstName}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">Family Name</ion-label>
               <br />
-              <ion-input type="text" class="profileOutput labelData-text" *ngIf="personalToggle === 1" placeholder="Family Name"
-                [(ngModel)]="profile.LastName" [disabled]="personalToggle === 0"></ion-input>
+              <ion-input type="text" class="profileOutput labelData-text" *ngIf="personalToggle === 1"
+                placeholder="Family Name" [(ngModel)]="profile.LastName" [disabled]="personalToggle === 0"></ion-input>
               <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.LastName}}</span>
 
             </ion-col>
@@ -145,9 +145,11 @@
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">Date of Birth</ion-label>
               <br />
-              <ion-input type="date" style="color: #000 !important;" max="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" class="profileOutput labelData-text"
+              <ion-input type="date" style="color: #000 !important;"
+                max="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" class="profileOutput labelData-text"
                 *ngIf="personalToggle === 1" [(ngModel)]="profile.DOB" [disabled]="personalToggle === 0"></ion-input>
-              <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.DOB | date: 'dd-MM-yyyy'}}</span>
+              <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.DOB | date:
+                'dd-MM-yyyy'}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">Qualification</ion-label>
@@ -181,7 +183,8 @@
               <!-- <ion-label *ngIf="personalToggle==0">Sub Qualification</ion-label>
                       <br/> -->
 
-              <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.SubQualification}}</span>
+              <span *ngIf="personalToggle === 0"
+                class="profileOutput labelData-text">{{profile.SubQualification}}</span>
             </ion-col>
           </ion-row>
         </ion-card-content>
@@ -190,25 +193,25 @@
       <!-- Current Adress -->
       <ion-card>
         <ion-card-header class="card_header" style="padding: 0 !important;">
-            <ion-row>
-              <ion-col size="6" style="line-height: 2;">
-                <ion-label  class="card_header_text" style="color: #fff !important;">Current Address</ion-label>
-              </ion-col>
-              <ion-col style="margin: auto;text-align: end;">
-                <button (click)="hidePersonalPanel('current')" style="background: transparent;"
-                  *ngIf="currentToggle === 0">
-                  <ion-icon name="create" style="color: #ffffff;"></ion-icon>
-                </button>
-                <button style="background: transparent;" *ngIf="currentToggle === 1"
-                  (click)="hidePersonalPanel('current.cancel')">
-                  <i class="fa fa-times-circle" style="font-size:20px; margin-left:5px; color:red;"></i>
-                </button>
-                <button style="background: transparent;" *ngIf="currentToggle === 1"
-                  (click)="hidePersonalPanel('current')">
-                  <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
-                </button>
-              </ion-col>
-            </ion-row>
+          <ion-row>
+            <ion-col size="6" style="line-height: 2;">
+              <ion-label class="card_header_text" style="color: #fff !important;">Current Address</ion-label>
+            </ion-col>
+            <ion-col style="margin: auto;text-align: end;">
+              <button (click)="hidePersonalPanel('current')" style="background: transparent;"
+                *ngIf="currentToggle === 0">
+                <ion-icon name="create" style="color: #ffffff;"></ion-icon>
+              </button>
+              <button style="background: transparent;" *ngIf="currentToggle === 1"
+                (click)="hidePersonalPanel('current.cancel')">
+                <i class="fa fa-times-circle" style="font-size:20px; margin-left:5px; color:red;"></i>
+              </button>
+              <button style="background: transparent;" *ngIf="currentToggle === 1"
+                (click)="hidePersonalPanel('current')">
+                <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;"></i>
+              </button>
+            </ion-col>
+          </ion-row>
 
 
           <!-- <ion-item>Current Address
@@ -231,39 +234,41 @@
             <ion-row>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label style="color:black !important">Country</ion-label>
-                <br/>
-                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="text" placeholder="Country"
-                  [(ngModel)]="profile.CurrentCountry" [disabled]="currentToggle===0"></ion-input>
-                <span *ngIf="currentToggle === 0 && profile.CurrentCountry!==0" class="profileOutput labelData-text">{{profile.CurrentCountry}}</span>
+                <br />
+                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="text"
+                  placeholder="Country" [(ngModel)]="profile.CurrentCountry" [disabled]="currentToggle===0"></ion-input>
+                <span *ngIf="currentToggle === 0 && profile.CurrentCountry!==0"
+                  class="profileOutput labelData-text">{{profile.CurrentCountry}}</span>
                 <span *ngIf="profile.CurrentCountry===0" class="profileOutput labelData-text"> </span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label style="color:black !important">State</ion-label>
                 <br />
-                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="text" placeholder="State"
-                  [(ngModel)]="profile.CurrentState" [disabled]="currentToggle===0"></ion-input>
+                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="text"
+                  placeholder="State" [(ngModel)]="profile.CurrentState" [disabled]="currentToggle===0"></ion-input>
                 <span *ngIf="currentToggle === 0" class="profileOutput labelData-text">{{profile.CurrentState}}</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label style="color:black !important">City</ion-label>
                 <br />
-                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="text" placeholder="City"
-                  [(ngModel)]="profile.CurrentCity" [disabled]="currentToggle===0"></ion-input>
+                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="text"
+                  placeholder="City" [(ngModel)]="profile.CurrentCity" [disabled]="currentToggle===0"></ion-input>
                 <span *ngIf="currentToggle === 0" class="profileOutput labelData-text">{{profile.CurrentCity}}</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label style="color:black !important">Current Address</ion-label>
                 <br />
                 <ion-textarea class="profileOutput labelData-text" *ngIf="currentToggle === 1" rows='2' cols="5"
-                  placeholder='Currrent Address'
-                  [(ngModel)]="profile.CurrentAddress" [disabled]="currentToggle===0"></ion-textarea>
+                  placeholder='Currrent Address' [(ngModel)]="profile.CurrentAddress" [disabled]="currentToggle===0">
+                </ion-textarea>
                 <span *ngIf="currentToggle === 0" class="profileOutput labelData-text">{{profile.CurrentAddress}}</span>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label style="color:black !important">Pincode</ion-label>
                 <br />
-                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="tel" placeholder="Pin Code"
-                  [(ngModel)]="profile.CurrentPincode" [disabled]="currentToggle===0" maxlength="6"></ion-input>
+                <ion-input *ngIf="currentToggle === 1" class="profileOutput labelData-text" type="tel"
+                  placeholder="Pin Code" [(ngModel)]="profile.CurrentPincode" [disabled]="currentToggle===0"
+                  maxlength="6"></ion-input>
                 <span *ngIf="currentToggle === 0" class="profileOutput labelData-text">{{profile.CurrentPincode}}</span>
               </ion-col>
             </ion-row>
@@ -321,8 +326,9 @@
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">Country</ion-label>
               <br />
-              <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" type="text" placeholder="Country"
-                [(ngModel)]="profile.PermanentCountry" [disabled]="permanentToggle===0"></ion-input>
+              <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" type="text"
+                placeholder="Country" [(ngModel)]="profile.PermanentCountry" [disabled]="permanentToggle===0">
+              </ion-input>
               <span *ngIf="profile.PermanentCountry!==0 && permanentToggle === 0"
                 class="profileOutput labelData-text">{{profile.PermanentCountry}}</span>
               <span *ngIf="profile.PermanentCountry===0" class="profileOutput"></span>
@@ -330,24 +336,25 @@
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">State</ion-label>
               <br />
-              <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" type="text" placeholder="State"
-                [(ngModel)]="profile.PermanentState" [disabled]="permanentToggle===0"></ion-input>
+              <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" type="text"
+                placeholder="State" [(ngModel)]="profile.PermanentState" [disabled]="permanentToggle===0"></ion-input>
               <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentState}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">City</ion-label>
               <br />
-              <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" type="text" placeholder="City"
-                [(ngModel)]="profile.PermanentCity" [disabled]="permanentToggle===0"></ion-input>
+              <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" type="text"
+                placeholder="City" [(ngModel)]="profile.PermanentCity" [disabled]="permanentToggle===0"></ion-input>
               <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentCity}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important">Permanent Address</ion-label>
               <br />
               <ion-textarea class="profileOutput labelData-text" *ngIf="permanentToggle === 1" rows='1'
-               placeholder='Permanent Address'
-                [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle===0"></ion-textarea>
-              <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentAddress}}</span>
+                placeholder='Permanent Address' [(ngModel)]="profile.PermanentAddress" [disabled]="permanentToggle===0">
+              </ion-textarea>
+              <span *ngIf="permanentToggle === 0"
+                class="profileOutput labelData-text">{{profile.PermanentAddress}}</span>
             </ion-col>
 
 
@@ -358,7 +365,8 @@
               <ion-input *ngIf="permanentToggle === 1" class="profileOutput labelData-text" maxlength="6" type="tel"
                 placeholder="Pin Code" [(ngModel)]="profile.PermanentPincode" [disabled]="permanentToggle===0">
               </ion-input>
-              <span *ngIf="permanentToggle === 0" class="profileOutput labelData-text">{{profile.PermanentPincode}}</span>
+              <span *ngIf="permanentToggle === 0"
+                class="profileOutput labelData-text">{{profile.PermanentPincode}}</span>
             </ion-col>
           </ion-row>
         </ion-card-content>
@@ -399,7 +407,8 @@
               <ion-label style="color:black !important">Email</ion-label>
               <br />
               <ion-input *ngIf="contactToggle === 1" (keyup)="emailnumbaervalid($event)" class="profileOutput"
-                type="email" name="Email" placeholder="Email" [(ngModel)]="profile.Email" [disabled]="contactToggle===0">
+                type="email" name="Email" placeholder="Email" [(ngModel)]="profile.Email"
+                [disabled]="contactToggle===0">
               </ion-input>
               <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.Email}}</span>
               <span *ngIf="validemail" class="profileOutput labelData-text">
@@ -409,8 +418,9 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Mobile</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile" pattern="[0-9]*" type="number"
-                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value!=undefined && this.value.length==10) return false;"
+              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile" pattern="[0-9]*"
+                type="number" pattern="/^-?\d+\.?\d*$/"
+                onKeyPress="if(this.value!=undefined && this.value.length==10) return false;"
                 (keyup)="phonenumber(profile.Mobile)" placeholder="Mobile" [(ngModel)]="profile.Mobile"
                 [disabled]="contactToggle===0"></ion-input>
               <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.Mobile}}</span>
@@ -421,19 +431,22 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Emergency Contact Number</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="number" pattern="/^-?\d+\.?\d*$/"
-                maxlength="10" onKeyPress="if(this.value!=undefined && this.value.length==10) return false;"
+              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="number"
+                pattern="/^-?\d+\.?\d*$/" maxlength="10"
+                onKeyPress="if(this.value!=undefined && this.value.length==10) return false;"
                 placeholder="Emergency Number" (keyup)="phonenumber(Mnumber)"
                 [(ngModel)]="profile.EmergencyContactNumber" [disabled]="contactToggle===0"></ion-input>
-              <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.EmergencyContactNumber}}</span>
+              <span *ngIf="contactToggle === 0"
+                class="profileOutput labelData-text">{{profile.EmergencyContactNumber}}</span>
             </ion-col>
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Emergency Contact Name</ion-label>
-              <br/>
+              <br />
               <ion-input *ngIf="contactToggle === 1" class="profileOutput " type="text"
                 placeholder="Emergency Contact Name" [(ngModel)]="profile.EmergencyContactName"
                 [disabled]="contactToggle===0"></ion-input>
-              <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.EmergencyContactName}}</span>
+              <span *ngIf="contactToggle === 0"
+                class="profileOutput labelData-text">{{profile.EmergencyContactName}}</span>
             </ion-col>
 
           </ion-row>
@@ -506,7 +519,46 @@
     <!-- education -->
     <div class="eucationdetails" *ngIf="segmentdata==='education'">
       <!-- Education Details -->
+
       <ion-card>
+        <ion-card-header class="card_header">
+          <ion-row>
+            <ion-col size="6">
+              <ion-label class="card_header_text">Education Details</ion-label>
+            </ion-col>
+
+            <ion-col size="6" style="margin: auto;text-align: end;">
+              <button type="button" (click)="addEducationModal()">
+                <i class="fa fa-plus-circle" style="font-size:20px; color:#fff;"></i>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row *ngFor="let item of EducationDetails">
+            <ion-col size="6">
+              <img src="assets/Images/cap.png" style="width:100px" alt="">
+            </ion-col>
+
+            <ion-col size="6">
+                <b style="white-space: normal;">{{item.Category}} | {{item.Specialization}}</b>
+                <p>{{item.From | date: 'MMM-yyyy'}} to {{item.To | date: 'MMM-yyyy'}}</p>
+                <p>{{item.Institute}}</p>
+                <p>{{item.Percentage}}%</p>
+                <div style="margin: 10px;display: flex;">
+                  <button class="pull-right" (click)="updateEducationModal(item)" [disabled]="">
+                    <ion-icon name="create"></ion-icon>
+                  </button>
+                  <button [disabled]="" class="pull-right" (click)="deleteEducationDetail(item.ID)">
+                    <i class="fa fa-trash" style="font-size:19px; margin-left:5px; color:red;"></i>
+                  </button>
+                </div>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- <ion-card>
         <ion-card-header class="hrms_header">
           <ion-grid>
             <ion-row>
@@ -546,8 +598,49 @@
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
+      
       <ion-card>
+        <ion-card-header class="card_header">
+          <ion-row>
+            <ion-col size="6">
+              <ion-label class="card_header_text">Career Details</ion-label>
+            </ion-col>
+
+            <ion-col size="6" style="margin: auto;text-align: end;">
+              <button class="pull-right" (click)="addCareerModal()">
+                <i class="fa fa-plus-circle" style="font-size:20px;color:#fff;"></i>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row *ngFor="let item of CareerDetails">
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+              style="margin: auto;text-align: -webkit-center;">
+              <img src="assets/Images/career2.png" style="width:100px" alt="">
+            </ion-col>
+            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+              <b style="white-space: normal;">{{item.Employer}}</b>
+              <p>{{item.From | date: 'MM-dd-yyyy'}} to {{item.To | date: 'MM-dd-yyyy'}}</p>
+              <p>{{item.DesignationDesc}}</p>
+              <p><strong>Salary : </strong>{{item.Salary | currency: ""}}</p>
+              <div style="margin: 10px;display: flex;">
+                <button (click)="updateCareerModal(item)" [disabled]=""
+                  class="button button-clear button-small button-stable pull-right">
+                  <ion-icon name="create"></ion-icon>
+                </button>
+                <button [disabled]="" class="button button-clear button-small button-stable pull-right"
+                  (click)="deleteCareerDetail(item.ID)">
+                  <i class="fa fa-trash" style="font-size:19px; margin-left:5px; color:red;"></i>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+<!-- <ion-card>
         <ion-card-header class="hrms_header">
           <ion-grid>
             <ion-row>
@@ -585,11 +678,10 @@
                   </button>
                 </div>
               </ion-col>
-
             </ion-row>
           </ion-grid>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
     </div>
   </ion-grid>
 
