@@ -140,11 +140,11 @@ export class LoginPage implements OnInit {
             this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.hrmslogindata + '/HRMS/EmployeeDetail/' + resp.TUM_USER_CODE).subscribe((res) => {
               console.log('HRM', res);
               // if (window.localStorage['TUM_USER_TYPE'] == 11) {
-                localStorage.setItem('EmployeeID', res[0]['em_emp_id']);
-                localStorage.setItem('EmployeeName', res[0]['em_emp_name']);
-                localStorage.setItem('EmpDesignation', res[0]['em_emp_designation']);
-                localStorage.setItem('EmpDepartment', res[0]['em_emp_department']);
-                localStorage.setItem('TUM_BRANCH_ID', res[0]['em_branch_id']);
+              localStorage.setItem('EmployeeID', res[0]['em_emp_id']);
+              localStorage.setItem('EmployeeName', res[0]['em_emp_name']);
+              localStorage.setItem('EmpDesignation', res[0]['em_emp_designation']);
+              localStorage.setItem('EmpDepartment', res[0]['em_emp_department']);
+              localStorage.setItem('TUM_BRANCH_ID', res[0]['em_branch_id']);
               // } else {
               //   localStorage.setItem('EmployeeID', "");
               //   localStorage.setItem('EmployeeName', "");
