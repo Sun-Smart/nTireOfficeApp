@@ -7,7 +7,7 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { AddcontactPage } from '../addcontact/addcontact.page';
@@ -22,29 +22,29 @@ export class AddnewcorporatePage implements OnInit {
   function;
   companyname;
   cropaddress;
-  username:any;
-  constructor(public modalController: ModalController,public alertController: AlertController,private http: HttpClient,public Ipaddressservice: IpaddressService) {
-    this.function=localStorage.getItem('FUNCTION_DESC')+' | '+window.localStorage.TUM_BRANCH_CODE;
-    this.username=localStorage.getItem('TUM_USER_NAME');
+  username: any;
+  constructor(public modalController: ModalController, public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService) {
+    this.function = localStorage.getItem('FUNCTION_DESC') + ' | ' + window.localStorage.TUM_BRANCH_CODE;
+    this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
   }
-  handleAddressChange(event){
+  handleAddressChange(event) {
     console.log(event.geometry.location.lat());
     console.log(event.geometry.location.lng());
   }
-  AddCompany(){
+  AddCompany() {
 
-    var corp={
+    var corp = {
       // eslint-disable-next-line @typescript-eslint/quotes
-      function_id:window.localStorage["FUNCTION_ID"],
-      branch_id:window.localStorage['TUM_BRANCH_ID'],
-      user_id:window.localStorage['TUM_USER_ID'],
-      userType_id:window.localStorage['TUM_USER_TYPE'],
-      pincode:0,
-      companyName:this.companyname,
-      address:this.cropaddress
+      function_id: window.localStorage["FUNCTION_ID"],
+      branch_id: window.localStorage['TUM_BRANCH_ID'],
+      user_id: window.localStorage['TUM_USER_ID'],
+      userType_id: window.localStorage['TUM_USER_TYPE'],
+      pincode: 0,
+      companyName: this.companyname,
+      address: this.cropaddress
     };
     const header = new Headers();
     // eslint-disable-next-line @typescript-eslint/quotes
@@ -52,44 +52,44 @@ export class AddnewcorporatePage implements OnInit {
 
     const options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1+'/nTireMobileCoreAPI/api/Sales/NewCorporate'+'/'+ corp.function_id +'/'+corp.branch_id +'/'+corp.companyName +'/'+corp.address +'/'+corp.pincode +'/'+corp.user_id +'/'+corp.userType_id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + '/nTireMobileCoreAPI/api/Sales/NewCorporate' + '/' + corp.function_id + '/' + corp.branch_id + '/' + corp.companyName + '/' + corp.address + '/' + corp.pincode + '/' + corp.user_id + '/' + corp.userType_id, {
       headers: options,
     }).subscribe(resp => {
 
 
-      if(resp.toString()=='"Company already Exist"'){
+      if (resp.toString() == '"Company already Exist"') {
 
-        this.presentAlert('Alert','Company name already exists');
+        this.presentAlert('Alert', 'Company name already exists');
 
-    }else{
-      this.presentAlert('Successful','Company Added Successfully');
-      this.companyname='';
-    this.cropaddress='';
-    }
+      } else {
+        this.presentAlert('Successful', 'Company Added Successfully');
+        this.companyname = undefined;
+        this.cropaddress = undefined;
+      }
 
 
     }, error => {
 
-     console.log('error : '+JSON.stringify(error));
+      console.log('error : ' + JSON.stringify(error));
 
-      });
+    });
   }
-  async presentAlert(heading,tittle) {
+  async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
-      cssClass:'buttonCss',
+      cssClass: 'buttonCss',
       header: heading,
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
 
     await alert.present();
   }
-  clearCorporateForm(){
-    this.companyname=undefined;
-    this.cropaddress=undefined;
+  clearCorporateForm() {
+    this.companyname = undefined;
+    this.cropaddress = undefined;
   }
-  async AddContact(){
+  async AddContact() {
     const modal = await this.modalController.create({
       component: AddcontactPage,
       componentProps: {
@@ -99,5 +99,5 @@ export class AddnewcorporatePage implements OnInit {
     });
     return await modal.present();
 
-    }
+  }
 }

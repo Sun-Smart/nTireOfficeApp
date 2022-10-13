@@ -76,10 +76,13 @@ export class ClaimssummaryPage implements OnInit {
 
      console.log("error : "+JSON.stringify(error));
 
-     });
+     });  
   }
   getClaimSummary(){
     console.log(this.empID)
+    console.log(this.requestCat)
+    console.log(this.status)
+    console.log(this.description)
     this.claimSummary=[];
     if(this.requestCat!=undefined){
       var cat=this.requestCat;

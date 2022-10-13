@@ -266,6 +266,9 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     path: 'applicantemploymentdetails',
     loadChildren: () => import('./Hrms_pages/applicantemploymentdetails/applicantemploymentdetails.module').then( m => m.ApplicantemploymentdetailsPageModule)
   },
+
+
+  
   {
     path: 'applicantskilssdetails',
     loadChildren: () => import('./Hrms_pages/applicantskilssdetails/applicantskilssdetails.module').then( m => m.ApplicantskilssdetailsPageModule)
