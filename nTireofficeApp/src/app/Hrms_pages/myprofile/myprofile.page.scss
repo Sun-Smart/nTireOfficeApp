@@ -89,3 +89,13 @@ margin-bottom: -23px;
 ::ng-deep.native-textarea.sc-ion-textarea-md{
   height: 50px;
 }
+ion-card {
+  .card_header_text {
+    font-size: 15px;
+    color: #ffff !important;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+  }
+}
