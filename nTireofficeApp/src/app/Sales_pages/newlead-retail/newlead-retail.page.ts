@@ -914,7 +914,7 @@ export class NewleadRetailPage implements OnInit {
 
         }
         else {
-          const resultstrarray = this.result.split(" ");
+          const resultstrarray = this.result;
           let lead_id_new = resultstrarray[4];
           lead_id_new = parseInt(lead_id_new);
 
@@ -964,7 +964,7 @@ export class NewleadRetailPage implements OnInit {
             } else {
 
               const passCurrent_locationJSON = {
-                latlong: this.currentlatlon,
+                latlong: parseInt(this.currentlatlon),
                 CustId: this.lead_id,
                 access_token: window.localStorage.token,
                 userid: window.localStorage.TUM_USER_ID,
@@ -1003,7 +1003,7 @@ export class NewleadRetailPage implements OnInit {
                   .subscribe(files => console.log('files', files));
 
                 const objupload = {
-                  pk1: this.lead_id,
+                  pk1: parseInt(this.lead_id),
                   doc_name: this.image[i],
                   doc_desc: this.remarks,
                   doc_path: 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/' + this.image[i],
@@ -1011,9 +1011,9 @@ export class NewleadRetailPage implements OnInit {
                   FUNCTION_ID: window.localStorage.FUNCTION_ID,
                   file_size: this.file[i].size,
                   access_token: window.localStorage.token,
-                  userid: window.localStorage.TUM_USER_ID,
+                  userid: parseInt(window.localStorage.TUM_USER_ID),
                   usertoken: window.localStorage.usertoken,
-                  USER_ID: window.localStorage.TUM_USER_ID
+                  USER_ID: parseInt(window.localStorage.TUM_USER_ID)
                 };
 
                 //D:/Application/Base Product/nTireOfficeTesting/nTireOffice/Uploaddocu/SSTPL/
@@ -1060,6 +1060,7 @@ export class NewleadRetailPage implements OnInit {
       const alert = await this.alertController.create({
         header: 'Confirm',
         message: 'Are you sure want to Cancel the Process',
+        backdropDismiss:false,
         buttons: [
           {
             text: 'No',
@@ -1111,6 +1112,7 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: [
         {
@@ -1174,6 +1176,7 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

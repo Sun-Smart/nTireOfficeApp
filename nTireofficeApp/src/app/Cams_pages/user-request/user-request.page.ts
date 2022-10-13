@@ -74,7 +74,7 @@ export class UserRequestPage implements OnInit {
     this.categoryissue = "<< Select >>";
     this.priority="<< Select >>";
     this.noofchars="";
-    
+
     event.target.complete();
   }
 
@@ -132,8 +132,8 @@ export class UserRequestPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-  
-  
+
+
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -142,7 +142,7 @@ export class UserRequestPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -193,7 +193,7 @@ export class UserRequestPage implements OnInit {
         this.descp = this.assttrecon[0].ASSET_DESCRIPTION;
         this.department = this.assttrecon[0].Text;
 
-        
+
         console.log(this.doi);
       }
     }, error => {
@@ -218,10 +218,11 @@ export class UserRequestPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -235,10 +236,10 @@ export class UserRequestPage implements OnInit {
       'usertoken':localStorage.getItem('usertoken'),
     }
     console.log(datar);
-  
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/refrencemax/',datar, {
       headers: options,
@@ -249,7 +250,7 @@ export class UserRequestPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
 
@@ -287,13 +288,13 @@ export class UserRequestPage implements OnInit {
     console.log(datar);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreqinsert/',datar, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.presentAlert("Success","sucessfully request raised issue ref number :"+this.refmaxnum+"");
+      this.presentAlert("Success","Sucessfully Request Raised Issue Ref Number :"+this.refmaxnum+"");
       this.descp='';
       this.department='';
       this.assetcode='';
@@ -303,10 +304,10 @@ export class UserRequestPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
+
     });
 
   }
 
-  
+
 }

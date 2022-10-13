@@ -27,6 +27,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <div style="text-align: center;margin-top: 50px;">
+    <!-- <b class="totalCount">{{NoRecord}}</b> -->
+    <b class="totalCount" *ngIf="showhidenorecords">No clients found</b>
+  </div>
   <div>
     <div class="" id="showdivs">
       <div class="container">

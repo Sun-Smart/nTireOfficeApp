@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -33,7 +33,7 @@ export class CompletionJobsReopenPage implements OnInit {
   pmrrefr;
   wrkno;
 
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -55,9 +55,9 @@ export class CompletionJobsReopenPage implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.activatedRoute.params.subscribe(params => {  
-      this.data = params;   
-    });  
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      this.data = params;
+    });
     console.log(this.data);
   }
 
@@ -72,17 +72,21 @@ export class CompletionJobsReopenPage implements OnInit {
     console.log(this.activityr)
     this.assetr=this.data.CMD_ASSET_ID;
     console.log(this.assetr);
-    
+
     this.pmrrefr=this.data.pmr_reference;
     console.log(this.pmrrefr);
-    
+
     this.wrkno=this.data.WorkorderNo;
     console.log(this.wrkno);
 
-    
+
 // console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
 
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {   
+<<<<<<< Updated upstream
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {
+=======
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {   
+>>>>>>> Stashed changes
       headers: options,
     }).subscribe(resp => {
        this.presentAlert('Alert','Successfully Reopened');
@@ -96,11 +100,11 @@ export class CompletionJobsReopenPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 }

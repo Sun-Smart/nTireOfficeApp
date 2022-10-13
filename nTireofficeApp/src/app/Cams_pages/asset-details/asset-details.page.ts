@@ -297,6 +297,7 @@ export class AssetDetailsPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
@@ -504,6 +505,7 @@ export class AssetDetailsPage implements OnInit {
           //     template: "<center> Updated Successfully </center>",
           // });
           // $ionicLoading.hide();
+          debugger;
           this.presentAlert("Sucess", "Updated Successfully")
           // this.showmap = true;
 

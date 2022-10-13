@@ -56,7 +56,7 @@ export class LocationWiseAssetPage implements OnInit {
     this.branchLoc="<< Select >>";
     this.category="<< Select >>";
     this.subcategory="<< Select >>";
-    
+
    }
 
   ngOnInit() {
@@ -97,7 +97,7 @@ export class LocationWiseAssetPage implements OnInit {
         // $scope.locationlistnew.push($scope.asstdtlocation.detailz[i].ZONE_DESC);
         this.ZONE_DESC= this.detailz[i].zoneid + '--' + this.detailz[i].ZONE_DESC;
         this.locationlistnew.push(this.ZONE_DESC);
-     
+
     }
 
     }, error => {
@@ -193,10 +193,11 @@ export class LocationWiseAssetPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -222,7 +223,7 @@ export class LocationWiseAssetPage implements OnInit {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
 
-    }); 
+    });
   }
 
   processlocationreport(){
@@ -286,7 +287,7 @@ export class LocationWiseAssetPage implements OnInit {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
 
-    }); 
+    });
   }
 
   resetlocationreport(){

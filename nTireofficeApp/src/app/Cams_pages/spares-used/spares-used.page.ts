@@ -5,7 +5,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import {TabparamserviceService} from '../../tabparamservice.service'
+import {TabparamserviceService} from '../../service/tabparamservice.service'
 import { ActivatedRoute} from '@angular/router';
 import {SpareUsedUpdatePage} from '../spare-used-update/spare-used-update.page'
 
@@ -72,7 +72,7 @@ export class sparesUsedPage implements OnInit {
   }
 
   getItem(){
-    var dataes = {  
+    var dataes = {
       'branchid': this.branchID,
       'functionid':this.functionID,
       'access_token':this.accessToken,
@@ -82,7 +82,7 @@ export class sparesUsedPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtl',dataes, {
       headers: options,
@@ -92,8 +92,8 @@ export class sparesUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    });  
+
+    });
   }
 
   matrialdtle(mat){
@@ -106,11 +106,11 @@ export class sparesUsedPage implements OnInit {
       'userid':this.userID,
       'usertoken':this.userToken
     }
-    
+
     console.log(dataesp);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtlval',dataesp, {
       headers: options,
@@ -122,8 +122,8 @@ export class sparesUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    });  
+
+    });
   }
 
 
@@ -168,7 +168,7 @@ export class sparesUsedPage implements OnInit {
     this.quantity='';
    // $scope.spares.doi='';
 
-    
+
 }else{
 // alert("Already added a consumables");
 this.presentAlert("Alert", "Already added a consumables");
@@ -180,17 +180,17 @@ this.presentAlert("Alert", "Already added a consumables");
     //this.presentAlert('Alert','Server Error,Contact not loaded');
     console.log("error : " + JSON.stringify(error));
 
-  });  
+  });
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -211,7 +211,7 @@ this.presentAlert("Alert", "Already added a consumables");
       }, {
         text: 'Ok',
         handler: () => {
-          var datamdd = { 
+          var datamdd = {
             'branchid': window.localStorage['TUM_BRANCH_ID'],
            'functionid':window.localStorage['FUNCTION_ID'],
            'assetid':this.urldata.CMD_ASSET_ID,
@@ -222,12 +222,12 @@ this.presentAlert("Alert", "Already added a consumables");
            'access_token':window.localStorage['token'],
            'userid':this.userID,
            'usertoken':this.userToken
-          
+
         };
-         
+
          const header = new Headers();
          header.append("Content-Type", "application/json");
-         
+
          let options = new HttpHeaders().set('Content-Type', 'application/json');
          this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/sparedelete',datamdd, {
            headers: options,
@@ -238,7 +238,7 @@ this.presentAlert("Alert", "Already added a consumables");
          }, error => {
            //this.presentAlert('Alert','Server Error,Contact not loaded');
            console.log("error : " + JSON.stringify(error));
-         
+
          });
         }
       }
@@ -250,7 +250,7 @@ this.presentAlert("Alert", "Already added a consumables");
 
   sparealldata(){
 
-    var dataea = {   
+    var dataea = {
       'branchid': this.branchID,
       'functionid':this.functionID,
       'assetid':this.urldata.CMD_ASSET_ID,
@@ -263,7 +263,7 @@ this.presentAlert("Alert", "Already added a consumables");
     console.log(dataea);
     const header = new Headers();
   header.append("Content-Type", "application/json");
-  
+
   let options = new HttpHeaders().set('Content-Type', 'application/json');
   this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/sparealldatadetail',dataea, {
     headers: options,
@@ -273,7 +273,7 @@ this.presentAlert("Alert", "Already added a consumables");
   }, error => {
     //this.presentAlert('Alert','Server Error,Contact not loaded');
     console.log("error : " + JSON.stringify(error));
-  
+
   });
   }
 
@@ -292,7 +292,7 @@ this.presentAlert("Alert", "Already added a consumables");
       componentProps: {
         'item': data,
       }
-  
+
     });
     modal.onDidDismiss()
       .then((resp) => {
@@ -300,9 +300,9 @@ this.presentAlert("Alert", "Already added a consumables");
       //  console.log(barval)
       //  this.callforalldetails(barval);
       });
-  
+
     return await modal.present();
-  
-  
+
+
   }
 }

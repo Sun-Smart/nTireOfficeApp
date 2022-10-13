@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { PmscustomerPageRoutingModule } from './pmscustomer-routing.module';
 import { PmscustomerPage } from './pmscustomer.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule,
+    Ng2SearchPipeModule,
     PmscustomerPageRoutingModule
   ],
   declarations: [PmscustomerPage ]

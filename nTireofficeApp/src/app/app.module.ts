@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CommonModule } from '@angular/common';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 // import { ChartsModule } from 'chartjs';
@@ -27,6 +28,7 @@ import { AppComponent } from '././app.component';
     HttpClientModule,
     NgxDatatableModule,
     FormsModule,
+    Ng2SearchPipeModule,
     CommonModule
    ],
 

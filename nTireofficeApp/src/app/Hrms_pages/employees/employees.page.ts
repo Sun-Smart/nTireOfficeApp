@@ -49,7 +49,7 @@ export class EmployeesPage implements OnInit {
     this.getDesignation();
     this.getBranch();
     this.getDepartment();
-    this.employeeSearch();
+    // this.employeeSearch();
   }
   //get designation
   getDesignation() {

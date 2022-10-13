@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue-ledger.page.scss'],
 })
 export class IssueLedgerPage implements OnInit {
-
+  showfilter:boolean=true;
   constructor() { }
 
   ngOnInit() {
   }
-
+  togglefilter(){
+    this.showfilter = !this.showfilter
+  }
 }

@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { UpdatevendorquotPageRoutingModule } from './updatevendorquot-routing.module';
-
 import { UpdatevendorquotPage } from './updatevendorquot.page';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -15,6 +13,8 @@ import { UpdatevendorquotPage } from './updatevendorquot.page';
     IonicModule,
     UpdatevendorquotPageRoutingModule
   ],
-  declarations: [UpdatevendorquotPage]
+  declarations: [UpdatevendorquotPage],
+  providers:[HttpClient],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class UpdatevendorquotPageModule {}

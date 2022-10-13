@@ -37,7 +37,7 @@ export class ServiceListPage implements OnInit {
   vendorcode;
   listviewdetails;
   listviewdetailsLength;
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -107,8 +107,8 @@ export class ServiceListPage implements OnInit {
   //   .then((status: QRScannerStatus) => {
   //      if (status.authorized) {
   //        // camera permission was granted
-  
-  
+
+
   //        // start scanning
   //        let scanSub = this.qrScanner.scan().subscribe((text: string) => {
   //          console.log('Scanned something', text);
@@ -117,7 +117,7 @@ export class ServiceListPage implements OnInit {
   //          this.qrScanner.hide(); // hide camera preview
   //          scanSub.unsubscribe(); // stop scanning
   //        });
-  
+
   //      } else if (status.denied) {
   //        // camera permission was permanently denied
   //        // you must use QRScanner.openSettings() method to guide the user to the settings page
@@ -147,11 +147,11 @@ export class ServiceListPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -201,7 +201,7 @@ export class ServiceListPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservreqlistviewfilter',datalistprocess, {
       headers: options,
@@ -213,10 +213,10 @@ export class ServiceListPage implements OnInit {
 
         this.presentAlert("Alert","No Data Found")
       }
-      
+
     }, error => {
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
 
@@ -232,7 +232,7 @@ export class ServiceListPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservreqlistview',datalistprocess, {
       headers: options,
@@ -245,7 +245,7 @@ export class ServiceListPage implements OnInit {
       this.reqdate = '';
     }, error => {
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
 
@@ -261,7 +261,7 @@ export class ServiceListPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservreqlistview',datalistprocess, {
       headers: options,
@@ -273,9 +273,9 @@ export class ServiceListPage implements OnInit {
       this.vendorcode = '';
       this.reqdate = '';
     }, error => {
-      
+
       console.log("error : " + JSON.stringify(error));
-  
+
     });
   }
 }

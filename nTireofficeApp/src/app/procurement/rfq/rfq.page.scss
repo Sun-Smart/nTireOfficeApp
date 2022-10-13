@@ -1,3 +1,7 @@
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
 ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
@@ -7,7 +11,7 @@ ion-content {
  }
  th {
   // background-color: #f2f2f2 !important;
-  color: #ffffff;
+  color:black;
   padding: 2px !important;
   background-image: none !important;
   // font-size: large !important;
@@ -27,4 +31,41 @@ td {
 ion-card-header+.card-content-md {
   padding-top: 0;
   margin-left: -5%;
+  margin-right: -5%;
 }
+
+.ngx-datatable.material .datatable-header .datatable-header-cell {
+  background-color: #1ba4e1!important;
+  color: #fff !important;
+  padding: 10px;
+  text-align: center;
+  text-transform: capitalize;
+  word-spacing: 10px;
+}
+.ngx-datatable .datatable-body .datatable-body-row>div {
+  display: flex;
+  border-bottom: 1px #efebeb solid;
+}
+.ngx-datatable .datatable-footer .datatable-footer-inner{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  // overflow: hidden;
+  color: #000;
+}
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+  text-align: center;
+  padding: 0.9rem 1.2rem;
+  vertical-align: top;
+  border-top: 0;
+  color: rgba(0, 0, 0, 0.87);
+  transition: width 0.3s ease;
+  font-size: 14px;
+  font-weight: 400;
+}
+ion-card-header+.card-content-ios {
+  padding-top: 10px;
+}
+// .ngx-datatable.material{
+//   margin: 5% !important;
+// }

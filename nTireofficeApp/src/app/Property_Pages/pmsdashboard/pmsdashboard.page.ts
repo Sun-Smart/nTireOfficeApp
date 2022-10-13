@@ -23,16 +23,16 @@ export class PmsdashboardPage implements OnInit {
   options = { checkboxes: true }
   data: any = [];
   dataStatus: any = [];
-  dataDetails: any = [];
-  dataVaccant: any = [];
-  dataRaised: any = [];
+  // dataDetails: any = [];
+  // dataVaccant: any = [];
+  // dataRaised: any = [];
 
 
   columns: any = [];
   columnsStatus: any = [];
-  columnsDetails: any = [];
-  columnsVaccant: any = [];
-  columnsRaised: any = [];
+  // columnsDetails: any = [];
+  // columnsVaccant: any = [];
+  // columnsRaised: any = [];
   rows: any
   barChart: any;
 
@@ -41,7 +41,11 @@ export class PmsdashboardPage implements OnInit {
   @ViewChild('sourcecanvas2') sourcecanvas2;
   @ViewChild('sourcecanvas3') sourcecanvas3;
 
-  constructor(private http: HttpClient, private platform: Platform, public Ipaddressservice: IpaddressService, private tableApi: TableSampleService) {
+  constructor(private http: HttpClient, 
+    private platform: Platform, 
+    public  Ipaddressservice: IpaddressService, 
+    private tableApi: TableSampleService)
+     {
     this.userid = window.localStorage['TUM_USER_ID'];
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.customerPayment();
@@ -77,14 +81,14 @@ export class PmsdashboardPage implements OnInit {
     // this.dataStatus = this.tableApi.getDashbTable2();
     // console.log(this.dataStatus);
 
-    this.dataDetails = this.tableApi.getDashbTable3();
-    console.log(this.dataDetails);
+    // this.dataDetails = this.tableApi.getDashbTable3();
+    // console.log(this.dataDetails);
 
-    this.dataVaccant = this.tableApi.getDashbTable4();
-    console.log(this.dataVaccant);
+    // this.dataVaccant = this.tableApi.getDashbTable4();
+    // console.log(this.dataVaccant);
 
-    this.dataRaised = this.tableApi.getDashbTable5();
-    console.log(this.dataRaised);
+    // this.dataRaised = this.tableApi.getDashbTable5();
+    // console.log(this.dataRaised);
 
   }
 

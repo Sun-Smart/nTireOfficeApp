@@ -5,10 +5,10 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import {TabparamserviceService} from '../../tabparamservice.service'
+import {TabparamserviceService} from '../../service/tabparamservice.service'
 import { ActivatedRoute} from '@angular/router';
 import {ConsumableUpdatePage} from '../consumable-update/consumable-update.page'
- 
+
 @Component({
   selector: 'app-consumable-used',
   templateUrl: './consumable-used.page.html',
@@ -39,7 +39,7 @@ export class ConsumableUsedPage implements OnInit {
   materialcode:any;
   rowuniqidsc:any;
 
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) { 
+  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -64,11 +64,11 @@ export class ConsumableUsedPage implements OnInit {
 
   getconsumableMaterial(){
     var dataesc = {
-       
-        
+
+
       'branchid': this.branchID,
       'functionid': this.functionID,
-     
+
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
@@ -76,7 +76,7 @@ export class ConsumableUsedPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtl',dataesc, {
       headers: options,
@@ -86,14 +86,14 @@ export class ConsumableUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    }); 
+
+    });
   }
 
   matrialdtleconsume(matc){
     var dataespc = {
-       
-        
+
+
       'branchid': this.branchID,
       'functionid': this.functionID,
       'itemid':matc,
@@ -104,7 +104,7 @@ export class ConsumableUsedPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtlval',dataespc, {
       headers: options,
@@ -115,14 +115,14 @@ export class ConsumableUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    }); 
+
+    });
   }
 
   insertconsumable(){
     var dataem = {
-       
-        
+
+
       'branchid': this.branchID,
       'functionid':this.functionID,
      // 'slno':$scope.spares.sno,
@@ -135,7 +135,7 @@ export class ConsumableUsedPage implements OnInit {
       'returnqty':this.returnqty,
       'scrapqty':this.scrapqty,
       //'spareqty':$scope.spares.quantity,
-      
+
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -144,7 +144,7 @@ export class ConsumableUsedPage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/consumableinsertapp',dataem, {
       headers: options,
@@ -170,18 +170,18 @@ export class ConsumableUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    }); 
+
+    });
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-  
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
 
@@ -191,19 +191,20 @@ export class ConsumableUsedPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Delete!',
       message: 'Are yoy sure want to delete',
+      backdropDismiss:false,
       buttons: [
         {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-  
+
             console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Ok',
           handler: () => {
-            var datamddc = { 
+            var datamddc = {
               'branchid': this.branchID,
                 'functionid':this.functionID,
                 //'slno':$scope.spares.sno,
@@ -214,12 +215,12 @@ export class ConsumableUsedPage implements OnInit {
                 'access_token':this.accessToken,
                 'userid':this.userID,
                 'usertoken':this.userToken
-               
+
              };
-           
+
            const header = new Headers();
            header.append("Content-Type", "application/json");
-           
+
            let options = new HttpHeaders().set('Content-Type', 'application/json');
            this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/sparedelete',datamddc, {
              headers: options,
@@ -230,29 +231,29 @@ export class ConsumableUsedPage implements OnInit {
            }, error => {
              //this.presentAlert('Alert','Server Error,Contact not loaded');
              console.log("error : " + JSON.stringify(error));
-           
+
            });
           }
         }
       ]
     });
-  
+
     await alert.present();
   }
 
   consumealldata(){
 
     var dataeasc = {
-       
-        
+
+
       'branchid': this.branchID,
       'functionid': this.functionID,
-     
+
       'assetid':this.urldata.CMD_ASSET_ID,
       'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
       'assetpmref':this.urldata.pmr_reference,
-      
-      
+
+
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -260,7 +261,7 @@ export class ConsumableUsedPage implements OnInit {
     console.log(dataeasc);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-  
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/consumealldatadetail',dataeasc, {
       headers: options,
@@ -270,8 +271,8 @@ export class ConsumableUsedPage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-  
-    }); 
+
+    });
   }
 
   async editItemsc(data, index) {
@@ -286,7 +287,7 @@ export class ConsumableUsedPage implements OnInit {
       componentProps: {
         'item': data,
       }
-  
+
     });
     modal.onDidDismiss()
       .then((resp) => {
@@ -294,9 +295,9 @@ export class ConsumableUsedPage implements OnInit {
       //  console.log(barval)
       //  this.callforalldetails(barval);
       });
-  
+
     return await modal.present();
-  
-  
+
+
   }
 }

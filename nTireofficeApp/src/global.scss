@@ -1038,7 +1038,7 @@ ion-card {
   .card_header_text1 {
     font-size: 15px;
     color: #ffff !important;
-    padding-left: 64px !important;
+    font-weight: 600;
   }
 }
 
@@ -1136,11 +1136,6 @@ ion-checkbox::part(container) {
   font-weight: 500;
 }
 
-//Samu
-.labelData-text {
-  font-size: 14px !important;
-  font-weight: bold;
-}
 
 //suneel
 :host(.item-interactive.ion-valid) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
-import { AlertController,LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-processed-attendance',
@@ -10,78 +10,89 @@ import { AlertController,LoadingController } from '@ionic/angular';
 })
 export class ProcessedAttendancePage implements OnInit {
   empid;
-  displayEmployee : any =[];
-  year:any=[];
-  month:any=[];
+  displayEmployee: any = [];
+  year: any = [];
+  month: any = [];
   FUNCTION_ID;
   yeardata;
   employee_id;
   monthdata;
-  attendanceList:any=[];
-  nodata:boolean;
+  attendanceList: any = [];
+  nodata: boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public loadingController: LoadingController,) {
-    this.empid=window.localStorage['empid'];
-    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
+  constructor(private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public alertController: AlertController, public loadingController: LoadingController,) {
+    this.empid = window.localStorage['empid'];
+    this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
 
     this.employee_id = window.localStorage['em_emp_id'];
-    this.yeardata="";
-    this.monthdata="";
+    this.yeardata = "";
+    this.monthdata = "";
     this.getEmployeeList();
     this.geYears();
     this.geMonths();
-   }
+  }
 
   ngOnInit() {
   }
-  getEmployeeList(){
+  getEmployeeList() {
     var obj = {
-       empID: window.localStorage.getItem("EmployeeID"),
-       name: window.localStorage.getItem("EmployeeName"),
-       code: window.localStorage.getItem("TUM_EMP_CODE"),
-       designation: window.localStorage.getItem("EmpDesignation"),
-       branch: window.localStorage.getItem("TUM_BRANCH_ID"),
-       department: window.localStorage.getItem("EmpDepartment"),
-       top: 0,
-       increment: 20,
-       appURL: 'employeelist'
-     }
-  this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+'/EmployeeSearch/'+ obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp=>{
-  //  this.displayEmployee = JSON.parse(resp.toString());
-   this.displayEmployee = resp;
+      empID: window.localStorage.getItem("EmployeeID"),
+      name: window.localStorage.getItem("EmployeeName"),
+      code: window.localStorage.getItem("TUM_EMP_CODE"),
+      designation: window.localStorage.getItem("EmpDesignation"),
+      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
+      department: window.localStorage.getItem("EmpDepartment"),
+      top: 0,
+      increment: 20,
+      appURL: 'employeelist'
+    }
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + '/EmployeeSearch/' + obj.empID + "/" + obj.name + "/" + obj.code + "/" + obj.designation + "/" + obj.branch + "/" + obj.department + "/" + obj.top + "/" + obj.increment + "/" + obj.appURL).then(resp => {
+      //  this.displayEmployee = JSON.parse(resp.toString());
+      this.displayEmployee = resp;
 
-   this.displayEmployee = this.displayEmployee[0];
+      this.displayEmployee = this.displayEmployee[0];
 
-   console.log("displayEmployee : "+JSON.stringify(this.displayEmployee));
+      console.log("displayEmployee : " + JSON.stringify(this.displayEmployee));
 
-     }, error => {
+    }, error => {
 
-     console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-     });
-   }
-   geYears(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Year/0/0/0").then(resp=>{
+    });
+  }
+  geYears() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Year/0/0/0").then(resp => {
       this.year = resp;
 
-        }, error => {
+    }, error => {
 
-        console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-        });
+    });
   }
-  geMonths(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/CommonDropdown/Month/0/0/0").then(resp=>{
+  geMonths() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Month/0/0/0").then(resp => {
       this.month = resp;
 
-        }, error => {
-        console.log("error : "+JSON.stringify(error));
-        });
-  }
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
+    });
+  };
 
-  getAttendance(){
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  getAttendance() {
     this.nodata = false;
-    this.presentLoadingWithOptions();
+    this.attendanceList = [];
+    
     // console.log(this.attendance.empID);
     if (this.yeardata == undefined) {
       this.yeardata = "0";
@@ -89,48 +100,54 @@ export class ProcessedAttendancePage implements OnInit {
     if (this.monthdata == undefined) {
       this.monthdata = "0";
     }
-    var obj={
+    if((this.yeardata == '' && this.monthdata == '') || (this.yeardata != '' && this.monthdata =='') || (this.yeardata == '' && this.monthdata !='')) {
+      // alert("please select year & month");
+      this.presentAlert(' ', 'Please Select Year & Month');
+    } else{
+      this.presentLoadingWithOptions();
+    var obj = {
+      
       empID: window.localStorage.getItem('EmployeeID'),
-      year:this.yeardata,
-      month:this.monthdata
+      year: this.yeardata,
+      month: this.monthdata
     }
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then(resp => {
       this.loadingdismiss();
       this.attendanceList = resp;
-      if(this.attendanceList.length == 0){
+      if (this.attendanceList.length == 0) {
         this.nodata = true;
       }
-console.log(resp)
+      console.log(resp)
       for (var i = 0; i < this.attendanceList.length; i++) {
         this.attendanceList[i].TxnDate = this.getDateObj(this.attendanceList[i].TxnDate)
       }
       this.attendanceList = this.attendanceList.sort((a, b) => a.TxnDate - b.TxnDate)
-        }, error => {
+    }, error => {
 
-        console.log("error : "+JSON.stringify(error));
-        this.loadingdismiss();
-        });
-        this.loadingdismiss();
-}
+      console.log("error : " + JSON.stringify(error));
+      this.loadingdismiss();
+    });
+    this.loadingdismiss();
+  }
+  }
+  getDateObj(value) {
+    var split = value.split("/");
+    var date = new Date(split[1] + "/" + split[0] + "/" + split[2]);
+    return date;
+  }
 
-getDateObj(value){
-  var split = value.split("/");
-  var date = new Date(split[1] + "/" + split[0] + "/" + split[2]);
-  return date;
-}
-
-async presentLoadingWithOptions() {
-  const loading = await this.loadingController.create({
-    spinner: 'crescent',
-    message: 'Please wait...',
-    translucent: true,
-    cssClass: 'custom-class custom-loading',
-  });
-  return await loading.present();
-}
-async   loadingdismiss() {
-   return await this.loadingController.dismiss();
-}
-
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+    });
+    return await loading.present();
+  }
+  async loadingdismiss() {
+    return await this.loadingController.dismiss();
+  }
+  
 }

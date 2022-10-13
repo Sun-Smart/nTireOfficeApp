@@ -750,6 +750,8 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   }
 
   async Gethistorydetails(item) {
+    item.CALL_ID = parseInt(item.CALL_ID);
+    item.Campaign = 0;
     console.log("" + JSON.stringify(item));
     const modal = await this.modalController.create({
       component: HistotydetailsPage,
@@ -1042,6 +1044,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

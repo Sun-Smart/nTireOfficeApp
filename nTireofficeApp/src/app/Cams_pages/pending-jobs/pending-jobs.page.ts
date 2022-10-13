@@ -63,11 +63,11 @@ export class PendingJobsPage implements OnInit {
     this.category="<< Select >>";
     this.subCategory="<< Select >>";
     this.getCards();
-    
+
   }
 
   ngOnInit() {
-    
+
     this.getAssertCatergory();
   }
 
@@ -143,7 +143,7 @@ export class PendingJobsPage implements OnInit {
 
     this.assetCode = item;
     console.log(this.assetCode );
-    
+
     this.isItemAvailable = false;
     }
 
@@ -217,7 +217,7 @@ export class PendingJobsPage implements OnInit {
    }
    console.log(this.assetCode);
    const Newasset = this.assetCode;
-   
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -232,7 +232,7 @@ export class PendingJobsPage implements OnInit {
       console.log(this.responseData);
       this.responseDatalength = this.responseData.length;
       this.branch1 = this.responseData[0].Branch;
-        
+
     }, error => {
 
       console.log(JSON.stringify(error));
@@ -319,11 +319,11 @@ pendateval() {
       if (from_timestamp <= to_timestamp) {
         const header = new Headers();
         header.append("Content-Type", "application/json");
-      
+
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+this.fromdate+'&tdate='+this.todate+'&Status=P&strUserId='+this.userID+'&UserType='+this.usertype, {
-                                                            
-          
+
+
           // ?strfunction=1&branch=1&fdate=null&tdate=null&Status=P&strUserId=null&UserType=null
           headers: options,
         }).subscribe(resp => {
@@ -350,7 +350,7 @@ pendateval() {
             }, error => {
               //this.presentAlert('Alert','Server Error,Contact not loaded');
               console.log("error : " + JSON.stringify(error));
-          
+
             });
       } else {
         this.presentAlert("Invalid date", "From date should be lesser than To date!");
@@ -364,6 +364,7 @@ async presentAlert(heading, tittle) {
   var alert = await this.alertController.create({
     header: heading,
     cssClass:'buttonCss',
+    backdropDismiss:false,
     message: tittle,
     buttons: ['OK']
   });
@@ -390,14 +391,14 @@ startwork(obj, duedate,alldata) {
   if (new_finaltodayDatep1 == new_pduedte1 || new_finaltodayDatep1 > new_pduedte1) {
       //alert("datein")
       // alert(obj);
-     
+
       var datarep = {
         'wrkno': obj,
-        'functionid':window.localStorage['FUNCTION_ID'],
+        'functionid':parseInt(window.localStorage['FUNCTION_ID']),
         'branchid':window.localStorage['TUM_BRANCH_ID'],
         'activityid':alldata.CMD_ACTIVITY_ID,
         'duedate':alldata.pm_due_date,
-        'assetid':alldata.CMD_ASSET_ID,
+        'assetid':parseInt(alldata.CMD_ASSET_ID),
         'ref':alldata.pmr_reference,
         'startdte': newtdate,
         'access_token':window.localStorage['token'],
@@ -408,7 +409,7 @@ startwork(obj, duedate,alldata) {
       console.log(datarep);
       const header = new Headers();
       header.append("Content-Type", "application/json");
-    
+
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/updatecamsstatus',datarep, {
         headers: options,
@@ -419,9 +420,9 @@ startwork(obj, duedate,alldata) {
             this.getCards();
           }
       }, error => {
-      
+
               console.log("error : " + JSON.stringify(error));
-          
+
       });
       this.Realease_status = 'Started';
 
@@ -437,7 +438,7 @@ pendingtab(item){
   this.router.navigate(['/pending-jobs-tabs', {
     item:JSON.stringify(item)
   }])
- 
+
   //this.router.navigateByUrl('pending-jobs-tabs');
 }
 }

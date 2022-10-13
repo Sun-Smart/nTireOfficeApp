@@ -269,7 +269,8 @@ export class AssetTransferPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass: 'Cssbutton',  
+      cssClass: 'Cssbutton',
+      backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });

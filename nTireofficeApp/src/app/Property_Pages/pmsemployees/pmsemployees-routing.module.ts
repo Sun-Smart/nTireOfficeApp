@@ -7,9 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: PmsemployeesPage
-  },  {
+  },
+  {
     path: 'additional-charges',
-    loadChildren: () => import('./additional-charges/additional-charges.module').then( m => m.AdditionalChargesPageModule)
+    loadChildren: () => import('../additional-page/additional-charges/additional-charges.module').then( m => m.AdditionalChargesPageModule)
   }
 
 ];

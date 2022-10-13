@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./document-expiry-report.page.scss'],
 })
 export class DocumentExpiryReportPage implements OnInit {
-
+  showfilter:boolean=true;
   constructor() { }
 
   ngOnInit() {
   }
-
+  togglefilter(){
+    this.showfilter = !this.showfilter
+  }
 }

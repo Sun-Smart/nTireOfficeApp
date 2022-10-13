@@ -1,3 +1,19 @@
+/* eslint-disable quote-props */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-debugger */
+/* eslint-disable eqeqeq */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable no-var */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/semi */
 import { Component, OnInit } from '@angular/core';
 import {HttprequestService} from '../../service/httprequest.service';
 import {IpaddressService} from '../../service/ipaddress.service';
@@ -780,7 +796,7 @@ this.backbutton();
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-
+backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
     });
