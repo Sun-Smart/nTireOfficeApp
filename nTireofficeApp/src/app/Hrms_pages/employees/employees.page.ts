@@ -49,7 +49,7 @@ VALUE: any;
     this.getDesignation();
     this.getBranch();
     this.getDepartment();
-    this.employeeSearch();
+    // this.employeeSearch();
   }
   //get designation
   getDesignation(){
