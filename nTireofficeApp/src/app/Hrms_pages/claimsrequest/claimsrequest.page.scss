@@ -52,3 +52,31 @@ ion-card{
   0 100px 80px rgba(0, 0, 0, 0.12)
 ;
 }
+ion-checkbox{
+  --background:#fff!important;
+  color: #000 !important;
+}
+.ion-color-success {
+  --ion-color-base: #006600 !important;
+  --background: green !important;
+  color: #fff !important;
+  --ion-color-contrast: var(--ion-color-light) !important;
+  --color: #fff !important;
+  font-weight: normal !important;
+  font-family: "Poppins" !important;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 4px;
+  border: 1px solid #000 !important;
+  --background:#fff!important;
+  color: #000 !important;
+}
+.ContentName {
+  color: #000 !important;
+  font-weight: 700 !important;
+  margin: 2px;
+}
+#selectbutton{
+  padding-left: 0px;
+}
