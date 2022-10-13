@@ -12,6 +12,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./assetrequest.page.scss'],
 })
 export class AssetrequestPage implements OnInit {
+  showfilter: boolean = true;
   status;
   name;
   company;
@@ -100,6 +101,10 @@ export class AssetrequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
     });
 
+  }
+
+  togglefilter() {
+    this.showfilter = !this.showfilter;
   }
   //get assests sub category
   getAssestsSubcat(value) {
@@ -221,7 +226,7 @@ export class AssetrequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    // this.assestCancel();
+     this.assestCancel();
   }
   formatDate(value) {
     value = new Date(value);
@@ -239,8 +244,16 @@ export class AssetrequestPage implements OnInit {
     value = day + "-" + month + "-" + year;
     return value;
   }
+  assestCancel() {
+    this.assestCategory = "";
+    this.assestsubCategory = "";
+    this.requestDate = undefined;
+    this.returnDate = undefined;
+    this.reqbeforedte = undefined;
+    this.reason = undefined;
+  }
 
-  async assestCancel() {
+  async assestCancel1() {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Cancel the Process',
@@ -255,7 +268,7 @@ export class AssetrequestPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-
+            this.reqID="";
             this.assestCategory = "";
             this.assestsubCategory = "";
             this.requestDate = undefined;
