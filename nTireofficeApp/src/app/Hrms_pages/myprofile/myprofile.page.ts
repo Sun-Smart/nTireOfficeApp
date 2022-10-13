@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttprequestService } from '../../service/httprequest.service';
@@ -709,7 +710,8 @@ export class MyprofilePage implements OnInit {
         // this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"CommonDropdown/"+ window.localStorage['FUNCTION_ID']+  "/" + "SubQualification"+ "/" + "0/"+this.qualification[0].VALUE+"/0").then(resp=>{
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/" + "SubQualification" + "/" + "0/" + this.qualification[0].VALUE + "/0").then(resp => {
 
-          this.subQualification = JSON.parse(resp.toString());
+          // this.subQualification = JSON.parse(resp.toString());
+          this.subQualification = resp;
           var indexval1 = this.subQualification.findIndex(x => x.VALUE == this.profile.emp_subqualification)
 
           this.emp.subQualification = this.subQualification[indexval1].VALUE
@@ -756,7 +758,7 @@ export class MyprofilePage implements OnInit {
 
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeUpdate/" + this.personalDetailsObject.empID + "/" + this.personalDetailsObject.Type + "/" + this.personalDetailsObject.FirstName + "/" + this.personalDetailsObject.LastName + "/" + this.personalDetailsObject.DOB + "/" + this.personalDetailsObject.Qualification + "/" + this.personalDetailsObject.SubQualification + "/0/0/0").then(resp => {
           this.getEmployeeDetails();
-          var data = JSON.parse(resp.toString());
+          var data = resp;
 
           if (data[0].Column1 == "Successfully Updated") {
 
@@ -969,12 +971,12 @@ export class MyprofilePage implements OnInit {
             this.error = "";
             // console.log("Updated Baby");
 
-            alert("Contact Details Updated");
+            this.presentAlert("","Contact Details Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            alert('Error Updating Profile');
+            this.presentAlert('','Error Updating Profile');
           }
         }, error => {
 
@@ -994,5 +996,16 @@ export class MyprofilePage implements OnInit {
     }
 
 
+  }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
