@@ -1,3 +1,16 @@
+/* eslint-disable @typescript-eslint/member-delimiter-style */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable no-debugger */
+/* eslint-disable prefer-const */
+/* eslint-disable quote-props */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-var */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -466,7 +479,7 @@ export class MyprofilePage implements OnInit {
   }
 
   getEducationDaetails() {
-   let getEmployeeID = window.localStorage.getItem("EmployeeID");
+    let getEmployeeID = window.localStorage.getItem("EmployeeID");
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/EducationDetails/" + "0/" + getEmployeeID + "/0").then(resp => {
       this.EducationDetails = resp;
@@ -711,7 +724,8 @@ export class MyprofilePage implements OnInit {
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/" + "SubQualification" + "/" + "0/" + this.qualification[0].VALUE + "/0").then(resp => {
 
           // this.subQualification = JSON.parse(resp.toString());
-          this.subQualification = resp;
+          this.subQualification = JSON.stringify(resp);
+          this.subQualification = JSON.parse(this.subQualification)
           var indexval1 = this.subQualification.findIndex(x => x.VALUE == this.profile.emp_subqualification)
 
           this.emp.subQualification = this.subQualification[indexval1].VALUE
@@ -765,13 +779,13 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            alert('Personal Details Updated');
+            this.presentAlert('','Personal Details Updated');
 
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            alert('Error Updating Profile');
+            this.presentAlert('','Error Updating Profile');
           }
         }, error => {
 
@@ -835,12 +849,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            alert("Current Address Updated");
+            this.presentAlert("","Current Address Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            alert('Error Updating Profile');
+            this.presentAlert('','Error Updating Profile');
           }
         }, error => {
 
@@ -904,12 +918,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            alert('Permanent Address Updated');
+            this.presentAlert('','Permanent Address Updated');
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            alert('Error Updating Profile');
+            this.presentAlert('','Error Updating Profile');
           }
         }, error => {
 
@@ -964,19 +978,20 @@ export class MyprofilePage implements OnInit {
         // API CALLING FOR ContactDetails DETAILS
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeUpdate/" + this.ContactDetailsObject.empID + "/" + this.ContactDetailsObject.Type + "/" + this.ContactDetailsObject.Email + "/" + this.ContactDetailsObject.Mobile + "/0/" + this.ContactDetailsObject.EmergencyContactName + "/" + this.ContactDetailsObject.EmergencyContactNumber + "/0/0/0").then(resp => {
 
-          var data = JSON.parse(resp.toString());
+          // var data = JSON.parse(resp.toString());
+          var data = resp;
           // console.log(response);
           if (data[0].Column1 == "Successfully Updated") {
             // Store the Data and Display the success message to user
             this.error = "";
             // console.log("Updated Baby");
 
-            this.presentAlert("","Contact Details Updated");
+            this.presentAlert("", "Contact Details Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert('', 'Error Updating Profile');
           }
         }, error => {
 
