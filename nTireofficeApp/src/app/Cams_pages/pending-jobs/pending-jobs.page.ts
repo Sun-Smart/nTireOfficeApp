@@ -394,11 +394,11 @@ startwork(obj, duedate,alldata) {
 
       var datarep = {
         'wrkno': obj,
-        'functionid':window.localStorage['FUNCTION_ID'],
+        'functionid':parseInt(window.localStorage['FUNCTION_ID']),
         'branchid':window.localStorage['TUM_BRANCH_ID'],
         'activityid':alldata.CMD_ACTIVITY_ID,
         'duedate':alldata.pm_due_date,
-        'assetid':alldata.CMD_ASSET_ID,
+        'assetid':parseInt(alldata.CMD_ASSET_ID),
         'ref':alldata.pmr_reference,
         'startdte': newtdate,
         'access_token':window.localStorage['token'],

@@ -1,16 +1,4 @@
-/* eslint-disable @typescript-eslint/type-annotation-spacing */
-/* eslint-disable @typescript-eslint/no-inferrable-types */
-/* eslint-disable eqeqeq */
-/* eslint-disable quote-props */
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable no-debugger */
-/* eslint-disable max-len */
-/* eslint-disable no-var */
-/* eslint-disable @typescript-eslint/dot-notation */
-/* eslint-disable @typescript-eslint/semi */
-/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttprequestService } from '../../service/httprequest.service';
@@ -478,8 +466,9 @@ export class MyprofilePage implements OnInit {
   }
 
   getEducationDaetails() {
+   let getEmployeeID = window.localStorage.getItem("EmployeeID");
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/EducationDetails/" + "0/" + "0/" + "0").then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/EducationDetails/" + "0/" + getEmployeeID + "/0").then(resp => {
       this.EducationDetails = resp;
     }, error => {
 
@@ -487,8 +476,11 @@ export class MyprofilePage implements OnInit {
 
     });
   }
+
+
   getcarrierDaetails() {
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/CareerDetails/" + "0/" + "0/" + "0").then(resp => {
+    let getEmployeeID = localStorage.getItem('EmployeeID');
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/CareerDetails/" + "0/" + getEmployeeID + "/0").then(resp => {
       this.CareerDetails = resp;
     }, error => {
 
@@ -719,8 +711,7 @@ export class MyprofilePage implements OnInit {
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/" + "SubQualification" + "/" + "0/" + this.qualification[0].VALUE + "/0").then(resp => {
 
           // this.subQualification = JSON.parse(resp.toString());
-          this.subQualification = JSON.stringify(resp);
-          this.subQualification = JSON.parse(this.subQualification);
+          this.subQualification = resp;
           var indexval1 = this.subQualification.findIndex(x => x.VALUE == this.profile.emp_subqualification)
 
           this.emp.subQualification = this.subQualification[indexval1].VALUE
@@ -768,14 +759,13 @@ export class MyprofilePage implements OnInit {
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeUpdate/" + this.personalDetailsObject.empID + "/" + this.personalDetailsObject.Type + "/" + this.personalDetailsObject.FirstName + "/" + this.personalDetailsObject.LastName + "/" + this.personalDetailsObject.DOB + "/" + this.personalDetailsObject.Qualification + "/" + this.personalDetailsObject.SubQualification + "/0/0/0").then(resp => {
           this.getEmployeeDetails();
           var data = resp;
-          console.log('update profile data', data[0].Column1);
 
           if (data[0].Column1 == "Successfully Updated") {
 
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert('', 'Personal Details Updated');
+            alert('Personal Details Updated');
 
             this.getEmployeeDetails();
 
@@ -845,12 +835,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert("","Current Address Updated");
+            alert("Current Address Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            alert('Error Updating Profile');
           }
         }, error => {
 
@@ -914,12 +904,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert('','Permanent Address Updated');
+            alert('Permanent Address Updated');
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            alert('Error Updating Profile');
           }
         }, error => {
 
@@ -974,8 +964,7 @@ export class MyprofilePage implements OnInit {
         // API CALLING FOR ContactDetails DETAILS
         this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeUpdate/" + this.ContactDetailsObject.empID + "/" + this.ContactDetailsObject.Type + "/" + this.ContactDetailsObject.Email + "/" + this.ContactDetailsObject.Mobile + "/0/" + this.ContactDetailsObject.EmergencyContactName + "/" + this.ContactDetailsObject.EmergencyContactNumber + "/0/0/0").then(resp => {
 
-          // var data = JSON.parse(resp.toString());
-          var data = resp;
+          var data = JSON.parse(resp.toString());
           // console.log(response);
           if (data[0].Column1 == "Successfully Updated") {
             // Store the Data and Display the success message to user

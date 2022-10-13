@@ -5,7 +5,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import {TabparamserviceService} from '../../tabparamservice.service'
+import {TabparamserviceService} from '../../service/tabparamservice.service'
 import { ActivatedRoute} from '@angular/router';
 import {ConsumableUpdatePage} from '../consumable-update/consumable-update.page'
 

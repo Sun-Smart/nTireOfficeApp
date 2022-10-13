@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {TabparamserviceService} from '../../tabparamservice.service'
+import {TabparamserviceService} from '../../service/tabparamservice.service'
 
 @Component({
   selector: 'app-pending-jobs-tabs',
