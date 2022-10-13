@@ -537,7 +537,8 @@
         <ion-card-content>
           <ion-row *ngFor="let item of EducationDetails">
             <ion-col size="6">
-              <img src="assets/Images/cap.png" style="width:100px" alt="">
+              <!-- <img src="assets/Images/cap.png" style="width:100px" alt=""> -->
+              <img src="assets/images/cap.png" style="width:100px" alt="">
             </ion-col>
 
             <ion-col size="6">
@@ -547,7 +548,7 @@
                 <p>{{item.Percentage}}%</p>
                 <div style="margin: 10px;display: flex;">
                   <button class="pull-right" (click)="updateEducationModal(item)" [disabled]="">
-                    <ion-icon name="create"></ion-icon>
+                    <ion-icon name="create" style="color:green;"></ion-icon>
                   </button>
                   <button [disabled]="" class="pull-right" (click)="deleteEducationDetail(item.ID)">
                     <i class="fa fa-trash" style="font-size:19px; margin-left:5px; color:red;"></i>
@@ -618,7 +619,8 @@
           <ion-row *ngFor="let item of CareerDetails">
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
               style="margin: auto;text-align: -webkit-center;">
-              <img src="assets/Images/career2.png" style="width:100px" alt="">
+              <!-- <img src="assets/Images/career2.png" style="width:100px" alt=""> -->
+              <img src="assets/images/career2.png" style="width:100px" alt="">
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <b style="white-space: normal;">{{item.Employer}}</b>
@@ -628,7 +630,7 @@
               <div style="margin: 10px;display: flex;">
                 <button (click)="updateCareerModal(item)" [disabled]=""
                   class="button button-clear button-small button-stable pull-right">
-                  <ion-icon name="create"></ion-icon>
+                  <ion-icon name="create" style="color:green;"></ion-icon>
                 </button>
                 <button [disabled]="" class="button button-clear button-small button-stable pull-right"
                   (click)="deleteCareerDetail(item.ID)">
