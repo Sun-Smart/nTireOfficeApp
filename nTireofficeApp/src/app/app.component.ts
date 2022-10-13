@@ -30,7 +30,7 @@ export class AppComponent {
   list5: boolean;
   list6: boolean;
   CamsList: boolean;
-  pmssubmenu:boolean=false
+  pmssubmenu: boolean = false
   pms: boolean;
   user_role: any;
   chkadmin: boolean;
@@ -38,7 +38,7 @@ export class AppComponent {
 
   reportMenu: any;
   showSubmenu: boolean = false;
-  showForce : boolean;
+  showForce: boolean;
 
   public salespages = [
 
@@ -506,7 +506,8 @@ export class AppComponent {
           icon: 'call'
         },
 
-      ]}
+      ]
+    }
   ];
 
 
@@ -808,7 +809,7 @@ export class AppComponent {
 
 
   menutooglepms() {
-debugger
+    debugger
     if (this.pms == true) {
       this.pms = false;
     }
@@ -819,21 +820,21 @@ debugger
 
 
 
-  
+
 
   menuItemHandler(): void {
     this.showSubmenu = !this.showSubmenu;
   }
 
-  showreports(){
+  showreports() {
     alert("567")
 
 
 
 
 
-    this.pmssubmenu=!this.pmssubmenu
-    this.pmssubmenu=true
+    this.pmssubmenu = !this.pmssubmenu
+    this.pmssubmenu = true
   }
 
 

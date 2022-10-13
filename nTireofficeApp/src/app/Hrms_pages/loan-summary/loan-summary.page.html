@@ -61,8 +61,8 @@
           Req.Type
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <span *ngIf="loanDataItems.request_type=='2'">Advance</span>
-          <span *ngIf="loanDataItems.request_type=='1'">Loan</span>
+          <span *ngIf="loanDataItems.request_type==='2'">Advance</span>
+          <span *ngIf="loanDataItems.request_type==='1'">Loan</span>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Schema Code
@@ -125,11 +125,11 @@
             Status
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <span *ngIf="loanDataItems.status=='P'">Pending</span>
-            <span *ngIf="loanDataItems.status=='A'">Approved</span>
-            <span *ngIf="loanDataItems.status=='N'">New</span>
-            <span *ngIf="loanDataItems.status=='D'">Denied</span>
-            <span *ngIf="loanDataItems.status=='R'">Rejected</span>
+            <span *ngIf="loanDataItems.status==='P'">Pending</span>
+            <span *ngIf="loanDataItems.status==='A'">Approved</span>
+            <span *ngIf="loanDataItems.status==='N'">New</span>
+            <span *ngIf="loanDataItems.status==='D'">Denied</span>
+            <span *ngIf="loanDataItems.status==='R'">Rejected</span>
             <span><a (click)="showlessnewloan(i)"><i class="fas fa-chevron-circle-up iconcolor " aria-hidden="true "
                   style="border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;font-size: 24px;color: #000;float:right; "></i></a></span>
           </ion-col>
@@ -137,12 +137,12 @@
             <ion-row>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-button color='success' (click)="openModal(loanDataItems)"
-                  [disabled]="loanDataItems.status=='P' || loanDataItems.status == 'A' ">UPADATE </ion-button>
+                  [disabled]="loanDataItems.status==='P' || loanDataItems.status === 'A' ">UPADATE </ion-button>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
 
                 <ion-button color='danger' (click)='cancelRequest(loanDataItems)'
-                  [disabled]="loanDataItems.status == 'P' || loanDataItems.status == 'N' || loanDataItems.status == 'C'">
+                  [disabled]="loanDataItems.status === 'P' || loanDataItems.status === 'N' || loanDataItems.status === 'C'">
                   CANCEL</ion-button>
               </ion-col>
             </ion-row>
@@ -151,7 +151,7 @@
       </div>
     </ion-grid>
   </ion-card>
-  <!-- <p  style="text-align:center" *ngIf="display.length==0" class="norecord">No Record Found</p> -->
+  <p style="text-align:center" *ngIf="display.length===0" class="norecord">No Record Found</p>
 </ion-content>
 
 <ion-footer>

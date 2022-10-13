@@ -115,7 +115,7 @@ export class LoginPage implements OnInit {
             localStorage.setItem('usertoken', resp['usertoken']);
           })
 
-          this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.hrmslogindata +'/HRMS/EmployeeDetail/' + resp.TUM_USER_CODE).subscribe((res) => {
+          this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.hrmslogindata + '/HRMS/EmployeeDetail/' + resp.TUM_USER_CODE).subscribe((res) => {
             console.log('HRM', res);
             localStorage.setItem('EmployeeID', res[0]['em_emp_id']);
             localStorage.setItem('EmployeeName', res[0]['em_emp_name']);

@@ -4,6 +4,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 import { ToastmessageService } from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-assetrequest',
@@ -47,12 +48,13 @@ export class AssetrequestPage implements OnInit {
   release: boolean;
   disabledvalue: boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+    public alertController: AlertController, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.status = "P";
     this.userID = window.localStorage['TUM_USER_ID'];
     this.empCode = window.localStorage['TUM_EMP_CODE'];
 
-    this.empID = parseInt( window.localStorage['EmployeeID']);
+    this.empID = parseInt(window.localStorage['EmployeeID']);
     this.usertoken = window.localStorage['usertoken'];
     this.status = "P";
     this.release = false;
@@ -102,7 +104,7 @@ export class AssetrequestPage implements OnInit {
   //get assests sub category
   getAssestsSubcat(value) {
     console.log(value)
-    let getvalue =value
+    let getvalue = value
     console.log(getvalue)
     // this.subCategoryData = [];
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + this.FUNCTION_ID + "/" + getvalue).then(resp => {
@@ -120,7 +122,10 @@ export class AssetrequestPage implements OnInit {
     var date1 = this.formatDate(this.requestDate);
     var date2 = this.formatDate(new Date(this.returnDate));
     var date3 = this.formatDate(new Date(this.reqbeforedte));
-    this.reqID=null
+    this.reqID = 8
+    // if (this.reqID == undefined) {
+    //   this.reqID == 0
+    // }
     //  if (this.status == undefined) {
     //   this.status = "P";
     // }
@@ -130,7 +135,7 @@ export class AssetrequestPage implements OnInit {
     else {
       this.status = 'N';
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date3 + "/" + date2 + "/" + this.reason + "/" + this.status).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date2 + "/" + this.reason + "/" + this.status).then(resp => {
       if (resp == '"Attendance not available"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date");
 
@@ -138,6 +143,7 @@ export class AssetrequestPage implements OnInit {
         this.toastmessageService.presentAlert1("Request Not Sent", "Employee Office Hrs should not be less that Total Office Hrs");
       } else if (resp == '"COFF Request already available for this date"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "COFF Request already available for this date");
+
 
       } else {
 
@@ -166,7 +172,7 @@ export class AssetrequestPage implements OnInit {
         // // console.log(split[2]);
         // this.reqID = split[0];
 
-        if (split[1] == "Asset Request Saved Successfully") {
+        if (split[1] == "8@Asset Request Updated Successfully@HRMS_INFRASTRUCTURE_REQUEST_MASTER") {
           this.toastmessageService.presentAlert1("Request Sent", "Request saved Successfully <br> Req Ref : " + this.rreqid3);
 
           this.reqtype = 'null';
@@ -215,7 +221,7 @@ export class AssetrequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    this.assestCancel();
+    // this.assestCancel();
   }
   formatDate(value) {
     value = new Date(value);
@@ -233,14 +239,55 @@ export class AssetrequestPage implements OnInit {
     value = day + "-" + month + "-" + year;
     return value;
   }
-  assestCancel() {
-    this.assestCategory = "";
-    this.assestsubCategory = "";
-    this.requestDate = undefined;
-    this.returnDate = undefined;
-    this.reqbeforedte = undefined;
-    this.reason = undefined;
+
+  async assestCancel() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+
+            this.assestCategory = "";
+            this.assestsubCategory = "";
+            this.requestDate = undefined;
+            this.returnDate = undefined;
+            this.reqbeforedte = undefined;
+            this.reason = undefined;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
+
+
+
+
+
+
+
+
+
+
+
+  // assestCancel() {
+  //   this.assestCategory = "";
+  //   this.assestsubCategory = "";
+  //   this.requestDate = undefined;
+  //   this.returnDate = undefined;
+  //   this.reqbeforedte = undefined;
+  //   this.reason = undefined;
+  // }
   assesstsList() {
     this.router.navigateByUrl('/assetssummary')
   }
