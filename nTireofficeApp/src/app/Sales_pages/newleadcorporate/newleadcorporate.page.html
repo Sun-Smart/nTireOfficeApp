@@ -43,7 +43,8 @@
         <ion-label>Search Company <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-searchbar [(ngModel)]="company" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
         <ion-list *ngIf="isItemAvailable" class="searchlist">
-          <ion-item *ngFor="let item of companyname1" (click)="adddata(item)" style="background:none !important;color:#444 !important">
+          <ion-item *ngFor="let item of companyname1" (click)="adddata(item)"
+            style="background:none !important;color:#444 !important">
             {{ item }}
           </ion-item>
         </ion-list>
@@ -58,14 +59,21 @@
       </ion-col>
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input type="tel" (keyup)="mobilenumbervalid(mobile)" class="form-control" [(ngModel)]="mobile"></ion-input>
+        <!-- <ion-input type="tel" (keyup)="mobilenumbervalid(mobile)" class="form-control" [(ngModel)]="mobile"></ion-input> -->
+        <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;"
+          [(ngModel)]="mobile" minlength="10" maxlength="15" #umobile="ngModel"></ion-input>
+        <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
+          <p style="color:red;">valid mobile number required</p>s
+        </div>
+
+
         <span *ngIf="validmobile">
           <span class="error">Mobile number should be 10 digits</span>
         </span>
       </ion-col>
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number</ion-label>
-        <ion-input type="tel" class="form-control" [(ngModel)]="OffPhone"></ion-input>
+        <ion-input type="tel" class="form-control" [(ngModel)]="OffPhone"  onKeyPress="if(this.value.length==13) return false;"></ion-input>
 
       </ion-col>
       <ion-col *ngIf="old_company == 'false'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -155,9 +163,8 @@
       </ion-col>
       <ion-col *ngIf="nextaction=='1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Place To Meet <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <textarea appNewcrop style="width:100%;height:auto;padding:8px;" [(ngModel)]="placetomeet"
-          [options]='options' class="form-control" #placesRef="ngx-places"
-          (onAddressChange)="handleAddressChange($event)"></textarea>
+        <textarea appNewcrop style="width:100%;height:auto;padding:8px;" [(ngModel)]="placetomeet" [options]='options'
+          class="form-control" #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"></textarea>
 
       </ion-col>
       <ion-col [hidden]="showmap" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="4">
@@ -211,10 +218,11 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Attach Document</ion-label>
         <br />
-        <i class="fa fa-paperclip" aria-hidden="true" style="font-size:28px;color:black;position: relative;left:50%" ios="ios-attach" md="md-attach" (click)="selectImage()"></i>
+        <i class="fa fa-paperclip" aria-hidden="true" style="font-size:28px;color:black;position: relative;left:50%"
+          ios="ios-attach" md="md-attach" (click)="selectImage()"></i>
         <!-- <ion-icon style="font-size:28px;position: relative;left:50%" ios="ios-attach" md="md-attach" (click)="selectImage()"></ion-icon> -->
         <div style="display:none;word-break: break-all;">
-          <input type="file" name="file" id="fileinput"/>
+          <input type="file" name="file" id="fileinput" />
         </div>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -241,8 +249,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-button  (click)="Submitcorporate()"
-        class="ion-color-success" expand="block">Submit</ion-button>
+        <ion-button (click)="Submitcorporate()" class="ion-color-success" expand="block">Submit</ion-button>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-button (click)="Cancelcorporate()" color="danger" expand="block">Cancel</ion-button>

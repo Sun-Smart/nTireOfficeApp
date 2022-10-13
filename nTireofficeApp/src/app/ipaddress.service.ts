@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams,HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,7 @@ export class IpaddressService {
   public serviceerpapi;
   public serviceurlerp
     serviceurlProperty: any;
-  constructor() {
+  constructor(private http: HttpClient) {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
 
@@ -86,6 +87,16 @@ export class IpaddressService {
     this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
     // https://demo.herbie.ai/nTireMobileCoreAPI/api/ERP/get_PRS_search
 
+   
 
   }
+
+
+  // pms service
+
+  getcustomerproperty(){
+    debugger
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+   return this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/property/fm_rental_summary/0/0/0/0/0/0/0/0/20/0/0/0/1/1',{headers,responseType: 'text'})
+ }
 }

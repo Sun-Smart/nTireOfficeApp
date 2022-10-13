@@ -100,7 +100,7 @@ this.designation1="";
       }
 
  this.addCareerObject = {
-        empID: window.localStorage['empid'],
+        empID: window.localStorage.getItem['EmployeeID'],
         Type: "CareerDetails",
         Employer: this.employer,
         From: this.fromdate,

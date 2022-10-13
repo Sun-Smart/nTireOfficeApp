@@ -49,7 +49,7 @@ export class DashboardPage implements OnInit {
   productchart: any;
   sourcechart: any;
   productchart1: any;
-  branch;
+  branch = localStorage.getItem('TUM_BRANCH_CODE');
   branch_txt;
   labels1n = [];
   total_leads_datan = [];
@@ -97,7 +97,7 @@ export class DashboardPage implements OnInit {
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
 
-      this.branch = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+      this.branch = localStorage.getItem('TUM_BRANCH_ID');
 
     }, error => {
 

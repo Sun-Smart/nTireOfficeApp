@@ -18,10 +18,12 @@ export class PmscustomerPage implements OnInit {
   filterTerm: string;
   showfilter: boolean = true;
 
-
-  Propertyname;
-  Propertycode;
-  Location
+  propertyBranch:any;
+  propertyLocation:any;
+  Propertyname:any;
+  propertyCode:any;
+  propertyDescription:any;
+  uniqueRef;
   branchcode: any;
   branchid: any;
   userId: any;
@@ -39,29 +41,47 @@ export class PmscustomerPage implements OnInit {
   Split_ID
   strusertype
 
-
+  userID:any;
   usertype: any;
   function: any;
   branch: any;
   functionID: any;
+  branchID:any;
+  Location: any;
+  Propertycode: any;
+  assetcode: any;
+  details1 = [];
+  isItemAvailable: boolean;
+  assetcode1: any[];
+  accessToken: any;
+  propertyCodeResult: any;
+  propertyCodeResult1: any;
+  userToken: any;
 
 
 
   constructor(private modalCtrl: ModalController, 
     public alertController: AlertController, 
     private http: HttpClient, 
-    public Ipaddressservice: IpaddressService) {}
+    public Ipaddressservice: IpaddressService) 
+    {
+      this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+      this.functionID = localStorage.getItem('FUNCTION_ID');
+      this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+      this.userID = localStorage.getItem('TUM_USER_ID');
+      this.usertype = localStorage.getItem('TUM_USER_TYPE');
+      this.accessToken = localStorage.getItem('token');
+    }
 
 
   ngOnInit() {
+this.getItems("");
+    this.assetcode = "";
+    this.details1 = [];
 
     this.userId = window.localStorage['TUM_USER_ID'],
-    console.log(this.userId);
     this.branchcode = window.localStorage['TUM_BRANCH_CODE']
-    console.log(this.branchcode);
-    
     this.branchid = window.localStorage['TUM_BRANCH_ID']
-    console.log(this.branchid);
     this.strFunctionId = window.localStorage['FUNCTION_ID']
     this.strusertype = window.localStorage['TUM_USER_TYPE']
 
@@ -92,55 +112,81 @@ export class PmscustomerPage implements OnInit {
     this.showfilter = !this.showfilter;
   }
 
-  propertyCodE(e) {
-
-    var body = {
-      userid: this.userId,
-      strBranchId: this.branchid
-      // "strFunctionId"
-
-      // "strLocationId"
-      // "strPropertyId"
-      // "strPropertyDesc";
-      // "rentelCode";
-      // "strStatus";
-      // "pageIndex";
-      // "pageSize";
-      // "sortExpression";
-      // "alphaname";
-      // "Split_ID";
-      // "strusertype";
-    }
-
-    if (this.Location == '' || this.Location == "" || this.Location == undefined) {
-      this.Location = 0
-
-    }
-
-    if (this.Propertycode == '' || this.Propertycode == "" || this.Propertycode == undefined) {
-      this.Propertycode = 0
-    }
-
-    if (this.Propertyname == '' || this.Propertyname == "" || this.Propertyname == undefined) {
-      this.Propertyname = 0
-    }
-
-    if (this.strPropertyDesc == '' || this.strPropertyDesc == "" || this.strPropertyDesc == undefined) {
-      this.strPropertyDesc = 0
-    }
+  doRefresh(event) {
+    this.details1 = [];
+    this.assetcode = '';
+    event.target.complete();
+  }
 
 
+  getItems(e:any) {
+    console.log(e);
 
+    this.assetcode1 = [];
+    // if (e.target.value == "") {
+    //   this.assetcode1 = [];
+    //   this.isItemAvailable = false;
+    // };
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    var params = {
+      access_token: window.localStorage['token'],
+      userid: window.localStorage['TUM_USER_ID'],
+      usertoken: window.localStorage['usertoken'],
+      USER_ID: window.localStorage['TUM_USER_ID'],
+    };
     this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.branchid + '/' + this.branchcode
-      + '/' + this.Propertycode + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userId
-    ).subscribe((res: any) => {
-      console.log(res);
-      let data = JSON.stringify(res)
-      console.log(data)
+      + '/' + this.Propertycode + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userId, {
+        headers: options,
+      }
+    ).subscribe((resp: any) => {
+      console.log(resp);
+      
+      this.propertyCodeResult = resp;
 
+      this.propertyCodeResult1 = this.propertyCodeResult;
+
+      for(var i = 0; i < this.propertyCodeResult1.length; i++ ){
+        this.assetcode1.push(this.propertyCodeResult1[i].ASSET_CODE);
+      };
+      const val = e.target.value;
+
+      if (val && val.trim() != '') {
+        this.isItemAvailable = true;
+        this.assetcode1 = this.assetcode1.filter((item) => {
+          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
     })
 
-  }
+  };
+
+  // propertyCodE(assetcode:any){
+  //   this.details1 = [];
+  //   this.assetcode = assetcode;
+  //   this.isItemAvailable = false;
+
+  //   var data = {
+  //     'assetcode': assetcode,
+  //     'branchid': this.branchID,
+  //     'access_token': this.accessToken,
+  //     'userid': this.userID,
+  //     'usertoken': this.userToken
+  //   };
+  //   console.log(data);
+
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
+
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+    
+  // }
+
 
 
 }

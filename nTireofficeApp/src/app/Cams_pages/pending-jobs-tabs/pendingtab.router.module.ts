@@ -10,9 +10,10 @@ const routes: Routes = [
         {
           path: 'job-detail',
           children: [
+            // ../job-detail/job-detail.module#JobDetailPageModule
             {
               path: '',
-              loadChildren:'../job-detail/job-detail.module#JobDetailPageModule'
+              loadChildren: () => import('../job-detail/job-detail.module').then(m =>m.JobDetailPageModule)
               
             }
           ]
@@ -21,32 +22,36 @@ const routes: Routes = [
             path: 'task',
             children: [
               {
+                // ../task-detail/task-detail.module#TaskDetailPageModule
                 path: '',
-                loadChildren: '../task-detail/task-detail.module#TaskDetailPageModule'
+                loadChildren: () => import('../task-detail/task-detail.module').then(m => m.TaskDetailPageModule)
               }
             ]
           },{
             path: 'manpowerUsed',
             children: [
               {
+                // ../manpower-used/manpower-used.module#ManpowerUsedPageModule
                 path: '',
-                loadChildren: '../manpower-used/manpower-used.module#ManpowerUsedPageModule'
+                loadChildren: () => import('../manpower-used/manpower-used.module').then(m => m.ManpowerUsedPageModule)
               }
             ]
           },{
             path: 'sparesUsed',
             children: [
               {
+                // ../spares-used/spares-used.module#sparesUsedPageModule
                 path: '',
-                loadChildren: '../spares-used/spares-used.module#sparesUsedPageModule'
+                loadChildren: () => import('../spares-used/spares-used.module').then(m => m.sparesUsedPageModule)
               }
             ]
           },{
             path: 'consumableUsed',
             children: [
               {
+                // '../consumable-used/consumable-used.module#ConsumableUsedPageModule'
                 path: '',
-                loadChildren: '../consumable-used/consumable-used.module#ConsumableUsedPageModule'
+                loadChildren: () => import('../consumable-used/consumable-used.module').then(m => m.ConsumableUsedPageModule)
               }
             ]
           },
