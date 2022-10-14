@@ -60,7 +60,7 @@ export class DepartmentWiseModelPage implements OnInit {
       'funnme':this.function,
       'access_token':this.accessToken,
       'userid':this.userID,
-        'usertoken':this.userToken
+      'usertoken':this.userToken
  
     }
 
