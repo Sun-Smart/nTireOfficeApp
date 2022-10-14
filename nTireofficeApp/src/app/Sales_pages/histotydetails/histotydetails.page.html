@@ -53,7 +53,7 @@
   <ion-card *ngFor="let items of showhistforuser; let i = index" style="background-color:#fff">
     <ion-grid style="padding: 0px;">
       <ion-row>
-        <div class="card_header" style="width: 100% !important;">
+        <!-- <div class="card_header" style="width: 100% !important;">
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="color:#fff;padding:12px;">
             {{items.CustFullName}}
           </ion-col>
@@ -61,7 +61,18 @@
             style="color:#fff;padding:12px;text-align:right;">
             #{{items.TCC_CUST_LEAD_ID}}
           </ion-col>
-        </div>
+        </div> -->
+        <ion-card-header class="card_header" style="width: 100%;">
+          <ion-row>
+            <ion-col>
+              <ion-label class="card_header_text">{{items.CustFullName}}</ion-label>
+            </ion-col>
+
+            <ion-col>
+              <ion-label class="card_header_text"> #{{items.TCC_CUST_LEAD_ID}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Lead ID
         </ion-col>

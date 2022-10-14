@@ -42,9 +42,9 @@ export class HistotydetailsPage implements OnInit {
 
     this.fromDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.toDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-   
+
     this.Gethistorydata();
-    
+
   }
 
   ngOnInit() {
@@ -64,8 +64,8 @@ export class HistotydetailsPage implements OnInit {
     let start = new Date(fromDate);
     let end = new Date(toDate);
 
-    console.log('showhistforuser before' + start);
-    console.log('showhistforuser before' + end);
+    // console.log('showhistforuser before' + start);
+    // console.log('showhistforuser before' + end);
     console.log('showhistforuser before' + new Date('10/23/2020'));
 
 
