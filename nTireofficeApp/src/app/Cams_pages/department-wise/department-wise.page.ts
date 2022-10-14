@@ -63,6 +63,18 @@ export class DepartmentWisePage implements OnInit {
   ngOnInit() {
   }
 
+ 
+  resetlocationreport(){
+    this.ZoneLoc='';
+    this.region='';
+    this.branchLoc='';
+    this.depatment='';
+    this.location='';
+    this.detailfinals= ''||[];
+
+  }
+ 
+
   doRefresh(event){
     this.getZone();
     this.getDepartment();
