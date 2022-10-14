@@ -412,7 +412,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     debugger;
     console.log(objdatval);
     console.log(address);
-    this.presentLoadingWithOptions();
+
     if (objdatval.leadstatusval == '') {
       this.presentAlert("", "Please Select Priority");
     }
@@ -497,7 +497,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
 
       var updateleadJSON = Object.assign(this.objdataupd, tokenJSON);
       var updateleadJSON1 = Object.assign(updateleadJSON, this.dataobjs);
-
+      this.presentLoadingWithOptions();
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -506,11 +506,12 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       }).subscribe(resp => {
         if (resp == 'Updated Successfully') {
 
-          this.presentAlertConfirm("", "Saved Successfully");
+          this.presentAlertConfirm("", "Updated Successfully");
           this.loadingdismiss();
         }
       }, error => {
         this.presentAlertConfirm("", "Saved Successfully");
+        this.loadingdismiss();
       });
     }
   }

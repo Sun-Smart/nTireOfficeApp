@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
 import { ActivatedRoute} from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { json } from '@angular-devkit/core';
 // import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 declare var jquery: any;
 declare var $: any;
@@ -84,6 +85,10 @@ export class ServiceRequestPage implements OnInit {
   username:any;
   today1;
   newExpense: number;
+  newasset: any;
+  newvendor: any;
+  newreplaceasset: any;
+  assetucode: any;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
 
      //,private qrScanner: QRScanner
@@ -150,9 +155,15 @@ export class ServiceRequestPage implements OnInit {
     event.target.complete();
   }
   getItems(ev: any) {
+    debugger;
     this.assetcode1 = [];
+    this.newasset = ev.target.value;
+    console.log(this.newasset);
+    
     if (ev.target.value == "") {
       this.assetcode1 = [];
+      console.log(this.assetcode1);
+      
       this.isItemAvailable = false;
     }
     // Reset items back to all of the items
@@ -166,13 +177,15 @@ export class ServiceRequestPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+      "assetcode" :this.newasset,
+      
     };
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodelist',params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
       // set val to the value of the searchbar
-      this.assetcodeResult= resp;
+      this.assetcodeResult = resp;
       this.assetcode1str = this.assetcodeResult;
 
       for (var i = 0; i < this.assetcode1str.length; i++) {
@@ -196,7 +209,6 @@ export class ServiceRequestPage implements OnInit {
     });
 
   }
-
   // scancoderecon(){
   //   this.qrScanner.prepare()
   //   .then((status: QRScannerStatus) => {
@@ -275,6 +287,7 @@ export class ServiceRequestPage implements OnInit {
       this.presentAlert("Alert","No Data Found");
     } else {
       this.detailsser1.push(resp[0]);
+      this.assetucode = resp[0].ASSET_CODE;
       this.assetdescpshow = resp[0].pmm_asset_desc;
       this.assetid = resp[0].ASSET_ID;
       this.createdby = resp[0].ASSET_USER;
@@ -318,6 +331,7 @@ export class ServiceRequestPage implements OnInit {
 
   getVendorItems(ev: any) {
     this.vendor_code_det1 = [];
+    this.newvendor = ev.target.value;
     if (ev.target.value == "") {
       this.vendor_code_det1 = [];
       this.isVendorItemAvailable = false;
@@ -332,7 +346,8 @@ export class ServiceRequestPage implements OnInit {
       'functionid':parseInt( this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
-      'usertoken':this.userToken
+      'usertoken':this.userToken,
+      'vendorcode':this.newvendor
     }
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/vendorcodelist',dataservv, {
       headers: options,
@@ -356,11 +371,13 @@ export class ServiceRequestPage implements OnInit {
         })
       }
 
-    }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
-      console.log("error : " + JSON.stringify(error));
+    },
+    // , error => {
+    //   //this.presentAlert('Alert','Server Error,Contact not loaded');
+    //   // console.log("error : " + JSON.stringify(error));
 
-    });
+    // }
+    );
 
   }
 
@@ -400,6 +417,7 @@ export class ServiceRequestPage implements OnInit {
   }
 
   getreplaceItems(ev){
+    this.newreplaceasset =ev.target.value;
 
     this.Asset_code_det1r = [];
     if (ev.target.value == "") {
@@ -414,7 +432,8 @@ export class ServiceRequestPage implements OnInit {
     var dataservv = {
       'access_token':this.accessToken,
       'userid':this.userID,
-      'usertoken':this.userToken
+      'usertoken':this.userToken,
+      'assetcode' : this.newreplaceasset,
     }
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodereplace',dataservv, {
       headers: options,

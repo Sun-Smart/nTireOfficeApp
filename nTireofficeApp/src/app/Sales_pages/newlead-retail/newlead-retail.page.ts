@@ -1068,14 +1068,14 @@ export class NewleadRetailPage implements OnInit {
     }
   }
   async Cancelretail() {
-    if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.remarks == undefined)) {
+    if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.Currency == '<< Select >>' && this.email == undefined && this.remarks == undefined)) {
 
     }
     else {
       const alert = await this.alertController.create({
         header: 'Confirm',
         message: 'Are you sure want to Cancel the Process',
-        backdropDismiss:false,
+        backdropDismiss: false,
         buttons: [
           {
             text: 'No',
@@ -1092,6 +1092,8 @@ export class NewleadRetailPage implements OnInit {
               this.productdata = '<< Select >>';
               this.nextaction = '<< Select >>';
               this.Salutation = '<< Select >>';
+              this.Currency ='<< Select >>';
+              this.email = undefined;
               this.firstname = undefined;
               this.lastname = undefined;
               this.mobile = undefined;
@@ -1127,7 +1129,7 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: [
         {
@@ -1191,7 +1193,7 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });

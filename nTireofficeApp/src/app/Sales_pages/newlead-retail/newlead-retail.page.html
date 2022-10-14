@@ -67,7 +67,7 @@
         <ion-label class="card_content_label">Mobile Number <span style="color:red;margin-left: 5px;">*</span>
         </ion-label>
 
-        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==10) return false;" pattern="[0-9]*" [(ngModel)]="mobile" minlength="10" maxlength="15"
+        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==10) return false;" pattern="[0-9]*" [(ngModel)]="mobile" minlength="10" maxlength="13"
           #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
@@ -75,7 +75,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="card_content_label">Office Number</ion-label>
-        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==13) return false;" pattern="[0-9]*" [(ngModel)]="OffPhone" minlength="10" maxlength="15"
+        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==13) return false;" pattern="[0-9]*" [(ngModel)]="OffPhone" minlength="10" maxlength="13"
           #uname="ngModel"></ion-input>
 
         <div *ngIf="OffPhone && uname.errors?.minlength || uname.errors?.maxlength">
@@ -84,7 +84,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="card_content_label">Telephone Number</ion-label>
-        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==13) return false;" pattern="[0-9]*" minlength="10" maxlength="15" [(ngModel)]="ResPhone"
+        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==13) return false;" pattern="[0-9]*" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
           #resnum="ngModel"></ion-input>
         <div *ngIf="ResPhone && resnum.errors?.minlength || resnum.errors?.maxlength">
           <p style="color:red;">Telephone number should be 10-13 digits</p>
