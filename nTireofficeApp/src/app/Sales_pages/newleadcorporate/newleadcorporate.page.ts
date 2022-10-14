@@ -944,7 +944,7 @@ export class NewleadcorporatePage implements OnInit {
             lead_id_new = parseInt(lead_id_new);
             this.lead_id = lead_id_new;
             if (this.appointmentLatLong == undefined || this.appointmentLatLong == '') {
-              this.appointmentLatLong = null;
+              this.appointmentLatLong = 0;
             }
 
 
@@ -963,7 +963,7 @@ export class NewleadcorporatePage implements OnInit {
             let options = new HttpHeaders().set('Content-Type', 'application/json');
 
 
-            this.http.post(this.Ipaddressservice.ipaddress + 'dms/DMS/sales/update_meeting_location', update_meeting_locationJSON, {
+            this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurl + 'update_meeting_location', update_meeting_locationJSON, {
               headers: options,
             }).subscribe(resp => {
               console.log("update_meeting_location success : " + JSON.stringify(resp));
@@ -1098,7 +1098,7 @@ export class NewleadcorporatePage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Cancel the Process',
-      backdropDismiss:false,
+      backdropDismiss: false,
       buttons: [
         {
           text: 'No',
@@ -1151,7 +1151,7 @@ export class NewleadcorporatePage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       message: tittle,
-      backdropDismiss:false,
+      backdropDismiss: false,
       buttons: [
         {
           text: 'Cancel',
@@ -1203,7 +1203,7 @@ export class NewleadcorporatePage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
