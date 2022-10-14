@@ -109,6 +109,15 @@ export class MymeetingPage implements OnInit {
     var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
     console.log("getapppostJSON : " + JSON.stringify(getapppostJSON));
 
+    if (this.allmeetinglocation == '') {
+      debugger; 
+      this.NoRecord = "No Meeting Found";
+      this.showhidenorecords = true;
+      $('#mapDetailsTable').hide();
+      // $('#showdivs').hide();
+
+    } else {
+       this.showhidenorecords = false;
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -123,16 +132,7 @@ export class MymeetingPage implements OnInit {
       // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
       console.log(this.allmeetinglocation);
 
-      if (this.allmeetinglocation == '') {
-        debugger; 
-        this.NoRecord = "No Meeting Found";
-        this.showhidenorecords = true;
-        $('#mapDetailsTable').hide();
-        // $('#showdivs').hide();
-
-      } else {
-        debugger; 
-        this.showhidenorecords = false;
+       
         // $('#showdivs').show();
         this.NoRecord = "";
 
@@ -224,7 +224,7 @@ export class MymeetingPage implements OnInit {
 
 
 
-      }
+      
       if (locations != []) {
         var lat_lng = [];
         this.showmap = true;
@@ -256,6 +256,8 @@ export class MymeetingPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
+
+  }
 
   }
   initMap(markers) {

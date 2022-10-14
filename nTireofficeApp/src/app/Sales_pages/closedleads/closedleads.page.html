@@ -97,14 +97,27 @@
           <!-- <button ion-button block class="start-button" (click)="startRecording(i)">Start Recording</button>
           <ion-button color="danger" (click)="stopRecording(i)">Stop
            Recording</ion-button> -->
-          <div class="card_header" style="width: 100% !important;">
+          <!-- <div class="card_header" style="width: 100% !important;">
             <ion-col size="6" style="color:#fff;padding:12px;">
-              {{items.CustFullName}}
+              <b style="color: #fff;">{{items.CustFullName}}</b>
             </ion-col>
             <ion-col size="6" style="color:#fff;padding:12px;text-align:right;">
-              #{{items.CUST_LEAD_ID}}
+              <b style="text-align: right !important;color: #fff;">#{{items.CUST_LEAD_ID}}</b>
             </ion-col>
-          </div>
+          </div> -->
+
+          <ion-card-header class="card_header" style="width: 100%;">
+            <ion-row>
+              <ion-col>
+                <ion-label class="card_header_text">{{items.CustFullName}}</ion-label>
+              </ion-col>
+
+              <ion-col>
+                <ion-label class="card_header_text"> #{{items.CUST_LEAD_ID}}</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             Lead ID
