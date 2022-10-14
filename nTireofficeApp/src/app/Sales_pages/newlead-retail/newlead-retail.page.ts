@@ -140,6 +140,7 @@ export class NewleadRetailPage implements OnInit {
   inputall_imagesdoc = [];
   inputall_images = [];
   username: any;
+  validemail: boolean;
   constructor(public actionSheetController: ActionSheetController, private datePipe: DatePipe, public sanitizer: DomSanitizer, public alertController: AlertController, private crop: Crop, private base64: Base64, private camera: Camera, private zone: NgZone, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.exampleText = '';
     this.exampleTextoff = '';
@@ -207,6 +208,20 @@ export class NewleadRetailPage implements OnInit {
     }, error => {
     });
   }
+  emailnumbaervalid(emailid){
+
+    const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   // return re.test(String(email).toLowerCase());
+  //  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (reg.test(emailid) == false)
+    {
+      this.validemail=true;
+    }
+    else{
+      this.validemail=false;
+    }
+  }
+
   BranchLocationdata(branchid) {
 
     const header = new Headers();

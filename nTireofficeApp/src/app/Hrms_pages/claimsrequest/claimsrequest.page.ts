@@ -334,7 +334,9 @@ export class ClaimsrequestPage implements OnInit {
   EXPREF_ID;
   EXPENSE_ID;
   claimsSubmit() {
-    console.log(this.reqRef)
+   
+   this.reqRef= window.localStorage.getItem('TxnReference')
+   console.log(this.reqRef)
     if (this.release == true) {
 
       this.status = 'P';
@@ -349,14 +351,14 @@ export class ClaimsrequestPage implements OnInit {
     else {
       this.billableclient = 'N';
     }
-    // debugger
+    // // debugger
     // if (this.expenseArray.length == 0) {
     //   this.toastmessageService.presentAlert1("", "Please Fill All Mandatory Fields!");
     //   return;
     // }
 
     var obj = {
-      TxnReference: localStorage.getItem('TxnReference'),
+      TxnReference: this.reqRef,
       userid: parseInt(this.userID),
       usertoken: this.usertoken,
       access_token: this.token,
