@@ -347,9 +347,10 @@ this.base64image = undefined;
     }
 
     if(this.expenseArray.length == 0){
-      this.toastmessageService.presentAlert1("","Add Expense Detail !");
+      this.toastmessageService.presentAlert1("","saved successfully !");
       return;
     }
+    
      var obj={
               TxnReference:this.reqRef,
                userid: parseInt(this.userID),
