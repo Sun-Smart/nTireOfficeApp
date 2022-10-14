@@ -60,8 +60,9 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     leadstatusval: "",
     callratingval: "",
     callnatureval: "",
-    callstageval: "",
-    leadsrc: "",
+    // callstageval:   '<< Select >>',
+    callstageval:"<< Select>>",
+    leadsrc: "<< Select >>",
     ClosedDate: "",
     ExpctedAmount: "",
     pendleadremarks: "",
@@ -834,7 +835,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
 
     const alert = await this.alertController.create({
       header: heading,
-      cssClass: 'buttonCss',
+      cssClass: 'Cssbutton',
       backdropDismiss:false,
       message: tittle,
       buttons: [
