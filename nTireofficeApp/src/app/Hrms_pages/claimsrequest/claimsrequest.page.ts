@@ -364,7 +364,7 @@ export class ClaimsrequestPage implements OnInit {
      
     }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getrequestrefid", obj).then(resp => {
-
+      this.toastmessageService.presentAlert("", "Claims Request saved Successfully");
       if (resp != '') {
         this.reqrefid = resp[0].ODRequestRef;
         console.log(this.reqrefid)

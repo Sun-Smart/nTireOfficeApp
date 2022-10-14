@@ -498,6 +498,9 @@ if(this.reqref !=undefined){
      else{
       this.advancestatus= 'N';
      }
+     
+
+     
      console.log(""+this.travelstatus+""+this.statusstatus)
 
      var fromdate=fromYear[2]+'-'+fromYear[1]+'-'+fromYear[0];

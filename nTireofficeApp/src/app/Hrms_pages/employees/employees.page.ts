@@ -36,8 +36,9 @@ export class EmployeesPage implements OnInit {
   VALUE: any;
   constructor(public loadingController: LoadingController, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService) {
     this.function_id = window.localStorage["FUNCTION_ID"];
-    this.designation = window.localStorage.getItem("EmpDesignation");
-    this.department = window.localStorage.getItem("EmpDepartment");
+    // this.branch = window.localStorage["TUM_BRANCH_ID"]
+    // this.designation = window.localStorage.getItem("EmpDesignation");
+    // this.department = window.localStorage.getItem("EmpDepartment");
   }
 
   ngOnInit() {
@@ -90,6 +91,7 @@ export class EmployeesPage implements OnInit {
   employeeSearch() {
     this.loading = true;
     this.presentLoadingWithOptions();
+    debugger;
     // this.switch = 1;
     var name;
     var code;
@@ -110,17 +112,18 @@ export class EmployeesPage implements OnInit {
     } else {
       code = this.code;
     }
-    if (this.designation.VALUE == undefined || this.designation.VALUE == '') {
+    if (this.designation == undefined || this.designation == '') {
       designation = "0";
     } else {
       designation = this.designation.VALUE;
     }
-    if (this.branch.VALUE == undefined || this.branch.VALUE == '') {
+    if (this.branch == undefined || this.branch == '') {
+      debugger;
       branch = "0";
     } else {
       branch = this.branch.VALUE;
     }
-    if (this.department.VALUE == undefined || this.department.VALUE == '') {
+    if (this.department == undefined || this.department == '') {
       department = "0";
     } else {
       department = this.department.VALUE;
@@ -142,22 +145,22 @@ export class EmployeesPage implements OnInit {
       // top: this.length,
       // increment: increment
       //increment: 2000
-      empID: window.localStorage.getItem("EmployeeID"),
-      name: window.localStorage.getItem("EmployeeName"),
-      code: window.localStorage.getItem("TUM_EMP_CODE"),
-      designation: window.localStorage.getItem("EmpDesignation"),
-      branch: window.localStorage.getItem("TUM_BRANCH_ID"),
-      department: window.localStorage.getItem("EmpDepartment"),
-      top: this.length,
+      empID: 0,
+      name: 0,
+      code: 0,
+      designation: 0,
+      branch: 0,
+      department: 0,
+      top: 0,
       increment: 3000,
-      //  appURL: 'employeesearch'
+      appURL: 'employeesearch'
     }
     console.log(this.obj);
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + '/EmployeeSearch/' + this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + '/EmployeeSearch/' + this.obj.empID + "/" + this.obj.name + "/" + this.obj.code + "/" + this.obj.designation + "/" + this.obj.branch + "/" + this.obj.department + "/" + this.obj.top + "/" + this.obj.increment + '/' + this.obj.appURL).then(resp => {
       this.loadingdismiss();
       this.loading = false;
       this.allemp = resp;
-      console.log(resp)
+      console.log('getb resp', resp)
       this.displayEmployee = this.displayEmployee.concat(this.allemp);
       console.log("displayEmployee : " + JSON.stringify(this.displayEmployee));
 
@@ -215,7 +218,9 @@ export class EmployeesPage implements OnInit {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + '/EmployeeSearch/' + obj1.empID + "/" + obj1.name + "/" + obj1.code + "/" + obj1.designation + "/" + obj1.branch + "/" + obj1.department + "/" + obj1.top + "/" + obj1.increment + "/" + obj1.appURL).then(resp => {
       console.log(resp)
       this.loading = false;
-      this.totalemployee = JSON.parse(resp.toString()).length;
+      // this.totalemployee = JSON.parse(resp.toString()).length;
+      this.totalemployee = JSON.stringify(resp);
+      this.totalemployee = JSON.parse(this.totalemployee);
     }, error => {
       this.loading = false;
       // this.loadingdismiss();

@@ -114,6 +114,7 @@ export class AssetDetailsPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+      
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
