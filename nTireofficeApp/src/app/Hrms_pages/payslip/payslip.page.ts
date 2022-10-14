@@ -32,8 +32,7 @@ export class PayslipPage implements OnInit {
     this.empid = window.localStorage.getItem('EmployeeID')
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
     this.segmentdata = "earnings";
-    this.yeardata = "";
-    this.monthdata = "";
+   
     this.geYears();
     this.geMonths();
     this.getEmployeeList();
@@ -41,6 +40,8 @@ export class PayslipPage implements OnInit {
   }
 
   ngOnInit() {
+     this.yeardata = "";
+    this.monthdata = "";
   };
   getEmployeeList() {
     var obj = {
@@ -80,8 +81,8 @@ export class PayslipPage implements OnInit {
   }
 
   getPaySlip() {
-    this.getLeaveDetails();
-    this.loadingdismiss();
+    
+    this.paySlipEarnings = [];
     debugger
     if (this.yeardata == undefined) {
       this.yeardata = "0";
@@ -91,11 +92,11 @@ export class PayslipPage implements OnInit {
     };
 
     if((this.yeardata == '' && this.monthdata == '') || (this.yeardata != '' && this.monthdata == '') || (this.yeardata == '' && this.monthdata !== '')){
-      this.presentAlert(' ', 'Please Select Year & Month');
+      this.presentAlert('', 'Please Select Year & Month');
 
     }else{
       this.presentLoadingWithOptions();
-    }
+    
 
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     this.httpclient.get('https://demo.herbie.ai/nTireMobileCoreAPISSG/api/HRMS/EmployeeSalaryRegularEarnings/' + this.empid + "/" + this.yeardata + "/" + this.monthdata,{ responseType: 'text'}).subscribe((res: any) => {
@@ -182,9 +183,16 @@ export class PayslipPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    
   }
+  this.getLeaveDetails();
+  this.loadingdismiss();
+  };
+
+
+
   getLeaveDetails() {
+
+    this.empData = [];
     // this.presentLoadingWithOptions();
     if (this.yeardata == "") {
       this.yeardata = "0";
