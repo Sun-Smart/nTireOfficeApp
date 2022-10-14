@@ -79,6 +79,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   fileName: string;
   audio: MediaObject;
   audioList: any[] = [];
+  shownorecord: boolean = false;
   private stream;
   private recorder;
   private interval;
@@ -87,6 +88,11 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
   imagecif: number;
+  getcustid: any;
+  TCC_CUST_LEAD_IDs: any;
+  getbranchid: any;
+  BRANCH_IDs: any;
+  TCC_CUSTOMER_IDs: any;
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -381,7 +387,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branchid: parseInt(branch_id)
+      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -566,6 +572,21 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       pendJSON = Object.assign(tokenJSON, this.penleadfilter);
       var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
+      this.getcustid = this.TCC_CUSTOMER_IDs
+      console.log(this.getcustid)
+
+      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+        this.getcustid = 0
+      }
+      localStorage.setItem('setcustid', this.getcustid)
+      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+        this.getcustid = 0
+      }
+      this.getbranchid = this.BRANCH_IDs
+      if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+        this.getbranchid = 1
+      }
+      localStorage.setItem('setbranchid', this.getbranchid)
 
 
       var tmpPendJson = {
@@ -591,7 +612,9 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
         TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
         TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-        TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID
+        TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID,
+        TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
+        BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
       };
       console.log(tmpPendJson)
@@ -729,6 +752,23 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
 
+    this.getcustid = this.TCC_CUSTOMER_IDs
+    console.log(this.getcustid)
+
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      this.getcustid = 0
+    }
+    localStorage.setItem('setcustid', this.getcustid)
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      this.getcustid = 0
+    }
+    this.getbranchid = this.BRANCH_IDs
+    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+      this.getbranchid = 1
+    }
+    localStorage.setItem('setbranchid', this.getbranchid)
+
+
 
     var tmpPendJson = {
       user_id: user_id_nw,
@@ -753,7 +793,9 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
       TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
       TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-      TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID
+      TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID,
+      TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
+      BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
     };
     console.log(tmpPendJson)
@@ -777,6 +819,9 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
       headers: options,
     }).subscribe(resp => {
+      if (resp == null || resp == '') {
+        this.shownorecord = true
+      }
 
       // console.log("pendleaddetails1 : " + JSON.stringify(resp));
       this.loadingdismiss();
