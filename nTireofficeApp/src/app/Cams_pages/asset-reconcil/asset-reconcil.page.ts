@@ -44,6 +44,7 @@ export class AssetReconcilPage implements OnInit {
   assetidrecon:any;
   depid:any;
   assetuser:any;
+  newasset: any;
 
   constructor(private datePipe: DatePipe,private barcodeScanner: BarcodeScanner, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router: Router) {
 //private qrScanner: QRScanner
@@ -70,6 +71,8 @@ export class AssetReconcilPage implements OnInit {
 
   getItems(ev: any) {
     this.assetcode1 = [];
+    this.newasset = ev.target.value;
+    console.log(this.newasset);
     if (ev.target.value == "") {
       this.assetcode1 = [];
       this.isItemAvailable = false;
@@ -85,6 +88,7 @@ export class AssetReconcilPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+      "assetcode" :this.newasset,
     };
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodelist',params, {
       headers: options,
