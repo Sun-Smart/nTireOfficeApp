@@ -51,7 +51,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="6">
         <ion-label>Company Name<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-searchbar [(ngModel)]="company" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
-        <ion-list *ngIf="isItemAvailable" class="companyautopop" style="position:relative;top:-7px;width:97%;left:9px;">
+        <ion-list *ngIf="isItemAvailable" class="companyautopop" style="position:relative;top:-7px;width:97%;left:9px;background-color: #fafafa;">
           <ion-item *ngFor="let item of companyname1" (click)="adddata(item)"
             style="background:none !important;color:#444 !important">
             {{ item }}
@@ -76,7 +76,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="6">
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input type="tel" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;"  [(ngModel)]="mobilenumber" minlength="10"
+        <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;"  [(ngModel)]="mobilenumber" minlength="10"
           maxlength="15" #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>

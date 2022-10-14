@@ -57,7 +57,11 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="card_content_label">Email <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input class="form-control" [(ngModel)]="email"></ion-input>
+        <!-- <ion-input class="form-control" [(ngModel)]="email"></ion-input> -->
+        <ion-input class="form-control" (change)="emailnumbaervalid(emailid)" [(ngModel)]="emailid"></ion-input>
+        <span *ngIf="emailid && validemail">
+          <span class="error">Valid email is required</span>
+        </span>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="card_content_label">Mobile Number <span style="color:red;margin-left: 5px;">*</span>

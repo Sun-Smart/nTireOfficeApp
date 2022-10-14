@@ -8,7 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+
+<ion-card>
+  <ion-card-content>
     <ion-row>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>From Date</ion-label>
@@ -27,15 +29,78 @@
       </ion-col>
 
     </ion-row>
-  </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+
   <div style="text-align: center;margin-top: 50px;">
     <!-- <b class="totalCount">{{NoRecord}}</b> -->
     <b class="totalCount" *ngIf="showhidenorecords">No meetings found</b>
   </div>
   <div>
-    <div class="" id="showdivs">
+
+
+
+
+    <div *ngIf="!showhidenorecords" >
       <div class="container">
         <div id="mapshowimage12" style="width:100%;height:400px;">
+          <ion-card  *ngFor="let item of allmeetinglocation">
+            <ion-card-header class="card_header">
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label class="card_header_text">Meeting Details</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text">Branch</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.BRANCH_DESC}}</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text">Customer Name</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.CustFullName}}</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text">Lead Id</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.LEAD_id}}</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text">Campaign</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.Campaign}}</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text">Closed Date</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.ClosedDate}}</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text">Created On</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.CreatedOn}}</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_content_label labelHead-text"> Location Description</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-label class="labelData-text">:&nbsp;{{item.LOCATION_DESC}}</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
         </div>
       </div>
     </div>
