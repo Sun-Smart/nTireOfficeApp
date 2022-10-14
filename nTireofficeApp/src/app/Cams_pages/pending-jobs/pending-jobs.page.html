@@ -54,7 +54,7 @@
           <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
             <ion-searchbar class="ContentName" [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
-            <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+            <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist" [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}"  style="">
               <ion-item class="ContentName" *ngFor="let item of assetcode1" style="background-color: white !important;
                     color: gray !important;" (click)="adddata(item)">
                 {{ item }}
