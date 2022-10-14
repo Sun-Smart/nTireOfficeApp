@@ -28,6 +28,7 @@ export class HistotydetailsPage implements OnInit {
   showhistforuser1: any;
   showhistforuserfilter = [];
   nextdate;
+  shownodata: boolean = false
   constructor(private datePipe: DatePipe, private model: ModalController, private callNumber: CallNumber, navParams: NavParams, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     console.log(navParams.get('item'));
     this.item = navParams.get('item');
@@ -54,6 +55,7 @@ export class HistotydetailsPage implements OnInit {
     }
   }
   searchFilter(fromDate, toDate) {
+    debugger
     let start = new Date(fromDate);
     let end = new Date(toDate);
 
@@ -73,6 +75,8 @@ export class HistotydetailsPage implements OnInit {
 
       m => new Date(m.EXPECTEDCLOSEDDATE.split('/')[2] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[1] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[0]) >= new Date(start) && new Date(m.EXPECTEDCLOSEDDATE.split('/')[2] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[1] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[0]) <= new Date(end)
     );
+
+    this.shownodata = true
     //let date = new Date(item.created_at);
     // return date >= start && date <= end;
     // console.log('showhistforuser after'+JSON.stringify(this.showhistforuser));
