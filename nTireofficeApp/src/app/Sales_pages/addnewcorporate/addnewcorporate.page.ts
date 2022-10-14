@@ -56,13 +56,13 @@ export class AddnewcorporatePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
 
-
+debugger
       if (resp.toString() == '"Company already Exist"') {
 
         this.presentAlert('Alert', 'Company name already exists');
 
       } else {
-        this.presentAlert('Successful', 'Company Added Successfully');
+        this.presentAlert1('Successful', 'Company Added Successfully');
         this.companyname = undefined;
         this.cropaddress = undefined;
       }
@@ -77,6 +77,17 @@ export class AddnewcorporatePage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       cssClass: 'buttonCss',
+      header: heading,
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      cssClass: 'Cssbutton',
       header: heading,
       backdropDismiss: false,
       message: tittle,
