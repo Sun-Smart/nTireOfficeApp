@@ -40,7 +40,7 @@ export class ClaimssummaryPage implements OnInit {
    }
 
   ngOnInit() {
-    this.empID=parseInt(window.localStorage['EmployeeID'])
+    this.empID= window.localStorage['EmployeeID']
   }
   requestCat;
   description;
@@ -63,7 +63,9 @@ export class ClaimssummaryPage implements OnInit {
 
         this.company = window.localStorage['FUNCTION_DESC'];
         this.branch=window.localStorage['TUM_BRANCH_CODE']
-       var employeeDetails = JSON.parse(resp.toString());
+      //  var employeeDetails = JSON.parse(resp.toString());
+       var employeeDetails = resp;
+
 
         this.department = employeeDetails[0].Department;
         this.empID = employeeDetails[0].EmpID;
@@ -76,7 +78,7 @@ export class ClaimssummaryPage implements OnInit {
 
      console.log("error : "+JSON.stringify(error));
 
-     });  
+     });
   }
   getClaimSummary(){
     console.log(this.empID)
@@ -110,7 +112,7 @@ export class ClaimssummaryPage implements OnInit {
        access_token: this.token,
        function: parseInt(this.function_id),
        Branch:parseInt(this.TUM_BRANCH_ID),
-       EmpId:this.empID,
+       EmpId: parseInt(this.empID),
        ExpCategory:cat,
        Description:descrpt,
        Status:status,
@@ -118,7 +120,7 @@ export class ClaimssummaryPage implements OnInit {
       }
 
 
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms2+'getsummaryClaims/',summaryobj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms2+'getsummaryClaims',summaryobj).then(resp=>{
 
       if (resp != "[]" && resp != "") {
 
@@ -154,7 +156,7 @@ export class ClaimssummaryPage implements OnInit {
        access_token:this.token,
        appURL : 'getrequestcategoryclaims'
       }
-      this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms2+"getRequestCategoryClaims/",Catobj).then(resp=>{
+      this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms2+"getRequestCategoryClaims",Catobj).then(resp=>{
 
         console.log(resp)
         this.Reqcategory1=resp;
