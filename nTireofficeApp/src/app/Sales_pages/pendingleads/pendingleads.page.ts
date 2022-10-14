@@ -1,3 +1,4 @@
+/* eslint-disable use-isnan */
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable radix */

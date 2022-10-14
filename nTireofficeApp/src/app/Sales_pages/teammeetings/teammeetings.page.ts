@@ -417,7 +417,7 @@ export class TeammeetingsPage implements OnInit {
             }
           }, error => {
 
-            alert("" + JSON.stringify(error));
+            // alert("" + JSON.stringify(error));
           });
 
         }
@@ -543,7 +543,7 @@ export class TeammeetingsPage implements OnInit {
               }
             }, error => {
 
-              alert("" + JSON.stringify(error));
+              // alert("" + JSON.stringify(error));
             });
 
           }
@@ -716,7 +716,7 @@ export class TeammeetingsPage implements OnInit {
       console.log(this.allmeetingArray);
     }, error => {
 
-      alert("" + JSON.stringify(error));
+      // alert("" + JSON.stringify(error));
     });
 
 
