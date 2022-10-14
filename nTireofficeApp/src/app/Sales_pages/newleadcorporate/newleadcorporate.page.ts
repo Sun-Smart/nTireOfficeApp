@@ -156,7 +156,9 @@ export class NewleadcorporatePage implements OnInit {
     this.showmap = true;
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    this.branch = '<< Select >>';
     this.BranchLocationdata(this.branch);
+    // this.branch="<< Select>>"
     this.branchlocation = "<< Select >>";
     this.productdata = "<< Select >>";
     this.nextaction = "<< Select >>";
@@ -165,6 +167,9 @@ export class NewleadcorporatePage implements OnInit {
     this.callrating = 1;
     this.callnature = 1;
     this.leadssource = 1;
+    this.source='<< Select >>';
+    // this.source="<< Select >>";
+    // this.leadssource ='<< Select >>' ;
     this.leadby = "S";
 
     this.username = localStorage.getItem('TUM_USER_NAME');
@@ -1125,7 +1130,7 @@ export class NewleadcorporatePage implements OnInit {
             this.callstage = 1;
             this.callrating = 1;
             this.callnature = 1;
-            this.leadssource = 1;
+            this.leadssource = '<< Select >>';
             this.leadby = "S";
             this.pincode = undefined;
             this.custname = undefined;
@@ -1178,7 +1183,7 @@ export class NewleadcorporatePage implements OnInit {
             this.callstage = 1;
             this.callrating = 1;
             this.callnature = 1;
-            this.leadssource = 1;
+            this.leadssource = '<< Select >>';
             this.leadby = "S";
             this.followdate = "";
             this.followtime = "";
