@@ -73,12 +73,16 @@ export class LoanRequestPage implements OnInit {
     this.getEmployeeDetails();
 
     this.urldata = this.route.params.subscribe(params => {
-      this.loandata = JSON.parse(params.item);
+      console.log('params',params.length);
+if(params.length !=undefined) {
+  this.loandata = JSON.parse(params.item);
       if (this.loandata != undefined) {
         this.loanreqno = this.loandata.RequestRef;
         // RequestDate
         // Status
       }
+}
+
     });
     // this.getEmployeeDetails();
     this.loanScheme = "";
@@ -95,9 +99,11 @@ export class LoanRequestPage implements OnInit {
 
         this.company = window.localStorage['FUNCTION_DESC'];
         this.branch = window.localStorage['TUM_BRANCH_CODE']
-        var employeeDetails = JSON.parse(resp.toString());
+        // var employeeDetails = JSON.parse(resp.toString());
+        var employeeDetails = resp;
         console.log(employeeDetails);
-        this.designation = this.designationemp.recordset[0].DESCRIPTION;
+        console.log(this.designationemp);
+        this.designation = this.designationemp.DESCRIPTION;
         this.department = employeeDetails[0].Department;
         this.empID = employeeDetails[0].EmpID;
         console.log("" + this.designation);
