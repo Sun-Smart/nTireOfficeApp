@@ -71,6 +71,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   filePath: string;
   fileName: string;
   audio: MediaObject;
+  TCC_CUST_LEAD_IDs;
   audioList: any[] = [];
   private stream;
   private recorder;
@@ -80,6 +81,9 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
   imagecif: number;
+  getcustid: any;
+  getbranchid: any;
+  BRANCH_IDs: any;
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -510,6 +514,24 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     pendJSON = Object.assign(tokenJSON, this.penleadfilter);
     var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
+
+    this.getcustid = this.TCC_CUST_LEAD_IDs
+    console.log(this.getcustid)
+
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      this.getcustid = 0
+    }
+    localStorage.setItem('setcustid', this.getcustid)
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      this.getcustid = 0
+    }
+    this.getbranchid = this.BRANCH_IDs
+    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+      this.getbranchid = 1
+    }
+    localStorage.setItem('setbranchid', this.getbranchid)
+
+    console.log(this.getcustid)
     var tmpPendJson = {
       user_id: user_id_nw,
       userid: user_id_nw,
@@ -527,12 +549,15 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       MOBILE: this.penleadfilter.MOBILE,
       access_token: this.token,
 
+
       'usertoken': window.localStorage['usertoken'],
       TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID.toString(),
       TCC_LEAD_BY: this.penleadfilter.TCC_LEAD_BY.toString(),
       TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
       TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
-      TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC
+      TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
+      TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
+      BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
 
     };
@@ -546,9 +571,10 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
       headers: options,
-    }).subscribe(resp => {
+    }).subscribe((resp: any) => {
       console.log("pendleadsdatalength : " + JSON.stringify(resp));
-      this.pendingleadsdatalength = Object.keys(resp).length;
+
+      this.pendingleadsdatalength = resp.length;
     }, error => {
 
 
@@ -1044,7 +1070,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });

@@ -90,7 +90,9 @@ ion-textarea {
 ion-segment ion-label {
   text-transform: uppercase !important;
 }
-
+ion-content{
+  overflow-y: scroll !important;
+}
  ion-checkbox {
    --size: 20px;
    //--background-checked: #0074b8;
@@ -452,6 +454,7 @@ ion-content {
   position: relative;
   opacity: 0.9;
   font-family: "Poppins" !important;
+  overflow-y: scroll !important;
   // bottom: 50px;
 }
 

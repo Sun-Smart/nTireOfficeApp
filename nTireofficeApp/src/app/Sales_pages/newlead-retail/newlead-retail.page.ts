@@ -140,6 +140,7 @@ export class NewleadRetailPage implements OnInit {
   inputall_imagesdoc = [];
   inputall_images = [];
   username: any;
+  validemail: boolean;
   constructor(public actionSheetController: ActionSheetController, private datePipe: DatePipe, public sanitizer: DomSanitizer, public alertController: AlertController, private crop: Crop, private base64: Base64, private camera: Camera, private zone: NgZone, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.exampleText = '';
     this.exampleTextoff = '';
@@ -207,6 +208,20 @@ export class NewleadRetailPage implements OnInit {
     }, error => {
     });
   }
+  emailnumbaervalid(emailid){
+
+    const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   // return re.test(String(email).toLowerCase());
+  //  var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (reg.test(emailid) == false)
+    {
+      this.validemail=true;
+    }
+    else{
+      this.validemail=false;
+    }
+  }
+
   BranchLocationdata(branchid) {
 
     const header = new Headers();
@@ -1053,14 +1068,14 @@ export class NewleadRetailPage implements OnInit {
     }
   }
   async Cancelretail() {
-    if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.remarks == undefined)) {
+    if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.Currency == '<< Select >>' && this.email == undefined && this.remarks == undefined)) {
 
     }
     else {
       const alert = await this.alertController.create({
         header: 'Confirm',
         message: 'Are you sure want to Cancel the Process',
-        backdropDismiss:false,
+        backdropDismiss: false,
         buttons: [
           {
             text: 'No',
@@ -1077,6 +1092,8 @@ export class NewleadRetailPage implements OnInit {
               this.productdata = '<< Select >>';
               this.nextaction = '<< Select >>';
               this.Salutation = '<< Select >>';
+              this.Currency ='<< Select >>';
+              this.email = undefined;
               this.firstname = undefined;
               this.lastname = undefined;
               this.mobile = undefined;
@@ -1112,7 +1129,7 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: [
         {
@@ -1176,7 +1193,7 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });

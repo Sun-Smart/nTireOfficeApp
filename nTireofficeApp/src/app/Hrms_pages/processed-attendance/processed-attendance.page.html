@@ -39,18 +39,16 @@
         <ion-button class="ContentName" style="--box-shadow:none;--background:white;color:black;" (click)="getAttendance()">Search</ion-button>
           </ion-col>
       </ion-row>
-
     </ion-grid>
-
     </ion-card>
+
     <ion-card>
         <ion-row  *ngFor="let item of attendanceList" style="border:1px solid #dcd4d4">
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <div classs="attendanceimg">
-
         </div>
-        <p style="margin-left: 52px; margin-top: 0px; font-weight: bolder; color:#797575;">{{item.TxnDate | date:'dd-MMM-yyyy'}}</p>
 
+        <p style="margin-left: 52px; margin-top: 0px; font-weight: bolder; color:#797575;">{{item.TxnDate | date:'dd-MMM-yyyy'}}</p>
           </ion-col>
             <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
                 <b><i class="icon ion-clock"></i> In</b><br>

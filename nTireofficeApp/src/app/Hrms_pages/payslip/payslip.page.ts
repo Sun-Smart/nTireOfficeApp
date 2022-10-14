@@ -32,8 +32,7 @@ export class PayslipPage implements OnInit {
     this.empid = window.localStorage.getItem('EmployeeID')
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
     this.segmentdata = "earnings";
-    this.yeardata = "";
-    this.monthdata = "";
+   
     this.geYears();
     this.geMonths();
     this.getEmployeeList();
@@ -41,6 +40,8 @@ export class PayslipPage implements OnInit {
   }
 
   ngOnInit() {
+     this.yeardata = "";
+    this.monthdata = "";
   };
   getEmployeeList() {
     var obj = {
@@ -80,8 +81,8 @@ export class PayslipPage implements OnInit {
   }
 
   getPaySlip() {
-    this.getLeaveDetails();
-    this.loadingdismiss();
+    
+    this.paySlipEarnings = [];
     debugger
     if (this.yeardata == undefined) {
       this.yeardata = "0";
@@ -91,11 +92,10 @@ export class PayslipPage implements OnInit {
     };
 
     if((this.yeardata == '' && this.monthdata == '') || (this.yeardata != '' && this.monthdata == '') || (this.yeardata == '' && this.monthdata !== '')){
-      this.presentAlert(' ', 'Please Select Year & Month');
+      this.presentAlert('', 'Please Select Year & Month');
 
     }else{
       this.presentLoadingWithOptions();
-    }
 
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     this.httpclient.get('https://demo.herbie.ai/nTireMobileCoreAPISSG/api/HRMS/EmployeeSalaryRegularEarnings/' + this.empid + "/" + this.yeardata + "/" + this.monthdata,{ responseType: 'text'}).subscribe((res: any) => {
@@ -164,10 +164,8 @@ export class PayslipPage implements OnInit {
     });
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeSalaryRegularDeduction/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then((resp: any) => {
-
       // this.paySlipDeduction = JSON.parse(resp.toString());
       this.paySlipDeduction = resp;
-
       console.log(this.paySlipDeduction);
 
       var total = 0;
@@ -182,9 +180,15 @@ export class PayslipPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    
   }
+  this.getLeaveDetails();
+  this.loadingdismiss();
+  };
+
+
+
   getLeaveDetails() {
+    this.empData = [];
     // this.presentLoadingWithOptions();
     if (this.yeardata == "") {
       this.yeardata = "0";
@@ -197,33 +201,23 @@ export class PayslipPage implements OnInit {
       this.empData = resp;
       // console.log(this.empData);
       this.empData = this.empData[0];
-
-
-
     }, error => {
       this.loadingdismiss();
       console.log("error : " + JSON.stringify(error));
-
     });
   }
   geYears() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Year/0/0/0").then(resp => {
       this.year = resp;
-
     }, error => {
-
       console.log("error : " + JSON.stringify(error));
-
     });
   }
   geMonths() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Month/0/0/0").then(resp => {
       this.month = resp;
-
     }, error => {
-
       console.log("error : " + JSON.stringify(error));
-
     });
   }
 

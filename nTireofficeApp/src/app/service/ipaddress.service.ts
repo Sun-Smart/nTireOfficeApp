@@ -28,7 +28,7 @@ export class IpaddressService {
   tokenlogin: string;
   hrmslogindata: string;
   dynamicmenu: string;
-  
+
   constructor() {
 
     //  this.ipaddress1 = "http://demo.herbie.ai";
@@ -71,7 +71,7 @@ export class IpaddressService {
 
     // Sales
     this.serviceurl = "/nTireMobileCoreAPI/api/Sales/";
-    this.insertserviceurl = "/nTireMobileCoreAPI/api/Sales/getcompany/";
+    this.insertserviceurl = "/nTireMobileCoreAPI/api/Sales/";
     this.serviceurlSales = "/nTireMobileCoreAPI/api/Sales/";
 
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
