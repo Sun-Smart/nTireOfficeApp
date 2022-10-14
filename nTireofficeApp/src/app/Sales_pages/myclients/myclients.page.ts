@@ -134,12 +134,12 @@ export class MyclientsPage implements OnInit {
         this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
         console.log(this.allmeetinglocation);
         if (this.allmeetinglocation == '') {
+          
           this.NoRecord = "No Record Found";
-
           $('#showdivs').hide();
           $('#mapDetailsTable').hide();
         } else {
-
+          
           $('#showdivs').show();
           this.NoRecord = "";
 

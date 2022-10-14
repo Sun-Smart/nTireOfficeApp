@@ -638,8 +638,8 @@ export class MyprofilePage implements OnInit {
               Type: "EducationDetails",
               empID: window.localStorage.getItem("EmployeeID"),
             };
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert1("", "Education Details Removed");
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
+              this.toastmessageService.presentAlert("", "Education Details Removed");
               this.getEducationDaetails();
             }, error => {
 
@@ -674,8 +674,8 @@ export class MyprofilePage implements OnInit {
               Type: "CareerDetails",
               empID: window.localStorage.getItem("EmployeeID"),
             };
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert1("", "Career Details Removed");
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
+              this.toastmessageService.presentAlert("", "Career Details Removed");
               this.getcarrierDaetails();
             }, error => {
 

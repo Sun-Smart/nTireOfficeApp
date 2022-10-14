@@ -90,7 +90,7 @@ export class OdsummaryPage implements OnInit {
 
           var odref={
             User_ID:parseInt(this.Userid),
-            ODRequestRef:parseInt(this.ReqRef),
+            ODRequestRef: this.ReqRef,
              userid:parseInt(window.localStorage['TUM_USER_ID']),
              usertoken:window.localStorage['usertoken'],
              access_token:window.localStorage['token']
