@@ -353,7 +353,7 @@ export class AssetTransferPage implements OnInit {
     }).subscribe(resp => {
       console.log(resp);
       //  this.detailtobranch=resp;
-      this.presentAlert("Success", "Transferred Successfully");
+      this.presentAlert("Success", "Transferred Initiated");
 
       this.assetcode = '';
       this.detailfromidbranch = '';
@@ -610,7 +610,7 @@ export class AssetTransferPage implements OnInit {
       }).subscribe(resp => {
         console.log(resp);
         //  this.detailtobranch=resp;
-        this.presentAlert("Success", "Transferred Successfully");
+        this.presentAlert("Success", "Transferred Initiated");
 
         this.assetcodei = '';
         this.detailfromidbranchi = '';

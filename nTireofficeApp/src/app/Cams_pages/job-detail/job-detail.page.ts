@@ -106,7 +106,7 @@ export class JobDetailPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'/Pendingsearchs11/1/1/%20/%20/%20/'+this.userID+'/'+this.usertype+'/%20/%20/MT', {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11/1/1/0/0/0/'+this.userID+'/'+this.usertype+'/0/0/MT', {
 
       headers: options,
     }).subscribe(resp => {
