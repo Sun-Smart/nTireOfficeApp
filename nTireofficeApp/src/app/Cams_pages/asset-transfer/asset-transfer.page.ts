@@ -64,6 +64,8 @@ export class AssetTransferPage implements OnInit {
   remarksi;
   scannedCode;
   username: any;
+  newasset: any;
+  assetinternal: any;
   constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private barcodeScanner: BarcodeScanner) {
     //private qrScanner: QRScanner
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -113,6 +115,8 @@ export class AssetTransferPage implements OnInit {
   }
 
   getItems(ev: any) {
+    this.newasset = ev.target.value;
+    console.log(this.newasset);
     this.assetcode1 = [];
     if (ev.target.value == "") {
       this.assetcode1 = [];
@@ -129,6 +133,7 @@ export class AssetTransferPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+      "assetcode" :this.newasset,
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
@@ -368,6 +373,8 @@ export class AssetTransferPage implements OnInit {
 
 
   getintItems(ev: any) {
+    this.assetinternal =ev.target.value;
+
     this.assetintcode1 = [];
     if (ev.target.value == "") {
       this.assetintcode1 = [];
@@ -384,6 +391,7 @@ export class AssetTransferPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+     "assetcode" :this.assetinternal,
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
