@@ -96,7 +96,6 @@ export class PayslipPage implements OnInit {
 
     }else{
       this.presentLoadingWithOptions();
-    
 
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
     this.httpclient.get('https://demo.herbie.ai/nTireMobileCoreAPISSG/api/HRMS/EmployeeSalaryRegularEarnings/' + this.empid + "/" + this.yeardata + "/" + this.monthdata,{ responseType: 'text'}).subscribe((res: any) => {
@@ -165,10 +164,8 @@ export class PayslipPage implements OnInit {
     });
 
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeSalaryRegularDeduction/" + this.empid + "/" + this.yeardata + "/" + this.monthdata).then((resp: any) => {
-
       // this.paySlipDeduction = JSON.parse(resp.toString());
       this.paySlipDeduction = resp;
-
       console.log(this.paySlipDeduction);
 
       var total = 0;
@@ -191,7 +188,6 @@ export class PayslipPage implements OnInit {
 
 
   getLeaveDetails() {
-
     this.empData = [];
     // this.presentLoadingWithOptions();
     if (this.yeardata == "") {
@@ -205,33 +201,23 @@ export class PayslipPage implements OnInit {
       this.empData = resp;
       // console.log(this.empData);
       this.empData = this.empData[0];
-
-
-
     }, error => {
       this.loadingdismiss();
       console.log("error : " + JSON.stringify(error));
-
     });
   }
   geYears() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Year/0/0/0").then(resp => {
       this.year = resp;
-
     }, error => {
-
       console.log("error : " + JSON.stringify(error));
-
     });
   }
   geMonths() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CommonDropdown/Month/0/0/0").then(resp => {
       this.month = resp;
-
     }, error => {
-
       console.log("error : " + JSON.stringify(error));
-
     });
   }
 
