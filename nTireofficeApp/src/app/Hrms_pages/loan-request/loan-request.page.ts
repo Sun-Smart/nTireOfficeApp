@@ -324,7 +324,7 @@ if(this.reqtype =null || this.reqtype ==''){
 
     var OBJ = {
       EmpId: this.getemployeid,
-      req_type: this.reqtype.toString(),
+      req_type: this.reqtype,
 
       scheme_id: this.schemeid,
       // MonthLy_installment: moninstall,
@@ -337,7 +337,7 @@ if(this.reqtype =null || this.reqtype ==''){
       Status: this.status,
       Monthly_deduct: '0',
       Rev_loan: '0',
-      CreatedBy: this.userid.toString(),
+      CreatedBy: this.userid,
       user_id: this.userid,
       Createdon: nowdate,
       Updatedon: nowdate,
