@@ -4,6 +4,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-leave-request',
@@ -50,7 +51,9 @@ export class LeaveRequestPage implements OnInit {
   refreqid: string;
   currentstatus;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private router: Router,private route:ActivatedRoute,private datepipe: DatePipe,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService) {
+  constructor(private router: Router,private route:ActivatedRoute,private datepipe: DatePipe,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService, private alertController: AlertController,
+
+    ) {
     this.disabledvalue = false;
     this.empCode= window.localStorage['TUM_EMP_CODE'];
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
@@ -99,7 +102,8 @@ export class LeaveRequestPage implements OnInit {
 
   ngOnInit() {
   }
-  leaveCancel(){
+
+  leaveCancel1(){
     this.leaveType="";
     this.leaveBal=undefined;
     this.fromDate=undefined;
@@ -107,6 +111,37 @@ export class LeaveRequestPage implements OnInit {
     this.noofDays=undefined;
     this.reason=undefined;
   }
+
+  async leaveCancel() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+          this.leaveType="";
+    this.leaveBal=undefined;
+    this.fromDate=undefined;
+    this.toDate=undefined;
+    this.noofDays=undefined;
+    this.reason=undefined;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   getEmployeeDetails(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/GetEmployees/"+this.empCode).then(resp=>{
       console.log(resp);
@@ -183,8 +218,6 @@ export class LeaveRequestPage implements OnInit {
 
      // To calculate the no. of days between two dates
      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-
      this.noofDays=-Difference_In_Days;
       }
     }
@@ -209,8 +242,6 @@ export class LeaveRequestPage implements OnInit {
 
       // To calculate the no. of days between two dates
       var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-
       this.noofDays=-Difference_In_Days+1;
 
       }
@@ -218,6 +249,10 @@ export class LeaveRequestPage implements OnInit {
   }
 
   reason;
+
+
+
+
   leaveSubmit(ltype){
     console.log(this.leaveType,ltype);
     if (this.contact == undefined) {
@@ -335,7 +370,7 @@ export class LeaveRequestPage implements OnInit {
      console.log("error : "+JSON.stringify(error));
 
      });
-     this.leaveCancel();
+     this.leaveCancel1();
   }
   formatDate(value){
     value = new Date(value);

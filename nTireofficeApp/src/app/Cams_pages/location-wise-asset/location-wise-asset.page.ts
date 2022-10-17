@@ -296,7 +296,7 @@ export class LocationWiseAssetPage implements OnInit {
     this.branchLoc='';
     this.category='';
     this.subcategory='';
-    this.detailfinals= '';
+    this.detailfinals= ''||[];
 
   }
 

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
-import { Router} from '@angular/router';
-import { ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 declare var jquery: any;
 declare var $: any;
 
@@ -15,25 +15,25 @@ declare var $: any;
 })
 export class CompletionJobsReopenPage implements OnInit {
 
-  userID:any;
-  usertype:any;
-  function:any;
-  branch:any;
-  userToken:any;
-  accessToken:any;
-  branchID:any;
-  functionID:any;
+  userID: any;
+  usertype: any;
+  function: any;
+  branch: any;
+  userToken: any;
+  accessToken: any;
+  branchID: any;
+  functionID: any;
 
-  doi:any;
-  reason:any;
-  sub:any;
-  data:any;
+  doi: any;
+  reason: any;
+  sub: any;
+  data: any;
   activityr;
   assetr;
   pmrrefr;
   wrkno;
 
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router) {
+  constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -61,32 +61,32 @@ export class CompletionJobsReopenPage implements OnInit {
     console.log(this.data);
   }
 
-  reopenok(){
-    var finaltodayDate = this.datePipe.transform(this.doi,'dd-MM-yyyy');
+  reopenok() {
+    var finaltodayDate = this.datePipe.transform(this.doi, 'dd-MM-yyyy');
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.activityr=this.data.CMD_ACTIVITY_ID;
+    this.activityr = this.data.CMD_ACTIVITY_ID;
     console.log(this.activityr)
-    this.assetr=this.data.CMD_ASSET_ID;
+    this.assetr = this.data.CMD_ASSET_ID;
     console.log(this.assetr);
 
-    this.pmrrefr=this.data.pmr_reference;
+    this.pmrrefr = this.data.pmr_reference;
     console.log(this.pmrrefr);
 
-    this.wrkno=this.data.WorkorderNo;
+    this.wrkno = this.data.WorkorderNo;
     console.log(this.wrkno);
 
 
-// console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
+    // console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
 
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno, {   
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + "CAMS_PENDING_REOPENED/" + this.activityr + "/" + this.assetr + "/" + this.pmrrefr + "/1/" + this.pmrrefr + "/" + this.reason + "/" + finaltodayDate + "/" + this.userID + "/" + this.branchID + "/" + this.wrkno, {
       headers: options,
     }).subscribe(resp => {
-       this.presentAlert('Alert','Successfully Reopened');
-       this.router.navigate(['/completion-jobs']);
+      this.presentAlert('Alert', 'Successfully Reopened');
+      this.router.navigate(['/completion-jobs']);
     }, error => {
 
       console.log(JSON.stringify(error));
@@ -96,7 +96,7 @@ export class CompletionJobsReopenPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });

@@ -65,7 +65,8 @@
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Mobile
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col  style="font-weight: 600;
+        color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <a style="font-size: 14px;text-decoration: none;color:#444444;" *ngIf="leaveDataItems.MobileNum!=null"
             (click)="callNumber(leaveDataItems.MobileNum)"
             href="tel:{{leaveDataItems.MobileNum}}">{{leaveDataItems.MobileNum}}</a>
@@ -74,31 +75,31 @@
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Leave Type
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col class = "cardanswer" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           {{leaveDataItems.LeaveType}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Request Reference
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col  class = "cardanswer" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           {{leaveDataItems.ReqRef}}
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Date
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col class = "cardanswer" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           {{leaveDataItems.FromDate}} To {{leaveDataItems.ToDate}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Reason
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col  class = "cardanswer" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           {{leaveDataItems.Reason}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Status
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col class = "cardanswer" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           {{leaveDataItems.Status}}
         </ion-col>
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">

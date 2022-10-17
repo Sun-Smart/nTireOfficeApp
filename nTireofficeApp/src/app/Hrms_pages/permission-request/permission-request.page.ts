@@ -4,6 +4,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
+import { analytics } from '@angular-devkit/core';
 
 @Component({
   selector: 'app-permission-request',
@@ -109,8 +110,8 @@ this.toHour = this.time[1];
     if (this.contact == undefined) {
       this.contact = null;
     }
-    // this.reqID = "@";
-    this.reqID = " ";
+    this.reqID = "@";
+    // this.reqID = " ";
     // this.perm.status = "N";
     this.userID = this.userID;
 
@@ -122,13 +123,11 @@ var perm={
   status:this.status
 }
 
-   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/" + window.localStorage['FUNCTION_ID'] + "/" + perm.empID + "/" + perm.reqID + "/" + date + "/" + permDate + "/" + fromHour + "/" + toHour + "/" + this.contact + "/" + this.reason + "/" + this.status).then(resp=>{
+   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/" + window.localStorage['FUNCTION_ID'] + "/" + perm.empID + "/" + perm.reqID + "/" + date + "/" + permDate + "/" + fromHour + "/" + toHour + "/" + this.contact + "/" + this.reason + "/" + this.status).then((resp : any)=>{
 
     if (resp == '"Permission is not enabled for this Employee"') {
       // console.log("Gotcha : " + resp);
       this.toastmessageService.presentAlert1("Request Not Sent","Permission is not enabled for this Employee");
-
-
     }
     else if (resp == '"Coff already available for this date"') {
       this.toastmessageService.presentAlert1("Request Not Sent","Coff already available for this date");
@@ -139,8 +138,6 @@ var perm={
 
     } else if (resp == '"Permission not available for Weekoff/Holiday"') {
       this.toastmessageService.presentAlert1("Request Not Sent","Permission not available for Weekoff/Holiday");
-
-
     }
     else if(resp=='"Permission is limited to 1 hour per day'){
       this.toastmessageService.presentAlert1("Request Not Sent","Permission is limited to 1 hour per day");
@@ -153,7 +150,9 @@ var perm={
     } else {
       //IF ATTENDANCE IS PRESENT
 
-      var replace = resp.toString().replace(/"/g, '');
+      // var replace = resp.toString().replace(/"/g, '');
+      var replace = resp.replace(/"/g, '');
+
       var split = replace.split("@");
       this.rreqid3 = split[0];
       // console.log(""+this.reqID);

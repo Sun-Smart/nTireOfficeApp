@@ -73,11 +73,13 @@ export class LeavesummaryPage implements OnInit {
       this.loadingdismiss();
     }
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "general leave").then(resp=>{
+      console.log(resp)
 
    this.loadingdismiss();
       if (resp != "No Records found") {
 
         this.display = resp;
+
         this.loadingdismiss();
         this.display1=resp;
         // console.log($scope.display)
@@ -88,6 +90,7 @@ console.log(resp)
       else
       {
         this.display = [];
+        console.log(this.display)
         this.error = "No Records Found";
         this.loadingdismiss();
       }
@@ -235,7 +238,7 @@ this.loadingdismiss();
           text: 'Ok',
           handler: () => {
 
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "CancelRequest/" + leaveData.ReqRef + "/" + 'L').then(resp=>{
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/CancelRequest/" + leaveData.ReqRef + "/" + 'L').then(resp=>{
               this.toastmessageService.presentAlert1("","Request Cancelled");
             }, error => {
 

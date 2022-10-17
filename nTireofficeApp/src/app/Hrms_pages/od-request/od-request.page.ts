@@ -498,6 +498,9 @@ if(this.reqref !=undefined){
      else{
       this.advancestatus= 'N';
      }
+
+
+
      console.log(""+this.travelstatus+""+this.statusstatus)
 
      var fromdate=fromYear[2]+'-'+fromYear[1]+'-'+fromYear[0];
@@ -561,7 +564,7 @@ if(this.reqref !=undefined){
     //  this.show();
 
      if(isODrequestOK == true){
-      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"SaveOnDuty/"+ window.localStorage['FUNCTION_ID'] + "/" + this.empID + "/%20/" + from + "/" + fromHour + "/" + to + "/" + toHour + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.statusstatus + "/" + this.travelstatus+ "/" +this.advancestatus).then(resp=>{
+      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SaveOnDuty/"+ window.localStorage['FUNCTION_ID'] + "/" + this.empID + "/20/" + from + "/" + fromHour + "/" + to + "/" + toHour + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.statusstatus + "/" + this.travelstatus+ "/" +this.advancestatus).then((resp:any)=>{
         //CHECK ATTENDANCE
         if (resp == '"Attendance not available"') {
           // console.log("Gotcha : " + resp);
@@ -637,9 +640,38 @@ if(this.reqref !=undefined){
 
         }
          else {
+
+debugger
+          if(resp ==null){
+            this.toastmessageService.presentAlert("Saved","Saved Successfully");
+            this.from = undefined;
+            this.to = undefined;
+            this.reason = undefined;
+            this.fromHour = undefined;
+            this.toHour = undefined;
+            this.release = 'N';
+            this.travelReq =false;
+           this.release=false;
+           this.advance=false;
+
+            // this.advanceAmount = undefined;
+            // $scope.od.advanceCurrency = undefined;
+            // $scope.od.repayment = undefined;
+            // $scope.od.advanceInstallment = undefined;
+            this.nod = undefined;
+            this.fromPlace=undefined;
+            this.toPlace=undefined;
+            this.tavelDate=undefined;
+            this.travelmode=undefined;
+            this.travelComment=undefined;
+            this.travelamount=undefined;
+            this.installment=undefined;
+
+
+          }
           //IF ATTENDANCE IS PRESENT
           console.log(resp);
-          var replace = resp.toString().replace(/"/g, '');
+          var replace = resp.replace(/"/g, '');
           var split = replace.split("@");
           //this.reqID = split[0];
          var req = split[0];

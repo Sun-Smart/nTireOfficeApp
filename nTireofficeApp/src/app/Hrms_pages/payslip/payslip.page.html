@@ -9,23 +9,37 @@
       <ion-title>Pay Slip</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card>
+    <ion-grid *ngIf="displayEmployee!=undefined">
+      <ion-row style="text-align:center">
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+              <strong style="color:#2e3192;">{{displayEmployee.EmployeeCode}} -- {{displayEmployee.FirstName}} {{displayEmployee.LastName}}</strong>
+              <p class="ContentName">{{displayEmployee.Designation}}</p>
+              <p class="ContentName">{{displayEmployee.Department}}</p>
+      </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
   <ion-card>
     <ion-grid style="background-color: #f8f8f8;">
   <ion-row>
-      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-<select class="st-4" [(ngModel)]="yeardata" style="display: flex;">
+      <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" style="display: flex; justify-content:center;align-items:center;--background: #ffff;">
+<select class="st-4" [(ngModel)]="yeardata" style="display: flex;--background: #ffff;">
 <option value="">Year</option>
 <option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</option>
 </select>
 </ion-col>
-<ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-  <select class="st-4" [(ngModel)]="monthdata" style="display: flex;">
+<ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" style="display: flex;--background: #ffff; justify-content:center;align-items:center;">
+  <select class="st-4" [(ngModel)]="monthdata" style="display: flex;--background: #ffff;">
   <option value="">Month</option>
   <option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</option>
   </select>
   </ion-col>
   <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-    <ion-button (click)="getPaySlip()" class="ContentName" style="--box-shadow:none;--background:transparent;color:black;">Search</ion-button>
+    <ion-button class="buttonSearch" (click)="getPaySlip()" class="ContentName" style="  --box-shadow: none;--background: green;color: #ffff;">Search</ion-button>
       </ion-col>
   </ion-row>
 
@@ -146,7 +160,7 @@
 </div>
 </ion-card-content>
 </ion-card>
-<ion-card *ngIf="this.paySlipEarnings.length !== 0">
+<ion-card *ngIf="this.paySlipEarnings.length != 0">
   <ion-card-content>
   <ion-grid>
     <ion-row>
@@ -164,7 +178,7 @@
   </ion-grid>
 </ion-card-content>
 </ion-card>
-<p  style="text-align:center" *ngIf="!this.empData&&this.empData.length===0" class="norecord">No Record Found</p>
+<p  style="text-align:center" *ngIf="!this.empData&&this.empData.length === 0" class="norecord">No Record Found</p>
 <p class="padding " style="margin-top:10px; "><b>{{error}}</b></p>
 </ion-content>
 <ion-footer>

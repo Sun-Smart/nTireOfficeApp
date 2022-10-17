@@ -32,7 +32,7 @@
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
                 <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
-                <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist">
+                <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist" [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}" >
                   <ion-item  class="ContentName" *ngFor="let item of assetcode1" style="background-color: white !important;
                   color: rgb(17, 16, 16) !important;" (click)="fetchreconcilation(item)">
                     {{ item }}
@@ -64,6 +64,11 @@
           <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="doi" disabled></ion-input>
         </ion-col>
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Expected Date of Delivery</ion-label>
+          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+            [(ngModel)]="EXPECTEDDATEOFDELIVERY"></ion-input>
+        </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Category</ion-label>

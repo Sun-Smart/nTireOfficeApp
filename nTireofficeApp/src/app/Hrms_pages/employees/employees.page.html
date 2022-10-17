@@ -10,82 +10,83 @@
 
   <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
         class="fa fa-filter" aria-hidden="true"></i></span></div>
-  <ion-grid *ngIf="showfilter" style="background: transparent;border-radius: 8px;">
-    <ion-row>
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Name</ion-label>
 
-        <ion-input class="ContentName" placeholder="Enter Name" name="name" ngDefaultControl [(ngModel)]="name"
-          class="employeefield"></ion-input>
 
-      </ion-col>
+  <ion-card *ngIf="showfilter" style="background: white; border-radius: 8px;">
+    <ion-card-content>
+      <ion-row>
 
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Code</ion-label>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="ContentName">Name</ion-label>
+          <ion-input class="ContentName" placeholder="Enter Name" name="name" ngDefaultControl [(ngModel)]="name"
+            class="employeefield"></ion-input>
+        </ion-col>
 
-        <ion-input class="ContentName" placeholder="Enter Code" name="code" ngDefaultControl [(ngModel)]="code"
-          class="employeefield"></ion-input>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="ContentName">Code</ion-label>
+          <ion-input class="ContentName" placeholder="Enter Code" name="code" ngDefaultControl [(ngModel)]="code"
+            class="employeefield"></ion-input>
+        </ion-col>
 
-      </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="ContentName" position="stacked">Designation</ion-label>
+          <select [(ngModel)]="designation" class="form-control">
+            <option [ngValue]="null">Select Designation</option>
+            <option *ngFor="let item of Designation" [ngValue]="item.VALUE">{{item.TEXT}}</option>
+          </select>
+          <!-- <ion-label class="ContentName" position="stacked">Designation</ion-label>
+                <ion-item style="color:black;background:white!important">
+        
+                  <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" name="designation"
+                    ngDefaultControl [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT"
+                    [items]="Designation" [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)"
+                    class="employeefield">
+                  </ionic-selectable>
+        
+                </ion-item> -->
+        </ion-col>
 
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" position="stacked">Designation</ion-label>
-        <select [(ngModel)]="designation"  class="form-control">
-                    <option value="">Designation</option>
-              <option *ngFor="let item of Designation" [ngValue]="item.VALUE">{{item.TEXT}}</option>
-                </select>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="ContentName" position="stacked">Branch</ion-label>
+          <select [(ngModel)]="branch" class="form-control">
+            <option [ngValue]="null">Select Branch</option>
+            <option *ngFor="let item of Branch" [ngValue]="item.VALUE">{{item.TEXT}}</option>
+          </select>
+          <!-- <ion-label class="ContentName" position="stacked">Branch</ion-label>
+                <ion-item style="color:black;background:white!important">
+                  <ionic-selectable item-content placeholder="Select Branch" name="branch" ngDefaultControl [(ngModel)]="branch"
+                    [itemValueField]="VALUE" itemTextField="TEXT" [items]="Branch" [canSearch]="true" [canClear]="true"
+                    (onSelect)="displaydetails($event)" class="employeefield">
+        
+                  </ionic-selectable>
+                </ion-item> -->
+        </ion-col>
+        
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="ContentName" position="stacked">Department</ion-label>
+          <select [(ngModel)]="department" class="form-control">
+            <option [ngValue]="null">Select Department</option>
+            <option *ngFor="let item of Department" [ngValue]="item.VALUE">{{item.TEXT}}</option>
+          </select>
+          <!-- <ion-item style="color:black;background:white!important">
+                  <ionic-selectable item-content placeholder="Select Department" name="department" ngDefaultControl
+                    [(ngModel)]="department" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Department"
+                    [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)" class="employeefield">
+                  </ionic-selectable>
+                </ion-item> -->
+        </ion-col>
 
-        <!-- <ion-label class="ContentName" position="stacked">Designation</ion-label>
-        <ion-item style="color:black;background:white!important">
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-button class="ion-color-success" expand="block" (click)="employeeSearch()">Search</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
-          <ionic-selectable modalCssClass="hrmsmodal" item-content placeholder="Select Designation" name="designation"
-            ngDefaultControl [(ngModel)]="designation" [itemValueField]="VALUE" itemTextField="TEXT"
-            [items]="Designation" [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)"
-            class="employeefield">
-          </ionic-selectable>
-
-        </ion-item>  -->
-      </ion-col>
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" position="stacked">Branch</ion-label>
-        <select [(ngModel)]="branch"  class="form-control">
-                      <option value="">Branch</option>
-                      <option *ngFor="let item of Branch" [ngValue]="item.VALUE">{{item.TEXT}}</option>
-                  </select>
-        <!-- <ion-label class="ContentName" position="stacked">Branch</ion-label>
-        <ion-item style="color:black;background:white!important">
-          <ionic-selectable item-content placeholder="Select Branch" name="branch" ngDefaultControl [(ngModel)]="branch"
-            [itemValueField]="VALUE" itemTextField="TEXT" [items]="Branch" [canSearch]="true" [canClear]="true"
-            (onSelect)="displaydetails($event)" class="employeefield">
-
-          </ionic-selectable>
-        </ion-item> -->
-      </ion-col>
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" position="stacked">Department</ion-label>
-        <select [(ngModel)]="department"  class="form-control">
-                        <option value="">Department</option>
-                        <option *ngFor="let item of Department" [ngValue]="item.VALUE">{{item.TEXT}}</option>
-                    </select>
-
-        <!-- <ion-label class="ContentName" position="stacked">Department</ion-label>
-        <ion-item style="color:black;background:white!important">
-          <ionic-selectable item-content placeholder="Select Department" name="department" ngDefaultControl
-            [(ngModel)]="department" [itemValueField]="VALUE" itemTextField="TEXT" [items]="Department"
-            [canSearch]="true" [canClear]="true" (onSelect)="displaydetails($event)" class="employeefield">
-          </ionic-selectable>
-        </ion-item> -->
-      </ion-col>
-
-      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-button class="ion-color-success" expand="block" (click)="employeeSearch()">Search</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
   <p *ngIf="loading" class="totalCount">Please Wait..</p>
 
-  <p *ngIf="totalemployee" class="totalCount"><b>Total Employee : {{totalemployee}}</b></p>
+  <p *ngIf="totalemployee" class="totalCount"><b>Total Employee : {{displayEmployee.length}}</b></p>
 
   <ion-card *ngFor="let item of displayEmployee">
 

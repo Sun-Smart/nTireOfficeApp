@@ -1,3 +1,4 @@
+/* eslint-disable use-isnan */
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable radix */
@@ -79,6 +80,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   fileName: string;
   audio: MediaObject;
   audioList: any[] = [];
+  shownorecord: boolean = false;
   private stream;
   private recorder;
   private interval;
@@ -87,6 +89,11 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
   imagecif: number;
+  getcustid: any;
+  TCC_CUST_LEAD_IDs: any;
+  getbranchid: any;
+  BRANCH_IDs: any;
+  TCC_CUSTOMER_IDs: any;
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -381,7 +388,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branchid: parseInt(branch_id)
+      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -566,6 +573,21 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       pendJSON = Object.assign(tokenJSON, this.penleadfilter);
       var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
+      this.getcustid = this.TCC_CUSTOMER_IDs
+      console.log(this.getcustid)
+
+      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+        this.getcustid = 0
+      }
+      localStorage.setItem('setcustid', this.getcustid)
+      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+        this.getcustid = 0
+      }
+      this.getbranchid = this.BRANCH_IDs
+      if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+        this.getbranchid = 1
+      }
+      localStorage.setItem('setbranchid', this.getbranchid)
 
 
       var tmpPendJson = {
@@ -591,7 +613,9 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
         TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
         TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-        TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID
+        TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID,
+        TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
+        BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
       };
       console.log(tmpPendJson)
@@ -604,9 +628,11 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
         headers: options,
-      }).subscribe(resp => {
+      }).subscribe((resp: any) => {
         console.log("pendleadsdatalength : " + JSON.stringify(resp));
-        this.pendingleadsdatalength = Object.keys(resp).length;
+
+        this.pendingleadsdatalength = resp.length;
+        console.log(this.pendingleadsdatalength)
       }, error => {
 
 
@@ -729,6 +755,23 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
 
+    this.getcustid = this.TCC_CUSTOMER_IDs
+    console.log(this.getcustid)
+
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      this.getcustid = 0
+    }
+    localStorage.setItem('setcustid', this.getcustid)
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      this.getcustid = 0
+    }
+    this.getbranchid = this.BRANCH_IDs
+    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+      this.getbranchid = 1
+    }
+    localStorage.setItem('setbranchid', this.getbranchid)
+
+
 
     var tmpPendJson = {
       user_id: user_id_nw,
@@ -753,7 +796,9 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
       TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
       TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-      TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID
+      TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID,
+      TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
+      BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
     };
     console.log(tmpPendJson)
@@ -767,8 +812,13 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
       headers: options,
     }).subscribe(resp => {
+
+      if (resp == null) {
+        this.pendingleadsdatalength = 0
+      }
       console.log("pendleadsdatalength : " + JSON.stringify(resp));
       this.pendingleadsdatalength = Object.keys(resp).length;
+      console.log(this.pendingleadsdatalength)
     }, error => {
 
 
@@ -778,12 +828,17 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       headers: options,
     }).subscribe(resp => {
 
+      // if (resp == null || resp == '') {
+      //   this.shownorecord = true
+      // }
+
       // console.log("pendleaddetails1 : " + JSON.stringify(resp));
       this.loadingdismiss();
       this.pendleaddetails1.push(resp);
       this.pendleaddetails1.forEach(element => {
         this.pendleaddetails = element;
         console.log("pendleaddetails1 : " + JSON.stringify(element));
+
 
       });
 
@@ -1045,12 +1100,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     var appdate = items.TCC_NEXT_CALL_DATE.split('T');
     console.log(appdate)
     // var time=$filter('date')(response.data[j].TCC_NEXT_CALL_DATE, "hh:mm a");
-    var time1 = appdate[1].split(':');
+    var time1 = appdate[1];
     console.log(time1)
     var d1 = appdate[0].split('-');
     console.log(d1);
-    var appdate1 = d1[0] + '-' + d1[1] + '-' + d1[2] + ' ' + time1[0] + ':' + time1[1];
-    var meetcurTime = new Date(appdate1)
+    // var appdate1 = d1[0] + '-' + d1[1] + '-' + d1[2] + ' ' + time1[0] + ':' + time1[1];
+    // var meetcurTime = new Date(appdate1)
     //console.log(today.getTime() +" "+  dat.getTime());
     //  $ionicLoading.show({
     //    template: '<ion-spinner class="spinner-energized"></ion-spinner><div  class="col"> Loading... </div>'
@@ -1075,7 +1130,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       // alert("today date")
       var ttime = today.getTime();
       // var mtime=nextcall.getTime();
-      var mtime = meetcurTime.getTime();
+      // var mtime = meetcurTime.getTime();
 
       var geocoder = new google.maps.Geocoder();
 

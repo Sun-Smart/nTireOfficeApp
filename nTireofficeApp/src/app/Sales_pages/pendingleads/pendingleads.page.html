@@ -31,18 +31,19 @@
       <ion-grid>
         <ion-row>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <select [(ngModel)]="penleadfilter.branchid" class="form-control" style="width:100%">
+            <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
 
               <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-input class="form-control" placeholder="Lead ID" [(ngModel)]="penleadfilter.TCC_CUSTOMER_ID">
+            <ion-input class="form-control" placeholder="Lead ID" [(ngModel)]="TCC_CUSTOMER_IDs" type="number">
             </ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-input class="form-control" placeholder="Customer Name" [(ngModel)]="penleadfilter.CUST_LNAME">
+            <ion-input class="form-control" placeholder="Customer Name"
+              onkeypress="if(this.value.length==10)return false;" [(ngModel)]="penleadfilter.CUST_LNAME">
             </ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -105,6 +106,7 @@
         </ion-row>
       </ion-grid>
     </div>
+    <!-- <p *ngIf="shownorecord" style="text-align: center; color: #000;">No data found</p> -->
     <p class="totalCount">Total Lead : {{pendingleadsdatalength}}</p>
 
     <ion-card *ngFor="let items of pendleaddetails; let i = index">
@@ -232,18 +234,17 @@
           </ion-col>
           <ion-col size="6">
             <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
-              style="font-size: 14px;color:green;"><b>{{items.PriorityText}}</b></span>
+              style="font-size: 14px;color:green;font-weight: bold;">{{items.PriorityText}}</span>
           </ion-col>
           <ion-col size="6">
             <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
-              style="font-size: 14px;color:red;"><b>{{items.Ratingtext}}</b></span>
+              style="font-size: 14px;color:red;font-weight: bold;">{{items.Ratingtext}}</span>
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <a (click)="showmore(i,items.CALL_ID)">
               <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
 
-              <i id="imageidvals{{0+i}}" class="fas fa-chevron-circle-down" aria-hidden="true"
-              style="  font-size: 24px;
+              <i id="imageidvals{{0+i}}" class="fas fa-chevron-circle-down" aria-hidden="true" style="  font-size: 24px;
               color: #000;
               left: 260px;
               position: relative;
@@ -309,8 +310,7 @@
                 <span><b>{{items.Remarks}}</b></span>
               </ion-col>
               <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-                <a (click)="showless(i)"><i class="fas fa-chevron-circle-up" aria-hidden="true"
-                  style="  font-size: 24px;
+                <a (click)="showless(i)"><i class="fas fa-chevron-circle-up" aria-hidden="true" style="  font-size: 24px;
                   color: #000;
                   left: 260px;
                   position: relative;
@@ -321,24 +321,22 @@
               </ion-col>
               <ion-row size="12" style="width: 100%;">
                 <ion-col>
-                  <ion-button (click)="Updatedetails(items,segment)"
-                  class="ion-color-success" expand="block">Update
+                  <ion-button (click)="Updatedetails(items,segment)" class="ion-color-success" expand="block">Update
                   </ion-button>
                 </ion-col>
                 <ion-col>
                   <ion-button (click)="Gethistorydetails(items)"
-                    style="--background:#004073;font-weight: 900 !important;"
-                    expand="block">History
+                    style="--background:#004073;font-weight: 900 !important;" expand="block">History
                   </ion-button>
                 </ion-col>
               </ion-row>
               <ion-col *ngIf="items.TCC_RESPONSE == 1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button (click)="openrootmap(items.TCC_LOCATION_TO_MEET)" style="--background:#009689" size="full">
+                <ion-button (click)="openrootmap(items.TCC_LOCATION_TO_MEET)" class="ion-color-success" expand="block">
                   START NAVIGATION</ion-button>
 
               </ion-col>
               <ion-col *ngIf="items.TCC_RESPONSE == 1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button class="schedulebutn" size="full" style="--background:#009689"
+                <ion-button class="schedulebutn" class="ion-color-success" expand="block"
                   *ngIf="(items.START_TIME == null && items.END_TIME == null) || (items.START_TIME != null && items.END_TIME != null)"
                   id="stbtn{{0+i}}"
                   (click)="updstrtmeettime(items.TCC_CUSTOMER_ID,items.CUST_LEAD_ID,items.CALL_ID,1,i,items.TCC_LOCATION_TO_MEET,items,1)">

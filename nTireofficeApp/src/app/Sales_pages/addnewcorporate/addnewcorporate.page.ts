@@ -56,13 +56,13 @@ export class AddnewcorporatePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
 
-
+debugger
       if (resp.toString() == '"Company already Exist"') {
 
         this.presentAlert('Alert', 'Company name already exists');
 
       } else {
-        this.presentAlert('Successful', 'Company Added Successfully');
+        this.presentAlert1('Successful', 'Company Added Successfully');
         this.companyname = undefined;
         this.cropaddress = undefined;
       }
@@ -85,6 +85,17 @@ export class AddnewcorporatePage implements OnInit {
 
     await alert.present();
   }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      cssClass: 'Cssbutton',
+      header: heading,
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
   clearCorporateForm() {
     this.companyname = undefined;
     this.cropaddress = undefined;
@@ -99,5 +110,10 @@ export class AddnewcorporatePage implements OnInit {
     });
     return await modal.present();
 
+  }
+  omit_special_char(event) {
+    var k;
+    k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
   }
 }

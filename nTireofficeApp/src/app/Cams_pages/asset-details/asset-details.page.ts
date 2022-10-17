@@ -70,6 +70,7 @@ export class AssetDetailsPage implements OnInit {
   }
   products: any;
   @ViewChild('map') mapElement: ElementRef;
+  newasset: any;
   constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private crop: Crop, private base64: Base64, private camera: Camera, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public sanitizer: DomSanitizer, private barcodeScanner: BarcodeScanner) {
 
     //,private qrScanner: QRScanner
@@ -98,9 +99,15 @@ export class AssetDetailsPage implements OnInit {
   }
 
   getItems(ev: any) {
+    debugger;
     this.assetcode1 = [];
+    this.newasset = ev.target.value;
+    console.log(this.newasset);
+    
     if (ev.target.value == "") {
       this.assetcode1 = [];
+      console.log(this.assetcode1);
+      
       this.isItemAvailable = false;
     }
     // Reset items back to all of the items
@@ -114,6 +121,8 @@ export class AssetDetailsPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+      "assetcode" :this.newasset,
+      
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,

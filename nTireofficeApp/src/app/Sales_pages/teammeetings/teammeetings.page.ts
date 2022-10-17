@@ -290,9 +290,9 @@ export class TeammeetingsPage implements OnInit {
         }
 
         if (fromdate != undefined && todate != undefined && branchid != undefined) {
-          this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd')
+          this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
 
-          this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd')
+          this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy')
 
           console.log(this.fromdate);
           console.log(this.todate);
@@ -417,16 +417,16 @@ export class TeammeetingsPage implements OnInit {
             }
           }, error => {
 
-            alert("" + JSON.stringify(error));
+            // alert("" + JSON.stringify(error));
           });
 
         }
 
       } else {
 
-        this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd')
+        this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
 
-        this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd')
+        this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy')
 
 
         var obj1 = undefined;
@@ -543,7 +543,7 @@ export class TeammeetingsPage implements OnInit {
               }
             }, error => {
 
-              alert("" + JSON.stringify(error));
+              // alert("" + JSON.stringify(error));
             });
 
           }
@@ -716,7 +716,7 @@ export class TeammeetingsPage implements OnInit {
       console.log(this.allmeetingArray);
     }, error => {
 
-      alert("" + JSON.stringify(error));
+      // alert("" + JSON.stringify(error));
     });
 
 

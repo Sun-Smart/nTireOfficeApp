@@ -537,6 +537,7 @@ export class MyprofilePage implements OnInit {
     var emailcheck = validateemail(event.target.value);
     if (emailcheck == false) {
       this.validemail = true;
+      return
     }
     else {
       this.validemail = false;
@@ -638,8 +639,8 @@ export class MyprofilePage implements OnInit {
               Type: "EducationDetails",
               empID: window.localStorage.getItem("EmployeeID"),
             };
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert1("", "Education Details Removed");
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
+              this.toastmessageService.presentAlert("", "Education Details Removed");
               this.getEducationDaetails();
             }, error => {
 
@@ -674,8 +675,8 @@ export class MyprofilePage implements OnInit {
               Type: "CareerDetails",
               empID: window.localStorage.getItem("EmployeeID"),
             };
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert1("", "Career Details Removed");
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
+              this.toastmessageService.presentAlert("", "Career Details Removed");
               this.getcarrierDaetails();
             }, error => {
 
@@ -693,6 +694,15 @@ export class MyprofilePage implements OnInit {
   hidePersonalPanel(value) {
     debugger;
     console.log(value);
+
+    // var emailcheck = validateemail(value);
+    // if (emailcheck == false) {
+    //   this.validemail = true;
+    //   return
+    // }
+    // else {
+    //   this.validemail = false;
+    // }
 
     //Samu -> Now hiding by doubt
     // this.profile.FirstName = '';
@@ -825,7 +835,6 @@ export class MyprofilePage implements OnInit {
           this.profile.CurrentPincode = ' ';
         }
 
-
         console.log("this.profile.CurrentCountry" + this.profile.CurrentCountry);
         // API CALLING FOR currentAddress DETAILS
         this.currentAddressObject = {
@@ -837,6 +846,7 @@ export class MyprofilePage implements OnInit {
           Country: this.profile.CurrentCountry,
           Pincode: this.profile.CurrentPincode
         };
+
 
         console.log("currentAddress Detail Object " + this.currentAddressObject);
         // API CALLING FOR currentAddress DETAILS
@@ -951,6 +961,8 @@ export class MyprofilePage implements OnInit {
         this.contactToggle = 0;
         // console.log("Update");
 
+
+
         if (this.profile.Email == undefined || this.profile.Email == null || this.profile.Email == '') {
           this.profile.Email = ' ';
         }
@@ -985,6 +997,8 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
             // console.log("Updated Baby");
+
+
 
             this.presentAlert("", "Contact Details Updated");
             this.getEmployeeDetails();

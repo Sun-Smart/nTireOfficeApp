@@ -59,7 +59,7 @@
 
       <ion-col size="6">
         <ion-checkbox color="primary" [(ngModel)]="release" [value]="false"></ion-checkbox>&nbsp;&nbsp;
-        
+
         <ion-label class="ContentName">Release</ion-label>
       </ion-col>
 
@@ -151,7 +151,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-row>
           <ion-col *ngFor="let image of image" size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
-            <ion-icon  style="color: white !important;" name="close-circle-outline" class="closebtn" (click)="DeleteImage(i)"></ion-icon>
+            <ion-icon  style="color: white !important;" name="close-circle-outline"  class="closebtn" (click)="DeleteImage(i)"></ion-icon>
             <img [src]="sanitizer.bypassSecurityTrustUrl(image.imgURL)" />
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -193,7 +193,7 @@
 
     <ion-row>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-        <ion-button class="ion-color-success" [disabled]="requestCat=='' ||  description==undefined" (click)="claimsSubmit()">Ok
+        <ion-button class="ion-color-success" [disabled]="requestCat=='' ||  description==undefined" (click)="claimsSubmit()">Save
         </ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">

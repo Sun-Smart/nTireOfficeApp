@@ -83,8 +83,9 @@ export class MymeetingPage implements OnInit {
   ngOnInit() {
   }
   Getmeetings(from_datemeet, to_datemeet) {
+    debugger;
 
-    this.allmeetinglocation = "";
+    // this.allmeetinglocation = [];
     var locations = [];
     var userid = parseInt(window.localStorage['TUM_USER_ID']);
     var date = new Date(from_datemeet);
@@ -102,33 +103,37 @@ export class MymeetingPage implements OnInit {
     to_datemeet = ('0' + date1.getDate()).slice(-2) + '/' + ('0' + (date1.getMonth() + 1)).slice(-2) + '/' + date1.getFullYear();
 
     this.token = window.localStorage['token'];
-    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['usertoken'] };
+    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['token'] };
 
     var getapppostJSONtmp = { user_id: userid, fdate: from_datemeet, tdate: to_datemeet }
     var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
     console.log("getapppostJSON : " + JSON.stringify(getapppostJSON));
+
+    if (this.allmeetinglocation == '') {
+      debugger; 
+      this.NoRecord = "No Meeting Found";
+      this.showhidenorecords = true;
+      $('#mapDetailsTable').hide();
+      // $('#showdivs').hide();
+
+    } else {
+       this.showhidenorecords = false;
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post', getapppostJSON, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/',getapppostJSON, {
       headers: options,
     }).subscribe(resp => {
+      debugger; 
       this.allmeetinglocation = JSON.stringify(resp);
       this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
       this.allmeetinglocation = this.allmeetinglocation;
       // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
       console.log(this.allmeetinglocation);
 
-      if (this.allmeetinglocation == '') {
-
-        this.NoRecord = "No Meeting Found";
-        $('#mapDetailsTable').hide();
-        $('#showdivs').hide();
-
-      } else {
-        $('#showdivs').show();
+       
+        // $('#showdivs').show();
         this.NoRecord = "";
 
         for (var i = 0; i < this.allmeetinglocation.length; i++) {
@@ -219,7 +224,7 @@ export class MymeetingPage implements OnInit {
 
 
 
-      }
+      
       if (locations != []) {
         var lat_lng = [];
         this.showmap = true;
@@ -251,6 +256,8 @@ export class MymeetingPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
+
+  }
 
   }
   initMap(markers) {
