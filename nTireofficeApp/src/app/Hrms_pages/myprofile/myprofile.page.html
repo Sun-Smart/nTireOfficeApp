@@ -73,7 +73,7 @@
     </ion-row>
     <ion-segment [(ngModel)]="segmentdata">
       <ion-segment-button value="Personal">
-        <ion-label style="color:black !important" class="myprofilesegment">PERSONAL DETAILS</ion-label>
+        <ion-label style="color:black !important;" class="myprofilesegment">PERSONAL DETAILS</ion-label>
       </ion-segment-button>
       <ion-segment-button value="education">
         <ion-label style="color:black !important" class="myprofilesegment">EDUCATION & CAREER</ion-label>
@@ -152,10 +152,10 @@
                 'dd-MM-yyyy'}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label style="color:black !important">Qualification</ion-label>
+              <ion-label style="color:black !important;">Qualification</ion-label>
               <br />
               <select *ngIf="personalToggle===1" [(ngModel)]="emp.qualification" class="selectTag"
-                style="margin-left: -3px;" id="qualification" (change)="getSubQualification(emp.qualification)">
+                style="margin-left: -3px;     background-color: #fff !important; font-weight: 700 !important; color: #000;" id="qualification" (change)="getSubQualification(emp.qualification)">
                 <option value="">Qualification</option>
                 <option *ngFor="let item of qualification" [value]="item.VALUE">{{item.TEXT}}
                 </option>
@@ -173,7 +173,7 @@
               <ion-label style="color:black !important">Sub Qualification</ion-label>
               <br />
               <select *ngIf="personalToggle===1" [(ngModel)]="emp.subQualification" class="selectTag"
-                style="margin-left: -3px;" [disabled]="personalToggle===0" id="qualification"
+                style="margin-left: -3px;  background-color: #fff !important; font-weight: 700 !important; color: #000;" [disabled]="personalToggle===0" id="qualification"
                 (ionChange)="loadSubQualification()">
                 <option value="">Sub Qualification</option>
                 <option *ngFor="let item  of subQualification" [value]="item.VALUE">{{item.TEXT}}
@@ -406,7 +406,7 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Email</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" (keyup)="emailnumbaervalid($event)" class="profileOutput"
+              <ion-input *ngIf="contactToggle === 1" (keyup)="emailnumbaervalid($event)" class="profileOutput labelData-text"
                 type="email" name="Email" placeholder="Email" [(ngModel)]="profile.Email"
                 [disabled]="contactToggle===0">
               </ion-input>
@@ -419,9 +419,9 @@
               <ion-label style="color:black !important">Mobile</ion-label>
               <br />
               <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile" pattern="[0-9]*"
-                type="number" pattern="/^-?\d+\.?\d*$/"
+                type="number" pattern="/^-?\d+\.?\d*$/" maxlength="10"
                 onKeyPress="if(this.value!=undefined && this.value.length==10) return false;"
-                (keyup)="phonenumber(profile.Mobile)" placeholder="Mobile" [(ngModel)]="profile.Mobile"
+                (keyup)="phonenumber(profile.Mobile) " placeholder="Mobile" [(ngModel)]="profile.Mobile"
                 [disabled]="contactToggle===0"></ion-input>
               <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.Mobile}}</span>
               <span *ngIf="validphone" class="profileOutput labelData-text">
@@ -442,7 +442,7 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Emergency Contact Name</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" class="profileOutput " type="text"
+              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="text"
                 placeholder="Emergency Contact Name" [(ngModel)]="profile.EmergencyContactName"
                 [disabled]="contactToggle===0"></ion-input>
               <span *ngIf="contactToggle === 0"
@@ -600,7 +600,7 @@
           </ion-grid>
         </ion-card-content>
       </ion-card> -->
-      
+
       <ion-card>
         <ion-card-header class="card_header">
           <ion-row>
