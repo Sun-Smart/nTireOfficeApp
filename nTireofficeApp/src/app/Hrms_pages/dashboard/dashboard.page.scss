@@ -110,12 +110,24 @@ ion-content {
   padding-right: 0;
   padding-top: 0;
   padding-bottom: 0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 15px;
+  // line-height: 1.5;
   text-align: center;
 }
 
 .st-1{
   border-bottom: 0px; border-top: 0px; border-left: 0px; border-right: 0px;padding: 11px;
   background-color: white;
+}
+
+.profilecard
+{
+text-align: center;
+padding-left: 0;
+  padding-right: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+font-size: 15px !important;
+margin: auto;
+display: block;
 }

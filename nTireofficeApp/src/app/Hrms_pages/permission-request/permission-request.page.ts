@@ -110,8 +110,8 @@ this.toHour = this.time[1];
     if (this.contact == undefined) {
       this.contact = null;
     }
-    // this.reqID = "@";
-    this.reqID = " ";
+    this.reqID = "@";
+    // this.reqID = " ";
     // this.perm.status = "N";
     this.userID = this.userID;
 
@@ -128,8 +128,6 @@ var perm={
     if (resp == '"Permission is not enabled for this Employee"') {
       // console.log("Gotcha : " + resp);
       this.toastmessageService.presentAlert1("Request Not Sent","Permission is not enabled for this Employee");
-
-
     }
     else if (resp == '"Coff already available for this date"') {
       this.toastmessageService.presentAlert1("Request Not Sent","Coff already available for this date");
@@ -140,8 +138,6 @@ var perm={
 
     } else if (resp == '"Permission not available for Weekoff/Holiday"') {
       this.toastmessageService.presentAlert1("Request Not Sent","Permission not available for Weekoff/Holiday");
-
-
     }
     else if(resp=='"Permission is limited to 1 hour per day'){
       this.toastmessageService.presentAlert1("Request Not Sent","Permission is limited to 1 hour per day");
