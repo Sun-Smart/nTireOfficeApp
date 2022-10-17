@@ -358,7 +358,7 @@ export class AddtravelexpensedetailsPage implements OnInit, OnDestroy {
         // PRODUCT_DESC: this.product_desc.toString(),
         PRODUCT_DESC: "",
         // CAMPAIGN: parseInt(this.campaign),
-        CAMPAIGN: 0,
+        CAMPAIGN: "0",
         // CAMPAIGN_DESC: this.campaign_desc.toString(),
         CAMPAIGN_DESC: "",
         CUSTOMER_REF: "",
