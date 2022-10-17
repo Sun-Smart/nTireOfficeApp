@@ -137,9 +137,8 @@ this.getItems("");
       usertoken: window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
     };
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.branchid + '/' + this.branchcode
-      + '/' + this.Propertycode + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userId, {
-        headers: options,
+    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/0/0/0/0/0/0/0/0/20/0/0/0/1/1', {
+       
       }
     ).subscribe((resp: any) => {
       console.log(resp);
@@ -148,23 +147,24 @@ this.getItems("");
 
       this.propertyCodeResult1 = this.propertyCodeResult;
 
-      for(var i = 0; i < this.propertyCodeResult1.length; i++ ){
-        this.assetcode1.push(this.propertyCodeResult1[i].ASSET_CODE);
-      };
-      const val = e.target.value;
+    //   for(var i = 0; i < this.propertyCodeResult1.length; i++ ){
+    //     this.assetcode1.push(this.propertyCodeResult1[i].ASSET_CODE);
+    //   };
+    //   const val = e.target.value;
 
-      if (val && val.trim() != '') {
-        this.isItemAvailable = true;
-        this.assetcode1 = this.assetcode1.filter((item) => {
-          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-        })
-      }
-    }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
-      console.log("error : " + JSON.stringify(error));
-    })
+    //   if (val && val.trim() != '') {
+    //     this.isItemAvailable = true;
+    //     this.assetcode1 = this.assetcode1.filter((item) => {
+    //       return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    //     })
+    //   }
+    // }, error => {
+    //   //this.presentAlert('Alert','Server Error,Contact not loaded');
+    //   console.log("error : " + JSON.stringify(error));
+    // })
 
-  };
+  });
+}
 
   // propertyCodE(assetcode:any){
   //   this.details1 = [];
