@@ -218,8 +218,6 @@ export class LeaveRequestPage implements OnInit {
 
      // To calculate the no. of days between two dates
      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-
      this.noofDays=-Difference_In_Days;
       }
     }
@@ -244,8 +242,6 @@ export class LeaveRequestPage implements OnInit {
 
       // To calculate the no. of days between two dates
       var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-
-
       this.noofDays=-Difference_In_Days+1;
 
       }

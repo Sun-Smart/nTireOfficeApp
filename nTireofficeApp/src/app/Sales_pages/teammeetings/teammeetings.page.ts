@@ -290,9 +290,9 @@ export class TeammeetingsPage implements OnInit {
         }
 
         if (fromdate != undefined && todate != undefined && branchid != undefined) {
-          this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd')
+          this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
 
-          this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd')
+          this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy')
 
           console.log(this.fromdate);
           console.log(this.todate);
@@ -424,9 +424,9 @@ export class TeammeetingsPage implements OnInit {
 
       } else {
 
-        this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd')
+        this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
 
-        this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd')
+        this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy')
 
 
         var obj1 = undefined;

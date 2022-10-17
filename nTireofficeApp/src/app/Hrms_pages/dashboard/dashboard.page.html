@@ -562,9 +562,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </div>
 
           <div *ngIf="item.REQUESTTYPE==='Tender'" style="background-color:#daf9f9;    margin-top: -17px;">
-            <div style="background-color: #cbc9c9;
-            height: 43px;
-            padding-top: 12px;">
+            <div class="profilecard">
               <span>Req Ref ~ {{item.RequestRef}}</span>
               <span style="float: right;">Type ~ <span style="color: #009688;">{{item.REQUESTTYPE}}</span></span>
             </div>
@@ -584,7 +582,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               </ion-col>
             </ion-row>
 
-            <ion-row style="padding: 0px;margin-top: -14px;">
+            <ion-row class="profilecard">
               <ion-col size-sm="3" size="4" size-md="3" size-lg="3" size-xl="3">
                 <p><b>Tender Type ~ </b><span>{{item.COLUMN3}}</span></p>
               </ion-col>
@@ -593,7 +591,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
               </ion-col>
             </ion-row>
             <div class="nodata" *ngIf="training.length===0">
-              <div style="color:gray;"><b>No Trainings Found</b></div>
+              <div><b>No Trainings Found</b></div>
             </div>
           </div>
 
@@ -643,7 +641,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
       </ion-row>
     </ion-card-content>
-    <div #Requestnofound style="text-align: center;padding: 34px;margin-top: -22px;font-size: 15px !important;">
+    <div #Requestnofound class="profilecard">
       <b>No Requests found</b>
     </div>
   </ion-card>
@@ -1135,7 +1133,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
         </ion-col>
       </ion-row>
       <ion-row class="nodata" *ngIf="empPayslips.length===0">
-        <ion-col size="12" style="color:gray;"><b>No Payslips Found</b></ion-col>
+        <ion-col size="12" style="color:gray; font-size: 15px !important;"><b>No Payslips Found</b></ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
@@ -1407,7 +1405,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
       </ion-row>
     </ion-card-content>
 
-    <div #noActionfound style="text-align: center;padding: 34px;margin-top: -22px;font-size: 15px !important;">
+    <div #noActionfound class="profilecard">
       <b>No Actions Found</b>
     </div>
   </ion-card>
@@ -1500,7 +1498,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
       </ion-row>
 
       <ion-row class="nodata" *ngIf="training.length===0">
-        <ion-col style="color:gray;"><b>No Trainings Found</b></ion-col>
+        <ion-col style="color:gray; font-size: 15px !important;"><b>No Trainings Found</b></ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
