@@ -499,6 +499,11 @@ export class AppComponent {
           icon: 'document-text'
         },
         {
+          title: 'Quick-Receipt',
+          url: '/quick-receipt',
+          icon: 'receipt-outline'
+        },
+        {
           title: 'Transaction',
           url: '/pms-transaction',
           icon: 'newspaper'

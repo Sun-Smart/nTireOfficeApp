@@ -602,6 +602,12 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     loadChildren: () => import('./Property_Pages/reciept-master-page/reciept-master-page.module').then( m => m.RecieptMasterPagePageModule)
   },
 
+  {
+    path: 'quick-receipt',
+    loadChildren: () => import('./Property_Pages/quick-receipt/quick-receipt.module').then( m => m.QuickReceiptPageModule)
+  },
+
+
 
 
 
