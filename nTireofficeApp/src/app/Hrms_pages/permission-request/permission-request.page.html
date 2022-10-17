@@ -20,7 +20,7 @@
         <ion-input value="custom" class="form-control"  [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" >Name</ion-label> 
+        <ion-label class="ContentName" >Name</ion-label>
         <ion-input style="background-color: white;
                         color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
       </ion-col>
@@ -67,7 +67,7 @@
       </ion-col>
       <ion-col *ngIf="!disabledvalue" size="6" >
         <div style="padding: 12px;display: flex;">
-          <ion-checkbox color="primary" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+          <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
           <ion-label class="ContentName">Release</ion-label>
         </div>
       </ion-col>
