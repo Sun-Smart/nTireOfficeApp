@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { MaterialIssuePage } from './material-issue.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MaterialIssuePageRoutingModule
+    MaterialIssuePageRoutingModule,
+    NgxDatatableModule
   ],
   declarations: [MaterialIssuePage]
 })

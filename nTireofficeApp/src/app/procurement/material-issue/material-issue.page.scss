@@ -2,3 +2,23 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+
+.ngx-datatable.material .datatable-header .datatable-header-cell {
+  background-color: #1ba4e1!important;
+  color: #fff !important;
+  padding: 10px;
+  text-align: center;
+}
+.plabel{
+  font-weight: bold;
+ }
+ ion-card-header+.card-content-ios {
+  padding-top: 10px;
+}
+.ngx-datatable.material{
+  margin: 5% !important;
+}
+.ngx-datatable .datatable-body .datatable-body-row>div {
+  display: flex;
+  border-bottom: 1px #efebeb solid;
+}
