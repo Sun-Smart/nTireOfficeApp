@@ -2469,10 +2469,10 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       message: tittle,
+      cssClass: 'buttonCss',
       buttons: [
         {
           text: 'Ok',
-          cssClass: 'buttonCss',
           handler: () => {
             this.branch = "<< Select >>";
             this.branchlocation = "<< Select >>";
