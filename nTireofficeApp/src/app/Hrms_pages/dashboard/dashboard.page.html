@@ -1196,14 +1196,14 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
 
         <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
           <!-- <ion-lable>Year</ion-lable> -->
-          <select class="st-1" [(ngModel)]="yeardata" style="display: flex; ">
+          <select class="st-1" [(ngModel)]="yeardata" style="display: flex;--background:#ffff; ">
             <option value="">Year</option>
             <option *ngFor="let item of year" [value]="item.VALUE">{{item.TEXT}}</option>
           </select>
         </ion-col>
         <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
           <!-- <ion-lable>Month</ion-lable> -->
-          <select class="st-1" [(ngModel)]="monthdata" style="display: flex;">
+          <select class="st-1" [(ngModel)]="monthdata" style="display: flex;--background:#ffff;">
             <option value="">Month</option>
             <option *ngFor="let item of month" [value]="item.VALUE">{{item.TEXT}}</option>
           </select>
@@ -1222,7 +1222,7 @@ padding-bottom: 17px;" class="icon fa fa fa-birthday-cake">
           </ion-select>
         </ion-col> -->
         <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-          <ion-button style="--box-shadow:none;color: black;--background: transparent;" (click)="getAttendance()">
+          <ion-button style="--box-shadow:none;color: #ffff;--background: green;" (click)="getAttendance()">
             Search</ion-button>
         </ion-col>
       </ion-row>

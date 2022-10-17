@@ -72,9 +72,9 @@
         </ion-col>
       </ion-row>
       <div>
-        <ngx-datatable  #firstTable class="material" [headerClass]="ngx-header" [limit]="50" [rows]="data" [rowHeight]="50"
-          [columns]="columns" [columnMode]="'standard'" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
-          [sortType]="'multi'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable">
+        <ngx-datatable #firstTable class="material" [headerClass]="ngx-header" [limit]="50" [rows]="data"
+          [rowHeight]="50" [columns]="columns" [columnMode]="'standard'" [headerHeight]="40" [footerHeight]="50"
+          [scrollbarH]="true" [sortType]="'multi'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable">
         </ngx-datatable>
       </div>
     </ion-card-content>
@@ -143,9 +143,9 @@
     <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
       <ion-label class="plabel">Available Qty</ion-label>
       <!-- <select style="padding: 10px;" style="display:inline-block;padding: 8px;" -->
-        <!-- class="Input-text-field textareaField"> -->
-        <!-- <option>&lt;&lt; Select &gt;&gt;</option> -->
-        <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+      <!-- class="Input-text-field textareaField"> -->
+      <!-- <option>&lt;&lt; Select &gt;&gt;</option> -->
+      <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
       <!-- </sele/ct> -->
       <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
 
@@ -158,6 +158,23 @@
         <ion-icon style="color:white ;" name="search-outline"></ion-icon>
         Search
       </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid *ngIf="showsearch">
+  <div>
+    <ngx-datatable #secondTable class="material" [headerClass]="ngx-header" [limit]="50" [rows]="data1" [rowHeight]="50"
+      [columns]="columns1" [columnMode]="'standard'" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
+      [sortType]="'multi'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable">
+    </ngx-datatable>
+
+  </div>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button color="primary" (click)="issue()">Issue</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button color="primary" (click)="close()">Close</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

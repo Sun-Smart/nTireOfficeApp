@@ -16,6 +16,8 @@ export class MaterialIssuePage implements OnInit {
   showviewlist: boolean = false
   showedit: boolean = false
   data: any = [];
+  data1: any = [];
+  showsearch: boolean = false
 
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
@@ -39,7 +41,7 @@ export class MaterialIssuePage implements OnInit {
     //   "toDate": "17-12-2023",
     //   "status": "pending",
     //   "action":"edit"
-     
+
     // }
   ];
   columns = [
@@ -50,6 +52,15 @@ export class MaterialIssuePage implements OnInit {
     { name: 'To Date', width: "120" },
     { name: 'Status', width: "110" },
     { name: 'Action', width: "110" }
+
+  ];
+  columns1 = [
+    { name: 'Select', width: "110" },
+    { name: 'Location', width: "110" },
+    { name: 'Bin', width: "110" },
+    { name: 'Tracking', width: "110" },
+    { name: 'Serial/Batch Number', width: "110" },
+    { name: 'Quantity', width: "110" },
 
   ];
   constructor(private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) { }
@@ -63,7 +74,7 @@ export class MaterialIssuePage implements OnInit {
         "fromDate": "17-10-2022",
         "toDate": "17-12-2022",
         "status": "pending",
-        "action":"edit"
+        "action": "edit"
 
       },
       {
@@ -73,8 +84,18 @@ export class MaterialIssuePage implements OnInit {
         "fromDate": "11-10-2022",
         "toDate": "17-12-2023",
         "status": "pending",
-        "action":"edit"
+        "action": "edit"
 
+      }
+    ];
+    this.data1 = [
+      {
+        "select": "",
+        "location": "india",
+        "bin": "",
+        "tracking": "",
+        "serial/batch number": "",
+        "quantity": "",
       }
     ]
   }
@@ -87,6 +108,9 @@ export class MaterialIssuePage implements OnInit {
 
   edit() {
     this.showedit = true
+  }
+  Search() {
+    this.showsearch = true
   }
 
 

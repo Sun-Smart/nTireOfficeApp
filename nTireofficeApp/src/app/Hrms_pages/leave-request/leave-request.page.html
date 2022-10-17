@@ -54,7 +54,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Leave Type<span class="validatecolor">*</span></ion-label>
-        <select style="display: flex;" *ngIf="LEAVETYPE==undefined" [(ngModel)]="leaveType" class="form-control"
+        <select style="display: flex;" id="selectbutton" *ngIf="LEAVETYPE==undefined" [(ngModel)]="leaveType" class="form-control"
           (ionChange)="getLeaveBalance()">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" *ngFor="let item of leavetypearray" [value]="item.VAL">{{item.TEXT}}</option>
