@@ -144,7 +144,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
   item;
   itemupd;
   audiofilename;
-  meetaddress;
+  meetaddress = localStorage.getItem('TUM_BRANCH_CODE');
   objdataupd = {
     callnatureval: "",
     callratingval: "",
@@ -168,7 +168,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     limit: "50",
     TCC_CUST_LEAD_ID: ""
   };
-  addbaselocno;
+  addbaselocno = localStorage.getItem('TUM_BRANCH_CODE');
   token;
   barval;
   followtime;
@@ -510,7 +510,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
           this.loadingdismiss();
         }
       }, error => {
-        this.presentAlertConfirm("", "Saved Successfully");
+        this.presentAlertConfirm("", "Updated Successfully");
         this.loadingdismiss();
       });
     }

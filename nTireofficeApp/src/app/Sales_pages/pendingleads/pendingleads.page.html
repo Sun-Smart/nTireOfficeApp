@@ -331,12 +331,12 @@
                 </ion-col>
               </ion-row>
               <ion-col *ngIf="items.TCC_RESPONSE == 1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button (click)="openrootmap(items.TCC_LOCATION_TO_MEET)" style="--background:#009689" size="full">
+                <ion-button (click)="openrootmap(items.TCC_LOCATION_TO_MEET)" class="ion-color-success" expand="block">
                   START NAVIGATION</ion-button>
 
               </ion-col>
               <ion-col *ngIf="items.TCC_RESPONSE == 1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button class="schedulebutn" size="full" style="--background:#009689"
+                <ion-button class="schedulebutn" class="ion-color-success" expand="block"
                   *ngIf="(items.START_TIME == null && items.END_TIME == null) || (items.START_TIME != null && items.END_TIME != null)"
                   id="stbtn{{0+i}}"
                   (click)="updstrtmeettime(items.TCC_CUSTOMER_ID,items.CUST_LEAD_ID,items.CALL_ID,1,i,items.TCC_LOCATION_TO_MEET,items,1)">
