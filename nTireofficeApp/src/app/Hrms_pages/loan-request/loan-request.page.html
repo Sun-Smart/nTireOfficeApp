@@ -43,7 +43,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Type</ion-label>
-        <select class="form-control" [(ngModel)]="reqtype">
+        <select id="selectbutton" class="form-control" [(ngModel)]="reqtype">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" value="1">Loan
           </option>
@@ -52,7 +52,7 @@
       </ion-col>
       <ion-col *ngIf="reqtype==='1'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Loan Scheme</ion-label>
-        <select class="form-control" (ionChange)="changescheme(loanScheme)" [(ngModel)]="loanScheme">
+        <select id="selectbutton" class="form-control" (ionChange)="changescheme(loanScheme)" [(ngModel)]="loanScheme">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" *ngFor="let item of schemes" [value]="item.scheme_id">{{item.scheme_desc}}
           </option>

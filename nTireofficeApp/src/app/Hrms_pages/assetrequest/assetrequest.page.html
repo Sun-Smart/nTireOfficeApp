@@ -42,7 +42,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Assest Category<span class="validatecolor">*</span></ion-label>
-        <select *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory"
+        <select id="selectbutton" *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory"
           (click)="getAssestsSubcat(assestCategory)" class="form-control">
           <option class="ContentName" [value]="0">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</option>
@@ -52,7 +52,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Assest Subcategory<span class="validatecolor">*</span></ion-label>
-        <select class="ContentName" *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory" class="form-control">
+        <select id="selectbutton" class="ContentName" *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory" class="form-control">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" *ngFor="let item of subCategoryData" [value]="item.id">{{item.TEXT}}</option>
         </select>
