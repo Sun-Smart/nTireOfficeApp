@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable curly */
 /* eslint-disable guard-for-in */
@@ -2059,6 +2060,7 @@ export class NewleadRetailPage implements OnInit {
   }
 
   Submitretail() {
+    debugger;
     if ((this.branch == '<< Select >>' || this.productdata == '<< Select >>' || this.Salutation == '<< Select >>' || this.firstname == undefined || this.lastname == undefined || this.mobile == undefined || this.email == undefined || this.callpriority == undefined || this.callrating == '<< Select >>' || this.callnature == '<< Select >>' || this.callstage == '<< Select >>' || this.nextaction == '<< Select >>' || this.leadby == '<< Select >>' || this.remarks == undefined) || (this.nextaction == '1' && (this.placetomeet == undefined || this.followtime == undefined || this.followdate == undefined)) || (this.nextaction == '2' && (this.followtime == undefined || this.followdate == undefined)) || (this.leadby == 'E' && (this.Employeeid == undefined)) || (this.leadby == 'C' && (this.custname == undefined)) || (this.leadby == 'P' && (this.leadByval == undefined))) {
 
       this.presentAlert('', 'Enter Mandatory Fields');
@@ -2260,7 +2262,9 @@ export class NewleadRetailPage implements OnInit {
       header.append("Content-Type", "application/json");
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'insertlead' + '/?functionid=' + data.functionid + '&BRANCH_ID=' + data.branchid + '&productcategoryid=' + data.prod_cat + '&productid=' + data.product_id + '&campaignid=' + camp_id + '&customerfname=' + data.firstName + '&customerlname=' + data.lastName + '&mobile=' + data.mobile + '&OfficePhone=' + data.OffPhone + '&ResidencePhone=' + data.ResPhone + '&callpriorityid=' + data.priority + '&callratingid=' + data.rating + '&callnatureid=' + data.nature + '&leadsourceid=' + data.source + '&callstageid=' + data.stage + '&customerresponse=' + data.response + '&NextCallDate=' + data.followdate + '&time=' + data.followtime + '&remarks=' + data.remarks + '&ExpectedClose=' + data.closedDate + '&ExpectedAmount=' + data.expectedAmount + '&Leadby=' + data.leadBy + '&UserID=' + data.uservalue + '&userType=' + data.userTypeid + '&LocationId=' + data.LocationId + '&EmailId=' + data.email_id + '&Currency=' + data.currency + '', {
+      debugger;
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl +
+         'insertlead' + '/?functionid=' + data.functionid + '&BRANCH_ID=' + data.branchid + '&productcategoryid=' + data.prod_cat + '&productid=' + data.product_id + '&campaignid=' + camp_id + '&customerfname=' + data.firstName + '&customerlname=' + data.lastName + '&mobile=' + data.mobile + '&OfficePhone=' + data.OffPhone + '&ResidencePhone=' + data.ResPhone + '&callpriorityid=' + data.priority + '&callratingid=' + data.rating + '&callnatureid=' + data.nature + '&leadsourceid=' + data.source + '&callstageid=' + data.stage + '&customerresponse=' + data.response + '&NextCallDate=' + data.followdate + '&time=' + data.followtime + '&remarks=' + data.remarks + '&ExpectedClose=' + data.closedDate + '&ExpectedAmount=' + data.expectedAmount + '&Leadby=' + data.leadBy + '&UserID=' + data.uservalue + '&userType=' + data.userTypeid + '&LocationId=' + data.LocationId + '&EmailId=' + data.email_id + '&Currency=' + data.currency + '', {
         headers: options,
       }).subscribe(resp => {
         console.log("mobileapi : " + JSON.stringify(resp));
