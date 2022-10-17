@@ -2263,8 +2263,7 @@ export class NewleadRetailPage implements OnInit {
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       debugger;
-      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl +
-         'insertlead' + '/?functionid=' + data.functionid + '&BRANCH_ID=' + data.branchid + '&productcategoryid=' + data.prod_cat + '&productid=' + data.product_id + '&campaignid=' + camp_id + '&customerfname=' + data.firstName + '&customerlname=' + data.lastName + '&mobile=' + data.mobile + '&OfficePhone=' + data.OffPhone + '&ResidencePhone=' + data.ResPhone + '&callpriorityid=' + data.priority + '&callratingid=' + data.rating + '&callnatureid=' + data.nature + '&leadsourceid=' + data.source + '&callstageid=' + data.stage + '&customerresponse=' + data.response + '&NextCallDate=' + data.followdate + '&time=' + data.followtime + '&remarks=' + data.remarks + '&ExpectedClose=' + data.closedDate + '&ExpectedAmount=' + data.expectedAmount + '&Leadby=' + data.leadBy + '&UserID=' + data.uservalue + '&userType=' + data.userTypeid + '&LocationId=' + data.LocationId + '&EmailId=' + data.email_id + '&Currency=' + data.currency + '', {
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'insertlead' + '/?functionid=' + data.functionid + '&BRANCH_ID=' + data.branchid + '&productcategoryid=' + data.prod_cat + '&productid=' + data.product_id + '&campaignid=' + camp_id + '&customerfname=' + data.firstName + '&customerlname=' + data.lastName + '&mobile=' + data.mobile + '&OfficePhone=' + data.OffPhone + '&ResidencePhone=' + data.ResPhone + '&callpriorityid=' + data.priority + '&callratingid=' + data.rating + '&callnatureid=' + data.nature + '&leadsourceid=' + data.source + '&callstageid=' + data.stage + '&customerresponse=' + data.response + '&NextCallDate=' + data.followdate + '&time=' + data.followtime + '&remarks=' + data.remarks + '&ExpectedClose=' + data.closedDate + '&ExpectedAmount=' + data.expectedAmount + '&Leadby=' + data.leadBy + '&UserID=' + data.uservalue + '&userType=' + data.userTypeid + '&LocationId=' + data.LocationId + '&EmailId=' + data.email_id + '&Currency=' + data.currency + '', {
         headers: options,
       }).subscribe(resp => {
         console.log("mobileapi : " + JSON.stringify(resp));
@@ -2415,10 +2414,12 @@ export class NewleadRetailPage implements OnInit {
     }
   }
   async Cancelretail() {
-    if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.remarks == undefined)) {
+    console.log('click check');
 
-    }
-    else {
+    // if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.remarks == undefined)) {
+
+    // }
+    // else {
       const alert = await this.alertController.create({
         header: 'Confirm',
         message: 'Are you sure want to Cancel the Process',
@@ -2437,6 +2438,8 @@ export class NewleadRetailPage implements OnInit {
               this.branchlocation = "<< Select >>";
               this.productdata = "<< Select >>";
               this.nextaction = "<< Select >>";
+              this.Currency = "<< Select >>";
+              this.email = undefined;
               this.Salutation = "<< Select >>";
               this.firstname = undefined;
               this.lastname = undefined;
@@ -2467,7 +2470,7 @@ export class NewleadRetailPage implements OnInit {
       });
 
       await alert.present();
-    }
+    // }
   }
   async presentAlertConfirm(heading, tittle) {
     const alert = await this.alertController.create({
