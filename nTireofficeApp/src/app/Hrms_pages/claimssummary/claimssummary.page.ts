@@ -112,7 +112,7 @@ export class ClaimssummaryPage implements OnInit {
        access_token: this.token,
        function: parseInt(this.function_id),
        Branch:parseInt(this.TUM_BRANCH_ID),
-       EmpId: parseInt(this.empID),
+       EmpId: this.empID,
        ExpCategory:cat,
        Description:descrpt,
        Status:status,
