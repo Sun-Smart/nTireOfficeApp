@@ -37,6 +37,7 @@ export class ReconciliationReportPage implements OnInit {
   date2;
   detailrecons;
   scannedCode;
+  newasset: any;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -64,6 +65,8 @@ export class ReconciliationReportPage implements OnInit {
   }
 
   getItems(ev: any) {
+    this.newasset = ev.target.value;
+    console.log(this.newasset);
     this.assetcode1 = [];
     if (ev.target.value == "") {
       this.assetcode1 = [];
@@ -80,6 +83,7 @@ export class ReconciliationReportPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
+      "assetcode" :this.newasset,
     };
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodelist',params, {
       headers: options,

@@ -23,7 +23,7 @@
           </option>
         </select>
       </ion-col>
-      
+
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch Location</ion-label>
         <select [(ngModel)]="branchlocation" class="form-control">
@@ -64,7 +64,7 @@
         <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;"
           [(ngModel)]="mobile" minlength="10" maxlength="15" #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
-          <p style="color:red;">valid mobile number required</p>s
+          <p style="color:red;">valid mobile number required</p>
         </div>
 
 

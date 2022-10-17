@@ -1,3 +1,4 @@
+/* eslint-disable use-isnan */
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable radix */
@@ -627,9 +628,11 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
         headers: options,
-      }).subscribe(resp => {
+      }).subscribe((resp: any) => {
         console.log("pendleadsdatalength : " + JSON.stringify(resp));
-        this.pendingleadsdatalength = Object.keys(resp).length;
+
+        this.pendingleadsdatalength = resp.length;
+        console.log(this.pendingleadsdatalength)
       }, error => {
 
 
@@ -809,8 +812,13 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
       headers: options,
     }).subscribe(resp => {
+
+      if (resp == null) {
+        this.pendingleadsdatalength = 0
+      }
       console.log("pendleadsdatalength : " + JSON.stringify(resp));
       this.pendingleadsdatalength = Object.keys(resp).length;
+      console.log(this.pendingleadsdatalength)
     }, error => {
 
 
@@ -819,9 +827,10 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
       headers: options,
     }).subscribe(resp => {
-      if (resp == null || resp == '') {
-        this.shownorecord = true
-      }
+
+      // if (resp == null || resp == '') {
+      //   this.shownorecord = true
+      // }
 
       // console.log("pendleaddetails1 : " + JSON.stringify(resp));
       this.loadingdismiss();
@@ -829,6 +838,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       this.pendleaddetails1.forEach(element => {
         this.pendleaddetails = element;
         console.log("pendleaddetails1 : " + JSON.stringify(element));
+
 
       });
 

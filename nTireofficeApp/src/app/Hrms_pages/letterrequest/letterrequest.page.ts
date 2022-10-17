@@ -156,7 +156,7 @@ export class LetterrequestPage implements OnInit {
           handler: () => {
 
             this.requestType = "";
-            //   this.reason = undefined;
+              this.reason = undefined;
           }
         }
       ]

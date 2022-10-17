@@ -318,11 +318,13 @@ if(params.length !=undefined) {
     let getdate = new Date();
     var nowdate = getdate.toISOString().replace('Z', '').replace('T', ' ');
 
-
+if(this.reqtype =null || this.reqtype ==''){
+  this.reqtype=0
+}
 
     var OBJ = {
       EmpId: this.getemployeid,
-      req_type: this.reqtype,
+      req_type: this.reqtype.toString(),
 
       scheme_id: this.schemeid,
       // MonthLy_installment: moninstall,
