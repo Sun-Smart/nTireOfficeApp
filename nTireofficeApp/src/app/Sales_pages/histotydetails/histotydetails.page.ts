@@ -83,7 +83,7 @@ export class HistotydetailsPage implements OnInit {
       m => new Date(m.EXPECTEDCLOSEDDATE.split('/')[2] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[1] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[0]) >= new Date(start) && new Date(m.EXPECTEDCLOSEDDATE.split('/')[2] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[1] + '-' + m.EXPECTEDCLOSEDDATE.split('/')[0]) <= new Date(end)
     );
 
-    this.shownodata = true
+    this.shownodata = true;
     //let date = new Date(item.created_at);
     // return date >= start && date <= end;
     // console.log('showhistforuser after'+JSON.stringify(this.showhistforuser));
@@ -102,6 +102,7 @@ export class HistotydetailsPage implements OnInit {
       user_id: parseInt(window.localStorage['TUM_USER_ID']),
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       // TCC_CUST_LEAD_ID: window.localStorage['customer-lead_id'],
+      Campaign:"0",
       CUST_LNAME: "",
       TCC_LEAD_PRIORITY: "",
       TCC_LEAD_BY: "",
