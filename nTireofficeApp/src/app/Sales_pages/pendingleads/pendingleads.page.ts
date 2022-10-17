@@ -1100,12 +1100,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     var appdate = items.TCC_NEXT_CALL_DATE.split('T');
     console.log(appdate)
     // var time=$filter('date')(response.data[j].TCC_NEXT_CALL_DATE, "hh:mm a");
-    var time1 = appdate[1].split(':');
+    var time1 = appdate[1];
     console.log(time1)
     var d1 = appdate[0].split('-');
     console.log(d1);
-    var appdate1 = d1[0] + '-' + d1[1] + '-' + d1[2] + ' ' + time1[0] + ':' + time1[1];
-    var meetcurTime = new Date(appdate1)
+    // var appdate1 = d1[0] + '-' + d1[1] + '-' + d1[2] + ' ' + time1[0] + ':' + time1[1];
+    // var meetcurTime = new Date(appdate1)
     //console.log(today.getTime() +" "+  dat.getTime());
     //  $ionicLoading.show({
     //    template: '<ion-spinner class="spinner-energized"></ion-spinner><div  class="col"> Loading... </div>'
@@ -1130,7 +1130,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       // alert("today date")
       var ttime = today.getTime();
       // var mtime=nextcall.getTime();
-      var mtime = meetcurTime.getTime();
+      // var mtime = meetcurTime.getTime();
 
       var geocoder = new google.maps.Geocoder();
 

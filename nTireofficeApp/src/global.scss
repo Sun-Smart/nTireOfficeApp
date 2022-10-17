@@ -1241,7 +1241,7 @@ ion-searchbar {
   font-size: 18px;
 }
 .alert-button.ion-focused.sc-ion-alert-ios, .alert-tappable.ion-focused.sc-ion-alert-ios {
-   background: var(--ion-color-step-100, red) !important;
+   background: red !important;
 }
 //stobart dropdown left aligment//
 #selectbutton{
@@ -1255,9 +1255,4 @@ ion-searchbar {
   --box-shadow: none;
     --background: green;
     color: #ffff;
-}
-
-.norecord {
-
-  color: #000000;
 }
