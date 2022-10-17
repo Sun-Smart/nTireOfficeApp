@@ -67,7 +67,7 @@
         <ion-label class="card_content_label">Mobile Number <span style="color:red;margin-left: 5px;">*</span>
         </ion-label>
 
-        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==10) return false;" pattern="[0-9]*" [(ngModel)]="mobile" minlength="10" maxlength="13"
+        <ion-input type="tel" class="form-control" onKeyPress="if(this.value.length==10) return false;" pattern="[0-9]*" [(ngModel)]="mobile" minlength="10" maxlength="10"
           #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
