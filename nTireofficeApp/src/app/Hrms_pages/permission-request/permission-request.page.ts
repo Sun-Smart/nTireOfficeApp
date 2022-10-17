@@ -4,6 +4,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
+import { analytics } from '@angular-devkit/core';
 
 @Component({
   selector: 'app-permission-request',
@@ -122,7 +123,7 @@ var perm={
   status:this.status
 }
 
-   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/" + window.localStorage['FUNCTION_ID'] + "/" + perm.empID + "/" + perm.reqID + "/" + date + "/" + permDate + "/" + fromHour + "/" + toHour + "/" + this.contact + "/" + this.reason + "/" + this.status).then(resp=>{
+   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/" + window.localStorage['FUNCTION_ID'] + "/" + perm.empID + "/" + perm.reqID + "/" + date + "/" + permDate + "/" + fromHour + "/" + toHour + "/" + this.contact + "/" + this.reason + "/" + this.status).then((resp : any)=>{
 
     if (resp == '"Permission is not enabled for this Employee"') {
       // console.log("Gotcha : " + resp);
@@ -153,7 +154,9 @@ var perm={
     } else {
       //IF ATTENDANCE IS PRESENT
 
-      var replace = resp.toString().replace(/"/g, '');
+      // var replace = resp.toString().replace(/"/g, '');
+      var replace = resp.replace(/"/g, '');
+
       var split = replace.split("@");
       this.rreqid3 = split[0];
       // console.log(""+this.reqID);
