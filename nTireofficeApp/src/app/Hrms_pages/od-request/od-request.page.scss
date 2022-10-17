@@ -2,7 +2,16 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+ion-checkbox {
+  --size: 20px;
+  --background-checked: #2274ee;
+}
 
+ion-checkbox {
+  border-radius: 6px;
+  --background: #ffffff !important;
+  border: 2px solid #237ef5;
+}
 
 ion-item {
   margin-top: 7px !important;
@@ -11,6 +20,11 @@ ion-item {
   --font-weight: bold;
   --font-weight: 600;
   border-radius: 5px;
+}
+.ContentName {
+  color: #000 !important;
+  font-weight: 700 !important;
+  margin: 2px;
 }
 
 ion-toolbar {
