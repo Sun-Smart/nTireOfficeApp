@@ -644,7 +644,7 @@ export class MyprofilePage implements OnInit {
               empID: window.localStorage.getItem("EmployeeID"),
             };
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert("", "Education Details Removed");
+              this.toastmessageService.presentAlert1("", "Education Details Removed");
               this.getEducationDaetails();
             }, error => {
 
@@ -680,7 +680,7 @@ export class MyprofilePage implements OnInit {
               empID: window.localStorage.getItem("EmployeeID"),
             };
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert("", "Career Details Removed");
+              this.toastmessageService.presentAlert1("", "Career Details Removed");
               this.getcarrierDaetails();
             }, error => {
 
@@ -799,7 +799,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('', 'Error Updating Profile');
+            this.presentAlert1('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -868,7 +868,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('', 'Error Updating Profile');
+            this.presentAlert1('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -937,7 +937,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('', 'Error Updating Profile');
+            this.presentAlert1('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -1010,7 +1010,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('', 'Error Updating Profile');
+            this.presentAlert1('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -1034,11 +1034,25 @@ export class MyprofilePage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass: 'buttonCss',
+      cssClass: 'Cssbutton',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
     await alert.present();
     }
+
+    async presentAlert1(heading, tittle) {
+      var alert = await this.alertController.create({
+        header: heading,
+        cssClass: 'buttonCss',
+        backdropDismiss: false,
+        message: tittle,
+        buttons: ['OK']
+      });
+      await alert.present();
+      }
+
 }
+
+

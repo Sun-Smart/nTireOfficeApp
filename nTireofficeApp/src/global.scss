@@ -1256,3 +1256,19 @@ ion-searchbar {
     --background: green;
     color: #ffff;
 }
+
+.ion-checkbox {
+  border-radius: 6px;
+  --background: #ffffff !important;
+  border: 2px solid #237ef5;
+}
+
+.ion-checkbox {
+  --size: 20px;
+  --background-checked: #2274ee;
+}
+
+.norecord
+{
+  color: black;
+}
