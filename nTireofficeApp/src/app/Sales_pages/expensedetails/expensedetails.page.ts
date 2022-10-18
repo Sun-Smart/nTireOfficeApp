@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable radix */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable no-undef-init */
@@ -133,6 +134,7 @@ export class ExpensedetailsPage implements OnInit {
   }
 
   searchAppointment(val, usertype, fromdate, todate) {
+    debugger;
     this.allmeetingArray1 = [];
     if (this.brach == "") {
       this.presentAlert1('', 'Please Enter Branch');
@@ -181,10 +183,12 @@ export class ExpensedetailsPage implements OnInit {
             const header = new Headers();
             header.append("Content-Type", "application/json");
             let options = new HttpHeaders().set('Content-Type', 'application/json');
+            debugger;
             this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointmentsbyUser/', getappbyuserJSON, {
               headers: options,
             }).subscribe(resp => {
               this.allappointments = resp;
+
               //console.log(this.allappointments)
               if (this.allappointments.length != 0) {
                 this.meetingArray.push({
@@ -199,9 +203,9 @@ export class ExpensedetailsPage implements OnInit {
 
                   this.today = new Date();
                   // console.log(this.today)
-                  this.formattedDate = this.datePipe.transform(this.today, 'yyyy-MM-dd');
+                  this.formattedDate = this.datePipe.transform(this.today, 'dd-MM-yyyy');
 
-                  this.formattedDate1 = this.datePipe.transform(datetime[0], 'yyyy-MM-dd');
+                  this.formattedDate1 = this.datePipe.transform(datetime[0], 'dd-MM-yyyy');
 
                   this.formattedTime = this.datePipe.transform(this.today, 'HH:mma');
 
@@ -301,9 +305,12 @@ export class ExpensedetailsPage implements OnInit {
         }
         if (fromdate != undefined && todate != undefined) {
 
-          this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd');
+          // this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd');
 
-          this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd');
+          // this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd');
+
+          this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy');
+          this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy');
 
           // this.fromdate = fromdate
           // this.todate = todate
@@ -378,9 +385,9 @@ export class ExpensedetailsPage implements OnInit {
                 this.allmeetingArray1[j].meeting_array[k].AppointmentDate = this.datePipe.transform(date[0], 'dd/MM/yyyy');
                 this.today = new Date();
                 // console.log(this.today)
-                this.formattedDate = this.datePipe.transform(this.today, 'yyyy-MM-dd');
+                this.formattedDate = this.datePipe.transform(this.today, 'dd-MM-yyyy');
 
-                this.formattedDate1 = this.datePipe.transform(date[0], 'yyyy-MM-dd');
+                this.formattedDate1 = this.datePipe.transform(date[0], 'dd-MM-yyyy');
 
                 // console.log(this.formattedDate1)
                 this.formattedTime = this.datePipe.transform(this.today, 'HH:mma');
@@ -400,7 +407,7 @@ export class ExpensedetailsPage implements OnInit {
                   var el = new Date();
                   var parts = app_date.split('T');
                   var parts2 = parts[1];
-                  var parts3 = parts2.split(':');
+                  var parts3 = parts2?.split(':');
                   // console.log(parts3)
                   var sHours = parts3[0];
                   var sMinutes = parts3[1];
@@ -486,8 +493,8 @@ export class ExpensedetailsPage implements OnInit {
 
                 this.today = new Date();
                 // console.log(this.today)
-                this.formattedDate = this.datePipe.transform(this.today, 'yyyy-MM-dd');
-                this.formattedDate1 = this.datePipe.transform(datetime[0], 'yyyy-MM-dd');
+                this.formattedDate = this.datePipe.transform(this.today, 'dd-MM-yyyy');
+                this.formattedDate1 = this.datePipe.transform(datetime[0], 'dd-MM-yyyy');
                 this.formattedTime = this.datePipe.transform(this.today, 'HH:mma');
 
                 if (this.formattedDate1 < this.formattedDate) {
@@ -620,9 +627,9 @@ export class ExpensedetailsPage implements OnInit {
 
           this.today = new Date();
           // //console.log(this.today)
-          this.formattedDate = this.datePipe.transform(this.today, 'yyyy-MM-dd');
+          this.formattedDate = this.datePipe.transform(this.today, 'dd-MM-yyyy');
 
-          this.formattedDate1 = this.datePipe.transform(date[0], 'yyyy-MM-dd');
+          this.formattedDate1 = this.datePipe.transform(date[0], 'dd-MM-yyyy');
           this.formattedTime = this.datePipe.transform(this.today, 'HH:mma');
 
           if (this.formattedDate1 < this.formattedDate) {

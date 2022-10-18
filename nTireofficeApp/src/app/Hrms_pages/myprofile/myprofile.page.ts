@@ -111,6 +111,7 @@ export class MyprofilePage implements OnInit {
   public buttonClicked: boolean = false;
   username = window.localStorage.getItem('TUM_USER_NAME');
   empID: any;
+  showSave: boolean;
   constructor(public modalController: ModalController, public alertController: AlertController,
     public toastmessageService: ToastmessageService, private datepipe: DatePipe, public sanitizer: DomSanitizer, private base64: Base64, private crop: Crop, private camera: Camera, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, private http: HttpClient, public actionSheetController: ActionSheetController) {
     this.emp_id = window.localStorage['TUM_EMP_CODE'];
@@ -537,6 +538,7 @@ export class MyprofilePage implements OnInit {
 
   emailnumbaervalid(event) {
     var emailcheck = validateemail(event.target.value);
+    console.log('emailcheck ', emailcheck);
     if (emailcheck == false) {
       this.validemail = true;
       return
@@ -791,13 +793,13 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert('','Personal Details Updated');
+            this.presentAlert('', 'Personal Details Updated');
 
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -861,12 +863,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert("","Current Address Updated");
+            this.presentAlert("", "Current Address Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -930,12 +932,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert('','Permanent Address Updated');
+            this.presentAlert('', 'Permanent Address Updated');
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert('', 'Error Updating Profile');
           }
         }, error => {
 
@@ -980,6 +982,7 @@ export class MyprofilePage implements OnInit {
 
 
         // API CALLING FOR CONTACT DETAILS
+
         this.ContactDetailsObject = {
           empID: window.localStorage.getItem("EmployeeID"),
           Type: "ContactDetails",
