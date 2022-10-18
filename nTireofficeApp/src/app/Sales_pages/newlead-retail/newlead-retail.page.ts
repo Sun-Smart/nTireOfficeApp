@@ -2425,14 +2425,14 @@ export class NewleadRetailPage implements OnInit {
         message: 'Are you sure want to Cancel the Process',
         buttons: [
           {
-            text: 'Cancel',
-            role: 'cancel',
+            text: 'No',
+            role: 'no',
             cssClass: 'secondary',
             handler: (blah) => {
               console.log('Confirm Cancel: blah');
             }
           }, {
-            text: 'Ok',
+            text: 'Yes',
             handler: () => {
               this.branch = "<< Select >>";
               this.branchlocation = "<< Select >>";
