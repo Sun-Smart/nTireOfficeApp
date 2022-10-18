@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <ion-content>
   <!-- [scrollEvents]="true"
   (ionScrollStart)="logScrollStart()"
@@ -394,7 +395,7 @@
                 [disabled]="!profile.Email || !profile.Mobile" style="margin-top: -13px!important;
                         font-size: 22px!important;background: transparent;">
                 <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;margin-top: -13px;
-                          font-size: 22px;"></i>
+                          font-size: 22px;" *ngIf="!validemail"></i>
               </button>
             </ion-col>
 

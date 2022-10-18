@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -18,6 +18,7 @@ import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
     MyprofilePageRoutingModule
   ],
   providers:[DatePipe,Base64,Crop,Camera],
-  declarations: [MyprofilePage]
+  declarations: [MyprofilePage],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class MyprofilePageModule {}
