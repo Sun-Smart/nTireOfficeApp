@@ -226,7 +226,6 @@ this.backbutton();
 
         await alert1.present();
       // this.logout();
-
       }
       else if (this.router.url === '/login') {
         navigator['app'].exitApp();
@@ -313,17 +312,18 @@ this.backbutton();
        if (this.monthdata == undefined) {
          this.monthdata = "0";
        }
-       var obj={
-         empID: window.localStorage.getItem('EmployeeID'),
-         year:this.yeardata,
-         month:this.monthdata
 
-       }
+
+       var obj={
+        empID: window.localStorage.getItem('EmployeeID'),
+        year:this.yeardata,
+        month:this.monthdata
+
+      }
        this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp:any)=>{
 
         this.loadingdismiss();
         console.log(resp)
-
         debugger
         //  this.attendanceList = JSON.parse(resp.toString());
          this.attendanceList =resp;
@@ -796,6 +796,7 @@ this.backbutton();
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
+      cssClass: 'buttonCss',
 backdropDismiss:false,
       message: tittle,
       buttons: ['OK']

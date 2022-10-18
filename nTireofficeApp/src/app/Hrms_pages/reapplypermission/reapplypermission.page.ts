@@ -116,7 +116,7 @@ this.item.PermDate1 = this.item.PermDate1;
 
 
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"SavePermission/"+window.localStorage['FUNCTION_ID']+'/'+this.item.EmpID+'/'+this.item.ReqRef+'/'+this.item.RDate+'/'+this.item.PermDate1+'/'+this.fromhour+'/'+this.tohour+'/'+this.item.MobileNum+'/'+this.item.Reason+'/'+this.item.Status).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/"+window.localStorage['FUNCTION_ID']+'/'+this.item.EmpID+'/'+this.item.ReqRef+'/'+this.item.RDate+'/'+this.item.PermDate1+'/'+this.fromhour+'/'+this.tohour+'/'+this.item.MobileNum+'/'+this.item.Reason+'/'+this.item.Status).then(resp=>{
       console.log(""+JSON.stringify(resp));
 
       if (resp == '"Permission is not enabled for this Employee"') {

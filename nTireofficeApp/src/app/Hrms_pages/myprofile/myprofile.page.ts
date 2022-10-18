@@ -34,6 +34,7 @@ import { OpenaddemploymentpagePage } from '../openaddemploymentpage/openaddemplo
 import { ActionSheetController } from '@ionic/angular';
 import { data } from 'jquery';
 
+
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.page.html',
@@ -49,7 +50,8 @@ export class MyprofilePage implements OnInit {
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    correctOrientation: true //Corrects Android orientation quirks
+    correctOrientation: true, //Corrects Android orientation quirks
+
   }
   validemail: boolean;
   profile1: any = [];
@@ -1037,7 +1039,6 @@ export class MyprofilePage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
-  }
+    }
 }

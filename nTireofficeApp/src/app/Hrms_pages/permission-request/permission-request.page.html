@@ -26,8 +26,8 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Contact Number</ion-label>
-        <ion-input type="number" style="background-color: white;
-                            color: black;" class="form-control"  [(ngModel)]="contact"></ion-input>
+        <ion-input type="number"onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
+         style="background-color: white;color: black;" class="form-control"  [(ngModel)]="contact"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName" >Request Reference</ion-label>

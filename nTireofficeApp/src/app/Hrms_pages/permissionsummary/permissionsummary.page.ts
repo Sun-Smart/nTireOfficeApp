@@ -87,15 +87,18 @@ export class PermissionsummaryPage implements OnInit {
     // console.log(Object.values(this.display1).filter(user => this.display1.Status === 1));
     // console.log(Object.values(this.display1).filter((data:any)=> this.display1.Status === 1));
     this.display = Object.values(this.display1).filter((data: any) => {
-      console.log(data)
+      // console.log(data)
 
-      return data.Status.indexOf(this.status) > -1;
+      // return data.Status.indexOf(this.status) > -1;
+      // console.log(data.Status.indexOf(this.status) != -1);
+
+      return data.indexOf(this.status) > -1;
 
     });
 
-    if (this.display.length == 0) {
-      this.error = "No data found";
-    }
+    // if (this.display.length == 0) {
+    //   this.error = "No data found";
+    // }
   }
   formatDate(value) {
     value = new Date(value);
@@ -167,6 +170,7 @@ export class PermissionsummaryPage implements OnInit {
 
   }
   async cancelRequest(permData) {
+    debugger;
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Do you want to cancel?',
@@ -182,19 +186,26 @@ export class PermissionsummaryPage implements OnInit {
           text: 'Ok',
           handler: () => {
 
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "CancelRequest/" + permData.ReqRef + "/" + 'P').then(resp => {
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CancelRequest/" + permData.ReqRef + "/" + 'P').then(resp => {
               this.toastmessageService.presentAlert1("", "Request Cancelled");
+              this.filterDate(undefined, undefined);
+
             }, error => {
 
               console.log("error : " + JSON.stringify(error));
 
             });
           }
+
         }
+
       ]
+
     });
 
     await alert.present();
+
+
   }
 
   async presentLoadingWithOptions() {
