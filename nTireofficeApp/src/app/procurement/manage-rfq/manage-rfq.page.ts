@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
   // schemas:[CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA]
 })
 export class ManageRfqPage implements OnInit {
-  showvendorqrotation:boolean = false;
-  showvendorqrotationaction:boolean = true;
-  selectAllissue:boolean = false;
-  selectAllvendor:boolean = false;
+  showvendorqrotation: boolean = false;
+  showvendorqrotationaction: boolean = true;
+  selectAllissue: boolean = false;
+  selectAllvendor: boolean = false;
 
 
   constructor(private router: Router) { }
@@ -28,13 +28,13 @@ export class ManageRfqPage implements OnInit {
   //   // showvendorqrotation
   // }
   RequestVenderQuotation() {
-    this.showvendorqrotation = true;
-    this.showvendorqrotationaction = false;
+    // this.showvendorqrotation = true;
+    // this.showvendorqrotationaction = false;
   }
 
   selectAllissueCheckbox(value) {
     console.log(value);
-    if(value == false) {
+    if (value == false) {
       this.selectAllissue = true;
     }
     else {
@@ -44,7 +44,7 @@ export class ManageRfqPage implements OnInit {
 
   selectAllvendorCheckbox(value) {
     console.log(value);
-    if(value == false) {
+    if (value == false) {
       this.selectAllvendor = true;
     }
     else {
@@ -54,9 +54,9 @@ export class ManageRfqPage implements OnInit {
   back() {
     this.router.navigate(['/rfq'])
   }
-  VendorQuotation(){
+  VendorQuotation() {
 
-  this.router.navigate(['/vendor-quotation'])
+    this.router.navigate(['/vendor-quotation'])
 
   }
 }

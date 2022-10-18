@@ -3,25 +3,146 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>interLocationTransfer</ion-title>
+    <ion-title>Inter Location Transfer</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<p style="text-align:center ;">inter Location transfer </p>
+  <ion-row>
+
+
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Branch</ion-label>
+      <select style="padding: 10px;" disabled=""
+        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+        class="Input-text-field textareaField">
+        <option>&lt;&lt; Select &gt;&gt;</option>
+      </select>
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">TRF Order No</ion-label>
+      <ion-input type="text" [(ngModel)]="trforderno" class="Input-text-field textareaField"></ion-input>
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Item Code</ion-label>
+      <ion-input type="text" [(ngModel)]="Itemcode" class="Input-text-field textareaField"></ion-input>
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">From TRF Date</ion-label>
+      <input type="date" [(ngModel)]="fromtrfdate" class="Input-text-field textareaField"
+        style=" display:inline-block;padding: 8px;">
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">To TRF Date</ion-label>
+      <input type="date" [(ngModel)]="totrfdate" class="Input-text-field textareaField"
+        style=" display:inline-block;padding: 8px;">
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Mode</ion-label>
+      <select style="padding: 10px;" disabled=""
+        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+        class="Input-text-field textareaField">
+        <option> Inter </option>
+      </select>
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Status</ion-label>
+      <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
+        class="Input-text-field textareaField">
+        <option>&lt;&lt; Select &gt;&gt;</option>
+        <option value="New">New</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Denied">Denied</option>
+        <option value="Under Process">Under Process</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col style="text-align: center;">
+      <ion-button class="ion-color-primary" (click)="showline()" expand="block">New</ion-button>
+    </ion-col>
+    <ion-col style="text-align: center;">
+      <ion-button class="ion-color-success" expand="block" (click)="Search()">
+        <ion-icon style="color:white ;" name="search-outline"></ion-icon>
+        Search
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <!-- <p style="text-align:center;">inter Location transfer </p> -->
+  <ion-card *ngIf="showfilter">
+    <ion-grid *ngIf="showlineItems===false">
+      <ion-card-header class="card_header1">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label class="interlable">Inter Location Transfer Master</ion-label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-label class="card_header_text">
+              <ion-icon (click)="close()" style="color: red;" name="close-circle"></ion-icon>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-row>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Form Branch</ion-label>
+          <select style="padding: 10px;" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Transfer Id</ion-label>
+          <ion-input type="text" [(ngModel)]="transferid" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Transfer Referance</ion-label>
+          <ion-input type="text" [(ngModel)]="transferrefer" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">To Branch</ion-label>
+          <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="Manchester">Manchester</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Taipei">Taipei</option>
+            <option value="London">London</option>
+            <option value="Porto">Porto</option>
+            <option value="Lyon">Lyon</option>
+            <option value="New York City">New York City</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Ahemdabad">Ahemdabad</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Pune">Pune</option>
+            <option value="Abu Dhabi">Abu Dhabi</option>
+            <option value="Sharjah">Sharjah</option>
+          </select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>
 
 
 <ion-footer>
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
 
 
- </ion-footer>
+</ion-footer>

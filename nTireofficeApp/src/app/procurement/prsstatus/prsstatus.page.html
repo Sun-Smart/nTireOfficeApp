@@ -1,4 +1,4 @@
-<ion-header >
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -34,12 +34,14 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">From Date</ion-label>
-          <input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px; color: black !important;
+          font-weight: 600;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">To Date</ion-label>
-          <input type="date" [(ngModel)]="todate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <input type="date" [(ngModel)]="todate" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px; color: black !important;
+          font-weight: 600;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -104,7 +106,8 @@
           <ion-col size="3">
             <ion-label class="card_header_text">
 
-              <ion-icon [routerLink]="['/updateprsstatus',item.PRS_CODE]" routerLinkActive="router-link-active"  style="color: #fff;" name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
+              <ion-icon [routerLink]="['/updateprsstatus',item.PRS_CODE]" routerLinkActive="router-link-active"
+                style="color: #fff;" name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
               <ion-icon style="color: red;" name="trash-outline"></ion-icon>
             </ion-label>
             <ion-label class="card_header_text">
