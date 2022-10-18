@@ -799,7 +799,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert1('', 'Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -868,7 +868,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert1('', 'Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -937,7 +937,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert1('', 'Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -1010,7 +1010,7 @@ export class MyprofilePage implements OnInit {
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert1('', 'Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
