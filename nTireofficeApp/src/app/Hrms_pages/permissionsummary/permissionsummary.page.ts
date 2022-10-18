@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
-import {ToastmessageService} from '../../service/toastmessage.service';
+import { ToastmessageService } from '../../service/toastmessage.service';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import {ReapplypermissionPage} from'../reapplypermission/reapplypermission.page';
-import { AlertController,LoadingController } from '@ionic/angular';
+import { ReapplypermissionPage } from '../reapplypermission/reapplypermission.page';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -15,8 +15,8 @@ import { AlertController,LoadingController } from '@ionic/angular';
 })
 export class PermissionsummaryPage implements OnInit {
   company;
-  display:any=[];
-  display1:any=[];
+  display: any = [];
+  display1: any = [];
   fromDate;
   toDate;
   error;
@@ -25,81 +25,84 @@ export class PermissionsummaryPage implements OnInit {
   status;
   disabledvalue;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(public modalController: ModalController,private router: Router,public alertController: AlertController,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService,public loadingController: LoadingController,
-    ) {
+  constructor(public modalController: ModalController, private router: Router, public alertController: AlertController, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService, public loadingController: LoadingController,
+  ) {
     this.company = window.localStorage['FUNCTION_DESC'];
-    this.empID=window.localStorage['EmployeeID'];
-    this.FUNCTION_ID= window.localStorage['FUNCTION_ID'];
-    this.status="";
-    this.filterDate(undefined,undefined);
+    this.empID = window.localStorage['EmployeeID'];
+    this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
+    this.status = "";
+    this.filterDate(undefined, undefined);
     // this.getRequestRef();
-   }
-   cancel(){
+  }
+  cancel() {
     // return this.modalController.dismiss(null, 'cancel');
     this.router.navigate(['/permission-request'])
   }
 
   ngOnInit() {
 
-    this.empID=window.localStorage['EmployeeID'];
+    this.empID = window.localStorage['EmployeeID'];
   }
-  filterDate(fromdate,todate){
-    this.display=[];
+  filterDate(fromdate, todate) {
+    this.display = [];
     this.presentLoadingWithOptions();
-     if (fromdate == undefined || fromdate == "") {
+    if (fromdate == undefined || fromdate == "") {
 
-       fromDate = "01-01-1990";
-     } else {
-       var fromDate = this.formatDate(fromdate);
-     }
+      fromDate = "01-01-1990";
+    } else {
+      var fromDate = this.formatDate(fromdate);
+    }
 
-     if (todate == undefined || todate == "") {
-       toDate = "06-06-2079";
-     } else {
-       var toDate = this.formatDate(todate);
-     }
-     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then((resp:any)=>{
+    if (todate == undefined || todate == "") {
+      toDate = "06-06-2079";
+    } else {
+      var toDate = this.formatDate(todate);
+    }
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then((resp: any) => {
       this.loadingdismiss();
-       if (resp != "No Records found") {
+      if (resp != "No Records found") {
 
         //  this.display = JSON.parse(resp.toString());
         this.display = resp;
 
         //  this.display1=JSON.parse(resp);
-        this.display1=JSON.stringify(resp);
-         // console.log($scope.display)
-         var status = this.display[0].Status;
-         this.error = "";
-       } else {
+        this.display1 = JSON.stringify(resp);
+        // console.log($scope.display)
+        var status = this.display[0].Status;
+        this.error = "";
+      } else {
 
 
-         this.display = [];
-         this.error = "No Records Found";
-         this.loadingdismiss();
-       }
-     }, error => {
-     alert('Server Error, Data not loaded.')
-     console.log("error : "+JSON.stringify(error));
-     this.loadingdismiss();
-     });
-   }
-   changeOrder(){
-    this.error=''
+        this.display = [];
+        this.error = "No Records Found";
+        this.loadingdismiss();
+      }
+    }, error => {
+      alert('Server Error, Data not loaded.')
+      console.log("error : " + JSON.stringify(error));
+      this.loadingdismiss();
+    });
+  }
+  changeOrder() {
+    this.error = ''
     debugger
     // console.log(Object.values(this.display1).filter(user => this.display1.Status === 1));
     // console.log(Object.values(this.display1).filter((data:any)=> this.display1.Status === 1));
-    this.display = Object.values(this.display1).filter((data:any) => {
-      console.log(data)
+    this.display = Object.values(this.display1).filter((data: any) => {
+      // console.log(data)
 
-      return data.Status.indexOf(this.status) > -1;
+      // return data.Status.indexOf(this.status) > -1;
+      // console.log(data.Status.indexOf(this.status) != -1);
+
+      return data.indexOf(this.status) > -1;
 
     });
 
-    if(this.display.length==0){
-      this.error = "No data found";
-    }
+    // if (this.display.length == 0) {
+    //   this.error = "No data found";
+    // }
   }
-   formatDate(value) {
+  formatDate(value) {
     value = new Date(value);
 
     var day = value.getDate();
@@ -141,7 +144,7 @@ export class PermissionsummaryPage implements OnInit {
   //  });
   // }
 
-  async openModal(value){
+  async openModal(value) {
     // this.traveldetails={
     //  User_ID:this.Userid,
     //  ODRequestRef:this.ReqRef,
@@ -150,25 +153,26 @@ export class PermissionsummaryPage implements OnInit {
     //   usertoken:window.localStorage['usertoken'],
     //   access_token:window.localStorage['token']
     // }
-   console.log(""+JSON.stringify(value));
-   // this.tempID = "1";
-   const modal = await this.modalController.create({
-     component: ReapplypermissionPage,
-     componentProps: {
-       'item':value,
-     }
+    console.log("" + JSON.stringify(value));
+    // this.tempID = "1";
+    const modal = await this.modalController.create({
+      component: ReapplypermissionPage,
+      componentProps: {
+        'item': value,
+      }
 
 
-   });
-   modal.onDidDismiss()
-   .then((data) => {
-     this.filterDate(undefined,undefined);
- });
+    });
+    modal.onDidDismiss()
+      .then((data) => {
+        this.filterDate(undefined, undefined);
+      });
 
-   return await modal.present();
+    return await modal.present();
 
- }
-  async cancelRequest(permData){
+  }
+  async cancelRequest(permData) {
+    debugger;
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Do you want to cancel?',
@@ -184,19 +188,26 @@ export class PermissionsummaryPage implements OnInit {
           text: 'Ok',
           handler: () => {
 
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "CancelRequest/" + permData.ReqRef + "/" + 'P').then(resp=>{
-              this.toastmessageService.presentAlert1("","Request Cancelled");
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/CancelRequest/" + permData.ReqRef + "/" + 'P').then(resp => {
+              this.toastmessageService.presentAlert1("", "Request Cancelled");
+              this.filterDate(undefined, undefined);
+
             }, error => {
 
-            console.log("error : "+JSON.stringify(error));
+              console.log("error : " + JSON.stringify(error));
 
             });
           }
+
         }
+
       ]
+
     });
 
     await alert.present();
+
+
   }
 
   async presentLoadingWithOptions() {
@@ -209,7 +220,7 @@ export class PermissionsummaryPage implements OnInit {
     });
     return await loading.present();
   }
-  async   loadingdismiss() {
-     return await this.loadingController.dismiss();
+  async loadingdismiss() {
+    return await this.loadingController.dismiss();
   }
 }
