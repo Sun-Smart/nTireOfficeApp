@@ -26,7 +26,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch Location </ion-label>
-        <select  id="selectbutton" [(ngModel)]="branchlocation" class="form-control">
+        <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.locationID">
             {{location.locationname}}</option>
@@ -34,7 +34,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Product <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select  id="selectbutton" [(ngModel)]="productdata" (change)="Getnextaction(productdata)" class="form-control">
+        <select id="selectbutton" [(ngModel)]="productdata" (change)="Getnextaction(productdata)" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let product of productdataarray; let i = index" [ngValue]="product.productID">
             {{product.productName}}</option>
@@ -57,7 +57,8 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Email <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input class="form-control" [(ngModel)]="email" (change)="emailnumbaervalid(email)" ></ion-input>
+        <ion-input class="form-control" [(ngModel)]="email" type="email" (change)="emailnumbaervalid(email)">
+        </ion-input>
         <span *ngIf="email && validemail">
           <span class="error">Valid email is required</span>
         </span>
@@ -68,15 +69,17 @@
         <!-- <ion-input class="form-control" type="number" maxlength="10"
           [(ngModel)]="mobile"></ion-input>
         <span *ngIf="mobile != undefined && mobile.length < 10" style="color: red">valid mobile number required</span> (keyup)="numberOnlyValidation($event)"-->
-        <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;" [(ngModel)]="mobile" minlength="10" maxlength="10"
-        #umobile="ngModel"></ion-input>
+        <ion-input type="number" class="form-control" pattern="[0-9]*"
+          onKeyPress="if(this.value.length==10) return false;" [(ngModel)]="mobile" minlength="10" maxlength="10"
+          #umobile="ngModel"></ion-input>
         <div *ngIf="mobile && umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
         </div>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number</ion-label>
-        <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==13) return false;" [(ngModel)]="OffPhone" minlength="10" maxlength="13"
+        <ion-input type="number" class="form-control" pattern="[0-9]*"
+          onKeyPress="if(this.value.length==13) return false;" [(ngModel)]="OffPhone" minlength="10" maxlength="13"
           #uname="ngModel"></ion-input>
         <!-- <span *ngIf="uname.errors?.number">
           <p style="color:red;">Valid office number is required</p>
@@ -92,7 +95,8 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Telephone Number</ion-label>
-        <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==13) return false;" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
+        <ion-input type="number" class="form-control" pattern="[0-9]*"
+          onKeyPress="if(this.value.length==13) return false;" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
           #resnum="ngModel"></ion-input>
         <div *ngIf="ResPhone && resnum.errors?.minlength || resnum.errors?.maxlength">
           <p style="color:red;">Telephone number should be 10-13 digits</p>
@@ -233,7 +237,7 @@
           ios="ios-attach" md="md-attach" (click)="selectImage()"></i>
         <!-- <ion-icon style="font-size:28px;position: relative;left:50%" ios="ios-attach" md="md-attach" (click)="selectImage()"></ion-icon> -->
         <div style="display:none;word-break: break-all;">
-          <input type="file" name="file" id="fileinput"/>
+          <input type="file" name="file" id="fileinput" />
         </div>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -254,10 +258,11 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Remarks <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-textarea [(ngModel)]="remarks" (keyup)="offnumberOnlyValidation($event)" maxlength="4000" style="height:auto !important" class="form-control">
+        <ion-textarea [(ngModel)]="remarks" (keyup)="offnumberOnlyValidation($event)" maxlength="4000"
+          style="height:auto !important" class="form-control">
         </ion-textarea>
-        <span *ngIf="remarks && remarks != 'undefined' && remarks.length > 0"
-          class="customCounter">{{4000 - remarks.length}}</span>
+        <span *ngIf="remarks && remarks != 'undefined' && remarks.length > 0" class="customCounter">{{4000 -
+          remarks.length}}</span>
 
       </ion-col>
 
@@ -268,10 +273,10 @@
     <ion-row>
 
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-button class="ion-color-success" expand="block" (click)="Submitretail()">Submit</ion-button>
+        <ion-button class="ion-color-success" expand="block" (click)="Submitretail()" [disabled]="validemail == true">Submit</ion-button>
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-        <ion-button (click)="Cancelretail()"  color="danger" expand="block">Cancel</ion-button>
+        <ion-button (click)="Cancelretail()" color="danger" expand="block">Cancel</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

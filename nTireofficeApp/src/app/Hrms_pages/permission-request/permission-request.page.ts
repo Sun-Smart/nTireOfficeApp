@@ -116,7 +116,7 @@ export class PermissionRequestPage implements OnInit {
 
       var perm = {
         contact: this.contact,
-        reqID: "0",
+        reqID: "@",
         userID: this.userID,
         empID: this.empID,
         status: this.status

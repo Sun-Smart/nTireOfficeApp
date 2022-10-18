@@ -100,7 +100,7 @@
                                                                                       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                                                                                       <ion-row>
                                                                                           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                                                                                          <ion-button color='success' (click)="openModal(permissiondata)" [disabled]="permissiondata.Status=='Pending' || permissiondata.Status == 'Approved' || permissiondata.Status == 'Cancelled'">REAPPLY </ion-button>
+                                                                                          <ion-button class="reapply" (click)="openModal(permissiondata)" [disabled]="permissiondata.Status=='Pending' || permissiondata.Status == 'Approved' || permissiondata.Status == 'Cancelled'">REAPPLY </ion-button>
                                                                                           </ion-col>
                                                                                           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
 
@@ -111,7 +111,7 @@
                                         </ion-row>
                                         </ion-grid>
                                         </ion-card>
-                                        <!-- <p  style="text-align:center" *ngIf="display.length==0" class="norecord">No Record Found</p> -->
+ <p  style="text-align:center; color: black !important; " *ngIf="display.length==0" class="norecord">No Record Found</p>
 </ion-content>
 <ion-footer>
 

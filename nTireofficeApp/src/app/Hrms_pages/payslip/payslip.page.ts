@@ -32,7 +32,7 @@ export class PayslipPage implements OnInit {
     this.empid = window.localStorage.getItem('EmployeeID')
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
     this.segmentdata = "earnings";
-   
+
     this.geYears();
     this.geMonths();
     this.getEmployeeList();
@@ -81,7 +81,7 @@ export class PayslipPage implements OnInit {
   }
 
   getPaySlip() {
-    
+
     this.paySlipEarnings = [];
     debugger
     if (this.yeardata == undefined) {
