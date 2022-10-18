@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -53,9 +53,9 @@ export class TaskDetailPage implements OnInit {
   taskdetail(){
     var data = {
       'activityid':this.urldata.amd_activity_id,
-      'assetid':this.urldata.CMD_ASSET_ID,
+      'assetid':parseInt(this.urldata.CMD_ASSET_ID),
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken

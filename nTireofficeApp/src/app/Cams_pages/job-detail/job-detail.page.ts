@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -80,6 +80,7 @@ export class JobDetailPage implements OnInit {
    }
 
   ngOnInit() {
+    debugger;
     this.getJobDetails();
   }
 
@@ -87,7 +88,7 @@ export class JobDetailPage implements OnInit {
 
   }
   getJobDetails(){
-
+debugger;
     var workOrderNum=this.urldata.WorkorderNo;
     console.log(workOrderNum);
     var today = new Date();
@@ -106,20 +107,22 @@ export class JobDetailPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11/1/1/0/0/0/'+this.userID+'/'+this.usertype+'/0/0/MT', {
-
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate=null&tdate=null&Status=null&strUserId='+this.userID+'&UserType='+this.usertype+'&drpcategory=null&drptype=null&TASKTYPE=MT&AssetCode=null', {
+      // 'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+ this.usertype +'&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null'
       headers: options,
     }).subscribe(resp => {
-
+debugger;
+      console.log(resp);
+      
       this.carddata=resp;
-      this.responseData = JSON.parse(this.carddata);
+      this.responseData = this.carddata;
       console.log(this.responseData)
       console.log(workOrderNum)
       var index = this.findWithAttr(this.responseData, 'WorkorderNo', workOrderNum);
       console.log(index)
         this.pendingcomplete = this.responseData;
         this.branch = this.pendingcomplete[index].Branch;
-        console.log(this.branch);
+        console.log("branch",this.branch);
 
         this.AssetCodeComp = this.pendingcomplete[index].pmm_asset_code;
         this.AssetDescriptionComp = this.pendingcomplete[index].pmm_asset_desc;
@@ -130,8 +133,14 @@ export class JobDetailPage implements OnInit {
         this.frequencyd = this.pendingcomplete[index].amd_frequency;
         this.maintanance = this.pendingcomplete[index].amd_maintenance_duration;
         this.assetid = this.pendingcomplete[index].CMD_ASSET_ID;
+        console.log(this.assetid);
+        
         this.activityid = this.pendingcomplete[index].CMD_ACTIVITY_ID;
+        console.log(this.activityid);
+        
         this.pmrref = this.pendingcomplete[index].pmr_reference;
+        console.log( this.pmrref);
+        
         this.Planneddate = this.pendingcomplete[index].TAT_End;
         this.assetreference = this.pendingcomplete[index].pmr_asset_reference;
         this.TATEndsOnComp = this.pendingcomplete[index].pm_due_date;
@@ -139,9 +148,9 @@ export class JobDetailPage implements OnInit {
 
         var datare = {
           'wkno':this.work_num,
-          'assetid':this.assetid,
+          'assetid':parseInt(this.assetid),
           'branchid': this.branchID,
-          'functionid':window.localStorage['FUNCTION_ID'],
+          'functionid':parseInt(window.localStorage['FUNCTION_ID']),
           'access_token':window.localStorage['token'],
           'userid':this.userID,
           'usertoken':this.userToken
@@ -154,6 +163,7 @@ export class JobDetailPage implements OnInit {
         this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/reopencomments',datare, {
           headers: options,
         }).subscribe(resp => {
+          debugger;
           console.log(resp)
           this.comment = resp;
           this.comshow=resp[0].ASSET_REASON;
@@ -215,6 +225,34 @@ if(releaseStatus==true){
   var new_finaltodayDatep = finaltodayDatep_array[1]+'/'+finaltodayDatep_array[0]+'/'+finaltodayDatep_array[2];
   var new_finaltodayDatep1 = new Date(new_finaltodayDatep).getTime();
   console.log(new_finaltodayDatep1)
+  // +this.remarks+'/1/2/100/'+this.pmrref+'/'+this.assetid+'/'+this.activityid+'/1/1/'+this.relstatus
+  if(this.remarks ==''||this.remarks ==undefined){
+    var newRemark =0;
+    }else{
+      newRemark=this.remarks
+    }
+    if(this.pmrref == ''||this.pmrref == undefined){
+      var newpmrref = 0;
+    }else{
+      debugger;
+      newpmrref = this.pmrref;
+    }
+    if(this.assetid == ''||this.assetid == undefined){
+      var newassetid = 0 ;
+    }else{
+      newassetid  = this.assetid;
+    }
+    if(this.activityid  ==''||this.activityid == undefined){
+     var newactivityid = 0
+    }
+    else{
+      newactivityid = this.activityid
+    }
+    if(this.relstatus==''||this.relstatus==undefined){
+      var newrelstatus=0;
+    }else{
+      newrelstatus=this.relstatus
+    }
   if (new_finaltodayDatep1 == new_pduedte1 || new_finaltodayDatep1 > new_pduedte1) {
     var todayDate = new Date();
     var day = todayDate.getDate();
@@ -226,8 +264,8 @@ if(releaseStatus==true){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'/CAMS_PENDING_COMPLETED/'+finaltodayDate+'/01/02/1/0/0/0/0/0/0/'+finaltodayDate+'/'+finaltodayDate+'/'+this.remarks+'/1/2/100/'+this.pmrref+'/'+this.assetid+'/'+this.activityid+'/1/1/'+this.relstatus , {
-
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMS_PENDING_COMPLETED/'+finaltodayDate+'/01/02/1/0/0/0/0/0/0/'+finaltodayDate+'/'+finaltodayDate+'/'+ newRemark +'/1/2/100/'+newpmrref+'/'+newassetid+'/'+newactivityid+'/1/1/'+newrelstatus , {
+      // /CAMS_PENDING_COMPLETED/10-11-2022/01/02/1/0/0/0/0/0/0/10-11-2022/10-11-2022/undefined/1/2/100/594/133/485/1/1/R
       headers: options,
     }).subscribe(resp => {
       console.log(resp)

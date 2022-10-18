@@ -629,6 +629,11 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
         headers: options,
       }).subscribe((resp: any) => {
+        if (resp == "No data found") {
+          resp = "0";
+        } else {
+          resp = resp;
+        }
         console.log("pendleadsdatalength : " + JSON.stringify(resp));
 
         this.pendingleadsdatalength = resp.length;
@@ -640,8 +645,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
 
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
         headers: options,
-      }).subscribe(resp => {
-
+      }).subscribe((resp: any) => {
+        if (resp == "No data found") {
+          resp = "0";
+        } else {
+          resp = resp;
+        }
         // console.log("pendleaddetails1 : " + JSON.stringify(resp));
         this.loadingdismiss();
         this.pendleaddetails1.push(resp);
@@ -811,8 +820,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
       headers: options,
-    }).subscribe(resp => {
-
+    }).subscribe((resp: any) => {
+      if (resp == "No data found") {
+        resp = "0";
+      } else {
+        resp = resp;
+      }
       if (resp == null) {
         this.pendingleadsdatalength = 0
       }
@@ -826,7 +839,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
 
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
       headers: options,
-    }).subscribe(resp => {
+    }).subscribe((resp: any) => {
+      if (resp == "No data found") {
+        resp = "0";
+      } else {
+        resp = resp;
+      }
 
       // if (resp == null || resp == '') {
       //   this.shownorecord = true

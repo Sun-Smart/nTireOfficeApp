@@ -2290,7 +2290,10 @@ export class NewleadRetailPage implements OnInit {
 
 
           var obj = {
-            'LeadID': lead_id_new, 'LatLong': this.appointmentLatLong, 'Address': this.placetomeet,
+            'LeadID': lead_id_new,
+            //  'LatLong': this.appointmentLatLong,
+             'LatLong': 0,
+             'Address': this.placetomeet,
             access_token: window.localStorage['token'],
             userid: parseInt(window.localStorage['TUM_USER_ID']),
             'usertoken': window.localStorage['usertoken'],
@@ -2476,7 +2479,8 @@ export class NewleadRetailPage implements OnInit {
     const alert = await this.alertController.create({
       header: heading,
       message: tittle,
-      cssClass: 'buttonCss',
+      // cssClass: 'buttonCss',
+      cssClass: 'Cssbutton',
       buttons: [
         {
           text: 'Ok',

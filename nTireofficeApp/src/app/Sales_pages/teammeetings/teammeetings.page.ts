@@ -75,6 +75,10 @@ export class TeammeetingsPage implements OnInit {
     this.Getbranches();
     this.getAllMeeting(window.localStorage['TUM_BRANCH_ID']);
     this.username = localStorage.getItem('TUM_USER_NAME');
+    var today = new Date();
+
+    this.fromdate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
   }
 
   ngOnInit() {
