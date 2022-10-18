@@ -33,7 +33,7 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
 
-              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+              <option *ngFor="let branch of branchlist1; let i = index" [Value]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
             </select>
           </ion-col>
