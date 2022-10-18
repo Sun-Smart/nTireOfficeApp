@@ -17,7 +17,7 @@
       </ion-col> -->
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+        <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">{{branch.BRANCH_DESC}}
           </option>
@@ -26,7 +26,7 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch Location</ion-label>
-        <select [(ngModel)]="branchlocation" class="form-control">
+        <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.locationID">
             {{location.locationname}}</option>
@@ -34,7 +34,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Product <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="productdata" (change)="Getnextaction(productdata)" class="form-control">
+        <select id="selectbutton" [(ngModel)]="productdata" (change)="Getnextaction(productdata)" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let product of productdataarray; let i = index" [ngValue]="product.productID">
             {{product.productName}}</option>
@@ -52,7 +52,7 @@
       </ion-col>
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Contact Name<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="ContactName" (change)="Getnumber(ContactName)" class="form-control">
+        <select id="selectbutton" [(ngModel)]="ContactName" (change)="Getnumber(ContactName)" class="form-control">
           <option value="<<Select>>">&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let contact of contact1; let i = index" [ngValue]="contact.contactName">
             {{contact.contactName}}</option>
@@ -61,8 +61,8 @@
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <ion-input type="tel" (keyup)="mobilenumbervalid(mobile)" class="form-control" [(ngModel)]="mobile"></ion-input> -->
-        <ion-input type="number" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;"
-          [(ngModel)]="mobile" minlength="10" maxlength="15" #umobile="ngModel"></ion-input>
+        <ion-input type="tel" class="form-control" pattern="[0-9]*" onKeyPress="if(this.value.length==10) return false;"
+          [(ngModel)]="mobile" minlength="10" maxlength="10" #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
         </div>
@@ -74,7 +74,8 @@
       </ion-col>
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number</ion-label>
-        <ion-input type="tel" class="form-control" [(ngModel)]="OffPhone"  onKeyPress="if(this.value.length==13) return false;"></ion-input>
+        <ion-input type="tel" class="form-control" [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10" maxlength="13"
+         onKeyPress="if(this.value.length==13) return false;"></ion-input>
 
       </ion-col>
       <ion-col *ngIf="old_company == 'false'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -109,7 +110,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Call Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="callpriority" class="form-control">
+        <select id="selectbutton" [(ngModel)]="callpriority" class="form-control">
 
           <option *ngFor="let prioriy of callpriorityarray; let i = index" [ngValue]="prioriy.value">{{prioriy.text}}
           </option>
@@ -117,7 +118,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Call Rating <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="callrating" class="form-control">
+        <select id="selectbutton" [(ngModel)]="callrating" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let rating of callratingarray; let i = index" [ngValue]="rating.value">{{rating.text}}
           </option>
@@ -125,7 +126,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Call Nature <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="callnature" class="form-control">
+        <select id="selectbutton" [(ngModel)]="callnature" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let nature of callnaturearray; let i = index" [ngValue]="nature.value">{{nature.text}}
           </option>
@@ -133,21 +134,21 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="callstage" class="form-control">
+        <select id="selectbutton" [(ngModel)]="callstage" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.value">{{stage.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Lead Source</ion-label>
-        <select [(ngModel)]="source" class="form-control">
+        <select id="selectbutton" [(ngModel)]="source" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.value">{{lead.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Next Action <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="nextaction" class="form-control">
+        <select id="selectbutton" [(ngModel)]="nextaction" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let action of nextactionarray; let i = index" [ngValue]="action.val">{{action.text}}</option>
         </select>
@@ -187,7 +188,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Lead By <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="leadby" class="form-control">
+        <select id="selectbutton" [(ngModel)]="leadby" class="form-control">
           <option value="">&lt;&lt; Select &gt;&gt;</option>
           <option value="S">Self</option>
           <option value="E">Employee</option>

@@ -20,7 +20,8 @@ export class ReapplypermissionPage implements OnInit {
   company: any;
   usertoken: any;
   branch: any;
-  permData: { ITEM: any; };
+  MobileNum: any;
+  ITEM: any;
   fromhour: string;
   tohour: string;
   changeformat: any;
@@ -31,6 +32,9 @@ export class ReapplypermissionPage implements OnInit {
   workflowTable: string;
   reqtype: string;
   reid: string;
+  permData: any;
+  empID: any;
+  status: any;
 
   constructor(private datepipe: DatePipe,public toastmessageService:ToastmessageService,public modalCtrl: ModalController,navParams: NavParams,private HttpRequest: HttprequestService,public Ipaddressservice: IpaddressService) {
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
@@ -85,9 +89,9 @@ export class ReapplypermissionPage implements OnInit {
   }
 
   submitPerm() {
-    // if (this.permData.contact == undefined) {
-    //   this.permData.contact = null;
-    // }
+    if (this.permData.MobileNum === undefined) {
+      this.permData.MobileNum === null;
+    }
 
     this.permData={
       ITEM:this.item,
@@ -105,10 +109,34 @@ else{
  this.item.Status= 'N';
 }
 
-this.fromhour =this.item.FromHours.split(':');
-this.fromhour =this.fromhour[0]+'@'+this.fromhour[1];
-this.tohour =this.item.ToHours;
-this.tohour =this.tohour[0]+'@'+this.tohour[1];
+var fmhour = this.fromhour.split(":")
+    var fromHour = fmhour[0] + "@" + fmhour[1];
+
+    var thour = this.tohour.split(":")
+    var toHour = thour[0] + "@" + thour[1];
+
+
+    if (fromHour == toHour) {
+      this.toastmessageService.presentAlert1("", "From hour and to hour should not be same");
+    }
+    else {
+      if (this.item.MobileNum == undefined) {
+        this.item.MobileNum = null;
+      }
+      this.reqID = "@";
+      // this.reqID = " ";
+      // this.perm.status = "N";
+      this.userID = this.userID;
+
+      var perm = {
+        MobileNum: this.MobileNum,
+        reqID: "@",
+        userID: this.userID,
+        empID: this.empID,
+        status: this.status
+      }
+
+
 this.changeformat = this.item.PermDate;
     this.changeformat=   this.changeformat.split('-');
     this.item.PermDate1=this.changeformat[2]+'-'+this.changeformat[1]+'-'+this.changeformat[0];
@@ -116,7 +144,7 @@ this.item.PermDate1 = this.item.PermDate1;
 
 
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"SavePermission/"+window.localStorage['FUNCTION_ID']+'/'+this.item.EmpID+'/'+this.item.ReqRef+'/'+this.item.RDate+'/'+this.item.PermDate1+'/'+this.fromhour+'/'+this.tohour+'/'+this.item.MobileNum+'/'+this.item.Reason+'/'+this.item.Status).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/"+window.localStorage['FUNCTION_ID']+'/'+this.item.EmpID+'/'+this.item.ReqRef+'/'+this.item.RDate+'/'+this.item.PermDate1+'/'+this.fromhour+'/'+this.tohour+'/'+this.item.MobileNum+'/'+this.item.Reason+'/'+this.item.Status).then(resp=>{
       console.log(""+JSON.stringify(resp));
 
       if (resp == '"Permission is not enabled for this Employee"') {
@@ -298,7 +326,7 @@ this.item.PermDate1 = this.item.PermDate1;
     });
   }
 
-  permCancel()
+  this.permCancel()
   {
     this.item.Reason='';
     this.item.PermDate1='';
@@ -306,4 +334,7 @@ this.item.PermDate1 = this.item.PermDate1;
     this.item.ToHours='';
     this.closemodel(1)
   }
-    }
+    }  permCancel() {
+    throw new Error('Method not implemented.');
+  }
+}

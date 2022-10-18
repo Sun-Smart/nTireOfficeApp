@@ -49,6 +49,7 @@ export class AssetrequestPage implements OnInit {
   release: boolean;
   disabledvalue: boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
+  getvalue: any;
   constructor(private router: Router, private route: ActivatedRoute,
     public alertController: AlertController, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.status = "P";
@@ -93,6 +94,7 @@ export class AssetrequestPage implements OnInit {
 
   //get asset category
   getAssetCategory() {
+    debugger;
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetCategory").then(resp => {
       this.categoryData = resp;
 
@@ -108,11 +110,12 @@ export class AssetrequestPage implements OnInit {
   }
   //get assests sub category
   getAssestsSubcat(value) {
+    debugger;
     console.log(value)
-    let getvalue = value
-    console.log(getvalue)
+    this.getvalue = value;
+    console.log(this.getvalue)
     // this.subCategoryData = [];
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + this.FUNCTION_ID + "/" + getvalue).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + window.localStorage['FUNCTION_ID']+ "/" + this.getvalue).then(resp => {
       this.subCategoryData = resp;
       console.log(this.subCategoryData);
     }, error => {
@@ -226,6 +229,7 @@ export class AssetrequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
+    this.toastmessageService.presentAlert("Request Sent", "Request saved Successfully ");
      this.assestCancel();
   }
   formatDate(value) {

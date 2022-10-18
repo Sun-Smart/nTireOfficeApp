@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -84,7 +84,7 @@ export class ManPowerUpdatePage implements OnInit {
     this.rowuniqid=this.data.rowuniqueid;
     var datae = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'usertype':this.data.VAL,
       'access_token':this.accessToken,
       'userid': this.userID,
@@ -95,7 +95,7 @@ export class ManPowerUpdatePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerrefdtlu',datae, {
+    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerrefdtl',datae, {
       headers: options,
     }).subscribe(resp => {
       this.manpowerrefdetailu = resp;
@@ -113,7 +113,7 @@ export class ManPowerUpdatePage implements OnInit {
   getManpowerskill(){
     var data = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken

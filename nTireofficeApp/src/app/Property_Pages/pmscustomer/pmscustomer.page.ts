@@ -139,9 +139,10 @@ export class PmscustomerPage implements OnInit {
       this.propertyCodeResult = resp;
 
     })
+  
 
-  };
-
+}
 
 
 }
+

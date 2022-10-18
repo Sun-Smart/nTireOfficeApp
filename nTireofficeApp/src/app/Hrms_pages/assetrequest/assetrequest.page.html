@@ -42,9 +42,9 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Assest Category<span class="validatecolor">*</span></ion-label>
-        <select *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory"
+        <select id="selectbutton" *ngIf="ASSETCATEGORY==undefined" [(ngModel)]="assestCategory"
           (click)="getAssestsSubcat(assestCategory)" class="form-control">
-          <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
+          <option class="ContentName" [value]="0">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" *ngFor="let item of categoryData" [value]="item.id">{{item.Text}}</option>
         </select>
         <ion-input *ngIf="ASSETCATEGORY!=undefined" class="form-control" disabled [(ngModel)]="ASSETCATEGORY">
@@ -52,7 +52,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Assest Subcategory<span class="validatecolor">*</span></ion-label>
-        <select class="ContentName" *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory" class="form-control">
+        <select id="selectbutton" class="ContentName" *ngIf="ASSETSUBCATEGORY==undefined" [(ngModel)]="assestsubCategory" class="form-control">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" *ngFor="let item of subCategoryData" [value]="item.id">{{item.TEXT}}</option>
         </select>
@@ -81,7 +81,7 @@
 
       <ion-col  size="6" >
         <div style="padding: 12px;display: flex;">
-          <ion-checkbox color="primary" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+          <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
           <ion-label class="ContentName">Release</ion-label>
         </div>
       </ion-col>
@@ -98,7 +98,7 @@
 
         <ion-button class="ion-color-success" this.disabledvalue=true;  expand="block"
           [disabled]="assestCategory=='' || assestsubCategory=='' || requestDate==undefined || reqbeforedte==undefined || reason==undefined"
-          (click)="assestsSubmit()">Submit</ion-button>
+          (click)="assestsSubmit()">SAVE</ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 

@@ -35,7 +35,8 @@
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">  
             <ion-label style="font-weight:bold;display: block;"> Date Of Installation <span style="color:red;margin-left: 5px;">*</span></ion-label>
-            <ion-datetime  displayFormat="YYYY/MM/DD" [(ngModel)]="doi" class="form-control" ></ion-datetime>
+            <!-- <ion-datetime  displayFormat="YYYY/MM/DD" [(ngModel)]="doi" class="form-control" ></ion-datetime> -->
+            <ion-input type="date" class="form-control" [(ngModel)]="doi"></ion-input>
           </ion-col>
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >

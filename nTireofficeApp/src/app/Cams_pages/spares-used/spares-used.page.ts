@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -74,7 +74,7 @@ export class sparesUsedPage implements OnInit {
   getItem(){
     var dataes = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -252,10 +252,10 @@ this.presentAlert("Alert", "Already added a consumables");
 
     var dataea = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
-      'assetid':this.urldata.CMD_ASSET_ID,
-      'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
-      'assetpmref':this.urldata.pmr_reference,
+      'functionid':parseInt(this.functionID),
+      'assetid':parseInt(this.urldata.CMD_ASSET_ID),
+      'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+      'assetpmref':parseInt(this.urldata.pmr_reference),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken

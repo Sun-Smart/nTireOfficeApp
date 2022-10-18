@@ -75,6 +75,10 @@ export class TeammeetingsPage implements OnInit {
     this.Getbranches();
     this.getAllMeeting(window.localStorage['TUM_BRANCH_ID']);
     this.username = localStorage.getItem('TUM_USER_NAME');
+    var today = new Date();
+
+    this.fromdate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
   }
 
   ngOnInit() {
@@ -290,9 +294,9 @@ export class TeammeetingsPage implements OnInit {
         }
 
         if (fromdate != undefined && todate != undefined && branchid != undefined) {
-          this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd')
+          this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
 
-          this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd')
+          this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy')
 
           console.log(this.fromdate);
           console.log(this.todate);
@@ -424,9 +428,9 @@ export class TeammeetingsPage implements OnInit {
 
       } else {
 
-        this.fromdate = this.datePipe.transform(fromdate, 'yyyy-MM-dd')
+        this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
 
-        this.todate = this.datePipe.transform(todate, 'yyyy-MM-dd')
+        this.todate = this.datePipe.transform(todate, 'dd-MM-yyyy')
 
 
         var obj1 = undefined;

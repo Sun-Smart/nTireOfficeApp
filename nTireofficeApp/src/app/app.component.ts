@@ -272,7 +272,7 @@ export class AppComponent {
 
   public erppages = [
     {
-      title: 'Physcial Inventory',
+      title: 'physical Inventory',
       url: '/pyscialinvetory',
       icon: 'home'
     },
@@ -379,12 +379,12 @@ export class AppComponent {
       url: '/vendor-quotation',
       icon: 'clipboard'
     },
-    {
-      title: 'Update Vendor Quotation',
-      url: '/updatevendorquot',
+    // {
+    //   title: 'Update Vendor Quotation',
+    //   url: '/updatevendorquot',
 
-      icon: 'create'
-    },
+    //   icon: 'create'
+    // },
 
     {
       title: 'Material Request',
@@ -497,6 +497,11 @@ export class AppComponent {
           title: 'Additional',
           url: '/additional-page',
           icon: 'document-text'
+        },
+        {
+          title: 'Quick-Receipt',
+          url: '/quick-receipt',
+          icon: 'receipt-outline'
         },
         {
           title: 'Transaction',

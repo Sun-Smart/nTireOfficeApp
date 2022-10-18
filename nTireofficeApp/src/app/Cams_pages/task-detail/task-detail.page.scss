@@ -3,3 +3,7 @@
     border-width: .01em; 
     border-style:solid; margin-bottom : -1px;
 }
+ion-content {
+    --background: url('../../../assets/images/tpbackground.png') repeat !important;
+    position: relative;
+  }

@@ -35,9 +35,9 @@ ion-item {
 
 // }
 .userinput{
-    
+
     caret-color: #000 !important;
-   
+
 }
 
 ion-item#loginInput {
@@ -184,6 +184,8 @@ ion-content {
 .checkbox {
     color: #000 !important;
     padding: 4px;
+    margin: auto;
+    vertical-align: top;
 }
 
 ion-footer {

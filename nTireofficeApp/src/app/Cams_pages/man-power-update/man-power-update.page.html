@@ -10,15 +10,14 @@
   <ion-card style="background-color:#fff">
     <ion-grid style="padding: 0px;">
       <ion-row>
-        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="background-color: #2e3192!important;color:#fff;padding:12px;">
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="background-color:rgb(2, 154, 222) !important;color:#fff;padding:12px;">
           Manpower Used
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
           <ion-label style="font-weight:bold;display: block;">Skills<span style="color:red;margin-left: 5px;">*</span></ion-label>
           <select [(ngModel)]="skill" class="form-control" style="width:100%" (change)="manskilludfvdfv(skill)">
             <option>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let item of manpowerskill; let i = index" [value]="item.VAL">{{item.TEXT}}
-            </option>
+            <option *ngFor="let item of manpowerskill; let i = index" [ngValue]="item.VAL">{{item.TEXT}}</option>
           </select>
         </ion-col>
 
