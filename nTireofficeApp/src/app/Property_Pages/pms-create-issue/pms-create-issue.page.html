@@ -1,10 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="cancel()" >
-        <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon></ion-button>
-    </ion-buttons>
-    <ion-title>Create Issue</ion-title>
+
+        <ion-buttons slot="start" >
+          <ion-button (click)="cancel()">
+            <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon> 
+            <span  style="color:white;">Back</span>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title style="margin: 0 20px;">Create Issue</ion-title>
+
+
+ 
   </ion-toolbar>
 </ion-header>
 
@@ -31,7 +38,7 @@
         <ion-label class="ContentName">Property Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
-              <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
+              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                 <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
                 <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist">
                   <ion-item  class="ContentName" *ngFor="let item of assetcode1" style="background-color: white !important;
@@ -39,11 +46,6 @@
                     {{ item }}
                   </ion-item>
                 </ion-list>
-              </ion-col>
-              <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-                <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
-                  <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>
-                </ion-button>
               </ion-col>
           </ion-row>
         <!-- </div> -->

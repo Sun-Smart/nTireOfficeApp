@@ -212,16 +212,14 @@
             <ion-label class="sideNav-itemLabel">
               {{p.title}}
             </ion-label>
-
             <ion-icon slot="end" name="arrow-dropdown" *ngIf="p.open"></ion-icon>
             <ion-icon slot="end" name="arrow-dropright" *ngIf="!p.open"></ion-icon>
           </ion-item>
 
-          <ion-list *ngIf="p.open" style="margin-left: 50px;">
+          <ion-list *ngIf="p.open" style="margin-left: 50px;background-color: rgb(243, 245, 247);">
             <ion-menu-toggle>
               <ion-item *ngFor="let empsub of p.employeeSubPages" [routerDirection]="'root'" [routerLink]="[empsub.url]"
-                [routerLinkActive]="['active-menu']" style="border: none;">
-
+                [routerLinkActive]="['active-menu']" style="border: none; border-radius: 0px;">
                 <ion-icon slot="start" [name]="empsub.icon" class="sideNav-Icon"></ion-icon>
                 <ion-label class="sideNav-itemLabel">
                   {{empsub.title}}
@@ -245,11 +243,10 @@
             <ion-icon slot="end" name="arrow-dropright" *ngIf="!p.open"></ion-icon>
           </ion-item>
 
-          <ion-list *ngIf="p.open" style="margin-left: 50px;">
+          <ion-list *ngIf="p.open" style="margin-left: 50px;background-color: rgb(243, 245, 247);">
             <ion-menu-toggle>
               <ion-item *ngFor="let sub of p.reportSubPages" [routerDirection]="'root'" [routerLink]="[sub.url]"
-                [routerLinkActive]="['active-menu']" style="border: none;">
-
+                [routerLinkActive]="['active-menu']" style="border: none; border-radius: 0px;">
                 <ion-icon slot="start" [name]="sub.icon" class="sideNav-Icon"></ion-icon>
                 <ion-label class="sideNav-itemLabel">
                   {{sub.title}}
