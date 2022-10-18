@@ -2,3 +2,11 @@ ion-content {
   --background: url('../../../assets/images/tpbackground.png') repeat !important;
   position: relative;
 }
+.card_header1{
+  --background: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
+  color: #fff;
+}
+
+.interlable{
+  color: #fff !important;
+}
