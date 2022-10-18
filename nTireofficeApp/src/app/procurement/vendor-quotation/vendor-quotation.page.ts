@@ -58,7 +58,7 @@ export class VendorQuotationPage implements OnInit {
   columns = [
     { name: 'Category', width: "110"  },
       { name: 'QTY', width: "120"  },
-      { name: 'UpPrice', width: "120"  },
+      { name: 'Unit Price', width: "120"  },
       { name: 'disc%', width: "120"  },
       { name: 'tax1', width: "120"  },
       { name: 'tax2', width: "110"  },

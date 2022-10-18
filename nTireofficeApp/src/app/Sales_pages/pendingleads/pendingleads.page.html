@@ -33,12 +33,12 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
 
-              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+              <option *ngFor="let branch of branchlist1; let i = index" [Value]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-input class="form-control" placeholder="Lead ID" [(ngModel)]="TCC_CUSTOMER_IDs">
+            <ion-input class="form-control" placeholder="Lead ID" [(ngModel)]="TCC_CUSTOMER_IDs" type="number">
             </ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -234,11 +234,11 @@
           </ion-col>
           <ion-col size="6">
             <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
-              style="font-size: 14px;color:green;"><b>{{items.PriorityText}}</b></span>
+              style="font-size: 14px;color:green;font-weight: bold;">{{items.PriorityText}}</span>
           </ion-col>
           <ion-col size="6">
             <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
-              style="font-size: 14px;color:red;"><b>{{items.Ratingtext}}</b></span>
+              style="font-size: 14px;color:red;font-weight: bold;">{{items.Ratingtext}}</span>
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <a (click)="showmore(i,items.CALL_ID)">
@@ -331,12 +331,12 @@
                 </ion-col>
               </ion-row>
               <ion-col *ngIf="items.TCC_RESPONSE == 1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button (click)="openrootmap(items.TCC_LOCATION_TO_MEET)" style="--background:#009689" size="full">
+                <ion-button (click)="openrootmap(items.TCC_LOCATION_TO_MEET)" class="ion-color-success" expand="block">
                   START NAVIGATION</ion-button>
 
               </ion-col>
               <ion-col *ngIf="items.TCC_RESPONSE == 1" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-button class="schedulebutn" size="full" style="--background:#009689"
+                <ion-button class="schedulebutn" class="ion-color-success" expand="block"
                   *ngIf="(items.START_TIME == null && items.END_TIME == null) || (items.START_TIME != null && items.END_TIME != null)"
                   id="stbtn{{0+i}}"
                   (click)="updstrtmeettime(items.TCC_CUSTOMER_ID,items.CUST_LEAD_ID,items.CALL_ID,1,i,items.TCC_LOCATION_TO_MEET,items,1)">

@@ -58,16 +58,13 @@
 
 
       <ion-col size="6">
-        <ion-checkbox color="primary" [(ngModel)]="release" [value]="false"></ion-checkbox>&nbsp;&nbsp;
-        
+        <ion-checkbox class="ion-checkbox" [(ngModel)]="release" [value]="false"></ion-checkbox>&nbsp;&nbsp;
         <ion-label class="ContentName">Release</ion-label>
       </ion-col>
-
       <ion-col size="6">
-        <ion-checkbox color="primary" [(ngModel)]="billableclient" [value]="false"></ion-checkbox>&nbsp;&nbsp;
+        <ion-checkbox class="ion-checkbox" [(ngModel)]="billableclient" [value]="false"></ion-checkbox>&nbsp;&nbsp;
         <ion-label class="ContentName">Billable To Client</ion-label>
       </ion-col>
-
     </ion-row>
 
     <ion-row *ngIf="travelData.length!=0">
@@ -151,7 +148,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-row>
           <ion-col *ngFor="let image of image" size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
-            <ion-icon  style="color: white !important;" name="close-circle-outline" class="closebtn" (click)="DeleteImage(i)"></ion-icon>
+            <ion-icon  style="color: white !important;" name="close-circle-outline"  class="closebtn" (click)="DeleteImage(i)"></ion-icon>
             <img [src]="sanitizer.bypassSecurityTrustUrl(image.imgURL)" />
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">

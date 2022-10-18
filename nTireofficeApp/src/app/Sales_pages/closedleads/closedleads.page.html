@@ -28,7 +28,7 @@
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-input class="form-control" placeholder="Ref ID" [(ngModel)]="TCC_CUST_LEAD_IDs">
+            <ion-input class="form-control" placeholder="Ref ID" type="number" [(ngModel)]="TCC_CUST_LEAD_IDs">
             </ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -83,7 +83,7 @@
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-button (click)="callforalldetails(segment)" style="--background: #11c1f3" size="full">Search
+            <ion-button (click)="callforalldetails(segment)" class="ion-color-success" expand="block">Search
             </ion-button>
           </ion-col>
         </ion-row>
@@ -110,6 +110,9 @@
             <ion-row>
               <ion-col>
                 <ion-label class="card_header_text">{{items.CustFullName}}</ion-label>
+              </ion-col>
+              <ion-col>
+
               </ion-col>
 
               <ion-col>
@@ -208,11 +211,11 @@
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
-              style="font-size: 14px;color:green;font-weight: 900;"><b>{{items.PriorityText}}</b></span>
+              style="font-size: 14px;color:green;font-weight: 900;">{{items.PriorityText}}</span>
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
-              style="font-size: 14px;color:red;font-weight: 900;"><b>{{items.Ratingtext}}</b></span>
+              style="font-size: 14px;color:red;font-weight: 900;">{{items.Ratingtext}}</span>
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <a (click)="showmore(i,items.CALL_ID)">

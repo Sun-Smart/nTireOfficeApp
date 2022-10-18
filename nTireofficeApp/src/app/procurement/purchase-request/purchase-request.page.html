@@ -92,6 +92,26 @@
           <!-- [(ngModel)]="VendorQuot.unitprice" -->
         </ion-col>
 
+
+
+        <ion-row>
+          <ion-col size="6">
+            <div style="padding: 12px;display: flex;">
+              <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+              <ion-label class="ContentName">Release</ion-label>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div style="padding: 12px;display: flex;">
+
+              <ion-label class="ContentName">Current Status : <span *ngIf="release===false">New</span><span
+                  *ngIf="release===true">Pending</span>
+              </ion-label>
+            </div>
+          </ion-col>
+
+        </ion-row>
+
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
           <ion-button (click)="showline()" class="ion-color-success" expand="block">
             <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Item

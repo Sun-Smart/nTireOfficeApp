@@ -37,7 +37,8 @@ export class PurchaseRequestPage implements OnInit {
   unitprice;
   Requiredbefore
   netprice;
-  itemdescription
+  itemdescription;
+  release
 
 
   constructor(private router: Router, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {

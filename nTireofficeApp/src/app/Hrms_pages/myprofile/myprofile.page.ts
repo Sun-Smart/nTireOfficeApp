@@ -34,6 +34,7 @@ import { OpenaddemploymentpagePage } from '../openaddemploymentpage/openaddemplo
 import { ActionSheetController } from '@ionic/angular';
 import { data } from 'jquery';
 
+
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.page.html',
@@ -49,7 +50,8 @@ export class MyprofilePage implements OnInit {
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    correctOrientation: true //Corrects Android orientation quirks
+    correctOrientation: true, //Corrects Android orientation quirks
+
   }
   validemail: boolean;
   profile1: any = [];
@@ -109,6 +111,7 @@ export class MyprofilePage implements OnInit {
   public buttonClicked: boolean = false;
   username = window.localStorage.getItem('TUM_USER_NAME');
   empID: any;
+  showSave: boolean;
   constructor(public modalController: ModalController, public alertController: AlertController,
     public toastmessageService: ToastmessageService, private datepipe: DatePipe, public sanitizer: DomSanitizer, private base64: Base64, private crop: Crop, private camera: Camera, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, private http: HttpClient, public actionSheetController: ActionSheetController) {
     this.emp_id = window.localStorage['TUM_EMP_CODE'];
@@ -535,8 +538,10 @@ export class MyprofilePage implements OnInit {
 
   emailnumbaervalid(event) {
     var emailcheck = validateemail(event.target.value);
+    console.log('emailcheck ', emailcheck);
     if (emailcheck == false) {
       this.validemail = true;
+      return
     }
     else {
       this.validemail = false;
@@ -639,7 +644,7 @@ export class MyprofilePage implements OnInit {
               empID: window.localStorage.getItem("EmployeeID"),
             };
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert("", "Education Details Removed");
+              this.toastmessageService.presentAlert1("", "Education Details Removed");
               this.getEducationDaetails();
             }, error => {
 
@@ -675,7 +680,7 @@ export class MyprofilePage implements OnInit {
               empID: window.localStorage.getItem("EmployeeID"),
             };
             this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDetailsDelete/" + deleteObj.empID + "/" + deleteObj.Type + "/" + deleteObj.ID + "/0").then(resp => {
-              this.toastmessageService.presentAlert("", "Career Details Removed");
+              this.toastmessageService.presentAlert1("", "Career Details Removed");
               this.getcarrierDaetails();
             }, error => {
 
@@ -693,6 +698,15 @@ export class MyprofilePage implements OnInit {
   hidePersonalPanel(value) {
     debugger;
     console.log(value);
+
+    // var emailcheck = validateemail(value);
+    // if (emailcheck == false) {
+    //   this.validemail = true;
+    //   return
+    // }
+    // else {
+    //   this.validemail = false;
+    // }
 
     //Samu -> Now hiding by doubt
     // this.profile.FirstName = '';
@@ -779,13 +793,13 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert('','Personal Details Updated');
+            this.presentAlert('', 'Personal Details Updated');
 
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -825,7 +839,6 @@ export class MyprofilePage implements OnInit {
           this.profile.CurrentPincode = ' ';
         }
 
-
         console.log("this.profile.CurrentCountry" + this.profile.CurrentCountry);
         // API CALLING FOR currentAddress DETAILS
         this.currentAddressObject = {
@@ -838,6 +851,7 @@ export class MyprofilePage implements OnInit {
           Pincode: this.profile.CurrentPincode
         };
 
+
         console.log("currentAddress Detail Object " + this.currentAddressObject);
         // API CALLING FOR currentAddress DETAILS
         console.log(this.currentAddressObject.empID + "/" + this.currentAddressObject.Type + "/" + this.currentAddressObject.Address + "/" + this.currentAddressObject.City + "/" + this.currentAddressObject.State + "/" + this.currentAddressObject.Country + "/" + this.currentAddressObject.Pincode + "/0/0/0")
@@ -849,12 +863,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert("","Current Address Updated");
+            this.presentAlert("", "Current Address Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -918,12 +932,12 @@ export class MyprofilePage implements OnInit {
             // Store the Data and Display the success message to user
             this.error = "";
 
-            this.presentAlert('','Permanent Address Updated');
+            this.presentAlert('', 'Permanent Address Updated');
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('','Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -951,6 +965,8 @@ export class MyprofilePage implements OnInit {
         this.contactToggle = 0;
         // console.log("Update");
 
+
+
         if (this.profile.Email == undefined || this.profile.Email == null || this.profile.Email == '') {
           this.profile.Email = ' ';
         }
@@ -966,6 +982,7 @@ export class MyprofilePage implements OnInit {
 
 
         // API CALLING FOR CONTACT DETAILS
+
         this.ContactDetailsObject = {
           empID: window.localStorage.getItem("EmployeeID"),
           Type: "ContactDetails",
@@ -986,12 +1003,14 @@ export class MyprofilePage implements OnInit {
             this.error = "";
             // console.log("Updated Baby");
 
+
+
             this.presentAlert("", "Contact Details Updated");
             this.getEmployeeDetails();
 
           } else {
             this.error = "Error Updating Profile";
-            this.presentAlert('', 'Error Updating Profile');
+            this.presentAlert1('', 'Please fill the Mandatory fields');
           }
         }, error => {
 
@@ -1015,12 +1034,25 @@ export class MyprofilePage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass: 'buttonCss',
+      cssClass: 'Cssbutton',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
-  }
+    }
+
+    async presentAlert1(heading, tittle) {
+      var alert = await this.alertController.create({
+        header: heading,
+        cssClass: 'buttonCss',
+        backdropDismiss: false,
+        message: tittle,
+        buttons: ['OK']
+      });
+      await alert.present();
+      }
+
 }
+
+

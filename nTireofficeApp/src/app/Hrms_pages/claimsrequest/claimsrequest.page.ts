@@ -173,7 +173,7 @@ export class ClaimsrequestPage implements OnInit {
       Reference: this.reqRef,
       TxnReference:this.reqRef
     }
-  
+
 
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "gettravelDetailsClaims", Odobj).then(resp => {
 
@@ -334,7 +334,7 @@ export class ClaimsrequestPage implements OnInit {
   EXPREF_ID;
   EXPENSE_ID;
   claimsSubmit() {
-   
+
    this.reqRef= window.localStorage.getItem('TxnReference')
    console.log(this.reqRef)
     if (this.release == true) {
@@ -362,8 +362,8 @@ export class ClaimsrequestPage implements OnInit {
       userid: parseInt(this.userID),
       usertoken: this.usertoken,
       access_token: this.token,
-  
-     
+
+
     }
     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getrequestrefid", obj).then(resp => {
       this.toastmessageService.presentAlert("", "Claims Request saved Successfully");
@@ -655,7 +655,9 @@ export class ClaimsrequestPage implements OnInit {
             this.amount = undefined;
             this.expenseremarks = undefined;
             this.Images = [];
+            this.Images = undefined;
             this.expenseArray = [];
+
           }
         }
       ]

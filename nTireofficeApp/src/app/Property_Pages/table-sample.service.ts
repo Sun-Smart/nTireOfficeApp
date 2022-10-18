@@ -257,4 +257,25 @@ export class TableSampleService {
         ]
     }
 
+    public getDashTable6(){
+        return[
+            {
+                "Branch":"india",
+                "Mode":"new",
+                "MRS Code":"3434234",
+                "From Date":"17-10-2022",
+                "To Date":"17-12-2022",
+                "Status":"pending",
+              },
+              {
+                "Branch":"india",
+                "Mode":"action",
+                "MRS Code":"3434234",
+                "From Date":"11-10-2022",
+                "To Date":"17-12-2023",
+                "Status":"pending",
+              }
+        ]
+    }
+
 }
