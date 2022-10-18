@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
 @Component({
@@ -12,15 +13,15 @@ export class PRSstatusPage implements OnInit {
 
   showfilter: boolean = true;
   showviewlist: boolean = false
-  expression:boolean=true
+  expression: boolean = true
   getresponse: any;
-  prscode:String;
-  status:String;
-  todate:String;
-  fromdate:String;
-  editprs:boolean=false;
-  loading:boolean=false
-  constructor(private router: Router, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
+  prscode: String;
+  status: String;
+  todate: String;
+  fromdate: String;
+  editprs: boolean = false;
+  loading: boolean = false
+  constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
 
@@ -36,8 +37,37 @@ export class PRSstatusPage implements OnInit {
 
 
 
-  edit(){
+  edit() {
     this.router.navigate(['/updateprsstatus'])
+  }
+
+
+  async clear() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+
+            this.prscode = "";
+            this.status = "";
+            this.todate = "";
+            this.fromdate = "";
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 
@@ -45,23 +75,23 @@ export class PRSstatusPage implements OnInit {
 
 
   Search() {
-    this.loading=true
+    this.loading = true
     console.log(this.prscode)
     console.log(this.status)
     console.log(this.todate)
     console.log(this.fromdate)
     this.showviewlist = true
-    if(this.prscode ==undefined){
-      this.prscode=''
+    if (this.prscode == undefined) {
+      this.prscode = ''
     }
-    if(this.status ==undefined){
-      this.status=''
+    if (this.status == undefined) {
+      this.status = ''
     }
-    if(this.todate ==undefined){
-      this.todate=''
+    if (this.todate == undefined) {
+      this.todate = ''
     }
-    if(this.fromdate ==undefined){
-      this.fromdate=''
+    if (this.fromdate == undefined) {
+      this.fromdate = ''
     }
     var body = {
       "functionid": "1",
@@ -86,11 +116,11 @@ export class PRSstatusPage implements OnInit {
 
     };
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
-      this.loading=false
+      this.loading = false
       this.getresponse = res;
       console.log("Response", res)
       console.log("Response", res)
-      for(let item of this.getresponse){
+      for (let item of this.getresponse) {
         console.log(item);
 
       }

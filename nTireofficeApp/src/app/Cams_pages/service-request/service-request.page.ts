@@ -89,6 +89,13 @@ export class ServiceRequestPage implements OnInit {
   newvendor: any;
   newreplaceasset: any;
   assetucode: any;
+  numberOnly(event):boolean{
+    const charCode = (event.which)?event.which:event.keyCode;
+    if(charCode >31 &&(charCode<48||charCode>57)){
+      return false;
+    }
+    return true;
+  }
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
 
      //,private qrScanner: QRScanner

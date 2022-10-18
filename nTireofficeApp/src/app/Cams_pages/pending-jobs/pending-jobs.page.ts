@@ -29,7 +29,7 @@ export class PendingJobsPage implements OnInit {
   assetcode1str:any;
   assetcodeResult:any;
   assetCode:any;
-  carddata:any;
+  carddata:any=[];
   responseData:any;
   branch1:any;
   userID:any;
@@ -159,7 +159,7 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+ this.usertype +'&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate=null&tdate=null&Status=P&strUserId='+this.userID+'&UserType='+ this.usertype +'&drpcategory=null&drptype=null&TASKTYPE=MT&AssetCode=null', {
                                // Pendingsearchs11?strfunction=1&branch
                                    // =1&fdate=28-01-2018&tdate=28-09-2022&Status=Pending&strUserId=193&UserType=11
                                // &drpcategory=null&drptype=6&TASKTYPE=84&AssetCode=MT
@@ -178,6 +178,7 @@ export class PendingJobsPage implements OnInit {
   };
 
   requestedJobs() {
+    debugger;
     console.log(this.jobs)
    // this.responseData = {};
 
@@ -188,7 +189,7 @@ export class PendingJobsPage implements OnInit {
    }
 
    if(this.jobs == "<< Select >>" || this.jobs == undefined){
-    var jobs = 'null';
+    var jobs = 'MT';
    }else{
     jobs= this.jobs
    }
@@ -219,6 +220,11 @@ export class PendingJobsPage implements OnInit {
     this.todate2 = this.datePipe.transform(this.todate, 'dd-MM-yyyy');
     todate= this.todate2
    }
+   if(this.assetCode ==""||this.assetCode==undefined){
+   var Newassetcode = 'null';
+   }else{
+    Newassetcode = this.assetCode
+   }
    console.log(this.assetCode);
    const Newasset = this.assetCode;
 
@@ -226,7 +232,7 @@ export class PendingJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+fromdate+'&tdate='+todate+'&Status='+status+'&strUserId='+this.userID+'&UserType='+this.usertype+'&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs, {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'Pendingsearchs11?strfunction='+this.funtionID+'&branch='+this.branch_ID+'&fdate='+fromdate+'&tdate='+todate+'&Status='+status+'&strUserId='+this.userID+'&UserType='+this.usertype+'&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs+'&AssetCode='+Newassetcode, {
                                                                                                                                                                                                                                                                     // &TASKTYPE=84&AssetCode=MT
       headers: options,
     }).subscribe(resp => {
@@ -392,6 +398,16 @@ startwork(obj, duedate,alldata) {
   var finaltodayDatep_array = finaltodayDatep.split('/');
   var new_finaltodayDatep = finaltodayDatep_array[1]+'/'+finaltodayDatep_array[0]+'/'+finaltodayDatep_array[2];
   var new_finaltodayDatep1 = new Date(new_finaltodayDatep).getTime();
+  if(alldata.CMD_ACTIVITY_ID==""||alldata.CMD_ACTIVITY_ID==undefined){
+    var activityID = '0'
+}else{
+       activityID =alldata.CMD_ACTIVITY_ID
+}
+if(alldata.CMD_ASSET_ID==''||alldata.CMD_ASSET_ID==undefined){
+  var assetID = 0
+}else{
+  assetID=parseInt(alldata.CMD_ASSET_ID)
+}
   if (new_finaltodayDatep1 == new_pduedte1 || new_finaltodayDatep1 > new_pduedte1) {
       //alert("datein")
       // alert(obj);
@@ -400,10 +416,10 @@ startwork(obj, duedate,alldata) {
         'wrkno': obj,
         'functionid':parseInt(window.localStorage['FUNCTION_ID']),
         'branchid':window.localStorage['TUM_BRANCH_ID'],
-        'activityid':alldata.CMD_ACTIVITY_ID,
+        'activityid':activityID,
         'duedate':alldata.pm_due_date,
-        'assetid':parseInt(alldata.CMD_ASSET_ID),
-        'ref':alldata.pmr_reference,
+        'assetid':assetID,
+        'ref1':alldata.pmr_reference,
         'startdte': newtdate,
         'access_token':window.localStorage['token'],
         'userid':this.userID,

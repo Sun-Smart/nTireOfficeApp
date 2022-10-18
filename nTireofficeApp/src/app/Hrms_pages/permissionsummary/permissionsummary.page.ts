@@ -61,10 +61,8 @@ export class PermissionsummaryPage implements OnInit {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then((resp: any) => {
       this.loadingdismiss();
       if (resp != "No Records found") {
-
         //  this.display = JSON.parse(resp.toString());
         this.display = resp;
-
         //  this.display1=JSON.parse(resp);
         this.display1 = JSON.stringify(resp);
         // console.log($scope.display)
