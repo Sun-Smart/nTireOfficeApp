@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -27,6 +27,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [PendingleadsPage],
-  providers:[Media,DatePipe,CallNumber,File,FileTransfer]
+  providers:[Media,DatePipe,CallNumber,File,FileTransfer],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class PendingleadsPageModule {}
