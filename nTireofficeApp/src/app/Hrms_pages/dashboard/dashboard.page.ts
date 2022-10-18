@@ -226,7 +226,6 @@ this.backbutton();
 
         await alert1.present();
       // this.logout();
-
       }
       else if (this.router.url === '/login') {
         navigator['app'].exitApp();
@@ -796,6 +795,7 @@ this.backbutton();
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
+      cssClass: 'buttonCss',
 backdropDismiss:false,
       message: tittle,
       buttons: ['OK']

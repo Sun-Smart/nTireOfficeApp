@@ -1034,7 +1034,6 @@ export class MyprofilePage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
-  }
+    }
 }
