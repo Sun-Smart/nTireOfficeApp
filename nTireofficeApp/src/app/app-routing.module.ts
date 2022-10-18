@@ -139,23 +139,23 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     {
       path:'manpower-used',
       loadChildren:() => import('./Cams_pages/manpower-used/manpower-used.module').then(m => m.ManpowerUsedPageModule)
-      }, 
+      },
       {
         path:'spares-used',
         loadChildren:() => import('./Cams_pages/spares-used/spares-used.module').then(m => m.sparesUsedPageModule)
-        },  
+        },
         {
           path:'consumable-used',
           loadChildren:() => import('./Cams_pages/consumable-used/consumable-used.module').then(m => m.ConsumableUsedPageModule)
-          },   
+          },
           {
             path:'consumable-used',
             loadChildren:() => import('./Cams_pages/consumable-used/consumable-used.module').then(m => m.ConsumableUsedPageModule)
-            },  
+            },
 
 
 
- 
+
   //  hrms
   { path: 'hrmsdashboard', loadChildren: () => import('./Hrms_pages/dashboard/dashboard.module').then(m => m.DashboardPageModule) },
 
@@ -268,7 +268,7 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
   },
 
 
-  
+
   {
     path: 'applicantskilssdetails',
     loadChildren: () => import('./Hrms_pages/applicantskilssdetails/applicantskilssdetails.module').then( m => m.ApplicantskilssdetailsPageModule)
@@ -609,6 +609,10 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
 
 
 
+  {
+    path: 'rootmap',
+    loadChildren: () => import('./Sales_pages/rootmap/rootmap.module').then(m => m.RootmapPageModule)
+  },
 
 
 ];
