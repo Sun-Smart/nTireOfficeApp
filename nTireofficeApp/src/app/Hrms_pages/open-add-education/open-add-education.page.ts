@@ -117,7 +117,7 @@ export class OpenAddEducationPage implements OnInit {
        usertoken:this.usertoken,
        functionid:this.FUNCTION_ID
      }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"hrmeducationcategory/",datag).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"hrmeducationcategory",datag).then(resp=>{
       this.hrmedudetaiscat1 =resp;
       this.hrmedudetaiscat1.forEach(element => {
         this.hrmedudetaiscat.push(element);
@@ -151,7 +151,7 @@ export class OpenAddEducationPage implements OnInit {
     // var date = this.fromdate.split('-');
     // this.fromdate = date[0]+"-"+date[1];
     console.log(""+this.fromdate)
-    
+
 
 
 
@@ -160,7 +160,7 @@ export class OpenAddEducationPage implements OnInit {
 // this.toDate = date1[0]+"-"+date1[1] ;
 
     this.addEducationObject = {
-      
+
       Type: "EducationDetails",
       //Category: this.education.Category,
       Category: this.category,
@@ -171,8 +171,8 @@ export class OpenAddEducationPage implements OnInit {
       Percentage1: this.percentage,
       ID: id,
       empID1:this.employeid
-     
-      
+
+
     }
     console.log(this.addEducationObject);
 

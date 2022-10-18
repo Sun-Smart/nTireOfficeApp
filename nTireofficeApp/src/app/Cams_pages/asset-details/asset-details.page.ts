@@ -389,6 +389,7 @@ export class AssetDetailsPage implements OnInit {
   }
 
   updateassetdetails() {
+    debugger;
     //  alert("dsgds")
     if (this.file.length >= 1) {
       //  alert("dsgds1")
@@ -408,7 +409,10 @@ export class AssetDetailsPage implements OnInit {
         console.log('form data variable :   ' + formData.toString());
         this.http.post(url, formData)
 
-          .subscribe(files => console.log('files', files))
+          .subscribe((files:any) =>{
+            debugger
+            console.log('files', files)
+          })
 
         var obj = {
           'assetcode': this.assetucode,
@@ -426,9 +430,11 @@ export class AssetDetailsPage implements OnInit {
         header.append("Content-Type", "application/json");
 
         let options = new HttpHeaders().set('Content-Type', 'application/json');
+        debugger
         this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/uploadimage', obj, {
           headers: options,
         }).subscribe(resp => {
+          debugger;
           console.log(resp);
           if (resp == "sucess") {
             this.imagesucessres.push(resp);

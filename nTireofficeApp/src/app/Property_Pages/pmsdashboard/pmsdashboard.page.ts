@@ -363,7 +363,7 @@ export class PmsdashboardPage implements OnInit {
       sourcearray = [
         {
           data: this.data,
-          backgroundColor: ['rgb(16, 99, 16)', 'rgb(68, 49, 9)'],
+          backgroundColor: ['rgb(16, 99, 16)', 'rgb(68, 49, 9)','rgb(98, 89, 6)'],
         }]
       if (this.sourcechart) {
         this.sourcechart.destroy();
