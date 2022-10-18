@@ -102,7 +102,7 @@ export class PurchaseRequestPage implements OnInit {
   async clear() {
     const alert = await this.alertController.create({
       header: 'Confirm',
-      message: 'Are you sure want to Cancel the Process',
+      message: 'Are you sure want to Clear the Process',
       buttons: [
         {
           text: 'No',
