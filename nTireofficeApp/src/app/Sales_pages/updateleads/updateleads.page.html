@@ -63,14 +63,14 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="dataobjs.callstageval" class="form-control">
+        <select [(ngModel)]="callstageval" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.value">{{stage.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Lead Source</ion-label>
-        <select [(ngModel)]="dataobjs.leadsrc" class="form-control">
+        <select [(ngModel)]="leadsrc" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.value">{{lead.text}}</option>
         </select>

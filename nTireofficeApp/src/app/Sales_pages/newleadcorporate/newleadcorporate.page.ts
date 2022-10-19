@@ -516,7 +516,7 @@ export class NewleadcorporatePage implements OnInit {
         this.currentlocation = this.generateAddress(result[0]);
       })
       .catch((error: any) => {
-        this.presentAlert('', 'Error getting location');
+        // this.presentAlert('', 'Error getting location');
       });
 
     jquery('#fileinput').trigger('click');
@@ -599,7 +599,7 @@ export class NewleadcorporatePage implements OnInit {
 
 
     }).catch((error) => {
-      console.log('Error getting location', error);
+      // console.log('Error getting location', error);
     });
   }
 
@@ -611,8 +611,8 @@ export class NewleadcorporatePage implements OnInit {
         this.currentlocation = this.generateAddress(result[0]);
       })
       .catch((error: any) => {
-        console.log('Error getting location' + JSON.stringify(error));
-        alert('Error getting location');
+        // console.log('Error getting location' + JSON.stringify(error));
+        // alert('Error getting location');
       });
     this.imagecif = Math.floor((Math.random() * 1000000000000000) + 1);
 

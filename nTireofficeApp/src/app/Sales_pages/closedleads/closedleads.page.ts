@@ -576,6 +576,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     }).subscribe((resp: any) => {
       if (resp == "No data found") {
         this.showData = "No data found";
+        this.pendingleadsdatalength = 0;
       } else {
         console.log("pendleadsdatalength : " + JSON.stringify(resp));
         this.pendingleadsdatalength = resp.length;
@@ -590,6 +591,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     }).subscribe(resp => {
       if (resp == "No data found") {
         this.showData = "No data found";
+        this.pendingleadsdatalength = 0;
       } else {
 
         console.log("pendleaddetails1 : " + JSON.stringify(resp));
