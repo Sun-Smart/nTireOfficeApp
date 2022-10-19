@@ -56,13 +56,15 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
   };
   ntireoffice_image;
   @ViewChild('map') mapElement: ElementRef;
+  leadsrc = 1;
+  callstageval = 1;
   dataobjs = {
     leadstatusval: "",
     callratingval: "",
     callnatureval: "",
     // callstageval:   '<< Select >>',
-    callstageval:"<< Select>>",
-    leadsrc: "<< Select >>",
+    callstageval: parseInt(""),
+    leadsrc: parseInt(""),
     ClosedDate: "",
     ExpctedAmount: "",
     pendleadremarks: "",
@@ -77,7 +79,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     schedleadareaname: "",
     Action_req: "",
     BRANCH_DESC: "",
-    BRANCH_ID: "",
+    BRANCH_ID: parseInt(localStorage.getItem("TUM_BRANCH_ID")),
     // CALL_ID: parseInt(""),
     CALL_ID: parseInt(""),
     CUSTACCNO: "",
@@ -148,10 +150,10 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
   objdataupd = {
     callnatureval: "",
     callratingval: "",
-    callstageval: "",
+    callstageval: parseInt(""),
     leadstatusval: "",
     nextactionval: "",
-    LeadSource: "",
+    LeadSource: parseInt(""),
     Remarks: "",
     ActReq: "",
 
@@ -190,7 +192,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     /* console.log(this.item.LEADSTATUS)*/
     this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
     this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-    this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
+    this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
     //console.log(this.dataobjs.callstageval);
     this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
     // console.log(this.item.TCC_LEAD_SOURCE);
@@ -203,7 +205,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.EmailID = this.item.EmailID;
     this.dataobjs.Action_req = "";
     this.dataobjs.BRANCH_DESC = "";
-    this.dataobjs.BRANCH_ID = "";
+    this.dataobjs.BRANCH_ID = parseInt(localStorage.getItem("TUM_BRANCH_ID"));
     this.dataobjs.CALL_ID = parseInt(this.item.CALL_ID);
     this.dataobjs.CUSTACCNO = this.item.CUSTACCNO;
     this.dataobjs.CUSTOMER_FNAME = this.item.CUSTOMER_FNAME;
@@ -351,11 +353,11 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       // this.callstagearray = JSON.parse(resp.toString());
       this.callstagearray = JSON.stringify(resp);
       this.callstagearray = JSON.parse(this.callstagearray);
-      console.log("callstagearray: " + JSON.stringify(this.callstagearray));
+      // console.log("callstagearray: " + JSON.stringify(this.callstagearray));
 
     }, error => {
 
-      console.log("branchlist1 : " + JSON.stringify(error));
+      // console.log("branchlist1 : " + JSON.stringify(error));
     });
   }
   Getleadsource() {
@@ -446,7 +448,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       this.objdataupd.callstageval = objdatval.callstageval;
       this.objdataupd.leadstatusval = objdatval.leadstatusval;
       this.objdataupd.nextactionval = objdatval.nextactionval;
-      this.objdataupd.LeadSource = objdatval.leadsrc;
+      this.objdataupd.LeadSource = parseInt(objdatval.leadsrc);
 
       this.dataobjs.Remarks = this.remarks;
       this.objdataupd.ActReq = objdatval.pendleadactreq;
@@ -548,7 +550,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       /* console.log(this.item.LEADSTATUS)*/
       this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
       this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-      this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
+      this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
       //console.log(this.dataobjs.callstageval);
       this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
       // console.log(this.item.TCC_LEAD_SOURCE);
@@ -738,13 +740,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                 }
               })
               .catch((error: any) => {
-                this.presentAlert("", 'Error getting location');
+                // this.presentAlert("", 'Error getting location');
                 //   alert('Error getting location'+ JSON.stringify(error));
               });
 
 
           }).catch((error) => {
-            console.log('Error getting location', error);
+            // console.log('Error getting location', error);
           });
 
         } else {
@@ -824,7 +826,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
@@ -837,7 +839,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: [
         {

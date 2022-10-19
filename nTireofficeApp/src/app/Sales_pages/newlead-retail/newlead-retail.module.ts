@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -26,6 +26,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [NewleadRetailPage],
-  providers:[DatePipe,Crop,Base64,Camera]
+  providers:[DatePipe,Crop,Base64,Camera],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class NewleadRetailPageModule {}

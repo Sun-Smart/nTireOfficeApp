@@ -33,7 +33,7 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
 
-              <option *ngFor="let branch of branchlist1; let i = index" [Value]="branch.BRANCH_ID">
+              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
             </select>
           </ion-col>
@@ -109,6 +109,7 @@
     <!-- <p *ngIf="shownorecord" style="text-align: center; color: #000;">No data found</p> -->
     <p class="totalCount">Total Lead : {{pendingleadsdatalength}}</p>
 
+    <p class="totalCount" *ngIf="!pendingleadsdatalength">{{showData}}</p>
     <ion-card *ngFor="let items of pendleaddetails; let i = index">
       <ion-card-header class="card_header">
         <ion-row>
@@ -129,7 +130,8 @@
            Recording</ion-button> -->
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <ion-label>Lead ID</ion-label>
+            <ion-label></ion-label>
+            Lead ID
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label></ion-label>
@@ -233,11 +235,11 @@
 
           </ion-col>
           <ion-col size="6">
-            <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
+            <ion-label></ion-label> Priority&nbsp;&nbsp;&nbsp;<span
               style="font-size: 14px;color:green;font-weight: bold;">{{items.PriorityText}}</span>
           </ion-col>
           <ion-col size="6">
-            <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
+            <ion-label></ion-label>Rating&nbsp;&nbsp;&nbsp;<span
               style="font-size: 14px;color:red;font-weight: bold;">{{items.Ratingtext}}</span>
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">

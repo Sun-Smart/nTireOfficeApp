@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
 @Component({
@@ -41,7 +42,9 @@ export class PurchaseRequestPage implements OnInit {
   release
 
 
-  constructor(private router: Router, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
+
+  constructor(private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
+
 
     var data = {
       "Description": this.Description,
@@ -59,9 +62,7 @@ export class PurchaseRequestPage implements OnInit {
 
     this.userid = localStorage.getItem('TUM_USER_ID')
     this.branchid = localStorage.getItem(' TUM_BRANCH_ID')
-
-
-
+    this.Requisitiondate = new Date();
   }
 
   showline() {
@@ -97,6 +98,38 @@ export class PurchaseRequestPage implements OnInit {
 
     // this.showfilter = !this.showfilter;
   }
+
+  async clear() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Clear the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+
+            this.prsmode = ""
+            this.reasonpurchase = ""
+            this.referenceifany = ""
+            this.rfpcomments = ""
+            this.order = ""
+            this.requestby = ""
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
   submit() {
     this.showviewlist = true;
     localStorage.setItem('Description', this.getlistitems.Description);

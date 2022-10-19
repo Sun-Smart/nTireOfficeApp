@@ -34,7 +34,7 @@ export class MaterialRequestPage implements OnInit {
    
   hideline(){
     this.hidelineItems=!this.hidelineItems
-    // this.showfilter = !this.showfilter;
+    this.showfilter = !this.showfilter;
     // this.Additem = !this.Additem;
     // this.visible = !this.visible
   }

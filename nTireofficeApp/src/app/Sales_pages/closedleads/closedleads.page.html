@@ -28,7 +28,7 @@
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-input class="form-control" placeholder="Ref ID" type="number" [(ngModel)]="TCC_CUST_LEAD_IDs">
+            <ion-input class="form-control" placeholder="Lead ID" type="number" [(ngModel)]="TCC_CUST_LEAD_IDs">
             </ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -89,8 +89,8 @@
         </ion-row>
       </ion-grid>
     </div>
-    <p style="font-weight: bold;text-align:center" class="totalCount">Total Lead : {{pendingleadsdatalength}}</p>
-
+    <p class="totalCount">Total Lead : {{pendingleadsdatalength}}</p>
+    <p class="totalCount" *ngIf="!pendingleadsdatalength">{{showData}}</p>
     <ion-card *ngFor="let items of pendleaddetails; let i = index">
       <ion-grid style="padding: 0px;">
         <ion-row>
@@ -210,11 +210,11 @@
 
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <span style="font-weight:bold;color: #726e6e;">Priority&nbsp;&nbsp;&nbsp;</span> <span
+            <ion-label></ion-label>Priority&nbsp;&nbsp;&nbsp;<span
               style="font-size: 14px;color:green;font-weight: 900;">{{items.PriorityText}}</span>
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <span style="font-weight:bold;color: #726e6e;">Rating&nbsp;&nbsp;&nbsp;</span><span
+            <ion-label></ion-label>Rating&nbsp;&nbsp;&nbsp;<span
               style="font-size: 14px;color:red;font-weight: 900;">{{items.Ratingtext}}</span>
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
@@ -223,7 +223,7 @@
 
               <i id="imageidvals{{0+i}}" class="fas fa-chevron-circle-down" aria-hidden="true" style="  font-size: 24px;
                 color: #000;
-                left: 260px;
+                left: 290px;
                 position: relative;
                 bottom: 4px;
                 box-shadow: rgb(0 0 0 / 30%) -1px 6px 11px -11px, rgb(0 0 0 / 30%) -9px 8px 20px -5px;
@@ -281,27 +281,22 @@
                 </span>
               </ion-col>
 
-              <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <span>Remarks</span>
               </ion-col>
-              <ion-col size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <b class="valuestext">{{items.Remarks}}</b>
               </ion-col>
               <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-
-                <a (click)="showless(i)"><i class="fas fa-chevron-circle-up" aria-hidden="true" style="  font-size: 24px !important;
-                  color: #000 !important;
-                  top: 46px !important;
-                  left: -10px !important;
-                  border-radius: 50% ;
-                  width: 26px;
-                  height: 26px;
-                  text-align: center;
-                  padding-top: 4px;
-                  position: relative !important;
-                  bottom: 4px !important;"></i></a>
+                <a (click)="showless(i)"><i class="fas fa-chevron-circle-up" aria-hidden="true" style="  font-size: 24px;
+                  color: #000;
+                  left: 290px;
+                  position: relative;
+                  bottom: -7px;
+                  box-shadow: rgb(0 0 0 / 30%) -1px 6px 11px -11px, rgb(0 0 0 / 30%) -9px 8px 20px -5px;
+                  display: inline-block;"></i></a>
               </ion-col>
-              <ion-col style="text-align:center" size-sm="6" size="8" size-md="6" size-lg="6" size-xl="6">
+              <ion-col style="text-align:center" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <button (click)="Gethistorydetails(items)" class="btn-info" size="full"
                   style="background-color: rgb(2 154 222);width:100% !important;font-size: 17px;">History</button>
               </ion-col>

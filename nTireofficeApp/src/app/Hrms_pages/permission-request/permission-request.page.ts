@@ -5,6 +5,8 @@ import { ToastmessageService } from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { analytics } from '@angular-devkit/core';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-permission-request',
@@ -43,7 +45,7 @@ export class PermissionRequestPage implements OnInit {
   release = false;
   currentstatus;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
+  constructor(public alertController: AlertController,private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.status = "P";
     this.userID = window.localStorage['TUM_USER_ID'];
     this.empCode = window.localStorage['TUM_EMP_CODE'];
@@ -277,11 +279,42 @@ export class PermissionRequestPage implements OnInit {
     this.router.navigateByUrl('/permissionsummary');
   }
 
-  permCancel() {
-    this.permDate = undefined;
-    this.fromHour = undefined;
-    this.toHour = undefined;
-    this.reason = undefined;
+  // permCancel() {
+  //   this.permDate = undefined;
+  //   this.fromHour = undefined;
+  //   this.toHour = undefined;
+  //   this.reason = undefined;
+  // }
+
+  async permCancel() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.reqID2 = "";
+            this.reqdate = "";
+            this.permDate = "";
+            this.fromHour = "";
+            this.toHour = "";
+            this.reason = "";
+           
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
+
 
 }

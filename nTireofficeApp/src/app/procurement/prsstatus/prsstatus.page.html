@@ -62,6 +62,9 @@
           <ion-button class="ion-color-primary" routerLink="/purchase-request" expand="block">New</ion-button>
         </ion-col>
         <ion-col style="text-align: center;">
+          <ion-button class="ion-color-danger" (click)="clear()" expand="block">clear</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" expand="block" (click)="Search()">
             <ion-icon style="color:white ;" name="search-outline"></ion-icon>
             Search

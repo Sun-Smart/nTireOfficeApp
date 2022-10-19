@@ -3,73 +3,87 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Inter Location Transfer</ion-title>
+    <ion-title style="padding-right: 0px;">Inter Location Transfer</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-row>
+  <ion-card *ngIf="showfilter">
+
+    <ion-grid *ngIf="showlineItems===true">
+      <ion-row>
 
 
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Branch</ion-label>
-      <select style="padding: 10px;" disabled=""
-        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-        class="Input-text-field textareaField">
-        <option>&lt;&lt; Select &gt;&gt;</option>
-      </select>
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">TRF Order No</ion-label>
-      <ion-input type="text" [(ngModel)]="trforderno" class="Input-text-field textareaField"></ion-input>
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Item Code</ion-label>
-      <ion-input type="text" [(ngModel)]="Itemcode" class="Input-text-field textareaField"></ion-input>
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">From TRF Date</ion-label>
-      <input type="date" [(ngModel)]="fromtrfdate" class="Input-text-field textareaField"
-        style=" display:inline-block;padding: 8px;">
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">To TRF Date</ion-label>
-      <input type="date" [(ngModel)]="totrfdate" class="Input-text-field textareaField"
-        style=" display:inline-block;padding: 8px;">
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Mode</ion-label>
-      <select style="padding: 10px;" disabled=""
-        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-        class="Input-text-field textareaField">
-        <option> Inter </option>
-      </select>
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Status</ion-label>
-      <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
-        class="Input-text-field textareaField">
-        <option>&lt;&lt; Select &gt;&gt;</option>
-        <option value="New">New</option>
-        <option value="Pending">Pending</option>
-        <option value="Approved">Approved</option>
-        <option value="Denied">Denied</option>
-        <option value="Under Process">Under Process</option>
-        <option value="Cancelled">Cancelled</option>
-      </select>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col style="text-align: center;">
-      <ion-button class="ion-color-primary" (click)="showline()" expand="block">New</ion-button>
-    </ion-col>
-    <ion-col style="text-align: center;">
-      <ion-button class="ion-color-success" expand="block" (click)="Search()">
-        <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-        Search
-      </ion-button>
-    </ion-col>
-  </ion-row>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Branch</ion-label>
+          <select style="padding: 10px;" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">TRF Order No</ion-label>
+          <ion-input type="text" [(ngModel)]="trforderno" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Item Code</ion-label>
+          <ion-input type="text" [(ngModel)]="Itemcode" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">From TRF Date</ion-label>
+          <input type="date" [(ngModel)]="fromtrfdate" class="Input-text-field textareaField"
+            style=" display:inline-block;padding: 8px;color: black !important;
+            font-weight: 600;">
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">To TRF Date</ion-label>
+          <input type="date" [(ngModel)]="totrfdate" class="Input-text-field textareaField"
+            style=" display:inline-block;padding: 8px;color: black !important;
+            font-weight: 600;">
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Mode</ion-label>
+          <select style="padding: 10px;" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option> Inter </option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Status</ion-label>
+          <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="New">New</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Denied">Denied</option>
+            <option value="Under Process">Under Process</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" style="text-align: center;">
+          <ion-button class="ion-color-primary" (click)="showline()" expand="block">New</ion-button>
+        </ion-col>
+        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+          <ion-button class="ion-color-danger" expand="block" (click)="clear()">
+            Clear
+          </ion-button>
+        </ion-col>
+        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" style="text-align: center;">
+          <ion-button class="ion-color-success" expand="block" (click)="Search()">
+            <ion-icon style="color:white ;" name="search-outline"></ion-icon>
+            Search
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
   <!-- <p style="text-align:center;">inter Location transfer </p> -->
   <ion-card *ngIf="showfilter">
     <ion-grid *ngIf="showlineItems===false">
@@ -126,6 +140,43 @@
             <option value="Abu Dhabi">Abu Dhabi</option>
             <option value="Sharjah">Sharjah</option>
           </select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <div style="padding: 12px;display: flex; ">
+            <ion-checkbox class="checkboxbg" slot="start" [(ngModel)]="release" [value]="false"></ion-checkbox>
+            &nbsp; &nbsp;
+            <ion-label class="ContentName">Release</ion-label>
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div style="padding: 12px;display: flex;">
+
+            <ion-label class="ContentName">Current Status : <span *ngIf="release==false">New</span><span
+                *ngIf="release==true">Pending</span>
+            </ion-label>
+          </div>
+        </ion-col>
+        <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-label class="ContentName">Remarks</ion-label>
+          <ion-textarea class="form-control" [(ngModel)]="Remarks"></ion-textarea>
+          <span *ngIf="Remarks!=undefined" class="customCounter">{{4000 -Remarks.length}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-primary" (click)="listline()" expand="block">List</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-danger" expand="block" (click)="clear1()">
+            Clear
+          </ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-success" expand="block" (click)="Initiate()">
+            Initiate
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>

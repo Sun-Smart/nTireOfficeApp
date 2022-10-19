@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable use-isnan */
 /* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
@@ -94,6 +95,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   getbranchid: any;
   BRANCH_IDs: any;
   TCC_CUSTOMER_IDs: any;
+  showData: String;
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -630,14 +632,14 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         headers: options,
       }).subscribe((resp: any) => {
         if (resp == "No data found") {
-          resp = "0";
+          this.showData = "No data found";
         } else {
-          resp = resp;
-        }
-        console.log("pendleadsdatalength : " + JSON.stringify(resp));
+          console.log("pendleadsdatalength : " + JSON.stringify(resp));
 
-        this.pendingleadsdatalength = resp.length;
-        console.log(this.pendingleadsdatalength)
+          this.pendingleadsdatalength = resp.length;
+          console.log(this.pendingleadsdatalength)
+        }
+
       }, error => {
 
 
@@ -647,62 +649,64 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         headers: options,
       }).subscribe((resp: any) => {
         if (resp == "No data found") {
-          resp = "0";
+          this.showData = "No data found";
         } else {
-          resp = resp;
+          this.loadingdismiss();
+          this.pendleaddetails1.push(resp);
+          this.pendleaddetails1.forEach(element => {
+            this.pendleaddetails = element;
+            console.log("pendleaddetails1 : " + JSON.stringify(element));
+
+          });
+
+          for (var i = 0; i < this.pendleaddetails.length; i++) {
+            console.log(this.pendleaddetails[i].MOBILE);
+            if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
+              this.pendleaddetails[i].MOBILE = '-';
+            }
+            if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
+              this.pendleaddetails[i].OFFPHONE = '-';
+            }
+            if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
+              this.pendleaddetails[i].RESPHONE = '-';
+            }
+            if (this.pendleaddetails[i].CreatedOn != undefined) {
+
+              var date = this.pendleaddetails[i].CreatedOn1;
+              console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
+              var timesp = date.split('T');
+              var time2 = timesp[1].split('.').pop();
+
+              var d1 = new Date(timesp[0] + " " + time2[0]);
+              var d2 = new Date(d1);
+              d2.setMinutes(d2.getMinutes() + 30);
+              console.log('getMinutes' + d2);
+
+
+              var penddata = this.datePipe.transform(d2, "hh:mm a");
+              console.log('penddata' + penddata);
+              var created_time = penddata;
+              var time = created_time.split(' ');
+
+              if (time[1] == 'AM') {
+                this.pendleaddetails[i].created_time = time[0] + " " + 'PM'
+              }
+              else {
+                this.pendleaddetails[i].created_time = time[0] + " " + 'AM'
+              }
+
+            }
+            if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
+              this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
+            }
+            this.pendleaddetails[i].blobUrl = null;
+            this.pendleaddetails[i].isRecording = false;
+          }
+
+
         }
         // console.log("pendleaddetails1 : " + JSON.stringify(resp));
-        this.loadingdismiss();
-        this.pendleaddetails1.push(resp);
-        this.pendleaddetails1.forEach(element => {
-          this.pendleaddetails = element;
-          console.log("pendleaddetails1 : " + JSON.stringify(element));
 
-        });
-
-        for (var i = 0; i < this.pendleaddetails.length; i++) {
-          console.log(this.pendleaddetails[i].MOBILE);
-          if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
-            this.pendleaddetails[i].MOBILE = '-';
-          }
-          if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
-            this.pendleaddetails[i].OFFPHONE = '-';
-          }
-          if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
-            this.pendleaddetails[i].RESPHONE = '-';
-          }
-          if (this.pendleaddetails[i].CreatedOn != undefined) {
-
-            var date = this.pendleaddetails[i].CreatedOn1;
-            console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
-            var timesp = date.split('T');
-            var time2 = timesp[1].split('.').pop();
-
-            var d1 = new Date(timesp[0] + " " + time2[0]);
-            var d2 = new Date(d1);
-            d2.setMinutes(d2.getMinutes() + 30);
-            console.log('getMinutes' + d2);
-
-
-            var penddata = this.datePipe.transform(d2, "hh:mm a");
-            console.log('penddata' + penddata);
-            var created_time = penddata;
-            var time = created_time.split(' ');
-
-            if (time[1] == 'AM') {
-              this.pendleaddetails[i].created_time = time[0] + " " + 'PM'
-            }
-            else {
-              this.pendleaddetails[i].created_time = time[0] + " " + 'AM'
-            }
-
-          }
-          if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
-            this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
-          }
-          this.pendleaddetails[i].blobUrl = null;
-          this.pendleaddetails[i].isRecording = false;
-        }
       }, error => {
         this.loadingdismiss();
         console.log("error : " + JSON.stringify(error));
@@ -822,16 +826,16 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       headers: options,
     }).subscribe((resp: any) => {
       if (resp == "No data found") {
-        resp = "0";
+        this.showData = "No data found";
       } else {
-        resp = resp;
+        if (resp == null) {
+          this.pendingleadsdatalength = 0
+        }
+        console.log("pendleadsdatalength : " + JSON.stringify(resp));
+        // this.pendingleadsdatalength = Object.keys(resp).length;
+        this.pendingleadsdatalength = resp.length;
+        console.log(this.pendingleadsdatalength)
       }
-      if (resp == null) {
-        this.pendingleadsdatalength = 0
-      }
-      console.log("pendleadsdatalength : " + JSON.stringify(resp));
-      this.pendingleadsdatalength = Object.keys(resp).length;
-      console.log(this.pendingleadsdatalength)
     }, error => {
 
 
@@ -841,68 +845,70 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       headers: options,
     }).subscribe((resp: any) => {
       if (resp == "No data found") {
-        resp = "0";
+        this.showData = "No data found";
       } else {
-        resp = resp;
-      }
+        // console.log("pendleaddetails1 : " + JSON.stringify(resp));
+        this.loadingdismiss();
+        this.pendleaddetails1.push(resp);
+        this.pendleaddetails1.forEach(element => {
+          this.pendleaddetails = element;
+          console.log("pendleaddetails1 : " + JSON.stringify(element));
 
+
+        });
+
+        for (var i = 0; i < this.pendleaddetails.length; i++) {
+          console.log(this.pendleaddetails[i].MOBILE);
+          if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
+            this.pendleaddetails[i].MOBILE = '-';
+          }
+          if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
+            this.pendleaddetails[i].OFFPHONE = '-';
+          }
+          if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
+            this.pendleaddetails[i].RESPHONE = '-';
+          }
+          if (this.pendleaddetails[i].CreatedOn != undefined) {
+
+            var date = this.pendleaddetails[i].CreatedOn1;
+            console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
+            var timesp = date.split('T');
+            var time2 = timesp[1]?.split('.');
+
+            var d1 = new Date(timesp[0] + " " + time2[0]);
+            var d2 = new Date(d1);
+            d2.setMinutes(d2.getMinutes() + 30);
+            console.log('getMinutes' + d2);
+
+
+            var penddata = this.datePipe.transform(d2, "hh:mm a");
+            console.log('penddata' + penddata);
+            var created_time = penddata;
+            var time = created_time.split(' ');
+
+            if (time[1] == 'AM') {
+              this.pendleaddetails[i].created_time = time[0] + " " + 'PM'
+            }
+            else {
+              this.pendleaddetails[i].created_time = time[0] + " " + 'AM'
+            }
+
+          }
+          if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
+            this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
+          }
+          this.pendleaddetails[i].blobUrl = null;
+          this.pendleaddetails[i].isRecording = false;
+        }
+
+
+
+      }
       // if (resp == null || resp == '') {
       //   this.shownorecord = true
       // }
 
-      // console.log("pendleaddetails1 : " + JSON.stringify(resp));
-      this.loadingdismiss();
-      this.pendleaddetails1.push(resp);
-      this.pendleaddetails1.forEach(element => {
-        this.pendleaddetails = element;
-        console.log("pendleaddetails1 : " + JSON.stringify(element));
 
-
-      });
-
-      for (var i = 0; i < this.pendleaddetails.length; i++) {
-        console.log(this.pendleaddetails[i].MOBILE);
-        if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
-          this.pendleaddetails[i].MOBILE = '-';
-        }
-        if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
-          this.pendleaddetails[i].OFFPHONE = '-';
-        }
-        if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
-          this.pendleaddetails[i].RESPHONE = '-';
-        }
-        if (this.pendleaddetails[i].CreatedOn != undefined) {
-
-          var date = this.pendleaddetails[i].CreatedOn1;
-          console.log('CreatedOn1' + this.pendleaddetails[i].CreatedOn1);
-          var timesp = date.split('T');
-          var time2 = timesp[1]?.split('.');
-
-          var d1 = new Date(timesp[0] + " " + time2[0]);
-          var d2 = new Date(d1);
-          d2.setMinutes(d2.getMinutes() + 30);
-          console.log('getMinutes' + d2);
-
-
-          var penddata = this.datePipe.transform(d2, "hh:mm a");
-          console.log('penddata' + penddata);
-          var created_time = penddata;
-          var time = created_time.split(' ');
-
-          if (time[1] == 'AM') {
-            this.pendleaddetails[i].created_time = time[0] + " " + 'PM'
-          }
-          else {
-            this.pendleaddetails[i].created_time = time[0] + " " + 'AM'
-          }
-
-        }
-        if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
-          this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
-        }
-        this.pendleaddetails[i].blobUrl = null;
-        this.pendleaddetails[i].isRecording = false;
-      }
     }, error => {
       this.loadingdismiss();
       console.log("error : " + JSON.stringify(error));
@@ -1188,7 +1194,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       console.log('starttime : ' + starttime + 'endtime : ' + endtime);
 
       var objdataupdtime = {
-        TCC_CUST_ID: '',
+        TCC_CUST_ID: parseInt(''),
         TCC_CUST_LEAD_ID: '',
         TCC_CALL_ID: '',
         OBJ_ID: '',
@@ -1196,12 +1202,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         END_TIME: '',
         Location_Desc: '',
         access_token: '',
-        userid: '',
+        userid: parseInt(''),
         usertoken: ''
       };
 
 
-      objdataupdtime.TCC_CUST_ID = customerid;
+      objdataupdtime.TCC_CUST_ID = parseInt(customerid);
       objdataupdtime.TCC_CUST_LEAD_ID = custleadid;
       objdataupdtime.TCC_CALL_ID = callid;
       objdataupdtime.OBJ_ID = idvals;
@@ -1209,7 +1215,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       objdataupdtime.END_TIME = endtime;
       objdataupdtime.Location_Desc = 'Adyar';
       objdataupdtime.access_token = window.localStorage['token'];
-      objdataupdtime.userid = window.localStorage['TUM_USER_ID'];
+      objdataupdtime.userid = parseInt(window.localStorage['TUM_USER_ID']);
       objdataupdtime.usertoken = window.localStorage['usertoken'];
 
       console.log(objdataupdtime);
