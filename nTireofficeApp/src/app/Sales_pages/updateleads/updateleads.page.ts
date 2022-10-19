@@ -453,7 +453,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       this.dataobjs.Remarks = this.remarks;
       this.objdataupd.ActReq = objdatval.pendleadactreq;
 
-      this.objdataupd.TCC_CUST_LEAD_ID = this.item.customer_lead_id;
+      this.objdataupd.TCC_CUST_LEAD_ID =this.item.customer_lead_id.toString();
 
       var date1 = new Date(objdatval.ClosedDate);
       var day1 = date1.getDate();
@@ -699,7 +699,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                     usertoken: "",
                   };
                   objdataupdtime.TCC_CUST_ID = customerid;
-                  objdataupdtime.TCC_CUST_LEAD_ID = custleadid;
+                  objdataupdtime.TCC_CUST_LEAD_ID = custleadid.toString();
                   objdataupdtime.TCC_CALL_ID = parseInt(callid);
                   objdataupdtime.OBJ_ID = idvals;
                   objdataupdtime.START_TIME = currenttime;
