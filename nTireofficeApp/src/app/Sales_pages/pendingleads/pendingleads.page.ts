@@ -1062,6 +1062,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   async Gethistorydetails(item) {
     debugger;
     item.CALL_ID = parseInt(item.CALL_ID);
+    item.BRANCH_ID = parseInt(item.BRANCH_ID);
     item.Campaign = 0;
     console.log("" + JSON.stringify(item))
     const modal = await this.modalController.create({
@@ -1212,7 +1213,8 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       objdataupdtime.TCC_CALL_ID = callid;
       objdataupdtime.OBJ_ID = idvals;
       objdataupdtime.START_TIME = starttime;
-      objdataupdtime.END_TIME = endtime;
+      // objdataupdtime.END_TIME = endtime;
+      objdataupdtime.END_TIME = "";
       objdataupdtime.Location_Desc = 'Adyar';
       objdataupdtime.access_token = window.localStorage['token'];
       objdataupdtime.userid = parseInt(window.localStorage['TUM_USER_ID']);
@@ -1355,7 +1357,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass: 'buttonCss',
+      cssClass: 'Cssbutton',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
