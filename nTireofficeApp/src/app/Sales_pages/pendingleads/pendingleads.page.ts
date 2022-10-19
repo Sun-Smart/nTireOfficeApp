@@ -1194,7 +1194,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       console.log('starttime : ' + starttime + 'endtime : ' + endtime);
 
       var objdataupdtime = {
-        TCC_CUST_ID: '',
+        TCC_CUST_ID: parseInt(''),
         TCC_CUST_LEAD_ID: '',
         TCC_CALL_ID: '',
         OBJ_ID: '',
@@ -1202,12 +1202,12 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         END_TIME: '',
         Location_Desc: '',
         access_token: '',
-        userid: '',
+        userid: parseInt(''),
         usertoken: ''
       };
 
 
-      objdataupdtime.TCC_CUST_ID = customerid;
+      objdataupdtime.TCC_CUST_ID = parseInt(customerid);
       objdataupdtime.TCC_CUST_LEAD_ID = custleadid;
       objdataupdtime.TCC_CALL_ID = callid;
       objdataupdtime.OBJ_ID = idvals;
@@ -1215,7 +1215,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       objdataupdtime.END_TIME = endtime;
       objdataupdtime.Location_Desc = 'Adyar';
       objdataupdtime.access_token = window.localStorage['token'];
-      objdataupdtime.userid = window.localStorage['TUM_USER_ID'];
+      objdataupdtime.userid = parseInt(window.localStorage['TUM_USER_ID']);
       objdataupdtime.usertoken = window.localStorage['usertoken'];
 
       console.log(objdataupdtime);
