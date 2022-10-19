@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable radix */
 /* eslint-disable id-blacklist */
@@ -95,7 +97,7 @@ export class HistotydetailsPage implements OnInit {
     // console.log('showhistforuser after'+JSON.stringify(this.showhistforuser));
   }
   Gethistorydata() {
-
+debugger;
     var params = {
       TCC_CUST_ID: parseInt(this.item.TCC_CUSTOMER_ID),
       "Token": window.localStorage['token'],
@@ -118,7 +120,7 @@ export class HistotydetailsPage implements OnInit {
     };
     var updateleadHistoryJSON = Object.assign(this.item, params);
     console.log("params : " + JSON.stringify(updateleadHistoryJSON));
-
+debugger
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -128,7 +130,7 @@ export class HistotydetailsPage implements OnInit {
       this.showhistforuser1 = resp;
       // this.showhistforuser1 = JSON.parse(this.showhistforuser1)
       // console.log("showhistforuser : " + JSON.stringify(resp));
-
+debugger
       this.showhistforuser1.forEach(element => {
         element.MOBILE = element.MOBILE;
         element.BRANCH_DESC = this.item.BRANCH_DESC;

@@ -6,41 +6,103 @@
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="assetcodetabrefe"></ion-input>
       </ion-col>
-    </ion-row> 
+    </ion-row>
 
-    <ion-card style="background-color:#fff">
-      <ion-grid style="padding: 0px;">
+
+    <ion-card>
+      <ion-card-header class="card_header">
         <ion-row>
-          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="background-color: #2e3192!important;color:#fff;padding:12px;">
-            Spares Used
+          <ion-col>
+            <ion-label class="card_header_text1">Spares Used</ion-label>
           </ion-col>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-            <ion-label style="font-weight:bold;display: block;">S.no<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-content>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-label>S.no :</ion-label>
             <ion-input type="text" class="form-control" [(ngModel)]="sno"></ion-input>
           </ion-col>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-            <ion-label style="font-weight:bold;display: block;">Material Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
-            
-            <select [(ngModel)]="materialcode" class="form-control" style="width:100%" (change)="matrialdtle(materialcode)">
+
+          <ion-col size="6">
+            <ion-label>Material Code<span style="color:red;margin-left: 5px;">*</span> :</ion-label>
+            <select [(ngModel)]="materialcode" class="form-control" style="width:100%; padding: 9px 20px !important; "
+              (change)="matrialdtle(materialcode)">
               <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let item of sparematerialddtl; let i = index" [ngValue]="item.ITEM_CODE">{{item.ITEM_CODE}}
+              <option *ngFor="let item of sparematerialddtl; let i = index" [ngValue]="item.ITEM_CODE">
+                {{item.ITEM_CODE}}
               </option>
             </select>
           </ion-col>
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
-            <ion-label style="font-weight:bold;display: block;"> Material Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-col  size="6">
+            <ion-label>Material Description <span style="color:red;margin-left: 5px;">*</span>:</ion-label>
             <ion-input type="text" [(ngModel)]="materialdescp" class="form-control"></ion-input>
           </ion-col>
 
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">  
-            <ion-label style="font-weight:bold;display: block;"> Date Of Installation <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-col  size="6">
+            <ion-label>Date Of Installation <span style="color:red;margin-left: 5px;">*</span>:</ion-label>
+            <ion-input type="date" class="form-control" [(ngModel)]="doi"></ion-input>
+          </ion-col>
+
+          <ion-col  size="6">
+            <ion-label>Quantity <span style="color:red;margin-left: 5px;">*</span>:</ion-label>
+            <ion-input type="number" [(ngModel)]="quantity" class="form-control"></ion-input>
+          </ion-col>
+
+          <ion-col  size="12">
+            <ion-button (click)="insertspare()"
+            [disabled]="(materialcode=='<< Select >>' || materialdescp==undefined|| sno== undefined || doi == undefined || quantity == undefined)"
+            text-center style="--background:#009689" size="small">Save
+          </ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="background-color:#fff; display: none;">
+      <ion-grid style="padding: 0px;">
+        <ion-row>
+          <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12"
+            style="background-color: #2e3192!important;color:#fff;padding:12px;">
+            Spares Used
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+            <ion-label style="font-weight:bold;display: block;">S.no<span style="color:red;margin-left: 5px;">*</span>
+            </ion-label>
+            <ion-input type="text" class="form-control" [(ngModel)]="sno"></ion-input>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+            <ion-label style="font-weight:bold;display: block;">Material Code<span
+                style="color:red;margin-left: 5px;">*</span></ion-label>
+
+            <select [(ngModel)]="materialcode" class="form-control" style="width:100%"
+              (change)="matrialdtle(materialcode)">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let item of sparematerialddtl; let i = index" [ngValue]="item.ITEM_CODE">
+                {{item.ITEM_CODE}}
+              </option>
+            </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label style="font-weight:bold;display: block;"> Material Description <span
+                style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-input type="text" [(ngModel)]="materialdescp" class="form-control"></ion-input>
+          </ion-col>
+
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+            <ion-label style="font-weight:bold;display: block;"> Date Of Installation <span
+                style="color:red;margin-left: 5px;">*</span></ion-label>
             <!-- <ion-datetime  displayFormat="YYYY/MM/DD" [(ngModel)]="doi" class="form-control" ></ion-datetime> -->
             <ion-input type="date" class="form-control" [(ngModel)]="doi"></ion-input>
           </ion-col>
 
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-            <ion-label style="font-weight:bold;display: block;"> Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+            <ion-label style="font-weight:bold;display: block;"> Quantity <span
+                style="color:red;margin-left: 5px;">*</span></ion-label>
             <ion-input type="number" [(ngModel)]="quantity" class="form-control"></ion-input>
           </ion-col>
 
@@ -50,67 +112,70 @@
         </ion-col>  -->
         </ion-row>
 
-      <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
-          <ion-button (click)="insertspare()" [disabled]="(materialcode=='<< Select >>' || materialdescp==undefined|| sno== undefined || doi == undefined || quantity == undefined)" text-center style="--background:#009689" size="small">Save
-          </ion-button>
-        </ion-col> 
-        <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
-     
-      </ion-row>
-        </ion-grid>
-      </ion-card>
-      
+        <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
+            <ion-button (click)="insertspare()"
+              [disabled]="(materialcode=='<< Select >>' || materialdescp==undefined|| sno== undefined || doi == undefined || quantity == undefined)"
+              text-center style="--background:#009689" size="small">Save
+            </ion-button>
+          </ion-col>
+          <ion-col size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3"></ion-col>
 
-      <ion-card *ngFor="let data of sparerecord; let i = index" style="background-color:#fff">
-        <ion-grid style="padding: 0px;">
-          <ion-row>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
-              style="background-color: #2e3192!important;color:#fff;padding:12px;">
-              {{data.serialno}}
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+
+    <ion-card *ngFor="let data of sparerecord; let i = index" style="background-color:#fff">
+      <ion-grid style="padding: 0px;">
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+            style="background-color: #2e3192!important;color:#fff;padding:12px;">
+            {{data.serialno}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
             style="background-color: hsl(238, 52%, 38%)!important;color:#fff;padding:12px;text-align:right;">
             <button ion-button icon-only style="background-color:hsl(238, 52%, 38%)!important">
               <ion-icon slot="icon-only" name="create" style="color:#fff;" (click)="editItems(data,i)"></ion-icon>
             </button>
             <button ion-button icon-only style="background-color:hsl(238, 52%, 38%)!important">
-              <ion-icon slot="icon-only" name="close-circle" style="color:#fff;" (click)="deleteItems(data,i)"></ion-icon>
-           </button>
+              <ion-icon slot="icon-only" name="close-circle" style="color:#fff;" (click)="deleteItems(data,i)">
+              </ion-icon>
+            </button>
           </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-              Material Code
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              {{data.MaterialCode}}
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-              Material Description
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              {{data.MaterialDescription}}
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-              Date Of Installation
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              {{data.CAMS_ASSET_INSTALLATION_DATE}}
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-              Quantity
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              {{data.sparequantity}}
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-              Cost
-            </ion-col>
-            <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              {{data.SPARECOST}}
-            </ion-col>
-            </ion-row>
-            </ion-grid>
-            </ion-card>
-  </ion-grid>   
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Material Code
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{data.MaterialCode}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Material Description
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{data.MaterialDescription}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Date Of Installation
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{data.CAMS_ASSET_INSTALLATION_DATE}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Quantity
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{data.sparequantity}}
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            Cost
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            {{data.SPARECOST}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-grid>
 </ion-content>

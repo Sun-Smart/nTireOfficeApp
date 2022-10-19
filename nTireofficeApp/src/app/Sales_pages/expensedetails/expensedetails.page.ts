@@ -100,6 +100,10 @@ export class ExpensedetailsPage implements OnInit {
     this.IsVisible = true;
     this.brach = "";
     this.Getbranches();
+    var today = new Date();
+
+    this.fromdate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
   }
 
   ngOnInit() {

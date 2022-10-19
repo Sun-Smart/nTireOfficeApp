@@ -317,6 +317,16 @@ ion-header {
   position: sticky;
   top: 0;
 }
+.tab-header{
+  background-image: url("./assets/images/loginBackground.png");
+}
+.tab-header{
+  ion-tab-button, .tablabel {
+    background: transparent !important;
+    color: white;
+  }
+}
+
 
 ion-header::after {
   background-image: none;
@@ -1138,7 +1148,10 @@ ion-checkbox::part(container) {
   color: #000;
   font-weight: 500;
 }
-
+.labelData-text {
+  font-size: 14px !important;
+  font-weight: bold;
+}
 
 //suneel
 :host(.item-interactive.ion-valid) {
@@ -1168,14 +1181,6 @@ ion-checkbox::part(container) {
   color: #000 !important;
 }
 
-.labelHead-text {
-  display: flex;
-}
-
-.labelData-text {
-  font-size: 14px !important;
-  font-weight: bold;
-}
 
 //suneel
 :host(.item-interactive.ion-valid) {
