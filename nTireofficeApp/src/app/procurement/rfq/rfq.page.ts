@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-rfq',
@@ -16,8 +18,14 @@ export class RFQPage implements OnInit {
   checkParent: boolean;
   Checkboxes: any;
   checkboxes:any=[];
+  prscode: string;
+  itemcode: string;
+  fromdate: string;
+  toDate: string;
+  status: string;
+  bidding: string;
 
-  constructor(private router :Router) {
+  constructor(private router :Router,private alertController: AlertController) {
     // this.Checkboxes = [
     //   {
     //     name: "PRS Code",
@@ -98,4 +106,35 @@ export class RFQPage implements OnInit {
     this.router.navigate(['/manage-rfq'])
   }
 
+  async Cancel() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+        
+        this.prscode="";
+        this.itemcode="";
+        this.fromdate="";
+        this.toDate="";
+        this.status="";
+        this.bidding="";
+        // this.remarks="";
+           
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }
