@@ -128,7 +128,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     TCC_CUSTOMER_ID: parseInt(""),
     TCC_LAST_CALLED: parseInt(""),
     TCC_LEAD_NATURE: parseInt(""),
-    TCC_LEAD_RATING: parseInt(""),
+    TCC_LEAD_RATING: "",
     TCC_LEAD_SOURCE: parseInt(""),
     TCC_LEAD_STAGE: parseInt(""),
 
@@ -252,7 +252,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.TCC_CUSTOMER_ID = parseInt(this.item.TCC_CUSTOMER_ID);
     this.dataobjs.TCC_LAST_CALLED = parseInt(this.item.TCC_LAST_CALLED);
     this.dataobjs.TCC_LEAD_NATURE = parseInt(this.item.TCC_LEAD_NATURE);
-    this.dataobjs.TCC_LEAD_RATING = parseInt(this.item.TCC_LEAD_RATING);
+    this.dataobjs.TCC_LEAD_RATING = this.item.TCC_LEAD_RATING;
     this.dataobjs.TCC_LEAD_SOURCE = parseInt(this.item.TCC_LEAD_SOURCE);
     this.dataobjs.TCC_LEAD_STAGE = this.item.TCC_LEAD_STAGE;
 
@@ -703,7 +703,8 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                   objdataupdtime.TCC_CALL_ID = parseInt(callid);
                   objdataupdtime.OBJ_ID = idvals;
                   objdataupdtime.START_TIME = currenttime;
-                  objdataupdtime.END_TIME = currenttime;
+                  // objdataupdtime.END_TIME = currenttime;
+                  objdataupdtime.END_TIME = "";
                   objdataupdtime.Location_Desc = areaname;
                   objdataupdtime.access_token = window.localStorage['token'];
                   objdataupdtime.userid = parseInt(window.localStorage['TUM_USER_ID']);
