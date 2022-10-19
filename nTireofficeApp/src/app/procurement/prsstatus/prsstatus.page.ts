@@ -62,6 +62,8 @@ export class PRSstatusPage implements OnInit {
             this.status = "";
             this.todate = "";
             this.fromdate = "";
+            this.getresponse = "";
+
           }
         }
       ]
