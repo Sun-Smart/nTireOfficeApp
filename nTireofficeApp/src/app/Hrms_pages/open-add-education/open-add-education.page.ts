@@ -5,6 +5,8 @@ import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import {ModalController} from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-open-add-education',
@@ -57,9 +59,10 @@ export class OpenAddEducationPage implements OnInit {
   EducationLabel: string;
   educationID: any;
   employeid: any;
+  remarks: any;
 
 
-  constructor(private model:ModalController,navParams: NavParams,public toastmessageService:ToastmessageService,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient) {
+  constructor(private alertController: AlertController,private model:ModalController,navParams: NavParams,public toastmessageService:ToastmessageService,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient) {
     this.userId=parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken=window.localStorage['usertoken'];
     this.token=window.localStorage['token'];
@@ -234,4 +237,35 @@ export class OpenAddEducationPage implements OnInit {
     this.model.dismiss();
   }
 
+  async eduCancel() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+        
+        this.category="";
+        this.specialization="";
+        this.fromdate="";
+        this.toDate="";
+        this.institution="";
+        this.percentage="";
+        this.remarks="";
+           
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

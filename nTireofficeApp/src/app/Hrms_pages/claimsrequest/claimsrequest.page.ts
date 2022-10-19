@@ -657,6 +657,7 @@ export class ClaimsrequestPage implements OnInit {
             this.Images = [];
             this.Images = undefined;
             this.expenseArray = [];
+            this.expenseamount ="";
 
           }
         }
