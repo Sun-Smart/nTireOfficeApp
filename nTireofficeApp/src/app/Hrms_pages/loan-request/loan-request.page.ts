@@ -179,6 +179,8 @@ if(params.length !=undefined) {
             this.advamount = "";
             this.installments = "";
             this.mondeduct = "";
+            this.loanreqno ="";
+            // this.designation="";
           }
         }
       ]
