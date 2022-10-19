@@ -33,7 +33,7 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
 
-              <option *ngFor="let branch of branchlist1; let i = index" [Value]="branch.BRANCH_ID">
+              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
             </select>
           </ion-col>
@@ -109,6 +109,7 @@
     <!-- <p *ngIf="shownorecord" style="text-align: center; color: #000;">No data found</p> -->
     <p class="totalCount">Total Lead : {{pendingleadsdatalength}}</p>
 
+    <p class="totalCount" *ngIf="!pendingleadsdatalength">{{showData}}</p>
     <ion-card *ngFor="let items of pendleaddetails; let i = index">
       <ion-card-header class="card_header">
         <ion-row>

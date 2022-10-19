@@ -61,7 +61,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     callratingval: "",
     callnatureval: "",
     // callstageval:   '<< Select >>',
-    callstageval:"<< Select>>",
+    callstageval: "<< Select>>",
     leadsrc: "<< Select >>",
     ClosedDate: "",
     ExpctedAmount: "",
@@ -77,7 +77,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     schedleadareaname: "",
     Action_req: "",
     BRANCH_DESC: "",
-    BRANCH_ID: "",
+    BRANCH_ID: parseInt(localStorage.getItem("TUM_BRANCH_ID")),
     // CALL_ID: parseInt(""),
     CALL_ID: parseInt(""),
     CUSTACCNO: "",
@@ -203,7 +203,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.EmailID = this.item.EmailID;
     this.dataobjs.Action_req = "";
     this.dataobjs.BRANCH_DESC = "";
-    this.dataobjs.BRANCH_ID = "";
+    this.dataobjs.BRANCH_ID = parseInt(localStorage.getItem("TUM_BRANCH_ID"));
     this.dataobjs.CALL_ID = parseInt(this.item.CALL_ID);
     this.dataobjs.CUSTACCNO = this.item.CUSTACCNO;
     this.dataobjs.CUSTOMER_FNAME = this.item.CUSTOMER_FNAME;
@@ -824,7 +824,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'buttonCss',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
@@ -837,7 +837,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     const alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: [
         {
