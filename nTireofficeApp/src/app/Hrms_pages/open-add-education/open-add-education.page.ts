@@ -205,7 +205,7 @@ export class OpenAddEducationPage implements OnInit {
 
     console.log("error : "+JSON.stringify(error));
 
-    this.toastmessageService.presentAlert1("","Error updating profile");
+    this.toastmessageService.presentAlert1("","Please fill the Mandatory fields");
     });
 
 

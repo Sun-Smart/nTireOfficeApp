@@ -94,7 +94,7 @@ export class ClaimsrequestPage implements OnInit {
       access_token: this.token,
       appURL: 'getrequestcategoryclaims'
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getRequestCategoryClaims/", Catobj).then(resp => {
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getRequestCategoryClaims", Catobj).then(resp => {
 
       console.log(resp)
       this.Reqcategory1 = resp;
@@ -267,7 +267,7 @@ export class ClaimsrequestPage implements OnInit {
       usertoken: this.usertoken,
       access_token: this.token,
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getExpensetypeClaims/", Odobj).then(resp => {
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getExpensetypeClaims", Odobj).then(resp => {
       this.expenseetype = resp;
       this.expenseetype.forEach(element => {
         this.expenseetype1.push(element)
@@ -383,7 +383,7 @@ export class ClaimsrequestPage implements OnInit {
           if (element.ATTACTMENT != undefined) {
             var imgname = element.ATTACTMENT.imgname;
           }
-          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getlastinsertedexpense/", obj).then(resp => {
+          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getlastinsertedexpense", obj).then(resp => {
             console.log(resp);
             this.expenseid = resp[0].expenseid;
             this.exp_id = resp[0].EXP_id;
