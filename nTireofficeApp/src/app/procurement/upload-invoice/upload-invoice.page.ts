@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-invoice.page.scss'],
 })
 export class UploadInvoicePage implements OnInit {
-
-  constructor() { }
+  dat_valid;
+  constructor() { 
+    this.dat_valid= {
+      currentDate: new Date()
+    };
+  }
 
   ngOnInit() {
   }

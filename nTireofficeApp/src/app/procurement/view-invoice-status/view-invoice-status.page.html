@@ -3,23 +3,111 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>viewInvoiceStatus</ion-title>
+    <ion-title>view Invoice Status</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<p style="text-align: center;">View InvoiceStatus page in progress</p>
+  <ion-grid style="border-radius: 5px;">
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label class="ContentName">Invoice Number</ion-label>
+        <ion-input type="number" class="form-control" [(ngModel)]="invoicenumber"></ion-input>
+      </ion-col>
+
+      <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label class="ContentName">Invoice Date<span class="validatecolor">*</span></ion-label>
+        <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
+          (ionChange)="validateFromDate()" [(ngModel)]="invoiceDate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label class="ContentName">Invoice Amount</ion-label>
+        <ion-input type="number" class="form-control" [(ngModel)]="invoiceamount"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label class="ContentName">Invoice Remark</ion-label>
+        <ion-input type="text" class="form-control" [(ngModel)]="invoiceremark"></ion-input>
+      </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Upload Document</ion-label>
+        <br />
+        <!-- <i class="fa fa-paperclip" aria-hidden="true" style="font-size:28px;color:black;position: relative;left:50%"
+        ios="ios-attach" md="md-attach" (click)="selectImage()"></i>
+      <div style="display:none;word-break: break-all;">
+        <input type="file" name="file" id="fileinput" />
+      </div> -->
+        <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
+          [uploader]="uploader" class="drop-zone">
+        </div>
+        <div class="file-input-container">
+          <label>
+            <input type="file" ng2FileSelect [uploader]="uploader" multiple />
+
+          </label>
+        </div>
+        <!-- <h2>Files: {{ uploader?.queue?.length }}</h2> -->
+        <!-- <ion-list>
+        <ion-reorder-group (ionItemReorder)="reorderFiles($event)" disabled="false">
+          <ion-item *ngFor="let item of uploader.queue">
+            <ion-label> {{ item?.file?.name }} </ion-label>
+            <ion-reorder></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list> -->
+      </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="plabel">Status</ion-label>
+        <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
+          class="Input-text-field textareaField">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option value="New">New</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Denied">Denied</option>
+          <option value="Under Process">Under Process</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </ion-col>
+      <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label class="ContentName">Payment Date<span class="validatecolor">*</span></ion-label>
+        <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
+          (ionChange)="validateFromDate()" [(ngModel)]="fromDate"></ion-input>
+      </ion-col>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+        <ion-label class="ContentName">Payment Ref</ion-label>
+        <ion-input type="text" class="form-control" [(ngModel)]="Paymentref"></ion-input>
+      </ion-col>
+
+
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-button class="ion-color-danger" expand="block" (click)="clear()">
+          Clear
+        </ion-button>
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-button class="ion-color-primary" expand="block" (click)="close()">
+          Close
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
 </ion-content>
 <ion-footer>
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
 
 
- </ion-footer>
+</ion-footer>

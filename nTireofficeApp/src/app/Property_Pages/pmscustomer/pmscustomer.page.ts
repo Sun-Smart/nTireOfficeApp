@@ -14,8 +14,9 @@ declare var google: any;
 })
 export class PmscustomerPage implements OnInit {
 
+  username = window.localStorage.getItem('TUM_USER_NAME');
+
   name: string = '';
-  username: any;
   filterTerm: string;
   showfilter: boolean = true;
 
@@ -42,6 +43,8 @@ export class PmscustomerPage implements OnInit {
   showdata: any;
 
 
+
+
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient,
@@ -52,7 +55,7 @@ export class PmscustomerPage implements OnInit {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.accessToken = localStorage.getItem('token');
-  };
+    };
 
 
   ngOnInit() {
