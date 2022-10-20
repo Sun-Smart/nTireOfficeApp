@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../ipaddress.service';
+import { IpaddressService} from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
 import { Router} from '@angular/router';
@@ -67,8 +67,7 @@ export class ConsumableUsedPage implements OnInit {
 
 
       'branchid': this.branchID,
-      'functionid': this.functionID,
-
+      'functionid': parseInt(this.functionID),
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
@@ -91,12 +90,13 @@ export class ConsumableUsedPage implements OnInit {
   }
 
   matrialdtleconsume(matc){
+    debugger;
     var dataespc = {
 
 
       'branchid': this.branchID,
-      'functionid': this.functionID,
-      'itemid':matc,
+      'functionid': parseInt(this.functionID),
+      'itemid':parseInt(matc),
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
@@ -109,6 +109,7 @@ export class ConsumableUsedPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtlval',dataespc, {
       headers: options,
     }).subscribe(resp => {
+      debugger;
       this.materialdescp = resp[0].ITEM_DESCRIPTION;
       this.itemcodein=resp[0].ITEM_CODE;
         console.log(this.materialdescp);
@@ -124,16 +125,16 @@ export class ConsumableUsedPage implements OnInit {
 
 
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
      // 'slno':$scope.spares.sno,
-      'assetid':this.urldata.CMD_ASSET_ID,
-      'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
-      'assetpmref':this.urldata.pmr_reference,
-      'itemcode':this.itemcodein,
-      'plannedqty':this.quantity,
-      'replaceqty':this.replaceqty,
-      'returnqty':this.returnqty,
-      'scrapqty':this.scrapqty,
+      'assetid':parseInt(this.urldata.CMD_ASSET_ID),
+      'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+      'assetpmref':parseInt(this.urldata.pmr_reference),
+      'itemcode':parseInt(this.itemcodein),
+      'plannedqty':parseInt(this.quantity),
+      'replaceqty':parseInt(this.replaceqty),
+      'returnqty':parseInt(this.returnqty),
+      'scrapqty':parseInt(this.scrapqty),
       //'spareqty':$scope.spares.quantity,
 
       'access_token':this.accessToken,
@@ -247,11 +248,11 @@ export class ConsumableUsedPage implements OnInit {
 
 
       'branchid': this.branchID,
-      'functionid': this.functionID,
+      'functionid':parseInt( this.functionID),
 
-      'assetid':this.urldata.CMD_ASSET_ID,
-      'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
-      'assetpmref':this.urldata.pmr_reference,
+      'assetid':parseInt(this.urldata.CMD_ASSET_ID),
+      'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+      'assetpmref':parseInt(this.urldata.pmr_reference),
 
 
       'access_token':this.accessToken,
