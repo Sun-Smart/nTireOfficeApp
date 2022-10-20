@@ -60,7 +60,7 @@ export class PmscustomerPage implements OnInit {
 
   ngOnInit() {
     this.getItems();
-
+    this.propertyBrancH("");
   };
 
   async createModal() {
@@ -89,12 +89,28 @@ export class PmscustomerPage implements OnInit {
     this.showfilter = !this.showfilter;
   };
 
+  propertyBrancH(data:any){
 
+    console.log(data);
+    
+
+    this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid").subscribe((resp:any)=>{
+
+    console.log(resp);
+
+    this.propertyBranch = resp;
+
+    console.log(this.propertyBranch);
+    
+
+
+    
+
+    });
+  }
 
 
   getItems() {
-
-   
 
     this.userid = window.localStorage['TUM_USER_ID'],
       console.log(this.userid);

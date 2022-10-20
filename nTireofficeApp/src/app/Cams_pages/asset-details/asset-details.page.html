@@ -34,13 +34,15 @@
             <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list *ngIf="isItemAvailable" class="searchlist" style="margin: 0px;
-            padding: 0px;"  [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}">
+            padding: 0px;"  [ngStyle]="{'height':assetcode1.length >0 ?'100px':'0px'}">
               <ion-item *ngFor="let item of assetcode1" style="--background: white !important;margin: 0px;
               padding: 0px;" (click)="processasset(item)">
                 {{ item }}
               </ion-item>
             </ion-list>
           </ion-col>
+
+
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <ion-button style="--background:white; --background-hover:white" (click)="scancoderecon()">
               <ion-icon slot="icon-only" name="barcode" color="danger"></ion-icon>

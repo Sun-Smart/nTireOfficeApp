@@ -12,100 +12,90 @@
   <ion-row class="top-header">
 
     <ion-col size="4" style="margin-left: 15px;">
-      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
+      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter">
+        </ion-icon>
+      </ion-button>
     </ion-col>
 
     <ion-col size="1"></ion-col>
 
     <ion-col size="6" style="display: flex;" class="probDetails">
-      <ion-button class="ion-color-success" expand="block" size="small" (click)="createModal()">Create Your Issue</ion-button>
+      <ion-button class="ion-color-success" expand="block" size="small" (click)="createModal()">Create Your Issue
+      </ion-button>
     </ion-col>
 
     <ion-col size="1"></ion-col>
 
   </ion-row>
-  
+
   <ion-card *ngIf="showfilter">
 
-    <ion-card-content >
+    <ion-card-content>
       <ion-row>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Branch :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
-          <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyBranch" ></ion-searchbar>
-          <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-            <ion-item   (click)="propertyBrancH(data)" *ngFor="let data of propertyBranch | filter:filterTerm">
-              <ion-label>{{data.id}}</ion-label>
-              <ion-label>{{data.name}}</ion-label>
-              <ion-label>{{data.email}}</ion-label>
+          <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyBranch1"></ion-searchbar>
+          <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+            <ion-item (click)="propertyBrancH(data)" *ngFor="let data of propertyBranch | filter:propertyBranch1">
+              <ion-label>{{data.BRANCH_ID}}</ion-label>
             </ion-item>
           </ion-list>
         </ion-col>
 
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Location :</ion-label>
-            <!-- <ion-input class="form-control"></ion-input> -->
-            <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyLocation"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="propertyLocatioN(data)" *ngFor="let data of userRecords | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="ContentName">Location :</ion-label>
+          <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyLocation"></ion-searchbar>
+          <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+            <ion-item (click)="propertyLocatioN(data)" *ngFor="let data of userRecords | filter:filterTerm">
+              <ion-label>{{data.id}}</ion-label>
+            </ion-item>
+          </ion-list>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Property Code :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
-          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyCode" animated="true" (ionInput)="getItems($event)"></ion-searchbar>
-          <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-            <ion-item  (click)="propertyCodE(data)"  *ngFor="let data of propertyCode | filter:filterTerm">
+          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyCode" animated="true"
+            (ionInput)="getItems($event)"></ion-searchbar>
+          <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+            <ion-item (click)="propertyCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
               <ion-label>{{data.id}}</ion-label>
-              <ion-label>{{data.name}}</ion-label>
-              <ion-label>{{data.email}}</ion-label>
             </ion-item>
           </ion-list>
         </ion-col>
 
-      
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Property Description :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
-          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyDescription" animated="true"></ion-searchbar>
-          <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-            <ion-item   (click)="propertyDescriptioN(data)" *ngFor="let data of propertyDescription | filter:filterTerm">
+          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyDescription" animated="true">
+          </ion-searchbar>
+          <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+            <ion-item (click)="propertyDescriptioN(data)" *ngFor="let data of propertyDescription | filter:filterTerm">
               <ion-label>{{data.id}}</ion-label>
-              <ion-label>{{data.name}}</ion-label>
-              <ion-label>{{data.email}}</ion-label>
             </ion-item>
           </ion-list>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Unique Refference :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
-          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="uniqueRef" animated="true"></ion-searchbar>
-          <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-            <ion-item   (click)="rentalCodE(data)" *ngFor="let data of uniqueRef | filter:filterTerm">
+          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="uniqueRef" animated="true">
+          </ion-searchbar>
+          <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+            <ion-item (click)="rentalCodE(data)" *ngFor="let data of uniqueRef | filter:filterTerm">
               <ion-label>{{data.id}}</ion-label>
-              <ion-label>{{data.name}}</ion-label>
-              <ion-label>{{data.email}}</ion-label>
             </ion-item>
           </ion-list>
         </ion-col>
 
-       
+
         <ion-col size="12">
           <ion-button class="ion-color-success" (click)="getItems(data)" expand="block">SEARCH</ion-button>
         </ion-col>
- 
+
       </ion-row>
     </ion-card-content>
   </ion-card>
 
-  <!-- <p> Total Count : {{propertyCodeResult.length}}</p> -->
   <p style="text-align: center;font-weight: bold; margin: 30px;"> Total Count : {{showdata}}</p>
 
   <ion-card *ngFor="let items of propertyCodeResult; let i = index">
@@ -114,10 +104,10 @@
         <ion-col size="7">
           <ion-label class="card_header_text">Property Details</ion-label>
         </ion-col>
-    
-          <ion-col size="5">
-            <ion-label class="card_header_text"> #{{items.ROW_NUM}}</ion-label>
-          </ion-col>
+
+        <ion-col size="5">
+          <ion-label class="card_header_text"> #{{items.ROW_NUM}}</ion-label>
+        </ion-col>
       </ion-row>
 
 
@@ -184,7 +174,7 @@
           <ion-label class="labelHead-text">Customer Name </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">:  {{items.CustomerName}} </ion-label>
+          <ion-label class="labelData-text">: {{items.CustomerName}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
@@ -205,7 +195,7 @@
           <ion-label class="labelHead-text">Property Status </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">:  {{items.status}} </ion-label>
+          <ion-label class="labelData-text">: {{items.status}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
@@ -225,7 +215,7 @@
 
         <ion-col size="3"></ion-col>
         <ion-col size="6">
-          <ion-button  expand="block" (click)="viewModal()" style="margin: auto;">View Status</ion-button>
+          <ion-button expand="block" (click)="viewModal()" style="margin: auto;">View Status</ion-button>
         </ion-col>
         <ion-col size="3"></ion-col>
 

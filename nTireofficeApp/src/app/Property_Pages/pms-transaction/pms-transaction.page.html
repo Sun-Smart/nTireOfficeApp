@@ -10,8 +10,11 @@
 </ion-header>
 
 <ion-content>
-  <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
-    class="fa fa-filter" aria-hidden="true"></i></span></div>
+  <ion-row class="top-header">
+    <ion-col size="4">
+      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
 
   <ion-card *ngIf="showfilter">
     <ion-card-content >
@@ -84,7 +87,7 @@
         </ion-col>
 
         <ion-col size="12">
-          <ion-button color="success" size="default">SEARCH</ion-button>
+          <ion-button class="ion-color-success" expand="block" size="default">SEARCH</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -177,7 +180,7 @@
   <ion-col size="1" class="labelData-text" style="display: flex;align-items: center;"> : </ion-col>
 
   <ion-col size="5" style="text-align: center;"> 
-    <ion-button color="primary" size="small" style="width: fit-content;" (click)="viewReciept()"> View </ion-button> 
+    <ion-button color="primary" size="small"  (click)="viewReciept()"> View </ion-button> 
   </ion-col>
   
 
