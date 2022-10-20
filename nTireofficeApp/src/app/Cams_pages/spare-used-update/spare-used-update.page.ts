@@ -169,6 +169,7 @@ export class SpareUsedUpdatePage implements OnInit {
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
+      cssClass:'buttonCss',
       header: heading,
       backdropDismiss:false,
       message: tittle,
