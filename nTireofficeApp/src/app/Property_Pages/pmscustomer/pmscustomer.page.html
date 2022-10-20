@@ -9,14 +9,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-row>
+  <ion-row style="position: sticky;top: 0;z-index: 1;">
 
-    <ion-col size="12" style="display: flex;" class="probDetails">
-      <ion-button color="success" expand="block" (click)="createModal()">Create Your Issue</ion-button>
+    <ion-col size="3">
+      <ion-button expand="block"  (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
     </ion-col>
 
-    <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
-      class="fa fa-filter" aria-hidden="true"></i></span></div>
+    <ion-col size="9" style="display: flex;" class="probDetails">
+      <ion-button color="success" expand="block" (click)="createModal()">Create Your Issue</ion-button>
+    </ion-col>
 
   </ion-row>
   
