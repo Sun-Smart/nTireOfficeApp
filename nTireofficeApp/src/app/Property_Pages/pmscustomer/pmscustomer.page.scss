@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 ion-content {
-    --background: url('../../../assets/images/tpbackground.png') repeat !important;
+    --background: url("../../../assets/images/tpbackground.png") repeat !important;
     position: relative;
-  }
+}
 // .card_header {
 //     background-color: #019ADE !important;
 //     color: white !important;
 //     font-family: "Poppins";
- 
+
 // }
 // .card_left_text {
 //     font-family: "Poppins";
@@ -24,8 +24,8 @@ ion-content {
     font-size: 16px;
 }
 
-.probDetails{
-    ion-button{
+.probDetails {
+    ion-button {
         // max-width:fit-content;
     }
 }
@@ -33,4 +33,10 @@ ion-content {
     padding: 0px !important;
     height: 36px !important;
     border-radius: 10px !important;
+}
+.top-header {
+    background: url("../../../assets/images/tpbackground.png") repeat !important;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }

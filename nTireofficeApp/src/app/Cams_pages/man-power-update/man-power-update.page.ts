@@ -76,7 +76,7 @@ export class ManPowerUpdatePage implements OnInit {
 
     this.skill=this.data.TYPE_ID;
     console.log(this.skill);
-    var arr=this.data.actual_hrs.split(':');
+    var arr=this.data.actual_hrs;
     this.nomhours= $.trim(arr[0]);
     this.nomhoursm= $.trim(arr[1]);
     this.skillid=this.data.TYPE_ID;

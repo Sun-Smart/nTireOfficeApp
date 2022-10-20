@@ -105,13 +105,17 @@
         {{priority}}
         {{noofchars}}
         {{date1}} -->
-        <ion-button class="ion-color-success" (click)="processassetre()" [disabled]="(assetcode==undefined || priority=='<< Select >>'|| noofchars== undefined || doi == undefined)"  expand="block" >Process
+        <ion-button class="ion-color-success" (click)="createissue()" >Save
         </ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<!-- [disabled]="(assetcode==undefined || priority=='<< Select >>'|| noofchars== undefined || doi == undefined)"  expand="block"  -->
+
+
 
 <!-- <ion-content>
 

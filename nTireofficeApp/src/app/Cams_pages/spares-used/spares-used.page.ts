@@ -87,7 +87,11 @@ export class sparesUsedPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtl',dataes, {
       headers: options,
     }).subscribe(resp => {
-      this.sparematerialddtl = resp;
+      this.sparematerialddtl =JSON.stringify(resp) ;
+      this.sparematerialddtl=JSON.parse(this.sparematerialddtl);
+      this.sparematerialddtl=JSON.parse(this.sparematerialddtl);
+      this.sparematerialddtl=this.sparematerialddtl
+
       console.log(this.sparematerialddtl);
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
@@ -100,8 +104,8 @@ export class sparesUsedPage implements OnInit {
 
     var dataesp = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
-      'itemid':mat,
+      'functionid':parseInt(this.functionID),
+      'itemid':parseInt(mat),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -132,13 +136,13 @@ export class sparesUsedPage implements OnInit {
     var instdte=this.datePipe.transform(this.doi, 'yyyy-MM-dd');
     var dataem = {
     'branchid': this.branchID,
-    'functionid':this.functionID,
+    'functionid':parseInt(this.functionID),
     'slno':this.sno,
-    'assetid':this.urldata.CMD_ASSET_ID,
-    'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
-    'assetpmref':this.urldata.pmr_reference,
-    'itemcode':this.itemcodein,
-    'spareqty':this.quantity,
+    'assetid':parseInt(this.urldata.CMD_ASSET_ID),
+    'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+    'assetpmref':parseInt(this.urldata.pmr_reference),
+    'itemcode':parseInt(this.itemcodein),
+    'spareqty':parseInt(this.quantity),
     //'spareqty':$scope.spares.quantity,
     'instdte':instdte,
     'access_token':this.accessToken,
