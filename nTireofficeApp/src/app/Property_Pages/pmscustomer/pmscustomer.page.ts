@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
+import { IonSearchbar } from '@ionic/core/components';
 import { IpaddressService } from 'src/app/ipaddress.service';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
@@ -37,6 +38,8 @@ export class PmscustomerPage implements OnInit {
   userid: string;
   branchid: any;
   branchID: string;
+  propertyCodeResultLength: any;
+  showdata: any;
 
 
 
@@ -58,7 +61,7 @@ export class PmscustomerPage implements OnInit {
 
 
   ngOnInit() {
-    this.getItems("");
+    this.getItems();
 
     this.userid = window.localStorage['TUM_USER_ID'],
     console.log(this.userid);
@@ -103,9 +106,9 @@ export class PmscustomerPage implements OnInit {
 
 
 
-  getItems(e: any) {
+  getItems() {
 
-    console.log(e);
+   
 
     // if (this.strPropertyId == null || this.strPropertyId == undefined) {
     //   this.strPropertyId = "0"
@@ -130,19 +133,28 @@ export class PmscustomerPage implements OnInit {
     // this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.branchid + '/' + this.branchcode
     //   + '/' + this.Propertycode + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userId, {
 
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.strBranchId + '/' + this.strLocationId
-      + '/' + this.strPropertyId + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userid, {
+    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
 
-    }).subscribe((resp: any) => {
+    .subscribe((resp: any) => {
       console.log(resp);
-
-      this.propertyCodeResult = resp;
-
+      this.propertyCodeResult=resp
+    
+    if(this.propertyCodeResult==null ){
+     alert("hh")
+      this.showdata="No Data Found"
+    }
+    else{
+      this.showdata=this.propertyCodeResult.length;
+    }
     })
-  
+
 
 }
 
+// search(){
+//   this.propertyCodeResult.filter(u=> u.nation == 'England' && u.name == 'Marlin');
+ 
+// }
 
 }
 
