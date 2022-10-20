@@ -1,3 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+ion-content {
+    // --background: url("../../../assets/images/tpbackground.png") repeat !important;
+    --background: url("../../../../assets/images/tpbackground.png") repeat !important;
+    position: relative;
+}
+
 .col_height {
     display: flex;
     align-items: center;
