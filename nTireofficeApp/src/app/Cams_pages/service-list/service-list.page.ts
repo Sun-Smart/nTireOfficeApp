@@ -35,7 +35,7 @@ export class ServiceListPage implements OnInit {
   assetcode1str;
   reqdate;
   vendorcode;
-  listviewdetails;
+  listviewdetails:any = [];
   listviewdetailsLength;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
@@ -49,10 +49,11 @@ export class ServiceListPage implements OnInit {
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
 
-    this.getserviceList();
+    // this.getserviceList();
   }
 
   ngOnInit() {
+    this.getserviceList();
   }
   getItems(ev: any) {
     this.assetcode1 = [];
@@ -208,6 +209,8 @@ export class ServiceListPage implements OnInit {
     }).subscribe(resp => {
       console.log(resp);
       this.listviewdetails = resp;
+      console.log(this.listviewdetails);
+      
       this.listviewdetailsLength=this.listviewdetails.length;
       if (this.listviewdetails.length < 1) {
 
@@ -268,6 +271,8 @@ export class ServiceListPage implements OnInit {
     }).subscribe(resp => {
       console.log(resp);
       this.listviewdetails = resp;
+      console.log(this.listviewdetails);
+      
       this.listviewdetailsLength=this.listviewdetails.length;
       this.assetcode = '';
       this.vendorcode = '';

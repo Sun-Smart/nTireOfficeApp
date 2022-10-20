@@ -96,6 +96,7 @@ export class CompletionJobsReopenPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
+      cssClass: 'Cssbutton',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']

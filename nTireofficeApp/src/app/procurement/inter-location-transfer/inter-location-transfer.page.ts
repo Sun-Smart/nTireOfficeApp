@@ -14,14 +14,18 @@ export class InterLocationTransferPage implements OnInit {
   hidefilter: boolean = true
   showviewlist: boolean = false
   trforderno: any;
-  Itemcode:any;
-  fromtrfdate:any;
-  totrfdate:any;
-  status:any;
+  Itemcode: any;
+  fromtrfdate: any;
+  totrfdate: any;
+  status: any;
 
 
 
   loading: boolean = false
+  transferid: string;
+  transferrefer: string;
+  release: string;
+  Remarks: string;
   constructor(private alertController: AlertController) { }
 
   ngOnInit() {
@@ -53,6 +57,10 @@ export class InterLocationTransferPage implements OnInit {
     this.showviewlist = true
     // this.hideviewlist=true
   }
+  listline() {
+    this.showlineItems = !this.showlineItems
+
+  }
 
   async clear() {
     const alert = await this.alertController.create({
@@ -72,12 +80,37 @@ export class InterLocationTransferPage implements OnInit {
             this.trforderno = "";
             this.Itemcode = "";
             this.fromtrfdate = "";
-            this.totrfdate="";
-            this.status="";
-            // this.prscode = "";
-            // this.status = "";
-            // this.todate = "";
-            // this.fromdate = "";
+            this.totrfdate = "";
+            this.status = "";
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  async clear1() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.transferid = "";
+            this.transferrefer = "";
+            this.status = "";
+            this.release = "";
+            this.Remarks = "";
+
           }
         }
       ]
@@ -86,3 +119,5 @@ export class InterLocationTransferPage implements OnInit {
     await alert.present();
   }
 }
+
+

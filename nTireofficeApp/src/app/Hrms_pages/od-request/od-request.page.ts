@@ -5,6 +5,8 @@ import { DatePipe } from '@angular/common';
 declare var $;
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastmessageService } from '../../service/toastmessage.service';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-od-request',
   templateUrl: './od-request.page.html',
@@ -87,7 +89,7 @@ export class OdRequestPage implements OnInit {
   odrequest2 = [];
   reqdate;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private router: Router, private toastmessageService: ToastmessageService, private route: ActivatedRoute, public HttpRequest: HttprequestService, public HttpRequest1: HttprequestService, public Ipaddressservice: IpaddressService, private datepipe: DatePipe) {
+  constructor(private alertController: AlertController, private router: Router, private toastmessageService: ToastmessageService, private route: ActivatedRoute, public HttpRequest: HttprequestService, public HttpRequest1: HttprequestService, public Ipaddressservice: IpaddressService, private datepipe: DatePipe) {
     this.reqref = undefined;
 
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
@@ -427,35 +429,29 @@ export class OdRequestPage implements OnInit {
     }
   }
 
-  refresh() {
-    this.from = undefined;
-    this.to = undefined;
-    this.reason = undefined;
-    this.fromHour = undefined;
-    this.toHour = undefined;
-    this.release = 'N';
-    this.travelReq = false;
-    this.release = false;
-    this.advance = false;
-
-    // this.advanceAmount = undefined;
-    // $scope.od.advanceCurrency = undefined;
-    // $scope.od.repayment = undefined;
-    // $scope.od.advanceInstallment = undefined;
-    this.nod = undefined;
-    this.fromPlace = undefined;
-    this.toPlace = undefined;
-    this.tavelDate = undefined;
-    this.travelmode = undefined;
-    this.travelComment = undefined;
-    this.travelamount = undefined;
-    this.installment = undefined;
-    // setTimeout(function(){
-    //   $scope.AllTravelData=[];
-    // }, 2000);
+  // refresh() {
+  //   this.from = undefined;
+  //   this.to = undefined;
+  //   this.reason = undefined;
+  //   this.fromHour = undefined;
+  //   this.toHour = undefined;
+  //   this.release = 'N';
+  //   this.travelReq =false;
+  //  this.release=false;
+  //  this.advance=false;
+  //   this.nod = undefined;
+  //   this.fromPlace=undefined;
+  //   this.toPlace=undefined;
+  //   this.tavelDate=undefined;
+  //   this.travelmode=undefined;
+  //   this.travelComment=undefined;
+  //   this.travelamount=undefined;
+  //   this.installment=undefined;
 
 
-  };
+
+  // };
+
   changevalue() {
     console.log(this.travelReq)
     if (this.travelReq == false) {
@@ -642,8 +638,6 @@ export class OdRequestPage implements OnInit {
             if (resp == null) {
               this.toastmessageService.presentAlert("Saved", "Saved Successfully");
               this.from = undefined;
-
-
               this.to = undefined;
               this.reason = undefined;
               this.fromHour = undefined;
@@ -680,7 +674,7 @@ export class OdRequestPage implements OnInit {
 
             this.reqID1 = req.split(',')[0]
             this.reqID = req.split(',')[1];
-            console.log(this.workflowTable);
+            // console.log(this.workflowTable);
 
             if (split[1] != "") {
               this.toastmessageService.presentAlert1("Request Sent", "Request saved Successfully <br> Req Ref : " + this.reqID1);
@@ -1076,7 +1070,7 @@ export class OdRequestPage implements OnInit {
     }
   }
   odSummary() {
-    this.refresh();
+    // this.refresh();
     this.router.navigateByUrl('/odsummary');
   }
   handleAddressChange(event) {
@@ -1088,6 +1082,47 @@ export class OdRequestPage implements OnInit {
     console.log('handleAddressChange' + JSON.stringify(event));
     this.toPlace = event.formatted_address;
     this.edittoPlace = event.formatted_address;
+  }
+  async refresh() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+
+            this.from = "";
+            this.to = "";
+            this.reason = "";
+            this.fromHour = "";
+            this.toHour = "";
+            this.release = 'N';
+            this.travelReq = false;
+            this.release = false;
+            this.advance = false;
+            this.nod = "";
+            this.fromPlace = "";
+            this.toPlace = "";
+            this.tavelDate = "";
+            this.travelmode = "";
+            this.travelComment = "";
+            this.travelamount = "";
+            this.installment = "";
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
 

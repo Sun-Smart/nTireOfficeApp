@@ -1,3 +1,4 @@
+/* eslint-disable use-isnan */
 /* eslint-disable id-blacklist */
 /* eslint-disable curly */
 /* eslint-disable guard-for-in */
@@ -84,6 +85,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   getcustid: any;
   getbranchid: any;
   BRANCH_IDs: any;
+  showData: string;
   getRecordedBlob(): Observable<RecordedAudioOutput> {
     return this._recorded.asObservable();
   }
@@ -515,23 +517,23 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
 
-    this.getcustid = this.TCC_CUST_LEAD_IDs
-    console.log(this.getcustid)
+    this.getcustid = this.TCC_CUST_LEAD_IDs;
+    console.log(this.getcustid);
 
     if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
-      this.getcustid = 0
+      this.getcustid = 0;
     }
-    localStorage.setItem('setcustid', this.getcustid)
+    localStorage.setItem('setcustid', this.getcustid);
     if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
-      this.getcustid = 0
+      this.getcustid = 0;
     }
-    this.getbranchid = this.BRANCH_IDs
+    this.getbranchid = this.BRANCH_IDs;
     if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
-      this.getbranchid = 1
+      this.getbranchid = 1;
     }
-    localStorage.setItem('setbranchid', this.getbranchid)
+    localStorage.setItem('setbranchid', this.getbranchid);
 
-    console.log(this.getcustid)
+    console.log(this.getcustid);
     var tmpPendJson = {
       user_id: user_id_nw,
       userid: user_id_nw,
@@ -572,9 +574,13 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdatalength', pendJSON, {
       headers: options,
     }).subscribe((resp: any) => {
-      console.log("pendleadsdatalength : " + JSON.stringify(resp));
-
-      this.pendingleadsdatalength = resp.length;
+      if (resp == "No data found") {
+        this.showData = "No data found";
+        this.pendingleadsdatalength = 0;
+      } else {
+        console.log("pendleadsdatalength : " + JSON.stringify(resp));
+        this.pendingleadsdatalength = resp.length;
+      }
     }, error => {
 
 
@@ -583,49 +589,56 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
       headers: options,
     }).subscribe(resp => {
+      if (resp == "No data found") {
+        this.showData = "No data found";
+        this.pendingleadsdatalength = 0;
+      } else {
 
-      console.log("pendleaddetails1 : " + JSON.stringify(resp));
-      this.loadingdismiss();
-      this.pendleaddetails1.push(resp);
-      this.pendleaddetails1.forEach(element => {
-        this.pendleaddetails = element;
-        console.log("pendleaddetails1 : " + JSON.stringify(element));
+        console.log("pendleaddetails1 : " + JSON.stringify(resp));
+        this.loadingdismiss();
+        this.pendleaddetails1.push(resp);
+        this.pendleaddetails1.forEach(element => {
+          this.pendleaddetails = element;
+          console.log("pendleaddetails1 : " + JSON.stringify(element));
 
-      });
+        });
 
-      for (var i = 0; i < this.pendleaddetails.length; i++) {
-        console.log(this.pendleaddetails[i].MOBILE);
-        if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
-          this.pendleaddetails[i].MOBILE = '-';
+        for (var i = 0; i < this.pendleaddetails.length; i++) {
+          console.log(this.pendleaddetails[i].MOBILE);
+          if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
+            this.pendleaddetails[i].MOBILE = '-';
+          }
+          if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
+            this.pendleaddetails[i].OFFPHONE = '-';
+          }
+          if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
+            this.pendleaddetails[i].RESPHONE = '-';
+          }
+          if (this.pendleaddetails[i].CreatedOn != undefined) {
+
+            var date = this.pendleaddetails[i].CreatedOn1;
+
+            var timesp = date.split('T');
+            var time2 = timesp[1].split('.');
+
+            var d1 = new Date(timesp[0] + " " + time2[0]);
+            var d2 = new Date(d1);
+            d2.setMinutes(d2.getMinutes() + 30);
+            console.log('getMinutes' + d2);
+
+
+            var penddata = this.datePipe.transform(d2, "hh:mm");
+            this.pendleaddetails[i].created_time = this.tConvert(penddata);
+          }
+          if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
+            this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
+          }
+          this.pendleaddetails[i].blobUrl = null;
+          this.pendleaddetails[i].isRecording = false;
         }
-        if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
-          this.pendleaddetails[i].OFFPHONE = '-';
-        }
-        if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
-          this.pendleaddetails[i].RESPHONE = '-';
-        }
-        if (this.pendleaddetails[i].CreatedOn != undefined) {
 
-          var date = this.pendleaddetails[i].CreatedOn1;
-
-          var timesp = date.split('T');
-          var time2 = timesp[1].split('.');
-
-          var d1 = new Date(timesp[0] + " " + time2[0]);
-          var d2 = new Date(d1);
-          d2.setMinutes(d2.getMinutes() + 30);
-          console.log('getMinutes' + d2);
-
-
-          var penddata = this.datePipe.transform(d2, "hh:mm");
-          this.pendleaddetails[i].created_time = this.tConvert(penddata);
-        }
-        if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
-          this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
-        }
-        this.pendleaddetails[i].blobUrl = null;
-        this.pendleaddetails[i].isRecording = false;
       }
+
     }, error => {
       this.loadingdismiss();
       console.log("error : " + JSON.stringify(error));

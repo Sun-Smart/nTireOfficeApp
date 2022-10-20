@@ -60,7 +60,7 @@
 
   <p style="text-align: center;">{{error}}</p>
   <ion-card *ngFor="let odData of display; let i = index">
-    <ion-grid style="padding: 0px;">
+    <!-- <ion-grid style="padding: 0px;"> -->
       <ion-row>
         <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumn">
           {{odData.Code}} - {{odData.Name}}&nbsp;
@@ -74,49 +74,49 @@
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <a style="font-size: 14px;text-decoration: none;color:#444444;" *ngIf="odData.MobileNum!=null"
-            (click)="callNumber(odData.MobileNum)" href="tel:{{odData.MobileNum}}">{{odData.MobileNum}}</a>
+            (click)="callNumber(odData.MobileNum)" href="tel:{{odData.MobileNum}}"  class="labelData-text">{{odData.MobileNum}}</a>
 
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Req-on
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           {{odData.RDate}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           OD From - OD To
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           {{odData.FromDate}} - {{odData.ToDate}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Request Reference
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           {{odData.ReqRef}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Reason
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           {{odData.Reason}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Status
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           {{odData.Status}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           No of Days
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           {{odData.NoDays}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Travel Status
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"  class="labelData-text">
           <span>{{odData.travelstatus}}</span>
           <span *ngIf="odData.Status=='Pending'">{{odData.TravelStatus}} </span>
           <span *ngIf="odData.Status=='Processed'" (click)="openTicketModal(odData)">{{odData.travelstatus}} </span>
@@ -125,8 +125,8 @@
           <ion-row>
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-button color='success' size="full" (click)="openModal(odData)"
-                *ngIf="odData.Status == 'New' ? true : false">Update</ion-button>
-              <ion-button color='success' (click)="openModal(odData)" *ngIf="odData.Status == 'Denied' ? true : false">
+                *ngIf="odData.Status == 'New' ? true : false" style="color:#fff;">Update</ion-button>
+              <ion-button style="color:#fff;" color='success' (click)="openModal(odData)" *ngIf="odData.Status == 'Denied' ? true : false">
                 Update</ion-button>
 
             </ion-col>
@@ -134,7 +134,7 @@
           </ion-row>
         </ion-col>
       </ion-row>
-    </ion-grid>
+    <!-- </ion-grid> -->
   </ion-card>
   <p style="text-align:center" *ngIf="display.length==0" class="norecord">No Record Found</p>
 </ion-content>

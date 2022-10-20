@@ -56,13 +56,15 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
   };
   ntireoffice_image;
   @ViewChild('map') mapElement: ElementRef;
+  leadsrc = 1;
+  callstageval = 1;
   dataobjs = {
     leadstatusval: "",
     callratingval: "",
     callnatureval: "",
     // callstageval:   '<< Select >>',
-    callstageval: "<< Select>>",
-    leadsrc: "<< Select >>",
+    callstageval: parseInt(""),
+    leadsrc: parseInt(""),
     ClosedDate: "",
     ExpctedAmount: "",
     pendleadremarks: "",
@@ -126,7 +128,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     TCC_CUSTOMER_ID: parseInt(""),
     TCC_LAST_CALLED: parseInt(""),
     TCC_LEAD_NATURE: parseInt(""),
-    TCC_LEAD_RATING: parseInt(""),
+    TCC_LEAD_RATING: "",
     TCC_LEAD_SOURCE: parseInt(""),
     TCC_LEAD_STAGE: parseInt(""),
 
@@ -148,10 +150,10 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
   objdataupd = {
     callnatureval: "",
     callratingval: "",
-    callstageval: "",
+    callstageval: parseInt(""),
     leadstatusval: "",
     nextactionval: "",
-    LeadSource: "",
+    LeadSource: parseInt(""),
     Remarks: "",
     ActReq: "",
 
@@ -190,7 +192,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     /* console.log(this.item.LEADSTATUS)*/
     this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
     this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-    this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
+    this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
     //console.log(this.dataobjs.callstageval);
     this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
     // console.log(this.item.TCC_LEAD_SOURCE);
@@ -250,7 +252,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     this.dataobjs.TCC_CUSTOMER_ID = parseInt(this.item.TCC_CUSTOMER_ID);
     this.dataobjs.TCC_LAST_CALLED = parseInt(this.item.TCC_LAST_CALLED);
     this.dataobjs.TCC_LEAD_NATURE = parseInt(this.item.TCC_LEAD_NATURE);
-    this.dataobjs.TCC_LEAD_RATING = parseInt(this.item.TCC_LEAD_RATING);
+    this.dataobjs.TCC_LEAD_RATING = this.item.TCC_LEAD_RATING;
     this.dataobjs.TCC_LEAD_SOURCE = parseInt(this.item.TCC_LEAD_SOURCE);
     this.dataobjs.TCC_LEAD_STAGE = this.item.TCC_LEAD_STAGE;
 
@@ -351,11 +353,11 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       // this.callstagearray = JSON.parse(resp.toString());
       this.callstagearray = JSON.stringify(resp);
       this.callstagearray = JSON.parse(this.callstagearray);
-      console.log("callstagearray: " + JSON.stringify(this.callstagearray));
+      // console.log("callstagearray: " + JSON.stringify(this.callstagearray));
 
     }, error => {
 
-      console.log("branchlist1 : " + JSON.stringify(error));
+      // console.log("branchlist1 : " + JSON.stringify(error));
     });
   }
   Getleadsource() {
@@ -446,12 +448,12 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       this.objdataupd.callstageval = objdatval.callstageval;
       this.objdataupd.leadstatusval = objdatval.leadstatusval;
       this.objdataupd.nextactionval = objdatval.nextactionval;
-      this.objdataupd.LeadSource = objdatval.leadsrc;
+      this.objdataupd.LeadSource = parseInt(objdatval.leadsrc);
 
       this.dataobjs.Remarks = this.remarks;
       this.objdataupd.ActReq = objdatval.pendleadactreq;
 
-      this.objdataupd.TCC_CUST_LEAD_ID = this.item.customer_lead_id;
+      this.objdataupd.TCC_CUST_LEAD_ID =this.item.customer_lead_id.toString();
 
       var date1 = new Date(objdatval.ClosedDate);
       var day1 = date1.getDate();
@@ -548,7 +550,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       /* console.log(this.item.LEADSTATUS)*/
       this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
       this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-      this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
+      this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
       //console.log(this.dataobjs.callstageval);
       this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
       // console.log(this.item.TCC_LEAD_SOURCE);
@@ -697,11 +699,12 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                     usertoken: "",
                   };
                   objdataupdtime.TCC_CUST_ID = customerid;
-                  objdataupdtime.TCC_CUST_LEAD_ID = custleadid;
+                  objdataupdtime.TCC_CUST_LEAD_ID = custleadid.toString();
                   objdataupdtime.TCC_CALL_ID = parseInt(callid);
                   objdataupdtime.OBJ_ID = idvals;
                   objdataupdtime.START_TIME = currenttime;
-                  objdataupdtime.END_TIME = currenttime;
+                  // objdataupdtime.END_TIME = currenttime;
+                  objdataupdtime.END_TIME = "";
                   objdataupdtime.Location_Desc = areaname;
                   objdataupdtime.access_token = window.localStorage['token'];
                   objdataupdtime.userid = parseInt(window.localStorage['TUM_USER_ID']);
@@ -738,13 +741,13 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
                 }
               })
               .catch((error: any) => {
-                this.presentAlert("", 'Error getting location');
+                // this.presentAlert("", 'Error getting location');
                 //   alert('Error getting location'+ JSON.stringify(error));
               });
 
 
           }).catch((error) => {
-            console.log('Error getting location', error);
+            // console.log('Error getting location', error);
           });
 
         } else {
