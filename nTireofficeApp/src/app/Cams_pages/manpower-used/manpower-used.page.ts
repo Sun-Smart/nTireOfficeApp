@@ -301,7 +301,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
 // }
 
 async editItem(data, index) {
-
+  debugger;
   console.log(data);
   console.log(index)
 data.assetid=this.urldata.CMD_ASSET_ID;
