@@ -39,41 +39,24 @@ export class PmscustomerPage implements OnInit {
   branchID: string;
 
 
-
-
-
-
-
-
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient,
     public Ipaddressservice: IpaddressService) {
+
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.accessToken = localStorage.getItem('token');
-  }
+  };
 
 
   ngOnInit() {
     this.getItems("");
 
-    this.userid = window.localStorage['TUM_USER_ID'],
-    console.log(this.userid);
-    
-    this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
-    console.log(this.strBranchId);
-    
-    this.strFunctionId = window.localStorage['FUNCTION_ID'],
-    console.log(this.strFunctionId);
-    
-    this.strusertype = window.localStorage['TUM_USER_TYPE'],
-    console.log(this.strusertype);
-    
+  };
 
-  }
   async createModal() {
 
     const model = await this.modalCtrl.create({
@@ -87,7 +70,7 @@ export class PmscustomerPage implements OnInit {
       this.name = data;
 
     }
-  }
+  };
 
   async viewModal() {
     const model = await this.modalCtrl.create({
@@ -95,10 +78,10 @@ export class PmscustomerPage implements OnInit {
       component: PmsIssueStatusPage,
     });
     return await model.present();
-  }
+  };
   togglefilter() {
     this.showfilter = !this.showfilter;
-  }
+  };
 
 
 
@@ -107,41 +90,33 @@ export class PmscustomerPage implements OnInit {
 
     console.log(e);
 
-    // if (this.strPropertyId == null || this.strPropertyId == undefined) {
-    //   this.strPropertyId = "0"
-    // }
-    // if (this.strPropertyDesc == null || this.strPropertyDesc == undefined) {
-    //   this.strPropertyDesc = "0"
-    // }
-    // //  console.log(this.  );
-    // if (this.strLocationId == null || this.strLocationId == "" || this.strLocationId == undefined) {
-    //   this.strLocationId = "0"
-    // }
-    // if (this.strBranchId == null || this.strBranchId == undefined) {
-    //   this.strBranchId = "0"
-    // }
+    this.userid = window.localStorage['TUM_USER_ID'],
+      console.log(this.userid);
+
+    this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
+      console.log(this.strBranchId);
+
+    this.strFunctionId = window.localStorage['FUNCTION_ID'],
+      console.log(this.strFunctionId);
+
+    this.strusertype = window.localStorage['TUM_USER_TYPE'],
+      console.log(this.strusertype);
+
+    
+    // this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.strBranchId + '/' + this.strLocationId
+    //   + '/' + this.strPropertyId + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userid, {
+
+    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + 0 + '/' + 0 + '/' + 0
+      + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.userid,)
+      .subscribe((resp: any) => {
+        console.log(resp);
+
+        this.propertyCodeResult = resp;
+
+      })
 
 
-    // const header = new Headers();
-    // // header.append("Content-Type", "application/json");
-    // let options = new HttpHeaders().set('Content-Type', 'application/json');
-
-
-    // this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.branchid + '/' + this.branchcode
-    //   + '/' + this.Propertycode + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userId, {
-
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.strBranchId + '/' + this.strLocationId
-      + '/' + this.strPropertyId + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userid, {
-
-    }).subscribe((resp: any) => {
-      console.log(resp);
-
-      this.propertyCodeResult = resp;
-
-    })
-  
-
-}
+  }
 
 
 }

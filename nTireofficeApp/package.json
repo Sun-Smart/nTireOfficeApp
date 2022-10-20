@@ -58,6 +58,7 @@
     "ionicons": "^6.0.3",
     "jquery": "^3.6.1",
     "native-run": "^1.7.0",
+    "ng2-search-filter": "^0.5.1",
     "ngx-google-places-autocomplete": "^2.0.5",
     "recordrtc": "^5.6.2",
     "rxjs": "~6.6.0",
