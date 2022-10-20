@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-invoice-status.page.scss'],
 })
 export class ViewInvoiceStatusPage implements OnInit {
-
-  constructor() { }
+  dat_valid;
+  constructor() { 
+    this.dat_valid= {
+      currentDate: new Date()
+    };
+  }
 
   ngOnInit() {
   }
-
+  close(){
+    
+  }
 }
