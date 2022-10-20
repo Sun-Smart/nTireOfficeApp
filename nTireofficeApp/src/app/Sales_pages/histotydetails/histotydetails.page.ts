@@ -97,7 +97,7 @@ export class HistotydetailsPage implements OnInit {
     // console.log('showhistforuser after'+JSON.stringify(this.showhistforuser));
   }
   Gethistorydata() {
-debugger;
+    debugger;
     var params = {
       TCC_CUST_ID: parseInt(this.item.TCC_CUSTOMER_ID),
       "Token": window.localStorage['token'],
@@ -118,9 +118,10 @@ debugger;
       offset: "0",
       limit: "50"
     };
+    this.item.BRANCH_ID = parseInt(this.item.BRANCH_ID)
     var updateleadHistoryJSON = Object.assign(this.item, params);
     console.log("params : " + JSON.stringify(updateleadHistoryJSON));
-debugger
+    debugger
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -130,7 +131,7 @@ debugger
       this.showhistforuser1 = resp;
       // this.showhistforuser1 = JSON.parse(this.showhistforuser1)
       // console.log("showhistforuser : " + JSON.stringify(resp));
-debugger
+      debugger
       this.showhistforuser1.forEach(element => {
         element.MOBILE = element.MOBILE;
         element.BRANCH_DESC = this.item.BRANCH_DESC;
