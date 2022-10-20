@@ -595,7 +595,8 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       var tmpPendJson = {
         user_id: "",
         userid: user_id_nw,
-        response: values.toString(),
+        // response: values.toString(),
+        response: localStorage.getItem("customerRes").toString(),
         offset: this.pendleaddetails.length.toString(),
         limit: "50",
         PRIORITY: "",
@@ -791,7 +792,8 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     var tmpPendJson = {
       user_id: user_id_nw,
       userid: user_id_nw,
-      response: values.toString(),
+      // response: values.toString(),
+      response: localStorage.getItem("customerRes").toString(),
       offset: this.pendleaddetails.length.toString(),
       limit: "50",
       PRIORITY: "",

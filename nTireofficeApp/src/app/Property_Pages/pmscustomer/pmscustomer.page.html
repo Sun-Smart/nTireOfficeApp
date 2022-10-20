@@ -9,16 +9,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-row style="position: sticky;top: 0;z-index: 1;background-color: #fff;">
+  <ion-row class="top-header">
 
-    <ion-col size="4">
-      <ion-button expand="block"  (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
+    <ion-col size="4" style="margin-left: 15px;">
+      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
     </ion-col>
 
     <ion-col size="1"></ion-col>
 
     <ion-col size="6" style="display: flex;" class="probDetails">
-      <ion-button color="success" expand="block" (click)="createModal()">Create Your Issue</ion-button>
+      <ion-button color="success" expand="block" size="small" (click)="createModal()">Create Your Issue</ion-button>
     </ion-col>
 
     <ion-col size="1"></ion-col>
@@ -96,9 +96,11 @@
           </ion-list>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col size="3"></ion-col>
+        <ion-col size="6">
           <ion-button color="success" (click)="getItems(data)" size="default">SEARCH</ion-button>
         </ion-col>
+        <ion-col size="3"></ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
@@ -129,34 +131,34 @@
           <ion-label class="labelHead-text">Branch </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: Dubai </ion-label>
+          <ion-label class="labelData-text">: Dubai </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Location </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: {{items.Location}} </ion-label>
+          <ion-label class="labelData-text">: {{items.Location}} </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Code </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: {{items.property_code}} </ion-label>
+          <ion-label class="labelData-text">: {{items.property_code}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Description </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: {{items.property_desc}}</ion-label>
+          <ion-label class="labelData-text">: {{items.property_desc}}</ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Type </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: {{items.Category}}</ion-label>
+          <ion-label class="labelData-text">: {{items.Category}}</ion-label>
         </ion-col>
 
         <!-- <ion-col size="6" class="col_height">
@@ -184,28 +186,35 @@
           <ion-label class="labelHead-text">Customer Name </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>:  {{items.CustomerName}} </ion-label>
+          <ion-label class="labelData-text">:  {{items.CustomerName}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
-          <ion-label class="labelHead-text">Agreement Start Date & End Date </ion-label>
+          <ion-label class="labelHead-text">Agreement  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Start Date</ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: {{items.start_date}}, {{items.end_date}} </ion-label>
+          <ion-label class="labelData-text">: {{items.start_date}} </ion-label>
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelHead-text">Agreement    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">: {{items.end_date}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Status </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>:  {{items.status}} </ion-label>
+          <ion-label class="labelData-text">:  {{items.status}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Rent Type </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>: {{items.rent_type}} </ion-label>
+          <ion-label class="labelData-text">: {{items.rent_type}} </ion-label>
         </ion-col>
 
 
@@ -216,11 +225,13 @@
           <ion-label>: {{items.ROW_NUM}} </ion-label>
         </ion-col> -->
 
-        <ion-col size="12">
-          <ion-button  expand="block" (click)="viewModal()" style="width: 50%;margin: auto;">View Status</ion-button>
+        <ion-col size="3"></ion-col>
+        <ion-col size="6">
+          <ion-button  expand="block" (click)="viewModal()" style="margin: auto;">View Status</ion-button>
         </ion-col>
-      </ion-row>
+        <ion-col size="3"></ion-col>
 
+      </ion-row>
     </ion-card-content>
 
   </ion-card>
