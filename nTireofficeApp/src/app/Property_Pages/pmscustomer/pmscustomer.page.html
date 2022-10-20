@@ -9,15 +9,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-row style="position: sticky;top: 0;z-index: 1;">
+  <ion-row style="position: sticky;top: 0;z-index: 1;background-color: #fff;">
 
-    <ion-col size="3">
+    <ion-col size="4">
       <ion-button expand="block"  (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
     </ion-col>
 
-    <ion-col size="9" style="display: flex;" class="probDetails">
+    <ion-col size="1"></ion-col>
+
+    <ion-col size="6" style="display: flex;" class="probDetails">
       <ion-button color="success" expand="block" (click)="createModal()">Create Your Issue</ion-button>
     </ion-col>
+
+    <ion-col size="1"></ion-col>
 
   </ion-row>
   
@@ -100,7 +104,7 @@
   </ion-card>
 
   <!-- <p> Total Count : {{propertyCodeResult.length}}</p> -->
-  <p> Total Count : {{showdata}}</p>
+  <p style="text-align: center;font-weight: bold; margin: 30px;"> Total Count : {{showdata}}</p>
 
   <ion-card *ngFor="let items of propertyCodeResult; let i = index">
     <ion-card-header class="card_header">
@@ -108,10 +112,7 @@
         <ion-col size="7">
           <ion-label class="card_header_text">Property Details</ion-label>
         </ion-col>
-      
-          <ion-col size="5" style="display: flex;" class="probDetails">
-            <ion-button color="medium" size="small" (click)="viewModal()">View</ion-button>
-          </ion-col>
+    
 
           <ion-col>
             <ion-label class="card_header_text"> #{{items.ROW_NUM}}</ion-label>
@@ -214,6 +215,10 @@
         <ion-col size="6" class="col_height">
           <ion-label>: {{items.ROW_NUM}} </ion-label>
         </ion-col> -->
+
+        <ion-col size="12">
+          <ion-button  expand="block" (click)="viewModal()" style="width: 50%;margin: auto;">View Status</ion-button>
+        </ion-col>
       </ion-row>
 
     </ion-card-content>
