@@ -2267,6 +2267,7 @@ export class NewleadRetailPage implements OnInit {
         headers: options,
       }).subscribe(resp => {
         console.log("mobileapi : " + JSON.stringify(resp));
+        localStorage.setItem("customerRes", data.response);
 
         console.log(resp);
         this.result = JSON.stringify(resp);
@@ -2292,8 +2293,8 @@ export class NewleadRetailPage implements OnInit {
           var obj = {
             'LeadID': lead_id_new,
             //  'LatLong': this.appointmentLatLong,
-             'LatLong': 0,
-             'Address': this.placetomeet,
+            'LatLong': 0,
+            'Address': this.placetomeet,
             access_token: window.localStorage['token'],
             userid: parseInt(window.localStorage['TUM_USER_ID']),
             'usertoken': window.localStorage['usertoken'],
@@ -2423,56 +2424,57 @@ export class NewleadRetailPage implements OnInit {
 
     // }
     // else {
-      const alert = await this.alertController.create({
-        header: 'Confirm',
-        message: 'Are you sure want to Cancel the Process',
-        buttons: [
-          {
-            text: 'No',
-            role: 'no',
-            cssClass: 'secondary',
-            handler: (blah) => {
-              console.log('Confirm Cancel: blah');
-            }
-          }, {
-            text: 'Yes',
-            handler: () => {
-              this.branch = "<< Select >>";
-              this.branchlocation = "<< Select >>";
-              this.productdata = "<< Select >>";
-              this.nextaction = "<< Select >>";
-              this.Currency = "<< Select >>";
-              this.email = undefined;
-              this.Salutation = "<< Select >>";
-              this.firstname = undefined;
-              this.lastname = undefined;
-              this.mobile = undefined;
-              this.OffPhone = undefined;
-              this.ResPhone = undefined;
-              this.callpriority = 1;
-              this.callstage = 1;
-              this.callrating = 1;
-              this.callnature = 1;
-              this.leadssource = 1;
-              this.leadby = "S";
-              this.followdate = undefined;
-              this.followtime = undefined;
-              this.placetomeet = undefined;
-              this.Employeeid = undefined;
-              this.custname = undefined;
-              this.leadByval = undefined;
-              this.expdate = undefined;
-              this.expectedAmount = undefined;
-              this.Images = [];
-              this.currentlocation = undefined;
-              this.remarks = undefined;
-
-            }
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'No',
+          role: 'no',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
           }
-        ]
-      });
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.branch = "<< Select >>";
+            this.branchlocation = "<< Select >>";
+            this.productdata = "<< Select >>";
+            this.nextaction = "<< Select >>";
+            this.Currency = "<< Select >>";
+            this.email = undefined;
+            this.Salutation = "<< Select >>";
+            this.firstname = undefined;
+            this.lastname = undefined;
+            this.mobile = undefined;
+            this.OffPhone = undefined;
+            this.ResPhone = undefined;
+            this.callpriority = 1;
+            this.callstage = 1;
+            this.callrating = 1;
+            this.callnature = 1;
+            this.leadssource = 1;
+            this.leadby = "S";
+            this.followdate = undefined;
+            this.followtime = undefined;
+            this.placetomeet = undefined;
+            this.Employeeid = undefined;
+            this.custname = undefined;
+            this.leadByval = undefined;
+            this.expdate = undefined;
+            this.expectedAmount = undefined;
+            this.Images = [];
+            this.currentlocation = undefined;
+            this.remarks = undefined;
 
-      await alert.present();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
     // }
   }
   async presentAlertConfirm(heading, tittle) {
@@ -2480,6 +2482,7 @@ export class NewleadRetailPage implements OnInit {
       header: heading,
       message: tittle,
       // cssClass: 'buttonCss',
+      backdropDismiss: false,
       cssClass: 'Cssbutton',
       buttons: [
         {

@@ -595,7 +595,8 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       var tmpPendJson = {
         user_id: "",
         userid: user_id_nw,
-        response: values.toString(),
+        // response: values.toString(),
+        response: localStorage.getItem("customerRes").toString(),
         offset: this.pendleaddetails.length.toString(),
         limit: "50",
         PRIORITY: "",
@@ -633,6 +634,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       }).subscribe((resp: any) => {
         if (resp == "No data found") {
           this.showData = "No data found";
+          this.pendingleadsdatalength = 0;
         } else {
           console.log("pendleadsdatalength : " + JSON.stringify(resp));
 
@@ -650,6 +652,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       }).subscribe((resp: any) => {
         if (resp == "No data found") {
           this.showData = "No data found";
+          this.pendingleadsdatalength = 0;
         } else {
           this.loadingdismiss();
           this.pendleaddetails1.push(resp);
@@ -789,7 +792,8 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     var tmpPendJson = {
       user_id: user_id_nw,
       userid: user_id_nw,
-      response: values.toString(),
+      // response: values.toString(),
+      response: localStorage.getItem("customerRes").toString(),
       offset: this.pendleaddetails.length.toString(),
       limit: "50",
       PRIORITY: "",
@@ -827,6 +831,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     }).subscribe((resp: any) => {
       if (resp == "No data found") {
         this.showData = "No data found";
+        this.pendingleadsdatalength = 0;
       } else {
         if (resp == null) {
           this.pendingleadsdatalength = 0
@@ -846,6 +851,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     }).subscribe((resp: any) => {
       if (resp == "No data found") {
         this.showData = "No data found";
+        this.pendingleadsdatalength = 0;
       } else {
         // console.log("pendleaddetails1 : " + JSON.stringify(resp));
         this.loadingdismiss();
