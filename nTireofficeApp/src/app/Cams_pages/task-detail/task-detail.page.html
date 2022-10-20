@@ -31,10 +31,10 @@
             <ion-col   class="cell-class" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
                 <input class="checkBoxClass" type="checkbox"  [disabled]="item1.CTM_ID!=NULL" name="test" [(ngModel)]="item1.selected" value="{{item1}}">
             </ion-col>
-            <ion-col  class="cell-class" size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+            <ion-col style="--bakground:black !important;" class="cell-class" size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
               {{item1.points_to_be_checked}}
             </ion-col>
-          <ion-col  class="cell-class" size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
+          <ion-col style="--bakground:black !important;" class="cell-class" size-sm="5" size="5" size-md="5" size-lg="5" size-xl="5">
             {{item1.desired_observation}}
           </ion-col>
           </ion-row>

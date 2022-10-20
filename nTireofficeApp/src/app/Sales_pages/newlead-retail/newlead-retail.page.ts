@@ -2326,7 +2326,8 @@ export class NewleadRetailPage implements OnInit {
             } else {
 
               var passCurrent_locationJSON = {
-                latlong: this.currentlatlon,
+                // latlong: this.currentlatlon,
+                latlong: 0,
                 custid: parseInt(this.lead_id),
                 access_token: window.localStorage['token'],
                 userid: parseInt(window.localStorage['TUM_USER_ID']),

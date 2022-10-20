@@ -148,6 +148,7 @@ export class ServiceListPage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
+      cssClass:'buttonCss',
       backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
