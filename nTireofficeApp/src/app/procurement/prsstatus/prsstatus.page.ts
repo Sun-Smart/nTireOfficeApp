@@ -62,7 +62,7 @@ export class PRSstatusPage implements OnInit {
             this.status = "";
             this.todate = "";
             this.fromdate = "";
-            this.getresponse = "";
+            this.getresponse = [];
 
           }
         }
@@ -112,7 +112,7 @@ export class PRSstatusPage implements OnInit {
       "alphaname": "",
       "sortexpression": "PRS_CODE",
       "qutype": "",
-      "prsref": "",
+      "prsref": "", 
       "pageindex1": 1,
       "pagesize1": 10
 
@@ -120,6 +120,7 @@ export class PRSstatusPage implements OnInit {
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
       this.loading = false
       this.getresponse = res;
+       
       console.log("Response", res)
       console.log("Response", res)
       for (let item of this.getresponse) {
