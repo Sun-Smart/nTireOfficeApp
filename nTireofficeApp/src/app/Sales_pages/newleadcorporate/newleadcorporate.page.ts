@@ -1088,8 +1088,39 @@ export class NewleadcorporatePage implements OnInit {
               }
             }
 
-            this.presentAlertConfirm('Success Alert', this.result)
-
+            // this.presentAlertConfirm('Success Alert', this.result)
+            this.presentAlert('Success Alert', this.result);
+            this.branch = "<< Select >>";
+            this.branchlocation = "<< Select >>";
+            this.productdata = "<< Select >>";
+            this.nextaction = "<< Select >>";
+            this.Salutation = "<< Select >>";
+            this.company = "";
+            this.ContactName = undefined;
+            this.mobile = undefined;
+            this.address = undefined;
+            this.OffPhone = undefined;
+            this.ResPhone = undefined;
+            this.callpriority = 1;
+            this.callstage = 1;
+            this.callrating = 1;
+            this.callnature = 1;
+            this.leadssource = '<< Select >>';
+            this.leadby = "S";
+            this.pincode = undefined;
+            this.custname = undefined;
+            this.followdate = undefined;
+            this.followtime = undefined;
+            this.placetomeet = undefined;
+            this.Employeeid = undefined;
+            this.custname = undefined;
+            this.leadByval = undefined;
+            this.expdate = undefined;
+            this.expectedAmount = undefined;
+            this.Images = [];
+            this.currentlocation = undefined;
+            this.remarks = undefined;
+            this.showmap = true;
           }
         }, error => {
 
@@ -1207,7 +1238,7 @@ export class NewleadcorporatePage implements OnInit {
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass: 'buttonCss',
+      cssClass: 'Cssbutton',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']

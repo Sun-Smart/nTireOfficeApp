@@ -242,7 +242,7 @@ export class OdRequestPage implements OnInit {
       'usertoken': parseInt(this.usertoken)
     }
 
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getTravelMode/", travelobj).then(resp => {
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getTravelMode", travelobj).then(resp => {
       console.log("getTravelMode ;" + JSON.stringify(resp));
       this.TavelmodeType1 = resp;
       // this.TavelmodeType1 = this.TavelmodeType1_res.recordset;
@@ -265,7 +265,7 @@ export class OdRequestPage implements OnInit {
       'userid': parseInt(this.userID),
       'usertoken': parseInt(this.usertoken)
     }
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getCurrencyType/", currencyobj).then(resp => {
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getCurrencyType", currencyobj).then(resp => {
       this.currencylist1 = resp;
       this.currencylist1.forEach(element => {
         this.currencylist.push(element);
@@ -1098,7 +1098,7 @@ export class OdRequestPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-        
+
             this.from = "";
             this.to = "";
             this.reason = "";
@@ -1116,7 +1116,7 @@ export class OdRequestPage implements OnInit {
             this.travelComment="";
             this.travelamount="";
             this.installment="";
-           
+
           }
         }
       ]

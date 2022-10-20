@@ -11,9 +11,9 @@
 
 <ion-content>
 
-    <ion-row style="position: sticky;top: 0;z-index: 1;">
-      <ion-col size="3">
-        <ion-button expand="block"  (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
+    <ion-row class="top-header">
+      <ion-col size="4">
+        <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
       </ion-col>
     </ion-row>
 
@@ -74,6 +74,19 @@
             </ion-list>
           </ion-col>
     
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="ContentName">Property type :</ion-label>
+            <!-- <ion-input class="form-control"></ion-input> -->
+            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
+            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+              <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
+                <ion-label>{{data.id}}</ion-label>
+                <ion-label>{{data.name}}</ion-label>
+                <ion-label>{{data.email}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Rental Code :</ion-label>
             <!-- <ion-input class="form-control"></ion-input> -->
