@@ -435,7 +435,7 @@ if(alldata.CMD_ASSET_ID==''||alldata.CMD_ASSET_ID==undefined){
         headers: options,
       }).subscribe(resp => {
           console.log(resp);
-          if(resp == 'Updated Successfully'){
+          if(resp == 'Started successfully'){
             this.presentAlert("Alert","Successfully Started");
             this.getCards();
           }
