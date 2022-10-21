@@ -17,8 +17,8 @@ export class PRSstatusPage implements OnInit {
   getresponse: any;
   prscode: String;
   status: String;
-  todate: String;
-  fromdate: String;
+  todate: any;
+  fromdate: any;
   editprs: boolean = false;
   loading: boolean = false
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
@@ -62,6 +62,8 @@ export class PRSstatusPage implements OnInit {
             this.status = "";
             this.todate = "";
             this.fromdate = "";
+            this.getresponse = [];
+
           }
         }
       ]
@@ -88,11 +90,34 @@ export class PRSstatusPage implements OnInit {
       this.status = ''
     }
     if (this.todate == undefined) {
+      // this.todate = new Date();
       this.todate = ''
     }
     if (this.fromdate == undefined) {
+      // this.fromdate = new Date();
       this.fromdate = ''
     }
+
+
+    if (this.status == "Approved") {
+      this.status = 'A'
+    }
+    if (this.status == "Pending") {
+      this.status = 'P'
+    }
+    if (this.status == "Cancelled") {
+      this.status = 'X'
+    }
+    if (this.status == "New") {
+      this.status = 'N'
+    }
+    if (this.status == "Denied") {
+      this.status = 'D'
+    }
+    if (this.status == "Under Process") {
+      this.status = 'U'
+    }
+
     var body = {
       "functionid": "1",
       "branchid": "1",
@@ -118,13 +143,12 @@ export class PRSstatusPage implements OnInit {
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
       this.loading = false
       this.getresponse = res;
+
       console.log("Response", res)
       console.log("Response", res)
       for (let item of this.getresponse) {
         console.log(item);
-
       }
-
     })
 
 

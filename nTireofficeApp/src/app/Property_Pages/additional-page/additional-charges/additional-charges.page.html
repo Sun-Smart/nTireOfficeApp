@@ -1,10 +1,9 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()" >
-        <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon> 
-        <span  style="color:white;">Back</span>
+      <ion-button (click)="cancel()">
+        <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon>
+        <span style="color:white;">Back</span>
       </ion-button>
     </ion-buttons>
     <ion-title style="margin: 0 20px;">Additional Charges</ion-title>
@@ -17,68 +16,59 @@
     <ion-card-header class="card_header">
       <ion-card-title class="card_header_text">ADD</ion-card-title>
     </ion-card-header>
+
     <ion-card-content class="card_content">
-      <ion-grid>
+
         <ion-row>
-
-          <ion-col size="7" class="col_height">
-    
+          <ion-col size="12">
             <ion-label class="labelHead-text"> Description :</ion-label>
-         
-        </ion-col>
-        <ion-col size="5" class="col_height">
-          
-            <ion-input placeholder="Text Input" class="form-control createInput" ></ion-input>
-         
-        </ion-col>
+          </ion-col>
+          <ion-col >
+            <ion-input placeholder="Text Input" class="form-control"></ion-input>
+          </ion-col>
 
-        <ion-col size="7" class="col_height">
-    
-          <ion-label class="labelHead-text"> Amount :</ion-label>
-       
-      </ion-col>
-      <ion-col size="5" class="col_height">
-        
-          <ion-input placeholder="Text Input" class="form-control createInput" ></ion-input>
-       
-      </ion-col>
+          <ion-col size="12">
+            <ion-label class="labelHead-text"> Amount :</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-input placeholder="Text Input" class="form-control"></ion-input>
+          </ion-col>
 
-
-
-      <ion-col size="7" class="col_height">
-    
-        <ion-label class="labelHead-text"> Pay Type :</ion-label>
-     
-    </ion-col>
-    <ion-col size="5" class="col_height">
-      
-        <ion-input placeholder="Text Input" class="form-control createInput" ></ion-input>
-     
-    </ion-col>
-
-         
+          <ion-col size="12">
+            <ion-label class="labelHead-text"> Pay Date :</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-input type="date" class="form-control"  displayFormat="MM/DD/YYYY" ></ion-input>
+          </ion-col>
         </ion-row>
-      </ion-grid>
- 
+
+        <ion-row *ngIf="!showView">
+          <ion-col size="12">
+            <ion-button class="ion-color-success" expand="block" (click)="submit()">Save</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="showView">
+          <ion-col size="6">
+            <ion-button color="success">Edit</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="danger">Delete</ion-button>
+          </ion-col>
+        </ion-row>
+
     </ion-card-content>
-    <ion-grid>
-
-      <ion-row  *ngIf = "!showView">
-        <ion-col size="12">
-          <ion-button  color="success" (click)="submit()">Save</ion-button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row *ngIf = "showView">
-        <ion-col size="6">
-          <ion-button color="success"  >Edit</ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button color="danger" >Delete</ion-button>
-        </ion-col>
-      </ion-row>
-
-    </ion-grid>
   </ion-card>
 
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>

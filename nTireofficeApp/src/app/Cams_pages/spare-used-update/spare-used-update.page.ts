@@ -67,7 +67,7 @@ export class SpareUsedUpdatePage implements OnInit {
     this.cost = this.data.SPARECOST;
     var dataes = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -169,6 +169,7 @@ export class SpareUsedUpdatePage implements OnInit {
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
+      cssClass:'buttonCss',
       header: heading,
       backdropDismiss:false,
       message: tittle,

@@ -15,8 +15,9 @@ declare var google: any;
 })
 export class PmscustomerPage implements OnInit {
 
+  username = window.localStorage.getItem('TUM_USER_NAME');
+
   name: string = '';
-  username: any;
   filterTerm: string;
   showfilter: boolean = true;
 
@@ -54,6 +55,8 @@ export class PmscustomerPage implements OnInit {
 
 
 
+
+
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient, 
@@ -64,7 +67,7 @@ export class PmscustomerPage implements OnInit {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.accessToken = localStorage.getItem('token');
-  };
+    };
 
 
   ngOnInit() {
@@ -99,12 +102,28 @@ export class PmscustomerPage implements OnInit {
     this.showfilter = !this.showfilter;
   };
 
+  propertyBrancH(data:any){
 
+    console.log(data);
+    
+
+    this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid").subscribe((resp:any)=>{
+
+    console.log(resp);
+
+    this.propertyBranch = resp;
+
+    console.log(this.propertyBranch);
+    
+
+
+    
+
+    });
+  }
 
 
   getcustomerItems() {
-
-   
 
     this.userid = window.localStorage['TUM_USER_ID'],
       console.log(this.userid);

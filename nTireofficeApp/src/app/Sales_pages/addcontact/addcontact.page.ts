@@ -158,7 +158,7 @@ export class AddcontactPage implements OnInit {
   async presentAlert(heading,tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
+      cssClass:'Cssbutton',
       backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
