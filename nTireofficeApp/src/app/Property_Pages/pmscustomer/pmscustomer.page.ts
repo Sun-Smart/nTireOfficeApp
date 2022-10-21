@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+
 import { AlertController, ModalController } from '@ionic/angular';
-import { IonSearchbar } from '@ionic/core/components';
+
 import { IpaddressService } from 'src/app/ipaddress.service';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
@@ -42,12 +43,23 @@ export class PmscustomerPage implements OnInit {
   propertyCodeResultLength: any;
   showdata: any;
 
+  customerbranch: any;
+  isItemAvailable: boolean=false;
+  branchcode1:any []=[];
+  branchcode: any;
+  customerlocation: any;
+  locationcode1: any []=[];
+  locationcode: string;
+  islocItemAvailable: boolean=false;
+  selectbranch: any;
+
+
 
 
 
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
-    private http: HttpClient,
+    private http: HttpClient, 
     public Ipaddressservice: IpaddressService) {
 
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
@@ -59,8 +71,14 @@ export class PmscustomerPage implements OnInit {
 
 
   ngOnInit() {
-    this.getItems();
-    this.propertyBrancH("");
+    this.branchcode=('')
+    this.locationcode=('')
+    this.getbranch();
+    this.getcustomerItems();
+    this.getlocation();
+
+   
+
   };
 
   async createModal() {
@@ -70,12 +88,7 @@ export class PmscustomerPage implements OnInit {
       component: PmsCreateIssuePage,
     });
     return await model.present();
-    const { data, role } = await model.onWillDismiss();
-
-    if (role === 'confirm') {
-      this.name = data;
-
-    }
+   
   };
 
   async viewModal() {
@@ -110,7 +123,7 @@ export class PmscustomerPage implements OnInit {
   }
 
 
-  getItems() {
+  getcustomerItems() {
 
     this.userid = window.localStorage['TUM_USER_ID'],
       console.log(this.userid);
@@ -128,14 +141,6 @@ export class PmscustomerPage implements OnInit {
     // this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + this.strFunctionId + '/' + this.strBranchId + '/' + this.strLocationId
     //   + '/' + this.strPropertyId + '/' + this.strPropertyDesc + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.strusertype + '/' + this.userid, {
 
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/' + 0 + '/' + 0 + '/' + 0
-      + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + this.userid,)
-      .subscribe((resp: any) => {
-        console.log(resp);
-
-        this.propertyCodeResult = resp;
-
-      })
 
 
     // const header = new Headers();
@@ -164,10 +169,92 @@ export class PmscustomerPage implements OnInit {
 
 }
 
+
+getbranch(){
+  this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid").subscribe((res)=>{
+    console.log("branch",res);
+    this.customerbranch=res
+    for (var i = 0; i < this.customerbranch.length; i++) {
+
+      this.branchcode1.push(this.customerbranch[i].BRANCH_DESC);
+
+    }
+    console.log(this.branchcode1,'fyttr')
+  })
+}
+getItems(ev: any) {
+  let data=ev.target.value;
+  console.log(data);
+  this.selectbranch=data;
+
+  // Reset items back to all of the items
+  this.getbranch()
+
+  // set val to the value of the searchbar
+  const val = ev.target.value;
+
+  // if the value is an empty string don't filter the items
+  if (val && val.trim() !== '') {
+      this.isItemAvailable = true;
+      this.branchcode1 = this.branchcode1.filter((item) => {
+ 
+          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+     
+      })
+      console.log(this.branchcode1,"hfghfg");
+  } else {
+      this.isItemAvailable = false;
+  }
+}
+
+processbranch(e:any){
+console.log(e);
+
+   this.branchcode =this.branchcode
+   console.log(this.branchcode,"gggg");
+   
+  this.isItemAvailable = false;
+}
 // search(){
 //   this.propertyCodeResult.filter(u=> u.nation == 'England' && u.name == 'Marlin');
  
 // }
+
+
+
+
+
+getlocation(){
+  this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getlocation").subscribe((res)=>{
+    console.log("location",res);
+    this.customerlocation=res
+    for (var i = 0; i < this.customerlocation.length; i++) {
+
+      this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
+
+    }
+    console.log(this.locationcode1,'fyttr')
+  })
+}
+getlocationItems(ev: any) {
+  // Reset items back to all of the items
+  this.getlocation()
+
+  // set val to the value of the searchbar
+  const val = ev.target.value;
+
+  // if the value is an empty string don't filter the items
+  if (val && val.trim() !== '') {
+      this.islocItemAvailable = true;
+      this.locationcode1 = this.locationcode1.filter((item) => {
+    
+          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+     
+      })
+  } else {
+      this.islocItemAvailable = false;
+  }
+}
 
 }
 
