@@ -1285,3 +1285,8 @@ input#checkbox {
 .alert-button.ion-focused.sc-ion-alert-md, .alert-tappable.ion-focused.sc-ion-alert-md{
   background: none !important;
 }
+.additionBtn{
+  --background: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;
+  color: white !important;
+
+}
