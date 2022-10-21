@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { PmscustomerPageRoutingModule } from './pmscustomer-routing.module';
 import { PmscustomerPage } from './pmscustomer.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 
 const routes: Routes = [
   {
@@ -21,8 +20,10 @@ const routes: Routes = [
     IonicModule,
     RouterModule,
     Ng2SearchPipeModule,
-    PmscustomerPageRoutingModule
+    PmscustomerPageRoutingModule,
+    ReactiveFormsModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [PmscustomerPage ]
 })
 export class PmscustomerPageModule {}
