@@ -1098,30 +1098,27 @@ export class OdRequestPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-
             this.from = "";
             this.to = "";
             this.reason = "";
             this.fromHour = "";
             this.toHour = "";
             this.release = 'N';
-            this.travelReq =false;
-           this.release=false;
-           this.advance=false;
+            this.travelReq = false;
+            this.release = false;
+            this.advance = false;
             this.nod = "";
-            this.fromPlace="";
-            this.toPlace="";
-            this.tavelDate="";
-            this.travelmode="";
-            this.travelComment="";
-            this.travelamount="";
-            this.installment="";
-
+            this.fromPlace = "";
+            this.toPlace = "";
+            this.tavelDate = "";
+            this.travelmode = "";
+            this.travelComment = "";
+            this.travelamount = "";
+            this.installment = "";
           }
         }
       ]
     });
-
     await alert.present();
   }
 }
