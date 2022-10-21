@@ -1025,6 +1025,7 @@ export class MyprofilePage implements OnInit {
     } else if (value == "contact.cancel") {
       this.contactToggle = 0;
       this.getEmployeeDetails();
+      this.validemail =false;
       // console.log("Cancel");
       // this.searchEmployees();
     }
