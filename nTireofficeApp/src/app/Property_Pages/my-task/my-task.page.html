@@ -13,95 +13,83 @@
 
   <ion-card>
     <ion-card-content class="card_content">
-      <ion-grid>
-        <ion-row>
+      <ion-row>
 
-          <ion-col size="7" class="col_height">
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text"> Reference NO :</ion-label>
+        </ion-col>
 
-            <ion-label class="labelHead-text"> Reference NO :</ion-label>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">1234</ion-label>
+        </ion-col>
 
-          </ion-col>
-          <ion-col size="5" class="col_height">
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Property Code :</ion-label>
+        </ion-col>
 
-            <ion-label class="labelData-text">1234</ion-label>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">po930</ion-label>
+        </ion-col>
 
-          </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Property Description :</ion-label>
+        </ion-col>
 
-          <ion-col size="7" class="col_height">
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">Flat for sale</ion-label>
+        </ion-col>
 
-            <ion-label class="labelHead-text">Property Code :</ion-label>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Issue Description :</ion-label>
+        </ion-col>
 
-          </ion-col>
-          <ion-col size="5" class="col_height">
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">finding</ion-label>
+        </ion-col>
 
-            <ion-label class="labelData-text">po930</ion-label>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Issue Category :</ion-label>
+        </ion-col>
 
-          </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">finding</ion-label>
+        </ion-col>
 
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Assign Date :</ion-label>
+        </ion-col>
 
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">23/04/2022</ion-label>
+        </ion-col>
 
-          <ion-col size="7" class="col_height">
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Assign To:</ion-label>
+        </ion-col>
 
-            <ion-label class="labelHead-text">Property Description :</ion-label>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">Anand</ion-label>
+        </ion-col>
 
-          </ion-col>
-          <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text">Flat for sale</ion-label>
+        <ion-col size="7" class="col_height" style="    justify-content: center;align-items: center;display: flex;">
+          <ion-label class="labelHead-text">Issue Status :</ion-label>
+        </ion-col>
 
-          </ion-col>
+        <ion-col size="5" class="col_height">
+          <!-- <option [ngValue]="null"  disabled  selected>--Select--</option> -->
+          <ion-list>
+            <ion-item style=" border: none;background-color: transparent;">
+              <ion-select placeholder="Select" [multiple]="true">
+                <ion-select-option value="apples">New</ion-select-option>
+                <ion-select-option value="oranges">Pending</ion-select-option>
+                <ion-select-option value="bananas">Completed</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
 
-          <ion-col size="7" class="col_height">
+      </ion-row>
 
-            <ion-label class="labelHead-text">Issue Category :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <ion-label class="labelData-text">finding</ion-label>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Assign Date :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text">23/04/2022</ion-label>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Assign To:</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <ion-label class="labelData-text">Anand</ion-label>
-          </ion-col>
-          <ion-col size="7" class="col_height" style="    justify-content: center;align-items: center;display: flex;">
-
-            <ion-label class="labelHead-text">Issue Status :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <!-- <option [ngValue]="null"  disabled  selected>--Select--</option> -->
-            <ion-list>
-              <ion-item style=" border: none;background-color: transparent;">
-                <ion-select placeholder="Select" [multiple]="true">
-                  <ion-select-option value="apples">New</ion-select-option>
-                  <ion-select-option value="oranges">Pending</ion-select-option>
-                  <ion-select-option value="bananas">Completed</ion-select-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
       <ion-row>
         <ion-col size="12">
           <ion-button class="ion-color-success" expand="block">Update</ion-button>

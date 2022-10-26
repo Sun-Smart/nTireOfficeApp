@@ -77,7 +77,6 @@ export class ClaimsrequestPage implements OnInit {
     this.expenseType = "";
     this.requestCat = "";
     this.getReqref();
-
     this.getEmployeeDetails();
     this.getExpenseType();
   }
@@ -228,7 +227,7 @@ export class ClaimsrequestPage implements OnInit {
   };
 
   uploadDoc(file, imagename) {
-    var url = this.Ipaddressservice.ipaddress + '/dms/uploadprofileImg';
+    var url = this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlhrms2 +'uploadprofileImg';
     const formData: any = new FormData();
     formData.append("upload", file, imagename);
 
@@ -376,7 +375,7 @@ export class ClaimsrequestPage implements OnInit {
       if (this.expenseArray.length > 0) {
         this.expenseArray.forEach(element => {
           var obj = {
-            userid: this.userID,
+            userid: parseInt(this.userID),
             usertoken: this.usertoken,
             access_token: this.token,
           }
@@ -686,5 +685,7 @@ export class ClaimsrequestPage implements OnInit {
   claimList() {
     this.router.navigateByUrl('/claimssummary');
   }
-
+  DeleteImage(index) {
+    this.Images.splice(index, 1);
+  }
 }

@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AdditionalChargesPage } from '../additional-page/additional-charges/additional-charges.page';
+import { PaymentHistoryPage } from '../payment-history/payment-history.page';
 
 @Component({
   selector: 'app-reciept-master-page',
@@ -8,6 +11,7 @@ import { AdditionalChargesPage } from '../additional-page/additional-charges/add
   styleUrls: ['./reciept-master-page.page.scss'],
 })
 export class RecieptMasterPagePage implements OnInit {
+  showDetails: boolean;
 
 
 
@@ -16,17 +20,27 @@ export class RecieptMasterPagePage implements OnInit {
   ngOnInit() {
   }
 
-  async additionalCharge(){
+  async additionalCharge() {
 
     const model = await this.modalCtrl.create({
 
       component: AdditionalChargesPage,
     });
-   return await model.present();
+    return await model.present();
+  }
+  async paymentHistory() {
+
+    const model = await this.modalCtrl.create({
+
+      component: PaymentHistoryPage,
+    });
+    return await model.present();
   }
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
-
+  receiptDetails() {
+    this.showDetails = !this.showDetails;
+  }
 }
