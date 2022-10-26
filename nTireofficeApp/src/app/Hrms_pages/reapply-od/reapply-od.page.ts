@@ -86,7 +86,7 @@ export class ReapplyOdPage implements OnInit {
   constructor(private model:ModalController,navParams: NavParams,public modalCtrl: ModalController,private toastmessageService:ToastmessageService,private HttpRequest: HttprequestService,public Ipaddressservice: IpaddressService) {
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
     this.token=window.localStorage['token'];
-    this.userID = window.localStorage['TUM_USER_ID'];
+    this.userID = parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken= window.localStorage['usertoken'];
     this.name = window.localStorage['TUM_USER_NAME'];
     this.empCode= window.localStorage['TUM_EMP_CODE'];
@@ -101,8 +101,6 @@ export class ReapplyOdPage implements OnInit {
     this.item=navParams.get('item');
     this.item1 = navParams.get('item2');
     console.log(""+JSON.stringify(this.item));
-
-
 
     console.log(""+JSON.stringify(this.item1));
     this.requestref = this.item.ReqRef;
@@ -183,20 +181,18 @@ export class ReapplyOdPage implements OnInit {
     this.edittravelamount=data.travelamount;
     // this.edittravelmode=data.travelmode;
     this.edittravelmode=data.TRAVEL_MODEVAL;
-
-
    }
 
 
   getTravelMode(){
     var travelobj={
-      'FunctionID':this.FUNCTION_ID,
+      'FunctionID': parseInt(this.FUNCTION_ID),
       'access_token':this.token,
-      'userid': this.userID,
+      'userid': parseInt(this.userID),
       'usertoken':this.usertoken
     }
 
-  this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getTravelMode/",travelobj).then(resp=>{
+  this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getTravelMode",travelobj).then(resp=>{
   console.log(JSON.stringify(resp));
     this.TavelmodeType1_res=resp;
     this.TavelmodeType1 = this.TavelmodeType1_res;
@@ -228,13 +224,13 @@ export class ReapplyOdPage implements OnInit {
   {
    var odref={
      User_ID:parseInt(this.item1.userid),
-     RequestRef:this.item.ReqRef,
-      userid:window.localStorage['TUM_USER_ID'],
+     RequestRef: parseInt(this.item.ReqRef),
+      userid: parseInt(window.localStorage['TUM_USER_ID']),
       usertoken:window.localStorage['usertoken'],
       access_token:window.localStorage['token']
      }
 
-     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlhrms2+ "getTravelDetails/",odref).then(resp=>{
+     this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlhrms2+ "getTravelDetails",odref).then(resp=>{
        console.log(""+JSON.stringify(resp));
       this.AllTravelData=[];
       for(var i=0; i< resp['length'];i++){
@@ -438,9 +434,9 @@ console.log(tohour);
   //  contactphone:this.contactphone,
    currentstatus:this.statusstatus,
    empname:this.name,
-   RequestRef:this.item.ReqRef,
+   RequestRef: parseInt(this.item.ReqRef),
   //  MobileNum:this.,
-    userid:window.localStorage['TUM_USER_ID'],
+    userid: parseInt(window.localStorage['TUM_USER_ID']),
     usertoken:window.localStorage['usertoken'],
     access_token:window.localStorage['token'],
 
@@ -453,7 +449,7 @@ console.log(dataobj)
 // this.travelarray.push(dataobj)
 
 // this.travelarray.push(this.AllTravelData)
-this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getODUpdateDate/",dataobj).then(resp=>{
+this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getODUpdateDate",dataobj).then(resp=>{
   console.log(resp);
   console.log(""+JSON.stringify(resp));
   // this.reqRefDetail = JSON.stringify(resp);
@@ -486,7 +482,7 @@ error => {
 
       console.log(this.AllTravelData[i]);
         var travelidobj={
-          userid:window.localStorage['TUM_USER_ID'],
+          userid: parseInt(window.localStorage['TUM_USER_ID']),
           usertoken:window.localStorage['usertoken'],
           access_token:window.localStorage['token']
         }
@@ -513,7 +509,7 @@ error => {
         amount:this.AllTravelData[i].travelamount,
         strCancelRemarks:'',
         lastupby:window.localStorage['TUM_USER_ID'],
-        userid:window.localStorage['TUM_USER_ID'],
+        userid: parseInt(window.localStorage['TUM_USER_ID']),
         usertoken:window.localStorage['usertoken'],
         access_token:window.localStorage['token'],
         travelreq:this.travelstatus
@@ -560,7 +556,7 @@ error => {
 
     }else{
       var travelidobj={
-        userid:window.localStorage['TUM_USER_ID'],
+        userid: parseInt(window.localStorage['TUM_USER_ID']),
         usertoken:window.localStorage['usertoken'],
         access_token:window.localStorage['token']
       }
@@ -596,7 +592,7 @@ error => {
         amount:self.AllTravelData[i].travelamount,
         strCancelRemarks:'',
         lastupby:window.localStorage['TUM_USER_ID'],
-        userid:window.localStorage['TUM_USER_ID'],
+        userid: parseInt(window.localStorage['TUM_USER_ID']),
         usertoken:window.localStorage['usertoken'],
         access_token:window.localStorage['token'],
         travelreq:"Y"

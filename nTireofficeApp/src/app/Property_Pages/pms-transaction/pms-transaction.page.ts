@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -34,9 +36,12 @@ export class PmsTransactionPage implements OnInit {
   dataWithRowDetail = [];
   columnsWithRowDetail: any = [];
   showfilter: boolean = true;
-  branchlist1: any;
-
+  branchlist1:any = [];
+  branch;
   constructor(private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
+    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    console.log('this.branch ', this.branch);
+
     this.BranchLocationdata();
     this.columns = [
       { name: 'Name', width: "110", sorting: true },
@@ -87,7 +92,8 @@ export class PmsTransactionPage implements OnInit {
     this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid', {
       headers: options,
     }).subscribe(resp => {
-      this.branchlist1 = resp;
+      this.branchlist1 =resp;
+
       // this.branchlist1 = JSON.parse(this.branchlist1);
       // console.log("branchlist1 one: " + JSON.stringify(this.branchlist1));
 

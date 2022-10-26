@@ -124,9 +124,9 @@
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <ion-row>
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-              <ion-button color='success' size="full" (click)="openModal(odData)"
-                *ngIf="odData.Status == 'New' ? true : false" style="color:#fff !important;">Update</ion-button>
-              <ion-button style="color:#fff;" color='success' (click)="openModal(odData)" *ngIf="odData.Status == 'Denied' ? true : false">
+              <ion-button class = "ion-color-success" size="full" (click)="openModal(odData)"
+                *ngIf="odData.Status == 'New' ? true : false">Update</ion-button>
+              <ion-button (click)="openModal(odData)" *ngIf="odData.Status == 'Denied' ? true : false">
                 Update</ion-button>
 
             </ion-col>
