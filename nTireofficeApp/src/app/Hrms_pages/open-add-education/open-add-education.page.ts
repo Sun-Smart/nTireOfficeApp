@@ -6,12 +6,13 @@ import { IpaddressService } from '../../service/ipaddress.service';
 import {ToastmessageService} from '../../service/toastmessage.service';
 import {ModalController} from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-open-add-education',
   templateUrl: './open-add-education.page.html',
   styleUrls: ['./open-add-education.page.scss'],
+  providers: [DatePipe]
 })
 export class OpenAddEducationPage implements OnInit {
   educationdetails=[];
@@ -48,8 +49,8 @@ export class OpenAddEducationPage implements OnInit {
   to: any;
   obj;
   specialization: any;
-  fromdate;
-  toDate;
+  fromdate: any;
+  toDate: any;
   institution: any;
   percentage: any;
   category: any;
@@ -62,13 +63,14 @@ export class OpenAddEducationPage implements OnInit {
   remarks: any;
 
 
-  constructor(private alertController: AlertController,private model:ModalController,navParams: NavParams,public toastmessageService:ToastmessageService,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient) {
+  constructor(private alertController: AlertController,private model:ModalController,navParams: NavParams,private datepipe:DatePipe, public toastmessageService:ToastmessageService,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,private http: HttpClient) {
     this.userId=parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken=window.localStorage['usertoken'];
     this.token=window.localStorage['token'];
     this.FUNCTION_ID=parseInt(window.localStorage['FUNCTION_ID']);
     this.getHighestQualification();
     this.item=navParams.get('item');
+    console.log("editprofile" ,this.item);
 
 
 
@@ -77,18 +79,21 @@ export class OpenAddEducationPage implements OnInit {
       this.specialization=this.item.Specialization;
       console.log(this.fromdate)
       console.log(this.toDate)
-      this.fromdate=new Date(this.item.From).toISOString().substring(0, 10);
-      console.log(""+this.fromdate)
-      this.fromdate = this.fromdate.split('-');
-      this.fromdate = this.fromdate[0]+'-'+this.fromdate[1];
+      this.fromdate=this.item.From;
+      console.log("meetingroom"+this.fromdate)
+      this.fromdate =this.datepipe.transform(this.fromdate, 'yyyy-MM-dd');
+      // this.fromdate = this.fromdate[0]+'-'+this.fromdate[1];
 
-      console.log(""+this.fromdate)
-      this.toDate=new Date(this.item.To).toISOString().substring(0, 10);
-      console.log(""+this.fromdate)
-      this.toDate = this.toDate.split('-');
-      this.toDate = this.toDate[0]+'-'+this.toDate[1];
-      console.log(this.fromdate)
-      console.log(this.toDate)
+      this.toDate=this.item.To;
+      console.log("meetingroom"+this.toDate)
+      this.toDate =this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
+      // console.log("meeting room 2"+this.fromdate)
+      // this.toDate=new Date(this.item.To).toISOString().substring(0, 10);
+      // console.log(""+this.fromdate)
+      // this.toDate = this.toDate.split('-');
+      // this.toDate = "06/10/2002";
+      // console.log("todatemeeting",this.toDate)
+      // console.log("todatemeeting2",this.toDate)
       this.institution=this.item.Institute;
       this.percentage=this.item.Percentage;
       this.educationID = this.item.ID;
@@ -142,6 +147,8 @@ export class OpenAddEducationPage implements OnInit {
 
 
   addEducationModal() {
+    console.log("todate",this.toDate);
+    console.log("fromdate",this.fromdate)
 
   var id="";
     if (this.tempID == "0") {

@@ -592,8 +592,6 @@ export class MyprofilePage implements OnInit {
 
     const modal = await this.modalController.create({
       component: OpenaddemploymentpagePage
-
-
     });
     modal.onDidDismiss()
       .then((data) => {

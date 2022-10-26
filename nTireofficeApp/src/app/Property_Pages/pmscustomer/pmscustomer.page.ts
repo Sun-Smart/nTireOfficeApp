@@ -139,6 +139,9 @@ export class PmscustomerPage implements OnInit {
 
     this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
       console.log(this.strBranchId);
+      
+      // this.strBranchcode = window.localStorage['TUM_BRANCH_CODE'],
+      console.log(this.strBranchcode);
 
     this.strFunctionId = window.localStorage['FUNCTION_ID'],
       console.log(this.strFunctionId);
@@ -163,6 +166,9 @@ export class PmscustomerPage implements OnInit {
       })
 
 
+  }
+  strBranchcode(strBranchcode: any) {
+    throw new Error('Method not implemented.');
   }
 
 
@@ -344,4 +350,3 @@ export class PmscustomerPage implements OnInit {
 
 
 }
-

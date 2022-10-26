@@ -95,12 +95,99 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </ion-card>
+
+  <!-- <p *ngIf="loading" class="totalCount">Please Wait..</p> -->
+
+  <!-- <p *ngIf="totalemployee" class="totalCount"><b>Total Employee : {{displayEmployee.length}}</b></p> -->
 
 
+  <!-- <ion-row>
+    <ion-col>
+
+      <ion-col style="text-align: center">
+        <ion-label style="color:black ;">Last Date</ion-label>
+        <ion-input type="date" style="color: black !important;
+        font-weight: 500 !important; ;" class="Input-text-field textareaField"></ion-input>
+      </ion-col>
+    </ion-col>
+    <ion-col>
+      <ion-col style="text-align: center;">
+        <ion-button class="ion-color-success" (click)="raiseRFQ()" expand="block">Raise RFQ</ion-button>
+      </ion-col>
+    </ion-col>
+  </ion-row> -->
+  <ion-card>
+    <ion-card>
+
+      <ion-card-header class="card_header" style="padding: 5px !important;">
+        <ion-row>
+          <ion-col size="2">
+            <!-- <ion-label class="card_header_text1">{{item.Name}}</ion-label> -->
+            <!-- <input type="checkbox" id="checkbox" [checked]="selectAll" (change)="selectAllCheckbox(selectAll)"> -->
+            <input type="checkbox" id="checkbox" [checked]="selectAll" id="checkbox">
+          </ion-col>
+          <ion-col size="10">
+            <!-- <ion-label class="card_header_text"> {{item.prscode}}/{{item.itemcode}}</ion-label> -->
+            <ion-label class="card_header_text"> PRS573864533464/3232</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Item Desc :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.GET_QTY}}</ion-label> -->
+          <ion-label class="labelData-text">hi hello for testiing</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Requisitiondate :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.GET_UNITPRICE}}</ion-label> -->
+          <ion-label class="labelData-text">12/04/2022</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Status :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.GET_NETPRICE}}</ion-label> -->
+          <ion-label class="labelData-text">Active</ion-label>
+        </ion-col>
+      </ion-row>
+
+
+
+
+    </ion-card>
+
+
+    <ion-row>
+      <ion-col>
+
+        <ion-col style="text-align: center">
+          <ion-label style="color:black ;">Last Date</ion-label>
+          <ion-input type="date" style="color: black !important;
+        font-weight: 500 !important; ;" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-success" (click)="raiseRFQ()" expand="block">Raise RFQ</ion-button>
+        </ion-col>
+      </ion-col>
+    </ion-row>
 
   </ion-card>
 
-  <ion-card *ngIf="showviewlist">
+
+
+  <!-- <ion-card *ngIf="showviewlist">
     <ion-card-header class="card_header">
       <ion-card-title class="card_header_text" style="text-align:center ;">Issue Details</ion-card-title>
     </ion-card-header>
@@ -176,13 +263,13 @@
         </ion-col>
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-card> -->
 
 
 
 
 
-  <ion-card *ngIf="showrfq">
+  <!-- <ion-card *ngIf="showrfq">
     <ion-card-header class="card_header">
       <ion-card-title class="card_header_text" style="text-align:center ;">Issue Details</ion-card-title>
     </ion-card-header>
@@ -216,7 +303,7 @@
                 <td>RFQ 873/AT</td>
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
-                <!-- <td>Manage RFQ</td> -->
+
                 <td><a (click)="manageRFQlink()">Manage RFQ</a></td>
               </tr>
               <tr>
@@ -224,7 +311,7 @@
                 <td>RFQ 873/AT</td>
                 <td>12/09/2020</td>
                 <td>12/09/2020</td>
-                <!-- <td>Manage RFQ</td> -->
+
                 <td><a (click)="manageRFQlink()">Manage RFQ</a></td>
               </tr>
 
@@ -238,7 +325,7 @@
       </div>
 
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 </ion-content>
 
 <ion-footer>

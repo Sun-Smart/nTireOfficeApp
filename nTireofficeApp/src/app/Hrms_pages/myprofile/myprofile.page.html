@@ -432,8 +432,7 @@
               <ion-label style="color:black !important">Emergency Contact Number</ion-label>
               <br />
               <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="number"
-                pattern="/^-?\d+\.?\d*$/"
-                onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
+                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
                 placeholder="Emergency Number" (keyup)="phonenumber(Mnumber)"
                 [(ngModel)]="profile.EmergencyContactNumber" [disabled]="contactToggle===0"></ion-input>
               <span *ngIf="contactToggle === 0"

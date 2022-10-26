@@ -21,12 +21,12 @@ export class VendorpoconfirmPage implements OnInit {
   userid = window.localStorage['TUM_USER_ID'];
   usertoken = window.localStorage['usertoken'];
   token = window.localStorage['token'];
-  vendor_code:any;
-  vendor_code_res:any;
-  vendor_codelist:any = [];
-  loading:boolean = false;
-  PO_list:any =[];
-  PO_list_res:any;
+  vendor_code: any;
+  vendor_code_res: any;
+  vendor_codelist: any = [];
+  loading: boolean = false;
+  PO_list: any = [];
+  PO_list_res: any;
   Pocode: any;
   Pofunc_id: string;
   POID: any;
@@ -35,70 +35,70 @@ export class VendorpoconfirmPage implements OnInit {
   vendor_name: any;
   Statusval: any;
   vend_code: any;
-  allbranch_res:any;
-  allbranch:any;
-  showfilter:boolean = true;
-  fromDate:any;
-  toDate:any;
-  username:any;
-  todate:any;
-  fromdate:any;
-  postatus:any;
-    constructor(public modalController: ModalController,private router: Router, private http: HttpClient,public navCtrl:NavController, public Ipaddressservice: IpaddressService,) {
-      this.username=localStorage.getItem('TUM_USER_NAME');
-    }
+  allbranch_res: any;
+  allbranch: any;
+  showfilter: boolean = true;
+  fromDate: any;
+  toDate: any;
+  username: any;
+  todate: any;
+  fromdate: any;
+  postatus: any;
+  constructor(public modalController: ModalController, private router: Router, private http: HttpClient, public navCtrl: NavController, public Ipaddressservice: IpaddressService,) {
+    this.username = localStorage.getItem('TUM_USER_NAME');
+  }
 
   ngOnInit() {
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.getallbranches();
   }
 
-  togglefilter(){
+  togglefilter() {
     this.showfilter = !this.showfilter;
   }
-  getallbranches(){
+  getallbranches() {
     var obj = {
       userid: this.userid,
       usertoken: this.usertoken,
       access_token: window.localStorage['token']
     }
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'getAllBranches/',obj).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'getAllBranches/', obj).subscribe(res => {
       console.log(res);
-      let res1 =JSON.stringify(res)
+      let res1 = JSON.stringify(res)
       this.allbranch_res = res1;
       console.log(this.allbranch_res)
 
-      this.allbranch=JSON.parse(this.allbranch_res);
+      this.allbranch = JSON.parse(this.allbranch_res);
       // this.allbranch = this.allbranch_res.recordset;
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  listvendoritems(){
+  listvendoritems() {
     var obj = {
       userid: this.userid,
       usertoken: this.usertoken,
       access_token: window.localStorage['token']
     }
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'listvendor_items/',obj).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'listvendor_items/', obj).subscribe(res => {
       console.log(res);
       this.vendor_code = this.vendor_code_res.recordset;
       for (var i = 0; i < this.vendor_code.length; i++) {
         this.vendor_codelist.push(this.vendor_code[i].Vendor_Code);
       }
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  filterdate(){}
+  filterdate() { }
 
-  searchpo(branch_id, ponum, vendor_code, postatus, fromdate, todate){
-  debugger
+  searchpo(branch_id, ponum, vendor_code, postatus, fromdate, todate) {
+    debugger
     this.loading = true;
     // if (fromdate == undefined) {
     //   var fromDate = '';
@@ -119,7 +119,7 @@ export class VendorpoconfirmPage implements OnInit {
     if (postatus == undefined) {
       postatus = '';
     }
-    if ((vendor_code == ''||vendor_code == undefined) && this.usertypedesc == 'Vendor') {
+    if ((vendor_code == '' || vendor_code == undefined) && this.usertypedesc == 'Vendor') {
       vendor_code = window.localStorage['VENDOR_CODE'];
     }
     var userid = window.localStorage['TUM_USER_ID'];
@@ -128,8 +128,10 @@ export class VendorpoconfirmPage implements OnInit {
 
     var token = window.localStorage['token'];
     var po_list = {
+      functionid: "1",
+      branchid: branch_id,
       FUNCTION_ID: window.localStorage['FUNCTION_ID'],
-      BRANCH_ID: branch_id,
+      // BRANCH_ID: branch_id,
       PONUMBER: ponum,
       VENDORCODE: vendor_code,
       FROMDATE: this.fromDate,
@@ -138,26 +140,26 @@ export class VendorpoconfirmPage implements OnInit {
       STATUS: postatus,
       ITEMCODE: '',
       userid: userid,
-      usertype:window.localStorage['TUM_USER_TYPE'],
+      usertype: window.localStorage['TUM_USER_TYPE'],
       usertoken: usertoken,
       access_token: window.localStorage['token']
     }
     console.log(po_list);
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'list_po_order/',po_list).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'list_po_order/', po_list).subscribe(res => {
       console.log(res);
       this.PO_list_res = res;
       this.PO_list = this.PO_list_res.recordset;
-      if(this.PO_list == undefined){
+      if (this.PO_list == undefined) {
         this.PO_list = [];
       }
 
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  confirmPo(item){
+  confirmPo(item) {
     console.log(item.po_id);
     var function_id = localStorage.getItem('FUNCTION_ID');
     var userid = window.localStorage['TUM_USER_ID'];
@@ -173,18 +175,18 @@ export class VendorpoconfirmPage implements OnInit {
       access_token: window.localStorage['token']
     }
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'Confirm_poDetails/',po_confirm).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'Confirm_poDetails/', po_confirm).subscribe(res => {
       console.log(res);
-      this.navCtrl.navigateForward(['/vendorpayments'],{
+      this.navCtrl.navigateForward(['/vendorpayments'], {
         queryParams: item
       });
 
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  payPo(item){
+  payPo(item) {
     console.log(item);
     this.disp_vendorid(item.vendor_code);
 
@@ -208,7 +210,7 @@ export class VendorpoconfirmPage implements OnInit {
     // $state.go("app.vendorPayment");
 
   }
-  disp_vendorid(vendor_code){
+  disp_vendorid(vendor_code) {
     this.vend_code = vendor_code;
     var ven_obj = {
       userid: this.userid,
@@ -216,10 +218,10 @@ export class VendorpoconfirmPage implements OnInit {
       access_token: window.localStorage['token'],
       code: this.vend_code
     }
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceerpapi+'dispvendorid/',ven_obj).subscribe(res=>{
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'dispvendorid/', ven_obj).subscribe(res => {
       console.log(res);
 
-    },err=>{
+    }, err => {
       console.log(err);
     })
   }
