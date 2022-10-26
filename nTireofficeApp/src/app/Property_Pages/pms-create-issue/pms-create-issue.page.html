@@ -26,7 +26,13 @@
     <ion-row>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Property Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Branch</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+          [(ngModel)]="branch"></ion-input>
+      </ion-col>
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label>Asset Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
         <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px;">
           <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
@@ -35,27 +41,17 @@
           </ion-item>
         </ion-list>
       </ion-col>
-      
 
-      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Property Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-row>
-              <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-                <ion-searchbar [(ngModel)]="assetcode"  (ionInput)="getItems($event)"></ion-searchbar>
-                <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist">
-                  <ion-item  class="ContentName" *ngFor="let item of assetcode1" style="background-color: white !important;
-                  color: rgb(17, 16, 16) !important;" (click)="fetchreconcilation(item)">
-                    {{ item }}
-                  </ion-item>
-                </ion-list>
-              </ion-col>
-          </ion-row>
-        </ion-col> -->
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Property Description</ion-label>
           <ion-input [(ngModel)]="propertyDesc"  style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"></ion-input>
         </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="ContentName">Asset Code</ion-label>
+          <ion-input [(ngModel)]="assetCode" class="form-control" [disabled]="true"></ion-input>
+        </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Department</ion-label>
@@ -64,7 +60,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="date" class="form-control"  displayFormat="MM/DD/YYYY"  ></ion-input>
+          <ion-input type="date" class="form-control"  displayFormat="MM/DD/YYYY"   [(ngModel)]="createDate"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -90,7 +86,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
-    <ion-textarea maxlength="200" [(ngModel)]="noofchars" style="height:auto !important" class="form-control" >
+    <ion-textarea maxlength="200" [(ngModel)]="textDetails" style="height:auto !important" class="form-control" >
     </ion-textarea>
     <span *ngIf="noofchars && noofchars != 'undefined' && noofchars.length > 0"
       class="customCounter">{{200 - noofchars.length}}</span>
