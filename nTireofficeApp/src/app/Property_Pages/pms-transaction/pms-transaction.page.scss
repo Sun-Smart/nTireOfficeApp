@@ -45,3 +45,9 @@ ion-card-header + .card-content-ios {
     height: 36px !important;
     border-radius: 10px !important;
 }
+.top-header {
+    background: url("../../../assets/images/tpbackground.png") repeat !important;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

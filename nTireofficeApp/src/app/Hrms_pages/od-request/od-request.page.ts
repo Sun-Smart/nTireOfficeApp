@@ -906,15 +906,15 @@ export class OdRequestPage implements OnInit {
               var typerequest = "OD Request";
               var perdate = null;
               var reportobj = {
-                Userid: this.userID,
+                Userid: parseInt(this.userID),
                 from: fromdate,
                 to: todate,
                 typerequest: typerequest,
-                userid: this.userID,
+                userid: parseInt(this.userID),
                 usertoken: this.usertoken,
                 access_token: window.localStorage.token
               }
-              this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getreportingto/", reportobj).then(resp => {
+              this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getreportingto", reportobj).then(resp => {
                 this.from = undefined;
                 this.to = undefined;
                 this.reason = undefined;
