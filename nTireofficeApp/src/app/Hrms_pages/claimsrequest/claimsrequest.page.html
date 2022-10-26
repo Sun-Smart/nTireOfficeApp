@@ -17,7 +17,8 @@
       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Branch</ion-label>
-        <ion-input class="form-control"   style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" disabled [(ngModel)]="branch"></ion-input>
+        <ion-input class="form-control" style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+          disabled [(ngModel)]="branch"></ion-input>
       </ion-col>
       <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                       <ion-label>Date</ion-label>
@@ -25,25 +26,27 @@
                       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Name<span class="validatecolor">*</span></ion-label>
-        <ion-input class="form-control"  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" disabled  [(ngModel)]="name"></ion-input>
+        <ion-input class="form-control" style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+          disabled [(ngModel)]="name"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Category<span class="validatecolor">*</span></ion-label>
-        <select class="ContentName" id="selectbutton" placeholder="Select Request Category" [(ngModel)]="requestCat" class="form-control"
-          style="display: flex;">
-          <option  class="ContentName"  value="">&lt;&lt; Select &gt;&gt; </option>
-          <option   class="ContentName" *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
+        <select class="ContentName" id="selectbutton" placeholder="Select Request Category" [(ngModel)]="requestCat"
+          class="form-control" style="display: flex;">
+          <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
+          <option class="ContentName" *ngFor="let item of Reqcategory" [value]="item.VAL">{{item.TEXT}}</option>
         </select>
       </ion-col>
 
       <ion-col *ngIf="requestCat=='2'" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Ref <span class="validatecolor">*</span></ion-label>
 
-        <select class="ContentName" id="selectbutton" placeholder="Select Request Ref" style="display: flex;" [(ngModel)]="reqRef" class="form-control"
-          (change)="requestRefChange()">
+        <select class="ContentName" id="selectbutton" placeholder="Select Request Ref" style="display: flex;"
+          [(ngModel)]="reqRef" class="form-control" (change)="requestRefChange()">
           <option class="ContentName" value="">&lt;&lt; Select &gt;&gt; </option>
 
-          <option class="ContentName" style="color : black;" *ngFor="let item of ReferenceData">{{item.TxnReference}}</option>
+          <option class="ContentName" style="color : black;" *ngFor="let item of ReferenceData">{{item.TxnReference}}
+          </option>
         </select>
 
       </ion-col>
@@ -119,7 +122,7 @@
           [(ngModel)]="expenseType">
           <option class="ContentName" value="Select">&lt;&lt; Select &gt;&gt; </option>
           <option class="ContentName" value="1">Food</option>
-          <option  class="ContentName" value="2">Travel</option>
+          <option class="ContentName" value="2">Travel</option>
           <option class="ContentName" value="3">Hotel</option>
         </select>
       </ion-col>
@@ -142,13 +145,15 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Attach Document</ion-label>
         <br />
-        <ion-icon style="font-size:28px;position: relative;left:50%;color: #000 !important;" (click)="Attachdocument()" name="camera">
+        <ion-icon style="font-size:28px;position: relative;left:50%;color: #000 !important;" (click)="Attachdocument()"
+          name="camera">
         </ion-icon>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-row>
           <ion-col *ngFor="let image of image" size-sm="3" size="3" size-md="3" size-lg="3" size-xl="3">
-            <ion-icon  style="color: white !important;" name="close-circle-outline"  class="closebtn" (click)="DeleteImage(i)"></ion-icon>
+            <ion-icon style="color: white !important;" name="close-circle-outline" class="closebtn"
+              (click)="DeleteImage(i)"></ion-icon>
             <img [src]="sanitizer.bypassSecurityTrustUrl(image.imgURL)" />
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -190,7 +195,8 @@
 
     <ion-row>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-        <ion-button class="ion-color-success" [disabled]="requestCat=='' ||  description==undefined" (click)="claimsSubmit()">Save
+        <ion-button class="ion-color-success" [disabled]="requestCat=='' ||  description==undefined"
+          (click)="claimsSubmit()">Save
         </ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">

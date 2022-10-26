@@ -126,62 +126,61 @@
 
 <!-- <div  *ngIf="showedit" style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
       class="fa fa-filter" aria-hidden="true"></i></span></div> -->
-  <ion-grid *ngIf="showedit">
-    <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Vendor Name</ion-label>
-        <select style="padding: 10px;" disabled=""
-          style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-          class="Input-text-field textareaField">
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-        </select>
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Quotation Ref</ion-label>
-        <ion-input type="text" class="Input-text-field textareaField"></ion-input>
-        <!-- [(ngModel)]="VendorQuot.qty" -->
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Quotation Date</ion-label>
-        <input type="date" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
-        <!-- [(ngModel)]="VendorQuot.deliverydate" -->
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">RFQ Code</ion-label>
-        <ion-input type="text" class="Input-text-field textareaField"></ion-input>
-        <!-- [(ngModel)]="VendorQuot.qty" -->
-      </ion-col>
+<ion-grid *ngIf="showedit">
+  <ion-row>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Vendor Name</ion-label>
+      <select style="padding: 10px;" disabled=""
+        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+        class="Input-text-field textareaField">
+        <option>&lt;&lt; Select &gt;&gt;</option>
+        <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+      </select>
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Quotation Ref</ion-label>
+      <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+      <!-- [(ngModel)]="VendorQuot.qty" -->
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Quotation Date</ion-label>
+      <input type="date" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+      <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">RFQ Code</ion-label>
+      <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+      <!-- [(ngModel)]="VendorQuot.qty" -->
+    </ion-col>
 
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Total bid Amount</ion-label>
-        <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
-        <!-- [(ngModel)]="VendorQuot.deliverydate" -->
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Total Base Amount</ion-label>
-        <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
-        <!-- [(ngModel)]="VendorQuot.deliverydate" -->
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Multi currency</ion-label>
-        <select style="padding: 10px;" style="display:inline-block;padding: 8px;"
-          class="Input-text-field textareaField">
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-        </select>
-      </ion-col>
-      <ion-col style="text-align: center;">
-        <ion-button class="ion-color-primary" routerLink="/purchase-request" expand="block">New</ion-button>
-      </ion-col>
-      <ion-col style="text-align: center;">
-        <ion-button class="ion-color-success" expand="block" (click)="Search()">
-          <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-          Search
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Total bid Amount</ion-label>
+      <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+      <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Total Base Amount</ion-label>
+      <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+      <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+    </ion-col>
+    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <ion-label class="plabel">Multi currency</ion-label>
+      <select style="padding: 10px;" style="display:inline-block;padding: 8px;" class="Input-text-field textareaField">
+        <option>&lt;&lt; Select &gt;&gt;</option>
+        <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+      </select>
+    </ion-col>
+    <ion-col style="text-align: center;">
+      <ion-button class="ion-color-primary" routerLink="/purchase-request" expand="block">New</ion-button>
+    </ion-col>
+    <ion-col style="text-align: center;">
+      <ion-button class="ion-color-success" expand="block" (click)="Search()">
+        <ion-icon style="color:white ;" name="search-outline"></ion-icon>
+        Search
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
 
 

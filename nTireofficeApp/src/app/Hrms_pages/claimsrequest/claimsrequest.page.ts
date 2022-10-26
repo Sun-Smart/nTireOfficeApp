@@ -171,7 +171,7 @@ export class ClaimsrequestPage implements OnInit {
       usertoken: this.usertoken,
       access_token: this.token,
       Reference: this.reqRef,
-      TxnReference:this.reqRef
+      TxnReference: this.reqRef
     }
 
 
@@ -303,6 +303,7 @@ export class ClaimsrequestPage implements OnInit {
         this.expenseType = 'Hotel'
       }
       console.log("expenseType : " + this.expenseType);
+
       this.expenseetype1.forEach(element => {
 
         if (element.VAL == this.expenseType) {
@@ -335,8 +336,8 @@ export class ClaimsrequestPage implements OnInit {
   EXPENSE_ID;
   claimsSubmit() {
 
-   this.reqRef= window.localStorage.getItem('TxnReference')
-   console.log(this.reqRef)
+    this.reqRef = window.localStorage.getItem('TxnReference')
+    console.log(this.reqRef)
     if (this.release == true) {
 
       this.status = 'P';
@@ -657,7 +658,7 @@ export class ClaimsrequestPage implements OnInit {
             this.Images = [];
             this.Images = undefined;
             this.expenseArray = [];
-            this.expenseamount ="";
+            this.expenseamount = "";
 
           }
         }
