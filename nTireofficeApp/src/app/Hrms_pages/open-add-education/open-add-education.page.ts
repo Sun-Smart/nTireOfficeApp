@@ -163,7 +163,6 @@ export class OpenAddEducationPage implements OnInit {
 // this.toDate = date1[0]+"-"+date1[1] ;
 
     this.addEducationObject = {
-
       Type: "EducationDetails",
       //Category: this.education.Category,
       Category: this.category,
@@ -174,8 +173,6 @@ export class OpenAddEducationPage implements OnInit {
       Percentage1: this.percentage,
       ID: id,
       empID1:this.employeid
-
-
     }
     console.log(this.addEducationObject);
 
@@ -210,7 +207,6 @@ export class OpenAddEducationPage implements OnInit {
 
     this.toastmessageService.presentAlert1("","Please fill the Mandatory fields");
     });
-
 
 
     // sendToAPI.addEducationDetails(this.addEducationObject)
@@ -252,7 +248,7 @@ export class OpenAddEducationPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-        
+
         this.category="";
         this.specialization="";
         this.fromdate="";
@@ -260,7 +256,7 @@ export class OpenAddEducationPage implements OnInit {
         this.institution="";
         this.percentage="";
         this.remarks="";
-           
+
           }
         }
       ]

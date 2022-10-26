@@ -1017,11 +1017,7 @@ export class MyprofilePage implements OnInit {
           console.log("error : " + JSON.stringify(error));
 
         });
-
-
       }
-
-
     } else if (value == "contact.cancel") {
       this.contactToggle = 0;
       this.getEmployeeDetails();
@@ -1029,8 +1025,6 @@ export class MyprofilePage implements OnInit {
       // console.log("Cancel");
       // this.searchEmployees();
     }
-
-
   }
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({

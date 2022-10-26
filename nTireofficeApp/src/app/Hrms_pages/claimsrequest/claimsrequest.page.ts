@@ -375,7 +375,7 @@ export class ClaimsrequestPage implements OnInit {
       if (this.expenseArray.length > 0) {
         this.expenseArray.forEach(element => {
           var obj = {
-            userid: this.userID,
+            userid: parseInt(this.userID),
             usertoken: this.usertoken,
             access_token: this.token,
           }
