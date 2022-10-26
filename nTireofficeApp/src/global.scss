@@ -363,7 +363,8 @@ ion-footer {
   // position: absolute;
   bottom: 0 !important;
   height: 40px;
-  border-radius: 16px 16px 0 0 !important;
+  // border-radius: 16px 16px 0 0 !important;
+  border-radius: 0 0 16px 16px !important;
 
   // background-color: beige;
   ion-row {

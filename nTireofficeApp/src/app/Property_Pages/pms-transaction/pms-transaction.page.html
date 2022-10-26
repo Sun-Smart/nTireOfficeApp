@@ -29,7 +29,6 @@
                 {{branch.BRANCH_DESC}}
               </option>
             </select>
-                  
           </ion-col>
           <!-- <ion-input class="form-control"></ion-input> -->
           <!-- <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyBranch" ></ion-searchbar>
@@ -44,16 +43,25 @@
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Location :</ion-label>
+          <!-- <ion-label class="ContentName">Location :</ion-label> -->
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Location</ion-label>
+            <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+                {{branch.BRANCH_DESC}}
+              </option>
+            </select>
+          </ion-col>
           <!-- <ion-input class="form-control"></ion-input> -->
-          <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyLocation"></ion-searchbar>
+          <!-- <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyLocation"></ion-searchbar>
           <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
             <ion-item (click)="propertyLocatioN(data)" *ngFor="let data of userRecords | filter:filterTerm">
               <ion-label>{{data.id}}</ion-label>
               <ion-label>{{data.name}}</ion-label>
               <ion-label>{{data.email}}</ion-label>
             </ion-item>
-          </ion-list>
+          </ion-list> -->
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -71,9 +79,8 @@
         </ion-col>
 
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Property Description :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyDescription" animated="true">
           </ion-searchbar>
           <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
@@ -83,11 +90,10 @@
               <ion-label>{{data.email}}</ion-label>
             </ion-item>
           </ion-list>
-        </ion-col>
+        </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Rental Code :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true">
           </ion-searchbar>
           <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">

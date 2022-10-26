@@ -33,20 +33,29 @@
     <ion-card-content>
       <ion-row>
        
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Branch :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input> -->
-
+        
 
           <ion-searchbar  [(ngModel)]="branchcode" type="text" debounce="500" (ionChange)="getItems($event)"></ion-searchbar>
             <ion-list *ngIf="isItemAvailable" class="searchlist" style="margin: 0px;
             padding: 0px;"  [ngStyle]="{'height':branchcode1.length >0?'100px':'0px'}">
                
-                  <ion-item  (click)="processbranch(data)"  *ngFor="let item of branchcode1">{{ item}}</ion-item>
+                  <ion-item *ngFor="let item of branchcode1">{{ item}}</ion-item>
               </ion-list>
          
      
+        </ion-col> -->
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">{{branch.BRANCH_DESC}}
+            </option>
+          </select>
         </ion-col>
+
 
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -60,7 +69,7 @@
               </ion-list>
         </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Property Code :</ion-label>
          
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyCode" animated="true" (ionInput)="getItems($event)"></ion-searchbar>
@@ -72,26 +81,28 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Property Description :</ion-label>
+          <ion-label class="ContentName">Status :</ion-label>
       
-          <ion-searchbar placeholder="Search..." class="form-control"   [(ngModel)]="propertyDescription" animated="true"></ion-searchbar>
-          <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-            <ion-item   (click)="propertyDescriptioN(data)" *ngFor="let data of propertyDescription | filter:filterTerm">
-              <ion-label>{{data.id}}</ion-label>
-            </ion-item>
-          </ion-list>
+          <select id="selectbutton" class="form-control" >
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option>New  </option>
+            <option>Pending  </option>
+            <option>Approved  </option>
+            <option>Denied  </option>
+            <option>Inactive </option>
+          </select>
         </ion-col> 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Unique Refference :</ion-label>
-           <!-- <ion-input class="form-control"></ion-input>  -->
+          
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="uniqueRef" animated="true"></ion-searchbar>
           <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
             <ion-item   (click)="rentalCodE(data)" *ngFor="let data of uniqueRef | filter:filterTerm">
               <ion-label>{{data.id}}</ion-label>
             </ion-item>
           </ion-list>
-        </ion-col> 
+        </ion-col>
 
 
         <ion-col size="12">
@@ -127,7 +138,7 @@
           <ion-label class="labelHead-text">Branch </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">: Dubai </ion-label>
+          <ion-label class="labelData-text">: {{strBranchcode}} </ion-label>
         </ion-col>
 
         <ion-col size="6" class="col_height">
@@ -144,6 +155,13 @@
         </ion-col>
 
         <ion-col size="6" class="col_height">
+          <ion-label class="labelHead-text">Building Name </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">: Muthusamy</ion-label>
+        </ion-col>
+
+        <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Description </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
@@ -157,26 +175,26 @@
           <ion-label class="labelData-text">: {{items.Category}}</ion-label>
         </ion-col>
 
-        <!-- <ion-col size="6" class="col_height">
+         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property On Floors </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>:  {{items.ROW_NUM}} </ion-label>
-        </ion-col> -->
+          <ion-label>:  4 </ion-label>
+        </ion-col> 
 
-        <!-- <ion-col size="6" class="col_height">
+         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Corporate Area (Sq.ft) </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>:  {{items.ROW_NUM}} </ion-label>
-        </ion-col> -->
+          <ion-label>:  2000 </ion-label>
+        </ion-col> 
 
-        <!-- <ion-col size="6" class="col_height">
+       <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Responsible Person </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label>:  {{items.ROW_NUM}} </ion-label>
-        </ion-col> -->
+          <ion-label>: Suriya </ion-label>
+        </ion-col> 
 
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Customer Name </ion-label>

@@ -52,6 +52,11 @@ export class PmscustomerPage implements OnInit {
   locationcode: string;
   islocItemAvailable: boolean=false;
   selectbranch: any;
+  companyname1: any[];
+  companiesstr: Object;
+  branchlocationlist: string;
+  branchlist1: any;
+  strBranchcode: any;
 
 
 
@@ -67,17 +72,17 @@ export class PmscustomerPage implements OnInit {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.accessToken = localStorage.getItem('token');
+    this.strBranchcode=localStorage.getItem('TUM_BRANCH_CODE')
+    console.log(this.strBranchcode);
     };
 
 
   ngOnInit() {
     this.branchcode=('')
     this.locationcode=('')
-    this.getbranch();
+    // this.getbranch();
     this.getcustomerItems();
-    this.getlocation();
-
-   
+    this.BranchLocationdata();
 
   };
 
@@ -130,6 +135,9 @@ export class PmscustomerPage implements OnInit {
 
     this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
       console.log(this.strBranchId);
+      
+      // this.strBranchcode = window.localStorage['TUM_BRANCH_CODE'],
+      console.log(this.strBranchcode);
 
     this.strFunctionId = window.localStorage['FUNCTION_ID'],
       console.log(this.strFunctionId);
@@ -165,56 +173,121 @@ export class PmscustomerPage implements OnInit {
       this.showdata=this.propertyCodeResult.length;
     }
     })
-
-
-}
-
-
-getbranch(){
-  this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid").subscribe((res)=>{
-    console.log("branch",res);
-    this.customerbranch=res
-    for (var i = 0; i < this.customerbranch.length; i++) {
-
-      this.branchcode1.push(this.customerbranch[i].BRANCH_DESC);
-
-    }
-    console.log(this.branchcode1,'fyttr')
-  })
-}
-getItems(ev: any) {
-  let data=ev.target.value;
-  console.log(data);
-  this.selectbranch=data;
-
-  // Reset items back to all of the items
-  this.getbranch()
-
-  // set val to the value of the searchbar
-  const val = ev.target.value;
-
-  // if the value is an empty string don't filter the items
-  if (val && val.trim() !== '') {
-      this.isItemAvailable = true;
-      this.branchcode1 = this.branchcode1.filter((item) => {
- 
-          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-     
-      })
-      console.log(this.branchcode1,"hfghfg");
-  } else {
-      this.isItemAvailable = false;
   }
+    BranchLocationdata() {
+
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+  
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid' , {
+        headers: options,
+      }).subscribe(resp => {
+        this.branchlist1 = resp;
+        console.log("brachdrop",this.branchlist1);
+        
+        // this.branchlist1 = JSON.parse(this.branchlist1);
+        // console.log("branchlist1 one: " + JSON.stringify(this.branchlist1));
+  
+      }, error => {
+  
+        console.log("branchlist1 : " + JSON.stringify(error));
+      });
+    }
+
 }
+// getItems(ev: any) {
+//   console.log("one");
+//   this.companyname1 = [];
+//   if (ev.target.value == "") {
+//     this.companyname1 = [];
+//     this.isItemAvailable = false;
+//   }
 
-processbranch(e:any){
-console.log(e);
+//   // Reset items back to all of the items
+//   const header = new Headers();
+//   header.append("Content-Type", "application/json");
 
-   this.branchcode =this.branchcode
-   console.log(this.branchcode,"gggg");
+//   let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+//   this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid",{
+//     headers: options,
+//   }).subscribe(resp => {
+//     this.branchcode1 = [];
+//     this.isItemAvailable = false;
+//     // set val to the value of the searchbar
+//     this.customerbranch = resp;
+//     // this.companiesstr = JSON.parse(this.companiesstr);
+//     // this.companiesstr = JSON.parse(resp.toString());
+
+//     for (var i = 0; i < this.customerbranch.length; i++) {
+
+//       this.branchcode1.push(this.customerbranch[i].BRANCH_DESC);
+//     }
+//     const val = ev.target.value;
+
+//     // if the value is an empty string don't filter the items
+
+//     if (val && val.trim() != '') {
+//       this.isItemAvailable = true;
+//       this.branchcode1 = this.branchcode1.filter((item) => {
+//         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+//       });
+//     }
+//   }, error => {
+//     //this.presentAlert('Alert','Server Error,Contact not loaded');
+//     console.log("error : " + JSON.stringify(error));
+//   });
+// }
+
+// getbranch(){
+//   const header = new Headers();
+//     header.append("Content-Type", "application/json");
+
+//     let options = new HttpHeaders().set('Content-Type', 'application/json');
+//   this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid").subscribe((res)=>{
+//     console.log("branch",res);
+//     this.customerbranch=res
+//     for (var i = 0; i < this.customerbranch.length; i++) {
+
+//       this.branchcode1.push(this.customerbranch[i].BRANCH_DESC);
+
+//     }
+//     console.log(this.branchcode1,'fyttr')
+//   })
+// }
+// getItems(ev: any) {
+//   let data=ev.target.value;
+//   console.log(data);
+//   this.selectbranch=data;
+
+//   // Reset items back to all of the items
+//   // this.getbranch()
+
+//   // set val to the value of the searchbar
+//   const val = ev.target.value;
+
+//   // if the value is an empty string don't filter the items
+//   if (val && val.trim() !== '') {
+//       this.isItemAvailable = true;
+//       this.branchcode1 = this.branchcode1.filter((item) => {
+ 
+//           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+     
+//       })
+//       console.log(this.branchcode1,"hfghfg");
+//   } else {
+//       this.isItemAvailable = false;
+//   }
+// }
+
+
+
+  //  this.branchcode =
+  //  console.log(this.branchcode,"gggg");
    
-  this.isItemAvailable = false;
-}
+  // this.isItemAvailable = false;
+
 // search(){
 //   this.propertyCodeResult.filter(u=> u.nation == 'England' && u.name == 'Marlin');
  
@@ -224,37 +297,37 @@ console.log(e);
 
 
 
-getlocation(){
-  this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getlocation").subscribe((res)=>{
-    console.log("location",res);
-    this.customerlocation=res
-    for (var i = 0; i < this.customerlocation.length; i++) {
+// getlocation(){
+//   this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getlocation").subscribe((res)=>{
+//     console.log("location",res);
+//     this.customerlocation=res
+//     for (var i = 0; i < this.customerlocation.length; i++) {
 
-      this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
+//       this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
 
-    }
-    console.log(this.locationcode1,'fyttr')
-  })
-}
-getlocationItems(ev: any) {
-  // Reset items back to all of the items
-  this.getlocation()
+//     }
+//     console.log(this.locationcode1,'fyttr')
+//   })
+// }
+// getlocationItems(ev: any) {
+//   // Reset items back to all of the items
+//   this.getlocation()
 
-  // set val to the value of the searchbar
-  const val = ev.target.value;
+//   // set val to the value of the searchbar
+//   const val = ev.target.value;
 
-  // if the value is an empty string don't filter the items
-  if (val && val.trim() !== '') {
-      this.islocItemAvailable = true;
-      this.locationcode1 = this.locationcode1.filter((item) => {
+//   // if the value is an empty string don't filter the items
+//   if (val && val.trim() !== '') {
+//       this.islocItemAvailable = true;
+//       this.locationcode1 = this.locationcode1.filter((item) => {
     
-          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+//           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
      
-      })
-  } else {
-      this.islocItemAvailable = false;
-  }
-}
+//       })
+//   } else {
+//       this.islocItemAvailable = false;
+//   }
+// }
 
-}
+
 
