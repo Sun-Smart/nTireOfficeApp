@@ -21,7 +21,7 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">  
+ 
   <ion-grid>
     <ion-row>
 
@@ -59,17 +59,17 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Department</ion-label>
-          <ion-input  class="form-control" formControlName="Department"></ion-input>
+          <ion-input  class="form-control"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="date" class="form-control"  displayFormat="MM/DD/YYYY"  formControlName="Date"></ion-input>
+          <ion-input type="date" class="form-control"  displayFormat="MM/DD/YYYY"  ></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Category</ion-label>
-          <select [(ngModel)]="categoryissue" class="form-control" formControlName="Category">
+          <select [(ngModel)]="categoryissue" class="form-control" >
             <option>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let item of detailsreqcat; let i = index" [ngValue]="item.ISSUEID">{{item.ISSUEDESCRIPTION}}
             </option>
@@ -78,7 +78,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <select [(ngModel)]="priority" class="form-control" formControlName="Priority">
+          <select [(ngModel)]="priority" class="form-control" >
             <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
             <option class="ContentName" value="3 ">High</option>
         <option class="ContentName" value="4 ">Low</option>
@@ -90,7 +90,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
-    <ion-textarea maxlength="200" [(ngModel)]="noofchars" style="height:auto !important" class="form-control" formControlName="Details">
+    <ion-textarea maxlength="200" [(ngModel)]="noofchars" style="height:auto !important" class="form-control" >
     </ion-textarea>
     <span *ngIf="noofchars && noofchars != 'undefined' && noofchars.length > 0"
       class="customCounter">{{200 - noofchars.length}}</span>
@@ -110,7 +110,7 @@
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
     </ion-row>
   </ion-grid>
-</form>
+
 
 </ion-content>
 

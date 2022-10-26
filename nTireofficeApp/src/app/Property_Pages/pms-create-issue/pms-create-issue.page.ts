@@ -105,8 +105,8 @@ export class PmsCreateIssuePage implements OnInit {
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
         this.property_code = this.companiesstr[i].id;
+        console.log(this.property_code);
       }
-
     }
     // window.localStorage['old_company_status'] = 'true';
     // this.old_company = 'true';

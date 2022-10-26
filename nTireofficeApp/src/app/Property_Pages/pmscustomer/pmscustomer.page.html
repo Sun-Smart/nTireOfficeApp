@@ -60,7 +60,7 @@
               </ion-list>
         </ion-col>
 
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Property Code :</ion-label>
          
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyCode" animated="true" (ionInput)="getItems($event)"></ion-searchbar>
@@ -80,18 +80,18 @@
               <ion-label>{{data.id}}</ion-label>
             </ion-item>
           </ion-list>
-        </ion-col> -->
-<!-- 
+        </ion-col> 
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Unique Refference :</ion-label>
-           <ion-input class="form-control"></ion-input> 
+           <!-- <ion-input class="form-control"></ion-input>  -->
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="uniqueRef" animated="true"></ion-searchbar>
           <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
             <ion-item   (click)="rentalCodE(data)" *ngFor="let data of uniqueRef | filter:filterTerm">
               <ion-label>{{data.id}}</ion-label>
             </ion-item>
           </ion-list>
-        </ion-col> -->
+        </ion-col> 
 
 
         <ion-col size="12">
