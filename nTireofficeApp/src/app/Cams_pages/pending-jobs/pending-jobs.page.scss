@@ -5,3 +5,31 @@ ion-content {
   ion-item{
     border: 0px !important;
   }
+
+input::-webkit-input-placeholder{
+    color:red;
+}
+input:-moz-placeholder {
+    color:red;
+}
+input[type="date"]::before { 
+  content: attr(data-placeholder);
+  width: 100%;
+}
+ion-input{
+  --placeholder-color: rgb(145, 145, 145);
+  --placeholder-opacity: 0.5;
+  // --placeholder-text-align:left;
+  white-space: nowrap !important;
+  float: left;
+  font-size:16px;
+  margin-bottom: 13px;
+  color:black;
+  font-weight: bold;
+}
+
+/* hide our custom/fake placeholder text when in focus to show the default
+ * 'mm/dd/yyyy' value and when valid to show the users' date of birth value.
+ */
+input[type="date"]:focus::before,
+input[type="date"]:valid::before { display: none }
