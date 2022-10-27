@@ -15,7 +15,7 @@ export class PmsCreateIssuePage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
   dataStatus: any;
   contact_array = [];
-  propertyCode1: any[];
+  assetData: any[];
   isItemAvailable: boolean;
   companiesstr: any;
   propertycode: any;
@@ -53,7 +53,7 @@ export class PmsCreateIssuePage implements OnInit {
     this.function = localStorage.getItem('FUNCTION_DESC');
 
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
-    
+
 
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.user_ID = JSON.parse(this.userID);
@@ -94,9 +94,9 @@ export class PmsCreateIssuePage implements OnInit {
 
   getItems(ev: any) {
     console.log("one");
-    this.propertyCode1 = [];
+    this.assetData = [];
     if (ev.target.value == "") {
-      this.propertyCode1 = [];
+      this.assetData = [];
       this.isItemAvailable = false;
     }
 
@@ -109,7 +109,7 @@ export class PmsCreateIssuePage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
-      this.propertyCode1 = [];
+      this.assetData = [];
       this.isItemAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
@@ -119,7 +119,7 @@ export class PmsCreateIssuePage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.assetData.push(this.companiesstr[i].property_code);
       }
       const val = ev.target.value;
 
@@ -127,7 +127,7 @@ export class PmsCreateIssuePage implements OnInit {
 
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
-        this.propertyCode1 = this.propertyCode1.filter((item) => {
+        this.assetData = this.assetData.filter((item) => {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         });
       }
@@ -139,10 +139,10 @@ export class PmsCreateIssuePage implements OnInit {
 
 
   addPropertycode(item: any) {
-    this.propertycode = item;
+    this.assetCode = item;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
-      if (this.propertycode == this.companiesstr[i].companyName) {
+      if (this.assetCode == this.companiesstr[i].companyName) {
         this.property_code = this.companiesstr[i].id;
         console.log(this.property_code);
       }
@@ -152,7 +152,7 @@ export class PmsCreateIssuePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + this.propertycode, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + this.assetCode, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -164,13 +164,7 @@ export class PmsCreateIssuePage implements OnInit {
 
       this.contact1 = JSON.parse(this.respContact);
       console.log(this.contact1);
-      if (this.contact1.length == 0) {
-        this.presentAlert('Alert', 'Add company Contact Number!');
 
-      } else {
-
-        this.contact_array = this.contact1;
-      }
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
@@ -193,14 +187,18 @@ export class PmsCreateIssuePage implements OnInit {
       "txtDetails": this.textDetails,
       // "assetownerid": "1",
       // "assetid": "55",
-      "assetcode": this.propertycode,
+      "assetcode": this.assetCode,
 
 
     }
     this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details', data).subscribe((res: any) => {
       console.log(res)
       this.dataStatus = res
-      this.presentAlert(" ","Issue raised successfully.");
+      console.log(res.recordsets.Column1);
+      
+      if (res) {
+        // this.presentAlert("Success", "Issue raised successfully. Issue ref number :{ recordsets = [{"Column1":"382"}] }");
+      }
     })
   }
 }
