@@ -1,3 +1,6 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable eqeqeq */
 /* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable quote-props */
@@ -135,11 +138,11 @@ export class PmsTransactionPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.showAllrecords = resp;
-      console.log('this.showAllrecords ', this.showAllrecords);
+      // console.log('this.showAllrecords ', this.showAllrecords);
 
     }, error => {
 
-      console.log("showAllrecords : " + JSON.stringify(error));
+      // console.log("showAllrecords : " + JSON.stringify(error));
     });
   }
 
@@ -156,7 +159,6 @@ export class PmsTransactionPage implements OnInit {
       this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
     });
@@ -171,13 +173,11 @@ export class PmsTransactionPage implements OnInit {
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
-
     }, error => {
-
-      console.log("branchlist1 : " + JSON.stringify(error));
     });
   }
+
+
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));

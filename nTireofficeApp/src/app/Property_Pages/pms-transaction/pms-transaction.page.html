@@ -37,7 +37,7 @@
           <ion-label class="ContentName">Location :</ion-label>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Branch Location</ion-label>
-            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control">
+            <select id="selectbutton" [(ngModel)]="branchlocation"  (change)="GetLocation(branchlocation)" class="form-control">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
                 {{location.BRANCH_DESC}}</option>
@@ -51,10 +51,9 @@
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyCode" animated="true">
           </ion-searchbar>
           <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-            <ion-item (click)="propertyCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-              <ion-label>{{data.id}}</ion-label>
-              <ion-label>{{data.name}}</ion-label>
-              <ion-label>{{data.email}}</ion-label>
+            <ion-item *ngFor="let data of showFilteredrecords"  (click)="addPropertycode(item)">
+              <ion-label>{{data.property_code}}</ion-label>
+              <ion-label>{{data.property_desc}}</ion-label>
             </ion-item>
           </ion-list>
         </ion-col> -->
@@ -148,7 +147,7 @@
           <ion-label>Property Code</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">: {{items.Location}}</ion-label>
+          <ion-label class="labelData-text">: {{items.property_code}}</ion-label>
         </ion-col>
 
 
