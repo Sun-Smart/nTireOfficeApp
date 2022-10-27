@@ -436,8 +436,9 @@ export class AssetDetailsPage implements OnInit {
         }).subscribe(resp => {
           debugger;
           console.log(resp);
-          if (resp == "sucess") {
+          if (resp == null) {
             this.imagesucessres.push(resp);
+            this.presentAlert("Sucess", "Updated Successfully")  
             //$scope.getuserlist();
           }
 

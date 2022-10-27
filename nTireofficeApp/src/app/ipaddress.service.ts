@@ -70,11 +70,11 @@ export class IpaddressService {
 
     //Cams
 
-    this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
-    this.serviceurlCams = "/SSGmobileapi/cams/cams.svc/"
+    // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
+    // this.serviceurlCams = "/SSGmobileapi/cams/cams.svc/"
 
-    // this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/CAMS"
-    // this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/"
+    this.serviceurlCamsNode = "/nTireMobileCoreAPI/api/CAMS"
+    this.serviceurlCams = "/nTireMobileCoreAPI/api/CAMS/"
 
 
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"
