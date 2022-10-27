@@ -33,9 +33,9 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
         <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px;">
-          <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
+          <ion-item *ngFor="let item of assetCodeData" (click)="addPropertycode(item)"
             style="background:none !important;color:#444 !important;display: block;">
             {{item}}
           </ion-item>
@@ -55,7 +55,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Department</ion-label>
-          <ion-input  class="form-control"></ion-input>
+          <ion-input [(ngModel)]="department" class="form-control"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -76,11 +76,11 @@
           <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
           <select [(ngModel)]="priority" class="form-control" >
             <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
-            <option class="ContentName" value="3 ">High</option>
-        <option class="ContentName" value="4 ">Low</option>
-        <option class="ContentName" value="1 ">Medium</option>
-        <option class="ContentName" value="2 ">Normal</option>
-        <option class="ContentName" value="5 ">Very High</option>
+            <option class="ContentName" value="3">High</option>
+        <option class="ContentName" value="4">Low</option>
+        <option class="ContentName" value="1">Medium</option>
+        <option class="ContentName" value="2">Normal</option>
+        <option class="ContentName" value="5">Very High</option>
           </select>
           </ion-col>
 
@@ -100,7 +100,9 @@
         {{priority}}
         {{noofchars}}
         {{date1}} -->
-        <ion-button class="ion-color-success" (click)="createissue()" >Save
+        <ion-button class="ion-color-success" 
+        [disabled]="branch==undefined || assetCode==undefined || department==undefined || createDate==undefined || categoryissue==undefined || priority==true || textDetails==true"
+        (click)="createissue()" >Save
         </ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>

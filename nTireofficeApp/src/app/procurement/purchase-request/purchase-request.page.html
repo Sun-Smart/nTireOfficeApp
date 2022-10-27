@@ -243,14 +243,14 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">QTY</ion-label>
-            <ion-input type="text" [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
+            <ion-input type="number" [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
 
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Unit Price</ion-label>
-            <ion-input type="text" [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
+            <ion-input type="number" [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
 
@@ -258,7 +258,9 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Net Price</ion-label>
-            <ion-input type="text" [(ngModel)]="netprice" class="Input-text-field textareaField"></ion-input>
+            <ion-input type="number" value="{{qty*unitprice}}" [(ngModel)]="netprice" disabled=""
+              style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+              class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
 
