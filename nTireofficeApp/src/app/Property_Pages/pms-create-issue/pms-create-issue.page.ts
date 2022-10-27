@@ -24,14 +24,52 @@ export class PmsCreateIssuePage implements OnInit {
   contact1: any;
   property_desc: string;
   propertyDesc: any;
+  assetCode: any;
+  function: string;
+  branch: any;
+  userID: string;
+  usertype: string;
+  userToken: string;
+  accessToken: string;
+  branchID: string;
+  functionID: string;
+  priority: any;
+  createDate: any;
+  textDetails: any;
+  user_ID: any;
+  function_ID: any;
+  branch_desc: any;
+  branch_id: any;
 
 
-  constructor(private modalCtrl: ModalController, 
-    private http: HttpClient,  
+  constructor(private modalCtrl: ModalController,
+    private http: HttpClient,
     public alertController: AlertController,
     public Ipaddressservice: IpaddressService,) {
-      this.isItemAvailable = false;
-     }
+
+    this.isItemAvailable = false;
+
+
+    this.function = localStorage.getItem('FUNCTION_DESC');
+
+    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    
+
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.user_ID = JSON.parse(this.userID);
+
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.userToken = localStorage.getItem('usertoken');
+    this.accessToken = localStorage.getItem('token');
+
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branch_id = JSON.parse(this.branchID);
+
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.function_ID = JSON.parse(this.functionID);
+
+    this.username = localStorage.getItem('TUM_USER_NAME');
+  }
 
   ngOnInit() {
   }
@@ -68,7 +106,7 @@ export class PmsCreateIssuePage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
@@ -76,12 +114,12 @@ export class PmsCreateIssuePage implements OnInit {
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log(this.companiesstr);
-      
+
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code); 
+        this.propertyCode1.push(this.companiesstr[i].property_code);
       }
       const val = ev.target.value;
 
@@ -98,8 +136,9 @@ export class PmsCreateIssuePage implements OnInit {
       console.log("error : " + JSON.stringify(error));
     });
   }
-  addPropertycode(item:any) {
 
+
+  addPropertycode(item: any) {
     this.propertycode = item;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
@@ -113,14 +152,15 @@ export class PmsCreateIssuePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + this.propertycode, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
 
       console.log(this.respContact);
-      
-      this.propertyDesc =  this.respContact[0]['property_desc'];
+
+      this.propertyDesc = this.respContact[0]['property_desc'];
+      this.assetCode = this.respContact[0]['property_desc'];
 
       this.contact1 = JSON.parse(this.respContact);
       console.log(this.contact1);
@@ -144,22 +184,23 @@ export class PmsCreateIssuePage implements OnInit {
   createissue() {
     var data = {
 
-      "userid": 1,
-      "functionid": 1,
-      "branchid": 1,
-      "Priority": "4",
-      "pm_due_date": "11/10/2022",
-      "drpPMType": "15",
-      "txtDetails": "TEST",
-      "assetownerid": "1",
-      "assetid": "55",
-      "assetcode": "PROCOM3327052022"
+      "userid": this.user_ID,
+      "functionid": this.function_ID,
+      "branchid": this.branch_id,
+      "Priority": this.priority,
+      "pm_due_date": this.createDate,
+      // "drpPMType": "15",
+      "txtDetails": this.textDetails,
+      // "assetownerid": "1",
+      // "assetid": "55",
+      "assetcode": this.propertycode,
 
 
     }
     this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details', data).subscribe((res: any) => {
       console.log(res)
       this.dataStatus = res
+      this.presentAlert(" ","Issue raised successfully.");
     })
   }
 }

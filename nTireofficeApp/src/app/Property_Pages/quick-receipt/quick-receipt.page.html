@@ -23,16 +23,12 @@
       <ion-card-content >
         <ion-row>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Branch :</ion-label>
-            <!-- <ion-input class="form-control"></ion-input> -->
-            <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyBranch" ></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="propertyBrancH(data)" *ngFor="let data of userRecords | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
+            <ion-label>Branch <span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">{{branch.BRANCH_DESC}}
+              </option>
+            </select>
           </ion-col>
     
     
@@ -151,7 +147,7 @@
     </ion-card>
 
 
-<ion-card>
+<!-- <ion-card>
   <ion-card-header class="card_header">
     <ion-row>
       <ion-col size="6">
@@ -237,7 +233,7 @@
     <ion-label class="labelData-text">: </ion-label>
   </ion-col>
 
-  <!-- <ion-col size="6" style="display: flex;align-items: center;">
+ <ion-col size="6" style="display: flex;align-items: center;">
     <ion-label>Action</ion-label>
   </ion-col>
 
@@ -245,11 +241,11 @@
 
   <ion-col size="5" style="text-align: center;"> 
     <ion-button color="primary" size="small" style="width: fit-content;" (click)="viewReciept()"> View </ion-button> 
-  </ion-col> -->
+  </ion-col>
   
 
 </ion-row>
   </ion-card-content>
-</ion-card>
+</ion-card> -->
 
 </ion-content>
