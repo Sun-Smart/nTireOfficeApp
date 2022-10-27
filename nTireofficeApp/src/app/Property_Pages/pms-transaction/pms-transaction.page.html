@@ -21,7 +21,7 @@
       <ion-row>
         <ion-col size="12">
           <!-- <ion-label class="ContentName">Branch :</ion-label> -->
-          <ion-col size="12">
+          <!-- <ion-col size="12"> -->
             <ion-label>Branch <span style="color:red;">*</span></ion-label>
             <select id="selectbutton" [(ngModel)]="branch" class="form-control"
               (change)="BranchLocationdata(branch)">
@@ -30,7 +30,7 @@
                 {{branch.BRANCH_DESC}}
               </option>
             </select>
-          </ion-col>
+          <!-- </ion-col> -->
           <!-- <ion-input class="form-control"></ion-input> -->
           <!-- <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyBranch" ></ion-searchbar>
           <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
@@ -46,12 +46,11 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <!-- <ion-label class="ContentName">Location :</ion-label> -->
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Location</ion-label>
-            <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+            <ion-label>Branch Location</ion-label>
+            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control">
               <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
-                {{branch.BRANCH_DESC}}
-              </option>
+              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
+                {{location.BRANCH_DESC}}</option>
             </select>
           </ion-col>
           <!-- <ion-input class="form-control"></ion-input> -->
@@ -113,7 +112,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card *ngFor="let items of showAllrecords">
     <ion-card-header class="card_header">
       <ion-row>
         <ion-col size="6">
@@ -127,14 +126,14 @@
           <ion-label>Location</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.Location}}</ion-label>
         </ion-col>
 
         <ion-col size="6">
           <ion-label>Property Code</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.Location}}</ion-label>
         </ion-col>
 
 
@@ -142,14 +141,14 @@
           <ion-label>Rental Code</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.rental_code}}</ion-label>
         </ion-col>
 
         <ion-col size="6">
           <ion-label>Description</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.property_desc}}</ion-label>
         </ion-col>
 
 
@@ -157,7 +156,7 @@
           <ion-label>Catagory</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.Category}}</ion-label>
         </ion-col>
 
 
@@ -165,7 +164,7 @@
           <ion-label>Customer</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.CustomerName}}</ion-label>
         </ion-col>
 
 
@@ -173,7 +172,7 @@
           <ion-label>Start Date</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.start_date}}</ion-label>
         </ion-col>
 
 
@@ -181,7 +180,7 @@
           <ion-label>End Date</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">:</ion-label>
+          <ion-label class="labelData-text">: {{items.end_date}}</ion-label>
         </ion-col>
 
 
@@ -189,7 +188,7 @@
           <ion-label>Type</ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">: </ion-label>
+          <ion-label class="labelData-text">: {{items.rent_type}}</ion-label>
         </ion-col>
 
 
