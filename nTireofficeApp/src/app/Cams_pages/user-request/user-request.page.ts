@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
-import { Router} from '@angular/router';
-import { ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 // import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
@@ -15,33 +15,33 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 export class UserRequestPage implements OnInit {
 
-  userID:any;
-  usertype:any;
-  function:any;
-  branch:any;
-  userToken:any;
-  accessToken:any;
-  branchID:any;
-  functionID:any;
+  userID: any;
+  usertype: any;
+  function: any;
+  branch: any;
+  userToken: any;
+  accessToken: any;
+  branchID: any;
+  functionID: any;
 
-  isItemAvailable:boolean;
+  isItemAvailable: boolean;
   assetcode1;
-  scannedCode:any;
-  detailsreqcat:any;
-  assttrecon:any;
-  descp:any;
-  department:any;
-  assetcodeResult:any;
-  assetcode1str:any;
-  assetcode:any;
-  doi:any;
-  refmaxnum:any;
-  categoryissue:any;
-  priority:any;
-  noofchars:any;
-  username:any;
+  scannedCode: any;
+  detailsreqcat: any;
+  assttrecon: any;
+  descp: any;
+  department: any;
+  assetcodeResult: any;
+  assetcode1str: any;
+  assetcode: any;
+  doi: any;
+  refmaxnum: any;
+  categoryissue: any;
+  priority: any;
+  noofchars: any;
+  username: any;
   newasset: any;
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
+  constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -51,8 +51,8 @@ export class UserRequestPage implements OnInit {
     this.accessToken = localStorage.getItem('token');
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
-    this.username=localStorage.getItem('TUM_USER_NAME');
-    this.priority="<< Select >>"
+    this.username = localStorage.getItem('TUM_USER_NAME');
+    this.priority = "<< Select >>"
     this.getReferMax();
 
     var today = new Date();
@@ -62,19 +62,19 @@ export class UserRequestPage implements OnInit {
     var year = todayDate.getFullYear();
     var finaltodayDate = month + "/" + day + "/" + year;
     this.doi = finaltodayDate;
-   }
+  }
 
   ngOnInit() {
   }
 
-  doRefresh(event){
+  doRefresh(event) {
     this.getReferMax();
-    this.assetcode='';
-    this.descp='';
-    this.department='';
+    this.assetcode = '';
+    this.descp = '';
+    this.department = '';
     this.categoryissue = "<< Select >>";
-    this.priority="<< Select >>";
-    this.noofchars="";
+    this.priority = "<< Select >>";
+    this.noofchars = "";
 
     event.target.complete();
   }
@@ -99,14 +99,14 @@ export class UserRequestPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
-      "assetcode" :this.newasset,
+      "assetcode": this.newasset,
     };
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodelist',params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
       // set val to the value of the searchbar
-      this.assetcodeResult= resp;
+      this.assetcodeResult = resp;
       this.assetcode1str = this.assetcodeResult;
 
       for (var i = 0; i < this.assetcode1str.length; i++) {
@@ -158,19 +158,19 @@ export class UserRequestPage implements OnInit {
   //   .catch((e: any) => console.log('Error is', e));
   // }
 
-  scancoderecon(){
+  scancoderecon() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
-      this.scannedCode=barcodeData.text;
+      this.scannedCode = barcodeData.text;
       this.fetchreconcilation(this.scannedCode)
-      }).catch(err => {
+    }).catch(err => {
       console.log('Error', err);
-      });
+    });
   }
 
-  fetchreconcilation(assetcode){
+  fetchreconcilation(assetcode) {
 
-        debugger;
+    debugger;
     this.assetcode = assetcode;
     this.isItemAvailable = false;
     var data = {
@@ -184,7 +184,7 @@ export class UserRequestPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreq',data, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetreq', data, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -192,7 +192,7 @@ export class UserRequestPage implements OnInit {
       var altrec = this.assttrecon;
       console.log(altrec);
       if (altrec.length < 1) {
-        this.presentAlert('Alert','No Data Found');
+        this.presentAlert('Alert', 'No Data Found');
       } else {
         this.descp = this.assttrecon[0].ASSET_DESCRIPTION;
         this.department = this.assttrecon[0].Text;
@@ -205,11 +205,11 @@ export class UserRequestPage implements OnInit {
 
     });
 
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreqcategory',data, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetreqcategory', data, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
-      this.detailsreqcat= resp;
+      this.detailsreqcat = resp;
       console.log(this.detailsreqcat);
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
@@ -221,8 +221,8 @@ export class UserRequestPage implements OnInit {
   async presentAlert(heading, title) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'Cssbutton',
-      backdropDismiss:false,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
       message: title,
       buttons: ['OK']
     });
@@ -230,14 +230,14 @@ export class UserRequestPage implements OnInit {
     await alert.present();
   }
 
-  getReferMax(){
+  getReferMax() {
     debugger;
     var check = "a";
     var datar = {
       'assetcoder': check,
-      'access_token':localStorage.getItem('token'),
-      'userid':this.userID,
-      'usertoken':localStorage.getItem('usertoken'),
+      'access_token': localStorage.getItem('token'),
+      'userid': this.userID,
+      'usertoken': localStorage.getItem('usertoken'),
     }
     console.log(datar);
 
@@ -245,7 +245,7 @@ export class UserRequestPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/refrencemax/',datar, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/refrencemax/', datar, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
@@ -258,7 +258,7 @@ export class UserRequestPage implements OnInit {
     });
   }
 
-  processassetre(){
+  processassetre() {
     debugger;
     var assiss = this.categoryissue;
     console.log(assiss);
@@ -267,7 +267,7 @@ export class UserRequestPage implements OnInit {
       var reqcatg = '';
 
     } else {
-       reqcatg = this.categoryissue;
+      reqcatg = this.categoryissue;
 
     }
 
@@ -285,26 +285,26 @@ export class UserRequestPage implements OnInit {
       'reqdetail': this.noofchars,
       'refmaxno': this.refmaxnum,
       'assetreqid': this.userID,
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(datar);
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreqinsert/',datar, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetreqinsert/', datar, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.presentAlert("Success","Sucessfully Request Raised Issue Ref Number :"+this.refmaxnum+"");
-      this.descp='';
-      this.department='';
-      this.assetcode='';
-      this.priority='';
-      this.noofchars='';
-      this.categoryissue='';
+      this.presentAlert("Success", "Sucessfully Request Raised Issue Ref Number :" + this.refmaxnum + "");
+      this.descp = '';
+      this.department = '';
+      this.assetcode = '';
+      this.priority = '';
+      this.noofchars = '';
+      this.categoryissue = '';
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));

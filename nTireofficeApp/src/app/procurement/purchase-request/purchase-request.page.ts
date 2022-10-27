@@ -16,6 +16,8 @@ export class PurchaseRequestPage implements OnInit {
   release: boolean = false
   getlistitems: any
   expenseArray = [];
+  getdataitem = [];
+  itemNew: any;
 
   userid
   branchid
@@ -41,6 +43,10 @@ export class PurchaseRequestPage implements OnInit {
   Requiredbefore
   netprice;
   itemdescription;
+  getorder = [];
+  getorder1: any;
+  getdata = [];
+  getdata1: any;
   // release
 
 
@@ -62,9 +68,66 @@ export class PurchaseRequestPage implements OnInit {
 
   ngOnInit() {
 
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
+      // console.log(resp)
+      // this.getorder = resp
+      this.getorder1 = resp;
+      this.getorder1.forEach(element => {
+        this.getorder.push(element)
+        // console.log(this.getorder)
+      });
+    })
     this.userid = localStorage.getItem('TUM_USER_ID')
-    this.branchid = localStorage.getItem(' TUM_BRANCH_ID')
+    this.branchid = localStorage.getItem('TUM_BRANCH_ID')
     this.Requisitiondate = new Date();
+    // this.getItemDetail();
+  }
+  getItems(event: any) {
+    let items = this.Category;
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + items).subscribe((resp: any) => {
+      console.log(resp)
+      this.getdata1 = resp;
+      this.itemNew = this.getdata1;
+      // this.getorder1.forEach(element => {
+      //   this.getdata.push(element)
+      console.log(this.itemNew);
+
+      for (var i = 0; i < this.itemNew.length; i++) {
+
+        this.getdataitem.push(this.itemNew[i].item_Code);
+      }
+      console.log(this.getdataitem);
+      const val = event.target.value;
+
+      // if the value is an empty string don't filter the items
+      if (val && val.trim() != '') {
+        // this.isItemAvailable = true;
+        this.getdataitem = this.getdataitem.filter((item) => {
+          return (item.toLowerCase().indexOf(item.toLowerCase()) > -1);
+        })
+        console.log(this.getdataitem)
+
+      }
+
+
+
+    })
+  }
+
+
+  getItemDetail(e) {
+
+    let getcategory = this.Category
+    console.log(getcategory)
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
+      console.log(resp)
+      this.getdata1 = resp
+      this.getorder1.forEach(element => {
+        this.getdata.push(element)
+        console.log(this.getdata);
+
+      })
+    })
   }
 
   Additems() {
@@ -150,6 +213,7 @@ export class PurchaseRequestPage implements OnInit {
       "requettype": this.prsmode,
       "issinglevendor": "",
       "orderpriority": "",
+      "release": this.release,
       "item": this.expenseArray
 
     }

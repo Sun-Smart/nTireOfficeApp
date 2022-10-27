@@ -227,7 +227,7 @@ export class ClaimsrequestPage implements OnInit {
   };
 
   uploadDoc(file, imagename) {
-    var url = this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlhrms2 +'uploadprofileImg';
+    var url = this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + 'uploadprofileImg';
     const formData: any = new FormData();
     formData.append("upload", file, imagename);
 
