@@ -89,7 +89,7 @@ export class PmscustomerPage implements OnInit {
     this.Getbranches();
     this.getcustomerItems();
     // this.getlocation();
-   
+
   };
 
   async createModal() {
@@ -112,23 +112,23 @@ export class PmscustomerPage implements OnInit {
   getcustomerItems() {
 
     this.userid = window.localStorage['TUM_USER_ID'],
-    this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
-    this.strFunctionId = window.localStorage['FUNCTION_ID'],
-    this.strusertype = window.localStorage['TUM_USER_TYPE'],
+      this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
+      this.strFunctionId = window.localStorage['FUNCTION_ID'],
+      this.strusertype = window.localStorage['TUM_USER_TYPE'],
 
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
-      .subscribe((resp: any) => {
-        console.log(resp);
-        this.propertyCodeResult = resp
+      this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
+        .subscribe((resp: any) => {
+          console.log(resp);
+          this.propertyCodeResult = resp
 
-        if (this.propertyCodeResult == null) {
-          alert("hh")
-          this.showdata = "No Data Found"
-        }
-        else {
-          this.showdata = this.propertyCodeResult.length;
-        }
-      });
+          if (this.propertyCodeResult == null) {
+            alert("hh")
+            this.showdata = "No Data Found"
+          }
+          else {
+            this.showdata = this.propertyCodeResult.length;
+          }
+        });
   };
   strBranchcode(strBranchcode: any) {
     throw new Error('Method not implemented.');
@@ -177,7 +177,7 @@ export class PmscustomerPage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
@@ -211,7 +211,6 @@ export class PmscustomerPage implements OnInit {
   getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
     console.log("one");
     this.propertyCode1 = [];
     if (ev.target.value == "") {
@@ -270,7 +269,7 @@ export class PmscustomerPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation , {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
