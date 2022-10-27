@@ -1,15 +1,14 @@
-
 <ion-header>
   <ion-toolbar>
 
-        <ion-buttons slot="start" >
-          <ion-button (click)="cancel()">
-            <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon>
-            <span  style="color:white;">Back</span>
-          </ion-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon>
+        <span style="color:white;">Back</span>
+      </ion-button>
+    </ion-buttons>
 
-        <ion-title style="margin: 0 20px;">Reciept Master PagePayment History</ion-title>
+    <ion-title style="margin: 0 20px;">Reciept Master PagePayment History</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,19 +16,87 @@
 <ion-content>
 
   <ion-row>
-    <ion-col size="6" style="padding: 10px 15px;">
-      <ion-button color="primary" expand="block" (click)="paymentHistory()">Payment History</ion-button>
+
+    <ion-col size="6">
+      <!-- <ion-button class="additionBtn" (click)="paymentHistory()">Payment History</ion-button> -->
+      <ion-button class="additionBtn" (click)="receiptDetails()">Show Receipt Details</ion-button>
     </ion-col>
 
-    <ion-col size="6" style="padding: 10px 15px;">
-      <ion-button class="additionBtn" (click)="additionalCharge()">Additional Charges</ion-button>
+    <ion-col size="6">
+      <ion-button class="additionBtn" (click)="paymentHistory()">Payment History</ion-button>
+      <!-- <ion-button class="additionBtn" (click)="additionalCharge()">Additional Charges</ion-button> -->
+      <!-- <ion-button class="additionBtn" (click)="receiptDetails()">Show Receipt Details</ion-button> -->
     </ion-col>
+
   </ion-row>
+  <ion-card *ngIf="showDetails">
+    <ion-card-header class="card_header">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_header_text1">Receipt Details</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
 
-<ion-card>
-  <ion-accordion-group>
-    <ion-accordion value="first">
-      <ion-item slot="header"  class="card_header">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>Branch</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Location</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Property Code</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Property Description</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Rental Code</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label>Rental ID</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>Total Balance Amount</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+  <!-- <ion-card >
+      <ion-item slot="header" class="card_header">
         <ion-row>
           <ion-col size="12">
             <ion-label class="card_header_text1">Receipt Details</ion-label>
@@ -51,13 +118,6 @@
         <ion-col size="6">
           <ion-label>:</ion-label>
         </ion-col>
-
-        <ion-col size="6">
-          <ion-label>Payment option</ion-label>
-        </ion-col>
-         <ion-col size="6">
-          <ion-label>:</ion-label>
-        </ion-col>
         <ion-col size="6">
           <ion-label>Property Code</ion-label>
         </ion-col>
@@ -75,7 +135,7 @@
         <ion-col size="6">
           <ion-label>Rental Code</ion-label>
         </ion-col>
-         <ion-col size="6">
+        <ion-col size="6">
           <ion-label>:</ion-label>
         </ion-col>
 
@@ -89,17 +149,15 @@
         <ion-col size="6">
           <ion-label>Total Balance Amount</ion-label>
         </ion-col>
-         <ion-col size="6">
+        <ion-col size="6">
           <ion-label>:</ion-label>
         </ion-col>
 
       </ion-row>
-    </ion-accordion>
-  </ion-accordion-group>
-</ion-card>
+  </ion-card> -->
 
 
-<!-- <ion-card>
+  <!-- <ion-card>
   <ion-card-header class="card_header">
     <ion-row>
       <ion-col size="6">
@@ -117,60 +175,60 @@
 </ion-card> -->
 
 
-<ion-card>
-  <ion-card-header class="card_header">
-    <ion-row>
-      <ion-col size="6">
-        <ion-label class="card_header_text1">Reciept Master</ion-label>
-      </ion-col>
+  <ion-card>
+    <ion-card-header class="card_header">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_header_text1">Reciept Master</ion-label>
+        </ion-col>
       </ion-row>
-  </ion-card-header>
-  <ion-card-content>
+    </ion-card-header>
+    <ion-card-content>
 
-<ion-row>
-  <ion-col size="6">
-    <ion-label>Property Description</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label>:</ion-label>
-  </ion-col>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>Property Description</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
 
-  <ion-col size="6">
-    <ion-label>Pay Amount</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label>:</ion-label>
-  </ion-col>
+        <ion-col size="6">
+          <ion-label>Pay Amount</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
 
-  <ion-col size="6">
-    <ion-label>Paid Amount</ion-label>
-  </ion-col>
-   <ion-col size="6">
-    <ion-label>:</ion-label>
-  </ion-col>
+        <ion-col size="6">
+          <ion-label>Paid Amount</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
 
-  <ion-col size="6">
-    <ion-label>Balance Amount</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label>:</ion-label>
-  </ion-col>
+        <ion-col size="6">
+          <ion-label>Balance Amount</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
 
-  <ion-col size="6">
-    <ion-label>Pay Last Date</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label>:</ion-label>
-  </ion-col>
+        <ion-col size="6">
+          <ion-label>Pay Last Date</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
 
-  <ion-col size="6">
-    <ion-label>Late Fee</ion-label>
-  </ion-col>
-   <ion-col size="6">
-    <ion-label>:</ion-label>
-  </ion-col>
-</ion-row>
+        <ion-col size="6">
+          <ion-label>Late Fee</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>:</ion-label>
+        </ion-col>
+      </ion-row>
 
-  </ion-card-content>
-</ion-card>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

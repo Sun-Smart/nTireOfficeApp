@@ -42,12 +42,16 @@ ion-card-header + .card-content-ios {
 }
 .sc-ion-searchbar-ios-h {
     padding: 0px !important;
-    height: 36px !important;
-    border-radius: 10px !important;
+    height: 45px !important;
+    border-radius: 3px !important;
+    border: 1px solid #ccc;
 }
 .top-header {
     background: url("../../../assets/images/tpbackground.png") repeat !important;
     position: sticky;
     top: 0;
     z-index: 1;
+}
+input.searchbar-input.sc-ion-searchbar-ios{
+  background: none !important;
 }

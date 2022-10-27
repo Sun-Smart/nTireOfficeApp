@@ -363,7 +363,8 @@ ion-footer {
   // position: absolute;
   bottom: 0 !important;
   height: 40px;
-  border-radius: 16px 16px 0 0 !important;
+  // border-radius: 16px 16px 0 0 !important;
+  border-radius: 0 0 16px 16px !important;
 
   // background-color: beige;
   ion-row {
@@ -1265,7 +1266,7 @@ ion-searchbar {
 .ion-checkbox {
   border-radius: 6px;
   --background: #ffffff !important;
-  border: 2px solid #237ef5;
+  // border: 2px solid #237ef5;
 }
 
 .ion-checkbox {
@@ -1288,5 +1289,6 @@ input#checkbox {
 .additionBtn{
   --background: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%) !important;
   color: white !important;
-
+  padding: 5px;
+  margin: 0px;
 }

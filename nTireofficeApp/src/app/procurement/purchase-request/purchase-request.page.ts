@@ -13,7 +13,9 @@ export class PurchaseRequestPage implements OnInit {
   showlineItems: boolean = true
   showviewlist: boolean = false
   showfilter: boolean = true
+  release: boolean = false
   getlistitems: any
+  expenseArray = [];
 
   userid
   branchid
@@ -39,23 +41,23 @@ export class PurchaseRequestPage implements OnInit {
   Requiredbefore
   netprice;
   itemdescription;
-  release
+  // release
 
 
 
   constructor(private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
 
 
-    var data = {
-      "Description": this.Description,
-      "Item": this.Item,
-      "Category": this.Category,
-      "qty": this.qty,
-      "unitprice": this.unitprice,
-      "Requiredbefore": this.Requiredbefore,
-      "netprice": this.netprice,
-      "itemdescription": this.itemdescription
-    }
+    // var data = {
+    //   "Description": this.Description,
+    //   "Item": this.Item,
+    //   "Category": this.Category,
+    //   "qty": this.qty,
+    //   "unitprice": this.unitprice,
+    //   "Requiredbefore": this.Requiredbefore,
+    //   "netprice": this.netprice,
+    //   "itemdescription": this.itemdescription
+    // }
   }
 
   ngOnInit() {
@@ -65,38 +67,25 @@ export class PurchaseRequestPage implements OnInit {
     this.Requisitiondate = new Date();
   }
 
-  showline() {
-    this.showviewlist = true
-    // this.showviewlist = true
+  Additems() {
     this.showlineItems = !this.showlineItems
+  }
 
-    var data = {
-      Description: this.Description,
-      Item: this.Item,
-      Category: this.Category,
-      qty: this.qty,
-      unitprice: this.unitprice,
-      Requiredbefore: this.Requiredbefore,
-      netprice: this.netprice,
-      itemdescription: this.itemdescription
-    }
-    // console.log(data)
-    this.getlistitems = JSON.stringify(data);
-    // this.getlistitems = JSON.parse(this.getlistitems);
-    console.log(this.getlistitems);
-
-
-    // localStorage.setItem('Description', this.getlistitems.Description);
-    // localStorage.setItem('Item', this.getlistitems.Item);
-    // localStorage.setItem('qty', this.getlistitems.qty);
-    // localStorage.setItem('unitprice', this.getlistitems.unitprice);
-    // localStorage.setItem('Requiredbefore', this.getlistitems.Requiredbefore);
-    // localStorage.setItem('netprice', this.getlistitems.netprice);
-    // localStorage.setItem('itemdescription', this.getlistitems.itemdescription);
-
-    // this.showlineItems=true
-
-    // this.showfilter = !this.showfilter;
+  showline() {  //submit btn
+    this.showviewlist = true
+    this.showlineItems = false
+    this.showlineItems = !this.showlineItems
+    this.expenseArray.push({
+      GET_DES: this.Description,
+      GET_ITEMS: this.Item,
+      GET_CATEGORY: this.Category,
+      GET_QTY: this.qty,
+      GET_UNITPRICE: this.unitprice,
+      GET_REQUIREDBEFORE: this.Requiredbefore,
+      GET_NETPRICE: this.netprice,
+      GET_ITEMDESCRIPTION: this.itemdescription,
+    })
+    console.log(this.expenseArray)
   }
 
   async clear() {
@@ -121,6 +110,7 @@ export class PurchaseRequestPage implements OnInit {
             this.rfpcomments = ""
             this.order = ""
             this.requestby = ""
+            this.expenseArray = []
           }
         }
       ]
@@ -128,29 +118,18 @@ export class PurchaseRequestPage implements OnInit {
 
     await alert.present();
   }
-
-
-  submit() {
-    this.showviewlist = true;
-    localStorage.setItem('Description', this.getlistitems.Description);
-    localStorage.setItem('Item', this.getlistitems.Item);
-    localStorage.setItem('qty', this.getlistitems.qty);
-    localStorage.setItem('unitprice', this.getlistitems.unitprice);
-    localStorage.setItem('Requiredbefore', this.getlistitems.Requiredbefore);
-    localStorage.setItem('netprice', this.getlistitems.netprice);
-    localStorage.setItem('itemdescription', this.getlistitems.itemdescription);
-  }
   togglefilter() {
     this.showfilter = !this.showfilter;
   }
   close() {
+    this.showlineItems = !this.showlineItems
+  }
+  submit() {
     // window.location.reload()
     // this.router.navigate(['/purchase-request'])
-    this.showviewlist = true
-    this.showlineItems = !this.showlineItems
-
+    // this.showviewlist = true
+    // this.showlineItems = !this.showlineItems
     var body = {
-
       "functionid": "1",
       "prsid": "",
       "prscode": "",
@@ -170,7 +149,8 @@ export class PurchaseRequestPage implements OnInit {
       "requestdate": "",
       "requettype": this.prsmode,
       "issinglevendor": "",
-      "orderpriority": ""
+      "orderpriority": "",
+      "item": this.expenseArray
 
     }
 

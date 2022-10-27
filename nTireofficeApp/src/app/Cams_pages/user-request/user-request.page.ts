@@ -218,12 +218,12 @@ export class UserRequestPage implements OnInit {
     });
   }
 
-  async presentAlert(heading, tittle) {
+  async presentAlert(heading, title) {
     var alert = await this.alertController.create({
       header: heading,
       cssClass:'Cssbutton',
       backdropDismiss:false,
-      message: tittle,
+      message: title,
       buttons: ['OK']
     });
 
