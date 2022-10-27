@@ -23,6 +23,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from '../table-sample.service';
 import { RecieptMasterPagePage } from '../reciept-master-page/reciept-master-page.page';
 import { IpaddressService } from '../../service/ipaddress.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pms-transaction',
   templateUrl: './pms-transaction.page.html',
@@ -67,7 +68,7 @@ export class PmsTransactionPage implements OnInit {
 
 
 
-  constructor(private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
+  constructor(private router: Router, private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
     this.Getbranches();
     console.log('this.branch ', this.branch);
 
@@ -104,14 +105,16 @@ export class PmsTransactionPage implements OnInit {
     this.showfilter = !this.showfilter;
   }
 
-  async viewReciept() {
+  async viewReciept(items) {
     debugger;
+    console.log(items);
 
-    const model = await this.modalCtrl.create({
+    this.router.navigate(['/reciept-master-page', items.property_id, items.rental_id])
+    // const model = await this.modalCtrl.create({
 
-      component: RecieptMasterPagePage,
-    });
-    return await model.present();
+    //   component: RecieptMasterPagePage,
+    // });
+    // return await model.present();
   }
   getAllPaymentDetails() {
     const header = new Headers();
@@ -181,7 +184,7 @@ export class PmsTransactionPage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
