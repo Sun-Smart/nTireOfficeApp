@@ -72,8 +72,8 @@ export class LeaveRequestPage implements OnInit {
     this.urldata = this.route.params.subscribe(params => {
 
       // this.leavedata=JSON.parse(params.item);
-       let data1=JSON.stringify(params.item);
-      this.leavedata=JSON.parse(data1);
+       let data1=params.item;
+      this.leavedata=data1;
 
 
       if(this.leavedata!=undefined){
@@ -182,8 +182,8 @@ export class LeaveRequestPage implements OnInit {
   }
   getLeaveBalance(){
     console.log(this.leaveType);
-    this.leaveBal="";
-    this.preApprovalDays="";
+    // this.leaveBal="";
+    // this.preApprovalDays="";
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeLeaveConfig/"+this.leaveType+ "/" +this.em_emp_id).then(resp=>{
       var reaparray = JSON.parse(resp.toString());
 

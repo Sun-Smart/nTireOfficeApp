@@ -1042,7 +1042,7 @@ ion-card {
     color: #ffff !important;
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     font-weight: bold;
   }
   // padding-right: 50px !important;
@@ -1053,7 +1053,14 @@ ion-card {
     font-size: 15px;
     color: #ffff !important;
     font-weight: 600;
+    position: relative;
   }
+}
+
+.header_btn
+{
+  --background: #fff !important;
+  color: #019ade;
 }
 
 ion-card {

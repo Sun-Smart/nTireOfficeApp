@@ -10,6 +10,7 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { json } from '@angular-devkit/core';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-claimsrequest',
@@ -397,7 +398,7 @@ export class ClaimsrequestPage implements OnInit {
               ExpensesType: element.EXPENSE_VAL,
               ExpensesAmount: element.EXPENSE_AMOUNT,
               Remarks: element.EXPENSE_REMARKS,
-              UserId: window.localStorage['TUM_USER_ID'],
+              UserId: parseInt(window.localStorage['TUM_USER_ID']),
               RequestRef: this.reqrefid,
               // userid:window.localStorage['TUM_USER_ID'],
               userid: parseInt(window.localStorage['TUM_USER_ID']),
@@ -405,7 +406,7 @@ export class ClaimsrequestPage implements OnInit {
               access_token: window.localStorage['token']
             }
             console.log(expenseobj);
-            this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "saveExpenseClaimsDetail/", expenseobj).then(resp => {
+            this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "saveExpenseClaimsDetail", expenseobj).then(resp => {
               console.log(resp);
               var obj = {
                 requestRef: this.reqrefid,

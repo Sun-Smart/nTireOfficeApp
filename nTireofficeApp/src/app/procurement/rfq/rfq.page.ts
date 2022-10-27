@@ -24,6 +24,9 @@ export class RFQPage implements OnInit {
   toDate: string;
   status: string;
   bidding: string;
+  showRfq:boolean=false;
+  showMRFQ:boolean=false;
+
 
   constructor(private router :Router,private alertController: AlertController) {
     // this.Checkboxes = [
@@ -98,6 +101,20 @@ export class RFQPage implements OnInit {
   Submit(){
     this.showviewlist=true
   }
+  showgrid(item){
+    console.log(item)
+    let item1=this.status
+    if(item1=="RFQ"){
+      this.showRfq=true;
+      this.showMRFQ=false
+    }
+    if(item1 =="MRFQ"){
+      this.showMRFQ=true;
+      this.showRfq=false;
+
+    }
+
+  }
   raiseRFQ(){
     this.showrfq=true
     this.showviewlist=false
@@ -121,7 +138,7 @@ export class RFQPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-        
+
         this.prscode="";
         this.itemcode="";
         this.fromdate="";
@@ -129,7 +146,7 @@ export class RFQPage implements OnInit {
         this.status="";
         this.bidding="";
         // this.remarks="";
-           
+
           }
         }
       ]
