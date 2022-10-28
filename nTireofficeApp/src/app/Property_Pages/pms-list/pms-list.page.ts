@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
-
 import { IpaddressService } from '../../service/ipaddress.service';
 
 @Component({
@@ -276,6 +275,17 @@ if(this.companiesstr=="No data found"){
 
     });
   }
+
+
+
+// total get
+
+getpropertylistreport(){
+  
+
+}
+
+
 
 
 }
