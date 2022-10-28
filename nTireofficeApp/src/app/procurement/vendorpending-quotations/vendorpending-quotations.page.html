@@ -24,7 +24,7 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="plabel">To Date</ion-label>
         <ion-input style=" display:inline-block;padding: 8px;color: black !important;
-        font-weight: 600;" [(ngModel)]="todate"  type="date" class="Input-text-field textareaField">
+        font-weight: 600;" [(ngModel)]="todate" type="date" class="Input-text-field textareaField">
         </ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -32,6 +32,9 @@
         <select [(ngModel)]="status" style="padding: 10px;" style="display:inline-block;padding: 8px;"
           class="Input-text-field textareaField">
           <option>&lt;&lt; Select &gt;&gt;</option>
+          <option value="Bidding">New</option>
+          <option value="Other">Released</option>
+          <option value="Other">Withdraw</option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -44,7 +47,7 @@
         </select>
       </ion-col>
 
- 
+
     </ion-row>
     <ion-row>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">

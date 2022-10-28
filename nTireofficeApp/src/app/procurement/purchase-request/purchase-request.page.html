@@ -16,35 +16,31 @@
     <!-- <ion-grid *ngIf="showlineItems===true"> -->
     <ion-grid>
       <ion-row>
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel" >Company Name</ion-label>
-          <ion-input disabled="" style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-            type="text" class="Input-text-field textareaField"></ion-input>
-        </ion-col> -->
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Branch</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="branch" disabled=""
+          <ion-input disabled="" [(ngModel)]="branchname"
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text"
+            class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Branch</ion-label>
+          <select style="padding: 10px;" [(ngModel)]="branchname" disabled=""
             style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
-            <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-          </select>
-        </ion-col>
+        </select>
+        </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Requisition Date</ion-label>
-          <ion-input type="date" [(ngModel)]="Requisitiondate" disabled=""
+          <ion-label class="plabel">PRS Date</ion-label>
+          <ion-input type="date" [(ngModel)]="prsdate" disabled=""
             style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
             class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Code</ion-label>
           <ion-input type="text" [(ngModel)]="prscode" disabled=""
             style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
             class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -63,24 +59,21 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Request By</ion-label>
           <ion-input type="text" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Reference If Any</ion-label>
           <ion-input type="text" [(ngModel)]="referenceifany" class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Reason For Purchase</ion-label>
           <ion-input type="text" [(ngModel)]="reasonpurchase" class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.unitprice" -->
         </ion-col>
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Order</ion-label>
+          <ion-label class="plabel">Order Priority</ion-label>
           <select style="padding: 10px;" [(ngModel)]="order" class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let items of getorder" value="{{items.val}}">{{items.text}}</option>
@@ -90,7 +83,6 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">RFP Comments</ion-label>
           <ion-input type="text" [(ngModel)]="rfpcomments" class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.unitprice" -->
         </ion-col>
 
 
@@ -121,7 +113,6 @@
 
       </ion-row>
       <!-- for view mode -->
-
       <ion-card *ngFor="let items of expenseArray">
         <ion-row>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" class="leadscolumn">
@@ -131,43 +122,43 @@
             Category
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_CATEGORY}}
+            {{items.CATEGORY}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             Item/Service
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_ITEMS}}
+            {{items.itemid}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             QTY
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_QTY}}
+            {{items.required_qty}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             Unit Price
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_UNITPRICE}}
+            {{items.unit_price}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             Requiredbefore
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_REQUIREDBEFORE}}
+            {{items.exp_date}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             netprice
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_NETPRICE}}
+            {{items.netprice}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             itemdescription
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{items.GET_ITEMDESCRIPTION}}
+            {{items.item_short_desc}}
           </ion-col>
         </ion-row>
       </ion-card>
@@ -218,24 +209,21 @@
               class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <option value="IT">Items</option>
-              <option value="Se">Service</option>
-              <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+              <option value="Service">Service</option>
             </select>
           </ion-col>
-
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel">Item/Service</ion-label>
-            <select (click)="getitemvalue(Item)" style="padding: 10px;" [(ngModel)]="Item"
+            <select (click)="getitemvalue(Item)" style="padding: 10px;" [(ngModel)]="itemcode"
               class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let items of getdata1" value="{{items.item_Code}}">
                 {{items.item_Code}}</option>
             </select>
-          </ion-col> -->
-
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel">Item/Service</ion-label>
-            <ion-searchbar [(ngModel)]="Item" type="text" debounce="500" (ionInput)="getItems($event)">
+            <ion-searchbar [(ngModel)]="itemcode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist" [(ngModel)]="Item"
               [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
@@ -245,7 +233,19 @@
               </ion-item>
             </ion-list>
           </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
+            <ion-label class="plabel">Description</ion-label>
+            <ion-textarea placeholder=" " disabled="" id="textareaID" [(ngModel)]="Description"
+              class="Input-text-field textareaField"
+              style=" width:100%;background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+              maxlength="150" required=""></ion-textarea>
+
+            <!-- (ionSelect)="resize()" -->
+            <!-- (keyup)="checkTestPressure(this)" -->
+            <!-- [(ngModel)]="VendorQuot.remarks" -->
+            <!-- <span class="customCounter">{{150 - VendorQuot.remarks.length}}</span> -->
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel">Description</ion-label>
             <ion-textarea placeholder=" " [(ngModel)]="Description" id="textareaID"
               class="Input-text-field textareaField" style="width:100%;" maxlength="150" required=""></ion-textarea>
@@ -257,27 +257,34 @@
 
 
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel">QTY</ion-label>
             <ion-input type="number" [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
-            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
+            <ion-label class="plabel">QTY</ion-label>
+            <ion-input type="number" [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
           </ion-col>
 
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
+            <ion-label class="plabel">Unit Price</ion-label>
+            <ion-input type="number" disabled="" [(ngModel)]="unitprice"
+              style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+              class="Input-text-field textareaField">
+            </ion-input>
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel">Unit Price</ion-label>
             <ion-input type="number" [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
-            <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
-
-
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Net Price</ion-label>
             <ion-input type="number" value="{{qty*unitprice}}" [(ngModel)]="netprice" disabled=""
               style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
               class="Input-text-field textareaField"></ion-input>
-            <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -287,7 +294,19 @@
           </ion-col>
 
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
+            <ion-label class="plabel"> Item Detailed Description</ion-label>
+            <ion-textarea placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription"
+              class="Input-text-field textareaField"
+              style=" width:100%;background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+              maxlength="150" required=""></ion-textarea>
+            <!-- (ionSelect)="resize()" -->
+            <!-- (keyup)="checkTestPressure(this)" -->
+            <!-- [(ngModel)]="VendorQuot.remarks" -->
+            <!-- <span class="customCounter">{{150 - VendorQuot.remarks.length}}</span> -->
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel"> Item Detailed Description</ion-label>
             <ion-textarea placeholder=" " id="textareaID" [(ngModel)]="itemdescription"
               class="Input-text-field textareaField" style="width:100%;" maxlength="150" required=""></ion-textarea>
@@ -308,10 +327,10 @@
               <ion-button class ="ion-color-primary" expand="block">List</ion-button>
             </ion-col> -->
           <ion-col style="text-align: center;">
-            <ion-button (click)="showline()" class="ion-color-success" expand="block">Submit</ion-button>
+            <ion-button (click)="showline()" class="ion-color-success" expand="block">Save</ion-button>
           </ion-col>
           <ion-col style="text-align: center;">
-            <ion-button (click)="close()" class="ion-color-danger" expand="block">close</ion-button>
+            <ion-button (click)="close()" class="ion-color-danger" expand="block">Close</ion-button>
           </ion-col>
 
 
@@ -321,9 +340,7 @@
         </ion-row>
       </ion-grid>
       <!-- </ion-card> -->
-
-
-      <ion-row>
+      <ion-row *ngIf="showbtn">
         <ion-col style="text-align: center;">
           <ion-button (click)="Additems()" class="ion-color-primary" expand="block">
             <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Items
@@ -333,7 +350,7 @@
           <ion-button (click)="clear()" class="ion-color-danger" expand="block">Clear</ion-button>
         </ion-col>
         <ion-col style="text-align: center;">
-          <ion-button (click)="submit()" class="ion-color-success" expand="block">Save</ion-button>
+          <ion-button (click)="submit()" class="ion-color-success" expand="block">Submit</ion-button>
         </ion-col>
         <!-- <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" expand="block">New</ion-button>
