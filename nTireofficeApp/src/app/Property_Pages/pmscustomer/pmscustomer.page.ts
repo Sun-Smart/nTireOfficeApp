@@ -45,7 +45,6 @@ export class PmscustomerPage implements OnInit {
 
   customerbranch: any;
   isItemAvailable: boolean = false;
-  branchList1:any = [];
   branchcode: any;
   customerlocation: any;
   locationcode1: any[] = [];
@@ -62,10 +61,12 @@ export class PmscustomerPage implements OnInit {
   contact1: any;
   isPropertycodeAvailable: boolean = false;
 
+
+  branchlist: any;
+  branchlist1: any = [];
   branchlocationlist: any = [];
-  branchlocationlist1 = [];
-
-
+  branch: any;
+  branchlocation: any;
 
 
 
@@ -85,28 +86,21 @@ export class PmscustomerPage implements OnInit {
   ngOnInit() {
     this.branchcode = ('')
     this.locationcode = ('')
-    // this.getbranch();
+    this.Getbranches();
     this.getcustomerItems();
-    this.getlocation();
-    this.BranchLocationdata('');
-
-
+    // this.getlocation();
 
   };
 
   async createModal() {
-
     const model = await this.modalCtrl.create({
-
       component: PmsCreateIssuePage,
     });
     return await model.present();
-
   };
 
   async viewModal() {
     const model = await this.modalCtrl.create({
-
       component: PmsIssueStatusPage,
     });
     return await model.present();
@@ -115,150 +109,82 @@ export class PmscustomerPage implements OnInit {
     this.showfilter = !this.showfilter;
   };
 
-  propertyBrancH(data: any) {
-
-    console.log(data);
-
-
-    this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getbranchid").subscribe((resp: any) => {
-
-      console.log(resp);
-
-      this.propertyBranch = resp;
-
-      console.log(this.propertyBranch);
-
-
-
-
-
-    });
-  }
-
-
   getcustomerItems() {
 
     this.userid = window.localStorage['TUM_USER_ID'],
-      console.log(this.userid);
+      this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
+      this.strFunctionId = window.localStorage['FUNCTION_ID'],
+      this.strusertype = window.localStorage['TUM_USER_TYPE'],
 
-    this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
-      console.log(this.strBranchId);
+      this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
+        .subscribe((resp: any) => {
+          console.log(resp);
+          this.propertyCodeResult = resp
 
-    // this.strBranchcode = window.localStorage['TUM_BRANCH_CODE'],
-    console.log(this.strBranchcode);
-
-    this.strFunctionId = window.localStorage['FUNCTION_ID'],
-      console.log(this.strFunctionId);
-
-    this.strusertype = window.localStorage['TUM_USER_TYPE'],
-      console.log(this.strusertype);
-
-
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
-
-      .subscribe((resp: any) => {
-        console.log(resp);
-        this.propertyCodeResult = resp
-
-        if (this.propertyCodeResult == null) {
-          alert("hh")
-          this.showdata = "No Data Found"
-        }
-        else {
-          this.showdata = this.propertyCodeResult.length;
-        }
-      })
-
-
-  }
+          if (this.propertyCodeResult == null) {
+            alert("hh")
+            this.showdata = "No Data Found"
+          }
+          else {
+            this.showdata = this.propertyCodeResult.length;
+          }
+        });
+  };
   strBranchcode(strBranchcode: any) {
     throw new Error('Method not implemented.');
-  }
+  };
 
 
-  // getbranch() {
-
-  //   this.userid = parseInt(window.localStorage['TUM_USER_ID']),
-  //   this.strFunctionId =  parseInt(window.localStorage['FUNCTION_ID']),
-
-  //   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + "bindbranch/" + this.strFunctionId + "/" + this.userid).subscribe((res) => {
-  //     console.log("branch", res);
-  //     this.customerbranch = res
-  //     for (var i = 0; i < this.customerbranch.length; i++) {
-
-  //       this.branchcode1.push(this.customerbranch[i].BRANCH_DESC);
-
-  //     }
-  //     console.log(this.branchcode1, 'fyttr')
-  //   })
-  // }
-
-  BranchLocationdata(branchid: any) {
-
-    console.log(branchid);
+  Getbranches() {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + this.strFunctionId + "/" + this.userid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
       headers: options,
     }).subscribe(resp => {
+      this.branchlist = JSON.stringify(resp);
+      this.branchlist = JSON.parse(this.branchlist);
+      this.branchlist.forEach(element => {
+        this.branchlist1.push(element);
+        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+      });
+    }, error => {
+    });
+  };
 
-      console.log(resp);
-      this.branchList1 = resp;
+  BranchLocationdata(branchid) {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+      headers: options,
+    }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      if (this.branchlocationlist.length == 0) {
-        this.presentAlert('Alert', 'This Branch has no location');
-      }
-      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+
     }, error => {
-      // this.presentAlert('Alert', 'Server Error, Branch Location not loaded.');
+
       console.log("branchlist1 : " + JSON.stringify(error));
     });
   }
 
 
-  // getItems(ev: any) {
-  //   let data = ev.target.value;
-  //   console.log(data);
-  //   this.selectbranch = data;
-
-  //   // Reset items back to all of the items
-  //   this.getbranch()
-
-  //   // set val to the value of the searchbar
-  //   const val = ev.target.value;
-
-  //   // if the value is an empty string don't filter the items
-  //   if (val && val.trim() !== '') {
-  //     this.isItemAvailable = true;
-  //     this.branchcode1 = this.branchcode1.filter((item) => {
-
-  //       return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-
-  //     })
-  //     console.log(this.branchcode1, "hfghfg");
-  //   } else {
-  //     this.isItemAvailable = false;
-  //   }
-  // }
-
-  processbranch(e: any) {
-    console.log(e);
-
-    this.branchcode = this.branchcode
-    console.log(this.branchcode, "gggg");
-
-    this.isItemAvailable = false;
-  }
 
 
-  getlocation() {
-    this.http.get("https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getlocation").subscribe((res) => {
-      console.log("location", res);
-      this.customerlocation = res
+
+  getLocationdata(branchlocation) {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log("location", resp);
+      this.customerlocation = resp
       for (var i = 0; i < this.customerlocation.length; i++) {
 
         this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
@@ -267,25 +193,7 @@ export class PmscustomerPage implements OnInit {
       console.log(this.locationcode1, 'fyttr')
     })
   }
-  getlocationItems(ev: any) {
-    // Reset items back to all of the items
-    this.getlocation()
 
-    // set val to the value of the searchbar
-    const val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() !== '') {
-      this.islocItemAvailable = true;
-      this.locationcode1 = this.locationcode1.filter((item) => {
-
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-
-      })
-    } else {
-      this.islocItemAvailable = false;
-    }
-  }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
@@ -301,6 +209,8 @@ export class PmscustomerPage implements OnInit {
 
 
   getPropertyCode(ev: any) {
+
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     console.log("one");
     this.propertyCode1 = [];
     if (ev.target.value == "") {
@@ -314,7 +224,7 @@ export class PmscustomerPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
@@ -344,6 +254,9 @@ export class PmscustomerPage implements OnInit {
   };
 
   addPropertycode(item: any) {
+
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
     this.propertycode = item;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
@@ -356,7 +269,7 @@ export class PmscustomerPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;

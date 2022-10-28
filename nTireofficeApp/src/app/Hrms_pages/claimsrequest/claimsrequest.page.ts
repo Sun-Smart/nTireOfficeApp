@@ -227,7 +227,7 @@ export class ClaimsrequestPage implements OnInit {
   };
 
   uploadDoc(file, imagename) {
-    var url = this.Ipaddressservice.ipaddress +  this.Ipaddressservice.serviceurlhrms2 +'uploadprofileImg';
+    var url = this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + 'uploadprofileImg';
     const formData: any = new FormData();
     formData.append("upload", file, imagename);
 
@@ -302,17 +302,13 @@ export class ClaimsrequestPage implements OnInit {
         this.expenseType = 'Hotel'
       }
       console.log("expenseType : " + this.expenseType);
-
       this.expenseetype1.forEach(element => {
-
         if (element.VAL == this.expenseType) {
           this.expensetxt = element.TEXT;
         }
-
       });
 
       this.expenseArray.push({
-
         // EXPENSE_TYPE1:this.expensetxt,
         EXPENSE_TYPE: this.expenseType,
         EXPENSE_VAL: this.expenseType,
