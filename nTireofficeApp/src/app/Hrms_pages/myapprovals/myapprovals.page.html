@@ -42,9 +42,9 @@
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
       <ion-label>Request Number</ion-label>
-      <ion-input type="text" class="form-control" [(ngModel)]="reqNum" (keyup)="validRequestNumber(reqNum)"></ion-input>
-      <span class="input-label {{show_color}}"
-        *ngIf='reqNum==""||reqNum==null||reqNum.requestno==undefined'>{{show_request}}</span>
+      <ion-input type="text" class="form-control" [(ngModel)]="reqNum"></ion-input>
+      <!-- <span class="input-label {{show_color}}"
+        *ngIf='reqNum==""||reqNum==null||reqNum.requestno==undefined'>{{show_request}}</span> -->
 
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
@@ -55,7 +55,7 @@
   <ion-row>
 
     <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
-      <ion-button (click)="myApprovals()" class="ion-color-success" expand="block"  [disabled]="reqType===''">
+      <ion-button (click)="myApprovalSearch()" class="ion-color-success" expand="block"  [disabled]="reqType===''">
         <ion-icon style="color:white ;" name="search-outline"></ion-icon>
         Search
       </ion-button>

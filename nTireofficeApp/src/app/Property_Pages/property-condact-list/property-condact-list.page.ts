@@ -30,15 +30,29 @@ export class PropertyCondactListPage implements OnInit {
    property_code: any;
    respContact: any;
    propertyDesc: any;
+  showdata: any;
+  propetycondactlist: any;
+  branchID: string;
+  functionID: string;
+  userID: string;
+  usertype: string;
+  accessToken: string;
 
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) { }
+    public Ipaddressservice: IpaddressService,) {
+      this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+      this.functionID = localStorage.getItem('FUNCTION_ID');
+      this.userID = localStorage.getItem('TUM_USER_ID');
+      this.usertype = localStorage.getItem('TUM_USER_TYPE');
+      this.accessToken = localStorage.getItem('token');
+     }
 
   ngOnInit() {
     this.Getbranches();
+    this.getpropertycondactlist();
   }
   togglefilter(){
     this.showfilter = !this.showfilter
@@ -184,5 +198,34 @@ export class PropertyCondactListPage implements OnInit {
 
     });
   };
+
+// total get
+
+getpropertycondactlist(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycontactlistreport/'+ this.functionID + "/" + this.branchID + "/" +"0/0", {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"reportlist");
+   this.propetycondactlist=res
+
+
+   
+   if (this.propetycondactlist == null) {
+    alert("hh")
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.propetycondactlist.length;
+  }
+    
+  })
+
+}
+
+
+
 
 }

@@ -28,15 +28,28 @@ export class IssueLedgerPage implements OnInit {
    property_code: any;
    respContact: any;
    propertyDesc: any;
+  branchID: string;
+  functionID: string;
+  userID: string;
+  usertype: string;
+  accessToken: string;
+  propertyissueledger: any;
+  showdata: string;
 
    
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) { }
+    public Ipaddressservice: IpaddressService,) {
+      this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.accessToken = localStorage.getItem('token');
+     }
 
   ngOnInit() {
-
+this.getpropertyissueledger();
     this.Getbranches();
   }
   togglefilter(){
@@ -184,5 +197,33 @@ export class IssueLedgerPage implements OnInit {
     });
   };
 
+
+
+
+// total get
+
+getpropertyissueledger(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/'+ this.functionID + "/" + this.branchID + "/" +"0/0/0/0/0/0/0/0", {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"issueledgerlist");
+   this.propertyissueledger=res
+
+
+   
+   if (this.propertyissueledger == null) {
+    alert("hh")
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.propertyissueledger.length;
+  }
+    
+  })
+
+}
 
 }
