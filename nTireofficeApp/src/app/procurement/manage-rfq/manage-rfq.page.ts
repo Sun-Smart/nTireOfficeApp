@@ -13,7 +13,7 @@ export class ManageRfqPage implements OnInit {
   showvendorqrotationaction: boolean = true;
   selectAllissue: boolean = false;
   selectAllvendor: boolean = false;
-
+  disabled : boolean = false;
 
   constructor(private router: Router, private alertcontroller: AlertController) { }
 
@@ -24,13 +24,15 @@ export class ManageRfqPage implements OnInit {
     this.router.navigate(['/vendorsdetails'])
 
   }
+
   // VendorQuotation() {
-  //   // this.RequestVenderQuotation==true
-  //   // showvendorqrotation
+  //   this.RequestVenderQuotation==true
+  //   showvendorqrotation
   // }
+
   RequestVenderQuotation() {
-    this.showvendorqrotation = true;
-    this.showvendorqrotationaction = false;
+    // this.showvendorqrotation = true;
+    // this.showvendorqrotationaction = false;
     this.presentAlert("", "Quotation Requested Successfully");
   }
 

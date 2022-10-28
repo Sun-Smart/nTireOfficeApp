@@ -153,14 +153,14 @@
       <ion-col>
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" (click)="RequestVenderQuotation()" style="margin-top: -18px;"
-            expand="block">Request Vender Quotation</ion-button>
+            expand="block" [disabled]="selectAllvendor == false">Request Vender Quotation</ion-button>
         </ion-col>
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-danger" style="margin-top: -18px;" expand="block" (click)="cancel()">close</ion-button>
         </ion-col>
-      </ion-col>
+      </ion-col> -->
 
     </ion-row>
     <!-- <ion-row>
