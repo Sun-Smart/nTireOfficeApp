@@ -62,6 +62,7 @@ export class PmsListPage implements OnInit {
   branch: any;
   branchlocation: any;
   nodatafound: string;
+  reportpropertylist: any;
 
 
 
@@ -83,6 +84,7 @@ export class PmsListPage implements OnInit {
     this.locationcode = ('')
     this.Getbranches();
     this.getcustomerItems();
+    this.getpropertylistreport()
   }
   togglefilter(){
     this.showfilter = !this.showfilter
@@ -281,7 +283,26 @@ if(this.companiesstr=="No data found"){
 // total get
 
 getpropertylistreport(){
-  
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/'+ this.functionID + "/" + this.branchID + "/" +"0/0/0/0/0/0/0/0/0", {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"reportlist");
+   this.reportpropertylist=res
+
+
+   
+   if (this.reportpropertylist == null) {
+    alert("hh")
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.reportpropertylist.length;
+  }
+    
+  })
 
 }
 
