@@ -620,7 +620,10 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     path: 'payment-history',
     loadChildren: () => import('./Property_Pages/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
   },
-
+  {
+    path: 'payment-history/:propertyid',
+    loadChildren: () => import('./Property_Pages/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
+  },
 
 
 ];

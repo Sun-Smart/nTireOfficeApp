@@ -109,7 +109,7 @@ export class PmsTransactionPage implements OnInit {
     debugger;
     console.log(items);
 
-    this.router.navigate(['/reciept-master-page', items.property_id, items.rental_id])
+    this.router.navigate(['/reciept-master-page', items.property_id, items.rental_id]);
     // const model = await this.modalCtrl.create({
 
     //   component: RecieptMasterPagePage,
@@ -251,7 +251,7 @@ export class PmsTransactionPage implements OnInit {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    // this.propertycode = item;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
