@@ -133,7 +133,7 @@ export class PmsCreateIssuePage implements OnInit {
       }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
-      console.log("error : " + JSON.stringify(error));
+      // console.log("error : " + JSON.stringify(error));
     });
   }
 

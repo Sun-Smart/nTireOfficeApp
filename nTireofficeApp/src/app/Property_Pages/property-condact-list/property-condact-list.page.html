@@ -9,56 +9,55 @@
 
 
 <ion-content>
-  <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
-    class="fa fa-filter" aria-hidden="true"></i></span></div>
+  <ion-row class="top-header">
+    <ion-col size="4" style="margin-left: 15px;">
+      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row>
 
     <ion-card *ngIf="showfilter">
       <ion-card-content >
         <ion-row>
+
+          <ion-col size="12">
+            <ion-label>Branch <span style="color:red;">*</span></ion-label>
+            <select id="selectbutton" [(ngModel)]="branch" class="form-control"
+              (change)="BranchLocationdata(branch)">
+              <option disabled>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+                {{branch.BRANCH_DESC}}
+              </option>
+            </select>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Branch :</ion-label>
-            <!-- <ion-input class="form-control"></ion-input> -->
-            <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyBranch" ></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="propertyBrancH(data)" *ngFor="let data of userRecords | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
+            <ion-label>Branch Location</ion-label>
+            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="getLocationdata(branchlocation)">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
+                {{location.BRANCH_DESC}}</option>
+            </select>
           </ion-col>
-    
-    
-            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-              <ion-label class="ContentName">Location :</ion-label>
-              <!-- <ion-input class="form-control"></ion-input> -->
-              <ion-searchbar placeholder="Search..." animated="true" [(ngModel)]="propertyLocation"></ion-searchbar>
-              <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-                <ion-item   (click)="propertyLocatioN(data)" *ngFor="let data of userRecords | filter:filterTerm">
-                  <ion-label>{{data.id}}</ion-label>
-                  <ion-label>{{data.name}}</ion-label>
-                  <ion-label>{{data.email}}</ion-label>
-                </ion-item>
-              </ion-list>
-          </ion-col>
-    
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Property Code :</ion-label>
-            <!-- <ion-input class="form-control"></ion-input> -->
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyCode" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="propertyCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-    
-        
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        </ion-col>
+
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Property Code</ion-label>
+          <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
+          </ion-searchbar>
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+            <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
+              style="background:none !important;color:#444 !important;display: block;">
+            {{item}}
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+
+          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Property Description :</ion-label>
-            <!-- <ion-input class="form-control"></ion-input> -->
+            <ion-input class="form-control"></ion-input>
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyDescription" animated="true"></ion-searchbar>
             <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
               <ion-item   (click)="propertyDescriptioN(data)" *ngFor="let data of propertyCode | filter:filterTerm">
@@ -67,10 +66,23 @@
                 <ion-label>{{data.email}}</ion-label>
               </ion-item>
             </ion-list>
-          </ion-col>
+          </ion-col> -->
     
           <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Rental Code :</ion-label>
+            <ion-label class="ContentName">Property Type :</ion-label>
+            <ion-input class="form-control"></ion-input>
+            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
+            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
+              <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
+                <ion-label>{{data.id}}</ion-label>
+                <ion-label>{{data.name}}</ion-label>
+                <ion-label>{{data.email}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col> -->
+
+          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="ContentName">Status :</ion-label>
             <ion-input class="form-control"></ion-input>
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
             <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
@@ -89,30 +101,46 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+
+    <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count : {{showdata}}</p>
+
+    <ion-card  *ngFor="let items of propetycondactlist; let i = index">
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col size="7">
+            <ion-label class="card_header_text">Property Condact List</ion-label>
+          </ion-col>
+  
+          <ion-col size="5">
+            <ion-label class="card_header_text"> #{{i+1}}</ion-label>
+          </ion-col>
+        </ion-row>
+  
+  
+      </ion-card-header>
       <ion-card-content class="card_content">
         <ion-grid>
           <ion-row>
   
             <ion-col size="7" class="col_height">
   
-              <ion-label class="labelHead-text"> Branch :</ion-label>
+              <ion-label class="labelHead-text"> Branch </ion-label>
   
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">Mumbai</ion-label>
+              <ion-label class="labelData-text">: {{items.Branch}}</ion-label>
   
             </ion-col>
   
             <ion-col size="7" class="col_height">
   
-              <ion-label class="labelHead-text">Unique Ref :</ion-label>
+              <ion-label class="labelHead-text">Unique Ref </ion-label>
   
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">Kc</ion-label>
+              <ion-label class="labelData-text">: {{items.UniqueRef}}</ion-label>
   
             </ion-col>
   
@@ -124,7 +152,7 @@
   
             </ion-col>
             <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">PR1602022</ion-label>
+              <ion-label class="labelData-text">: {{items.PropertyCode}}</ion-label>
   
             </ion-col>
   
@@ -135,7 +163,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">2st floor</ion-label>
+              <ion-label class="labelData-text">: {{items.PropertyDesc}}</ion-label>
   
             </ion-col>
   
@@ -145,7 +173,7 @@
   
             </ion-col>
             <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">Medical Help</ion-label>
+              <ion-label class="labelData-text">: {{items.ContactCategory}}</ion-label>
   
             </ion-col>
   
@@ -156,7 +184,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">tamil</ion-label>
+              <ion-label class="labelData-text">: {{items.Name}}</ion-label>
             </ion-col>
             <ion-col size="7" class="col_height" style="    justify-content: center;align-items: center;display: flex;">
   
@@ -165,7 +193,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">iudihd</ion-label>
+              <ion-label class="labelData-text">: {{items.Address}}</ion-label>
             </ion-col>
             <ion-col size="7" class="col_height">
   
@@ -174,7 +202,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">3787398738</ion-label>
+              <ion-label class="labelData-text">: {{items.Res_Phone}}</ion-label>
   
             </ion-col>
             <ion-col size="7" class="col_height">
@@ -184,7 +212,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">3787398738</ion-label>
+              <ion-label class="labelData-text">: {{items.Off_Phone}}</ion-label>
   
             </ion-col>
             <ion-col size="7" class="col_height">
@@ -194,7 +222,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">tamizhvanan@sunsmart.co.in</ion-label>
+              <ion-label class="labelData-text">: {{items.Email}}</ion-label>
   
             </ion-col>
             <ion-col size="7" class="col_height">
@@ -204,7 +232,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">dhud</ion-label>
+              <ion-label class="labelData-text">: {{items.Others1}}</ion-label>
   
             </ion-col>
             <ion-col size="7" class="col_height">
@@ -214,7 +242,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">fjfhu</ion-label>
+              <ion-label class="labelData-text">: {{items.Others2}}</ion-label>
   
             </ion-col>
             <ion-col size="7" class="col_height">
@@ -224,7 +252,7 @@
             </ion-col>
             <ion-col size="5" class="col_height">
   
-              <ion-label class="labelData-text">vgdyh</ion-label>
+              <ion-label class="labelData-text">: {{items.Others3}}</ion-label>
   
             </ion-col>
             
@@ -245,18 +273,31 @@
             </ion-col> -->
           </ion-row>
         </ion-grid>
-        <ion-row>
+        <!-- <ion-row>
           <ion-col size="12">
             <ion-button color="success">Update</ion-button>
           </ion-col>
   
-          <!-- <ion-col size="6">
+           <ion-col size="6">
             <ion-button class="ion-color-success" (click)="newIssueCreate()">New</ion-button>
-          </ion-col> -->
-        </ion-row>
+          </ion-col> 
+        </ion-row> -->
       </ion-card-content>
   
     </ion-card>
 
 
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+
+
+</ion-footer>

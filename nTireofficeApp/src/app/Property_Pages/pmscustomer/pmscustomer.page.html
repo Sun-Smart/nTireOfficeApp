@@ -66,8 +66,7 @@
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-              <ion-label> {{item.property_code}}</ion-label>
-              <ion-label> - {{item.property_desc}} </ion-label>
+             {{item}}
             </ion-item>
           </ion-list>
         </ion-col>
@@ -247,7 +246,7 @@
 
 
 </ion-content>
-<ion-footer>
+
 
 
 
@@ -265,4 +264,3 @@
 
 
   </ion-footer>
-</ion-footer>

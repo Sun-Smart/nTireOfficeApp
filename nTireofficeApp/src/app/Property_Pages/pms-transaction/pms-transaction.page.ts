@@ -17,7 +17,7 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/quotes */
 import { Component, ViewChild, TemplateRef, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from '../table-sample.service';
@@ -65,12 +65,12 @@ export class PmsTransactionPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
+  norecordsfound: boolean;
 
 
-
-  constructor(private router: Router, private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
+  constructor(public alertController: AlertController, private router: Router, private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
     this.Getbranches();
-    console.log('this.branch ', this.branch);
+    // console.log('this.branch ', this.branch);
 
     this.columns = [
       { name: 'Name', width: "110", sorting: true },
@@ -86,7 +86,7 @@ export class PmsTransactionPage implements OnInit {
   }
 
   ngOnInit() {
-    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    // this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.getAllPaymentDetails();
     this.dataWithRowDetail = this.tableApi.getData();
     console.log(this.data);
@@ -109,12 +109,73 @@ export class PmsTransactionPage implements OnInit {
     debugger;
     console.log(items);
 
-    this.router.navigate(['/reciept-master-page', items.property_id, items.rental_id])
+    this.router.navigate(['/reciept-master-page', items.property_id, items.rental_id]);
     // const model = await this.modalCtrl.create({
 
     //   component: RecieptMasterPagePage,
     // });
     // return await model.present();
+  }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  filterRecords() {
+    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
+      this.presentAlert("", "Please select Branch");
+      return;
+    } else {
+      debugger;
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+      // if (this.branch == "undefined") {
+      //   this.branchid = 1;
+      // } else if (this.branchlocation == "undefined") {
+      //   this.branchlocation = 1;
+      // } else if (this.propertycode == "undefined") {
+      //   this.propertycode = 1;
+      // }
+      let data = {
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+        branchid: this.branch ? this.branch : 1,
+        locationid: this.branchlocation ? this.branchlocation : 1,
+        strPropertyId: this.propertycode ? this.propertycode : 0,
+        strPropertyDesc: 0,
+        rentelCode: 0,
+        strStatus: 0,
+        pageIndex: 0,
+        pageSize: 50,
+        sortExpression: 0,
+        alphaname: 0,
+        Split_ID: 0,
+        strusertype: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+        userid: parseInt(localStorage.getItem('TUM_USER_ID'))
+      }
+
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getpaymentdetails' + '/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
+        headers: options,
+      }).subscribe(resp => {
+        this.showAllrecords = resp;
+        if (resp == null) {
+          this.norecordsfound = true;
+        } else {
+          this.norecordsfound = false;
+        }
+        // console.log('this.showAllrecords ', this.showAllrecords);
+
+      }, error => {
+
+        // console.log("showAllrecords : " + JSON.stringify(error));
+      });
+    }
   }
   getAllPaymentDetails() {
     const header = new Headers();
@@ -200,7 +261,6 @@ export class PmsTransactionPage implements OnInit {
       console.log(this.locationcode1, 'fyttr')
     })
   }
-
   getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
@@ -220,7 +280,7 @@ export class PmsTransactionPage implements OnInit {
     this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
-      this.propertyCode1 = [];
+      // this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
@@ -246,7 +306,6 @@ export class PmsTransactionPage implements OnInit {
     });
   };
 
-
   addPropertycode(item: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
@@ -270,15 +329,6 @@ export class PmsTransactionPage implements OnInit {
       console.log(this.respContact);
 
       this.propertyDesc = this.respContact[0]['property_building_name'];
-      // this.contact1 = JSON.parse(this.respContact);
-      // console.log(this.contact1);
-      // if (this.contact1.length == 0) {
-      //   this.presentAlert('Alert', 'Add company Contact Number!');
-
-      // } else {
-
-      //   this.contact_array = this.contact1;
-      // }
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
