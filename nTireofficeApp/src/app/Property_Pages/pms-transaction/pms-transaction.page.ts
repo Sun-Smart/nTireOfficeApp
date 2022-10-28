@@ -126,7 +126,8 @@ export class PmsTransactionPage implements OnInit {
     });
 
     await alert.present();
-  }
+  };
+
   filterRecords() {
     if (this.branch == "undefined" || this.branch == null || this.branch == "") {
       this.presentAlert("", "Please select Branch");
@@ -157,7 +158,7 @@ export class PmsTransactionPage implements OnInit {
         Split_ID: 0,
         strusertype: parseInt(localStorage.getItem('TUM_USER_TYPE')),
         userid: parseInt(localStorage.getItem('TUM_USER_ID'))
-      }
+      };
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getpaymentdetails' + '/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
@@ -180,6 +181,7 @@ export class PmsTransactionPage implements OnInit {
   getAllPaymentDetails() {
     const header = new Headers();
     header.append("Content-Type", "application/json");
+
     let data = {
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
       branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),

@@ -18,6 +18,9 @@ export class PmscustomerPage implements OnInit {
   name: string = '';
   filterTerm: string;
   showfilter: boolean = true;
+  showdata: any;
+  showAllrecords: any = [];
+
 
   propertyBranch: any;
   userId: any;
@@ -39,7 +42,7 @@ export class PmscustomerPage implements OnInit {
   branchid: any;
   branchID: string;
   propertyCodeResultLength: any;
-  showdata: any;
+
 
   customerbranch: any;
   isItemAvailable: boolean = false;
@@ -65,6 +68,7 @@ export class PmscustomerPage implements OnInit {
   branchlocationlist: any = [];
   branch: any;
   branchlocation: any;
+  norecordsfound: boolean;
 
 
 
@@ -85,7 +89,7 @@ export class PmscustomerPage implements OnInit {
     this.branchcode = ('')
     this.locationcode = ('')
     this.Getbranches();
-    this.getcustomerItems();
+    this.getcustomerItems()
     // this.getlocation();
 
   };
@@ -107,26 +111,91 @@ export class PmscustomerPage implements OnInit {
     this.showfilter = !this.showfilter;
   };
 
+  filterRecords() {
+    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
+      this.presentAlert("", "Please select Branch");
+      return;
+    } else {
+      debugger;
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+      // if (this.branch == "undefined") {
+      //   this.branchid = 1;
+      // } else if (this.branchlocation == "undefined") {
+      //   this.branchlocation = 1;
+      // } else if (this.propertycode == "undefined") {
+      //   this.propertycode = 1;
+      // }
+      let data = {
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+        branchid: this.branch ? this.branch : 1,
+        locationid: this.branchlocation ? this.branchlocation : 1,
+        strPropertyId: this.propertycode ? this.propertycode : 0,
+        strPropertyDesc: 0,
+        rentelCode: 0,
+        strStatus: 0,
+        pageIndex: 0,
+        pageSize: 50,
+        sortExpression: 0,
+        alphaname: 0,
+        Split_ID: 0,
+        strusertype: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+        userid: parseInt(localStorage.getItem('TUM_USER_ID'))
+      };
+
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
+        headers: options,
+      }).subscribe(resp => {
+        this.showAllrecords = resp;
+        if (resp == null) {
+          this.norecordsfound = true;
+        } else {
+          this.norecordsfound = false;
+        }
+        // console.log('this.showAllrecords ', this.showAllrecords);
+
+      }, error => {
+
+        // console.log("showAllrecords : " + JSON.stringify(error));
+      });
+    }
+  }
+
   getcustomerItems() {
 
-    this.userid = window.localStorage['TUM_USER_ID'],
-      this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
-      this.strFunctionId = window.localStorage['FUNCTION_ID'],
-      this.strusertype = window.localStorage['TUM_USER_TYPE'],
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
 
-      this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
-        .subscribe((resp: any) => {
-          console.log(resp);
-          this.propertyCodeResult = resp
+    let data = {
+      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+      branchid: this.branch ? this.branch : 1,
+      locationid: this.branchlocation ? this.branchlocation : 1,
+      strPropertyId: this.propertycode ? this.propertycode : 0,
+      strPropertyDesc: 0,
+      rentelCode: 0,
+      strStatus: 0,
+      pageIndex: 0,
+      pageSize: 50,
+      sortExpression: 0,
+      alphaname: 0,
+      Split_ID: 0,
+      strusertype: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+      userid: parseInt(localStorage.getItem('TUM_USER_ID'))
+    };
 
-          if (this.propertyCodeResult == null) {
-            alert("hh")
-            this.showdata = "No Data Found"
-          }
-          else {
-            this.showdata = this.propertyCodeResult.length;
-          }
-        });
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
+      headers: options,
+    }).subscribe((resp: any) => {
+      console.log(resp);
+      this.propertyCodeResult = resp
+
+    }, error => {
+
+      // console.log("showAllrecords : " + JSON.stringify(error));
+    });
+
   };
   strBranchcode(strBranchcode: any) {
     throw new Error('Method not implemented.');
@@ -155,7 +224,7 @@ export class PmscustomerPage implements OnInit {
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     console.log(strFunctionId);
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
@@ -256,7 +325,7 @@ export class PmscustomerPage implements OnInit {
   addPropertycode(item: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     this.propertycode = item;
     this.isPropertycodeAvailable = false;

@@ -93,7 +93,7 @@
 
 
         <ion-col size="12">
-          <ion-button class="ion-color-success" (click)="getItems(data)" expand="block">SEARCH</ion-button>
+          <ion-button class="ion-color-success" (click)="filterRecords()" expand="block">SEARCH</ion-button>
         </ion-col>
 
 
@@ -101,7 +101,7 @@
     </ion-card-content>
   </ion-card>
 
-  <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count : {{showdata}}</p>
+  <center *ngIf="propertyCodeResult" style="text-align: center;font-weight: bold;font-size: 17px;">Total records: {{propertyCodeResult.length}}</center>
 
   <ion-card *ngFor="let items of propertyCodeResult; let i = index">
     <ion-card-header class="card_header">
