@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IpaddressService } from '../../service/ipaddress.service';
+import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-pms-list',
@@ -63,6 +64,9 @@ export class PmsListPage implements OnInit {
   branchlocation: any;
   nodatafound: string;
   reportpropertylist: any;
+  status: string;
+  PropertyType: any;
+  propertynature: any;
 
 
 
@@ -83,7 +87,7 @@ export class PmsListPage implements OnInit {
     this.branchcode = ('')
     this.locationcode = ('')
     this.Getbranches();
-    this.getcustomerItems();
+   
     this.getpropertylistreport()
   }
   togglefilter(){
@@ -91,27 +95,7 @@ export class PmsListPage implements OnInit {
   }
 
 
-  getcustomerItems() {
-
-    this.userid = window.localStorage['TUM_USER_ID'],
-    this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
-    this.strFunctionId = window.localStorage['FUNCTION_ID'],
-    this.strusertype = window.localStorage['TUM_USER_TYPE'],
-
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
-      .subscribe((resp: any) => {
-        console.log(resp);
-        this.propertyCodeResult = resp
-
-        if (this.propertyCodeResult == null) {
-          alert("hh")
-          this.showdata = "No Data Found"
-        }
-        else {
-          this.showdata = this.propertyCodeResult.length;
-        }
-      });
-  };
+ ;
   strBranchcode(strBranchcode: any) {
     throw new Error('Method not implemented.');
   };
@@ -295,7 +279,7 @@ getpropertylistreport(){
 
    
    if (this.reportpropertylist == null) {
-    alert("hh")
+
     this.showdata = "No Data Found"
   }
   else {
@@ -305,6 +289,41 @@ getpropertylistreport(){
   })
 
 }
+
+filterpropertylistreport(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  let data ={
+    functionID: localStorage.getItem('FUNCTION_ID'),
+    branchid: this.branch ? this.branch : 1,
+    locationid: this.branchlocation ? this.branchlocation : 1,
+    propertyID: this.propertycode ? this.propertycode : 0,
+    status: this.status ? this.status : 0,
+    propertytype: this.PropertyType ? this.PropertyType : 0,
+    propertynature: this.propertynature ? this.propertynature : 0,
+
+  }
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/'+ data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" +"0/0/0/" + data.status +"/" + data.propertytype +"/0" +"/" + data.propertynature, {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"reportlist");
+   this.reportpropertylist=res
+
+
+   
+   if (this.reportpropertylist == null) {
+
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.reportpropertylist.length;
+  }
+    
+  })
+
+}
+
 
 
 

@@ -228,4 +228,30 @@ getpropertycondactlist(){
 
 
 
+filterpropertycondactlist(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycontactlistreport/'+ this.functionID + "/" + this.branchID + "/" +"0/0", {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"reportlist");
+   this.propetycondactlist=res
+
+
+   
+   if (this.propetycondactlist == null) {
+    alert("hh")
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.propetycondactlist.length;
+  }
+    
+  })
+
+}
+
+
+
 }

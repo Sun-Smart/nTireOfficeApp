@@ -53,6 +53,29 @@
           </ion-list>
         </ion-col>
 
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Customer</ion-label>
+       <ion-input type="text" class="form-control"  [(ngModel)]="Customer"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>AssignedTo</ion-label>
+       <ion-input type="text" class="form-control"  [(ngModel)]="AssignedTo"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Status</ion-label>
+          <select id="selectbutton" [(ngModel)]="Status" class="form-control" >
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option> Cancelled</option>
+            <option> Completed</option>
+            <option> New</option>
+            <option> Pending</option>
+            <option> Rejected</option>
+           
+            
+          </select>
+        </ion-col>
 
           <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Property Description :</ion-label>
@@ -94,7 +117,7 @@
           </ion-col> -->
     
           <ion-col size="12">
-            <ion-button color="success" size="default">SEARCH</ion-button>
+            <ion-button color="success" size="default" (click)="Filterpropertyissueledger()">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>

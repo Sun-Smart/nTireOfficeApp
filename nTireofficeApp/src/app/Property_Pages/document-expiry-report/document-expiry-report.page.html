@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;margin-top: 1px;">
     <ion-buttons slot="start">
@@ -11,23 +10,24 @@
 <ion-content>
   <ion-row class="top-header">
     <ion-col size="4" style="margin-left: 15px;">
-      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
+      <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter">
+        </ion-icon>
+      </ion-button>
     </ion-col>
   </ion-row>
 
-    <ion-card *ngIf="showfilter">
-      <ion-card-content >
-        <ion-row>
+  <ion-card *ngIf="showfilter">
+    <ion-card-content>
+      <ion-row>
 
-          <ion-col size="12">
-            <ion-label>Branch <span style="color:red;">*</span></ion-label>
-            <select id="selectbutton" [(ngModel)]="branch" class="form-control"
-              (change)="BranchLocationdata(branch)">
-              <option disabled>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
-                {{branch.BRANCH_DESC}}
-              </option>
-            </select>
+        <ion-col size="12">
+          <ion-label>Branch <span style="color:red;">*</span></ion-label>
+          <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+            <option disabled>&lt;&lt; Select &gt;&gt;</option>
+            <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+              {{branch.BRANCH_DESC}}
+            </option>
+          </select>
         </ion-col>
 
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -49,13 +49,25 @@
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-            {{item}}
+              {{item}}
             </ion-item>
           </ion-list>
         </ion-col>
 
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Issue Date</ion-label>
+          <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
+        </ion-col>
 
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label>Expiry Date</ion-label>
+          <ion-input type="date" class="form-control" [(ngModel)]="todate"></ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-label>Client Name</ion-label>
+          <ion-input type="text" class="form-control" [(ngModel)]="clientname"></ion-input>
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Property Description :</ion-label>
             <ion-input class="form-control"></ion-input>
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyDescription" animated="true"></ion-searchbar>
@@ -68,7 +80,7 @@
             </ion-list>
           </ion-col> -->
 
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Property Type :</ion-label>
             <ion-input class="form-control"></ion-input>
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
@@ -81,7 +93,7 @@
             </ion-list>
           </ion-col> -->
 
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Status :</ion-label>
             <ion-input class="form-control"></ion-input>
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
@@ -94,97 +106,97 @@
             </ion-list>
           </ion-col> -->
 
-          <ion-col size="12">
-            <ion-button color="success" size="default" (click)="filterdocumentexpiryreport()">SEARCH</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
+        <ion-col size="12">
+          <ion-button color="success" size="default" (click)="filterdocumentexpiryreport()">SEARCH</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count : {{showdata}}</p>
+  <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count : {{showdata}}</p>
 
-    <ion-card *ngFor="let items of getdocumentexpiryList; let i = index">
-      <ion-card-header class="card_header">
-        <ion-row>
-          <ion-col size="7">
-            <ion-label class="card_header_text">Document Expiry Report</ion-label>
-          </ion-col>
+  <ion-card *ngFor="let items of getdocumentexpiryList; let i = index">
+    <ion-card-header class="card_header">
+      <ion-row>
+        <ion-col size="7">
+          <ion-label class="card_header_text">Document Expiry Report</ion-label>
+        </ion-col>
 
-          <ion-col size="5">
+        <ion-col size="5">
 
-          </ion-col>
-        </ion-row>
-      </ion-card-header>
-      <ion-card-content class="card_content">
-          <ion-row>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text"> Branch :</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.Branch}}</ion-label>
-            </ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content class="card_content">
+      <ion-row>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text"> Branch :</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.Branch}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text">ClientName :</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.ClientName}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">ClientName :</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.ClientName}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text">Document Type :</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.Document_Type}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Document Type :</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.DocumentType}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text">Property Code
-                :</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.Property_Code}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Property Code
+            :</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.PropertyCode}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text">PropertyDesc :</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.PropertyDesc}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">PropertyDesc :</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.PropertyDesc}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text">Issue Date:</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.Issue_Date}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text">Issue Date:</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.IssueDate}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height" style="justify-content: center;align-items: center;display: flex;">
-              <ion-label class="labelHead-text">From Date:</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.From_Date}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height" style="justify-content: center;align-items: center;display: flex;">
+          <ion-label class="labelHead-text">From Date:</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.FromDate}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text"> To Date:</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.To_Date}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text"> To Date:</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.ToDate}}</ion-label>
+        </ion-col>
 
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelHead-text"> Reference :</ion-label>
-            </ion-col>
-            <ion-col size="5" class="col_height">
-              <ion-label class="labelData-text">{{items.Reference}}</ion-label>
-            </ion-col>
+        <ion-col size="7" class="col_height">
+          <ion-label class="labelHead-text"> Reference :</ion-label>
+        </ion-col>
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelData-text">{{items.Reference}}</ion-label>
+        </ion-col>
 
-        </ion-row>
-      </ion-card-content>
+      </ion-row>
+    </ion-card-content>
 
-    </ion-card>
+  </ion-card>
 </ion-content>
 
 <ion-footer>

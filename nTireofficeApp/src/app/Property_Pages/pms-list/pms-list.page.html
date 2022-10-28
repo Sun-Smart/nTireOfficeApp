@@ -55,11 +55,42 @@
               </ion-item>
             </ion-list>
           </ion-col>
-  
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Status</ion-label>
+            <select id="selectbutton" [(ngModel)]="status" class="form-control" >
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option> Approved</option>
+              <option> New</option>
+              <option> Pending</option>
+              <option> Rejected</option>
+              
+            </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Property Type</ion-label>
+            <select id="selectbutton" [(ngModel)]="PropertyType" class="form-control" >
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option> Residental</option>
+              <option> Commercial</option>
+             
+              
+            </select>
+          </ion-col>
+
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Property Nature</ion-label>
+            <select id="selectbutton" [(ngModel)]="PropertyNature" class="form-control" >
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option> Occupied</option>
+              <option> Available</option>
+            </select>
+          </ion-col>
   
     
           <ion-col size="12">
-            <ion-button color="success" size="default">SEARCH</ion-button>
+            <ion-button color="success" size="default" (click)="filterpropertylistreport()">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
