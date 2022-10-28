@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
 import { AlertController, ModalController } from '@ionic/angular';
-
 import { IpaddressService } from '../../service/ipaddress.service';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
@@ -156,6 +154,8 @@ export class PmscustomerPage implements OnInit {
 
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    console.log(strFunctionId);
+    
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
