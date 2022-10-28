@@ -49,6 +49,7 @@ export class RecieptMasterPagePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.receiptDetailslist = resp;
+      console.log('first',this.receiptDetailslist);
     });
   }
   getReceiptDetailsGrid() {
@@ -57,6 +58,7 @@ export class RecieptMasterPagePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.receiptDetailsGrid = resp;
+      console.log('second',this.receiptDetailsGrid);
     });
   }
 

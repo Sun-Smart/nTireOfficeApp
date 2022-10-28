@@ -25,6 +25,8 @@ export class PaymentHistoryPage implements OnInit {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.data = params;
     });
+    console.log(this.data);
+    this.getReceiptDetails();
   }
   cancel() {
     // return this.modalCtrl.dismiss(null, 'cancel');
@@ -32,10 +34,11 @@ export class PaymentHistoryPage implements OnInit {
   }
   getReceiptDetails() {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getpaymenthistorydetailsgrid/' + this.data.property_id + "/" + this.data.rental_id, {
+    this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getpaymenthistorydetailsgrid/' + this.data.propertyid, {
       headers: options,
     }).subscribe(resp => {
       this.historyDetailslist = resp;
+      console.log(this.historyDetailslist);
     });
   }
 }

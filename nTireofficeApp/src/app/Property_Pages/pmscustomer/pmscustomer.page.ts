@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
 import { AlertController, ModalController } from '@ionic/angular';
-
 import { IpaddressService } from '../../service/ipaddress.service';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 import { PmsIssueStatusPage } from '../pms-issue-status/pms-issue-status.page';
@@ -148,7 +146,7 @@ export class PmscustomerPage implements OnInit {
       this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+        // console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
     });
@@ -156,6 +154,8 @@ export class PmscustomerPage implements OnInit {
 
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    console.log(strFunctionId);
+    
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
@@ -163,7 +163,7 @@ export class PmscustomerPage implements OnInit {
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
 
@@ -256,6 +256,7 @@ export class PmscustomerPage implements OnInit {
   addPropertycode(item: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    
 
     this.propertycode = item;
     this.isPropertycodeAvailable = false;
