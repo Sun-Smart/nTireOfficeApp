@@ -63,33 +63,46 @@ export class PaymentDetailsPage implements OnInit {
   togglefilter() {
     this.showfilter = !this.showfilter;
   };
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
   filtergetPaymentDetails() {
 
-    let data = {
-      Function_id: parseInt(localStorage.getItem('FUNCTION_ID')),
-      Branch_id: this.branch ? this.branch : 1,
-      location: this.branchlocation ? this.branchlocation : 1,
-      property_code: this.propertycode ? this.propertycode : 0
-    };
+    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
+      this.presentAlert("", "Please select Branch");
+      return;
+    } else {
+      let data = {
+        Function_id: parseInt(localStorage.getItem('FUNCTION_ID')),
+        Branch_id: this.branch ? this.branch : 1,
+        location: this.branchlocation ? this.branchlocation : 0,
+        property_code: this.propertycode ? this.propertycode : 0
+      };
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
 
-
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.Branch_id + '/' + data.location + '/' + data.property_code + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0, {
-      headers: options,
-    }).subscribe(resp => {
-      this.getPaymentDetailsList = resp;
-      console.log(this.getPaymentDetailsList);
-      if (this.getPaymentDetailsList == null) {
-        // alert("hh")
-        this.showdata = "No Data Found";
-      }
-      else {
-        this.showdata = this.getPaymentDetailsList.length;
-      }
-    });
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.Branch_id + '/' + data.location + '/' + data.property_code + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0, {
+        headers: options,
+      }).subscribe(resp => {
+        this.getPaymentDetailsList = resp;
+        console.log(this.getPaymentDetailsList);
+        if (resp == null) {
+          this.showdata = true;
+        }
+        else {
+          this.showdata = false;
+        }
+      });
+    }
   };
 
 
@@ -110,12 +123,13 @@ export class PaymentDetailsPage implements OnInit {
     }).subscribe(resp => {
       this.getPaymentDetailsList = resp;
       console.log(this.getPaymentDetailsList);
-      if (this.getPaymentDetailsList == null) {
+      if (resp == null) {
         // alert("hh")
-        this.showdata = "No Data Found";
+        this.showdata = true;
       }
       else {
-        this.showdata = this.getPaymentDetailsList.length;
+        // this.showdata = this.getPaymentDetailsList.length;
+        this.showdata = false;
       }
     });
   };
