@@ -11,6 +11,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 export class PaymentDetailsPage implements OnInit {
 
   showfilter:boolean=true;
+  showdata:any;
 
   //  filter Branch, Location & property code,
 
@@ -29,6 +30,14 @@ export class PaymentDetailsPage implements OnInit {
   respContact: any;
   propertyDesc: any;
 
+  user_type:any;
+  Function_id:any;
+  Branch_id:any;
+  user_id:any;
+
+  getPaymentDetailsList:any;
+
+
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
@@ -37,10 +46,41 @@ export class PaymentDetailsPage implements OnInit {
   ngOnInit() {
 
     this.Getbranches();
+    this.getPaymentDetails();
   }
   togglefilter(){
     this.showfilter = !this.showfilter
   };
+
+getPaymentDetails(){
+
+  this.user_id = window.localStorage['TUM_USER_ID'];
+  this.Branch_id = window.localStorage['TUM_BRANCH_ID'];
+  this.Function_id = window.localStorage['FUNCTION_ID'];
+  this.user_type = window.localStorage['TUM_USER_TYPE'];
+
+
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + this.Function_id + '/' + this.Branch_id + '/' + 0 +  '/' + 0 + '/' + 0 + '/'  + 0 +'/' + 0 + '/' + 0 + '/' + 0 + '/' + 0, {
+    headers: options,
+  }).subscribe(resp=>{
+    
+    this.getPaymentDetailsList = resp;
+    console.log(this.getPaymentDetailsList);
+    
+    if (this.getPaymentDetailsList == null) {
+      alert("hh")
+      this.showdata = "No Data Found"
+    }
+    else {
+      this.showdata = this.getPaymentDetailsList.length;
+    }
+  })
+};
+
 
   Getbranches() {
 

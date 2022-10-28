@@ -146,7 +146,7 @@ export class PmscustomerPage implements OnInit {
       this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+        // console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
     });
@@ -163,7 +163,7 @@ export class PmscustomerPage implements OnInit {
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
 
@@ -256,6 +256,7 @@ export class PmscustomerPage implements OnInit {
   addPropertycode(item: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    
 
     this.propertycode = item;
     this.isPropertycodeAvailable = false;

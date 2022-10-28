@@ -12,25 +12,34 @@ import { IpaddressService } from '../../service/ipaddress.service';
 export class DocumentExpiryReportPage implements OnInit {
 
 
-  showfilter:boolean=true;
+  showfilter: boolean = true;
+  showdata: any;
 
-     // filter Branch, Location & property code,
+  // filter Branch, Location & property code,
 
-     branchlist1: any = [];
-     branchlist: any;
-     branchlocationlist: any = [];
-     customerlocation: any;
-     locationcode1: any[] = [];
-     propertyCode1: any[];
-     isPropertycodeAvailable: boolean;
-     companiesstr: any;
-     branch:any;
-     branchlocation: any;
-     propertycode: any;
-     property_code: any;
-     respContact: any;
-     propertyDesc: any;
+  branchlist1: any = [];
+  branchlist: any;
+  branchlocationlist: any = [];
+  customerlocation: any;
+  locationcode1: any[] = [];
+  propertyCode1: any[];
+  isPropertycodeAvailable: boolean;
+  companiesstr: any;
+  branch: any;
+  branchlocation: any;
+  propertycode: any;
+  property_code: any;
+  respContact: any;
+  propertyDesc: any;
 
+
+
+  user_type: any;
+  Function_id: any;
+  Branch_id: any;
+  user_id: any;
+
+  getdocumentexpiryList: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -39,12 +48,41 @@ export class DocumentExpiryReportPage implements OnInit {
 
   ngOnInit() {
     this.Getbranches();
+    this.getdocumentexpiryreport();
   }
-  togglefilter(){
+  togglefilter() {
     this.showfilter = !this.showfilter
   };
 
+  getdocumentexpiryreport() {
 
+    this.user_id = window.localStorage['TUM_USER_ID'];
+    this.Branch_id = window.localStorage['TUM_BRANCH_ID'];
+    this.Function_id = window.localStorage['FUNCTION_ID'];
+    this.user_type = window.localStorage['TUM_USER_TYPE'];
+
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getdocumentexpiryreport/' + this.Function_id + '/' + this.Branch_id + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0, {
+      headers: options,
+    }).subscribe(resp => {
+
+      this.getdocumentexpiryList = resp;
+      console.log(this.getdocumentexpiryList);
+
+      if (this.getdocumentexpiryList == null) {
+  
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.getdocumentexpiryList.length;
+      }
+    });
+
+  }
   Getbranches() {
 
     const header = new Headers();
@@ -64,7 +102,7 @@ export class DocumentExpiryReportPage implements OnInit {
     });
   };
 
-  
+
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -84,7 +122,7 @@ export class DocumentExpiryReportPage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
