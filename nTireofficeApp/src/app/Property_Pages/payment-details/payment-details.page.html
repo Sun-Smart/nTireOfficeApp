@@ -97,7 +97,7 @@
             </ion-col> -->
 
         <ion-col size="12">
-          <ion-button color="success" size="default">SEARCH</ion-button>
+          <ion-button color="success" size="default" (click)="filtergetPaymentDetails()">SEARCH</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -204,18 +204,18 @@
           <ion-label class="labelData-text">{{items.Status}}</ion-label>
         </ion-col>
         <!-- <ion-col size="7" class="col_height">
-    
+
                 <ion-label class="labelHead-text"> Others3 :</ion-label>
-    
+
               </ion-col>
               <ion-col size="5" class="col_height">
-    
+
                 <ion-label class="labelData-text">vgdyh</ion-label>
-    
+
               </ion-col> -->
 
         <!-- <ion-col size="5" class="col_height">
-    
+
                 <option [ngValue]="null"  disabled  selected>--Select--</option>
                 <ion-list>
                   <ion-item style=" border: none;background-color: transparent;">
@@ -226,8 +226,8 @@
                     </ion-select>
                   </ion-item>
                 </ion-list>
-    
-    
+
+
               </ion-col> -->
       </ion-row>
       <ion-row>

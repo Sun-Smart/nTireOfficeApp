@@ -30,7 +30,7 @@
             </select>
         </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="getLocationdata(branchlocation)">
@@ -39,7 +39,7 @@
                 {{location.BRANCH_DESC}}</option>
             </select>
           </ion-col>
-        </ion-col>
+        </ion-col> -->
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -67,7 +67,7 @@
               </ion-item>
             </ion-list>
           </ion-col> -->
-    
+
           <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Property Type :</ion-label>
             <ion-input class="form-control"></ion-input>
@@ -93,9 +93,9 @@
               </ion-item>
             </ion-list>
           </ion-col> -->
-    
+
           <ion-col size="12">
-            <ion-button color="success" size="default">SEARCH</ion-button>
+            <ion-button color="success" size="default" (click)="filterdocumentexpiryreport()">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
@@ -109,9 +109,9 @@
           <ion-col size="7">
             <ion-label class="card_header_text">Document Expiry Report</ion-label>
           </ion-col>
-  
+
           <ion-col size="5">
-            
+
           </ion-col>
         </ion-row>
       </ion-card-header>
@@ -123,21 +123,21 @@
             <ion-col size="5" class="col_height">
               <ion-label class="labelData-text">{{items.Branch}}</ion-label>
             </ion-col>
-  
+
             <ion-col size="7" class="col_height">
               <ion-label class="labelHead-text">ClientName :</ion-label>
             </ion-col>
             <ion-col size="5" class="col_height">
               <ion-label class="labelData-text">{{items.ClientName}}</ion-label>
             </ion-col>
-  
+
             <ion-col size="7" class="col_height">
               <ion-label class="labelHead-text">Document Type :</ion-label>
             </ion-col>
             <ion-col size="5" class="col_height">
               <ion-label class="labelData-text">{{items.Document_Type}}</ion-label>
             </ion-col>
-  
+
             <ion-col size="7" class="col_height">
               <ion-label class="labelHead-text">Property Code
                 :</ion-label>
@@ -145,14 +145,14 @@
             <ion-col size="5" class="col_height">
               <ion-label class="labelData-text">{{items.Property_Code}}</ion-label>
             </ion-col>
-  
+
             <ion-col size="7" class="col_height">
               <ion-label class="labelHead-text">PropertyDesc :</ion-label>
             </ion-col>
             <ion-col size="5" class="col_height">
               <ion-label class="labelData-text">{{items.PropertyDesc}}</ion-label>
             </ion-col>
-  
+
             <ion-col size="7" class="col_height">
               <ion-label class="labelHead-text">Issue Date:</ion-label>
             </ion-col>
@@ -183,7 +183,7 @@
 
         </ion-row>
       </ion-card-content>
-  
+
     </ion-card>
 </ion-content>
 

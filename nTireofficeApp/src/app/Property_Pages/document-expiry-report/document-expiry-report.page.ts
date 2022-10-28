@@ -74,7 +74,7 @@ export class DocumentExpiryReportPage implements OnInit {
       console.log(this.getdocumentexpiryList);
 
       if (this.getdocumentexpiryList == null) {
-  
+
         this.showdata = "No Data Found"
       }
       else {
