@@ -10,25 +10,25 @@ import { AlertController } from '@ionic/angular';
 })
 export class RFQPage implements OnInit {
 
-  showviewlist:boolean=false
-  showrfq:boolean=false
-  selectAll:boolean = false;
+  showviewlist: boolean = false
+  showrfq: boolean = false
+  selectAll: boolean = false;
 
   indeterminateState: boolean;
   checkParent: boolean;
   Checkboxes: any;
-  checkboxes:any=[];
+  checkboxes: any = [];
   prscode: string;
   itemcode: string;
   fromdate: string;
   toDate: string;
-  status: string;
+  status: string = "Pending";
   bidding: string;
-  showRfq:boolean=false;
-  showMRFQ:boolean=false;
+  showRfq: boolean = false;
+  showMRFQ: boolean = false;
 
 
-  constructor(private router :Router,private alertController: AlertController) {
+  constructor(private router: Router, private alertController: AlertController) {
     // this.Checkboxes = [
     //   {
     //     name: "PRS Code",
@@ -66,7 +66,7 @@ export class RFQPage implements OnInit {
 
   selectAllCheckbox(value) {
     console.log(value);
-    if(value == false) {
+    if (value == false) {
       this.selectAll = true;
     }
     else {
@@ -98,29 +98,69 @@ export class RFQPage implements OnInit {
 
   ngOnInit() {
   }
-  Submit(){
-    this.showviewlist=true
-  }
-  showgrid(item){
-    console.log(item)
-    let item1=this.status
-    if(item1=="RFQ"){
-      this.showRfq=true;
-      this.showMRFQ=false
-    }
-    if(item1 =="MRFQ"){
-      this.showMRFQ=true;
-      this.showRfq=false;
-
+  Submit() {
+    this.showviewlist = true;
+    console.log('this.status ',this.status);
+     if (this.status == "Pending") {
+      this.showRfq = true;
+      this.showMRFQ = false
+    } else if (this.status == "RFQ") {
+      this.showMRFQ = true;
+      this.showRfq = false;
+    } else if (this.status == "Cancelled") {
+      this.showRfq = false;
+      this.showMRFQ = false;
     }
 
   }
-  raiseRFQ(){
-    this.showrfq=true
-    this.showviewlist=false
+  getVal(item: string) {
+    console.log(item);
+    // if (item == "Pending") {
+    //   this.showRfq = true;
+    //   this.showMRFQ = false
+    // } else if (item == "RFQ") {
+    //   this.showMRFQ = true;
+    //   this.showRfq = false;
+    // } else if (item == "Cancelled") {
+    //   this.showRfq = false;
+    //   this.showMRFQ = false;
+    // }
   }
-  manageRFQlink(){
+  // getVal(item: string) {
+  //   console.log(item)
+  //   // let item1 = this.status
+  //   // if (item == "Cancelled") {
+  //   //   this.showRfq = false;
+  //   //   this.showMRFQ = false;
+  //   //   // alert('No Records Found');
+  //   // }
+  //   // if (item == "Pending") {
+  //   //   this.showRfq = true;
+  //   //   this.showMRFQ = false
+  //   // }
+  //   // if (item == "RFQ") {
+  //   //   this.showMRFQ = true;
+  //   //   this.showRfq = false;
+  //   // }
+  // }
+  raiseRFQ() {
+    this.showrfq = true;
+    this.showviewlist = false;
+    this.presentAlert("", "Raised Successfully");
+  }
+  manageRFQlink() {
     this.router.navigate(['/manage-rfq'])
+  }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   async Cancel() {
@@ -139,13 +179,13 @@ export class RFQPage implements OnInit {
           text: 'Yes',
           handler: () => {
 
-        this.prscode="";
-        this.itemcode="";
-        this.fromdate="";
-        this.toDate="";
-        this.status="";
-        this.bidding="";
-        // this.remarks="";
+            this.prscode = "";
+            this.itemcode = "";
+            this.fromdate = "";
+            this.toDate = "";
+            this.status = "";
+            this.bidding = "";
+            // this.remarks="";
 
           }
         }

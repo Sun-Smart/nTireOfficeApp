@@ -46,12 +46,11 @@
         </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select  (click)="showgrid(value)" [(ngModel)]="status" style="padding: 10px;" style="display:inline-block;padding: 8px;"
-            class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
+          <select [(ngModel)]="status" style="padding: 10px;" (change)="getVal($event.target.value)"
+            style="display:inline-block;padding: 8px;" class="Input-text-field textareaField" >
+            <option value="Pending" selected> Pending </option>
             <option value="RFQ"> Raised RFQ </option>
-            <option value ="MRFQ"> Manage RFQ </option>
-
+            <option value="Cancelled"> Cancelled RFQ </option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
@@ -60,7 +59,7 @@
           <ion-label class="plabel">Bidding/Other</ion-label>
           <select [(ngModel)]="bidding" style="padding: 10px;" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
+            <!-- <option>&lt;&lt; Select &gt;&gt;</option> -->
             <option value="Bidding">Bidding</option>
             <option value="Other">Other</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
@@ -80,7 +79,6 @@
             </ion-col>
           </ion-col>
         </ion-row> -->
-
 
       </ion-row>
       <ion-row>
@@ -178,7 +176,7 @@
 
 
   <!-- manage rfq -->
-  <ion-card  *ngIf="showMRFQ">
+  <ion-card *ngIf="showMRFQ">
 
     <ion-card-header class="card_header" style="padding: 5px !important;">
       <ion-row>
