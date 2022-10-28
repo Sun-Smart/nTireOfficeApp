@@ -9,40 +9,110 @@ import { IpaddressService } from '../../service/ipaddress.service';
   styleUrls: ['./pms-list.page.scss'],
 })
 export class PmsListPage implements OnInit {
+  username = window.localStorage.getItem('TUM_USER_NAME');
 
-
+  name: string = '';
+  filterTerm: string;
   showfilter: boolean = true;
 
-  // filter Branch, Location & property code,
+  propertyBranch: any;
+  userId: any;
+  functionID: string;
+  userID: string;
+  usertype: string;
+  accessToken: string;
+  strFunctionId: any;
+  strusertype: any;
+  Propertycode: any;
+  propertyCodeResult: any;
+  params: { access_token: any; usertoken: any; USER_ID: any; };
+  user: any;
+  strBranchId: string;
+  strLocationId: string;
+  strPropertyId: string;
+  strPropertyDesc: string;
+  userid: any;
+  branchid: any;
+  branchID: string;
+  propertyCodeResultLength: any;
+  showdata: any;
 
-  branchlist1: any = [];
-  branchlist: any;
-  branchlocationlist: any = [];
+  customerbranch: any;
+  isItemAvailable: boolean = false;
+  branchcode: any;
   customerlocation: any;
   locationcode1: any[] = [];
+  locationcode: string;
+  islocItemAvailable: boolean = false;
+  selectbranch: any;
+  contact_array = [];
   propertyCode1: any[];
-  isPropertycodeAvailable: boolean;
   companiesstr: any;
-  branch:any;
-  branchlocation: any;
   propertycode: any;
   property_code: any;
   respContact: any;
   propertyDesc: any;
+  contact1: any;
+  isPropertycodeAvailable: boolean = false;
+
+
+  branchlist: any;
+  branchlist1: any = [];
+  branchlocationlist: any = [];
+  branch: any;
+  branchlocation: any;
+  nodatafound: string;
+
 
 
 
   constructor(private modalCtrl: ModalController,
-    private http: HttpClient,
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) { }
+    private http: HttpClient,
+    public Ipaddressservice: IpaddressService) { 
+      
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.accessToken = localStorage.getItem('token');
+    }
 
   ngOnInit() {
+    this.branchcode = ('')
+    this.locationcode = ('')
     this.Getbranches();
+    this.getcustomerItems();
   }
   togglefilter(){
     this.showfilter = !this.showfilter
   }
+
+
+  getcustomerItems() {
+
+    this.userid = window.localStorage['TUM_USER_ID'],
+    this.strBranchId = window.localStorage['TUM_BRANCH_ID'],
+    this.strFunctionId = window.localStorage['FUNCTION_ID'],
+    this.strusertype = window.localStorage['TUM_USER_TYPE'],
+
+    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/fm_rental_summary/1/1/0/0/0/0/0/0/20/0/0/0/1/1')
+      .subscribe((resp: any) => {
+        console.log(resp);
+        this.propertyCodeResult = resp
+
+        if (this.propertyCodeResult == null) {
+          alert("hh")
+          this.showdata = "No Data Found"
+        }
+        else {
+          this.showdata = this.propertyCodeResult.length;
+        }
+      });
+  };
+  strBranchcode(strBranchcode: any) {
+    throw new Error('Method not implemented.');
+  };
 
 
   Getbranches() {
@@ -64,7 +134,6 @@ export class PmsListPage implements OnInit {
     });
   };
 
-  
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -80,7 +149,11 @@ export class PmsListPage implements OnInit {
 
       console.log("branchlist1 : " + JSON.stringify(error));
     });
-  };
+  }
+
+
+
+
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
@@ -99,12 +172,26 @@ export class PmsListPage implements OnInit {
       }
       console.log(this.locationcode1, 'fyttr')
     })
-  };
+  }
+
+
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 
 
   getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    
     console.log("one");
     this.propertyCode1 = [];
     if (ev.target.value == "") {
@@ -126,7 +213,10 @@ export class PmsListPage implements OnInit {
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log(this.companiesstr);
+if(this.companiesstr=="No data found"){
+  this.nodatafound="No data found"
 
+}
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
@@ -163,7 +253,7 @@ export class PmsListPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation , {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -184,5 +274,18 @@ export class PmsListPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-  };
+  }
+
+
+
+// total get
+
+getpropertylistreport(){
+  
+
+}
+
+
+
+
 }
