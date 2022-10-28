@@ -26,6 +26,7 @@ export class RFQPage implements OnInit {
   bidding: string;
   showRfq: boolean = false;
   showMRFQ: boolean = false;
+  showCRFQ: boolean = false;
 
 
   constructor(private router: Router, private alertController: AlertController) {
@@ -103,13 +104,16 @@ export class RFQPage implements OnInit {
     console.log('this.status ',this.status);
      if (this.status == "Pending") {
       this.showRfq = true;
-      this.showMRFQ = false
+      this.showMRFQ = false;
+      this.showCRFQ = false;
     } else if (this.status == "RFQ") {
       this.showMRFQ = true;
       this.showRfq = false;
+      this.showCRFQ = false;
     } else if (this.status == "Cancelled") {
       this.showRfq = false;
       this.showMRFQ = false;
+      this.showCRFQ = true;
     }
 
   }
@@ -146,11 +150,12 @@ export class RFQPage implements OnInit {
   raiseRFQ() {
     this.showrfq = true;
     this.showviewlist = false;
-    this.presentAlert("", "Raised Successfully");
+    this.presentAlert("", "RFQ 345/AT Raised Successfully");
   }
   manageRFQlink() {
     this.router.navigate(['/manage-rfq'])
   }
+
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,

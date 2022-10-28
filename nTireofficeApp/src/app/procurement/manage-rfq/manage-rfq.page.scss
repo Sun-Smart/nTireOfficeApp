@@ -23,7 +23,23 @@ td {
   color: #242424 !important;
   border:none
 }
-ion-card-header+.card-content-md {
-  padding-top: 0;
-  margin-left: -5%;
+// ion-card-header+.card-content-md {
+//   padding-top: 0;
+//   margin-left: -5%;
+// }
+
+.card-content {
+  display: contents;
+  position: relative;
+}
+
+.card-content{
+text-align: center;
+}
+
+ion-card .card_header_text {
+  font-size: 15px;
+  color: white !important;
+  font-weight: bold;
+  display: block;
 }

@@ -1042,7 +1042,7 @@ ion-card {
     color: #ffff !important;
     margin: auto;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     font-weight: bold;
   }
   // padding-right: 50px !important;
@@ -1298,4 +1298,10 @@ input#checkbox {
   color: white !important;
   padding: 5px;
   margin: 0px;
+}
+
+.cardanswer
+{
+  font-weight: 600;
+  color: black;
 }

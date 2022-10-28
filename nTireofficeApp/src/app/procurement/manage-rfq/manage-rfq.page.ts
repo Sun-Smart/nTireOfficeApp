@@ -1,5 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-manage-rfq',
@@ -14,7 +15,7 @@ export class ManageRfqPage implements OnInit {
   selectAllvendor: boolean = false;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private alertcontroller: AlertController) { }
 
   ngOnInit() {
   }
@@ -28,8 +29,14 @@ export class ManageRfqPage implements OnInit {
   //   // showvendorqrotation
   // }
   RequestVenderQuotation() {
-    // this.showvendorqrotation = true;
-    // this.showvendorqrotationaction = false;
+    this.showvendorqrotation = true;
+    this.showvendorqrotationaction = false;
+    this.presentAlert("", "Quotation Requested Successfully");
+  }
+
+  cancel(){
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/rfq'])
   }
 
   selectAllissueCheckbox(value) {
@@ -59,4 +66,17 @@ export class ManageRfqPage implements OnInit {
     this.router.navigate(['/vendor-quotation'])
 
   }
+
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertcontroller.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 }
