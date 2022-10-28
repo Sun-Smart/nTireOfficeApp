@@ -18,9 +18,12 @@ export class PurchaseRequestPage implements OnInit {
   expenseArray = [];
   getdataitem = [];
   itemNew: any;
+  prsdate: any;
 
   userid
   branchid
+  hideitem: boolean = false;
+  showitem: boolean = true;
 
   Itemcode:any;
 
@@ -48,6 +51,9 @@ export class PurchaseRequestPage implements OnInit {
   getdata = [];
   getdata1: any;
   isItemAvailable: boolean;
+  branchname: any;
+  showbtn: boolean;
+  itemcode: any;
   // release
 
 
@@ -70,18 +76,17 @@ export class PurchaseRequestPage implements OnInit {
   ngOnInit() {
 this.Itemcode= '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
-      // console.log(resp)
-      // this.getorder = resp
       this.getorder1 = resp;
       this.getorder1.forEach(element => {
         this.getorder.push(element)
-        // console.log(this.getorder)
       });
     })
     this.userid = localStorage.getItem('TUM_USER_ID')
     this.branchid = localStorage.getItem('TUM_BRANCH_ID')
-    this.Requisitiondate = new Date();
-    // this.getItemDetail();
+    let date = new Date();
+    console.log(date)
+    this.prsdate = date;
+    this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
   }
   fetchreconcilation(Item:any){
     console.log(Item);
@@ -124,19 +129,40 @@ debugger;
 
     let getcategory = this.Category
     console.log(getcategory)
-    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
-      console.log(resp)
-      this.getdata1 = resp
-      this.getorder1.forEach(element => {
-        this.getdata.push(element)
-        console.log(this.getdata);
+    if (getcategory == "IT") {
+      this.hideitem = true;
+      this.showitem = false;
+      this.qty = ""
+      this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
+        console.log(resp)
+        this.getdata1 = resp
+        this.getorder1.forEach(element => {
+          this.getdata.push(element)
+          console.log(this.getdata);
 
+        })
       })
-    })
+    }
+    if (getcategory == "Service") {
+      this.hideitem = false;
+      this.showitem = true;
+      this.qty = 1
+
+    }
+    // this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
+    //   console.log(resp)
+    //   this.getdata1 = resp
+    //   this.getorder1.forEach(element => {
+    //     this.getdata.push(element)
+    //     console.log(this.getdata);
+
+    //   })
+    // })
   }
 
   Additems() {
     this.showlineItems = !this.showlineItems
+    this.showbtn = false
   }
 
   showline() {  //submit btn
@@ -144,16 +170,46 @@ debugger;
     this.showlineItems = false
     this.showlineItems = !this.showlineItems
     this.expenseArray.push({
-      GET_DES: this.Description,
-      GET_ITEMS: this.Item,
-      GET_CATEGORY: this.Category,
-      GET_QTY: this.qty,
-      GET_UNITPRICE: this.unitprice,
-      GET_REQUIREDBEFORE: this.Requiredbefore,
-      GET_NETPRICE: this.netprice,
-      GET_ITEMDESCRIPTION: this.itemdescription,
+      prsid: "",
+      itemid: this.itemcode,
+      i_function_id: "1",
+      required_qty: this.qty,
+      UOM: "15",
+      expected_cost: "100",
+      exp_date: this.Requiredbefore,
+      status: "A",
+      created_by: "210",
+      netprice: this.netprice,
+      ipaddress: "",
+      unit_price: this.unitprice,
+      Limit: "",
+      Availlimit: "",
+      BalanceLimit: "",
+      CATEGORY: this.Category,
+      TAX1: "",
+      TAX2: "",
+      TAX1DESC: "",
+      TAX2DESC: "",
+      OTHERCHARGES: "",
+      item_short_desc: this.Description,
+      item_long_desc: this.itemdescription,
+      REMARKS: "",
+      CategoryID: "",
+      SubCategoryID: "",
+      prsDetailID: "",
+      FreightVALUE: "",
+      FreightID: "",
+      RecoveryVALUE: "",
+      RecoveryID: "",
+      BDC: "",
+      PTM: "",
+      ACC: "",
+      CPC: "",
+      flag: "I"
+
     })
     console.log(this.expenseArray)
+    this.showbtn = true
   }
 
   async clear() {
@@ -191,6 +247,7 @@ debugger;
   }
   close() {
     this.showlineItems = !this.showlineItems
+    this.showbtn = true
   }
   submit() {
     // window.location.reload()
@@ -198,7 +255,9 @@ debugger;
     // this.showviewlist = true
     // this.showlineItems = !this.showlineItems
     var body = {
+      "prscategory": this.Category,
       "functionid": "1",
+      "prsdate": this.prsdate,
       "prsid": "",
       "prscode": "",
       "status": "0",
@@ -219,7 +278,7 @@ debugger;
       "issinglevendor": "",
       "orderpriority": "",
       "release": this.release,
-      "item": this.expenseArray
+      "item": this.expenseArray,
 
     }
 
