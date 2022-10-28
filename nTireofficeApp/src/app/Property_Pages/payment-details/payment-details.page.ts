@@ -89,10 +89,10 @@ export class PaymentDetailsPage implements OnInit {
         Branch_id: this.branch ? this.branch : 1,
         location: this.branchlocation ? this.branchlocation : 0,
         property_code: this.propertycode ? this.propertycode : 0,
-        custname: this.customerName ? this.customerName : ' ',
-        Status: this.status ? this.status : ' ',
-        payMode: this.paymode ? this.paymode : ' ',
-        chequeNo: this.chequeno ? this.chequeno : ' ',
+        custname: this.customerName ? this.customerName : "0",
+        Status: this.status ? this.status : "0",
+        payMode: this.paymode ? this.paymode : "0",
+        chequeNo: this.chequeno ? this.chequeno : "0",
         fromDate: 0,
         toDate: 0
       };
