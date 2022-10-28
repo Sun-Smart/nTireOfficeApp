@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -31,8 +32,9 @@ export class DocumentExpiryReportPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
-
-
+  fromdate: string;
+  todate: string;
+  clientname: string;
 
   user_type: any;
   Function_id: any;

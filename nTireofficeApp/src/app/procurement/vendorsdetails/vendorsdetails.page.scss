@@ -32,5 +32,19 @@ td {
 ion-card-header+.card-content-md {
   padding-top: 0;
   margin-left: -5%;
+  display: contents;
 }
 
+.card_header_text[_ngcontent-hsy-c173] {
+  font-size: 15px;
+  color: white !important;
+  font-weight: bold;
+  display: table;
+}
+
+ion-card .card_header_text {
+  font-size: 15px;
+  color: white !important;
+  display: table;
+  font-weight: bold;
+}

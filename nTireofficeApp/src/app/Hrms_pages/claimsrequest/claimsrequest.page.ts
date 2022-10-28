@@ -127,7 +127,6 @@ export class ClaimsrequestPage implements OnInit {
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
-
     });
   }
 

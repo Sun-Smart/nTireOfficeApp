@@ -24,7 +24,7 @@
         <ion-col size="12">
           <ion-label>Branch <span style="color:red;">*</span></ion-label>
           <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
-            <option disabled>&lt;&lt; Select &gt;&gt;</option>
+            <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
               {{branch.BRANCH_DESC}}
             </option>
@@ -36,7 +36,7 @@
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
               (change)="getLocationdata(branchlocation)">
-              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
                 {{location.BRANCH_DESC}}</option>
             </select>
@@ -56,7 +56,33 @@
           </ion-list>
         </ion-col>
 
-
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Customer</ion-label>
+          <ion-input type="text" class="form-control" [(ngModel)]="customerName"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Status</ion-label>
+          <select [(ngModel)]="status" class="form-control">
+            <option value="undefined" selected disabled><< Select >></option>
+            <option value="cleared">Cleared</option>
+            <option value="Pending">Pending</option>
+            <option value="Returned">Returned</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Pay Mode</ion-label>
+          <select [(ngModel)]="paymode" class="form-control">
+            <option value="undefined" selected disabled><< Select >></option>
+            <option value="Cash">Cash</option>
+            <option value="Cheque">Cheque</option>
+            <option value="NEFT">NEFT</option>
+            <option value="RTGS">RTGS</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Cheque No</ion-label>
+          <ion-input type="text" class="form-control" [(ngModel)]="chequeno"></ion-input>
+        </ion-col>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
               <ion-label class="ContentName">Property Description :</ion-label>
               <ion-input class="form-control"></ion-input>
@@ -103,7 +129,9 @@
     </ion-card-content>
   </ion-card>
 
-  <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count : {{showdata}}</p>
+  <p *ngIf="getPaymentDetailsList" style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count
+    :
+    {{getPaymentDetailsList.length}}</p>
 
 
   <ion-card *ngFor="let items of getPaymentDetailsList; let i = index">
@@ -242,6 +270,7 @@
     </ion-card-content>
 
   </ion-card>
+  <center *ngIf="showdata" style="text-align: center;font-weight: bold;font-size: 17px;">No data found</center>
 </ion-content>
 
 <ion-footer>
