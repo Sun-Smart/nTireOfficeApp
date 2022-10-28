@@ -223,34 +223,28 @@
             </select>
           </ion-col>
 
+          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">Item/Service</ion-label>
+            <select (click)="getitemvalue(Item)" style="padding: 10px;" [(ngModel)]="Item"
+              class="Input-text-field textareaField">
+              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option *ngFor="let items of getdata1" value="{{items.item_Code}}">
+                {{items.item_Code}}</option>
+            </select>
+          </ion-col> -->
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Item/Service</ion-label>
-            <!-- <ion-input type="text" [(ngModel)]="Item" class="Input-text-field textareaField"></ion-input> -->
-            <!-- [(ngModel)]="VendorQuot.qty" -->
-            <select style="padding: 10px;" [(ngModel)]="Item" class="Input-text-field textareaField">
-              <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let items of getdata1" value="{{items.item_id}}">{{items.item_Code}}</option>
-            </select>
-          </ion-col>
-
-          <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
             <ion-searchbar [(ngModel)]="Item" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
-            <ion-list class="ContentName" class="searchlist" [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
+            <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist" [(ngModel)]="Item"
+              [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
               <ion-item class="ContentName" *ngFor="let items of getdataitem" style="background-color: white !important;
-             " (click)="fetchreconcilation(item)">
-                {{ item }}
+             " (click)="fetchreconcilation(items)">
+                {{ items }}
               </ion-item>
             </ion-list>
           </ion-col>
-
-
-
-
-
-
-
-
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Description</ion-label>
             <ion-textarea placeholder=" " [(ngModel)]="Description" id="textareaID"

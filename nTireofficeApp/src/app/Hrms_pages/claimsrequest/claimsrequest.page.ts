@@ -10,7 +10,6 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { json } from '@angular-devkit/core';
-import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-claimsrequest',
@@ -303,17 +302,13 @@ export class ClaimsrequestPage implements OnInit {
         this.expenseType = 'Hotel'
       }
       console.log("expenseType : " + this.expenseType);
-
       this.expenseetype1.forEach(element => {
-
         if (element.VAL == this.expenseType) {
           this.expensetxt = element.TEXT;
         }
-
       });
 
       this.expenseArray.push({
-
         // EXPENSE_TYPE1:this.expensetxt,
         EXPENSE_TYPE: this.expenseType,
         EXPENSE_VAL: this.expenseType,
