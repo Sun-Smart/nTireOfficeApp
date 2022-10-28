@@ -25,7 +25,7 @@ export class PurchaseRequestPage implements OnInit {
   hideitem: boolean = false;
   showitem: boolean = true;
 
-  Itemcode:any;
+  // Itemcode: any;
 
   branch
   Requisitiondate
@@ -51,9 +51,11 @@ export class PurchaseRequestPage implements OnInit {
   getdata = [];
   getdata1: any;
   isItemAvailable: boolean;
+  assttrecon: any;
   branchname: any;
-  showbtn: boolean;
+  showbtn: boolean = true;
   itemcode: any;
+  getitemdata: any;
   // release
 
 
@@ -74,7 +76,7 @@ export class PurchaseRequestPage implements OnInit {
   }
 
   ngOnInit() {
-this.Itemcode= '';
+    // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
       this.getorder1 = resp;
       this.getorder1.forEach(element => {
@@ -88,41 +90,50 @@ this.Itemcode= '';
     this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
   }
-  fetchreconcilation(Item:any){
-    console.log(Item);
-    
-
+  fetchreconcilation(itemcode: any) {
+    console.log(itemcode)
+    this.itemcode = itemcode;
+    this.isItemAvailable = false;
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.itemcode).subscribe((resp: any) => {
+      console.log(resp)
+      this.getitemdata = resp;
+      console.log(this.getitemdata)
+      this.Description = this.getitemdata[0].item_short_Desc,
+        this.unitprice = this.getitemdata[0].Price
+      this.itemdescription = this.getitemdata[0].item_long_desc
+    });
   }
   getItems(event: any) {
     let items = this.Category;
-    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + items).subscribe((resp: any) => {
+
+    if (this.Category == "") {
+      this.getdataitem = [];
+      this.isItemAvailable = false;
+    }
+
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + items).subscribe((resp: any) => {
       console.log(resp)
       this.getdata1 = resp;
       this.itemNew = this.getdata1;
       // this.getorder1.forEach(element => {
       //   this.getdata.push(element)
       console.log(this.itemNew);
-
       for (var i = 0; i < this.itemNew.length; i++) {
-
         this.getdataitem.push(this.itemNew[i].item_Code);
       }
       console.log(this.getdataitem);
       const val = event.target.value;
-      console.log(val)
-debugger;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
-        this.getdataitem = this.getdataitem.filter((data) => {
-          return (data.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        this.getdataitem = this.getdataitem.filter((item) => {
+          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
+        console.log(this.getdataitem)
       }
-
-
-
     })
   }
+
 
 
   getItemDetail(e) {
@@ -278,10 +289,8 @@ debugger;
       "issinglevendor": "",
       "orderpriority": "",
       "release": this.release,
-      "item": this.expenseArray,
-
+      "Itemsdetail": this.expenseArray,
     }
-
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body).subscribe((res: any) => {
       // this.getresponse = res;
       console.log(res)

@@ -225,7 +225,7 @@
             <ion-label class="plabel">Item/Service</ion-label>
             <ion-searchbar [(ngModel)]="itemcode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
-            <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist" [(ngModel)]="Item"
+            <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist"
               [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
               <ion-item class="ContentName" *ngFor="let items of getdataitem" style="background-color: white !important;
              " (click)="fetchreconcilation(items)">
@@ -282,7 +282,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Net Price</ion-label>
-            <ion-input type="number" value="{{qty*unitprice}}" [(ngModel)]="netprice" disabled=""
+            <ion-input type="text" value="{{qty*unitprice}}" [(ngModel)]="netprice" disabled=""
               style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
               class="Input-text-field textareaField"></ion-input>
           </ion-col>
