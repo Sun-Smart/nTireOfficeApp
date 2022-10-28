@@ -10,7 +10,6 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { json } from '@angular-devkit/core';
-import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-claimsrequest',
