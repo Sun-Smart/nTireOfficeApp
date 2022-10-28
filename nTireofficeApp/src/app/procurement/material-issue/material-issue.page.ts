@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from 'src/app/Property_Pages/table-sample.service';
-
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,87 +17,26 @@ export class MaterialIssuePage implements OnInit {
   showedit: boolean = false
   data: any = [];
   data1: any = [];
-  showsearch: boolean = false
-
+  showsearch: boolean = false;
+  funtionID;
+  branch_ID;
+  branch;
+  fromdate;
+  todate;
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
 
-
-  row = [
-    // {
-    //   "branch": "india",
-    //   "mode": "new",
-    //   "mrscode": "3434234",
-    //   "fromDate": "17-10-2022",
-    //   "toDate": "17-12-2022",
-    //   "status": "pending",
-    //   "action":"edit"
-    // },
-    // {
-    //   "branch": "india",
-    //   "mode": "action",
-    //   "mrscode": "3434234",
-    //   "fromDate": "11-10-2022",
-    //   "toDate": "17-12-2023",
-    //   "status": "pending",
-    //   "action":"edit"
-
-    // }
-  ];
-  columns = [
-    { name: 'Branch', width: "110" },
-    { name: 'Mode', width: "120" },
-    { name: 'Mrs Code', width: "120" },
-    { name: 'From Date', width: "120" },
-    { name: 'To Date', width: "120" },
-    { name: 'Status', width: "110" },
-    { name: 'Action', width: "110" }
-
-  ];
-  columns1 = [
-    { name: 'Select', width: "110" },
-    { name: 'Location', width: "110" },
-    { name: 'Bin', width: "110" },
-    { name: 'Tracking', width: "110" },
-    { name: 'Serial/Batch Number', width: "110" },
-    { name: 'Quantity', width: "110" },
-
-  ];
-  constructor(private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) { }
+  constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService) {
+    this.funtionID = localStorage.getItem('FUNCTION_ID');
+    this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
+    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+  
+    this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
+    this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
+   }
 
   ngOnInit() {
-    this.data = [
-      {
-        "branch": "india",
-        "mode": "new",
-        "mrscode": "3434234",
-        "fromDate": "17-10-2022",
-        "toDate": "17-12-2022",
-        "status": "pending",
-        "action": "edit"
-
-      },
-      {
-        "branch": "india",
-        "mode": "action",
-        "mrscode": "3434234",
-        "fromDate": "11-10-2022",
-        "toDate": "17-12-2023",
-        "status": "pending",
-        "action": "edit"
-
-      }
-    ];
-    this.data1 = [
-      {
-        "select": "",
-        "location": "india",
-        "bin": "",
-        "tracking": "",
-        "serial/batch number": "",
-        "quantity": "",
-      }
-    ]
+   
   }
   Submit() {
     this.showviewlist = true

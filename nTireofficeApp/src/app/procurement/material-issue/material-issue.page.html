@@ -14,19 +14,18 @@
       <ion-grid>
         <ion-row>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Branch</ion-label>
-            <select style="padding: 10px;" disabled=""
-              style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-              class="Input-text-field textareaField">
-              <option>&lt;&lt; Select &gt;&gt;</option>
-              <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-            </select>
+            <ion-label class="ContentName">Branch</ion-label>
+            <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
+              [(ngModel)]="branch"></ion-input>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Mode</ion-label>
             <select style="padding: 10px;" style=" display:inline-block;padding: 8px;"
               class="Input-text-field textareaField">
-              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option value="null"> Select</option>
+              <option value="loc">Location Transfer</option>
+               <option value="Req"> Material Requisition Slip </option>
+            <option value="Sal"> Sales Return </option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>
@@ -44,7 +43,7 @@
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">To Date</ion-label>
-            <ion-input style="  display:inline-block;padding: 8px;" type="date" class="Input-text-field textareaField">
+            <ion-input style="display:inline-block;padding: 8px;" type="date" class="Input-text-field textareaField">
             </ion-input>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -65,7 +64,8 @@
         </ion-row>
       </ion-grid>
     </ion-card-content>
-    <ion-card-content class="card_content">
+
+    <!-- <ion-card-content class="card_content">
       <ion-row>
         <ion-col>
           <ion-label class="labelHead-text" style="margin: 10px;">Item Details :</ion-label>
@@ -77,10 +77,84 @@
           [scrollbarH]="true" [sortType]="'multi'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable">
         </ngx-datatable>
       </div>
-    </ion-card-content>
+    </ion-card-content> -->
 
 
 
+  </ion-card>
+  <p  id="ContentName" class="totalCount">Total Lead : </p>
+
+  <ion-card>
+    <ion-card-header class="card_header">
+      <ion-row>
+        <ion-col-4>
+          <ion-label class="card_header_text">Quatation Ref</ion-label>
+        </ion-col-4>
+
+        <ion-col-8 style="margin-left: 120px;">
+          <ion-label class="card_header_text"></ion-label>
+          <!-- PO Reference NO -->
+        </ion-col-8>
+      </ion-row>
+    </ion-card-header>
+    <ion-label class="labelData-text"></ion-label>
+    <ion-card-content>
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+
+          <ion-label class="labelHead-text">MRS Code </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text"> : </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Required Before Date </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text"> : </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Item Code  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text"> : </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Qty Requested  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text">:  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Qty Released  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text">:  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Qty Pending  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text"> : </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Stock Qty  </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text"> : </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">Current Qty &nbsp;&nbsp; </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+       <ion-input type="text" class="Input-text-field textareaField"> </ion-input>
+        </ion-col>     
+        <ion-col size="12" style="font-weight:bold;">
+          <ion-button expand="block" class="ion-color-success" [routerLink]="['/issue-details']" routerLinkActive="router-link-active" >Issue
+          </ion-button>
+        </ion-col>
+          </ion-row>
+     </ion-card-content>
   </ion-card>
 
   <!-- <ion-card *ngIf="showviewlist">
@@ -98,9 +172,9 @@
       </div>
     </ion-card-content>
   </ion-card> -->
-  <ion-col size="12">
+  <!-- <ion-col size="12">
     <ion-button color="primary" (click)="edit()">Edit</ion-button>
-  </ion-col>
+  </ion-col> -->
 </ion-content>
 
 <ion-grid *ngIf="showedit">
