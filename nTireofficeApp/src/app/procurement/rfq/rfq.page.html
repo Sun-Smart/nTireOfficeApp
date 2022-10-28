@@ -46,12 +46,11 @@
         </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select  (click)="showgrid(value)" [(ngModel)]="status" style="padding: 10px;" style="display:inline-block;padding: 8px;"
-            class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
+          <select [(ngModel)]="status" style="padding: 10px;" (change)="getVal($event.target.value)"
+            style="display:inline-block;padding: 8px;" class="Input-text-field textareaField" >
+            <option value="Pending" selected> Pending </option>
             <option value="RFQ"> Raised RFQ </option>
-            <option value ="MRFQ"> Manage RFQ </option>
-
+            <option value="Cancelled"> Cancelled RFQ </option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
@@ -60,7 +59,7 @@
           <ion-label class="plabel">Bidding/Other</ion-label>
           <select [(ngModel)]="bidding" style="padding: 10px;" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
+            <!-- <option>&lt;&lt; Select &gt;&gt;</option> -->
             <option value="Bidding">Bidding</option>
             <option value="Other">Other</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
@@ -80,7 +79,6 @@
             </ion-col>
           </ion-col>
         </ion-row> -->
-
 
       </ion-row>
       <ion-row>
@@ -116,6 +114,11 @@
       </ion-col>
     </ion-col>
   </ion-row> -->
+
+
+
+<!-- Pending RFQ -->
+
   <ion-card *ngIf="showRfq">
     <ion-card>
       <ion-card-header class="card_header" style="padding: 5px !important;">
@@ -136,17 +139,17 @@
           <ion-label class="card_content_label labelHead-text">Item Desc :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{item.GET_QTY}}</ion-label> -->
-          <ion-label class="labelData-text">hi hello for testiing</ion-label>
+          <!-- <ion-label class="cardanswer">{{item.GET_QTY}}</ion-label> -->
+          <ion-label class="cardanswer">hi hello for testiing</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">Requisitiondate :</ion-label>
+          <ion-label class="card_content_label labelHead-text">Requisition Date :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{item.GET_UNITPRICE}}</ion-label> -->
-          <ion-label class="labelData-text">12/04/2022</ion-label>
+          <!-- <ion-label class="cardanswer">{{item.GET_UNITPRICE}}</ion-label> -->
+          <ion-label class="cardanswer">12/04/2022</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -154,8 +157,8 @@
           <ion-label class="card_content_label labelHead-text">Status :</ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">{{item.GET_NETPRICE}}</ion-label> -->
-          <ion-label class="labelData-text">Active</ion-label>
+          <!-- <ion-label class="cardanswer">{{item.GET_NETPRICE}}</ion-label> -->
+          <ion-label class="cardanswer">Active</ion-label>
         </ion-col>
       </ion-row>
     </ion-card>
@@ -176,9 +179,10 @@
     </ion-row>
   </ion-card>
 
+  <!-- end -->
 
-  <!-- manage rfq -->
-  <ion-card  *ngIf="showMRFQ">
+  <!-- Raised RFQ -->
+  <ion-card *ngIf="showMRFQ">
 
     <ion-card-header class="card_header" style="padding: 5px !important;">
       <ion-row>
@@ -187,7 +191,7 @@
         </ion-col>
         <ion-col size="4">
           <!-- <ion-label class="card_header_text"> {{item.prscode}}/{{item.itemcode}}</ion-label> -->
-          <ion-button class="ion-color-success"> Manage RFQ </ion-button>
+          <ion-button class="ion-color-success" (click)="manageRFQlink()"> Manage RFQ </ion-button>
         </ion-col>
       </ion-row>
     </ion-card-header>
@@ -197,44 +201,180 @@
         <ion-label class="card_content_label labelHead-text">RFQ Date :</ion-label>
       </ion-col>
       <ion-col size="6">
-        <ion-input type="date" style="color: black !important;
-        font-weight: 500 !important; ;" class="Input-text-field textareaField"></ion-input>
+        <ion-input class="cardanswer"> 28/10/2022</ion-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="6">
-        <ion-label class="card_content_label labelHead-text">Item ID :</ion-label>
+        <ion-label class="card_content_label labelHead-text">Last Date :</ion-label>
       </ion-col>
       <ion-col size="6">
-        <ion-label class="labelData-text"> 12345 </ion-label>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="6">
-        <ion-label class="card_content_label labelHead-text">Net Pay :</ion-label>
-      </ion-col>
-      <ion-col size="6">
-        <ion-label class="labelData-text"> [ USD / EUR ]</ion-label>
+        <ion-input class="cardanswer"> 2/11/2022</ion-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="6">
-        <ion-label class="card_content_label labelHead-text">Vendor :</ion-label>
+        <ion-label class="card_content_label labelHead-text">RFQ Code :</ion-label>
       </ion-col>
       <ion-col size="6">
-        <ion-label class="labelData-text">-----------</ion-label>
+        <ion-input class="cardanswer"> 12345 </ion-input>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col size="6">
-        <ion-label class="card_content_label labelHead-text">Quotation :</ion-label>
+        <ion-label class="card_content_label labelHead-text">Item Code :</ion-label>
       </ion-col>
       <ion-col size="6">
-        <ion-label class="labelData-text">-----------</ion-label>
+        <ion-label class="cardanswer"> 12345 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text">Net Price :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> [ USD / EUR ]</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> No. of Items : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 25 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> No. of Quotations : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 15 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> No. of Receivers : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 8 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> Status : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> RFQ Raised </ion-label>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+  <!-- end -->
+
+
+
+  <!-- Cancelled RFQ -->
+  <ion-card *ngIf="showCRFQ">
+
+    <ion-card-header class="card_header" style="padding: 5px !important;">
+      <ion-row>
+        <ion-col size="8">
+          <ion-label class="card_header_text1"> PRS573864533464/3232</ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <!-- <ion-label class="card_header_text"> {{item.prscode}}/{{item.itemcode}}</ion-label> -->
+          <ion-button class="ion-color-success" (click)="ManageRFQ()"> Manage RFQ </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text">RFQ Date :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input class="cardanswer"> 28/10/2022</ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text">Last Date :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input class="cardanswer"> 2/11/2022</ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text">RFQ Code :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-input class="cardanswer"> 12345 </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text">Item Code :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 12345 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text">Net Price :</ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> [ USD / EUR ]</ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> No. of Items : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 25 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> No. of Quotations : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 15 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> No. of Receivers : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> 8 </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-label class="card_content_label labelHead-text"> Status : </ion-label>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label class="cardanswer"> RFQ Cancelled </ion-label>
       </ion-col>
     </ion-row>
 

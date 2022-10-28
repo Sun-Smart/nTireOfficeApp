@@ -104,25 +104,172 @@
 
 
 
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <ion-label class="labelHead-text" style="margin: 10px;">Item Details :</ion-label>
       </ion-col>
-    </ion-row>
-    <div>
+    </ion-row> -->
+    <!-- <div>
       <ngx-datatable class="material" [headerClass]="ngx-header" [limit]="50" [rows]="data" [rowHeight]="50"
         [columns]="columns" [columnMode]="'standard'" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
         [sortType]="'multi'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable">
       </ngx-datatable>
-    </div>
+    </div> -->
+
   </ion-card>
 
-  <ion-col size="12">
+
+  <!-- <p class="totalCount">Please Wait..</p> -->
+
+  <ion-card style="width: -webkit-fill-available;">
+    <!-- <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col size="9">
+            <ion-label class="plabel" style="color:white ;">item code Description </ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label class="card_header_text">
+              <ion-icon style="color: #fff;" name="create-outline"></ion-icon>
+            </ion-label>
+            <ion-label class="card_header_text">
+              <ion-icon style="color: red;" name="trash-outline"></ion-icon>
+            </ion-label>
+          </ion-col>
+
+
+
+
+        </ion-row>
+      </ion-card-header> -->
+  </ion-card>
+  <ion-card>
+    <ion-card-content class="card_content">
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col size="9">
+            <ion-label class="plabel" style="color:white ;">Category</ion-label>
+          </ion-col>
+          <ion-col size="3">
+            <ion-label class="card_header_text">
+
+              <ion-icon [routerLink]="['/updatevendorquot']" routerLinkActive="router-link-active" style="color: #fff;"
+                name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
+              <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
+            </ion-label>
+            <ion-label class="card_header_text">
+              <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">QTY :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text"> {{ item.PRS_CODE||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Unit Price :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text"> {{item.item_Code||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">disc% :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.REQUESTED_DATE||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">tax1 :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.REQUESTED_BY||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">tax2 :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.STATUS}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Tc :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.CURRENT_STATUS}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">BaseV :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.CURRENT_STATUS}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">BidV :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.CURRENT_STATUS}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">ExpDate :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.CURRENT_STATUS}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">DelivaryDate :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{item.CURRENT_STATUS}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <ion-col size="12">
     <ion-button color="primary" (click)="edit()">Edit</ion-button>
-  </ion-col>
+  </ion-col> -->
 
 </ion-content>
-
 
 <!-- <div  *ngIf="showedit" style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
       class="fa fa-filter" aria-hidden="true"></i></span></div> -->

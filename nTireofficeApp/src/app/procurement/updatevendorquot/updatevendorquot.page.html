@@ -8,320 +8,114 @@
 </ion-header>
 
 <ion-content>
-
   <ion-card>
-    <ion-card-content class="card_content">
-      <ion-grid>
-        <ion-row>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text"> Vendor Name:</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <ion-label class="labelData-text">1234</ion-label>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Quotation Ref :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <ion-label class="labelData-text">po930</ion-label>
-
-          </ion-col>
-
-
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Quotation Date :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text">Flat for sale</ion-label>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">RFQ Code :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <ion-label class="labelData-text">finding</ion-label>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Total bid Amount :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text">765766</ion-label>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Total Base Amount:</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <ion-label class="labelData-text">8766</ion-label>
-          </ion-col>
-          <ion-col size="7" class="col_height">
-
-            <ion-label class="labelHead-text">Multi Currency :</ion-label>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-            <!-- <option [ngValue]="null"  disabled  selected>--Select--</option> -->
-            <ion-select placeholder="--Select--" style="padding: 0;">
-              <!-- <ion-select-option value="apples">New</ion-select-option> -->
-              <ion-select-option value="oranges">Indian</ion-select-option>
-              <ion-select-option value="bananas">USA</ion-select-option>
-            </ion-select>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <ion-grid>
       <ion-row>
-        <!-- <ion-col size="12">
-            <ion-button color="primary">Update</ion-button>
-          </ion-col> -->
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Vendor Name</ion-label>
+          <select style="padding: 10px;" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option>
+          </select>
+        </ion-col> -->
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">QTY</ion-label>
+          <ion-input type="text" class="Input-text-field textareaField" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Unit Price</ion-label>
+          <input type="number" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Description</ion-label>
+          <ion-input type="text" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
 
-        <!-- <ion-col size="6">
-            <ion-button class="ion-color-success" (click)="newIssueCreate()">New</ion-button>
-          </ion-col> -->
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">TAX 1</ion-label>
+          <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">TAX 2</ion-label>
+          <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Transport Charge</ion-label>
+          <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Base Value</ion-label>
+          <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Bid Value</ion-label>
+          <input type="text" class="Input-text-field textareaField" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Expiry Date</ion-label>
+          <input type="date" class="Input-text-field textareaField" disabled=""
+            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Devlivery Before</ion-label>
+          <input type="date" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
+          <!-- [(ngModel)]="VendorQuot.deliverydate" -->
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Multi currency</ion-label>
+          <select style="padding: 10px;" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option>
+          </select>
+        </ion-col> -->
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-danger" (click)="cancel()" expand="block">Cancel</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button class="ion-color-success" expand="block" (click)="submit()">
+            <!-- <ion-icon style="color:white ;" name="search-outline"></ion-icon> -->
+            Update
+          </ion-button>
+        </ion-col>
       </ion-row>
-    </ion-card-content>
+    </ion-grid>
 
-    <ion-row>
-      <ion-col>
-        <ion-label class="labelHead-text" style="margin: 10px;">Item Details :</ion-label>
-      </ion-col>
-    </ion-row>
-    <div>
-      <ngx-datatable class="material" [headerClass]="ngx-header" [limit]="50" [rows]="data" [rowHeight]="50"
-        [columns]="columns" [columnMode]="'standard'" [headerHeight]="40" [footerHeight]="50" [scrollbarH]="true"
-        [sortType]="'multi'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable">
-      </ngx-datatable>
-    </div>
   </ion-card>
 
-  <ion-col size="12">
-    <ion-button color="primary" (click)="edit()">Edit</ion-button>
-  </ion-col>
 
 
 
-  <!-- <ion-card>
-  <ion-grid>
-    <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Item Code</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField"></ion-input>
-        [(ngModel)]="VendorQuot.itemcode"
-      </ion-col>
 
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Item Description</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField"></ion-input>
-         [(ngModel)]="VendorQuot.itemdesc"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>UOM</ion-label>
-        <select style="padding: 10px;" class="Input-text-field textareaField" >
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option>
-        </select>
-         [(ngModel)]="VendorQuot.uomtext"
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Qty</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField"></ion-input>
-         [(ngModel)]="VendorQuot.qty"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Unit Price</ion-label>
-        <ion-input type="text" class="Input-text-field textareaField" (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)"></ion-input>
-         [(ngModel)]="VendorQuot.unitprice"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label id="disc">Discount (%)</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField" (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)"></ion-input>
-         [(ngModel)]="VendorQuot.discount"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Tax1 (%)</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField"></ion-input>
-         [(ngModel)]="VendorQuot.tax1"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Tax2 (%)</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField"></ion-input>
-         [(ngModel)]="VendorQuot.tax2"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Transport Charge</ion-label>
-        <ion-input  type="number" class="Input-text-field textareaField" (ionChange)="netpricecalc(VendorQuot.unitprice,VendorQuot.qty,VendorQuot.discount,VendorQuot.tax_levies,VendorQuot.transportcharge)"></ion-input>
-         [(ngModel)]="VendorQuot.transportcharge"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Net Price</ion-label>
-        <ion-input  type="text" class="Input-text-field textareaField"></ion-input>
-         [(ngModel)]="VendorQuot.netprice"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Release Before</ion-label>
-        <ion-input style="background-color: #d4d4d4!important;display:inline-block" type="text" class="textareaField"></ion-input>
-        <input type="date" class="Input-text-field textareaField"   disabled="" style=" background-color: #d4d4d4!important;display:inline-block;padding: 8px;">
-
-        [(ngModel)]="VendorQuot.releasedate"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Delivery Before</ion-label>
-         <input type="date" class="Input-text-field textareaField" disabled="" style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;">
-        [(ngModel)]="VendorQuot.deliverydate"
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Remarks</ion-label>
-        <ion-textarea placeholder=" " id="textareaID" class="Input-text-field textareaField" style="width:100%;" maxlength="150"  required=""></ion-textarea>
-        (ionSelect)="resize()"
-        (keyup)="checkTestPressure(this)"
-        [(ngModel)]="VendorQuot.remarks"
-        <span class="customCounter">{{150 - VendorQuot.remarks.length}}</span>
-      </ion-col>
-      <ion-row>
-
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="newquot" >
-
-        <ion-label>Release</ion-label>
-        <input type="checkbox" ng-true-value="0" ng-false-value="1" style="outline: none;">
-
-        <ion-item>
-          <ion-label>Release</ion-label>
-          <ion-checkbox></ion-checkbox>
-          [(ngModel)]="VendorQuot.release"
-        </ion-item>
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="releasedquot">
-        <ion-item>
-          <ion-label>Release</ion-label>
-          <ion-checkbox></ion-checkbox>
-          [(ngModel)]="VendorQuot.release"
-        </ion-item>
-      </ion-col>
-
-        <label class="checkbox" style="padding-left: 20px !important;padding-top: 0px;padding-right: 20px;">
-          <input type="checkbox" ng-true-value="0" ng-false-value="1" style="outline: none;">
-        </label>
-        <label class="labels">Release</label>
-
-      </ion-col>
-    </ion-row>
-
-    </ion-row>
-  </ion-grid>
-
-
-  <ion-button class="button button-small button-block  button-full button-balanced schedulebutn"
-  color="success" expand="block" type="button" (click)="updateVendorDetails(VendorQuot)" disabled="(VendorQuot.transportcharge==undefined||VendorQuot.transportcharge==''  || VendorQuot.unitprice=='' || VendorQuot.unitprice==undefined ||
-  VendorQuot.discount==undefined||VendorQuot.discount=='' || VendorQuot.deliverydate=='' || VendorQuot.deliverydate==undefined )" class="button button-assertive editbut">UPDATE</ion-button>
-</ion-card> -->
 
 </ion-content>
 
-<ion-grid *ngIf="showedit">
-  <ion-row>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Vendor Name</ion-label>
-      <select style="padding: 10px;" disabled=""
-        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-        class="Input-text-field textareaField">
-        <option>&lt;&lt; Select &gt;&gt;</option>
-        <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-      </select>
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Quotation Ref</ion-label>
-      <ion-input type="text" class="Input-text-field textareaField"></ion-input>
-      <!-- [(ngModel)]="VendorQuot.qty" -->
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Quotation Date</ion-label>
-      <input type="date" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
-      <!-- [(ngModel)]="VendorQuot.deliverydate" -->
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">RFQ Code</ion-label>
-      <ion-input type="text" class="Input-text-field textareaField"></ion-input>
-      <!-- [(ngModel)]="VendorQuot.qty" -->
-    </ion-col>
 
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Total bid Amount</ion-label>
-      <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
-      <!-- [(ngModel)]="VendorQuot.deliverydate" -->
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Total Base Amount</ion-label>
-      <input type="text" class="Input-text-field textareaField" style=" display:inline-block;padding: 8px;">
-      <!-- [(ngModel)]="VendorQuot.deliverydate" -->
-    </ion-col>
-    <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-      <ion-label class="plabel">Multi currency</ion-label>
-      <select style="padding: 10px;" style="display:inline-block;padding: 8px;"
-        class="Input-text-field textareaField">
-        <option>&lt;&lt; Select &gt;&gt;</option>
-        <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-      </select>
-    </ion-col>
-    <ion-col style="text-align: center;">
-      <ion-button class="ion-color-primary" routerLink="/purchase-request" expand="block">New</ion-button>
-    </ion-col>
-    <ion-col style="text-align: center;">
-      <ion-button class="ion-color-success" expand="block" (click)="Search()">
-        <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-        Search
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
 
 
 <ion-footer>
 
   <ion-row>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-   {{username}}
- </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
   </ion-row>
 
 
- </ion-footer>
+</ion-footer>

@@ -1,3 +1,16 @@
+/* eslint-disable no-debugger */
+/* eslint-disable eqeqeq */
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable no-var */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable prefer-const */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -10,8 +23,8 @@ import { IpaddressService } from '../../service/ipaddress.service';
 })
 export class PaymentDetailsPage implements OnInit {
 
-  showfilter:boolean=true;
-  showdata:any;
+  showfilter: boolean = true;
+  showdata: any;
 
   //  filter Branch, Location & property code,
 
@@ -23,21 +36,24 @@ export class PaymentDetailsPage implements OnInit {
   propertyCode1: any[];
   isPropertycodeAvailable: boolean;
   companiesstr: any;
-  branch:any;
+  branch: any;
   branchlocation: any;
   propertycode: any;
   property_code: any;
   respContact: any;
   propertyDesc: any;
 
-  user_type:any;
-  Function_id:any;
-  Branch_id:any;
-  user_id:any;
+  user_type: any;
+  Function_id: any;
+  Branch_id: any;
+  user_id: any;
 
-  getPaymentDetailsList:any;
+  getPaymentDetailsList: any;
 
-
+  customerName: any;
+  status: any;
+  paymode: any;
+  chequeno: any;
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
@@ -48,38 +64,85 @@ export class PaymentDetailsPage implements OnInit {
     this.Getbranches();
     this.getPaymentDetails();
   }
-  togglefilter(){
-    this.showfilter = !this.showfilter
+  togglefilter() {
+    this.showfilter = !this.showfilter;
+  };
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  filtergetPaymentDetails() {
+    debugger;
+    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
+      this.presentAlert("", "Please select Branch");
+      return;
+    } else {
+      let data = {
+        Function_id: parseInt(localStorage.getItem('FUNCTION_ID')),
+        Branch_id: this.branch ? this.branch : 1,
+        location: this.branchlocation ? this.branchlocation : 0,
+        property_code: this.propertycode ? this.propertycode : 0,
+        custname: this.customerName ? this.customerName : "0",
+        Status: this.status ? this.status : "0",
+        payMode: this.paymode ? this.paymode : "0",
+        chequeNo: this.chequeno ? this.chequeno : "0",
+        fromDate: 0,
+        toDate: 0
+      };
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.Branch_id + '/' + data.location + '/' + data.property_code + '/' + data.custname + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.payMode + '/' + data.chequeNo, {
+        headers: options,
+      }).subscribe(resp => {
+        this.getPaymentDetailsList = resp;
+        console.log(this.getPaymentDetailsList);
+        if (resp == null) {
+          this.showdata = true;
+        }
+        else {
+          this.showdata = false;
+        }
+      });
+    }
   };
 
-getPaymentDetails(){
 
-  this.user_id = window.localStorage['TUM_USER_ID'];
-  this.Branch_id = window.localStorage['TUM_BRANCH_ID'];
-  this.Function_id = window.localStorage['FUNCTION_ID'];
-  this.user_type = window.localStorage['TUM_USER_TYPE'];
+  getPaymentDetails() {
+
+    this.user_id = window.localStorage['TUM_USER_ID'];
+    this.Branch_id = window.localStorage['TUM_BRANCH_ID'];
+    this.Function_id = window.localStorage['FUNCTION_ID'];
+    this.user_type = window.localStorage['TUM_USER_TYPE'];
 
 
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
 
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + this.Function_id + '/' + this.Branch_id + '/' + 0 +  '/' + 0 + '/' + 0 + '/'  + 0 +'/' + 0 + '/' + 0 + '/' + 0 + '/' + 0, {
-    headers: options,
-  }).subscribe(resp=>{
-    
-    this.getPaymentDetailsList = resp;
-    console.log(this.getPaymentDetailsList);
-    
-    if (this.getPaymentDetailsList == null) {
-      alert("hh")
-      this.showdata = "No Data Found"
-    }
-    else {
-      this.showdata = this.getPaymentDetailsList.length;
-    }
-  })
-};
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + this.Function_id + '/' + this.Branch_id + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0 + '/' + 0, {
+      headers: options,
+    }).subscribe(resp => {
+      this.getPaymentDetailsList = resp;
+      console.log(this.getPaymentDetailsList);
+      if (resp == null) {
+        // alert("hh")
+        this.showdata = true;
+      }
+      else {
+        // this.showdata = this.getPaymentDetailsList.length;
+        this.showdata = false;
+      }
+    });
+  };
 
 
   Getbranches() {
@@ -101,7 +164,7 @@ getPaymentDetails(){
     });
   };
 
-  
+
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -121,21 +184,21 @@ getPaymentDetails(){
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
-      this.customerlocation = resp
+      this.customerlocation = resp;
       for (var i = 0; i < this.customerlocation.length; i++) {
 
         this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
 
       }
-      console.log(this.locationcode1, 'fyttr')
-    })
+      console.log(this.locationcode1, 'fyttr');
+    });
   };
 
 
