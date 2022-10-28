@@ -35,6 +35,9 @@ export class IssueLedgerPage implements OnInit {
   accessToken: string;
   propertyissueledger: any;
   showdata: string;
+  Customer: any;
+  Status: any;
+  AssignedTo: any;
 
    
   constructor(private modalCtrl: ModalController,
@@ -207,6 +210,47 @@ getpropertyissueledger(){
   header.append("Content-Type", "application/json");
   let options = new HttpHeaders().set('Content-Type', 'application/json');
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/'+ this.functionID + "/" + this.branchID + "/" +"0/0/0/0/0/0/0/0", {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"issueledgerlist");
+   this.propertyissueledger=res
+
+
+   
+   if (this.propertyissueledger == null) {
+    alert("hh")
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.propertyissueledger.length;
+  }
+    
+  })
+
+}
+
+
+
+
+
+
+Filterpropertyissueledger(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  let data ={
+    functionID: localStorage.getItem('FUNCTION_ID'),
+    branchid: this.branch ? this.branch : 1,
+    locationid: this.branchlocation ? this.branchlocation : 1,
+    propertyID: this.propertycode ? this.propertycode : 0,
+    Customer: this.Customer ? this.Customer : 0,
+    AssignedTo: this.AssignedTo ? this.AssignedTo : 0,
+    Status: this.Status ? this.Status : 0,
+
+  }
+
+
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/'+ data.functionID + "/" + data.branchid + "/" +data.locationid + "/" + data.propertyID + "/" + "0/0/0/"+ data.Status + "/"+ data.Customer+"/"+data.AssignedTo, {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"issueledgerlist");
