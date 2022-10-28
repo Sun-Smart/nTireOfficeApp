@@ -137,7 +137,7 @@ export class AssetDetailsPage implements OnInit {
         this.assetcode1.push(this.assetcode1str[i].ASSET_CODE);
       }
       const val = ev.target.value;
-
+debugger;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
