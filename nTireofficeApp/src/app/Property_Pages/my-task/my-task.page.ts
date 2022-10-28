@@ -26,7 +26,6 @@ export class MyTaskPage implements OnInit {
 
   //  filter Branch, Location & property code,
 
-
   branchlist1: any = [];
   branchlist: any;
   branchlocationlist: any = [];
@@ -40,6 +39,7 @@ export class MyTaskPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
+  isRecordShow: Boolean;
 
 
 
@@ -76,6 +76,7 @@ export class MyTaskPage implements OnInit {
   };
 
   ngOnInit() {
+    this.Getbranches();
   }
 
   Getbranches() {
@@ -160,6 +161,9 @@ export class MyTaskPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
 
+      
+        this.isRecordShow = true;
+      
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
@@ -174,10 +178,14 @@ export class MyTaskPage implements OnInit {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         });
       }
+    else {
+      this.isPropertycodeAvailable = false;
+    }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
+  
   };
 
   addPropertycode(item: any) {
