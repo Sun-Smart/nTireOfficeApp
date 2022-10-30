@@ -22,7 +22,6 @@ export class ManageRfqPage implements OnInit {
 
   find() {
     this.router.navigate(['/vendorsdetails'])
-
   }
 
   // VendorQuotation() {
@@ -66,7 +65,6 @@ export class ManageRfqPage implements OnInit {
   VendorQuotation() {
 
     this.router.navigate(['/vendor-quotation'])
-
   }
 
   async presentAlert(heading, tittle) {
@@ -80,5 +78,4 @@ export class ManageRfqPage implements OnInit {
 
     await alert.present();
   }
-
 }
