@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Property Condact List</ion-title>
+    <ion-title>Property Contact List</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -30,7 +30,7 @@
             </select>
         </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="getLocationdata(branchlocation)">
@@ -39,7 +39,7 @@
                 {{location.BRANCH_DESC}}</option>
             </select>
           </ion-col>
-        </ion-col>
+        </ion-col> -->
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -95,7 +95,7 @@
           </ion-col> -->
     
           <ion-col size="12">
-            <ion-button color="success" size="default">SEARCH</ion-button>
+            <ion-button color="success" size="default" (click)="filterpropertycondactlist()">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
@@ -108,7 +108,7 @@
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="7">
-            <ion-label class="card_header_text">Property Condact List</ion-label>
+            <ion-label class="card_header_text">Property Contact List</ion-label>
           </ion-col>
   
           <ion-col size="5">
@@ -122,23 +122,23 @@
         <ion-grid>
           <ion-row>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Branch </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Branch}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text">Unique Ref </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.UniqueRef}}</ion-label>
   
@@ -146,111 +146,111 @@
   
   
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text">Property code :</ion-label>
+              <ion-label class="labelHead-text">Property code </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
               <ion-label class="labelData-text">: {{items.PropertyCode}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text">Property Desc :</ion-label>
+              <ion-label class="labelHead-text">Property Desc </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.PropertyDesc}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text">CantactCategory :</ion-label>
+              <ion-label class="labelHead-text">CantactCategory </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
               <ion-label class="labelData-text">: {{items.ContactCategory}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text">Name:</ion-label>
+              <ion-label class="labelHead-text">Name</ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Name}}</ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height" style="    justify-content: center;align-items: center;display: flex;">
+            <ion-col size="6" class="col_height" style=" justify-content: center;align-items: center;display: flex;">
   
-              <ion-label class="labelHead-text">Address :</ion-label>
+              <ion-label class="labelHead-text">Address </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Address}}</ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text"> Res Phone :</ion-label>
+              <ion-label class="labelHead-text"> Res Phone </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Res_Phone}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text"> Off Phone :</ion-label>
+              <ion-label class="labelHead-text"> Off Phone </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Off_Phone}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text"> Email :</ion-label>
+              <ion-label class="labelHead-text"> Email </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Email}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text"> Others1 :</ion-label>
+              <ion-label class="labelHead-text"> Others1 </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Others1}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text"> Others2 :</ion-label>
+              <ion-label class="labelHead-text"> Others2 </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Others2}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
-              <ion-label class="labelHead-text"> Others3 :</ion-label>
+              <ion-label class="labelHead-text"> Others3 </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Others3}}</ion-label>
   
