@@ -45,6 +45,7 @@ export class PmsCreateIssuePage implements OnInit {
   gatagory:any;
   subGatagory:any;
   gatagoryDetails:any;
+  categoryissue:any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -225,6 +226,7 @@ export class PmsCreateIssuePage implements OnInit {
       // "assetownerid": "1",
       // "assetid": "55",
       "assetcode": this.assetCode,
+      "category" : this.categoryissue,
     }
     let options = new HttpHeaders().set('Content-Type', 'application/json')
 
