@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IpaddressService } from '../../service/ipaddress.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-my-task',
@@ -41,12 +42,17 @@ export class MyTaskPage implements OnInit {
   propertyDesc: any;
   isRecordShow: Boolean;
 
+  data: any;
+  sub: any;
+  propertyId: any;
+  getStatus: any;
 
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) {
+    public Ipaddressservice: IpaddressService,
+    private activatedRoute: ActivatedRoute) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -76,7 +82,10 @@ export class MyTaskPage implements OnInit {
   };
 
   ngOnInit() {
+
+
     this.Getbranches();
+    // this.getIssueStatus();
   }
 
   Getbranches() {
@@ -92,7 +101,7 @@ export class MyTaskPage implements OnInit {
       this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+        // console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
     });
@@ -108,7 +117,7 @@ export class MyTaskPage implements OnInit {
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
 
@@ -227,6 +236,22 @@ export class MyTaskPage implements OnInit {
     });
   };
 
+  
+  // getIssueStatus() {
+
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
+
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getissuestatus/' + this.functionID + '/' + this.branchID + '/' + this.data.property_id, {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.getStatus = resp;
+
+  //     console.log(this.getStatus);
+
+  //   });
+  // };
 
 
 }
