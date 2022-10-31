@@ -89,7 +89,7 @@ export class PmscustomerPage implements OnInit {
     this.branchcode = ('')
     this.locationcode = ('')
     this.Getbranches();
-    this.getcustomerItems()
+    this.getcustomerItems();
     // this.getlocation();
 
   };
@@ -101,9 +101,11 @@ export class PmscustomerPage implements OnInit {
     return await model.present();
   };
 
-  async viewModal() {
+  async viewModal(item:any) {
+    console.log(item);
     const model = await this.modalCtrl.create({
       component: PmsIssueStatusPage,
+      componentProps: {Data:item}
     });
     return await model.present();
   };

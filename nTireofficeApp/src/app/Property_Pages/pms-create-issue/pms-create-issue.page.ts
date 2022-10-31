@@ -45,6 +45,8 @@ export class PmsCreateIssuePage implements OnInit {
   gatagory:any;
   subGatagory:any;
   gatagoryDetails:any;
+  categoryissue:any;
+  refNum: Promise<void>;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -225,6 +227,7 @@ export class PmsCreateIssuePage implements OnInit {
       // "assetownerid": "1",
       // "assetid": "55",
       "assetcode": this.assetCode,
+      "category" : this.categoryissue,
     }
     let options = new HttpHeaders().set('Content-Type', 'application/json')
 
@@ -232,8 +235,9 @@ export class PmsCreateIssuePage implements OnInit {
       headers: options, responseType: 'text'
     }).subscribe(resp => {
       console.log(resp)
-      this.dataStatus = resp
-        this.presentAlert("Success", "Issue raised successfully..");
+      this.dataStatus = resp;
+      this.refNum = this.dataStatus[0].Column1;
+        this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");
         this.reset();
 
     })
