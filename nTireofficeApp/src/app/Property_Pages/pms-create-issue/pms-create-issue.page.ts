@@ -22,7 +22,7 @@ export class PmsCreateIssuePage implements OnInit {
   property_code: any;
   respContact: any;
   property_desc: string;
-  assetDesc:any;
+  assetDesc: any;
   assetCode: any;
   function: string;
   branch: any;
@@ -39,13 +39,13 @@ export class PmsCreateIssuePage implements OnInit {
   function_ID: any;
   branch_desc: any;
   branch_id: any;
-  ASSET_CODE:any;
+  ASSET_CODE: any;
 
-  department:any;
-  gatagory:any;
-  subGatagory:any;
-  gatagoryDetails:any;
-  categoryissue:any;
+  department: any;
+  gatagory: any;
+  subGatagory: any;
+  gatagoryDetails: any;
+  categoryissue: any;
   refNum: Promise<void>;
 
   constructor(private modalCtrl: ModalController,
@@ -97,7 +97,7 @@ export class PmsCreateIssuePage implements OnInit {
   }
 
   getItems(ev: any) {
-    
+
     this.assetData = [];
     if (ev.target.value == "") {
       this.assetData = [];
@@ -117,7 +117,7 @@ export class PmsCreateIssuePage implements OnInit {
       this.isItemAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
-      console.log('dfkjbsdkfj',this.companiesstr);
+      console.log('dfkjbsdkfj', this.companiesstr);
 
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
@@ -128,10 +128,10 @@ export class PmsCreateIssuePage implements OnInit {
       const val = ev.target.value;
 
       this.gatagory = this.assetData[0]['ASSET_CATEGORY'];
-      
+
       this.subGatagory = this.assetData[0]['ASSET_TYPE'];
 
-    
+
 
 
       // if the value is an empty string don't filter the items
@@ -187,25 +187,25 @@ export class PmsCreateIssuePage implements OnInit {
     });
   }
 
-  issueGatagory(){
+  issueGatagory() {
 
     this.gatagory = this.respContact[0]['ASSET_CATEGORY'];
-      console.log(this.gatagory);
-      
+    console.log(this.gatagory);
+
     this.subGatagory = this.respContact[0]['ASSET_TYPE'];
     console.log(this.subGatagory);
-    
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindcategory/' + this.gatagory + '/' + this.subGatagory,{
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindcategory/' + this.gatagory + '/' + this.subGatagory, {
       headers: options,
-    }).subscribe(resp=>{
+    }).subscribe(resp => {
       this.gatagoryDetails = resp;
 
       console.log(this.gatagoryDetails);
-      
+
     })
   }
 
@@ -227,23 +227,29 @@ export class PmsCreateIssuePage implements OnInit {
       // "assetownerid": "1",
       // "assetid": "55",
       "assetcode": this.assetCode,
-      "category" : this.categoryissue,
+      "category": this.categoryissue,
     }
     let options = new HttpHeaders().set('Content-Type', 'application/json')
 
-    this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details/', data,{
+    this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details/', data, {
       headers: options, responseType: 'text'
     }).subscribe(resp => {
-      console.log(resp)
-      this.dataStatus = resp;
+     
+      this.dataStatus =JSON.parse(resp);
+      console.log(this.dataStatus);
+
       this.refNum = this.dataStatus[0].Column1;
-        this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");
-        this.reset();
+      // this.refNum =  this.dataStatus.map(({Column1}) => [Column1]);
+      console.log(this.refNum);
+
+
+      this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");
+      this.reset();
 
     })
   };
 
-  reset(){
+  reset() {
     this.assetCode = '';
     this.assetDesc = '';
     this.department = '';
