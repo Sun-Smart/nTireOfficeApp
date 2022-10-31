@@ -1,11 +1,25 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable arrow-body-style */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable no-var */
+/* eslint-disable radix */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable prefer-const */
+/* eslint-disable object-shorthand */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
 import { AdditionalChargesPage } from './additional-charges/additional-charges.page';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IpaddressService } from '../../service/ipaddress.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-additional-page',
@@ -30,21 +44,23 @@ export class AdditionalPagePage implements OnInit {
   propertyCode1: any[];
   isPropertycodeAvailable: boolean;
   companiesstr: any;
-  branch:any;
+  branch: any;
   branchlocation: any;
   propertycode: any;
   property_code: any;
   respContact: any;
   propertyDesc: any;
-
-  constructor(private modalCtrl: ModalController, 
-    private route: Router, 
+  payDate: any;
+  Pay_Date: any;
+  ShowAddionalList: any = [];
+  constructor(private modalCtrl: ModalController,
+    private route: Router, public alertController: AlertController,
     private http: HttpClient,
-    public Ipaddressservice: IpaddressService) { }
+    public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) { }
 
   ngOnInit() {
-    this.Getbranches()
-
+    this.Getbranches();
+    this.getListItems();
 
   }
 
@@ -86,7 +102,7 @@ export class AdditionalPagePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = JSON.stringify(resp);
@@ -103,7 +119,7 @@ export class AdditionalPagePage implements OnInit {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
       headers: options,
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
@@ -119,24 +135,24 @@ export class AdditionalPagePage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
-      this.customerlocation = resp
+      this.customerlocation = resp;
       for (var i = 0; i < this.customerlocation.length; i++) {
 
         this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
 
       }
-      console.log(this.locationcode1, 'fyttr')
-    })
+      console.log(this.locationcode1, 'fyttr');
+    });
   };
 
-getPropertyCode(ev: any) {
+  getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     console.log("one");
@@ -152,7 +168,7 @@ getPropertyCode(ev: any) {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
@@ -197,7 +213,7 @@ getPropertyCode(ev: any) {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -220,6 +236,41 @@ getPropertyCode(ev: any) {
     });
   };
 
+  getListItems() {
+    this.payDate = this.datePipe.transform(this.payDate, 'dd-MM-yyyy');
 
+    let data = {
+      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      Branch: 1,
+      Location: 1,
+      Property_code: 0,
+      Description: 0,
+      // Pay_Date: this.payDate ? this.payDate : 0
+    };
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyadditionalcharger/' + data.strFunctionId + "/" + data.Branch + "/" + data.Location + "/" + data.Property_code + "/" + data.Description, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log("location", resp);
+      this.ShowAddionalList = resp;
+    });
+  }
+  filterListItems() {
+    if (this.branch == "undefined" || this.branch == " " || this.branch == "<< Select >>" || this.branch == null) {
+      this.presentAlert("", "Please select Branch");
+    } else {
+      console.log('123');
+    }
+  }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
 
+    await alert.present();
+  };
 }

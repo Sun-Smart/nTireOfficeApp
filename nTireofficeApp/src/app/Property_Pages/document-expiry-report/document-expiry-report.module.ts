@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DocumentExpiryReportPageRoutingModule } from './document-expiry-report-routing.module';
 
 import { DocumentExpiryReportPage } from './document-expiry-report.page';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DocumentExpiryReportPage } from './document-expiry-report.page';
     IonicModule,
     DocumentExpiryReportPageRoutingModule
   ],
-  declarations: [DocumentExpiryReportPage]
+  declarations: [DocumentExpiryReportPage],
+  providers: [ DatePipe,]
 })
 export class DocumentExpiryReportPageModule {}
