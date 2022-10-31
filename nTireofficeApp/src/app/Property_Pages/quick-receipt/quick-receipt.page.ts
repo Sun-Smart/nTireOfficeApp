@@ -35,7 +35,10 @@ export class QuickReceiptPage implements OnInit {
     public Ipaddressservice: IpaddressService) { }
 
   ngOnInit() {
-    // this.BranchLocationdata();
+    // this.branchcode = ('')
+    // this.locationcode = ('')
+    this.Getbranches();
+    
   }
   togglefilter(){
     this.showfilter = !this.showfilter

@@ -147,17 +147,17 @@ export class PmscustomerPage implements OnInit {
       this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
         headers: options,
       }).subscribe(resp => {
-        this.showAllrecords = resp;
-        if (resp == null) {
-          this.norecordsfound = true;
-        } else {
-          this.norecordsfound = false;
+        this.propertyCodeResult = resp;
+        debugger
+        if (this.propertyCodeResult == null) {
+
+          this.showdata = "No Data Found"
+        }
+        else {
+          this.showdata = this.propertyCodeResult.length;
         }
         // console.log('this.showAllrecords ', this.showAllrecords);
 
-      }, error => {
-
-        // console.log("showAllrecords : " + JSON.stringify(error));
       });
     }
   }
@@ -190,6 +190,13 @@ export class PmscustomerPage implements OnInit {
     }).subscribe((resp: any) => {
       console.log(resp);
       this.propertyCodeResult = resp
+      if (this.propertyCodeResult == null) {
+
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.propertyCodeResult.length;
+      }
 
     }, error => {
 
