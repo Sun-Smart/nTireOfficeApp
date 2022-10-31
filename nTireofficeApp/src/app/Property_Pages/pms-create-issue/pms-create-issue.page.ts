@@ -21,9 +21,8 @@ export class PmsCreateIssuePage implements OnInit {
   propertycode: any;
   property_code: any;
   respContact: any;
-  contact1: any;
   property_desc: string;
-  propertyDesc: any;
+  assetDesc:any;
   assetCode: any;
   function: string;
   branch: any;
@@ -40,7 +39,12 @@ export class PmsCreateIssuePage implements OnInit {
   function_ID: any;
   branch_desc: any;
   branch_id: any;
+  ASSET_CODE:any;
 
+  department:any;
+  gatagory:any;
+  subGatagory:any;
+  gatagoryDetails:any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -51,9 +55,7 @@ export class PmsCreateIssuePage implements OnInit {
 
 
     this.function = localStorage.getItem('FUNCTION_DESC');
-
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
-
 
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.user_ID = JSON.parse(this.userID);
@@ -93,7 +95,7 @@ export class PmsCreateIssuePage implements OnInit {
   }
 
   getItems(ev: any) {
-    console.log("one");
+    
     this.assetData = [];
     if (ev.target.value == "") {
       this.assetData = [];
@@ -106,22 +108,29 @@ export class PmsCreateIssuePage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.assetData = [];
       this.isItemAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
-      console.log(this.companiesstr);
+      console.log('dfkjbsdkfj',this.companiesstr);
 
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.assetData.push(this.companiesstr[i].property_code);
+        this.assetData.push(this.companiesstr[i].ASSET_CODE);
       }
       const val = ev.target.value;
+
+      this.gatagory = this.assetData[0]['ASSET_CATEGORY'];
+      
+      this.subGatagory = this.assetData[0]['ASSET_TYPE'];
+
+    
+
 
       // if the value is an empty string don't filter the items
 
@@ -139,12 +148,13 @@ export class PmsCreateIssuePage implements OnInit {
 
 
   addPropertycode(item: any) {
+
     this.assetCode = item;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.assetCode == this.companiesstr[i].companyName) {
-        this.property_code = this.companiesstr[i].id;
-        console.log(this.property_code);
+        this.ASSET_CODE = this.companiesstr[i].id;
+        console.log(this.ASSET_CODE);
       }
     }
     // window.localStorage['old_company_status'] = 'true';
@@ -159,12 +169,15 @@ export class PmsCreateIssuePage implements OnInit {
 
       console.log(this.respContact);
 
-      this.propertyDesc = this.respContact[0]['property_desc'];
-      this.assetCode = this.respContact[0]['property_desc'];
+      this.assetDesc = this.respContact[0]['ASSET_DESCRIPTION'];
+      this.department = this.respContact[0]['Department'];
+      // this.assetCode = this.respContact[0]['property_desc'];
 
-      this.contact1 = JSON.parse(this.respContact);
-      console.log(this.contact1);
-
+      this.gatagory = this.respContact[0]['ASSET_CATEGORY'];
+      console.log(this.gatagory);
+      this.subGatagory = this.respContact[0]['ASSET_TYPE'];
+      console.log(this.subGatagory);
+      this.issueGatagory();
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
@@ -172,11 +185,35 @@ export class PmsCreateIssuePage implements OnInit {
     });
   }
 
+  issueGatagory(){
+
+    this.gatagory = this.respContact[0]['ASSET_CATEGORY'];
+      console.log(this.gatagory);
+      
+    this.subGatagory = this.respContact[0]['ASSET_TYPE'];
+    console.log(this.subGatagory);
+    
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindcategory/' + this.gatagory + '/' + this.subGatagory,{
+      headers: options,
+    }).subscribe(resp=>{
+      this.gatagoryDetails = resp;
+
+      console.log(this.gatagoryDetails);
+      
+    })
+  }
 
   // postmethod create issue,
 
   createissue() {
-    var data = {
+
+    const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
+
+    let data = {
 
       "userid": this.user_ID,
       "functionid": this.function_ID,
@@ -188,17 +225,28 @@ export class PmsCreateIssuePage implements OnInit {
       // "assetownerid": "1",
       // "assetid": "55",
       "assetcode": this.assetCode,
-
-
     }
-    this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details', data).subscribe((res: any) => {
-      console.log(res)
-      this.dataStatus = res
-      console.log(res.recordsets.Column1);
-      
-      if (res) {
-        // this.presentAlert("Success", "Issue raised successfully. Issue ref number :{ recordsets = [{"Column1":"382"}] }");
-      }
+    let options = new HttpHeaders().set('Content-Type', 'application/json')
+
+    this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details/', data,{
+      headers: options, responseType: 'text'
+    }).subscribe(resp => {
+      console.log(resp)
+      this.dataStatus = resp
+        this.presentAlert("Success", "Issue raised successfully..");
+        this.reset();
+
     })
+  };
+
+  reset(){
+    this.assetCode = '';
+    this.assetDesc = '';
+    this.department = '';
+    this.createDate = '';
+    this.gatagoryDetails = [];
+    this.priority = '';
+    this.textDetails = '';
   }
+
 }

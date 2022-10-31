@@ -37,6 +37,10 @@ const routes: Routes = [
     loadChildren: () => import('./Cams_pages/service-list/service-list.module').then( m => m.ServiceListPageModule)
   },
   {
+    path:'issue-details',
+    loadChildren: () => import('./procurement/issuedetails/issuedetails.module').then(m =>m.IssuedetailsPageModule)
+  },
+  {
     path: 'updatevendoritem',
     loadChildren: () => import('./procurement/updatevendoritem/updatevendoritem.module').then( m => m.UpdatevendoritemPageModule)
   },
@@ -624,6 +628,11 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     path: 'payment-history/:propertyid',
     loadChildren: () => import('./Property_Pages/payment-history/payment-history.module').then( m => m.PaymentHistoryPageModule)
   },
+  {
+    path: 'issuedetails',
+    loadChildren: () => import('./procurement/issuedetails/issuedetails.module').then( m => m.IssuedetailsPageModule)
+  },
+
 
 
 ];

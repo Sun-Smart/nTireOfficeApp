@@ -27,7 +27,7 @@
 
   <ion-card>
     <ion-card-header class="card_header">
-      <ion-card-title class="card_header_text" style="text-align:center ;">Item Details</ion-card-title>
+      <ion-card-title class="card_header_text" style="text-align:center ;" id="showitemdetails_grid">Item Details</ion-card-title>
     </ion-card-header>
     <ion-card-content class="card-content">
       <div class="table">
@@ -81,11 +81,11 @@
       </div>
 
     </ion-card-content>
+</ion-card>
 
-    <br>
-
+<ion-card>
     <ion-card-header class="card_header">
-      <ion-card-title class="card_header_text" style="text-align:center ;">Vendor List</ion-card-title>
+      <ion-card-title class="card_header_text" style="text-align:center ;" value="showvendorlist_grid">Vendor List</ion-card-title>
     </ion-card-header>
     <ion-card-content class="card-content">
 
@@ -153,14 +153,14 @@
       <ion-col>
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" (click)="RequestVenderQuotation()" style="margin-top: -18px;"
-            expand="block">Request Vender Quotation</ion-button>
+            expand="block" [disabled]="selectAllvendor == false">Request Vender Quotation</ion-button>
         </ion-col>
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-danger" style="margin-top: -18px;" expand="block" (click)="cancel()">close</ion-button>
         </ion-col>
-      </ion-col>
+      </ion-col> -->
 
     </ion-row>
     <!-- <ion-row>

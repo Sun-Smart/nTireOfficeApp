@@ -13,6 +13,9 @@ export class ManageRfqPage implements OnInit {
   showvendorqrotationaction: boolean = true;
   selectAllissue: boolean = false;
   selectAllvendor: boolean = false;
+  disabled : boolean = false;
+  showitemdetails_grid : boolean = true;
+  showvendorlist_grid : boolean = false;
 
 
   constructor(private router: Router, private alertcontroller: AlertController) { }
@@ -22,15 +25,16 @@ export class ManageRfqPage implements OnInit {
 
   find() {
     this.router.navigate(['/vendorsdetails'])
-
   }
+
   // VendorQuotation() {
-  //   // this.RequestVenderQuotation==true
-  //   // showvendorqrotation
+  //   this.RequestVenderQuotation==true
+  //   showvendorqrotation
   // }
+
   RequestVenderQuotation() {
-    this.showvendorqrotation = true;
-    this.showvendorqrotationaction = false;
+    // this.showvendorqrotation = true;
+    // this.showvendorqrotationaction = false;
     this.presentAlert("", "Quotation Requested Successfully");
   }
 
@@ -64,8 +68,21 @@ export class ManageRfqPage implements OnInit {
   VendorQuotation() {
 
     this.router.navigate(['/vendor-quotation'])
-
   }
+
+//   add(value)
+//   {
+//   if (value == false)
+// {
+//   this.showvendorlist_grid = false;
+//   this.showitemdetails_grid = true;
+// }
+// else
+// {
+//   this.showvendorlist_grid = true;
+//   this.showitemdetails_grid = true;
+// }
+// }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertcontroller.create({
@@ -78,5 +95,4 @@ export class ManageRfqPage implements OnInit {
 
     await alert.present();
   }
-
 }
