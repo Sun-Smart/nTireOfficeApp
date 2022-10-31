@@ -224,7 +224,7 @@ export class ReapplyOdPage implements OnInit {
   {
    var odref={
      User_ID:parseInt(this.item1.userid),
-     RequestRef: parseInt(this.item.ReqRef),
+     RequestRef: this.item.ReqRef,
       userid: parseInt(window.localStorage['TUM_USER_ID']),
       usertoken:window.localStorage['usertoken'],
       access_token:window.localStorage['token']
@@ -424,7 +424,7 @@ console.log(tohour);
    Fromdate:this.fromdate,
    // Fromdate:new Date(this.fromDate1),
   todate: this.toDate,
-   nodays:this.nodays,
+   nodays:JSON.stringify(this.nodays),
    fromhours:this.fromhour,
    tohours:this.Tohour,
    reason:this.reason,
@@ -434,7 +434,7 @@ console.log(tohour);
   //  contactphone:this.contactphone,
    currentstatus:this.statusstatus,
    empname:this.name,
-   RequestRef: parseInt(this.item.ReqRef),
+   RequestRef: JSON.stringify(this.item.ReqRef),
   //  MobileNum:this.,
     userid: parseInt(window.localStorage['TUM_USER_ID']),
     usertoken:window.localStorage['usertoken'],

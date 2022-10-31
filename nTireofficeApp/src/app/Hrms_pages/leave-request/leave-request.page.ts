@@ -174,6 +174,7 @@ export class LeaveRequestPage implements OnInit {
   getLeaveType(){
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
       this.leavetypearray = resp;
+      console.log(resp)
      }, error => {
 
      console.log("error : "+JSON.stringify(error));
@@ -182,17 +183,16 @@ export class LeaveRequestPage implements OnInit {
   }
   getLeaveBalance(){
     console.log(this.leaveType);
+    this.leaveBal=this.leaveType
     // this.leaveBal="";
     // this.preApprovalDays="";
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeLeaveConfig/"+this.leaveType+ "/" +this.em_emp_id).then(resp=>{
       var reaparray = JSON.parse(resp.toString());
-
+      console.log(reaparray[0].cur_balance)
       this.leaveBal = reaparray[0].cur_balance;
       this.preApprovalDays = reaparray[0].PreApprovalDays
      }, error => {
-
      console.log("error : "+JSON.stringify(error));
-
      });
   }
   fromDate;
@@ -235,7 +235,6 @@ export class LeaveRequestPage implements OnInit {
 
          var fromDate =new Date(this.fromDate);
          var toDate = new Date(event.target.value);
-
 
       // To calculate the time difference of two dates
       var Difference_In_Time = fromDate.getTime() - toDate.getTime();
@@ -297,7 +296,12 @@ export class LeaveRequestPage implements OnInit {
         this.toastmessageService.presentAlert1("Request Not Sent","COFF Request already available for this date")
 
 
-      } else {
+      }
+      else if(resp=resp){
+        this.toastmessageService.presentAlert1("Saved Successfully",resp)
+
+      }
+      else {
         //IF ATTENDANCE IS PRESENT
 
 
