@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./material-request.page.scss'],
 })
 export class MaterialRequestPage implements OnInit {
-
-  showlineItems:boolean=true
+  showbtn: boolean = true;
+  showlineItems: boolean = true;
   showviewlist:boolean=false
   hideviewlist:boolean=false
   showfilter:boolean=true
@@ -18,19 +18,85 @@ export class MaterialRequestPage implements OnInit {
   hidelineItems: boolean;
   visible:boolean = false
   Additem:boolean = true
+  expenseArray = [];
+  showlineItems1:boolean=true;
+  shownewcard:boolean=false
+  ShowAllItem:boolean=true
   constructor( private router :Router) { }
 
   ngOnInit() {
   }
 
-
-
-  showline(){
-    this.showlineItems=!this.showlineItems
+  SearchItems(){
+    this.showviewlist = true
+    this.showbtn = true
     
-    // this.showfilter = !this.showfilter;
+  }
+  Addnewitem(){
+    this.showlineItems1 = !this.showlineItems1;
+    this.ShowAllItem = false;
+
   }
 
+  showline(){
+    this.showlineItems = false;
+    this.showlineItems = !this.showlineItems;
+    this.expenseArray.push({
+      prsid: "",
+      itemid: 'PO2202',
+      i_function_id: "1",
+      required_qty: 5,
+      UOM: "15",
+      expected_cost: "100",
+      exp_date: 6/10/2020,
+      status: "A",
+      created_by: "210",
+      netprice: 5,
+      ipaddress: "",
+      unit_price:2,
+      Limit: "",
+      Availlimit: "",
+      BalanceLimit: "",
+      CATEGORY: 'hello',
+      TAX1: "",
+      TAX2: "",
+      TAX1DESC: "",
+      TAX2DESC: "",
+      OTHERCHARGES: "",
+      item_short_desc: 'hai',
+      item_long_desc: 'test',
+      REMARKS: "",
+      CategoryID: "",
+      SubCategoryID: "",
+      prsDetailID: "",
+      FreightVALUE: "",
+      FreightID: "",
+      RecoveryVALUE: "",
+      RecoveryID: "",
+      BDC: "",
+      PTM: "",
+      ACC: "",
+      CPC: "",
+      flag: "I"
+
+    })
+    console.log(this.expenseArray)
+    this.showbtn = true
+  }
+  Additems() {
+    this.shownewcard=true
+    this.ShowAllItem = false;
+    // this.shownewcard==!this.shownewcard
+  }
+  new(){
+        this.showlineItems = !this.showlineItems
+    this.showviewlist = false
+
+  }
+  clear(){
+    alert("67")
+
+  }
    
   hideline(){
     this.hidelineItems=!this.hidelineItems

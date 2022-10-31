@@ -27,15 +27,32 @@ export class QuickReceiptPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
+  quickreceipt: any;
+  showdata: string;
+  branchID: string;
+  functionID: string;
+  userID: string;
+  usertype: string;
+  accessToken: string;
 
 
   constructor(
     private route: Router, 
     private http: HttpClient,
-    public Ipaddressservice: IpaddressService) { }
+    public Ipaddressservice: IpaddressService) { 
+      this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+      this.functionID = localStorage.getItem('FUNCTION_ID');
+      this.userID = localStorage.getItem('TUM_USER_ID');
+      this.usertype = localStorage.getItem('TUM_USER_TYPE');
+      this.accessToken = localStorage.getItem('token');
+    }
 
   ngOnInit() {
-    // this.BranchLocationdata();
+    // this.branchcode = ('')
+    // this.locationcode = ('')
+    this.Getbranches();
+    this.getquicreceipt();
+    
   }
   togglefilter(){
     this.showfilter = !this.showfilter
@@ -152,7 +169,7 @@ getPropertyCode(ev: any) {
       if (this.propertycode == this.companiesstr[i].companyName) {
         this.property_code = this.companiesstr[i].id;
         console.log(this.property_code);
-      }
+      }   
     };
 
     const header = new Headers();
@@ -180,7 +197,66 @@ getPropertyCode(ev: any) {
 
     });
   };
+// total get
 
+
+getquicreceipt(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ this.functionID + "/" + this.branchID + "/" +"0/0", {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"reportlist");
+   this.quickreceipt=res
+
+
+   
+   if (this.quickreceipt == null) {
   
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.quickreceipt.length;
+  }
+    
+  })
+
+}
+  
+
+
+filterquickreceipt(){
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  let data ={
+    functionID: localStorage.getItem('FUNCTION_ID'),
+    branchid: this.branch ? this.branch : 1,
+    locationid: this.branchlocation ? this.branchlocation : 1,
+    propertyID: this.propertycode ? this.propertycode : 0,
+
+
+  }
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" +"0" , {
+    headers: options,
+  }).subscribe((res:any)=>{
+    console.log(res,"reportlist");
+   this.quickreceipt=res
+
+
+   
+   if (this.quickreceipt == null) {
+
+    this.showdata = "No Data Found"
+  }
+  else {
+    this.showdata = this.quickreceipt.length;
+  }
+    
+  })
+
+}
+
 
 }

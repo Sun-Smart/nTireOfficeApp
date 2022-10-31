@@ -11,8 +11,8 @@
   <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
         class="fa fa-filter" aria-hidden="true"></i></span></div>
 
-  <ion-card *ngIf="showfilter">
-    <ion-grid *ngIf="showlineItems===true">
+  <ion-card>
+    <ion-grid>
       <ion-row>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel" >Company Name</ion-label>
@@ -86,99 +86,7 @@
         <!-- for view mode -->
 
 
-        <ion-card style="width: -webkit-fill-available;" *ngIf="showviewlist">
-          <ion-card-header class="card_header">
-            <ion-row>
-              <ion-col size="9">
-                <ion-label class="plabel" style="color:white ;"> Description </ion-label>
-              </ion-col>
-              <ion-col size="3">
-                <ion-label class="card_header_text">
-                  <ion-icon style="color: #fff;" name="create-outline"></ion-icon>
-                </ion-label>
-                <ion-label class="card_header_text">
-                  <ion-icon style="color: red;" name="trash-outline"></ion-icon>
-                </ion-label>
-              </ion-col>
-            </ion-row>
-          </ion-card-header>
 
-          <ion-card-content class="card_content">
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Category :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text"> {{itemdata.CompanyName||"-"}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Item/Service :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text"> {{itemdata.Code||"-"}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-
-            <!-- <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Description :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <ion-label class="labelData-text">
-            {{itemdata.Address1||"-"}},<br>{{itemdata.Address2||"-"}},<br>{{itemdata.City||"-"}} -
-            {{itemdata.ZIPCode||"-"}}</ion-label>
-              </ion-col>
-            </ion-row> -->
-
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">QTY :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text">{{itemdata.Website||"-"}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Unit Price :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text">{{itemdata.GroupName||"-"}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Net Price :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text">{{itemdata.TotalEmployees||"-"}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Required Before :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text"> {{itemdata.DateOfIncorporation|date:'d/M/yy'}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col size="6">
-                <ion-label class="card_content_label labelHead-text">Item Detailed Description :</ion-label>
-              </ion-col>
-              <ion-col size="6">
-                <!-- <ion-label class="labelData-text">{{itemdata.Status}}</ion-label> -->
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
 
 
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
@@ -190,7 +98,23 @@
 
         <!-- close for view mode -->
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="showbtn">
+        <ion-col style="text-align: center;">
+          <ion-button (click)="new()" class="ion-color-primary" expand="block">
+            <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon>New
+          </ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button (click)="clear()" class="ion-color-danger" expand="block">Cancel</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button (click)="SearchItems()" class="ion-color-success" expand="block">Search</ion-button>
+        </ion-col>
+        <!-- <ion-col style="text-align: center;">
+          <ion-button class="ion-color-success" expand="block">New</ion-button>
+        </ion-col> -->
+      </ion-row>
+      <!-- <ion-row>
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-primary" (click)="showline()" expand="block">New</ion-button>
         </ion-col>
@@ -213,10 +137,10 @@
         <ion-col style="text-align: center;">
           <ion-button (click)="submit()" class="ion-color-success" expand="block">Save</ion-button>
         </ion-col> -->
-        <!-- <ion-col style="text-align: center;">
+      <!-- <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" expand="block">New</ion-button>
         </ion-col> -->
-      </ion-row>
+      <!-- </ion-row> -->
     </ion-grid>
 
   </ion-card>
@@ -231,7 +155,7 @@
           </ion-col>
           <ion-col size="3">
             <ion-label class="card_header_text">
-              <ion-icon (click)="close()" style="color: red; margin-left: 40px;" name="close-circle"></ion-icon>
+              <!-- <ion-icon (click)="close()" style="color: red; margin-left: 40px;" name="close-circle"></ion-icon> -->
             </ion-label>
             <!-- <ion-icon name="close-circle"></ion-icon> -->
           </ion-col>
@@ -313,12 +237,7 @@
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Vehicle Number</ion-label>
-          <ion-input type="text" [(ngModel)]="vehiclenumber" class="Input-text-field textareaField"></ion-input>
-          <!-- [(ngModel)]="VendorQuot.unitprice" -->
-        </ion-col>
-        <!-- suneel refered from letter request page (hrm app) -->
+     
         <ion-row>
           <ion-col size="6">
             <div style="padding: 12px;display: flex;">
@@ -338,10 +257,75 @@
         <!-- close -->
 
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
-          <ion-button class="ion-color-success" (click)="hideline()" expand="block">
-            <ion-icon style="color: #fff;" name="add-circle"></ion-icon>Add Item
-          </ion-button>
+
+        <!-- add item -->
+        <ion-row *ngIf="shownewcard">
+        
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">SNO</ion-label>
+            <ion-input type="text" [(ngModel)]="sno" class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.qty" -->
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">Item Code</ion-label>
+            <ion-input type="text" [(ngModel)]="itemcode" class="Input-text-field textareaField"></ion-input>
+            <!-- [(ngModel)]="VendorQuot.unitprice" -->
+          </ion-col>
+          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label class="plabel">Item Depreciation </ion-label>
+            <ion-input type="text" [(ngModel)]="itemdepreciation" class="Input-text-field textareaField"></ion-input>
+          </ion-col>
+       
+        
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+              <ion-label class="plabel">UOM </ion-label>
+              <ion-input type="text" [(ngModel)]="uom" class="Input-text-field textareaField"></ion-input> 
+            </ion-col>
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+              <ion-label class="plabel">Unit Price</ion-label>
+              <ion-input type="text" [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
+            </ion-col>
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+              <ion-label class="plabel">Stock Qty </ion-label>
+              <ion-input type="text" [(ngModel)]="stockqty" class="Input-text-field textareaField"></ion-input>
+            </ion-col>
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+              <ion-label class="plabel">Request Qty </ion-label>
+              <ion-input type="text" [(ngModel)]="requestqty" class="Input-text-field textareaField"></ion-input>
+            </ion-col>
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+              <ion-label class="plabel">Required Before Date</ion-label>
+              <ion-input type="text" [(ngModel)]="requiredbfr" class="Input-text-field textareaField"></ion-input>
+            </ion-col>
+            <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+              <ion-label class="plabel">Remarks </ion-label>
+              <ion-input type="text" [(ngModel)]="remarks" class="Input-text-field textareaField"></ion-input>
+            </ion-col>
+
+
+     <ion-col style="text-align: center;">
+          <ion-button (click)="showline()" class="ion-color-success" expand="block">Save</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button (click)="close()" class="ion-color-danger" expand="block">Cancel</ion-button>
+        </ion-col>
+
+        
+
+      </ion-row>
+        <!-- over add item -->
+
+
+ </ion-row>
+<ion-row *ngIf="ShowAllItem">
+        <ion-col style="text-align: center;">
+          <ion-button (click)="Additems()" class="ion-color-primary" expand="block">Add Item</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button (click)="showline()" class="ion-color-success" expand="block">Submit</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;">
+          <ion-button (click)="close()" class="ion-color-danger" expand="block">Close</ion-button>
         </ion-col>
       </ion-row>
 
@@ -351,70 +335,138 @@
 
 
   </ion-card>
-  <!-- <ion-card *ngIf="hidefilter">
-    <ion-grid *ngIf="hidelineItems===false">
+  <ion-card style="width: -webkit-fill-available;" *ngIf="showviewlist">
+    <ion-card-header class="card_header">
       <ion-row>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Category</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="Category" class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-          </select>
+        <ion-col size="9">
+          <ion-label class="plabel" style="color:white ;"> Description </ion-label>
         </ion-col>
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Item/Service</ion-label>
-          <ion-input type="text"  [(ngModel)]="Item" class="Input-text-field textareaField"></ion-input>
+        <ion-col size="3">
+          <ion-label class="card_header_text">
+            <ion-icon style="color: #fff;" name="create-outline"></ion-icon>
+          </ion-label>
+          <ion-label class="card_header_text">
+            <ion-icon style="color: red;" name="trash-outline"></ion-icon>
+          </ion-label>
         </ion-col>
-
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Description</ion-label>
-          <ion-textarea placeholder=" " [(ngModel)]="Description" id="textareaID" class="Input-text-field textareaField" style="width:100%;"
-            maxlength="150" required=""></ion-textarea>
-
-        </ion-col>
-
-
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">QTY</ion-label>
-          <ion-input type="text"  [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
-        </ion-col>
-
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Price</ion-label>
-          <ion-input type="text"  [(ngModel)]="unitprice" class="Input-text-field textareaField"></ion-input>
-
-        </ion-col>
-
-
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Net Price</ion-label>
-          <ion-input type="text"  [(ngModel)]="netprice" class="Input-text-field textareaField"></ion-input>
-
-        </ion-col>
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Required Before</ion-label>
-          <ion-input type="date"  [(ngModel)]="Requiredbefore" class="Input-text-field textareaField"></ion-input>
-
-        </ion-col>
-
-
-
-
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
-          <ion-button (click)="showline()" class="ion-color-success" expand="block">
-            <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Item
-          </ion-button>
-        </ion-col>
-
       </ion-row>
-    </ion-grid>
-  </ion-card> -->
+    </ion-card-header>
 
+    <ion-card-content class="card_content">
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Category :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text"> {{itemdata.CompanyName||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Item/Service :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text"> {{itemdata.Code||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">QTY :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{itemdata.Website||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Unit Price :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{itemdata.GroupName||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Net Price :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{itemdata.TotalEmployees||"-"}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Required Before :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text"> {{itemdata.DateOfIncorporation|date:'d/M/yy'}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Item Detailed Description :</ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <!-- <ion-label class="labelData-text">{{itemdata.Status}}</ion-label> -->
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let items of expenseArray">
+    <ion-row>
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" class="leadscolumn">
+        {{items.GET_DES}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        Category
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.CATEGORY}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        Item/Service
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.itemid}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        QTY
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.required_qty}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        Unit Price
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.unit_price}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        Requiredbefore
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.exp_date}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        netprice
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.netprice}}
+      </ion-col>
+      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        itemdescription
+      </ion-col>
+      <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        {{items.item_short_desc}}
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
 </ion-content>
 <!-- <ion-button class="button button-small button-block  button-full button-balanced schedulebutn"

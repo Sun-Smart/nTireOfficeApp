@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IpaddressService } from '../../service/ipaddress.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-my-task',
@@ -41,12 +42,24 @@ export class MyTaskPage implements OnInit {
   propertyDesc: any;
   isRecordShow: Boolean;
 
+  mode: any;
+  fromDate: any;
+  toDate: any;
+  fdate: any;
+  tdate: any;
+  PrDesc: any;
+  PrCode: any;
+  assetname: any;
+  myTaskDetailsList: any;
+
+
 
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) {
+    public Ipaddressservice: IpaddressService,
+    private activatedRoute: ActivatedRoute) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -76,8 +89,12 @@ export class MyTaskPage implements OnInit {
   };
 
   ngOnInit() {
+
+
     this.Getbranches();
-  }
+    this.taskDetails();
+  };
+
 
   Getbranches() {
 
@@ -92,13 +109,13 @@ export class MyTaskPage implements OnInit {
       this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+        // console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
     });
   };
 
-  
+
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -108,7 +125,7 @@ export class MyTaskPage implements OnInit {
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
 
@@ -118,7 +135,7 @@ export class MyTaskPage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
@@ -161,9 +178,9 @@ export class MyTaskPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
 
-      
-        this.isRecordShow = true;
-      
+
+      this.isRecordShow = true;
+
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
@@ -178,14 +195,14 @@ export class MyTaskPage implements OnInit {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         });
       }
-    else {
-      this.isPropertycodeAvailable = false;
-    }
+      else {
+        this.isPropertycodeAvailable = false;
+      }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
-  
+
   };
 
   addPropertycode(item: any) {
@@ -228,5 +245,82 @@ export class MyTaskPage implements OnInit {
   };
 
 
+  taskDetails() {
+    debugger
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let data = {
+      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+      branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+      Mode: this.mode ? this.mode : 0,
+      fromDate: this.fdate ? this.fdate : 0,
+      toDate: this.tdate ? this.tdate : 0,
+      Status: 0,
+      dept: 0,
+      tag: 0,
+      strUserId: parseInt(localStorage.getItem('TUM_USER_ID')),
+      UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+      pageIndex: 0,
+      pageSize: 50,
+      sortExpression: 0,
+      alphaname: 0,
+      drpcategory: 0,
+      drptype: 0,
+      TASKTYPE: 0,
+      PropCode: this.PrCode ? this.PrCode : 0,
+      PropDesc: this.PrDesc ? this.PrDesc : 0,
+      strCriticality: 0,
+      assetName: this.assetname ? this.assetname : 0,
+      actmaintenence: 0,
+      wrkordno: 0,
+    };
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+
+    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getmytask/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0', {
+      headers: options,
+    }).subscribe((resp: any) => {
+      console.log(resp);
+
+      this.myTaskDetailsList = resp;
+
+    });
+
+    // this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/'+ data.branchid + '/'+ data.Mode + '/'+ data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
+    // + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+    // + data.drptype + '/'+ data.TASKTYPE + '/'+ data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'+ data.wrkordno, {
+
+    //   headers:options,
+    // }).subscribe((resp:any)=>{
+    //   console.log(resp);
+    // });
+  };
+
+  filterMyTask() {
+    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
+      this.presentAlert("", "Please select Branch");
+      return;
+    } else {
+
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+
+      let data = {
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+        branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+
+        propertyID: this.propertycode ? this.propertycode : 0,
+      };
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branchid + '/' + data.propertyID, {
+        headers: options,
+      }).subscribe((resp: any) => {
+        console.log("getTask", resp);
+
+      });
+    };
+  };
 
 }

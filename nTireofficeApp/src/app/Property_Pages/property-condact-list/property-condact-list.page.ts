@@ -131,7 +131,7 @@ export class PropertyCondactListPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycodebybranch/' + ev.target.value + "/" + strFunctionId + "/" + this.branch , {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
@@ -176,7 +176,7 @@ export class PropertyCondactListPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycodebybranch/' + this.propertycode + "/" + strFunctionId + "/" + this.branch , {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -214,7 +214,7 @@ getpropertycondactlist(){
 
    
    if (this.propetycondactlist == null) {
-    alert("hh")
+  
     this.showdata = "No Data Found"
   }
   else {
@@ -232,7 +232,14 @@ filterpropertycondactlist(){
   const header = new Headers();
   header.append("Content-Type", "application/json");
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycontactlistreport/'+ this.functionID + "/" + this.branchID + "/" +"0/0", {
+
+  let data ={
+    functionID: localStorage.getItem('FUNCTION_ID'),
+    branchid: this.branch ? this.branch : 1,
+  
+    propertyID: this.propertycode ? this.propertycode : 0,
+  }
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycontactlistreport/'+ data.functionID + "/" + data.branchid + "/" + data.propertyID+ "/0", {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");
@@ -241,7 +248,7 @@ filterpropertycondactlist(){
 
    
    if (this.propetycondactlist == null) {
-    alert("hh")
+  
     this.showdata = "No Data Found"
   }
   else {
@@ -251,6 +258,10 @@ filterpropertycondactlist(){
   })
 
 }
+
+
+
+
 
 
 

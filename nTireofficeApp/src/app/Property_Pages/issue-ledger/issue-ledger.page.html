@@ -22,7 +22,7 @@
             <ion-label>Branch <span style="color:red;">*</span></ion-label>
             <select id="selectbutton" [(ngModel)]="branch" class="form-control"
               (change)="BranchLocationdata(branch)">
-              <option disabled>&lt;&lt; Select &gt;&gt;</option>
+              <option value="undefined" selected disabled><< Select >></option>
               <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}
               </option>
@@ -33,7 +33,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="getLocationdata(branchlocation)">
-              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option value="undefined" selected disabled><< Select >></option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
                 {{location.BRANCH_DESC}}</option>
             </select>
@@ -66,7 +66,7 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Status</ion-label>
           <select id="selectbutton" [(ngModel)]="Status" class="form-control" >
-            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="undefined" selected disabled><< Select >></option>
             <option> Cancelled</option>
             <option> Completed</option>
             <option> New</option>
@@ -125,7 +125,7 @@
 
 
 
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Count : {{showdata}}</p>
+    <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Records : {{showdata}}</p>
 
     <ion-card  *ngFor="let items of propertyissueledger; let i = index">
       <ion-card-header class="card_header">
@@ -145,23 +145,23 @@
         <ion-grid>
           <ion-row>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Branch </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Branch}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text">Location </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Location}}</ion-label>
   
@@ -169,101 +169,101 @@
   
   
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text">Property Code </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
               <ion-label class="labelData-text">: {{items.PropertyCode}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text">Description </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Description}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text">Customer </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
               <ion-label class="labelData-text">: {{items.Customer}}</ion-label>
   
             </ion-col>
   
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text">Issue Ref</ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.IssueRef}}</ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height" style="justify-content: center;align-items: center;display: flex;">
+            <ion-col size="6" class="col_height" style="justify-content: center;align-items: center;display: flex;">
   
               <ion-label class="labelHead-text">Issue Description </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.IssueDesc}}</ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Criticality </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Criticality}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Assigned To </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.AssignedTo}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Target Date </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.TargetDate}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Completion Date Time </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.CompletionDateTime}}</ion-label>
   
             </ion-col>
-            <ion-col size="7" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelHead-text"> Status </ion-label>
   
             </ion-col>
-            <ion-col size="5" class="col_height">
+            <ion-col size="6" class="col_height">
   
               <ion-label class="labelData-text">: {{items.Status}}</ion-label>
   

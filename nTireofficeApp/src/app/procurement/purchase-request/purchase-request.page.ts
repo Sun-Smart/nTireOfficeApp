@@ -179,7 +179,7 @@ export class PurchaseRequestPage implements OnInit {
   showline() {  //submit btn
     this.showviewlist = true
     this.showlineItems = false
-    this.showlineItems = !this.showlineItems
+    this.showlineItems = !this.showlineItems;
     this.expenseArray.push({
       prsid: "",
       itemid: this.itemcode,
