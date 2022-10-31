@@ -94,6 +94,17 @@ export class PmscustomerPage implements OnInit {
 
   };
 
+  showmore(idvalue) {
+    //        alert(idvalue);
+    $("#dividvalsp" + idvalue).css("display", "block");
+    $("#imageidvalsp" + idvalue).hide();
+}
+showless(idvalue) {
+    //        alert(idvalue);
+    $("#dividvalsp" + idvalue).css("display", "none");
+    $("#imageidvalsp" + idvalue).show();
+};
+
   async createModal() {
     const model = await this.modalCtrl.create({
       component: PmsCreateIssuePage,

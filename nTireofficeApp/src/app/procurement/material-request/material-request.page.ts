@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class MaterialRequestPage implements OnInit {
 
-  showlineItems:boolean=true
+  showlineItems:boolean=false
   showviewlist:boolean=false
   hideviewlist:boolean=false
   showfilter:boolean=true
@@ -27,8 +27,6 @@ export class MaterialRequestPage implements OnInit {
 
   showline(){
     this.showlineItems=!this.showlineItems
-    
-    // this.showfilter = !this.showfilter;
   }
 
    
