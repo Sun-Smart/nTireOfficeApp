@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IpaddressService } from '../../service/ipaddress.service';
-
+import { DatePipe } from '@angular/common'; 
 
 @Component({
   selector: 'app-document-expiry-report',
@@ -11,7 +11,11 @@ import { IpaddressService } from '../../service/ipaddress.service';
   styleUrls: ['./document-expiry-report.page.scss'],
 })
 export class DocumentExpiryReportPage implements OnInit {
-
+  transform(value: string) {
+    this.datePipe = new DatePipe("en-US");
+     value = this.datePipe.transform(value, 'dd/MM/yyyy');
+     return value;
+ }
 
   showfilter: boolean = true;
   showdata: any;
@@ -32,8 +36,8 @@ export class DocumentExpiryReportPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
-  fromdate: string;
-  todate: string;
+  fromdate: any;
+  todate:any;
   clientname: string;
 
   user_type: any;
@@ -42,11 +46,15 @@ export class DocumentExpiryReportPage implements OnInit {
   user_id: any;
 
   getdocumentexpiryList: any;
+  issuedate: any;
+  expirydate: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) { }
+    public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) {
+      
+     }
 
   ngOnInit() {
     this.Getbranches();
@@ -158,7 +166,7 @@ export class DocumentExpiryReportPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycodebybranch/' + ev.target.value + "/" + strFunctionId + "/" + this.branch , {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
@@ -203,7 +211,7 @@ export class DocumentExpiryReportPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycodebybranch/' + this.propertycode + "/" + strFunctionId + "/" + this.branch , {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -226,5 +234,46 @@ export class DocumentExpiryReportPage implements OnInit {
     });
   };
 
+
+  filterdocumentexpiryreport() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    let data ={
+      functionID: localStorage.getItem('FUNCTION_ID'),
+      branchid: this.branch ? this.branch : 1,
+      propertyID: this.propertycode ? this.propertycode : 0,
+      // fromdate: this.fromdate ? this.fromdate : 1,
+      // todate: this.todate ? this.todate : 1,
+      clientname: this.clientname ? this.clientname : 0,
+   
+    }
+    
+    this.fromdate=this.datePipe.transform(this.fromdate, 'dd-MM-yyyy') 
+    this.todate=this.datePipe.transform(this.todate, 'dd-MM-yyyy') ,
+
+    this.issuedate=this.fromdate ? this.fromdate:0
+    this.expirydate=this.todate ? this.todate:0
+
+    console.log(this.fromdate,"date");
+    console.log(this.issuedate,"datee");
+    
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getdocumentexpiryreport/' + data.functionID + '/' + data.branchid+ '/' +data.propertyID + '/' +  this.issuedate + "/" +   this.expirydate +  '/' + 0 + '/' + data.clientname, {
+      headers: options,
+    }).subscribe(resp => {
+
+      this.getdocumentexpiryList = resp;
+      console.log(this.getdocumentexpiryList);
+
+      if (this.getdocumentexpiryList == null) {
+
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.getdocumentexpiryList.length;
+      }
+    });
+
+  }
 
 }

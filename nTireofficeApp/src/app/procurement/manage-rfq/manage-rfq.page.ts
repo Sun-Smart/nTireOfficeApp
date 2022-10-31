@@ -14,6 +14,9 @@ export class ManageRfqPage implements OnInit {
   selectAllissue: boolean = false;
   selectAllvendor: boolean = false;
   disabled : boolean = false;
+  showitemdetails_grid : boolean = true;
+  showvendorlist_grid : boolean = false;
+
 
   constructor(private router: Router, private alertcontroller: AlertController) { }
 
@@ -22,7 +25,6 @@ export class ManageRfqPage implements OnInit {
 
   find() {
     this.router.navigate(['/vendorsdetails'])
-
   }
 
   // VendorQuotation() {
@@ -66,8 +68,21 @@ export class ManageRfqPage implements OnInit {
   VendorQuotation() {
 
     this.router.navigate(['/vendor-quotation'])
-
   }
+
+//   add(value)
+//   {
+//   if (value == false)
+// {
+//   this.showvendorlist_grid = false;
+//   this.showitemdetails_grid = true;
+// }
+// else
+// {
+//   this.showvendorlist_grid = true;
+//   this.showitemdetails_grid = true;
+// }
+// }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertcontroller.create({
@@ -80,5 +95,4 @@ export class ManageRfqPage implements OnInit {
 
     await alert.present();
   }
-
 }
