@@ -47,6 +47,9 @@ export class PmsCreateIssuePage implements OnInit {
   gatagoryDetails: any;
   categoryissue: any;
   refNum: Promise<void>;
+  assetid: any;
+  assetownerid: any;
+  categoryid: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -173,6 +176,9 @@ export class PmsCreateIssuePage implements OnInit {
 
       this.assetDesc = this.respContact[0]['ASSET_DESCRIPTION'];
       this.department = this.respContact[0]['Department'];
+      this.assetid = this.respContact[0]['ASSET_ID'];
+      this.assetownerid = this.respContact[0]['ASSET_OWNER_ID'];
+      
       // this.assetCode = this.respContact[0]['property_desc'];
 
       this.gatagory = this.respContact[0]['ASSET_CATEGORY'];
@@ -203,7 +209,9 @@ export class PmsCreateIssuePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.gatagoryDetails = resp;
-
+      this.categoryid = this.gatagoryDetails[0]['VAL'];
+      console.log(this.categoryid);
+      
       console.log(this.gatagoryDetails);
 
     })
@@ -222,12 +230,12 @@ export class PmsCreateIssuePage implements OnInit {
       "branchid": this.branch_id,
       "Priority": this.priority,
       "pm_due_date": this.createDate,
-      // "drpPMType": "15",
+      "drpPMType": this.categoryid,
       "txtDetails": this.textDetails,
-      // "assetownerid": "1",
-      // "assetid": "55",
+      "assetownerid": "1",
+      "assetid": this.assetid,
       "assetcode": this.assetCode,
-      "category": this.categoryissue,
+
     }
     let options = new HttpHeaders().set('Content-Type', 'application/json')
 
