@@ -31,18 +31,18 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>OD From (Date)<span class="validatecolor">*</span></ion-label>
-        <ion-input type='date' class="form-control" (ionChange)="filterDate($event.target.value,toDate)"
+        <ion-input type='date' class="form-control" (click)="filterDate($event.target.value,toDate)"
           [(ngModel)]="fromDate"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>OD To (Date)<span class="validatecolor">*</span></ion-label>
-        <ion-input type='date' class="form-control" (ionChange)="filterDate(fromDate,$event.target.value)"
+        <ion-input type='date' class="form-control" (click)="filterDate(fromDate,$event.target.value)"
           [(ngModel)]="toDate"></ion-input>
       </ion-col>
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Status<span class="validatecolor">*</span></ion-label>
-        <select [(ngModel)]="status" class="form-control" (ionChange)="changeOrder();">
+        <select [(ngModel)]="status" class="form-control" (click)="changeOrder();">
           <option value="">&lt;&lt; Select &gt;&gt;</option>
           <option>Approved</option>
           <option>Pending</option>

@@ -12,20 +12,21 @@
   <ion-card *ngIf="showfilter">
     <ion-grid>
       <ion-row>
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Company Name</ion-label>
-        <ion-input  disabled="" style="  background-color: #d4d4d4!important; display:inline-block;padding: 8px;"  type="text" class="Input-text-field textareaField"></ion-input>
-      </ion-col> -->
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Branch</ion-label>
+          <ion-input type="text" [(ngModel)]="Branchname" disabled=""
+            style="  background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text"
+            class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Branch</ion-label>
           <select style="padding: 10px;" disabled=""
             style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
-            <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
-          </select>
-        </ion-col>
+      </select>
+        </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Code</ion-label>
           <ion-input type="text" [(ngModel)]="prscode" class="Input-text-field textareaField"></ion-input>
