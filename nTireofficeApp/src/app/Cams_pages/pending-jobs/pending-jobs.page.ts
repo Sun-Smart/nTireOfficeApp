@@ -415,7 +415,7 @@ if(alldata.CMD_ASSET_ID==''||alldata.CMD_ASSET_ID==undefined){
       var datarep = {
         'wrkno': obj,
         'functionid':parseInt(window.localStorage['FUNCTION_ID']),
-        'branchid':window.localStorage['TUM_BRANCH_ID'],
+        'branchid':this.branch_ID,
         'activityid':activityID,
         'duedate':alldata.pm_due_date,
         'assetid':assetID,

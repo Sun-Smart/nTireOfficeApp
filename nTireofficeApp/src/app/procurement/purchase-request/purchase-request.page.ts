@@ -23,7 +23,7 @@ export class PurchaseRequestPage implements OnInit {
   userid
   branchid
   hideitem: boolean = false;
-  showitem: boolean = true;
+  showitem: boolean = false;
 
   // Itemcode: any;
 
@@ -54,6 +54,8 @@ export class PurchaseRequestPage implements OnInit {
   assttrecon: any;
   branchname: any;
   showbtn: boolean = true;
+  showsubmit: boolean = false;
+  showsavebtn: boolean = false;
   itemcode: any;
   getitemdata: any;
   // release
@@ -137,7 +139,7 @@ export class PurchaseRequestPage implements OnInit {
 
 
   getItemDetail(e) {
-
+    this.showsavebtn = true
     let getcategory = this.Category
     console.log(getcategory)
     if (getcategory == "IT") {
@@ -160,6 +162,14 @@ export class PurchaseRequestPage implements OnInit {
       this.qty = 1
 
     }
+    if (getcategory == "select") {
+      this.hideitem = false;
+      this.showitem = false;
+      this.showsavebtn = false;
+    }
+
+
+
     // this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
     //   console.log(resp)
     //   this.getdata1 = resp
@@ -178,6 +188,7 @@ export class PurchaseRequestPage implements OnInit {
 
   showline() {  //submit btn
     this.showviewlist = true
+    this.showsubmit = true
     this.showlineItems = false
     this.showlineItems = !this.showlineItems;
     this.expenseArray.push({
@@ -221,6 +232,11 @@ export class PurchaseRequestPage implements OnInit {
     })
     console.log(this.expenseArray)
     this.showbtn = true
+  }
+
+
+  delete(i) {
+    this.expenseArray.splice(i, 1);
   }
 
   async clear() {
