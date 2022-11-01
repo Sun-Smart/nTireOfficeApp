@@ -89,8 +89,8 @@ export class ReapplypermissionPage implements OnInit {
   }
 
   submitPerm() {
-    if (this.permData.MobileNum === undefined) {
-      this.permData.MobileNum === null;
+    if (this.permData.MobileNum == undefined) {
+      this.permData.MobileNum == null;
     }
 
     this.permData={
