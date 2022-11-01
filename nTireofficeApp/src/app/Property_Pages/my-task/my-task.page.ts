@@ -51,7 +51,7 @@ export class MyTaskPage implements OnInit {
   PrCode: any;
   assetname: any;
   myTaskDetailsList: any;
-
+  showAllrecords: any = [];
 
 
 
