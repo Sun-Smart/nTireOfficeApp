@@ -30,7 +30,7 @@
                 </option>
               </select>
           </ion-col>
-  
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <!-- <ion-label class="ContentName">Location :</ion-label> -->
             <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -42,8 +42,8 @@
               </select>
             </ion-col>
           </ion-col>
-  
-  
+
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Property Code</ion-label>
             <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
@@ -64,7 +64,7 @@
               <option> New</option>
               <option> Pending</option>
               <option> Rejected</option>
-              
+
             </select>
           </ion-col>
 
@@ -74,8 +74,8 @@
               <option value="undefined" selected disabled><< Select >></option>
               <option> Residental</option>
               <option> Commercial</option>
-             
-              
+
+
             </select>
           </ion-col>
 
@@ -87,8 +87,8 @@
               <option> Available</option>
             </select>
           </ion-col>
-  
-    
+
+
           <ion-col size="12">
             <ion-button color="success" size="default" (click)="filterpropertylistreport()">SEARCH</ion-button>
           </ion-col>
@@ -96,7 +96,7 @@
       </ion-card-content>
     </ion-card>
 
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Records : {{showdata}}</p>
+    <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
 
   <ion-card  *ngFor="let items of reportpropertylist; let i = index">
     <ion-card-header class="card_header">
@@ -249,7 +249,7 @@
             <ion-label class="labelData-text">: {{items.Todate}}</ion-label>
 
           </ion-col>
-          
+
           <!-- <ion-col size="5" class="col_height">
 
             <option [ngValue]="null"  disabled  selected>--Select--</option>
@@ -274,7 +274,7 @@
 
        <ion-col size="6">
           <ion-button class="ion-color-success" (click)="newIssueCreate()">New</ion-button>
-        </ion-col> 
+        </ion-col>
       </ion-row> -->
     </ion-card-content>
 
