@@ -53,6 +53,7 @@ export class AdditionalPagePage implements OnInit {
   payDate: any;
   Pay_Date: any;
   ShowAddionalList: any = [];
+  propDesc: any;
   constructor(private modalCtrl: ModalController,
     private route: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -244,11 +245,11 @@ export class AdditionalPagePage implements OnInit {
       Branch: 1,
       Location: 1,
       Property_code: 0,
-      Description: 0,
-      // Pay_Date: this.payDate ? this.payDate : 0
+      Description: this.propDesc ? this.propDesc : 0,
+      Pay_Date: this.payDate ? this.payDate : 0
     };
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyadditionalcharger/' + data.strFunctionId + "/" + data.Branch + "/" + data.Location + "/" + data.Property_code + "/" + data.Description, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyadditionalcharger/' + data.strFunctionId + "/" + data.Branch + "/" + data.Location + "/" + data.Property_code + "/" + data.Description + "/" + data.Pay_Date, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);

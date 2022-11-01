@@ -57,7 +57,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <center *ngIf="showAllrecords" style="text-align: center;font-weight: bold;font-size: 17px;">Total records: {{showAllrecords.length}}</center>
+  <center *ngIf="showAllrecords" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">Total records: {{showAllrecords.length}}</center>
   <ion-card *ngFor="let items of showAllrecords">
     <ion-card-header class="card_header">
       <ion-row>
@@ -152,7 +152,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-    <center *ngIf="norecordsfound" style="text-align: center;font-weight: bold;font-size: 17px;">No data found</center>
+    <center *ngIf="norecordsfound" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No data found</center>
 </ion-content>
 <ion-footer>
   <ion-row>
