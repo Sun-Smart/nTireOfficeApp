@@ -1042,20 +1042,22 @@ ion-card {
     color: #ffff !important;
     margin: auto;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     font-weight: bold;
   }
   // padding-right: 50px !important;
 }
 
-ion-card {
   .card_header_text1 {
     font-size: 15px;
     color: #ffff !important;
-    font-weight: 600;
     position: relative;
+    margin: auto;
+    display: grid;
+    justify-content: right;
+    font-weight: bold;
+
   }
-}
 
 .header_btn
 {

@@ -137,7 +137,7 @@
     </ion-col>
     <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <label>Travel Date<span style="color:red;margin-left: 5px;">*</span></label>
-        <ion-input type="date" (change)="travelDateValidation(tavelDate)" class="form-control" disabled  [(ngModel)]="tavelDate"></ion-input>
+        <ion-input type="date" (ionChange)="travelDateValidation(tavelDate)" class="form-control" disabled  [(ngModel)]="tavelDate"></ion-input>
 
     </ion-col>
     <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -167,9 +167,9 @@
                     <ion-row>
                 <!-- <ion-card *ngFor="let item of AllTravelData;let i=index"> -->
                         <ion-card *ngFor="let item of AllTravelData;let i=index">
-
-                    <ion-item>
-                        <span style="color: #737373;font-size: 14px;font-weight: 600;width:100%">Travel {{i+1}}</span>
+                          <ion-col size="10">
+                    <ion-item class="card_header">
+                        <span class="card_header_text">Travel {{i+1}}</span>
                         <div style="float:right;width:100%;text-align: right;">
                             <span (click)="editTravel(item,i)" id="editbtn{{i+0}}" style="font-size: 15px;border-radius: 50%;margin-right: 10px;">
                                 <ion-icon name="create"></ion-icon>
@@ -183,6 +183,7 @@
                             </span>
                         </div>
                     </ion-item>
+                    </ion-col>
                     <ion-row id="travelidvals{{i+0}}">
                       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                           From

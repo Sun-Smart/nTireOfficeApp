@@ -65,7 +65,7 @@ export class ClaimsrequestPage implements OnInit {
   reqrefid12;
   constructor(private alertController: AlertController, private http: HttpClient, private router: Router, public sanitizer: DomSanitizer, private crop: Crop, private base64: Base64, public CameraService: CameraService, public actionSheetController: ActionSheetController, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.function_id = window.localStorage["FUNCTION_ID"];
-    this.userID = window.localStorage['TUM_USER_ID'];
+    this.userID = parseInt(window.localStorage['TUM_USER_ID']);
     this.usertoken = window.localStorage['usertoken'];
     this.token = window.localStorage['token'];
     this.empid = window.localStorage['empid'];
@@ -86,7 +86,7 @@ export class ClaimsrequestPage implements OnInit {
   }
   getReqcategory() {
     var Catobj = {
-      User_ID: this.userID,
+      User_ID: parseInt(this.userID),
       FunctionID: parseInt(this.function_id),
       userid: parseInt(this.userID),
       usertoken: this.usertoken,
@@ -252,6 +252,7 @@ export class ClaimsrequestPage implements OnInit {
 
         handler: () => {
           this.Camera('gallery');
+
         }
       }]
     });
@@ -289,16 +290,16 @@ export class ClaimsrequestPage implements OnInit {
     }
     else {
       if (this.expenseType == 1) {
-        this.expenseType = 'Food'
+        this.expenseType = '1'
       }
       else if (this.expenseType == 2) {
-        this.expenseType = 'Travel'
+        this.expenseType = '2'
       }
       else if (this.expenseType == 3) {
-        this.expenseType = 'Hotel'
+        this.expenseType = '3'
       }
       else {
-        this.expenseType = 'Hotel'
+        this.expenseType = '3'
       }
       console.log("expenseType : " + this.expenseType);
       this.expenseetype1.forEach(element => {
@@ -399,6 +400,9 @@ export class ClaimsrequestPage implements OnInit {
               usertoken: window.localStorage['usertoken'],
               access_token: window.localStorage['token']
             }
+
+
+
             console.log(expenseobj);
             this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "saveExpenseClaimsDetail", expenseobj).then(resp => {
               console.log(resp);
@@ -470,7 +474,7 @@ export class ClaimsrequestPage implements OnInit {
                 access_token: window.localStorage['token']
               }
               console.log(claimsobj);
-              this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "saveMasterClaimsDetail/", claimsobj).then(resp => {
+              this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "saveMasterClaimsDetail", claimsobj).then(resp => {
                 this.toastmessageService.presentAlert1("", "Request saved Successfully<br> Req Ref : " + this.EXPREF_ID);
                 // this.toastmessageService.presentAlert1("Request Sent","Request saved Successfully <br> Req Ref : " + this.reqID1 );
                 this.expenseArray = [];
@@ -509,7 +513,7 @@ export class ClaimsrequestPage implements OnInit {
             var imgname = element.ATTACTMENT.imgname;
           }
           this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getlastinsertedexpense/", obj).then(resp => {
-            console.log(resp);
+            console.log(this.reqrefid);
             this.expenseid = resp[0].expenseid;
             this.exp_id = resp[0].EXP_id;
             this.EXPREF_ID = resp[0].EXPREF_ID;
@@ -527,19 +531,20 @@ export class ClaimsrequestPage implements OnInit {
               // userid:window.localStorage['TUM_USER_ID'],
               userid: parseInt(window.localStorage['TUM_USER_ID']),
               usertoken: window.localStorage['usertoken'],
-              access_token: window.localStorage['token']
+              access_token: window.localStorage['token'],
+
             }
             console.log(expenseobj);
             this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "saveExpenseClaimsDetail/", expenseobj).then(resp => {
               console.log(resp);
               var obj = {
                 requestRef: this.reqrefid,
-                userid: this.userID,
+                userid: parseInt(this.userID),
                 usertoken: this.usertoken,
                 access_token: this.token,
               }
               console.log(obj);
-              this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getExpenseIDClaims/", obj).then(resp => {
+              this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getExpenseIDClaims", obj).then(resp => {
                 this.EXPENSE_ID = resp[0].pk1;
                 console.log(this.EXPENSE_ID);
                 var path = 'https://sunsmart.in/mydesk/Uploaddocu/SSTPL/' + imgname;
@@ -590,7 +595,7 @@ export class ClaimsrequestPage implements OnInit {
                 EXPENSE_DATE: new Date(),
                 CREATED_BY: window.localStorage['TUM_USER_ID'],
                 UPDATED_BY: window.localStorage['TUM_USER_ID'],
-                USER_ID: window.localStorage['TUM_USER_ID'],
+                USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
                 IPADDRESS: 0,
                 request_ref: this.reqrefid,
                 // userid:window.localStorage['TUM_USER_ID'],

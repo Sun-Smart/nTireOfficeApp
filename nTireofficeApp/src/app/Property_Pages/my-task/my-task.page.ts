@@ -42,10 +42,17 @@ export class MyTaskPage implements OnInit {
   propertyDesc: any;
   isRecordShow: Boolean;
 
-  data: any;
-  sub: any;
-  propertyId: any;
-  getStatus: any;
+  mode: any;
+  fromDate: any;
+  toDate: any;
+  fdate: any;
+  tdate: any;
+  PrDesc: any;
+  PrCode: any;
+  assetname: any;
+  myTaskDetailsList: any;
+
+
 
 
   constructor(private modalCtrl: ModalController,
@@ -85,8 +92,9 @@ export class MyTaskPage implements OnInit {
 
 
     this.Getbranches();
-    // this.getIssueStatus();
-  }
+    this.taskDetails();
+  };
+
 
   Getbranches() {
 
@@ -107,7 +115,7 @@ export class MyTaskPage implements OnInit {
     });
   };
 
-  
+
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -127,7 +135,7 @@ export class MyTaskPage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
@@ -170,9 +178,9 @@ export class MyTaskPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
 
-      
-        this.isRecordShow = true;
-      
+
+      this.isRecordShow = true;
+
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
@@ -187,14 +195,14 @@ export class MyTaskPage implements OnInit {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         });
       }
-    else {
-      this.isPropertycodeAvailable = false;
-    }
+      else {
+        this.isPropertycodeAvailable = false;
+      }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
-  
+
   };
 
   addPropertycode(item: any) {
@@ -236,22 +244,83 @@ export class MyTaskPage implements OnInit {
     });
   };
 
-  
-  // getIssueStatus() {
 
-  //   const header = new Headers();
-  //   header.append("Content-Type", "application/json");
+  taskDetails() {
+    debugger
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
 
-  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  //   this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getissuestatus/' + this.functionID + '/' + this.branchID + '/' + this.data.property_id, {
-  //     headers: options,
-  //   }).subscribe(resp => {
-  //     this.getStatus = resp;
+    let data = {
+      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+      branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+      Mode: this.mode ? this.mode : 0,
+      fromDate: this.fdate ? this.fdate : 0,
+      toDate: this.tdate ? this.tdate : 0,
+      Status: 0,
+      dept: 0,
+      tag: 0,
+      strUserId: parseInt(localStorage.getItem('TUM_USER_ID')),
+      UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+      pageIndex: 0,
+      pageSize: 50,
+      sortExpression: 0,
+      alphaname: 0,
+      drpcategory: 0,
+      drptype: 0,
+      TASKTYPE: 0,
+      PropCode: this.PrCode ? this.PrCode : 0,
+      PropDesc: this.PrDesc ? this.PrDesc : 0,
+      strCriticality: 0,
+      assetName: this.assetname ? this.assetname : 0,
+      actmaintenence: 0,
+      wrkordno: 0,
+    };
 
-  //     console.log(this.getStatus);
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-  //   });
-  // };
 
+    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPI/api/Property/getmytask/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0/0', {
+      headers: options,
+    }).subscribe((resp: any) => {
+      console.log(resp);
+
+      this.myTaskDetailsList = resp;
+
+    });
+
+    // this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/'+ data.branchid + '/'+ data.Mode + '/'+ data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
+    // + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+    // + data.drptype + '/'+ data.TASKTYPE + '/'+ data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'+ data.wrkordno, {
+
+    //   headers:options,
+    // }).subscribe((resp:any)=>{
+    //   console.log(resp);
+    // });
+  };
+
+  filterMyTask() {
+    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
+      this.presentAlert("", "Please select Branch");
+      return;
+    } else {
+
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+
+      let data = {
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+        branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+
+        propertyID: this.propertycode ? this.propertycode : 0,
+      };
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branchid + '/' + data.propertyID, {
+        headers: options,
+      }).subscribe((resp: any) => {
+        console.log("getTask", resp);
+
+      });
+    };
+  };
 
 }

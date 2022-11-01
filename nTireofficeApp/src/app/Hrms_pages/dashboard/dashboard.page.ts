@@ -570,7 +570,7 @@ this.backbutton();
       access_token:this.token
 }
 
-    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"get_training_details/",get_obj).then(resp=>{
+    this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"get_training_details",get_obj).then(resp=>{
       this.training1=resp;
       this.training1.forEach(element => {
         this.training=element;

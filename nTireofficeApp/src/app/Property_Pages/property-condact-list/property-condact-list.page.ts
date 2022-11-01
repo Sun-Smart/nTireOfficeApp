@@ -214,7 +214,7 @@ getpropertycondactlist(){
 
    
    if (this.propetycondactlist == null) {
-    alert("hh")
+  
     this.showdata = "No Data Found"
   }
   else {
@@ -248,7 +248,7 @@ filterpropertycondactlist(){
 
    
    if (this.propetycondactlist == null) {
-    alert("hh")
+  
     this.showdata = "No Data Found"
   }
   else {

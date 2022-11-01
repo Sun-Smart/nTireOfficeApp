@@ -1,7 +1,8 @@
+import { IpaddressService } from './../../service/ipaddress.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { HttprequestService } from '../../service/httprequest.service';
 
 @Component({
   selector: 'app-rfq',
@@ -28,8 +29,9 @@ export class RFQPage implements OnInit {
   showMRFQ: boolean = false;
   showCRFQ: boolean = false;
 
-
-  constructor(private router: Router, private alertController: AlertController) {
+erefref
+  getresponse: any;
+  constructor(private router: Router, private alertController: AlertController, private httpclient : HttprequestService, private IpaddressService : IpaddressService ) {
     // this.Checkboxes = [
     //   {
     //     name: "PRS Code",
@@ -116,19 +118,44 @@ export class RFQPage implements OnInit {
       this.showCRFQ = true;
     }
 
+    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists' ).then((res: any) => {
+      // this.loading = false
+      this.getresponse = res;
+      console.log("Response", res)
+      console.log("Response", res)
+      // for (let item of this.getresponse) {
+      //   console.log(item);
+      // }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
   }
   getVal(item: string) {
     console.log(item);
-    // if (item == "Pending") {
-    //   this.showRfq = true;
-    //   this.showMRFQ = false
-    // } else if (item == "RFQ") {
-    //   this.showMRFQ = true;
-    //   this.showRfq = false;
-    // } else if (item == "Cancelled") {
-    //   this.showRfq = false;
-    //   this.showMRFQ = false;
-    // }
+    if (item == "Pending") {
+      this.showMRFQ = false;
+      this.showRfq = false;
+      this.showCRFQ = false;
+    }
+    else if (item == "RFQ") {
+      this.showMRFQ = false;
+      this.showRfq = false;
+      this.showCRFQ = false;
+    } else if (item == "Cancelled") {
+      this.showMRFQ = false;
+      this.showRfq = false;
+      this.showCRFQ = false;
+    }
   }
   // getVal(item: string) {
   //   console.log(item)
