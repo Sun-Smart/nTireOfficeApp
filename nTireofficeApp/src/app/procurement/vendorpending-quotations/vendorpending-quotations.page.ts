@@ -15,10 +15,11 @@ export class VendorpendingQuotationsPage implements OnInit {
   status: any;
   Quotation: any;
   getresponse: any;
+  responseDatalength: any;
   constructor(private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) { }
 
   ngOnInit() {
-
+    this.Submit();
 
   }
   async clear() {
@@ -51,18 +52,22 @@ export class VendorpendingQuotationsPage implements OnInit {
 
 
   Submit() {
-
-    if (this.rfqcode = undefined) {
-      this.rfqcode = 0
+    debugger
+    console.log(this.rfqcode)
+    console.log(this.status)
+    console.log(this.fromdate)
+    console.log(this.rfqcode)
+    if (this.rfqcode == undefined) {
+      this.rfqcode = "0"
     }
-    if (this.status = undefined) {
-      this.status = 0
+    if (this.status == undefined) {
+      this.status = "0"
     }
-    if (this.fromdate = undefined) {
-      this.fromdate = 0
+    if (this.fromdate == undefined) {
+      this.fromdate = "0"
     }
-    if (this.rfqcode = undefined) {
-      this.rfqcode = 0
+    if (this.todate == undefined) {
+      this.todate = "0"
     }
 
     var body = {
@@ -73,18 +78,20 @@ export class VendorpendingQuotationsPage implements OnInit {
       "TODATEP": this.todate,
       "ITEMCODEP": "",
       "VENDORIDP": "",
+      "QUOTEREFP": "",
       "STATUSP": this.status,
       "PAGEINDEXP": 0,
-      "PAGESIZEP": 0,
-      "SORTEXPRESSIONP": "",
+      "PAGESIZEP": 20,
+      "SORTEXPRESSIONP": "item_id",
       "ALPHANAMEP": "",
-      "modep": ""
+      "modep": "2",
+      "VENDORCODEP": ""
     };
 
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_pending_quotation_search', body).subscribe((res: any) => {
       this.getresponse = res;
-      console.log("Response", res)
-      console.log("Response", res)
+      this.responseDatalength = this.getresponse.length;
+
       for (let item of this.getresponse) {
         console.log(item);
       }

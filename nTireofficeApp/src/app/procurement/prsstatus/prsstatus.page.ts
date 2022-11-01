@@ -21,11 +21,13 @@ export class PRSstatusPage implements OnInit {
   fromdate: any;
   editprs: boolean = false;
   loading: boolean = false
+  Branchname;
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
 
   ngOnInit() {
+    this.Branchname = localStorage.getItem('TUM_BRANCH_CODE');
   }
 
   togglefilter() {
