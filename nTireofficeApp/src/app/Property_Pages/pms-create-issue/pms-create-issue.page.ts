@@ -126,8 +126,12 @@ export class PmsCreateIssuePage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.assetData.push(this.companiesstr[i].ASSET_CODE);
-      }
+        this.assetData.push({ASSET_CODE:this.companiesstr[i].ASSET_CODE, binding:this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
+      NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE});
+        // this.assetData.push({description:this.companiesstr[i].ASSET_DESCRIPTION});
+        // console.log(this.assetData,"assetdata")
+      };
+
       const val = ev.target.value;
 
       this.gatagory = this.assetData[0]['ASSET_CATEGORY'];
@@ -153,8 +157,8 @@ export class PmsCreateIssuePage implements OnInit {
 
 
   addPropertycode(item: any) {
-
-    this.assetCode = item;
+debugger;
+    this.assetCode = item.binding;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.assetCode == this.companiesstr[i].companyName) {
@@ -167,7 +171,7 @@ export class PmsCreateIssuePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + this.assetCode, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' +item.ASSET_CODE, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;

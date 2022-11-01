@@ -21,8 +21,8 @@ export class RFQPage implements OnInit {
   checkboxes: any = [];
   prscode: string;
   itemcode: string;
-  fromdate: string;
-  toDate: string;
+  fromdate;
+  toDate;
   status: string = "Pending";
   bidding: string;
   showRfq: boolean = false;
@@ -118,25 +118,76 @@ erefref
       this.showCRFQ = true;
     }
 
-    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists' ).then((res: any) => {
+    if (this.status == "Pending") {
+      this.status="P"
+    }
+
+    if (this.status == "RFQ") {
+      this.status = "";
+    }
+
+    if (this.status == "Cancelled")
+    {
+      this.status= "A";
+    }
+
+
+    if( this.prscode == undefined)
+    {
+      this.prscode = "";
+    }
+
+if( this.itemcode == undefined)
+{
+  this.itemcode = "";
+}
+
+if( this.fromdate == undefined)
+{
+  this.fromdate ="0";
+}
+
+if( this.toDate == undefined)
+{
+  this.toDate = "0";
+}
+
+
+
+    let body = {
+    "functionid":"1",
+    "prscode":"",
+    "itemcode": this.itemcode,
+    "reuestdate":"",
+    "rfqcode": this.prscode,
+    "fromdate": this.fromdate,
+    "todate": this.toDate,
+    "rfqfromdate":"",
+    "rfqtodate":"",
+    "status": this.status,
+    "mode":"2",
+    "pageindex1":0,
+    "pagesize1":20,
+    "sortexpression":"prs_id DESC",
+    "alphaname":""
+    }
+
+    this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body ).then((res: any) => {
       // this.loading = false
       this.getresponse = res;
-      console.log("Response", res)
-      console.log("Response", res)
+
+
+      console.log("Response", res);
       // for (let item of this.getresponse) {
       //   console.log(item);
       // }
-    })
+    });
 
 
-
-
-
-
-
-
-
-
+this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getraiserfq').
+then((res:any) => {
+this.getresponse = res;
+});
 
 
   }
@@ -157,23 +208,8 @@ erefref
       this.showCRFQ = false;
     }
   }
-  // getVal(item: string) {
-  //   console.log(item)
-  //   // let item1 = this.status
-  //   // if (item == "Cancelled") {
-  //   //   this.showRfq = false;
-  //   //   this.showMRFQ = false;
-  //   //   // alert('No Records Found');
-  //   // }
-  //   // if (item == "Pending") {
-  //   //   this.showRfq = true;
-  //   //   this.showMRFQ = false
-  //   // }
-  //   // if (item == "RFQ") {
-  //   //   this.showMRFQ = true;
-  //   //   this.showRfq = false;
-  //   // }
-  // }
+
+
   raiseRFQ() {
     this.showrfq = true;
     this.showviewlist = false;
