@@ -220,8 +220,6 @@ export class OdsummaryPage implements OnInit {
   changeOrder(){
     this.error=''
     this.display = this.display1.filter((data) => {
-
-
       if(data.Status!=undefined){
       return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
     }
@@ -229,7 +227,7 @@ export class OdsummaryPage implements OnInit {
     });
 
     if(this.display.length==0){
-      this.error = "No data found";
+      // this.error = "No data found";
     }
   }
   formatDate(value) {
