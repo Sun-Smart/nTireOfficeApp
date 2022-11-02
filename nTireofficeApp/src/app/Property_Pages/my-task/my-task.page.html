@@ -57,7 +57,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Asset Code <span style="color:red;">*</span></ion-label>
-          <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
+          <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
@@ -68,7 +68,7 @@
           </ion-list>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label>Assign From Date</ion-label>
           <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
         </ion-col>
@@ -76,7 +76,7 @@
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label>Assign To Date</ion-label>
           <ion-input type="date" class="form-control" [(ngModel)]="todate"></ion-input>
-        </ion-col>
+        </ion-col> -->
 
         <ion-col size="12">
           <ion-button class="ion-color-success" (click)="filterMyTask()" expand="block">SEARCH</ion-button>
@@ -164,10 +164,10 @@
         </ion-col>
         <ion-col size="6" class="col_height">
           <!-- <option [ngValue]="null"  disabled  selected>--Select--</option> -->
-          <select [(ngModel)]="status" class="form-control">
-            <option [ngValue]="undefined" selected disabled>Select</option>
-            <option [ngValue]="Started">Started</option>
-            <option [ngValue]="Completed">Completed</option>
+          <select [(ngModel)]="status1" class="form-control">
+            <option selected ngValue="N">New</option>
+            <option ngValue="S">Started</option>
+            <option ngValue="C">Completed</option>
           </select>
           <!-- <ion-list>
             <ion-item style=" border: none;background-color: transparent;">
