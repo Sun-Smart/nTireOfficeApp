@@ -54,6 +54,7 @@ export class AdditionalPagePage implements OnInit {
   Pay_Date: any;
   ShowAddionalList: any = [];
   propDesc: any;
+  showRecords: boolean;
   constructor(private modalCtrl: ModalController,
     private route: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -64,7 +65,9 @@ export class AdditionalPagePage implements OnInit {
     this.getListItems();
 
   }
-
+  editCharge(item) {
+    console.log(item);
+  }
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
@@ -261,6 +264,28 @@ export class AdditionalPagePage implements OnInit {
       this.presentAlert("", "Please select Branch");
     } else {
       console.log('123');
+      this.payDate = this.datePipe.transform(this.payDate, 'dd-MM-yyyy');
+
+      let data = {
+        strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+        Branch: this.branch ? this.branch : 1,
+        Location: this.branchlocation ? this.branchlocation : 1,
+        Property_code: this.propertycode ? this.propertycode : 0,
+        Description: this.propDesc ? this.propDesc : 0,
+        Pay_Date: this.payDate ? this.payDate : 0
+      };
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyadditionalcharger/' + data.strFunctionId + "/" + data.Branch + "/" + data.Location + "/" + data.Property_code + "/" + data.Description + "/" + data.Pay_Date, {
+        headers: options,
+      }).subscribe(resp => {
+        console.log("location", resp);
+        if (resp == null) {
+          this.showRecords = true;
+        } else {
+          this.showRecords = false;
+          this.ShowAddionalList = resp;
+        }
+      });
     }
   }
   async presentAlert(heading, tittle) {

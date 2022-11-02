@@ -218,6 +218,7 @@ export class OdsummaryPage implements OnInit {
 
 
   changeOrder(){
+    console.log("consoles");
     this.error=''
     this.display = this.display1.filter((data) => {
       if(data.Status!=undefined){
@@ -230,6 +231,7 @@ export class OdsummaryPage implements OnInit {
       // this.error = "No data found";
     }
   }
+
   formatDate(value) {
     value = new Date(value);
 

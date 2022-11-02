@@ -275,13 +275,13 @@ export class UserRequestPage implements OnInit {
 
     var datar = {
       'assetcoder': this.assetcode,
-      'branchidr': this.branchID,
+      'branchid': this.branchID,
       'assetdescription': this.descp,
       'departmentr': this.department,
       'reqdate': this.doi,
       'reqdate1': reqdte,
       'reqcatgeory': reqcatg,
-      'priority': this.priority,
+      'priority':this.priority,
       'reqdetail': this.noofchars,
       'refmaxno': this.refmaxnum,
       'assetreqid': this.userID,

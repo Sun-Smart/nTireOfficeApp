@@ -64,7 +64,7 @@ export class PermissionsummaryPage implements OnInit {
         //  this.display = JSON.parse(resp.toString());
         this.display = resp;
         //  this.display1=JSON.parse(resp);
-        this.display1 = JSON.stringify(resp);
+        this.display1 = resp;
         // console.log($scope.display)
         var status = this.display[0].Status;
         this.error = "";
@@ -81,25 +81,47 @@ export class PermissionsummaryPage implements OnInit {
       this.loadingdismiss();
     });
   }
-  changeOrder() {
-    this.error = ''
-    debugger
+
+
+
+  changeOrder(){
+    console.log("permission")
+    this.error=''
+    this.display = this.display1.filter((data) => {
+      if(data.Status!=undefined){
+      return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
+    }
+
+    });
+
+    if(this.display.length==0){
+      // this.error = "No data found";
+    }
+  }
+
+
+
+
+  // changeOrder() {
+  //   this.error = ''
+  //   console.log("change status",this.changeOrder);
+  //   debugger
     // console.log(Object.values(this.display1).filter(user => this.display1.Status === 1));
     // console.log(Object.values(this.display1).filter((data:any)=> this.display1.Status === 1));
-    this.display = Object.values(this.display1).filter((data: any) => {
+    // this.display = Object.values(this.display1).filter((data: any) => {
       // console.log(data)
 
       // return data.Status.indexOf(this.status) > -1;
       // console.log(data.Status.indexOf(this.status) != -1);
 
-      return data.indexOf(this.status) > -1;
+      // return data.indexOf(this.status) > -1;
 
-    });
+    // });
 
     // if (this.display.length == 0) {
     //   this.error = "No data found";
     // }
-  }
+  // }
   formatDate(value) {
     value = new Date(value);
 
