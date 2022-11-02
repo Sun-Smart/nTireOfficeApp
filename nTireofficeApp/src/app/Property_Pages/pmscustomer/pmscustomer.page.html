@@ -38,7 +38,7 @@
           <!-- <ion-col size="12"> -->
           <ion-label>Branch <span style="color:red;">*</span></ion-label>
           <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
-            <option disabled>&lt;&lt; Select &gt;&gt;</option>
+            <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
               {{branch.BRANCH_DESC}}
             </option>
@@ -51,7 +51,7 @@
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
               (change)="getLocationdata(branchlocation)">
-              <option>&lt;&lt; Select &gt;&gt;</option>
+              <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
                 {{location.BRANCH_DESC}}</option>
             </select>
@@ -70,6 +70,21 @@
             </ion-item>
           </ion-list>
         </ion-col>
+
+        
+        <!-- Code with Description -->
+        
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Property Code</ion-label>
+          <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
+          </ion-searchbar>
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+            <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
+              style="background:none !important;color:#444 !important;display: block;">
+              {{item.PropertyCodeDesc}}
+            </ion-item>
+          </ion-list>
+        </ion-col> -->
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -144,15 +159,16 @@
           <ion-label class="labelHead-text">Building Name </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">: Muthusamy</ion-label>
+          <ion-label class="labelData-text">: {{items.property_desc}}
+          </ion-label>
         </ion-col>
 
-        <ion-col size="6" class="col_height">
+        <!-- <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Description </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelData-text">: {{items.property_desc}}</ion-label>
-        </ion-col>
+        </ion-col> -->
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">

@@ -632,7 +632,14 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     path: 'issuedetails',
     loadChildren: () => import('./procurement/issuedetails/issuedetails.module').then( m => m.IssuedetailsPageModule)
   },
- 
+  {
+    path: 'additionallist',
+    loadChildren: () => import('./Property_Pages/additionallist/additionallist.module').then( m => m.AdditionallistPageModule)
+  },
+  {
+    path: 'additionallist/:property',
+    loadChildren: () => import('./Property_Pages/additionallist/additionallist.module').then( m => m.AdditionallistPageModule)
+  },
 
 
 

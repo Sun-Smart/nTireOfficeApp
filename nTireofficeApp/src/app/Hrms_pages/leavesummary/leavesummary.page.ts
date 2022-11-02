@@ -153,7 +153,7 @@ this.loadingdismiss();
     this.error=''
     this.display = this.display1.filter((data) => {
       if(this.display.length==0){
-        this.error = "No data found";
+        // this.error = "No data found";
       }
       return data.LeaveType.toLowerCase().indexOf(type.toLowerCase()) > -1;
 
@@ -177,7 +177,7 @@ this.loadingdismiss();
            this.error=''
            this.display = this.display2.filter((data) => {
              if(this.display.length==0){
-               this.error = "No data found";
+              //  this.error = "No data found";
              }
              return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
            });
@@ -198,7 +198,7 @@ this.loadingdismiss();
       else{
         this.display = this.display1.filter((data) => {
           if(this.display.length==0){
-            this.error = "No data found";
+            // this.error = "No data found";
           }
           return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
         });

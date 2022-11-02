@@ -1,7 +1,8 @@
+import { IpaddressService } from './../../service/ipaddress.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { HttprequestService } from '../../service/httprequest.service';
 
 @Component({
   selector: 'app-rfq',
@@ -11,7 +12,7 @@ import { AlertController } from '@ionic/angular';
 export class RFQPage implements OnInit {
 
   showviewlist: boolean = false
-  showrfq: boolean = false
+
   selectAll: boolean = false;
 
   indeterminateState: boolean;
@@ -20,16 +21,18 @@ export class RFQPage implements OnInit {
   checkboxes: any = [];
   prscode: string;
   itemcode: string;
-  fromdate: string;
-  toDate: string;
+  fromdate;
+  toDate;
   status: string = "Pending";
   bidding: string;
   showRfq: boolean = false;
   showMRFQ: boolean = false;
   showCRFQ: boolean = false;
 
-
-  constructor(private router: Router, private alertController: AlertController) {
+  erefref
+  getresponse: any;
+  getraisedrfq: any;
+  constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
     //     name: "PRS Code",
@@ -99,61 +102,203 @@ export class RFQPage implements OnInit {
 
   ngOnInit() {
   }
+
+
   Submit() {
     this.showviewlist = true;
-    console.log('this.status ',this.status);
-     if (this.status == "Pending") {
+    console.log('this.status ', this.status);
+    // Status : Pending RFQ
+
+
+    if (this.prscode == undefined) {
+      this.prscode = "";
+    }
+
+    if (this.itemcode == undefined) {
+      this.itemcode = "";
+    }
+
+    if (this.fromdate == undefined) {
+      this.fromdate = "0";
+    }
+
+    if (this.toDate == undefined) {
+      this.toDate = "0";
+    }
+
+
+
+    if (this.status == "P") {
       this.showRfq = true;
       this.showMRFQ = false;
       this.showCRFQ = false;
-    } else if (this.status == "RFQ") {
+
+      // if (this.status == "P") {
+      //   this.status = "P"
+      // }
+
+      // if (this.status == "RFQ") {
+      //   this.status = "RFQ Raised";
+      // }
+
+      // if (this.status == "Cancelled") {
+      //   this.status = "A";
+      // }
+
+
+
+
+
+      let body = {
+        "functionid": "1",
+        "prscode": "",
+        "itemcode": this.itemcode,
+        "reuestdate": "",
+        "rfqcode": this.prscode,
+        "fromdate": this.fromdate,
+        "todate": this.toDate,
+        "rfqfromdate": "",
+        "rfqtodate": "",
+        "status": this.status,
+        "mode": "2",
+        "pageindex1": 0,
+        "pagesize1": 20,
+        "sortexpression": "prs_id DESC",
+        "alphaname": ""
+      }
+
+      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body).then((res: any) => {
+        this.getresponse = res;
+        console.log("Response", res);
+      });
+
+
+
+    } else if (this.status == "RFQ Raised") {
       this.showMRFQ = true;
       this.showRfq = false;
       this.showCRFQ = false;
-    } else if (this.status == "Cancelled") {
+
+
+      // if (this.status == "Pending") {
+      //   this.status = "P"
+      // }
+
+      // if (this.status == "A") {
+      //   this.status = "RFQ Raised";
+      // }
+
+      // if (this.status == "Cancelled") {
+      //   this.status = "A";
+      // }
+
+
+
+      let body = {
+        "functionid": "1",
+        "prscode": "",
+        "itemcode": this.itemcode,
+        "reuestdate": "",
+        "rfqcode": this.prscode,
+        "fromdate": this.fromdate,
+        "todate": this.toDate,
+        "rfqfromdate": "",
+        "rfqtodate": "",
+        "status": this.status,
+        "mode": "2",
+        "pageindex1": 0,
+        "pagesize1": 20,
+        "sortexpression": "prs_id DESC",
+        "alphaname": ""
+
+      }
+
+      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).then((res: any) => {
+        this.getresponse = res;
+        console.log("Response", res);
+      });
+
+
+
+
+
+
+    } else if (this.status == "A") {
       this.showRfq = false;
       this.showMRFQ = false;
       this.showCRFQ = true;
-    }
 
+      // if (this.status == "Pending") {
+      //   this.status = "P"
+      // }
+
+      // if (this.status == "RFQ") {
+      //   this.status = "RFQ Raised";
+      // }
+
+      // if (this.status == "Cancelled") {
+      //   this.status = "A";
+      // }
+
+      let body = {
+        "functionid": "1",
+        "prscode": "",
+        "itemcode": this.itemcode,
+        "reuestdate": "",
+        "rfqcode": this.prscode,
+        "fromdate": this.fromdate,
+        "todate": this.toDate,
+        "rfqfromdate": "",
+        "rfqtodate": "",
+        "status": this.status,
+        "mode": "2",
+        "pageindex1": 0,
+        "pagesize1": 20,
+        "sortexpression": "prs_id DESC",
+        "alphaname": ""
+
+      }
+
+      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'CancelledRFQDetails', body).then((res: any) => {
+        this.getresponse = res;
+        console.log("Response", res);
+      });
+    }
   }
+
+
   getVal(item: string) {
     console.log(item);
     // if (item == "Pending") {
-    //   this.showRfq = true;
-    //   this.showMRFQ = false
-    // } else if (item == "RFQ") {
-    //   this.showMRFQ = true;
-    //   this.showRfq = false;
-    // } else if (item == "Cancelled") {
-    //   this.showRfq = false;
     //   this.showMRFQ = false;
+    //   this.showRfq = false;
+    //   this.showCRFQ = false;
+    // }
+    // else if (item == "RFQ") {
+    //   this.showMRFQ = false;
+    //   this.showRfq = false;
+    //   this.showCRFQ = false;
+    // } else if (item == "Cancelled") {
+    //   this.showMRFQ = false;
+    //   this.showRfq = false;
+    //   this.showCRFQ = false;
     // }
   }
-  // getVal(item: string) {
-  //   console.log(item)
-  //   // let item1 = this.status
-  //   // if (item == "Cancelled") {
-  //   //   this.showRfq = false;
-  //   //   this.showMRFQ = false;
-  //   //   // alert('No Records Found');
-  //   // }
-  //   // if (item == "Pending") {
-  //   //   this.showRfq = true;
-  //   //   this.showMRFQ = false
-  //   // }
-  //   // if (item == "RFQ") {
-  //   //   this.showMRFQ = true;
-  //   //   this.showRfq = false;
-  //   // }
-  // }
+
   raiseRFQ() {
-    this.showrfq = true;
-    this.showviewlist = false;
-    this.presentAlert("", "RFQ 345/AT Raised Successfully");
+    // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+    // Raise RFQ Button
+    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getraiserfq').
+      then((res: any) => {
+        this.getraisedrfq = res;
+        console.log(this.getraisedrfq)
+        // this.showrfq = true;
+        this.showviewlist = false;
+        // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+      });
   }
   manageRFQlink() {
-    this.router.navigate(['/manage-rfq'])
+     this.router.navigate(['/manage-rfq'])
   }
 
   async presentAlert(heading, tittle) {
@@ -191,7 +336,7 @@ export class RFQPage implements OnInit {
             this.status = "";
             this.bidding = "";
             // this.remarks="";
-
+            this.getresponse = [];
           }
         }
       ]

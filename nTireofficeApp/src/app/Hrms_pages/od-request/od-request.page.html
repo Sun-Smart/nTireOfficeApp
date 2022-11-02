@@ -466,15 +466,15 @@
 
   <ion-button class="ion-color-success "
         [disabled]="from==undefined || to==undefined || to=='' || nod=='' || fromHour==undefined|| toHour==undefined|| reason==undefined"
-        *ngIf="!disabledvalue"  expand="block"  class="ion-color-success" (click)="odSubmit()">Save</ion-button>
+        *ngIf="!disabledvalue"  expand="block"  class="ion-color-success" (click)="odSubmit()">SAVE</ion-button>
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
       <!-- <ion-button class="ion-color-danger" this.disabledvalue=true; color="danger" expand="block" (click)="odCancel()">Cancel</ion-button> -->
-      <ion-button *ngIf="!disabledvalue" (click)="refresh()" class="ion-color-danger" expand="block">Clear</ion-button>
+      <ion-button *ngIf="!disabledvalue" (click)="refresh()" class="ion-color-danger" expand="block">CLEAR</ion-button>
     </ion-col>
     <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-      <ion-button  class="listButton" *ngIf="!disabledvalue" (click)="odSummary()">List</ion-button>
+      <ion-button  class="listButton" *ngIf="!disabledvalue" (click)="odSummary()">LIST</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

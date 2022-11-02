@@ -53,7 +53,7 @@ export class PmscustomerPage implements OnInit {
   islocItemAvailable: boolean = false;
   selectbranch: any;
   contact_array = [];
-  propertyCode1: any[];
+  propertyCode1 = [];
   companiesstr: any;
   propertycode: any;
   property_code: any;
@@ -69,6 +69,7 @@ export class PmscustomerPage implements OnInit {
   branch: any;
   branchlocation: any;
   norecordsfound: boolean;
+  filterPropertyCode: any;
 
 
 
@@ -98,12 +99,12 @@ export class PmscustomerPage implements OnInit {
     //        alert(idvalue);
     $("#dividvalsp" + idvalue).css("display", "block");
     $("#imageidvalsp" + idvalue).hide();
-}
-showless(idvalue) {
+  }
+  showless(idvalue) {
     //        alert(idvalue);
     $("#dividvalsp" + idvalue).css("display", "none");
     $("#imageidvalsp" + idvalue).show();
-};
+  };
 
   async createModal() {
     const model = await this.modalCtrl.create({
@@ -112,11 +113,11 @@ showless(idvalue) {
     return await model.present();
   };
 
-  async viewModal(item:any) {
+  async viewModal(item: any) {
     console.log(item);
     const model = await this.modalCtrl.create({
       component: PmsIssueStatusPage,
-      componentProps: {Data:item}
+      componentProps: { Data: item }
     });
     return await model.present();
   };
@@ -173,7 +174,8 @@ showless(idvalue) {
 
       });
     }
-  }
+  };
+
 
   getcustomerItems() {
 
@@ -181,6 +183,7 @@ showless(idvalue) {
     header.append("Content-Type", "application/json");
 
     let data = {
+
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
       branchid: this.branch ? this.branch : 1,
       locationid: this.branchlocation ? this.branchlocation : 1,
@@ -326,7 +329,17 @@ showless(idvalue) {
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push(this.companiesstr[i].property_code);
-      }
+      };
+
+      // Code with Description method....
+
+      // for (var i = 0; i < this.companiesstr.length; i++) {
+      //   this.propertyCode1.push({
+      //     PropertyCode: this.companiesstr[i].property_code,
+      //     PropertyCodeDesc: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+      //   });
+      // };
+
       const val = ev.target.value;
 
       // if the value is an empty string don't filter the items
@@ -348,6 +361,7 @@ showless(idvalue) {
 
 
     this.propertycode = item;
+    // this.propertycode = item.PropertyCodeDesc;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {

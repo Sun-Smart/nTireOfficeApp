@@ -13,6 +13,9 @@ export class VendorsdetailsPage implements OnInit {
   showitemdetails_grid : boolean = true;
   showvendorlist_grid : boolean = false;
   value : any;
+  selectAllvendor : boolean = false;
+
+
   constructor( private router :Router){}
   ngOnInit(): void {
 
@@ -34,5 +37,16 @@ export class VendorsdetailsPage implements OnInit {
     this.showvendorlist_grid = false;
   }
 }
+
+selectAllvendorCheckbox(value) {
+  console.log(value);
+  if (value == false) {
+    this.selectAllvendor = true;
+  }
+  else {
+    this.selectAllvendor = false;
+  }
+}
+
 }
 

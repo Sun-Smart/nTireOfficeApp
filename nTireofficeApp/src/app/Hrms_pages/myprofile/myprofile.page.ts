@@ -106,7 +106,8 @@ export class MyprofilePage implements OnInit {
   dat_valid: { currentDate: Date; };
   validphone: boolean;
   imagecif: number;
-  profilepic: string; Personal
+  profilepic: any;
+  Personal
   tempID: string;
   public buttonClicked: boolean = false;
   username = window.localStorage.getItem('TUM_USER_NAME');
@@ -181,6 +182,7 @@ export class MyprofilePage implements OnInit {
                     var base64result = base64File.split(',')[1]
 
                     this.profilepic = "data:image/jpeg;base64," + base64result;
+                    this.profilepic = this.sanitizer.bypassSecurityTrustResourceUrl(this.profilepic);
                     this.image = "Profile" + this.imagecif + ".jpg";
 
                     // console.log(this.image);

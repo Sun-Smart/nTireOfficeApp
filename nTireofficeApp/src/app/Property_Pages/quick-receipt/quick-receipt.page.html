@@ -56,11 +56,11 @@
             </ion-item>
           </ion-list>
         </ion-col>
-    
-        
+
+
           <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Customer Name :</ion-label>
-       
+
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="customer_name" animated="true"></ion-searchbar>
             <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
               <ion-item   (click)="propertyDescriptioN(data)" *ngFor="let data of propertyCode | filter:filterTerm">
@@ -70,10 +70,10 @@
               </ion-item>
             </ion-list>
           </ion-col>
-    
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Property type :</ion-label>
-       
+
             <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
             <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
               <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
@@ -96,7 +96,7 @@
               </ion-item>
             </ion-list>
           </ion-col> -->
-    
+
           <ion-col size="12">
             <ion-button color="success" size="default" (click)="filterquickreceipt()">SEARCH</ion-button>
           </ion-col>
@@ -104,7 +104,7 @@
       </ion-card-content>
     </ion-card>
 
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Records : {{showdata}}</p>
+    <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
 
     <ion-card *ngFor="let item of quickreceipt; let i=index " >
       <ion-card-header class="card_header">
@@ -230,7 +230,7 @@
   <ion-col size="6">
     <ion-label class="labelData-text">:</ion-label>
   </ion-col>
-  
+
 
   <ion-col size="6">
     <ion-label>Payment Description</ion-label>
@@ -239,7 +239,7 @@
     <ion-label class="labelData-text">:</ion-label>
   </ion-col>
 
-  
+
   <ion-col size="6" >
     <ion-label>Payment Date</ion-label>
   </ion-col>
@@ -260,10 +260,10 @@
 
   <ion-col size="1" class="labelData-text" style="display: flex;align-items: center;"> : </ion-col>
 
-  <ion-col size="5" style="text-align: center;"> 
-    <ion-button color="primary" size="small" style="width: fit-content;" (click)="viewReciept()"> View </ion-button> 
+  <ion-col size="5" style="text-align: center;">
+    <ion-button color="primary" size="small" style="width: fit-content;" (click)="viewReciept()"> View </ion-button>
   </ion-col>
-  
+
 
 </ion-row>
   </ion-card-content>

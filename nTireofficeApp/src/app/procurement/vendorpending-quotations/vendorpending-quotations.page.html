@@ -7,71 +7,73 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid class="pendingquotation">
-
-    <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">RFQ Code</ion-label>
-        <ion-input type="text" [(ngModel)]="rfocode" class="Input-text-field textareaField"></ion-input>
-      </ion-col>
-
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">From Date</ion-label>
-        <ion-input style="display:inline-block;padding: 8px;color: black !important;
-        font-weight: 600;" [(ngModel)]="fromdate" type="date" class="Input-text-field textareaField">
-        </ion-input>
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">To Date</ion-label>
-        <ion-input style=" display:inline-block;padding: 8px;color: black !important;
-        font-weight: 600;" [(ngModel)]="todate" type="date" class="Input-text-field textareaField">
-        </ion-input>
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Status</ion-label>
-        <select [(ngModel)]="status" style="padding: 10px;" style="display:inline-block;padding: 8px;"
-          class="Input-text-field textareaField">
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <option value="Bidding">New</option>
-          <option value="Other">Released</option>
-          <option value="Other">Withdraw</option>
-        </select>
-      </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="plabel">Quotation Through</ion-label>
-        <select [(ngModel)]="Quotation" style="padding: 10px;" style="display:inline-block;padding: 8px;"
-          class="Input-text-field textareaField">
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <option value="Bidding">Bidding</option>
-          <option value="Other">Other</option>
-        </select>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
-        <ion-button (click)="Submit()" class="ion-color-success" expand="block">
-          <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-          Search
-        </ion-button>
-      </ion-col>
-      <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
-        <ion-button class="ion-color-danger" expand="block" (click)="clear()">
-          Clear
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <p  id="ContentName" class="totalCount">Total Lead : </p>
-
   <ion-card>
+    <ion-grid class="pendingquotation">
+
+      <ion-row>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">RFQ Code</ion-label>
+          <ion-input type="text" [(ngModel)]="rfqcode" class="Input-text-field textareaField"></ion-input>
+        </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">From Date</ion-label>
+          <ion-input style="display:inline-block;padding: 8px;color: black !important;
+        font-weight: 600;" [(ngModel)]="fromdate" type="date" class="Input-text-field textareaField">
+          </ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">To Date</ion-label>
+          <ion-input style=" display:inline-block;padding: 8px;color: black !important;
+        font-weight: 600;" [(ngModel)]="todate" type="date" class="Input-text-field textareaField">
+          </ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Status</ion-label>
+          <select [(ngModel)]="status" style="padding: 10px;" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="N">New</option>
+            <option value="R">Released</option>
+            <option value="W">Withdraw</option>
+          </select>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Quotation Through</ion-label>
+          <select [(ngModel)]="Quotation" style="padding: 10px;" style="display:inline-block;padding: 8px;"
+            class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="1">Bidding</option>
+            <option value="2">Others</option>
+          </select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
+          <ion-button (click)="Submit()" class="ion-color-success" expand="block">
+            <ion-icon style="color:white ;" name="search-outline"></ion-icon>
+            Search
+          </ion-button>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+          <ion-button class="ion-color-danger" expand="block" (click)="clear()">
+            Clear
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <p id="ContentName" class="totalCount">Total Records : {{responseDatalength}} </p>
+
+  <ion-card *ngFor="let item of getresponse">
     <ion-card-header class="card_header">
       <ion-row>
         <ion-col-4>
-          <ion-label class="card_header_text">Quatation Ref</ion-label>
+          <ion-label class="card_header_text">QUOTE_REF :-</ion-label>
         </ion-col-4>
 
         <ion-col-8 style="margin-left: 120px;">
-          <ion-label class="card_header_text"></ion-label>
+          <ion-label class="card_header_text">{{item.QUOTE_REF}}</ion-label>
           <!-- PO Reference NO -->
         </ion-col-8>
       </ion-row>
@@ -80,30 +82,36 @@
     <ion-card-content>
       <ion-row>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-
           <ion-label class="labelHead-text">Vendor Name </ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text"> : </ion-label>
+          <ion-label class="labelData-text"> : {{item.VENDOR_NAME}} </ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+          <ion-label class="labelHead-text">RFQ Code</ion-label>
+        </ion-col>
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-label class="labelData-text"> : {{item.RFQCODE}} </ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
           <ion-label class="labelHead-text">Quatation Date </ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text"> : </ion-label>
+          <ion-label class="labelData-text"> : {{item.QUOTE_DATE}}</ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-          <ion-label class="labelHead-text">Status  </ion-label>
+          <ion-label class="labelHead-text">Status </ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text"> : </ion-label>
+          <ion-label class="labelData-text"> : {{item.STATUSVAL}}</ion-label>
         </ion-col>
         <ion-col size="12" style="font-weight:bold;">
-          <ion-button expand="block" class="ion-color-success" [routerLink]="['/vendor-quotation']" routerLinkActive="router-link-active" >Update
+          <ion-button expand="block" class="ion-color-success" [routerLink]="['/vendor-quotation']"
+            routerLinkActive="router-link-active">Update
           </ion-button>
         </ion-col>
-          </ion-row>
-     </ion-card-content>
+      </ion-row>
+    </ion-card-content>
   </ion-card>
 </ion-content>
 <ion-footer>

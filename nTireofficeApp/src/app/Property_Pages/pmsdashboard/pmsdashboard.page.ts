@@ -23,16 +23,11 @@ export class PmsdashboardPage implements OnInit {
   options = { checkboxes: true }
   data: any = [];
   dataStatus: any = [];
-  // dataDetails: any = [];
-  // dataVaccant: any = [];
-  // dataRaised: any = [];
+
 
 
   columns: any = [];
   columnsStatus: any = [];
-  // columnsDetails: any = [];
-  // columnsVaccant: any = [];
-  // columnsRaised: any = [];
   rows: any
   barChart: any;
 
