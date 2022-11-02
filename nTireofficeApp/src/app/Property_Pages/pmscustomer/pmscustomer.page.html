@@ -66,10 +66,25 @@
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-              {{item.PropertyCodeDesc}}
+              {{item}}
             </ion-item>
           </ion-list>
         </ion-col>
+
+        
+        <!-- Code with Description -->
+        
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Property Code</ion-label>
+          <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
+          </ion-searchbar>
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+            <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
+              style="background:none !important;color:#444 !important;display: block;">
+              {{item.PropertyCodeDesc}}
+            </ion-item>
+          </ion-list>
+        </ion-col> -->
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">

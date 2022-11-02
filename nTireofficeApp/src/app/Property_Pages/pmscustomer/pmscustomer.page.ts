@@ -53,7 +53,7 @@ export class PmscustomerPage implements OnInit {
   islocItemAvailable: boolean = false;
   selectbranch: any;
   contact_array = [];
-  propertyCode1=[];
+  propertyCode1 = [];
   companiesstr: any;
   propertycode: any;
   property_code: any;
@@ -99,12 +99,12 @@ export class PmscustomerPage implements OnInit {
     //        alert(idvalue);
     $("#dividvalsp" + idvalue).css("display", "block");
     $("#imageidvalsp" + idvalue).hide();
-}
-showless(idvalue) {
+  }
+  showless(idvalue) {
     //        alert(idvalue);
     $("#dividvalsp" + idvalue).css("display", "none");
     $("#imageidvalsp" + idvalue).show();
-};
+  };
 
   async createModal() {
     const model = await this.modalCtrl.create({
@@ -113,11 +113,11 @@ showless(idvalue) {
     return await model.present();
   };
 
-  async viewModal(item:any) {
+  async viewModal(item: any) {
     console.log(item);
     const model = await this.modalCtrl.create({
       component: PmsIssueStatusPage,
-      componentProps: {Data:item}
+      componentProps: { Data: item }
     });
     return await model.present();
   };
@@ -181,9 +181,9 @@ showless(idvalue) {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-    
+
     let data = {
-      
+
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
       branchid: this.branch ? this.branch : 1,
       locationid: this.branchlocation ? this.branchlocation : 1,
@@ -328,13 +328,17 @@ showless(idvalue) {
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push({PropertyCode: this.companiesstr[i].property_code, 
-          PropertyCodeDesc: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
-        };
+        this.propertyCode1.push(this.companiesstr[i].property_code);
+      };
 
-      // this.filterPropertyCode = this.propertyCode1['PropertyCode'];
-      // console.log(this.filterPropertyCode);
-      
+      // Code with Description method....
+
+      // for (var i = 0; i < this.companiesstr.length; i++) {
+      //   this.propertyCode1.push({
+      //     PropertyCode: this.companiesstr[i].property_code,
+      //     PropertyCodeDesc: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+      //   });
+      // };
 
       const val = ev.target.value;
 
@@ -356,7 +360,8 @@ showless(idvalue) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
 
-    this.propertycode = item.PropertyCodeDesc;
+    this.propertycode = item;
+    // this.propertycode = item.PropertyCodeDesc;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -368,7 +373,7 @@ showless(idvalue) {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + item.property_code + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
