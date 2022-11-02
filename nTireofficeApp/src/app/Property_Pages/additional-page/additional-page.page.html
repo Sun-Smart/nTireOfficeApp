@@ -59,6 +59,10 @@
           </ion-list>
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Rental ID</ion-label>
+          <ion-input type="text" [(ngModel)]="rentalID" class="form-control"></ion-input>
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Description</ion-label>
           <ion-input type="text" [(ngModel)]="propDesc" class="form-control"></ion-input>
         </ion-col>
@@ -67,7 +71,7 @@
         </ion-col>
         <ion-col>
           <ion-input type="date" class="form-control" [(ngModel)]="payDate"></ion-input>
-        </ion-col>
+        </ion-col> -->
 
         <ion-col size="12">
           <ion-button class="ion-color-success" (click)="filterListItems()" expand="block">SEARCH</ion-button>
@@ -77,11 +81,12 @@
   </ion-card>
   <center *ngIf="ShowAddionalList" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
     Total records: {{ShowAddionalList.length}}</center>
-
+  <!-- <center *ngIf="showError" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No
+    records found</center> -->
   <!-- <center *ngIf="showRecords" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No
     records found</center> -->
   <ion-card *ngFor="let item of ShowAddionalList;">
-    <ion-card-header class="card_header">Additonal Charge Details
+    <ion-card-header class="card_header">Property Details
       <!-- <i class="fa fa-edit" (click)="editCharge(item.PropertyCode);" style="font-size: 24px;position: relative;color: #fff;position: absolute;
       right: 14px;"></i> -->
     </ion-card-header>
@@ -92,27 +97,40 @@
           <ion-label class="labelHead-text">Branch </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">: {{item.Branch}} </ion-label>
+          <ion-label class="labelData-text">: {{item.BRANCH_DESC}} </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Location </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">: {{item.Location}} </ion-label>
+          <ion-label class="labelData-text">: {{item.LOCATION_DESC}} </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Property Code </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">: {{item.PropertyCode}}</ion-label>
+          <ion-label class="labelData-text">: {{item.PROPERTY_CODE}}</ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text"> Description </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">: {{item.Description}}</ion-label>
+          <ion-label class="labelData-text">: {{item.PROPERTY_DESC}}</ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
+          <ion-label class="labelHead-text"> Action </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-button color="primary" size="small" (click)="viewReciept(item)"> View </ion-button>
+        </ion-col>
+        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <a (click)="showmore(item)">
+
+            <i class="fa fa-angle-double-down" aria-hidden="true"
+              style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
+          </a>
+        </ion-col> -->
+        <!-- <ion-col size="6" class="col_height">
           <ion-label class="labelHead-text">Amount </ion-label>
         </ion-col>
         <ion-col size="6" class="col_height">
@@ -123,8 +141,25 @@
         </ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelData-text">: {{item.ChequeDate}}</ion-label>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
+      <!-- <div id="dividvalsp{{0+i}}">
+        <ion-card *ngFor="let i of showReceipt">
+          <ion-card-header class="card_header">Addition Charge Details</ion-card-header>
+          <ion-card-content *ngIf="showReceipt">
+            <ion-row>
+              <ion-col size="6">Amount</ion-col>
+              <ion-col size="6">: <b>{{i.AMOUNT}}</b></ion-col>
+              <ion-col size="6">Description</ion-col>
+              <ion-col size="6">: <b>{{i.DAMAGE_DESCRIPTION}}</b></ion-col>
+              <ion-col size="6">Date</ion-col>
+              <ion-col size="6">: <b>{{i.DUE_DATE}}</b></ion-col>
+            </ion-row>
+          </ion-card-content>
+          <b *ngIf="!showReceipt">No data found</b>
+        </ion-card>
+      </div> -->
+
     </ion-card-content>
   </ion-card>
 </ion-content>

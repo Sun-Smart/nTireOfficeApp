@@ -27,6 +27,7 @@ export class MaterialRequestPage implements OnInit {
   overallsubmit:boolean = false;
   submitview: boolean =false;
   initialSearch:boolean=true;
+  overallsubmitnew:boolean=false;
   funtionID;
   branch_ID;
   branch;
@@ -61,6 +62,7 @@ export class MaterialRequestPage implements OnInit {
     this.toastmessageservice.presentAlert1('saved successfully','this process is saved successfully')
     // this.showlineItems =!this.showlineItems;
     this.expenseArray=[];
+    this.overallsubmitnew = false;
     
   }
 
@@ -70,6 +72,7 @@ export class MaterialRequestPage implements OnInit {
     this.shownewcard =false;
     this.overallsubmit = true;
     this.submitview =!this.submitview;
+    this.overallsubmitnew =true;
     this.expenseArray.push({
       prsid: "",
       itemid: 'PO2202',
@@ -110,10 +113,13 @@ export class MaterialRequestPage implements OnInit {
 
     })
     console.log(this.expenseArray)
-    this.showbtn = true
+    this.showbtn = true;
   }
-  Newlist(){
-    this.initialSearch = true;
+  Searchlist(){
+    debugger;
+    this.initialSearch =! this.initialSearch;
+    this.showfilter =! this.showfilter;
+    this.showbtn = true;
   }
   
   Additems() { 

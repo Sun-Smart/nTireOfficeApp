@@ -12,7 +12,7 @@ import { HttprequestService } from '../../service/httprequest.service';
 export class RFQPage implements OnInit {
 
   showviewlist: boolean = false
-  showrfq: boolean = false
+
   selectAll: boolean = false;
 
   indeterminateState: boolean;
@@ -29,9 +29,10 @@ export class RFQPage implements OnInit {
   showMRFQ: boolean = false;
   showCRFQ: boolean = false;
 
-erefref
+  erefref
   getresponse: any;
-  constructor(private router: Router, private alertController: AlertController, private httpclient : HttprequestService, private IpaddressService : IpaddressService ) {
+  getraisedrfq: any;
+  constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
     //     name: "PRS Code",
@@ -101,122 +102,203 @@ erefref
 
   ngOnInit() {
   }
+
+
   Submit() {
     this.showviewlist = true;
-    console.log('this.status ',this.status);
-     if (this.status == "Pending") {
-      this.showRfq = true;
-      this.showMRFQ = false;
-      this.showCRFQ = false;
-    } else if (this.status == "RFQ") {
-      this.showMRFQ = true;
-      this.showRfq = false;
-      this.showCRFQ = false;
-    } else if (this.status == "Cancelled") {
-      this.showRfq = false;
-      this.showMRFQ = false;
-      this.showCRFQ = true;
-    }
-
-    if (this.status == "Pending") {
-      this.status="P"
-    }
-
-    if (this.status == "RFQ") {
-      this.status = "";
-    }
-
-    if (this.status == "Cancelled")
-    {
-      this.status= "A";
-    }
+    console.log('this.status ', this.status);
+    // Status : Pending RFQ
 
 
-    if( this.prscode == undefined)
-    {
+    if (this.prscode == undefined) {
       this.prscode = "";
     }
 
-if( this.itemcode == undefined)
-{
-  this.itemcode = "";
-}
-
-if( this.fromdate == undefined)
-{
-  this.fromdate ="0";
-}
-
-if( this.toDate == undefined)
-{
-  this.toDate = "0";
-}
-
-
-
-    let body = {
-    "functionid":"1",
-    "prscode":"",
-    "itemcode": this.itemcode,
-    "reuestdate":"",
-    "rfqcode": this.prscode,
-    "fromdate": this.fromdate,
-    "todate": this.toDate,
-    "rfqfromdate":"",
-    "rfqtodate":"",
-    "status": this.status,
-    "mode":"2",
-    "pageindex1":0,
-    "pagesize1":20,
-    "sortexpression":"prs_id DESC",
-    "alphaname":""
+    if (this.itemcode == undefined) {
+      this.itemcode = "";
     }
 
-    this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body ).then((res: any) => {
-      // this.loading = false
-      this.getresponse = res;
+    if (this.fromdate == undefined) {
+      this.fromdate = "0";
+    }
+
+    if (this.toDate == undefined) {
+      this.toDate = "0";
+    }
 
 
-      console.log("Response", res);
-      // for (let item of this.getresponse) {
-      //   console.log(item);
+
+    if (this.status == "P") {
+      this.showRfq = true;
+      this.showMRFQ = false;
+      this.showCRFQ = false;
+
+      // if (this.status == "P") {
+      //   this.status = "P"
       // }
-    });
+
+      // if (this.status == "RFQ") {
+      //   this.status = "RFQ Raised";
+      // }
+
+      // if (this.status == "Cancelled") {
+      //   this.status = "A";
+      // }
 
 
-this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getraiserfq').
-then((res:any) => {
-this.getresponse = res;
-});
 
 
+
+      let body = {
+        "functionid": "1",
+        "prscode": "",
+        "itemcode": this.itemcode,
+        "reuestdate": "",
+        "rfqcode": this.prscode,
+        "fromdate": this.fromdate,
+        "todate": this.toDate,
+        "rfqfromdate": "",
+        "rfqtodate": "",
+        "status": this.status,
+        "mode": "2",
+        "pageindex1": 0,
+        "pagesize1": 20,
+        "sortexpression": "prs_id DESC",
+        "alphaname": ""
+      }
+
+      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body).then((res: any) => {
+        this.getresponse = res;
+        console.log("Response", res);
+      });
+
+
+
+    } else if (this.status == "RFQ Raised") {
+      this.showMRFQ = true;
+      this.showRfq = false;
+      this.showCRFQ = false;
+
+
+      // if (this.status == "Pending") {
+      //   this.status = "P"
+      // }
+
+      // if (this.status == "A") {
+      //   this.status = "RFQ Raised";
+      // }
+
+      // if (this.status == "Cancelled") {
+      //   this.status = "A";
+      // }
+
+
+
+      let body = {
+        "functionid": "1",
+        "prscode": "",
+        "itemcode": this.itemcode,
+        "reuestdate": "",
+        "rfqcode": this.prscode,
+        "fromdate": this.fromdate,
+        "todate": this.toDate,
+        "rfqfromdate": "",
+        "rfqtodate": "",
+        "status": this.status,
+        "mode": "2",
+        "pageindex1": 0,
+        "pagesize1": 20,
+        "sortexpression": "prs_id DESC",
+        "alphaname": ""
+
+      }
+
+      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).then((res: any) => {
+        this.getresponse = res;
+        console.log("Response", res);
+      });
+
+
+
+
+
+
+    } else if (this.status == "A") {
+      this.showRfq = false;
+      this.showMRFQ = false;
+      this.showCRFQ = true;
+
+      // if (this.status == "Pending") {
+      //   this.status = "P"
+      // }
+
+      // if (this.status == "RFQ") {
+      //   this.status = "RFQ Raised";
+      // }
+
+      // if (this.status == "Cancelled") {
+      //   this.status = "A";
+      // }
+
+      let body = {
+        "functionid": "1",
+        "prscode": "",
+        "itemcode": this.itemcode,
+        "reuestdate": "",
+        "rfqcode": this.prscode,
+        "fromdate": this.fromdate,
+        "todate": this.toDate,
+        "rfqfromdate": "",
+        "rfqtodate": "",
+        "status": this.status,
+        "mode": "2",
+        "pageindex1": 0,
+        "pagesize1": 20,
+        "sortexpression": "prs_id DESC",
+        "alphaname": ""
+
+      }
+
+      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'CancelledRFQDetails', body).then((res: any) => {
+        this.getresponse = res;
+        console.log("Response", res);
+      });
+    }
   }
+
+
   getVal(item: string) {
     console.log(item);
-    if (item == "Pending") {
-      this.showMRFQ = false;
-      this.showRfq = false;
-      this.showCRFQ = false;
-    }
-    else if (item == "RFQ") {
-      this.showMRFQ = false;
-      this.showRfq = false;
-      this.showCRFQ = false;
-    } else if (item == "Cancelled") {
-      this.showMRFQ = false;
-      this.showRfq = false;
-      this.showCRFQ = false;
-    }
+    // if (item == "Pending") {
+    //   this.showMRFQ = false;
+    //   this.showRfq = false;
+    //   this.showCRFQ = false;
+    // }
+    // else if (item == "RFQ") {
+    //   this.showMRFQ = false;
+    //   this.showRfq = false;
+    //   this.showCRFQ = false;
+    // } else if (item == "Cancelled") {
+    //   this.showMRFQ = false;
+    //   this.showRfq = false;
+    //   this.showCRFQ = false;
+    // }
   }
-
 
   raiseRFQ() {
-    this.showrfq = true;
-    this.showviewlist = false;
-    this.presentAlert("", "RFQ 345/AT Raised Successfully");
+    // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+    // Raise RFQ Button
+    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getraiserfq').
+      then((res: any) => {
+        this.getraisedrfq = res;
+        console.log(this.getraisedrfq)
+        // this.showrfq = true;
+        this.showviewlist = false;
+        // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+      });
   }
   manageRFQlink() {
-    this.router.navigate(['/manage-rfq'])
+     this.router.navigate(['/manage-rfq'])
   }
 
   async presentAlert(heading, tittle) {
@@ -254,7 +336,7 @@ this.getresponse = res;
             this.status = "";
             this.bidding = "";
             // this.remarks="";
-
+            this.getresponse = [];
           }
         }
       ]

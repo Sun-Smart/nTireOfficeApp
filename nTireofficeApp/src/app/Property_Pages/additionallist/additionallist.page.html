@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon>
+        <span style="color:white;">Back</span>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="margin: 0 20px;">Additional Charges</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let item of ShowAddionalList;">
+    <ion-card-header class="card_header">Details
+    </ion-card-header>
+
+    <ion-card-content class="card_content">
+      <ion-row>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelHead-text">Amount </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">: {{item.AMOUNT}} </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelHead-text">Description </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">: {{item.DAMAGE_DESCRIPTION}} </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelHead-text">Pay Date </ion-label>
+        </ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">: {{item.DUE_DATE}}</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <center *ngIf="showError"
+    style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No
+    records found</center>
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+      © SunSmart Global Inc
+    </ion-col>
+    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+      {{username}}
+    </ion-col>
+  </ion-row>
+</ion-footer>
