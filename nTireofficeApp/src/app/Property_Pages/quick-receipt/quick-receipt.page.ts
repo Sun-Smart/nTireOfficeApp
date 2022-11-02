@@ -238,7 +238,7 @@ filterquickreceipt(){
 
 
   }
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" +"0" , {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ data.functionID + "/"  + data.locationid + "/" + data.propertyID + "/" +"0" , {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");

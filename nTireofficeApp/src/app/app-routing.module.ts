@@ -632,6 +632,8 @@ loadChildren:() => import('./Cams_pages/pending-jobs-tabs/pending-jobs-tabs.modu
     path: 'issuedetails',
     loadChildren: () => import('./procurement/issuedetails/issuedetails.module').then( m => m.IssuedetailsPageModule)
   },
+ 
+
 
 
 
