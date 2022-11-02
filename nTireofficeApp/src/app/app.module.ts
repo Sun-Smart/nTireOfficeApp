@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
@@ -39,6 +39,7 @@ import { AppComponent } from '././app.component';
     NativeGeocoder,
     BarcodeScanner,
     Geolocation,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

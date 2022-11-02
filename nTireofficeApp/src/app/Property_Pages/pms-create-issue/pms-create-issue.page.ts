@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 import { IpaddressService } from '../../service/ipaddress.service';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-pms-create-issue',
   templateUrl: './pms-create-issue.page.html',
@@ -33,7 +34,7 @@ export class PmsCreateIssuePage implements OnInit {
   branchID: string;
   functionID: string;
   priority: any;
-  createDate: any;
+  createDate: string;
   textDetails: any;
   user_ID: any;
   function_ID: any;
@@ -50,13 +51,17 @@ export class PmsCreateIssuePage implements OnInit {
   assetid: any;
   assetownerid: any;
   categoryid: any;
+  assetCodeBinding: any;
 
   constructor(private modalCtrl: ModalController,
-    private http: HttpClient,
+    private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
     public alertController: AlertController,
     public Ipaddressservice: IpaddressService,) {
 
     this.isItemAvailable = false;
+    this.createDate = this.datePipe.transform(this.createDate, 'dd/MM/yyyy');
+
+    console.log(this.createDate);
 
 
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -126,8 +131,10 @@ export class PmsCreateIssuePage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.assetData.push({ASSET_CODE:this.companiesstr[i].ASSET_CODE, binding:this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
-      NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE});
+        this.assetData.push({
+          ASSET_CODE: this.companiesstr[i].ASSET_CODE, binding: this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
+          NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE
+        });
         // this.assetData.push({description:this.companiesstr[i].ASSET_DESCRIPTION});
         // console.log(this.assetData,"assetdata")
       };
@@ -157,8 +164,9 @@ export class PmsCreateIssuePage implements OnInit {
 
 
   addPropertycode(item: any) {
-debugger;
+    debugger;
     this.assetCode = item.binding;
+    this.assetCodeBinding = item.ASSET_CODE
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.assetCode == this.companiesstr[i].companyName) {
@@ -171,7 +179,7 @@ debugger;
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' +item.ASSET_CODE, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + item.ASSET_CODE, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -182,7 +190,7 @@ debugger;
       this.department = this.respContact[0]['Department'];
       this.assetid = this.respContact[0]['ASSET_ID'];
       this.assetownerid = this.respContact[0]['ASSET_OWNER_ID'];
-      
+
       // this.assetCode = this.respContact[0]['property_desc'];
 
       this.gatagory = this.respContact[0]['ASSET_CATEGORY'];
@@ -215,7 +223,7 @@ debugger;
       this.gatagoryDetails = resp;
       this.categoryid = this.gatagoryDetails[0]['VAL'];
       console.log(this.categoryid);
-      
+
       console.log(this.gatagoryDetails);
 
     })
@@ -224,21 +232,21 @@ debugger;
   // postmethod create issue,
 
   createissue() {
-
+    debugger;
     const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
     let data = {
 
-      "userid": this.user_ID,
-      "functionid": this.function_ID,
-      "branchid": this.branch_id,
-      "Priority": this.priority,
-      "pm_due_date": this.createDate,
-      "drpPMType": this.categoryid,
-      "txtDetails": this.textDetails,
-      "assetownerid": "1",
-      "assetid": this.assetid,
-      "assetcode": this.assetCode,
+      userid: this.user_ID,
+      functionid: this.function_ID,
+      branchid: this.branch_id,
+      Priority: this.priority,
+      pm_due_date: this.createDate,
+      drpPMType: this.categoryid,
+      txtDetails: this.textDetails,
+      assetownerid: "1",
+      assetid: this.assetid,
+      assetcode: this.assetCodeBinding,
 
     }
     let options = new HttpHeaders().set('Content-Type', 'application/json')
@@ -246,8 +254,8 @@ debugger;
     this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details/', data, {
       headers: options, responseType: 'text'
     }).subscribe(resp => {
-     
-      this.dataStatus =JSON.parse(resp);
+
+      this.dataStatus = JSON.parse(resp);
       console.log(this.dataStatus);
 
       this.refNum = this.dataStatus[0].Column1;
