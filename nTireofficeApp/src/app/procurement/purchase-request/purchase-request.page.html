@@ -58,7 +58,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Request By</ion-label>
-          <ion-input type="text" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text" disabled="" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -74,7 +74,8 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Order Priority</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="order" class="Input-text-field textareaField">
+          <select (click)="orderpriority()" style="padding: 10px;" [(ngModel)]="order"
+            class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let items of getorder" value="{{items.val}}">{{items.text}}</option>
           </select>
@@ -220,8 +221,8 @@
             <select (click)="getItemDetail(value)" style="padding: 10px;" [(ngModel)]="Category"
               class="Input-text-field textareaField">
               <option value="select">&lt;&lt; Select &gt;&gt;</option>
-              <option value="IT">Items</option>
-              <option value="Service">Service</option>
+              <option value="I">Items</option>
+              <option value="S">Service</option>
             </select>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
@@ -243,6 +244,7 @@
               [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
               <ion-item class="ContentName" *ngFor="let items of getdataitem" style="background-color: white !important;
              " (click)="fetchreconcilation(items)">
+                <!-- {{ item.id }} - {{ item.desc }} -->
                 {{ items }}
               </ion-item>
             </ion-list>
