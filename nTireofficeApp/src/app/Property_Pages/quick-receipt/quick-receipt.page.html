@@ -104,8 +104,10 @@
       </ion-card-content>
     </ion-card>
 
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
-
+    <!-- <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
+     -->
+     <center *ngIf="showError"
+     style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{showdata}}</center>
     <ion-card *ngFor="let item of quickreceipt; let i=index " >
       <ion-card-header class="card_header">
         <ion-row>
