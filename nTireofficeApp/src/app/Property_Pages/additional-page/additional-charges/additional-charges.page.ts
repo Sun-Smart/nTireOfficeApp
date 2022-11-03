@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 /* eslint-disable arrow-body-style */
@@ -52,7 +53,7 @@ export class AdditionalChargesPage implements OnInit {
   rental_pro_id: any;
 
 
-  constructor(private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
+  constructor(private model:ModalController,private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
 
   ngOnInit() {
     this.Getbranches();
@@ -63,7 +64,8 @@ export class AdditionalChargesPage implements OnInit {
 
   }
   cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+    this.model.dismiss();
+    // return this.modalCtrl.dismiss(null, 'cancel');
   }
   Getbranches() {
 
