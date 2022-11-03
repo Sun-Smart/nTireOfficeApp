@@ -8,21 +8,28 @@
 </ion-header>
 
 <ion-content>
+
+<ion-card>
+<ion-card-content>
   <ion-grid style="border-radius: 5px;">
     <ion-row>
+      <form  [formGroup]="invoiceform">
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Number</ion-label>
-        <ion-input type="number" class="form-control" [(ngModel)]="invoicenumber"></ion-input>
+        <ion-input type="number" class="form-control" formControlName="invoicenumber" ></ion-input>
+       
+        
       </ion-col>
+     
 
       <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Date<span class="validatecolor">*</span></ion-label>
         <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
-          (ionChange)="validateFromDate()" [(ngModel)]="fromDate"></ion-input>
+          (ionChange)="validateFromDate()" formControlName="fromDate"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Invoice Amount</ion-label>
-        <ion-input type="number" class="form-control" [(ngModel)]="invoiceamount"></ion-input>
+        <ion-label class="ContentName">Invoice Document</ion-label>
+        <ion-input type="number" class="form-control"  formControlName="invoiceamount"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Upload Document</ion-label>
@@ -32,12 +39,11 @@
         <div style="display:none;word-break: break-all;">
           <input type="file" name="file" id="fileinput" />
         </div> -->
-        <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
-          [uploader]="uploader" class="drop-zone">
-        </div>
+       
         <div class="file-input-container">
           <label>
-            <input type="file" ng2FileSelect [uploader]="uploader" multiple />
+       
+            <input (change)="onSelectFile($event)" type="file"  formControlName="documentupload">
 
           </label>
         </div>
@@ -53,9 +59,9 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Remark</ion-label>
-        <ion-input type="text" class="form-control" [(ngModel)]="invoiceremark"></ion-input>
+        <ion-input type="text" class="form-control" formControlName="invoiceremark" ></ion-input>
       </ion-col>
-
+    </form>
 
     </ion-row>
     <ion-row>
@@ -66,9 +72,9 @@
             <img [src]="sanitizer.bypassSecurityTrustUrl(image.imgURL)" />
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <div class="plusicon">
-              <ion-icon name="add" (click)="addExpenseDetails()" style="margin-top: 7px;"></ion-icon>
-            </div>
+            <ion-button (click)="additem()" class="ion-color-primary" expand="block">
+              <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Invoice
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -76,7 +82,87 @@
 
 
   </ion-grid>
+</ion-card-content>
+
+</ion-card>
+
+
+    <ion-card  *ngFor="let item of getinvoice; let i=index">
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col size="7">
+            <ion-label class="card_header_text">Invoices</ion-label>
+          </ion-col>
+
+          <ion-col size="4">
+            <ion-label class="card_header_text">#{{i+1}}</ion-label>
+          </ion-col>
+          <ion-col size="1">
+           <ion-icon name="trash-outline" (click)="removeItem(i)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row >
+          <ion-col size="6">
+            <ion-label>Invoice Number</ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label >: {{item.invoicenumber | json}}</ion-label>
+          </ion-col>
+      
+          <ion-col size="6">
+            <ion-label>Invoice Date</ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label >: {{item.fromDate}}</ion-label>
+          </ion-col>
+      
+          <ion-col size="6">
+            <ion-label>Invoice Amount</ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label >: {{item.invoiceamount}}</ion-label>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-label>Invoice Document Upload</ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <a  (click)="openpdf(item.invoicenumber)">: {{item.documentupload}}  </a>
+          
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-label>Invoice Remark</ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label >: {{item.invoiceremark}}</ion-label>
+          </ion-col>
+      
+          <!-- <ion-col size="6">
+            <ion-label>Pay Amount</ion-label>
+          </ion-col>
+          <ion-col size="6">
+            <ion-label>: {{Formdata.invoiceremark}}</ion-label>
+          </ion-col> -->
+      
+          </ion-row>
+      </ion-card-content>
+      </ion-card>
+
+
+
+
+
+
+
+
+      
+  
 </ion-content>
+
 <ion-footer>
 
   <ion-row>
@@ -89,4 +175,4 @@
   </ion-row>
 
 
-</ion-footer>s
+</ion-footer>

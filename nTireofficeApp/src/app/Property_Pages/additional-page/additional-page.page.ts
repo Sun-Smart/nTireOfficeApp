@@ -58,6 +58,9 @@ export class AdditionalPagePage implements OnInit {
   showError: boolean;
   showReceipt: any = [];
   rentalID: any;
+  property_id: string;
+  rental_pro_id: any;
+  rent_code_ID: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -178,20 +181,24 @@ export class AdditionalPagePage implements OnInit {
 
 
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
+
       console.log(this.companiesstr);
 
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.rental_pro_id = this.companiesstr[i]['property_id'];
       }
+      console.log('this.rental_pro_id ',this.rental_pro_id);
+
       const val = ev.target.value;
 
       // if the value is an empty string don't filter the items
@@ -223,13 +230,14 @@ export class AdditionalPagePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.rental_pro_id, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
       console.log(this.respContact);
 
-      this.propertyDesc = this.respContact[0]['property_building_name'];
+      // this.propertyDesc = this.respContact[0]['property_building_name'];
+      this.rentalID = this.respContact[0]['rental_id'];
       // this.contact1 = JSON.parse(this.respContact);
       // console.log(this.contact1);
       // if (this.contact1.length == 0) {
@@ -353,4 +361,5 @@ export class AdditionalPagePage implements OnInit {
 
     await alert.present();
   };
+
 }
