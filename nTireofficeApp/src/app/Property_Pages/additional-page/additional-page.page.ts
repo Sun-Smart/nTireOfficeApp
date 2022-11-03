@@ -105,6 +105,7 @@ export class AdditionalPagePage implements OnInit {
 
   togglefilter() {
     this.showfilter = !this.showfilter;
+    this.getListItems();
   };
 
   Getbranches() {
