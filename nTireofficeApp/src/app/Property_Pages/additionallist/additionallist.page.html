@@ -11,6 +11,8 @@
 </ion-header>
 
 <ion-content>
+<!-- <p *ngIf="this.showError" style="font-size: 18px;font-weight: 600;text-align: center;margin-top: 50%;"></p> -->
+
   <ion-card *ngFor="let item of ShowAddionalList;">
     <ion-card-header class="card_header">Details
     </ion-card-header>
@@ -39,7 +41,7 @@
     </ion-card-content>
   </ion-card>
   <center *ngIf="showError"
-    style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No
+    style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; margin-top: 50%;">No
     records found</center>
 </ion-content>
 <ion-footer>

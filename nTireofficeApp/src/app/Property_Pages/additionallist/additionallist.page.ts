@@ -20,6 +20,7 @@ export class AdditionallistPage implements OnInit {
   ShowAddionalList: any = [];
   showError: boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
+  arra: any=[];
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public Ipaddressservice: IpaddressService) {
 
   }
@@ -41,11 +42,15 @@ export class AdditionallistPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.ShowAddionalList = resp;
-      // if (resp == "No data found") {
-      //   this.showError = true;
-      // } else {
-      //   this.showError = false;
-      // }
+      if (resp == "No data found") {
+        this.ShowAddionalList=[]
+        // this.arra.push(this.ShowAddionalList)
+        // console.log(this.arra);
+        
+        this.showError = true;
+      } else {
+        this.showError = false;
+       }
       console.log(resp);
     }, error => {
     });
