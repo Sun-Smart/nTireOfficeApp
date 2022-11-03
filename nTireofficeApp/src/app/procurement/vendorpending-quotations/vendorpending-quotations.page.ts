@@ -42,6 +42,9 @@ export class VendorpendingQuotationsPage implements OnInit {
             this.todate = "";
             this.status = "";
             this.Quotation = "";
+            this.getresponse = [];
+            this.responseDatalength = ""
+
           }
         }
       ]
@@ -60,7 +63,7 @@ export class VendorpendingQuotationsPage implements OnInit {
     if (this.rfqcode == undefined) {
       this.rfqcode = "0"
     }
-    if (this.status == undefined) {
+    if (this.status == undefined || this.status == "<< Select >>") {
       this.status = "0"
     }
     if (this.fromdate == undefined) {

@@ -61,6 +61,7 @@ export class AdditionalPagePage implements OnInit {
   property_id: string;
   rental_pro_id: any;
   rent_code_ID: any;
+  propertycodeDesc: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -194,9 +195,16 @@ export class AdditionalPagePage implements OnInit {
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.rental_pro_id = this.companiesstr[i]['property_id'];
-      }
+        // this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name, 
+        rental_pro_id : this.companiesstr[i].property_id
+      });
+        
+      };
+      // for (var i = 0; i < this.companiesstr.length; i++) {
+      //   this.propertyCode1.push(this.companiesstr[i].property_code);
+   
+      // }
       console.log('this.rental_pro_id ',this.rental_pro_id);
 
       const val = ev.target.value;
@@ -218,7 +226,8 @@ export class AdditionalPagePage implements OnInit {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.rental_pro_id = item.rental_pro_id;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {

@@ -62,6 +62,7 @@ export class MyTaskPage implements OnInit {
   pmm_asset_code: any;
   status1: any;
   getTaskStatus: any;
+  showdata: string;
 
 
 
@@ -91,6 +92,17 @@ export class MyTaskPage implements OnInit {
       buttons: ['OK']
     });
 
+    await alert.present();
+  }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
     await alert.present();
   }
 
@@ -433,11 +445,19 @@ export class MyTaskPage implements OnInit {
       this.myTaskDetailsList = resp;
 
       console.log(this.myTaskDetailsList);
-
-      this.pmr_reference = this.myTaskDetailsList[0]['pmr_asset_reference'];
-      // this.assetCode = this.myTaskDetailsList[0]['pmm_asset_code'];
+      for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+        this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+      };
       console.log('kuhgg', this.pmr_reference);
     });
+
+    if (this.myTaskDetailsList== null) {
+  
+      this.showdata = "0";
+    }
+    else {
+      this.showdata = this.myTaskDetailsList.length;
+    }
   };
 
 
@@ -445,7 +465,7 @@ export class MyTaskPage implements OnInit {
 
   filterMyTask() {
     if (this.branch == "undefined" || this.branch == null || this.branch == "") {
-      this.presentAlert("", "Please select Branch");
+      this.presentAlert1("", "Please select Branch");
       return;
     } else {
 
@@ -490,8 +510,12 @@ export class MyTaskPage implements OnInit {
         this.myTaskDetailsList = resp;
 
         console.log(this.myTaskDetailsList);
+
+        for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+          this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+        };
   
-        this.pmr_reference = this.myTaskDetailsList[0]['pmr_asset_reference'];
+       
       });
     };
   };
@@ -501,7 +525,7 @@ export class MyTaskPage implements OnInit {
     this.getTaskStatus = this.status1
     console.log("getTaskStatus,,,,,,,,,,,,,,",this.getTaskStatus);
     if (this.getTaskStatus == "undefined" || this.getTaskStatus == null || this.getTaskStatus == "") {
-      this.presentAlert("", "Please select Issue Status...");
+      this.presentAlert1("", "Please select Issue Status...");
       return;
     } else {
     const header = new Headers();

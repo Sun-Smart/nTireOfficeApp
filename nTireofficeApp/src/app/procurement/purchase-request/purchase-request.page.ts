@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -8,6 +9,7 @@ import { IpaddressService } from 'src/app/service/ipaddress.service';
   selector: 'app-purchase-request',
   templateUrl: './purchase-request.page.html',
   styleUrls: ['./purchase-request.page.scss'],
+  providers: [DatePipe]
 })
 export class PurchaseRequestPage implements OnInit {
   showlineItems: boolean = true
@@ -16,6 +18,7 @@ export class PurchaseRequestPage implements OnInit {
   release: boolean = false
   getlistitems: any
   expenseArray = [];
+  getresponse = [];
   getdataitem = [];
   itemNew: any;
   prsdate: any;
@@ -58,11 +61,12 @@ export class PurchaseRequestPage implements OnInit {
   showsavebtn: boolean = false;
   itemcode: any;
   getitemdata: any;
+  getitemid: any;
   // release
 
 
 
-  constructor(private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
+  constructor(private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
 
 
     // var data = {
@@ -85,12 +89,13 @@ export class PurchaseRequestPage implements OnInit {
         this.getorder.push(element)
       });
     })
-    this.userid = localStorage.getItem('TUM_USER_ID')
-    this.branchid = localStorage.getItem('TUM_BRANCH_ID')
+    this.userid =
+      this.branchid = localStorage.getItem('TUM_BRANCH_ID')
     let date = new Date();
     console.log(date)
     this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
+    this.requestby = localStorage.getItem('TUM_USER_ID')
   }
   fetchreconcilation(itemcode: any) {
     console.log(itemcode)
@@ -102,7 +107,8 @@ export class PurchaseRequestPage implements OnInit {
       console.log(this.getitemdata)
       this.Description = this.getitemdata[0].item_short_Desc,
         this.unitprice = this.getitemdata[0].Price
-      this.itemdescription = this.getitemdata[0].item_long_desc
+      this.itemdescription = this.getitemdata[0].item_long_desc,
+        this.getitemid = this.getitemdata[0].item_id
     });
   }
   getItems(event: any) {
@@ -121,7 +127,9 @@ export class PurchaseRequestPage implements OnInit {
       //   this.getdata.push(element)
       console.log(this.itemNew);
       for (var i = 0; i < this.itemNew.length; i++) {
+        // this.getdataitem.push({ id: this.itemNew[i].item_Code, desc: this.itemNew[i].item_id });
         this.getdataitem.push(this.itemNew[i].item_Code);
+        // this.getdataitem.push(this.itemNew[i].);
       }
       console.log(this.getdataitem);
       const val = event.target.value;
@@ -142,10 +150,17 @@ export class PurchaseRequestPage implements OnInit {
     this.showsavebtn = true
     let getcategory = this.Category
     console.log(getcategory)
-    if (getcategory == "IT") {
+    if (getcategory == "I") {
       this.hideitem = true;
       this.showitem = false;
       this.qty = ""
+
+      this.itemcode = "",
+        this.Description = "",
+        this.unitprice = "",
+        this.netprice = ""
+
+
       this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
         console.log(resp)
         this.getdata1 = resp
@@ -153,19 +168,35 @@ export class PurchaseRequestPage implements OnInit {
           this.getdata.push(element)
           console.log(this.getdata);
 
+
         })
       })
     }
-    if (getcategory == "Service") {
+    if (getcategory == "S") {
       this.hideitem = false;
       this.showitem = true;
       this.qty = 1
+
+      this.itemcode = "",
+        this.Description = "",
+        this.unitprice = "",
+        this.netprice = "",
+        this.Requiredbefore = "",
+        this.itemdescription = ""
+
 
     }
     if (getcategory == "select") {
       this.hideitem = false;
       this.showitem = false;
       this.showsavebtn = false;
+
+      this.itemcode = "",
+        this.Description = "",
+        this.unitprice = "",
+        this.netprice = "",
+        this.qty = "",
+        this.itemdescription = ""
     }
 
 
@@ -183,7 +214,18 @@ export class PurchaseRequestPage implements OnInit {
 
   Additems() {
     this.showlineItems = !this.showlineItems
-    this.showbtn = false
+    this.showbtn = false;
+
+
+    this.itemcode = "",
+      this.Description = "",
+      this.unitprice = "",
+      this.netprice = "",
+      this.qty = "",
+      this.itemdescription = ""
+
+
+
   }
 
   showline() {  //submit btn
@@ -193,17 +235,16 @@ export class PurchaseRequestPage implements OnInit {
     this.showlineItems = !this.showlineItems;
     this.expenseArray.push({
       prsid: "",
-      itemid: this.itemcode,
+      itemid: this.getitemid,
       i_function_id: "1",
-      required_qty: this.qty,
+      required_qty: this.qty.toString(),
       UOM: "15",
       expected_cost: "100",
       exp_date: this.Requiredbefore,
-      status: "A",
-      created_by: "210",
-      netprice: this.netprice,
+      status: "P",
+      created_by: this.userid,
       ipaddress: "",
-      unit_price: this.unitprice,
+      unit_price: this.netprice,
       Limit: "",
       Availlimit: "",
       BalanceLimit: "",
@@ -229,9 +270,85 @@ export class PurchaseRequestPage implements OnInit {
       CPC: "",
       flag: "I"
 
+      // prsid: "",
+      // itemid: this.itemcode,
+      // i_function_id: "1",
+      // required_qty: this.qty,
+      // UOM: "15",
+      // expected_cost: "100",
+      // exp_date: this.Requiredbefore,
+      // status: "A",
+      // created_by: "210",
+      // netprice: this.netprice,
+      // ipaddress: "",
+      // unit_price: this.unitprice,
+      // Limit: "",
+      // Availlimit: "",
+      // BalanceLimit: "",
+      // CATEGORY: this.Category,
+      // TAX1: "",
+      // TAX2: "",
+      // TAX1DESC: "",
+      // TAX2DESC: "",
+      // OTHERCHARGES: "",
+      // item_short_desc: this.Description,
+      // item_long_desc: this.itemdescription,
+      // REMARKS: "",
+      // CategoryID: "",
+      // SubCategoryID: "",
+      // prsDetailID: "",
+      // FreightVALUE: "",
+      // FreightID: "",
+      // RecoveryVALUE: "",
+      // RecoveryID: "",
+      // BDC: "",
+      // PTM: "",
+      // ACC: "",
+      // CPC: "",
+      // flag: "I"
+
     })
     console.log(this.expenseArray)
     this.showbtn = true
+  }
+
+  orderpriority() {
+    console.log(this.order)
+
+    if (this.order == "2") //urjent
+    {
+
+      let getdate = new Date();
+      getdate.setDate(getdate.getDate() + 2);
+      console.log(getdate);
+      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+    }
+    if (this.order == "1") //critical
+    {
+      let getdate = new Date();
+      getdate.setDate(getdate.getDate() + 1);
+      console.log(getdate);
+      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+
+    }
+    if (this.order == "3") //high
+    {
+      let getdate = new Date();
+      getdate.setDate(getdate.getDate() + 3);
+      console.log(getdate);
+      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+
+    }
+    if (this.order == "4") //medium
+    {
+      let getdate = new Date();
+      getdate.setDate(getdate.getDate() + 4);
+      console.log(getdate);
+      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+
+    }
+    let getdate = new Date();
+    this.prsdate = this.datePipe.transform(getdate, 'yyyy-MM-dd');
   }
 
 
@@ -277,39 +394,47 @@ export class PurchaseRequestPage implements OnInit {
     this.showbtn = true
   }
   submit() {
+
+
+    this.getresponse.push({
+      "prscategory": this.Category,
+      "functionid": "1",
+      "prsid": "",
+      "prscode": "",
+      "status": "P",
+      "createdby": this.requestby,
+      "ipaddress": "0",
+      "reasonpurchase": this.reasonpurchase,
+      "netamount": this.netprice,
+      "currency": "0",
+      "requestcomments": "sample",
+      "isbid": "0",
+      "prstype": "0",
+      "branchid": "1",
+      "prsref": "0",
+      "userid": this.userid,
+      "requestby": this.requestby,
+      "requestdate": this.prsdate,
+      "requettype": "Q",
+      "issinglevendor": "",
+      "orderpriority": "",
+      "release": this.release.toString(),
+      "Itemsdetail": this.expenseArray,
+    })
     // window.location.reload()
     // this.router.navigate(['/purchase-request'])
     // this.showviewlist = true
     // this.showlineItems = !this.showlineItems
     var body = {
-      "prscategory": this.Category,
-      "functionid": "1",
-      "prsdate": this.prsdate,
-      "prsid": "",
-      "prscode": "",
-      "status": "0",
-      "createdby": this.userid, //userid
-      "ipaddress": "0",
-      "reasonpurchase": this.reasonpurchase,
-      "netamount": this.netprice,
-      "currency": "0",
-      "requestcomments": "0",
-      "isbid": "0",
-      "prstype": "0",
-      "branchid": this.branchid,//TUM_BRANCH_ID
-      "prsref": "0",
-      "userid": this.userid,//userid
-      "requestby": this.userid,//userid
-      "requestdate": "",
-      "requettype": this.prsmode,
-      "issinglevendor": "",
-      "orderpriority": "",
-      "release": this.release,
-      "Itemsdetail": this.expenseArray,
+      prsdetail: this.getresponse,
+      // "Itemsdetail": this.expenseArray,
     }
-    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body).subscribe((res: any) => {
+    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body, {
+      headers: options, responseType: 'text'
+    }).subscribe((res: any) => {
       // this.getresponse = res;
-      console.log(res)
+      alert(res)
     })
 
 

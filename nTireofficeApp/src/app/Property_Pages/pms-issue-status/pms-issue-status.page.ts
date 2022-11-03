@@ -23,6 +23,8 @@ export class PmsIssueStatusPage implements OnInit {
   getStatus: any;
   propertyID: any;
   viewStatus: any;
+  isViewStatusCard: boolean;
+  shownoRec: boolean;
 
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
@@ -52,9 +54,15 @@ export class PmsIssueStatusPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getissuestatus/' + this.functionID + '/' + this.branchID + '/' + this.propertyId, {
       headers: options,
     }).subscribe(resp => {
+    
       this.getStatus = resp;
-
       console.log(this.getStatus);
+
+      if(this.getStatus = null){
+        this.isViewStatusCard = false;
+      }else{
+        this.isViewStatusCard = true;
+      }
 
     });
   };
