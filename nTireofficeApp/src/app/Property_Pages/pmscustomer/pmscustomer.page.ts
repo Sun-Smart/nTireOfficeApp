@@ -70,6 +70,7 @@ export class PmscustomerPage implements OnInit {
   branchlocation: any;
   norecordsfound: boolean;
   filterPropertyCode: any;
+  propertycodeDesc: any;
 
 
 
@@ -127,7 +128,7 @@ export class PmscustomerPage implements OnInit {
 
   filterRecords() {
     if (this.branch == "undefined" || this.branch == null || this.branch == "") {
-      this.presentAlert("", "Please select Branch");
+      this.presentAlert1("", "Please select Branch");
       return;
     } else {
       debugger;
@@ -144,7 +145,7 @@ export class PmscustomerPage implements OnInit {
         functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
         branchid: this.branch ? this.branch : 1,
         locationid: this.branchlocation ? this.branchlocation : 1,
-        strPropertyId: this.propertycode ? this.propertycode : 0,
+        strPropertyCode: this.propertycodeDesc ? this.propertycodeDesc : 0,
         strPropertyDesc: 0,
         rentelCode: 0,
         strStatus: 0,
@@ -158,7 +159,7 @@ export class PmscustomerPage implements OnInit {
       };
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchid + '/' + data.locationid + '/' + data.strPropertyCode + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
         headers: options,
       }).subscribe(resp => {
         this.propertyCodeResult = resp;
@@ -297,6 +298,18 @@ export class PmscustomerPage implements OnInit {
     });
 
     await alert.present();
+  };
+
+  
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
 
@@ -328,7 +341,8 @@ export class PmscustomerPage implements OnInit {
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
+        // this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
       };
 
       // Code with Description method....
@@ -360,8 +374,8 @@ export class PmscustomerPage implements OnInit {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
 
-    this.propertycode = item;
-    // this.propertycode = item.PropertyCodeDesc;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.property_code;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -373,7 +387,7 @@ export class PmscustomerPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycodeDesc + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;

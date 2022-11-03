@@ -204,17 +204,20 @@ getquicreceipt(){
   const header = new Headers();
   header.append("Content-Type", "application/json");
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ this.functionID + "/" + this.branchID + "/" +"0/0", {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ this.functionID + "/" + this.branchID + "/"+ this.propertycode + '/' + 0, {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");
-   this.quickreceipt=res
 
+   this.quickreceipt=res;
+
+   console.log(this.quickreceipt);
+   
 
    
-   if (this.quickreceipt == null) {
+   if (this.quickreceipt == "No data found") {
   
-    this.showdata = "No Data Found"
+    this.showdata = "0";
   }
   else {
     this.showdata = this.quickreceipt.length;
@@ -238,7 +241,7 @@ filterquickreceipt(){
 
 
   }
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" +"0" , {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ data.functionID + "/"  + data.locationid + "/" + data.propertyID + "/" +"0" , {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");
