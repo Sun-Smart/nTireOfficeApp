@@ -196,14 +196,12 @@ export class AdditionalPagePage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name, 
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
         rental_pro_id : this.companiesstr[i].property_id
       });
-        
       };
       // for (var i = 0; i < this.companiesstr.length; i++) {
       //   this.propertyCode1.push(this.companiesstr[i].property_code);
-   
       // }
       console.log('this.rental_pro_id ',this.rental_pro_id);
 
@@ -340,7 +338,7 @@ export class AdditionalPagePage implements OnInit {
         strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
         Branch: this.branch ? this.branch : 1,
         Location: this.branchlocation ? this.branchlocation : 1,
-        Property_code: this.propertycode ? this.propertycode : 0,
+        Property_code: this.rental_pro_id ? this.rental_pro_id : 0,
         rent: this.rentalID ? this.rentalID : 1
         // Description: this.propDesc ? this.propDesc : 0,
         // Pay_Date: this.payDate ? this.payDate : 0
