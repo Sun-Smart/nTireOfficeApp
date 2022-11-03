@@ -206,13 +206,13 @@ export class AdditionalChargesPage implements OnInit {
     });
   };
   createAdditional() {
-    if (this.branch == "<< Select >>" || this.branchlocation == "<< Select >>" || (this.propertycode == "" || this.propertycode == "undefined" || this.propertycode == null) || (this.rentalID == "" || this.rentalID == "undefined" || this.rentalID == null) || (this.property_desc == "" || this.property_desc == "undefined" || this.property_desc == null) || (this.payAmount == "" || this.payAmount == "undefined" || this.payAmount == null) || (this.payDate == "" || this.payDate == "undefined" || this.payDate == null)) {
+    if (this.branch == "<< Select >>" || this.branchlocation == "<< Select >>" || (this.propertycode == "" || this.propertycode == "undefined" || this.propertycode == null) || (this.property_desc == "" || this.property_desc == "undefined" || this.property_desc == null) || (this.payAmount == "" || this.payAmount == "undefined" || this.payAmount == null) || (this.payDate == "" || this.payDate == "undefined" || this.payDate == null)) {
       this.presentAlert("", "Please enter all fields");
     } else {
       const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
       let data = {
-        "propertyid": this.propertyid ? this.propertyid : "0",
+        "propertyid": this.rental_pro_id ? this.rental_pro_id : "0",
         "DAMAGE_DESCRIPTION": this.property_desc ? this.property_desc : "0",
         "AMOUNT": this.payAmount ? this.payAmount : 0,
         "status": this.status ? this.status : "P",

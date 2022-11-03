@@ -56,7 +56,7 @@
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-              {{item}} {{nodatafound}}
+              {{item.binding}} 
             </ion-item>
           </ion-list>
         </ion-col>

@@ -27,13 +27,14 @@ export class QuickReceiptPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
-  quickreceipt: any;
+  quickreceipt: any=[];
   showdata: string;
   branchID: string;
   functionID: string;
   userID: string;
   usertype: string;
   accessToken: string;
+  showError: boolean;
 
 
   constructor(
@@ -209,19 +210,14 @@ getquicreceipt(){
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");
 
-   this.quickreceipt=res;
-
-   console.log(this.quickreceipt);
-   
-
+ 
    
    if (this.quickreceipt == "No data found") {
-  
-    this.showdata = "0";
-  }
-  else {
-    this.showdata = this.quickreceipt.length;
-  }
+    this.quickreceipt=[]
+    this.showError = true;
+  } else {
+    this.showError = false;
+   }
     
   })
 
@@ -247,14 +243,15 @@ filterquickreceipt(){
     console.log(res,"reportlist");
    this.quickreceipt=res
 
-
+   if (res == "No data found") {
    
-   if (this.quickreceipt == null) {
-
-    this.showdata = "No Data Found"
-  }
-  else {
-    this.showdata = this.quickreceipt.length;
+   this.quickreceipt=[]
+   // this.arra.push(this.ShowAddionalList)
+   // console.log(this.arra);
+   
+   this.showdata = "No Data Found";
+ } else {
+  this.showdata = this.quickreceipt.length;
   }
     
   })
