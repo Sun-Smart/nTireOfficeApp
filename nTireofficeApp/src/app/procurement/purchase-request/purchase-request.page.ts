@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
@@ -62,23 +62,16 @@ export class PurchaseRequestPage implements OnInit {
   itemcode: any;
   getitemdata: any;
   getitemid: any;
+  getParamID: string;
   // release
 
 
 
-  constructor(private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
+  constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
 
+    this.getParamID = this.route.snapshot.paramMap.get('id');
+    console.log(this.getParamID)
 
-    // var data = {
-    //   "Description": this.Description,
-    //   "Item": this.Item,
-    //   "Category": this.Category,
-    //   "qty": this.qty,
-    //   "unitprice": this.unitprice,
-    //   "Requiredbefore": this.Requiredbefore,
-    //   "netprice": this.netprice,
-    //   "itemdescription": this.itemdescription
-    // }
   }
 
   ngOnInit() {
@@ -96,6 +89,18 @@ export class PurchaseRequestPage implements OnInit {
     this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
     this.requestby = localStorage.getItem('TUM_USER_ID')
+  }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+
+    await alert.present();
   }
   fetchreconcilation(itemcode: any) {
     console.log(itemcode)
@@ -148,7 +153,9 @@ export class PurchaseRequestPage implements OnInit {
 
   getItemDetail(e) {
     this.showsavebtn = true
-    let getcategory = this.Category
+    let dataa = e.target.value
+    console.log(dataa)
+    let getcategory = dataa
     console.log(getcategory)
     if (getcategory == "I") {
       this.hideitem = true;
@@ -239,12 +246,12 @@ export class PurchaseRequestPage implements OnInit {
       i_function_id: "1",
       required_qty: this.qty.toString(),
       UOM: "15",
-      expected_cost: "100",
+      expected_cost: this.netprice,
       exp_date: this.Requiredbefore,
       status: "P",
       created_by: this.userid,
       ipaddress: "",
-      unit_price: this.netprice,
+      unit_price: this.unitprice,
       Limit: "",
       Availlimit: "",
       BalanceLimit: "",
@@ -269,44 +276,6 @@ export class PurchaseRequestPage implements OnInit {
       ACC: "",
       CPC: "",
       flag: "I"
-
-      // prsid: "",
-      // itemid: this.itemcode,
-      // i_function_id: "1",
-      // required_qty: this.qty,
-      // UOM: "15",
-      // expected_cost: "100",
-      // exp_date: this.Requiredbefore,
-      // status: "A",
-      // created_by: "210",
-      // netprice: this.netprice,
-      // ipaddress: "",
-      // unit_price: this.unitprice,
-      // Limit: "",
-      // Availlimit: "",
-      // BalanceLimit: "",
-      // CATEGORY: this.Category,
-      // TAX1: "",
-      // TAX2: "",
-      // TAX1DESC: "",
-      // TAX2DESC: "",
-      // OTHERCHARGES: "",
-      // item_short_desc: this.Description,
-      // item_long_desc: this.itemdescription,
-      // REMARKS: "",
-      // CategoryID: "",
-      // SubCategoryID: "",
-      // prsDetailID: "",
-      // FreightVALUE: "",
-      // FreightID: "",
-      // RecoveryVALUE: "",
-      // RecoveryID: "",
-      // BDC: "",
-      // PTM: "",
-      // ACC: "",
-      // CPC: "",
-      // flag: "I"
-
     })
     console.log(this.expenseArray)
     this.showbtn = true
@@ -433,8 +402,10 @@ export class PurchaseRequestPage implements OnInit {
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body, {
       headers: options, responseType: 'text'
     }).subscribe((res: any) => {
-      // this.getresponse = res;
-      alert(res)
+      this.getresponse = res;
+      // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+      this.presentAlert("", this.getresponse);
+      this.router.navigate(['/prsstatus'])
     })
 
 
