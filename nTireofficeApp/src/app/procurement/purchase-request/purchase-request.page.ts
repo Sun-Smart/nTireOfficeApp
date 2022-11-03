@@ -63,6 +63,7 @@ export class PurchaseRequestPage implements OnInit {
   getitemdata: any;
   getitemid: any;
   getParamID: string;
+  getcategory: string;
   // release
 
 
@@ -240,6 +241,14 @@ export class PurchaseRequestPage implements OnInit {
     this.showsubmit = true
     this.showlineItems = false
     this.showlineItems = !this.showlineItems;
+    if (this.Category == "I") {
+      this.getcategory = "Item"
+    }
+    if (this.Category == "S") {
+      this.getcategory = "Service"
+
+    }
+
     this.expenseArray.push({
       prsid: "",
       itemid: this.getitemid,
@@ -255,7 +264,7 @@ export class PurchaseRequestPage implements OnInit {
       Limit: "",
       Availlimit: "",
       BalanceLimit: "",
-      CATEGORY: this.Category,
+      CATEGORY: this.getcategory,
       TAX1: "",
       TAX2: "",
       TAX1DESC: "",
