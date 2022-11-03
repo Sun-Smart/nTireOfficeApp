@@ -34,7 +34,7 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
-        <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px;">
+        <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 250px;">
           <ion-item *ngFor="let item of assetData" (click)="addPropertycode(item)"
             style="background:none !important;color:#444 !important;display: block;">
             {{item.binding}}
@@ -60,7 +60,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="date" class="form-control"  displayFormat="MM/DD/YYYY"   [(ngModel)]="createDate"></ion-input>
+          <ion-input type="date" class="form-control"  [(ngModel)]="createDate"></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">

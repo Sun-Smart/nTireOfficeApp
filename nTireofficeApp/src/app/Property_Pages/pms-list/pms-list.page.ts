@@ -67,6 +67,13 @@ export class PmsListPage implements OnInit {
   status: string;
   PropertyType: any;
   propertynature: any;
+  propertydescription: any;
+  fDate: any;
+  tDate: any;
+  status1: any;
+  propertyType: any;
+  propertyOwner: any;
+  propertyNature: any;
 
 
 
@@ -269,8 +276,22 @@ if(this.companiesstr=="No data found"){
 getpropertylistreport(){
   const header = new Headers();
   header.append("Content-Type", "application/json");
+  let data = {
+    functionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+    branchId : this.branch ? this.branch : 0,
+    locationid : this.branchlocation ? this.branchlocation : 0,
+    propertyCode : this.propertycode ? this.propertycode : 0,
+    Propertydesc : this.propertydescription ? this.propertydescription : 0,
+    fromdate : this.fDate ? this.fDate : 0,
+    todate : this.tDate ? this.tDate : 0,
+    status : this.status1 ? this.status1 : 0,
+    PropertyType : this.propertyType ? this.propertyType : 0,
+    PropertyOwner : this.propertyOwner ? this.propertyOwner : 0,
+    PropertyNature : this.propertyNature ? this.propertyNature : 0,
+  };
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/'+ this.functionID + "/" + this.branchID + "/" +"0/0/0/0/0/0/0/0/0", {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/'+ data.functionId + "/" + data.branchId + "/" +data.locationid +"/" 
+  + data.propertyCode + '/' + data.Propertydesc + '/' + data.fromdate + '/' + data.todate + '/' + data.status + '/' + data.PropertyType + '/' + data.PropertyOwner + '/' + data.PropertyNature, {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");

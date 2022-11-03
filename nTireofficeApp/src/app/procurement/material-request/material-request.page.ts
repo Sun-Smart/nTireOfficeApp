@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { ToastmessageService } from 'src/app/service/toastmessage.service';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-material-request',
   templateUrl: './material-request.page.html',
@@ -22,7 +23,27 @@ export class MaterialRequestPage implements OnInit {
   showlineItems1:boolean=true;
   shownewcard:boolean=false
   ShowAllItem:boolean=true
-  constructor( private router :Router) { }
+  Showcard:boolean=false
+  overallsubmit:boolean = false;
+  submitview: boolean =false;
+  initialSearch:boolean=true;
+  overallsubmitnew:boolean=false;
+  funtionID;
+  branch_ID;
+  branch;
+  userID;
+  usertype;
+  fromdate;
+  todate;
+  constructor( private router :Router,private toastmessageservice :ToastmessageService,private datePipe: DatePipe) { 
+    this.funtionID = localStorage.getItem('FUNCTION_ID');
+    this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
+    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
+    this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
+  }
 
   ngOnInit() {
   }
@@ -37,10 +58,21 @@ export class MaterialRequestPage implements OnInit {
     this.ShowAllItem = false;
 
   }
+  onsubmit(){
+    this.toastmessageservice.presentAlert1('saved successfully','this process is saved successfully')
+    // this.showlineItems =!this.showlineItems;
+    this.expenseArray=[];
+    this.overallsubmitnew = false;
+    
+  }
 
   showline(){
     this.showlineItems = false;
-    this.showlineItems = !this.showlineItems;
+    this.Showcard = true;
+    this.shownewcard =false;
+    this.overallsubmit = true;
+    this.submitview =!this.submitview;
+    this.overallsubmitnew =true;
     this.expenseArray.push({
       prsid: "",
       itemid: 'PO2202',
@@ -81,16 +113,29 @@ export class MaterialRequestPage implements OnInit {
 
     })
     console.log(this.expenseArray)
-    this.showbtn = true
+    this.showbtn = true;
   }
-  Additems() {
+  Searchlist(){
+    debugger;
+    this.initialSearch =! this.initialSearch;
+    this.showfilter =! this.showfilter;
+    this.showbtn = true;
+  }
+  
+  Additems() { 
     this.shownewcard=true
     this.ShowAllItem = false;
+    this.overallsubmit=false;
     // this.shownewcard==!this.shownewcard
   }
   new(){
         this.showlineItems = !this.showlineItems
-    this.showviewlist = false
+    this.showviewlist = false;
+    this.Showcard = false;
+    this.overallsubmit=true;
+    this.initialSearch = false;
+    this.showbtn = false;
+
 
   }
   clear(){

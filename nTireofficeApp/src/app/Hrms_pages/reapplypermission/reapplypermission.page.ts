@@ -35,6 +35,7 @@ export class ReapplypermissionPage implements OnInit {
   permData: any;
   empID: any;
   status: any;
+  modal1: any;
 
   constructor(private datepipe: DatePipe,public toastmessageService:ToastmessageService,public modalCtrl: ModalController,navParams: NavParams,private HttpRequest: HttprequestService,public Ipaddressservice: IpaddressService) {
     this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
@@ -49,6 +50,8 @@ export class ReapplypermissionPage implements OnInit {
     console.log(this.company);
     this.branch=window.localStorage['TUM_BRANCH_CODE'];
     this.item=navParams.get('item');
+
+    console.log(this.item);
     this.item.RDate = this.item.RDate.split('-');
     this.item.RDate= this.item.RDate[2]+'-'+this.item.RDate[1]+'-'+this.item.RDate[0];
     console.log(""+this.item.RDate);
@@ -68,15 +71,15 @@ export class ReapplypermissionPage implements OnInit {
 
   closemodel(index) {
     if (index == 1) {
-      // this.modal1.hide();
-      // modalCtrl.dismiss();
+      this.modal1.hide();
+      this.modalCtrl.dismiss();
       this.modalCtrl.dismiss('cancel');
     } else if (index == 3) {
       this.modalCtrl.dismiss('cancel');
-      // modalCtrl.dismiss();
+      this.modalCtrl.dismiss();
     } else {
       this.modalCtrl.dismiss('cancel');
-      // modalCtrl.dismiss();
+      this.modalCtrl.dismiss();
     }
   };
 
@@ -88,9 +91,20 @@ export class ReapplypermissionPage implements OnInit {
     console.log(""+this.item.PermDate1);
   }
 
+
+  close(){
+    this.item.Reason='';
+    this.item.PermDate='';
+    this.item.RDate='';
+    this.item.FromHours='';
+    this.item.ToHours='';
+    this.closemodel(1)
+  }
+
   submitPerm() {
-    if (this.permData.MobileNum == undefined) {
-      this.permData.MobileNum == null;
+
+    if (this.item.MobileNum == undefined) {
+      this.item.MobileNum == null;
     }
 
     this.permData={
@@ -144,13 +158,12 @@ this.item.PermDate1 = this.item.PermDate1;
 
 
 
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/"+window.localStorage['FUNCTION_ID']+'/'+this.item.EmpID+'/'+this.item.ReqRef+'/'+this.item.RDate+'/'+this.item.PermDate1+'/'+this.fromhour+'/'+this.tohour+'/'+this.item.MobileNum+'/'+this.item.Reason+'/'+this.item.Status).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SavePermission/"+window.localStorage['FUNCTION_ID']+'/'+this.item.EmpID+'/'+this.item.ReqRef+'/'+this.item.RDate+'/'+this.item.PermDate+'/'+this.fromhour+'/'+this.tohour+'/'+this.item.MobileNum+'/'+this.item.Reason+'/'+this.item.Status).then(resp=>{
       console.log(""+JSON.stringify(resp));
 
       if (resp == '"Permission is not enabled for this Employee"') {
         // console.log("Gotcha : " + resp);
         this.toastmessageService.presentAlert1("Request Not Sent","Permission is not enabled for this Employee");
-
 
       }
       else if (resp == '"Coff already available for this date"') {
@@ -171,7 +184,6 @@ this.item.PermDate1 = this.item.PermDate1;
 
       } else {
         //IF ATTENDANCE IS PRESENT
-
         var replace = resp.toString().replace(/"/g, '');
         var split = replace.split("@");
         this.rreqid3 = split[0];
@@ -181,7 +193,6 @@ this.item.PermDate1 = this.item.PermDate1;
         // console.log(""+ this.rreqid3+""+ this.reqID2)
         this.workflowTable = split[3];
         this.reid = split[1];
-
 
         this.userID = this.userID;
         // console.log(split[2]);
@@ -334,7 +345,9 @@ this.item.PermDate1 = this.item.PermDate1;
     this.item.ToHours='';
     this.closemodel(1)
   }
-    }  permCancel() {
+    }
+
+    permCancel() {
     throw new Error('Method not implemented.');
   }
 }

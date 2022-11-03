@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { PmsCreateIssuePageRoutingModule } from './pms-create-issue-routing.module';
@@ -13,6 +13,7 @@ import { PmsCreateIssuePage } from './pms-create-issue.page';
     ReactiveFormsModule,
     PmsCreateIssuePageRoutingModule
   ],
-  declarations: [PmsCreateIssuePage]
+  declarations: [PmsCreateIssuePage],
+  providers: [DatePipe]
 })
-export class PmsCreateIssuePageModule {}
+export class PmsCreateIssuePageModule { }
