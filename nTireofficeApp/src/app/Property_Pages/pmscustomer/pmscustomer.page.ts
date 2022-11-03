@@ -342,7 +342,8 @@ export class PmscustomerPage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  
+          binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
       };
 
       // Code with Description method....
