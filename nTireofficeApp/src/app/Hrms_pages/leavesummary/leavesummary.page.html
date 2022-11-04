@@ -50,11 +50,11 @@
   <ion-card *ngFor="let leaveDataItems of display; let i = index">
     <ion-grid style="padding: 0px;">
       <ion-row>
-        <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumn">
-          {{leaveDataItems.Code}} - {{leaveDataItems.Name}}&nbsp;
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn">
+          {{leaveDataItems.em_emp_code}} - {{leaveDataItems.em_emp_name}}&nbsp;
         </ion-col>
-        <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" class="leadscolumn" style="text-align:right;">
-          # {{leaveDataItems.ReqRef}}
+        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" class="leadscolumn" style="text-align:right;">
+          # {{leaveDataItems.LeaveRequestRef}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Leave Balance
@@ -63,13 +63,13 @@
           {{leaveDataItems.CurLeaveBalance}}
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          Mobile
+          Mobile Number
         </ion-col>
         <ion-col  style="font-weight: 600;
         color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <a style="font-size: 14px;text-decoration: none;color:#444444;" *ngIf="leaveDataItems.MobileNum!=null"
+          <a style="font-size: 14px;text-decoration: none;color:#444444;" *ngIf="leaveDataItems.ContactPhone!=null"
             (click)="callNumber(leaveDataItems.MobileNum)"
-            href="tel:{{leaveDataItems.MobileNum}}">{{leaveDataItems.MobileNum}}</a>
+            href="tel:{{leaveDataItems.ContactPhone}}">{{leaveDataItems.ContactPhone}}</a>
 
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -82,7 +82,7 @@
           Request Reference
         </ion-col>
         <ion-col  class = "cardanswer" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          {{leaveDataItems.ReqRef}}
+          {{leaveDataItems.TxnReference}}
         </ion-col>
         <ion-col  size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           Date
@@ -105,7 +105,7 @@
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <ion-row>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-button color='success' (click)="openModal(leaveDataItems)"
+              <ion-button class="ion-color-success" (click)="openModal(leaveDataItems)"
                 [disabled]="leaveDataItems.Status=='Pending' || leaveDataItems.Status == 'Approved' || leaveDataItems.Status == 'Cancelled'">
                 UPADATE </ion-button>
             </ion-col>
