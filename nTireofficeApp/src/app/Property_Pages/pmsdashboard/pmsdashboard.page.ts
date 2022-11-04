@@ -98,7 +98,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction=1&branch=1&userid=1', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -197,7 +197,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'emloyeemaintenance?strfunction=1&branch=1&userid=1').subscribe(resp => {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'emloyeemaintenance?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID).subscribe(resp => {
       debugger
       this.result = resp;
 
@@ -340,7 +340,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction=1&branch=1&userid=1', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -417,7 +417,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'tobevaccant?strfunction=1&branch=1&userid=1', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'tobevaccant?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
