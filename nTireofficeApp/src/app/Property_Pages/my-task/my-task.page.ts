@@ -127,8 +127,9 @@ export class MyTaskPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
       headers: options,
     }).subscribe(resp => {
-      this.branchlist = JSON.stringify(resp);
-      this.branchlist = JSON.parse(this.branchlist);
+      this.branchlist1 =resp;
+      // this.branchlist1 = JSON.stringify(resp);
+      // this.branchlist1 = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
         // console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
@@ -437,7 +438,7 @@ export class MyTaskPage implements OnInit {
     + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'+ data.UserType + '/'
     + data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'+ data.drptype + '/'+ data.TASKTYPE + '/'
     + data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
-    + data.wrkordno, { 
+    + data.wrkordno, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp);
@@ -452,7 +453,7 @@ export class MyTaskPage implements OnInit {
     });
 
     if (this.myTaskDetailsList== null) {
-  
+
       this.showdata = "0";
     }
     else {
@@ -503,7 +504,7 @@ export class MyTaskPage implements OnInit {
       + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'
       + data.UserType + '/'+ data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'
       + data.drptype + '/'+ data.TASKTYPE + '/'+ data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
-      + data.wrkordno, { 
+      + data.wrkordno, {
         headers: options,
       }).subscribe((resp: any) => {
         console.log(resp);
@@ -514,8 +515,8 @@ export class MyTaskPage implements OnInit {
         for (var i = 0; i < this.myTaskDetailsList.length; i++) {
           this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
         };
-  
-       
+
+
       });
     };
   };
