@@ -208,11 +208,7 @@ export class PmscustomerPage implements OnInit {
 
   getcustomerItems() {
 
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
     let data = {
-
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
       branchids : 0,
       locationid:  0,
@@ -228,6 +224,9 @@ export class PmscustomerPage implements OnInit {
       strusertype: this.usertype ? this.usertype : 0,
       userid: this.userID ? this.userID : 0,
     };
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchids + '/' + data.locationid + '/' + data.strPropertyId + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
       headers: options,
@@ -237,12 +236,9 @@ export class PmscustomerPage implements OnInit {
 
       for (var i = 0; i < this.propertyCodeResult.length; i++) {
         this.branchlocation = this.propertyCodeResult[i].location_id;
-      
       }
-
       console.log( this.branchlocation);
-      
-
+    
       if (this.propertyCodeResult == null) {
         this.showdata = "No Data Found"
       }
