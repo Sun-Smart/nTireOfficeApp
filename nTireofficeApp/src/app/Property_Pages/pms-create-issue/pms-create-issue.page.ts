@@ -117,36 +117,28 @@ export class PmsCreateIssuePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.assetData = [];
       this.isItemAvailable = false;
+
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log('dfkjbsdkfj', this.companiesstr);
 
-      // this.companiesstr = JSON.parse(this.companiesstr);
-      // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.assetData.push({
           ASSET_CODE: this.companiesstr[i].ASSET_CODE, binding: this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
           NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE
         });
-        // this.assetData.push({description:this.companiesstr[i].ASSET_DESCRIPTION});
-        // console.log(this.assetData,"assetdata")
       };
 
       const val = ev.target.value;
 
       this.gatagory = this.assetData[0]['ASSET_CATEGORY'];
-
       this.subGatagory = this.assetData[0]['ASSET_TYPE'];
-
-
-
 
       // if the value is an empty string don't filter the items
 
@@ -157,8 +149,6 @@ export class PmsCreateIssuePage implements OnInit {
         });
       }
     }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
-      // console.log("error : " + JSON.stringify(error));
     });
   }
 

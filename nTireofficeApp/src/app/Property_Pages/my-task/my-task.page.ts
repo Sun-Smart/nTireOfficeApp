@@ -416,20 +416,49 @@ export class MyTaskPage implements OnInit {
 
     let data = {
       functionID : this.functionID ? this.functionID : 0,
-      branchID : this.branchID ? this.branchID : 0,
-    }
+      branchID : 0,
+      Mode: this.mode ? this.mode : 0,
+      fromDate: this.fdate ? this.fdate : 0,
+      toDate: this.tdate ? this.tdate : 0,
+      Status: 0,
+      dept: 0,
+      strUserId: 0,
+      UserType: 0,
+      pageIndex: 0,
+      pageSize: 50,
+      sortExpression: 0,
+      alphaname: 0,
+      drpcategory: 0,
+      drptype: 0,
+      TASKTYPE: 0,
+      PropCode: this.PrCode ? this.PrCode : 0,
+      PropDesc: this.PrDesc ? this.PrDesc : 0,
+      strCriticality: 0,
+      assetName: this.assetname ? this.assetname : 0,
+      actmaintenence: 0,
+      wrkordno: 0,
+    };
+
 
     // Reset items back to all of the items
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
+    
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + data.functionID + '/' + data.branchID + '/' + ev.target.value, {
+      
+      // this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionID + '/'+ data.branchID + '/'+ data.Mode + '/'
+      // + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ ev.target.value + '/'+ data.strUserId + '/'+ data.UserType + '/'
+      // + data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'+ data.drptype + '/'+ data.TASKTYPE + '/'
+      // + data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+      // + data.wrkordno, {
+      
       headers: options,
     }).subscribe(resp => {
       this.assetData = [];
       this.isItemAvailable = false;
+
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log('dfkjbsdkfj', this.companiesstr);
@@ -439,12 +468,9 @@ export class MyTaskPage implements OnInit {
           ASSET_CODE: this.companiesstr[i].ASSET_CODE, binding: this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
           NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE
         });
-        // this.assetData.push({description:this.companiesstr[i].ASSET_DESCRIPTION});
-        // console.log(this.assetData,"assetdata")
       };
 
       const val = ev.target.value;
-
 
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
@@ -467,17 +493,45 @@ export class MyTaskPage implements OnInit {
         console.log(this.ASSET_CODE);
       }
     };
+
     let data = {
       functionID : this.functionID ? this.functionID : 0,
       branchID : this.branchID ? this.branchID : 0,
-    }
+      Mode: this.mode ? this.mode : 0,
+      fromDate: this.fdate ? this.fdate : 0,
+      toDate: this.tdate ? this.tdate : 0,
+      Status: 0,
+      dept: 0,
+      asset_code: this.assetCodeBinding ? this.assetCodeBinding : 0,
+      strUserId: 0,
+      UserType: 0,
+      pageIndex: 0,
+      pageSize: 50,
+      sortExpression: 0,
+      alphaname: 0,
+      drpcategory: 0,
+      drptype: 0,
+      TASKTYPE: 0,
+      PropCode: this.PrCode ? this.PrCode : 0,
+      PropDesc: this.PrDesc ? this.PrDesc : 0,
+      strCriticality: 0,
+      assetName: this.assetname ? this.assetname : 0,
+      actmaintenence: 0,
+      wrkordno: 0,
+    };
 
-    // window.localStorage['old_company_status'] = 'true';
-    // this.old_company = 'true';
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + data.functionID + '/' + data.branchID + '/' + item.ASSET_CODE, {
+
+    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + data.functionID + '/' + data.branchID + '/' + item.ASSET_CODE, {
+      
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionID + '/'+ data.branchID + '/'+ data.Mode + '/'
+      + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'+ data.UserType + '/'
+      + data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'+ data.drptype + '/'+ data.TASKTYPE + '/'
+      + data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+      + data.wrkordno, {
+    
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -557,62 +611,57 @@ export class MyTaskPage implements OnInit {
 
 
 
-  // filterMyTask() {
-  //   if (this.branch == "undefined" || this.branch == null || this.branch == "") {
-  //     this.presentAlert1("", "Please select Branch");
-  //     return;
-  //   } else {
+  filterMyTask() {
 
-  //     const header = new Headers();
-  //     header.append("Content-Type", "application/json");
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
 
-  //     let data = {
-  //       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-  //       branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
-  //       Mode: this.mode ? this.mode : 0,
-  //       fromDate: this.fdate ? this.fdate : 0,
-  //       toDate: this.tdate ? this.tdate : 0,
-  //       Status: 0,
-  //       dept: 0,
-  //       asset_code: this.assetCode ? this.assetCode :0 ,
-  //       strUserId: 0,
-  //       UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
-  //       pageIndex: 0,
-  //       pageSize: 50,
-  //       sortExpression: 0,
-  //       alphaname: 0,
-  //       drpcategory: 0,
-  //       drptype: 0,
-  //       TASKTYPE: 0,
-  //       PropCode: this.PrCode ? this.PrCode : 0,
-  //       PropDesc: this.PrDesc ? this.PrDesc : 0,
-  //       strCriticality: 0,
-  //       assetName: this.assetname ? this.assetname : 0,
-  //       actmaintenence: 0,
-  //       wrkordno: 0,
-  //     };
+      let data = {
+        functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+        branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+        Mode: this.mode ? this.mode : 0,
+        fromDate: this.fdate ? this.fdate : 0,
+        toDate: this.tdate ? this.tdate : 0,
+        Status: 0,
+        dept: 0,
+        asset_code: this.assetCodeBinding ? this.assetCodeBinding :0 ,
+        strUserId: 0,
+        UserType: 0,
+        pageIndex: 0,
+        pageSize: 50,
+        sortExpression: 0,
+        alphaname: 0,
+        drpcategory: 0,
+        drptype: 0,
+        TASKTYPE: 0,
+        PropCode: this.PrCode ? this.PrCode : 0,
+        PropDesc: this.PrDesc ? this.PrDesc : 0,
+        strCriticality: 0,
+        assetName: this.assetname ? this.assetname : 0,
+        actmaintenence: 0,
+        wrkordno: 0,
+      };
 
-  //     let options = new HttpHeaders().set('Content-Type', 'application/json');
-  //     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionid + '/' + data.branchid + '/'+ data.Mode + '/'
-  //     + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'
-  //     + data.UserType + '/'+ data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'
-  //     + data.drptype + '/'+ data.TASKTYPE + '/'+ data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
-  //     + data.wrkordno, {
-  //       headers: options,
-  //     }).subscribe((resp: any) => {
-  //       console.log(resp);
-  //       this.myTaskDetailsList = resp;
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionid + '/' + data.branchid + '/'+ data.Mode + '/'
+      + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'
+      + data.UserType + '/'+ data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'
+      + data.drptype + '/'+ data.TASKTYPE + '/'+ data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+      + data.wrkordno, {
+        headers: options,
+      }).subscribe((resp: any) => {
+        console.log(resp);
+        this.myTaskDetailsList = resp;
 
-  //       console.log(this.myTaskDetailsList);
+        console.log(this.myTaskDetailsList);
 
-  //       for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-  //         this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
-  //       };
+        for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+          this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+        };
 
 
-  //     });
-  //   };
-  // };
+      });
+  };
 
   updateStatus() {
     debugger;
