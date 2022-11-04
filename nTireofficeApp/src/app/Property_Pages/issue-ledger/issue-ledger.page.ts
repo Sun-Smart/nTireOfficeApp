@@ -10,24 +10,24 @@ import { IpaddressService } from '../../service/ipaddress.service';
 })
 export class IssueLedgerPage implements OnInit {
 
-  showfilter:boolean=true;
+  showfilter: boolean = true;
 
-   //  filter Branch, Location & property code,
+  //  filter Branch, Location & property code,
 
-   branchlist1: any = [];
-   branchlist: any;
-   branchlocationlist: any = [];
-   customerlocation: any;
-   locationcode1: any[] = [];
-   propertyCode1: any[];
-   isPropertycodeAvailable: boolean;
-   companiesstr: any;
-   branch:any;
-   branchlocation: any;
-   propertycode: any;
-   property_code: any;
-   respContact: any;
-   propertyDesc: any;
+  branchlist1: any = [];
+  branchlist: any;
+  branchlocationlist: any = [];
+  customerlocation: any;
+  locationcode1: any[] = [];
+  propertyCode1: any[];
+  isPropertycodeAvailable: boolean;
+  companiesstr: any;
+  branch: any;
+  branchlocation: any;
+  propertycode: any;
+  property_code: any;
+  respContact: any;
+  propertyDesc: any;
   branchID: string;
   functionID: string;
   userID: string;
@@ -38,24 +38,25 @@ export class IssueLedgerPage implements OnInit {
   Customer: any;
   Status: any;
   AssignedTo: any;
+  propertycodeDesc: any;
 
-   
+
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
     public Ipaddressservice: IpaddressService,) {
-      this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.accessToken = localStorage.getItem('token');
-     }
+  }
 
   ngOnInit() {
-this.getpropertyissueledger();
+    this.getpropertyissueledger();
     this.Getbranches();
   }
-  togglefilter(){
+  togglefilter() {
     this.showfilter = !this.showfilter
   };
 
@@ -78,7 +79,7 @@ this.getpropertyissueledger();
     });
   };
 
-  
+
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -98,7 +99,7 @@ this.getpropertyissueledger();
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
@@ -143,9 +144,19 @@ this.getpropertyissueledger();
 
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
+
+      // for (var i = 0; i < this.companiesstr.length; i++) {
+      //   this.propertyCode1.push(this.companiesstr[i].property_code);
+      // }
+
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
-      }
+        // this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({
+          property_code: this.companiesstr[i].property_code,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+        });
+      };
+
       const val = ev.target.value;
 
       // if the value is an empty string don't filter the items
@@ -165,7 +176,8 @@ this.getpropertyissueledger();
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.property_code;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -177,13 +189,15 @@ this.getpropertyissueledger();
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycodeDesc + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
       console.log(this.respContact);
 
       this.propertyDesc = this.respContact[0]['property_building_name'];
+      
+      this.Customer = this.respContact[0]['Customer'];
       // this.contact1 = JSON.parse(this.respContact);
       // console.log(this.contact1);
       // if (this.contact1.length == 0) {
@@ -203,71 +217,71 @@ this.getpropertyissueledger();
 
 
 
-// total get
+  // total get
 
-getpropertyissueledger(){
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/'+ this.functionID + "/" + this.branchID + "/" +"0/0/0/0/0/0/0/0", {
-    headers: options,
-  }).subscribe((res:any)=>{
-    console.log(res,"issueledgerlist");
-   this.propertyissueledger=res
-
-
-   
-   if (this.propertyissueledger == null) {
-    alert("hh")
-    this.showdata = "No Data Found"
-  }
-  else {
-    this.showdata = this.propertyissueledger.length;
-  }
-    
-  })
-
-}
+  getpropertyissueledger() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + this.functionID + "/" + this.branchID + "/" + "0/0/0/0/0/0/0/0", {
+      headers: options,
+    }).subscribe((res: any) => {
+      console.log(res, "issueledgerlist");
+      this.propertyissueledger = res
 
 
 
+      if (this.propertyissueledger == null) {
+        // alert("hh")
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.propertyissueledger.length;
+      }
 
-
-
-Filterpropertyissueledger(){
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  let data ={
-    functionID: localStorage.getItem('FUNCTION_ID'),
-    branchid: this.branch ? this.branch : 1,
-    locationid: this.branchlocation ? this.branchlocation : 1,
-    propertyID: this.propertycode ? this.propertycode : 0,
-    Customer: this.Customer ? this.Customer : 0,
-    AssignedTo: this.AssignedTo ? this.AssignedTo : 0,
-    Status: this.Status ? this.Status : 0,
+    })
 
   }
 
 
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/'+ data.functionID + "/" + data.branchid + "/" +data.locationid + "/" + data.propertyID + "/" + "0/0/0/"+ data.Status + "/"+ data.Customer+"/"+data.AssignedTo, {
-    headers: options,
-  }).subscribe((res:any)=>{
-    console.log(res,"issueledgerlist");
-   this.propertyissueledger=res
 
 
-   
-   if (this.propertyissueledger == null) {
-    alert("hh")
-    this.showdata = "No Data Found"
+
+
+  Filterpropertyissueledger() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    let data = {
+      functionID: localStorage.getItem('FUNCTION_ID'),
+      branchid: this.branch ? this.branch : 1,
+      locationid: this.branchlocation ? this.branchlocation : 1,
+      propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
+      Customer: this.Customer ? this.Customer : 0,
+      AssignedTo: this.AssignedTo ? this.AssignedTo : 0,
+      Status: this.Status ? this.Status : 0,
+
+    }
+
+
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.Status + "/" + data.Customer + "/" + data.AssignedTo, {
+      headers: options,
+    }).subscribe((res: any) => {
+      console.log(res, "issueledgerlist");
+      this.propertyissueledger = res
+
+
+
+      if (this.propertyissueledger == null) {
+        alert("hh")
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.propertyissueledger.length;
+      }
+
+    })
+
   }
-  else {
-    this.showdata = this.propertyissueledger.length;
-  }
-    
-  })
-
-}
 
 }
