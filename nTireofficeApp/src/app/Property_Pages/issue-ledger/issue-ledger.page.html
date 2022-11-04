@@ -21,7 +21,7 @@
           <ion-col size="12">
             <ion-label>Branch <span style="color:red;">*</span></ion-label>
             <select id="selectbutton" [(ngModel)]="branch" class="form-control"
-              (change)="BranchLocationdata(branch)">
+              (change)="getLocationdata(branch)">
               <option value="undefined" selected disabled><< Select >></option>
               <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}
@@ -32,10 +32,10 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Branch Location</ion-label>
-            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="getLocationdata(branchlocation)">
+            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="newPropertyCode(branchlocation)">
               <option value="undefined" selected disabled><< Select >></option>
-              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
-                {{location.BRANCH_DESC}}</option>
+              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.LOCATION_ID">
+                {{location.LOCATION_DESC}}</option>
             </select>
           </ion-col>
         </ion-col>

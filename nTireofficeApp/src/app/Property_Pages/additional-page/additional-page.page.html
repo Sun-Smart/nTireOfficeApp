@@ -46,7 +46,7 @@
                 {{location.LOCATION_DESC}}</option>
             </select>
           </ion-col>
-          
+
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
@@ -59,9 +59,13 @@
             </ion-item>
           </ion-list>
         </ion-col>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="display: none;">
           <ion-label>Rental ID</ion-label>
           <ion-input type="text" [(ngModel)]="rentalID" class="form-control"  disabled style="background-color: lightgray;"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Rental ID</ion-label>
+          <ion-input type="text" [(ngModel)]="rental_Code" class="form-control"  disabled style="background-color: lightgray;"></ion-input>
         </ion-col>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Description</ion-label>

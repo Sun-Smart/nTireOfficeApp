@@ -65,7 +65,8 @@ export class AdditionalPagePage implements OnInit {
   branchId: any = [];
   getBID: any;
   loca_id: any;
-  get_Bid: any;
+  get_Bid: any;rental_code:any;
+  rental_Code: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -213,7 +214,7 @@ export class AdditionalPagePage implements OnInit {
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
         this.propertyCode1.push({
-          property_code: this.companiesstr[i].property_code, 
+          property_code: this.companiesstr[i].property_code,
           binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
           rental_pro_id: this.companiesstr[i].property_id
         });
@@ -244,6 +245,7 @@ export class AdditionalPagePage implements OnInit {
 
     this.propertycode = item.binding;
     this.rental_pro_id = item.rental_pro_id;
+    // this.rental_code = item.rental_code;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -263,6 +265,7 @@ export class AdditionalPagePage implements OnInit {
 
       // this.propertyDesc = this.respContact[0]['property_building_name'];
       this.rentalID = this.respContact[0]['rental_id'];
+      this.rental_Code = this.respContact[0]['rental_code'];
       // this.contact1 = JSON.parse(this.respContact);
       // console.log(this.contact1);
       // if (this.contact1.length == 0) {
