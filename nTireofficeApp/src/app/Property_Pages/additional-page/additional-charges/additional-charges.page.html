@@ -1,12 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-row>
+      <ion-col size="6" >
+        <ion-label class="tool-barHeaderText">Additional Charges</ion-label>
+      </ion-col>
+      <ion-col size="6" style="text-align: end;">
+        <ion-label  (click)="cancel()" class="toolbar-HdrCnclText">Cancel</ion-label>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-buttons slot="start">
       <ion-button (click)="cancel()">
-        <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon>
-        <span style="color:white;">Back</span>
+        <ion-icon name="close-circle-outline" style="color:white;"></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-title style="margin: 0 20px;">Additional Charges</ion-title>
+    </ion-buttons> -->
+    <!-- <ion-title style="margin: 0 20px;">Additional Charges</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
@@ -80,10 +87,10 @@
             </ion-item>
           </ion-list>
         </ion-col>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Rental ID</ion-label>
-          <ion-input type="text" [(ngModel)]="rentalID" class="form-control" disabled style="background-color: lightgray;"></ion-input>
-        </ion-col>
+          <ion-input type="text" [(ngModel)]="rentalID" class="form-control" style="background-color: lightgray;"></ion-input>
+        </ion-col> -->
         <ion-col size="12">
           <ion-label class="labelHead-text"> Description :</ion-label>
         </ion-col>

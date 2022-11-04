@@ -57,7 +57,7 @@
 
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Request By</ion-label>
+          <ion-label class="plabel">Requested By</ion-label>
           <ion-input type="text" disabled="" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
         </ion-col>
 
@@ -68,10 +68,14 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Reason For Purchase</ion-label>
-          <ion-input type="text" [(ngModel)]="reasonpurchase" class="Input-text-field textareaField"></ion-input>
+          <select style="padding: 10px;" [(ngModel)]="reasonpurchase" class="Input-text-field textareaField">
+            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="Additional">Additional</option>
+            <option value="New Project">New Project</option>
+            <option value="New Office">New Office</option>
+            <option value="Opening New Office">Opening New Office</option>
+          </select>
         </ion-col>
-
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Order Priority</ion-label>
           <select (click)="orderpriority()" style="padding: 10px;" [(ngModel)]="order"
@@ -165,7 +169,7 @@
             netprice
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            : {{items.netprice}}
+            : {{items.expected_cost}}
           </ion-col>
           <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             itemdescription
@@ -218,7 +222,7 @@
         <ion-row>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Category</ion-label>
-            <select (click)="getItemDetail(value)" style="padding: 10px;" [(ngModel)]="Category"
+            <select  ngModel (ngModelChange)="getItemDetail($event)" style="padding: 10px;" [(ngModel)]="Category"
               class="Input-text-field textareaField">
               <option value="select">&lt;&lt; Select &gt;&gt;</option>
               <option value="I">Items</option>
