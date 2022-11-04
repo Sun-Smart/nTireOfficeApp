@@ -62,6 +62,10 @@ export class AdditionalPagePage implements OnInit {
   rental_pro_id: any;
   rent_code_ID: any;
   propertycodeDesc: any;
+  branchId: any = [];
+  getBID: any;
+  loca_id: any;
+  get_Bid: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -69,9 +73,9 @@ export class AdditionalPagePage implements OnInit {
   }
 
   ngOnInit() {
-    this.Getbranches();
+    // this.Getbranches();
     this.getListItems();
-
+    this.BranchLocationdata();
   }
   editCharge(item) {
     console.log(item);
@@ -109,36 +113,22 @@ export class AdditionalPagePage implements OnInit {
     this.getListItems();
   };
 
-  Getbranches() {
-
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
-      headers: options,
-    }).subscribe(resp => {
-      this.branchlist = JSON.stringify(resp);
-      this.branchlist = JSON.parse(this.branchlist);
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
-    }, error => {
-    });
-  };
-
-  BranchLocationdata(branchid) {
+  BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlocationlist = JSON.stringify(resp);
-      this.branchlocationlist = JSON.parse(this.branchlocationlist);
+      this.branchlist1 = resp;
+      // this.branchlocationlist = JSON.stringify(resp);
+      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist1.length; i++) {
+        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+      }
+      console.log('getBID', this.getBID);
 
     }, error => {
 
@@ -147,24 +137,50 @@ export class AdditionalPagePage implements OnInit {
   };
 
 
-  getLocationdata(branchlocation) {
+  getLocationdata(branch) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-
+    this.get_Bid = branch;
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
       this.customerlocation = resp;
       for (var i = 0; i < this.customerlocation.length; i++) {
-
-        this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
-
+        this.loca_id = this.customerlocation[i].LOCATION_ID;
       }
-      console.log(this.locationcode1, 'fyttr');
     });
   };
+
+  newPropertyCode(branchlocation) {
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+    let data = {
+      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      propertyCode: 0,
+      branch_Id: this.get_Bid,
+      loca_Id: this.loca_id
+    };
+
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log('click t  call', resp);
+
+      // set val to the value of the searchbar
+
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+    });
+
+  }
 
   getPropertyCode(ev: any) {
 
@@ -351,6 +367,7 @@ export class AdditionalPagePage implements OnInit {
       this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getadditionalcharges/' + data.strFunctionId + "/" + data.Branch + "/" + data.Location + "/" + data.Property_code + "/" + data.rent, {
         headers: options,
       }).subscribe(resp => {
+        this.ShowAddionalList = [];
         console.log("location", resp);
         if (resp == null) {
           this.showRecords = true;
