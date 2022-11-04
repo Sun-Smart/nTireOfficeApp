@@ -215,7 +215,7 @@ export class AdditionalPagePage implements OnInit {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
         this.propertyCode1.push({
           property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_desc,
           rental_pro_id: this.companiesstr[i].property_id
         });
       };
