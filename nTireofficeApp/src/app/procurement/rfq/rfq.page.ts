@@ -32,6 +32,7 @@ export class RFQPage implements OnInit {
   erefref
   getresponse: any;
   getraisedrfq: any;
+  getrfqcancel: any;
   constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
@@ -70,12 +71,13 @@ export class RFQPage implements OnInit {
 
   selectAllCheckbox(value) {
     console.log(value);
-    if (value == false) {
-      this.selectAll = true;
-    }
-    else {
-      this.selectAll = false;
-    }
+    // if (value == false) {
+
+    //   this.selectAll = true;
+    // }
+    // else {
+    //   this.selectAll = false;
+    // }
   }
 
   verifyEvent() {
@@ -248,19 +250,16 @@ export class RFQPage implements OnInit {
         "rfqcode": this.prscode,
         "fromdate": this.fromdate,
         "todate": this.toDate,
-        "rfqfromdate": "",
-        "rfqtodate": "",
         "status": this.status,
         "mode": "2",
         "pageindex1": 0,
         "pagesize1": 20,
-        "sortexpression": "prs_id DESC",
+        // "sortexpression": "prs_id DESC",
         "alphaname": ""
-
       }
 
       this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'CancelledRFQDetails', body).then((res: any) => {
-        this.getresponse = res;
+        this.getrfqcancel = res;
         console.log("Response", res);
       });
     }
@@ -284,6 +283,8 @@ export class RFQPage implements OnInit {
     //   this.showCRFQ = false;
     // }
   }
+
+
 
   raiseRFQ() {
     // this.presentAlert("", "RFQ 345/AT Raised Successfully");
@@ -309,7 +310,6 @@ export class RFQPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 
@@ -328,7 +328,6 @@ export class RFQPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-
             this.prscode = "";
             this.itemcode = "";
             this.fromdate = "";

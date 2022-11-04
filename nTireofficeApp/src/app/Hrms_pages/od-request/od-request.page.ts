@@ -12,7 +12,8 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './od-request.page.html',
   styleUrls: ['./od-request.page.scss'],
 })
-export class OdRequestPage implements OnInit {
+export class OdRequestPage implements OnInit
+{
   odFrom;
   odTo;
   travelstatus;
@@ -216,7 +217,6 @@ export class OdRequestPage implements OnInit {
           else {
             this.ODRefshow = false;
             this.ODshow = true;
-
           }
         }
 
@@ -224,11 +224,8 @@ export class OdRequestPage implements OnInit {
         console.log("inside");
         this.ODshow = true;
         this.ODRefshow = false;
-
       }
-
     });
-
   }
 
   ionViewDidEnter() {

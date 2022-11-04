@@ -99,7 +99,7 @@ ion-content{
  }
 
  .checkboxbg {
-  --background: #ffffff;
+  --background: #ffffff !important;
  }
 
 #ContentName {
@@ -1032,6 +1032,16 @@ ion-menu-button {
   font-weight: bold;
 }
 
+.ion-color-successrfq {
+  --ion-color-base: #006600 !important;
+  --background: green !important;
+  color: #fff !important;
+  --ion-color-contrast: var(--ion-color-light) !important;
+  --color: #fff !important;
+  font-weight: bold;
+  text-align: left;
+}
+
 ion-card {
   box-shadow: 1px 1px 7px 0px grey;
 }
@@ -1309,3 +1319,14 @@ input#checkbox {
   font-weight: 600;
   color: black;
 }
+
+.card_header_text2 {
+  font-size: 15px;
+  color: white !important;
+  position: relative;
+  margin: auto;
+  display: grid;
+  justify-content: left;
+  font-weight: bold;
+}
+
