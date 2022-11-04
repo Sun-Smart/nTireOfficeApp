@@ -305,11 +305,13 @@ export class PurchaseRequestPage implements OnInit {
 
 
 
-  getItemDetail(e) {
+  getItemDetail(e:any) {
+    
+    // console.log(e.target.value,'manoj')
     this.showsavebtn = true
-    let dataa = e.target.value
-    console.log(dataa)
-    let getcategory = dataa
+    // let dataa = e.target.value
+    // console.log(dataa)
+    let getcategory = e;
     console.log(getcategory)
     if (getcategory == "I") {
       this.hideitem = true;

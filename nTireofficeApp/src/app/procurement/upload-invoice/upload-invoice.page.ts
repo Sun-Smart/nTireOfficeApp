@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 @Component({
   selector: 'app-upload-invoice',
@@ -35,7 +35,8 @@ export class UploadInvoicePage implements OnInit {
   pdfimg: any;
   pdfdata: any;
   fest: any=[];
-  constructor( public alertController: AlertController,private modalCtrl: ModalController) {
+  open: any;
+  constructor( public alertController: AlertController,private modalCtrl: ModalController,private iab: InAppBrowser) {
 
     this.dat_valid = {
       currentDate: new Date()
@@ -173,7 +174,11 @@ openpdf(invoiceNumber){
       return src.test;
     }
   })
-  window.open(test[0].test)
+  // this.iab.create('https://ionicframework.com/');
+  // window.open(test[0].test)
+
+// this.open=test[0].test
+// this.iab.create(this.open);
   // console.log(this.pdfSrc);
 
   // for (let i = 0; i < this.pdfSrc.length; i++) {
