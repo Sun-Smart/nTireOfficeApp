@@ -65,7 +65,8 @@ export class AdditionalPagePage implements OnInit {
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
-    public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) { }
+    public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) {
+  }
 
   ngOnInit() {
     this.Getbranches();
@@ -129,6 +130,7 @@ export class AdditionalPagePage implements OnInit {
 
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
@@ -197,14 +199,15 @@ export class AdditionalPagePage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
-        rental_pro_id : this.companiesstr[i].property_id
-      });
+        this.propertyCode1.push({
+          property_code: this.companiesstr[i].property_code, binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
+          rental_pro_id: this.companiesstr[i].property_id
+        });
       };
       // for (var i = 0; i < this.companiesstr.length; i++) {
       //   this.propertyCode1.push(this.companiesstr[i].property_code);
       // }
-      console.log('this.rental_pro_id ',this.rental_pro_id);
+      console.log('this.rental_pro_id ', this.rental_pro_id);
 
       const val = ev.target.value;
 
@@ -288,7 +291,7 @@ export class AdditionalPagePage implements OnInit {
     console.log('property grid ', i);
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPIFM/api/Property/getadditionalchargegrid/' + i.PROPERTY_ID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getadditionalchargegrid/' + i.PROPERTY_ID, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
@@ -307,10 +310,10 @@ export class AdditionalPagePage implements OnInit {
 
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-      Branch: 1,
-      Location: 1,
-      Property_ID: 1,
-      rent_ID: 1
+      Branch: 0,
+      Location: 0,
+      Property_ID: 0,
+      rent_ID: 0
       // Description: this.propDesc ? this.propDesc : 0,
       // Pay_Date: this.payDate ? this.payDate : 0
     };

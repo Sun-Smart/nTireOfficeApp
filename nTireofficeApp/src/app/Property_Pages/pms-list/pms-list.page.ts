@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable prefer-const */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -130,9 +132,11 @@ export class PmsListPage implements OnInit {
 
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let user_ID = parseInt(localStorage.getItem('TUM_USER_ID'));
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + user_ID, {
       headers: options,
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
@@ -219,7 +223,7 @@ export class PmsListPage implements OnInit {
 
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,
           binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
       };
 

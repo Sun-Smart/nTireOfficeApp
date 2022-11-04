@@ -53,7 +53,7 @@ export class AdditionalChargesPage implements OnInit {
   rental_pro_id: any;
 
 
-  constructor(private model:ModalController,private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
+  constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
 
   ngOnInit() {
     this.Getbranches();
@@ -65,7 +65,6 @@ export class AdditionalChargesPage implements OnInit {
   }
   cancel() {
     this.model.dismiss();
-    // return this.modalCtrl.dismiss(null, 'cancel');
   }
   Getbranches() {
 

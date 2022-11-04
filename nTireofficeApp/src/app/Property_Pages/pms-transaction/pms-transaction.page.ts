@@ -184,7 +184,8 @@ export class PmsTransactionPage implements OnInit {
 
     let data = {
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+      // branchid: parseInt(localStorage.getItem('TUM_BRANCH_ID')),
+      branchid: 0,
       locationid: 0,
       strPropertyId: 0,
       strPropertyDesc: 0,
