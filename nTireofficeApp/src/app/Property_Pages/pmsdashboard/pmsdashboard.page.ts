@@ -35,21 +35,19 @@ export class PmsdashboardPage implements OnInit {
   @ViewChild('sourcecanvas1') sourcecanvas1;
   @ViewChild('sourcecanvas2') sourcecanvas2;
   @ViewChild('sourcecanvas3') sourcecanvas3;
+  usertype: string;
+  accessToken: string;
+  userID: string;
+  functionID: string;
+  branchID: string;
 
   constructor(private http: HttpClient, 
     private platform: Platform, 
     public  Ipaddressservice: IpaddressService, 
     private tableApi: TableSampleService)
      {
-    this.userid = window.localStorage['TUM_USER_ID'];
-    this.username = localStorage.getItem('TUM_USER_NAME');
-    this.customerPayment();
-    this.getBranchCountChart();
-    this.getEmployeeCountChart();
-    this.getToBevaccantChart();
-    // this.getCategoryCountChart();
-    this.getBranchCountChart();
 
+    this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.columnsStatus = [
       { name: 'issuecode', },
@@ -59,6 +57,11 @@ export class PmsdashboardPage implements OnInit {
       { name: 'tenant', }
     ];
 
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.accessToken = localStorage.getItem('token');
   }
 
   ngOnInit() {
@@ -66,27 +69,28 @@ export class PmsdashboardPage implements OnInit {
     this.data = this.tableApi.getDashbTable1();
     console.log(this.data);
 
-
-
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=1&branch=1&userid=1').subscribe((res: any) => {
-      console.log(res)
-      this.dataStatus = res
-    })
-
-    // this.dataStatus = this.tableApi.getDashbTable2();
-    // console.log(this.dataStatus);
-
-    // this.dataDetails = this.tableApi.getDashbTable3();
-    // console.log(this.dataDetails);
-
-    // this.dataVaccant = this.tableApi.getDashbTable4();
-    // console.log(this.dataVaccant);
-
-    // this.dataRaised = this.tableApi.getDashbTable5();
-    // console.log(this.dataRaised);
+    this.issueStatus();
+    this.customerPayment();
+    this.getBranchCountChart();
+    this.getEmployeeCountChart();
+    this.getToBevaccantChart();
 
   }
+issueStatus(){
 
+      const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID,{ 
+   // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchID + '/' + this.userID,{
+      headers:options
+    }).subscribe((resp: any) => {
+      console.log(resp)
+      this.dataStatus = resp
+    })
+
+}
   customerPayment = function () {
     debugger
  
