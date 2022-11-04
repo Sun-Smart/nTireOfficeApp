@@ -131,7 +131,7 @@ export class MyTaskPage implements OnInit {
       this.branchlist = JSON.parse(this.branchlist);
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
-        // console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
     }, error => {
     });

@@ -36,8 +36,8 @@
           *ngFor="let branch of myTaskDetailsList; let i = index" aria-readonly="">{{branch.Branch}}</ion-input> -->
           <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
             <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let branch of myTaskDetailsList; let i = index">
-              {{branch.Branch}}
+            <option *ngFor="let branch of branchlist1; let i = index " [ngValue]="branch.BRANCH_ID">
+              {{branch.BRANCH_DESC}}
             </option>
           </select>
         </ion-col>

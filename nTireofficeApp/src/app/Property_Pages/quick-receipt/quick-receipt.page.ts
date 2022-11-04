@@ -205,19 +205,19 @@ getquicreceipt(){
   const header = new Headers();
   header.append("Content-Type", "application/json");
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ this.functionID + "/" + this.branchID + "/"+ this.propertycode + '/' + 0, {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ this.functionID + "/" + 0+ "/"+ 0 + '/' + 0, {
     headers: options,
   }).subscribe((res:any)=>{
     console.log(res,"reportlist");
-
+    this.quickreceipt=res
  
    
    if (this.quickreceipt == "No data found") {
     this.quickreceipt=[]
-    this.showError = true;
-  } else {
-    this.showError = false;
-   }
+    this.showdata = "No Data Found";
+ } else {
+  this.showdata = this.quickreceipt.length;
+  }
     
   })
 
