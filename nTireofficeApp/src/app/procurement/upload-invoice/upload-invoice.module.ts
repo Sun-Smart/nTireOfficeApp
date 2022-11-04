@@ -12,6 +12,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 @NgModule({
   imports: [
     CommonModule,
+    
     PdfViewerModule,
     ReactiveFormsModule,
     FormsModule,

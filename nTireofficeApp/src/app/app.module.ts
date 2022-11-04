@@ -14,7 +14,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 // import { ChartsModule } from 'chartjs';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS   } from '@angular/common/http';
@@ -29,7 +29,8 @@ import { AppComponent } from '././app.component';
     NgxDatatableModule,
     FormsModule,
     Ng2SearchPipeModule,
-    CommonModule
+    CommonModule,
+    
    ],
 
   providers: [StatusBar,
@@ -39,6 +40,7 @@ import { AppComponent } from '././app.component';
     NativeGeocoder,
     BarcodeScanner,
     Geolocation,
+    InAppBrowser,
     DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
