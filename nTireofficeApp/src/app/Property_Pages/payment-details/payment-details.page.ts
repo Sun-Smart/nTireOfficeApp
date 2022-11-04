@@ -58,11 +58,15 @@ export class PaymentDetailsPage implements OnInit {
   access_token: string;
   branchid: any;
   location: any;
+  branchId: any =[];
+  getBID: any;
+  loca_id: any;
+  get_Bid: any;
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
     public Ipaddressservice: IpaddressService,) {
-    
+
     this.Branch_id = localStorage.getItem('TUM_BRANCH_ID');
     this.Function_id = localStorage.getItem('FUNCTION_ID');
     this.user_id = localStorage.getItem('TUM_USER_ID');
@@ -72,7 +76,7 @@ export class PaymentDetailsPage implements OnInit {
 
   ngOnInit() {
 
-    this.Getbranches();
+    this.BranchLocationdata();
     this.getPaymentDetails();
   }
   togglefilter() {
@@ -125,25 +129,46 @@ export class PaymentDetailsPage implements OnInit {
       });
     }
   };
-
-  Getbranches() {
-
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+  BranchLocationdata() {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlist = JSON.stringify(resp);
-      this.branchlist = JSON.parse(this.branchlist);
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
+      this.branchlist1 = resp;
+      // this.branchlocationlist = JSON.stringify(resp);
+      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
+      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist1.length; i++) {
+        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+      }
+      console.log('getBID', this.getBID);
+
     }, error => {
+
+      console.log("branchlist1 : " + JSON.stringify(error));
     });
   };
+  // Getbranches() {
+
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
+
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.branchlist = JSON.stringify(resp);
+  //     this.branchlist = JSON.parse(this.branchlist);
+  //     this.branchlist.forEach(element => {
+  //       this.branchlist1.push(element);
+  //       console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+  //     });
+  //   }, error => {
+  //   });
+  // };
 
   getPaymentDetails() {
 
@@ -214,12 +239,12 @@ export class PaymentDetailsPage implements OnInit {
       // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
       console.log(this.branchlocationlist);
-      
+
 
       for (var i = 0; i < this.branchlocationlist.length; i++) {
         this.branchlocation = this.branchlocationlist[i].location_id;
         this.branchid = this.branchlocationlist[i].branch_id;
-        this.location = this.customerlocation[i]['Location']
+        this.location = this.customerlocation[i]['Location'];
       };
 
     }, error => {
@@ -228,40 +253,79 @@ export class PaymentDetailsPage implements OnInit {
     });
   };
 
-  getLocationdata(branchlocation) {
+  getLocationdata(branch) {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    this.get_Bid = branch;
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log("location", resp);
+      this.branchlocationlist = resp;
+      for (var i = 0; i < this.branchlocationlist.length; i++) {
+        this.loca_id = this.branchlocationlist[i].LOCATION_ID;
+      }
+    });
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+
+    // let data = {
+    //   Function_id: parseInt(localStorage.getItem('FUNCTION_ID')),
+    //   branchids: this.branch ? this.branch : 0,
+    //   locationid: this.branchlocation ? this.branchlocation : 0,
+    //   property_code: this.propertycodeDesc ? this.propertycodeDesc : 0,
+    //   custname: this.customerName ? this.customerName : "0",
+    //   Status: this.status ? this.status : "0",
+    //   payMode: this.paymode ? this.paymode : "0",
+    //   chequeNo: this.chequeno ? this.chequeno : "0",
+    //   fromDate: 0,
+    //   toDate: 0
+    // };
+
+
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.branchids + '/' + data.locationid + '/' + data.property_code + '/' + data.custname + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.payMode + '/' + data.chequeNo, {
+    //   headers: options,
+    // }).subscribe(resp => {
+    //   console.log("location", resp);
+    //   this.customerlocation = resp;
+    //   for (var i = 0; i < this.customerlocation.length; i++) {
+
+    //     this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
+
+    //   }
+    //   console.log(this.locationcode1, 'fyttr');
+    // });
+  };
+  newPropertyCode(branchlocation) {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
-    let data = {
-      Function_id: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branchids: this.branch ? this.branch : 0,
-      locationid: this.branchlocation ? this.branchlocation : 0,
-      property_code: this.propertycodeDesc ? this.propertycodeDesc : 0,
-      custname: this.customerName ? this.customerName : "0",
-      Status: this.status ? this.status : "0",
-      payMode: this.paymode ? this.paymode : "0",
-      chequeNo: this.chequeno ? this.chequeno : "0",
-      fromDate: 0,
-      toDate: 0
-    };
-
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.branchids + '/' + data.locationid + '/' + data.property_code + '/' + data.custname + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.payMode + '/' + data.chequeNo, {
+
+    let data = {
+      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      propertyCode: 0,
+      branch_Id: this.get_Bid,
+      loca_Id: this.loca_id
+    };
+
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
       headers: options,
     }).subscribe(resp => {
-      console.log("location", resp);
-      this.customerlocation = resp;
-      for (var i = 0; i < this.customerlocation.length; i++) {
+      console.log('click t  call', resp);
 
-        this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
+      // set val to the value of the searchbar
 
-      }
-      console.log(this.locationcode1, 'fyttr');
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
     });
-  };
 
+  }
 
   getPropertyCode(ev: any) {
 
@@ -281,7 +345,7 @@ export class PaymentDetailsPage implements OnInit {
       Function_id: parseInt(localStorage.getItem('FUNCTION_ID')),
       branchids: this.branch ? this.branch : 0,
       locationid: this.branchlocation ? this.branchlocation : 0,
-    }
+    };
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + data.Function_id + "/" + data.branchids + "/" + data.locationid, {
@@ -301,7 +365,7 @@ export class PaymentDetailsPage implements OnInit {
 
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,  
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,
           binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
       };
       const val = ev.target.value;

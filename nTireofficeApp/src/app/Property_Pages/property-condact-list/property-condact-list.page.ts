@@ -32,7 +32,7 @@ export class PropertyCondactListPage implements OnInit {
    propertyDesc: any;
   showdata: any;
   propetycondactlist: any;
-  branchID: string;
+  branchID: any;
   functionID: string;
   userID: string;
   usertype: string;
@@ -235,8 +235,8 @@ export class PropertyCondactListPage implements OnInit {
 
     let data = {
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branchids: this.branchid ? this.branchid : 1,
-      locationid: this.branchlocation ? this.branchlocation : 1,
+      branchids: this.branchid ? this.branchid : 0,
+      locationid: this.branchlocation ? this.branchlocation : 0,
     }
     const header = new Headers();
     header.append("Content-Type", "application/json");

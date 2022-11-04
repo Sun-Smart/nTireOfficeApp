@@ -29,7 +29,7 @@ export class AdditionalChargesPage implements OnInit {
   branchlist1: any = [];
   customerlocation: any = [];
   locationcode1: any = [];
-  branchlocationlist: string;
+  branchlocationlist: any =[];
   branchlist: any;
   respContact: any;
   propertyDesc: any;
@@ -51,12 +51,16 @@ export class AdditionalChargesPage implements OnInit {
   propertySplitid: any;
   rentalID: any;
   rental_pro_id: any;
+  getBID: any;
+  branchId: any =[];
+  get_Bid: any;
+  loca_id: any;
 
 
   constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
 
   ngOnInit() {
-    this.Getbranches();
+    this.BranchLocationdata();
   }
   submit() {
     debugger;
@@ -66,34 +70,40 @@ export class AdditionalChargesPage implements OnInit {
   cancel() {
     this.model.dismiss();
   }
-  Getbranches() {
+  // Getbranches() {
 
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
-      headers: options,
-    }).subscribe(resp => {
-      this.branchlist = JSON.stringify(resp);
-      this.branchlist = JSON.parse(this.branchlist);
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
-    }, error => {
-    });
-  };
-  BranchLocationdata(branchid) {
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.branchlist = JSON.stringify(resp);
+  //     this.branchlist = JSON.parse(this.branchlist);
+  //     this.branchlist.forEach(element => {
+  //       this.branchlist1.push(element);
+  //       console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+  //     });
+  //   }, error => {
+  //   });
+  // };
+  BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlocationlist = JSON.stringify(resp);
-      this.branchlocationlist = JSON.parse(this.branchlocationlist);
+      this.branchlist1 = resp;
+      // this.branchlocationlist = JSON.stringify(resp);
+      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist1.length; i++) {
+        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+      }
+      console.log('getBID', this.getBID);
 
     }, error => {
 
@@ -101,25 +111,49 @@ export class AdditionalChargesPage implements OnInit {
     });
   };
 
-  getLocationdata(branchlocation) {
+  getLocationdata(branch) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-
+    this.get_Bid = branch;
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
-      this.customerlocation = resp;
-      for (var i = 0; i < this.customerlocation.length; i++) {
-
-        this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
-
+      this.branchlocationlist = resp;
+      for (var i = 0; i < this.branchlocationlist.length; i++) {
+        this.loca_id = this.branchlocationlist[i].LOCATION_ID;
       }
-      console.log(this.locationcode1, 'fyttr');
     });
   };
+  newPropertyCode(branchlocation) {
 
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+    let data = {
+      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      propertyCode: 0,
+      branch_Id: this.get_Bid,
+      loca_Id: this.loca_id
+    };
+
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log('click t  call', resp);
+
+      // set val to the value of the searchbar
+
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+    });
+
+  }
   getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
