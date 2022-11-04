@@ -25,9 +25,9 @@
       <ion-row>
         <ion-col size="12">
           <ion-label>Branch <span style="color:red;">*</span></ion-label>
-          <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="BranchLocationdata(branch)">
+          <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="getLocationdata(branch)">
             <option [ngValue]="undefined" selected disabled>
-              << Select>>
+              << Select >>
             </option>
             <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
               {{branch.BRANCH_DESC}}
@@ -38,14 +38,15 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
-              (change)="getLocationdata(branchlocation)">
+            (change)="newPropertyCode(branchlocation)">
               <option [ngValue]="undefined" selected disabled>
-                << Select>>
+                << Select >>
               </option>
-              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
-                {{location.BRANCH_DESC}}</option>
+              <option *ngFor="let location of customerlocation; let i = index" [ngValue]="location.LOCATION_ID">
+                {{location.LOCATION_DESC}}</option>
             </select>
           </ion-col>
+
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
@@ -58,9 +59,13 @@
             </ion-item>
           </ion-list>
         </ion-col>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="display: none;">
           <ion-label>Rental ID</ion-label>
           <ion-input type="text" [(ngModel)]="rentalID" class="form-control"  disabled style="background-color: lightgray;"></ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Rental ID</ion-label>
+          <ion-input type="text" [(ngModel)]="rental_Code" class="form-control"  disabled style="background-color: lightgray;"></ion-input>
         </ion-col>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Description</ion-label>

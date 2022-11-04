@@ -1,3 +1,15 @@
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable arrow-body-style */
+/* eslint-disable eqeqeq */
+/* eslint-disable max-len */
+/* eslint-disable prefer-const */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable no-var */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,7 +22,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 })
 export class QuickReceiptPage implements OnInit {
   showfilter: boolean = true;
-  
+
   //  filter Branch, Location & property code,
 
   branchlist1: any = [];
@@ -21,13 +33,13 @@ export class QuickReceiptPage implements OnInit {
   propertyCode1: any[];
   isPropertycodeAvailable: boolean;
   companiesstr: any;
-  branch:any;
+  branch: any;
   branchlocation: any;
   propertycode: any;
   property_code: any;
   respContact: any;
   propertyDesc: any;
-  quickreceipt: any=[];
+  quickreceipt: any = [];
   showdata: string;
   branchID: string;
   functionID: string;
@@ -35,87 +47,140 @@ export class QuickReceiptPage implements OnInit {
   usertype: string;
   accessToken: string;
   showError: boolean;
+  branchId: any = [];
+  getBID: any;
+  loca_id: any;
+  get_Bid: any;
 
 
   constructor(
-    private route: Router, 
+    private route: Router,
     private http: HttpClient,
-    public Ipaddressservice: IpaddressService) { 
-      this.branchID = localStorage.getItem('TUM_BRANCH_ID');
-      this.functionID = localStorage.getItem('FUNCTION_ID');
-      this.userID = localStorage.getItem('TUM_USER_ID');
-      this.usertype = localStorage.getItem('TUM_USER_TYPE');
-      this.accessToken = localStorage.getItem('token');
-    }
+    public Ipaddressservice: IpaddressService) {
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.accessToken = localStorage.getItem('token');
+  }
 
   ngOnInit() {
     // this.branchcode = ('')
     // this.locationcode = ('')
-    this.Getbranches();
+    this.BranchLocationdata();
     this.getquicreceipt();
-    
+
   }
-  togglefilter(){
-    this.showfilter = !this.showfilter
+  togglefilter() {
+    this.showfilter = !this.showfilter;
   }
 
-  Getbranches() {
+  // Getbranches() {
 
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
-      headers: options,
-    }).subscribe(resp => {
-      this.branchlist = JSON.stringify(resp);
-      this.branchlist = JSON.parse(this.branchlist);
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
-    }, error => {
-    });
-  };
-
-  BranchLocationdata(branchid) {
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.branchlist = JSON.stringify(resp);
+  //     this.branchlist = JSON.parse(this.branchlist);
+  //     this.branchlist.forEach(element => {
+  //       this.branchlist1.push(element);
+  //       console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+  //     });
+  //   }, error => {
+  //   });
+  // };
+  BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlocationlist = JSON.stringify(resp);
-      this.branchlocationlist = JSON.parse(this.branchlocationlist);
+      this.branchlist1 = resp;
+      // this.branchlocationlist = JSON.stringify(resp);
+      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist1.length; i++) {
+        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+      }
+      console.log('getBID', this.getBID);
 
     }, error => {
 
       console.log("branchlist1 : " + JSON.stringify(error));
     });
   };
+  // BranchLocationdata(branchid) {
+  //   let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.branchlocationlist = JSON.stringify(resp);
+  //     this.branchlocationlist = JSON.parse(this.branchlocationlist);
+  //     console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+
+  //   }, error => {
+
+  //     console.log("branchlist1 : " + JSON.stringify(error));
+  //   });
+  // };
 
 
-  getLocationdata(branchlocation) {
+  getLocationdata(branch) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+    this.get_Bid = branch;
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
-      this.customerlocation = resp
-      for (var i = 0; i < this.customerlocation.length; i++) {
-
-        this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
-
+      this.branchlocationlist = resp;
+      for (var i = 0; i < this.branchlocationlist.length; i++) {
+        this.loca_id = this.branchlocationlist[i].LOCATION_ID;
       }
-      console.log(this.locationcode1, 'fyttr')
-    })
+      console.log(this.locationcode1, 'fyttr');
+    });
   };
 
-getPropertyCode(ev: any) {
+  newPropertyCode(branchlocation) {
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+    let data = {
+      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      propertyCode: 0,
+      branch_Id: this.get_Bid,
+      loca_Id: this.loca_id
+    };
+    console.log('data ', data);
+
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log('click t  call', resp);
+
+      // set val to the value of the searchbar
+
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+    });
+
+  }
+
+  getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     console.log("one");
@@ -131,7 +196,7 @@ getPropertyCode(ev: any) {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
@@ -170,13 +235,13 @@ getPropertyCode(ev: any) {
       if (this.propertycode == this.companiesstr[i].companyName) {
         this.property_code = this.companiesstr[i].id;
         console.log(this.property_code);
-      }   
+      }
     };
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1  + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -198,65 +263,65 @@ getPropertyCode(ev: any) {
 
     });
   };
-// total get
+  // total get
 
 
-getquicreceipt(){
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ this.functionID + "/" + this.branchID + "/"+ this.propertycode + '/' + 0, {
-    headers: options,
-  }).subscribe((res:any)=>{
-    console.log(res,"reportlist");
-
- 
-   
-   if (this.quickreceipt == "No data found") {
-    this.quickreceipt=[]
-    this.showError = true;
-  } else {
-    this.showError = false;
-   }
-    
-  })
-
-}
-  
+  getquicreceipt() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/' + this.functionID + "/" + 0 + "/" + 0 + '/' + 0, {
+      headers: options,
+    }).subscribe((res: any) => {
+      console.log(res, "reportlist");
+      this.quickreceipt = res;
 
 
-filterquickreceipt(){
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  let data ={
-    functionID: localStorage.getItem('FUNCTION_ID'),
-    branchid: this.branch ? this.branch : 1,
-    locationid: this.branchlocation ? this.branchlocation : 1,
-    propertyID: this.propertycode ? this.propertycode : 0,
+      if (this.quickreceipt == "No data found") {
+        this.quickreceipt = [];
+        this.showError = true;
+      } else {
+        this.showError = false;
+      }
 
+    });
 
   }
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/'+ data.functionID + "/"  + data.locationid + "/" + data.propertyID + "/" +"0" , {
-    headers: options,
-  }).subscribe((res:any)=>{
-    console.log(res,"reportlist");
-   this.quickreceipt=res
 
-   if (res == "No data found") {
-   
-   this.quickreceipt=[]
-   // this.arra.push(this.ShowAddionalList)
-   // console.log(this.arra);
-   
-   this.showdata = "No Data Found";
- } else {
-  this.showdata = this.quickreceipt.length;
+
+
+  filterquickreceipt() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    let data = {
+      functionID: localStorage.getItem('FUNCTION_ID'),
+      branchid: this.branch ? this.branch : 1,
+      locationid: this.branchlocation ? this.branchlocation : 1,
+      propertyID: this.propertycode ? this.propertycode : 0,
+
+
+    };
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/' + data.functionID + "/" + data.locationid + "/" + data.propertyID + "/" + "0", {
+      headers: options,
+    }).subscribe((res: any) => {
+      console.log(res, "reportlist");
+      this.quickreceipt = res;
+
+      if (res == "No data found") {
+
+        this.quickreceipt = [];
+        // this.arra.push(this.ShowAddionalList)
+        // console.log(this.arra);
+
+        this.showdata = "No Data Found";
+      } else {
+        this.showdata = this.quickreceipt.length;
+      }
+
+    });
+
   }
-    
-  })
-
-}
 
 
 }

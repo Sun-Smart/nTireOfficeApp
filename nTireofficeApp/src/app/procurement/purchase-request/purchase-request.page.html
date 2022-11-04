@@ -32,7 +32,7 @@
         </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Date</ion-label>
-          <ion-input type="date" [(ngModel)]="prsdate" disabled=""
+          <ion-input type="text" [(ngModel)]="prsdate" disabled=""
             style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
             class="Input-text-field textareaField"></ion-input>
         </ion-col>
@@ -46,11 +46,11 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Mode</ion-label>
           <select style="padding: 10px;" [(ngModel)]="prsmode" class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option value="Quotation"> Quotation</option>
-            <option value="Direct"> Direct</option>
-            <option value="Blanket"> Blanket</option>
-            <option value="Tender">Tender</option>
+            <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
+            <option value="Q">Quotation</option>
+            <option value="D">Direct</option>
+            <option value="B">Blanket</option>
+            <option value="T">Tender</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
@@ -61,26 +61,26 @@
           <ion-input type="text" disabled="" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Reference If Any</ion-label>
           <ion-input type="text" [(ngModel)]="referenceifany" class="Input-text-field textareaField"></ion-input>
-        </ion-col>
+        </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Reason For Purchase</ion-label>
           <select style="padding: 10px;" [(ngModel)]="reasonpurchase" class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option value="Additional">Additional</option>
-            <option value="New Project">New Project</option>
-            <option value="New Office">New Office</option>
-            <option value="Opening New Office">Opening New Office</option>
+            <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
+            <option value="1">Additional</option>
+            <option value="2">New Project</option>
+            <option value="3">New Office</option>
+            <option value="4">Opening New Office</option>
           </select>
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Order Priority</ion-label>
           <select (click)="orderpriority()" style="padding: 10px;" [(ngModel)]="order"
             class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="0" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let items of getorder" value="{{items.val}}">{{items.text}}</option>
           </select>
         </ion-col>
@@ -95,7 +95,8 @@
         <ion-row>
           <ion-col size="6">
             <div style="padding: 12px;display: flex;">
-              <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
+              <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true" (click)="checkbox()"></ion-checkbox>
+              &nbsp; &nbsp;
               <ion-label class="ContentName">Release</ion-label>
             </div>
           </ion-col>
@@ -124,11 +125,22 @@
           <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10" class="leadscolumn">
             {{items.item_short_desc}}
           </ion-col>
+
+
+          <!-- <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
+
+            <ion-label class="card_header_text">
+              <ion-icon (click)="edit(i)" style="color: #fff;" name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;
+
+            </ion-label>
+
+          </ion-col> -->
+
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
 
             <ion-label class="card_header_text">
-
-              <ion-icon (click)="delete(i)" routerLinkActive="router-link-active" style="color: red;"
+              <ion-icon *ngIf="showdel" (click)="delete(i)" routerLinkActive="router-link-active" style="color: red;"
                 name="trash-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
               <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
             </ion-label>
@@ -366,11 +378,14 @@
             <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Items
           </ion-button>
         </ion-col>
-        <ion-col style="text-align: center;">
+        <ion-col style="text-align: center;" *ngIf="showcancel">
           <ion-button (click)="clear()" class="ion-color-danger" expand="block">Clear</ion-button>
         </ion-col>
         <ion-col style="text-align: center;" *ngIf="showsubmit">
           <ion-button (click)="submit()" class="ion-color-success" expand="block">Submit</ion-button>
+        </ion-col>
+        <ion-col style="text-align: center;" *ngIf="showupdate">
+          <ion-button (click)="update()" class="ion-color-success" expand="block">Update</ion-button>
         </ion-col>
         <!-- <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" expand="block">New</ion-button>

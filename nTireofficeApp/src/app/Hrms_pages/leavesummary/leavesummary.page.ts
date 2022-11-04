@@ -203,8 +203,6 @@ this.loadingdismiss();
           return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
         });
       }
-
-
   }
   formatDate(value) {
     value = new Date(value);
@@ -237,13 +235,10 @@ this.loadingdismiss();
         }, {
           text: 'Ok',
           handler: () => {
-
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/CancelRequest/" + leaveData.ReqRef + "/" + 'L').then(resp=>{
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/CancelRequest/" + leaveData.LeaveRequestRef + "/" + 'L').then(resp=>{
               this.toastmessageService.presentAlert1("","Request Cancelled");
             }, error => {
-
             console.log("error : "+JSON.stringify(error));
-
             });
           }
         }

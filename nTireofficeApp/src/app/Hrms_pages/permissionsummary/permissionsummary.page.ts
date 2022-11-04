@@ -7,7 +7,6 @@ import { ModalController } from '@ionic/angular';
 import { ReapplypermissionPage } from '../reapplypermission/reapplypermission.page';
 import { AlertController, LoadingController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-permissionsummary',
   templateUrl: './permissionsummary.page.html',
@@ -40,7 +39,6 @@ export class PermissionsummaryPage implements OnInit {
   }
 
   ngOnInit() {
-
     this.empID = window.localStorage['EmployeeID'];
   }
   filterDate(fromdate, todate) {
@@ -70,7 +68,6 @@ export class PermissionsummaryPage implements OnInit {
         this.error = "";
       } else {
 
-
         this.display = [];
         this.error = "No Records Found";
         this.loadingdismiss();
@@ -82,8 +79,6 @@ export class PermissionsummaryPage implements OnInit {
     });
   }
 
-
-
   changeOrder(){
     console.log("permission")
     this.error=''
@@ -91,9 +86,7 @@ export class PermissionsummaryPage implements OnInit {
       if(data.Status!=undefined){
       return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
     }
-
     });
-
     if(this.display.length==0){
       // this.error = "No data found";
     }
