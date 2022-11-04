@@ -22,6 +22,7 @@ export class PRSstatusPage implements OnInit {
   editprs: boolean = false;
   loading: boolean = false
   Branchname;
+  getprsid: any;
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
@@ -36,11 +37,81 @@ export class PRSstatusPage implements OnInit {
   next() {
     this.router.navigate(['/purchase-request'])
   }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
 
+
+    await alert.present();
+  }
 
 
   edit() {
     this.router.navigate(['/updateprsstatus'])
+  }
+
+
+  async testdetele() {
+    // const alert = await this.alertController.create({
+    //   header: 'Confirm',
+    //   message: 'Are you sure want to delete this recoed',
+    //   buttons: [
+    //     {
+    //       text: 'No',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: (blah) => {
+    //         console.log('Confirm Cancel: blah');
+    //       }
+    //     }, {
+    //       text: 'Yes',
+    //       handler: () => {
+
+
+    //         let body = {
+    //           "prsid": this.prscode
+    //         }
+    //         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
+    //           this.loading = false
+    //           this.getresponse = res;
+    //           this.presentAlert("", this.getresponse);
+    //           // console.log("Response", res)
+    //           // console.log("Response", res)
+    //           // for (let item of this.getresponse) {
+    //           //   console.log(item);
+    //           // }
+    //         })
+
+
+    //       }
+    //     }
+    //   ]
+    // });
+
+
+    let body = {
+      "prsid": this.getprsid
+    }
+    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
+      this.loading = false
+      this.getresponse = res;
+      this.presentAlert("", this.getresponse);
+      // console.log("Response", res)
+      // console.log("Response", res)
+      // for (let item of this.getresponse) {
+      //   console.log(item);
+      // }
+    })
+
+
+
+
+
   }
 
 
@@ -150,6 +221,7 @@ export class PRSstatusPage implements OnInit {
       console.log("Response", res)
       for (let item of this.getresponse) {
         console.log(item);
+        this.getprsid = item.PRS_ID
       }
     })
 

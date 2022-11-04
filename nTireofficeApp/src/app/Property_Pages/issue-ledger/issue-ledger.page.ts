@@ -1,3 +1,14 @@
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable arrow-body-style */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable no-var */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable radix */
+/* eslint-disable prefer-const */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -39,6 +50,10 @@ export class IssueLedgerPage implements OnInit {
   Status: any;
   AssignedTo: any;
   propertycodeDesc: any;
+  getBID: any;
+  branchId: any =[];
+  get_Bid: any;
+  loca_id: any;
 
 
   constructor(private modalCtrl: ModalController,
@@ -54,42 +69,47 @@ export class IssueLedgerPage implements OnInit {
 
   ngOnInit() {
     this.getpropertyissueledger();
-    this.Getbranches();
+    this.BranchLocationdata();
   }
   togglefilter() {
-    this.showfilter = !this.showfilter
+    this.showfilter = !this.showfilter;
   };
+  // Getbranches() {
 
-  Getbranches() {
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
 
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
-      headers: options,
-    }).subscribe(resp => {
-      this.branchlist = JSON.stringify(resp);
-      this.branchlist = JSON.parse(this.branchlist);
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
-    }, error => {
-    });
-  };
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.branchlist = JSON.stringify(resp);
+  //     this.branchlist = JSON.parse(this.branchlist);
+  //     this.branchlist.forEach(element => {
+  //       this.branchlist1.push(element);
+  //       console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+  //     });
+  //   }, error => {
+  //   });
+  // };
 
 
-  BranchLocationdata(branchid) {
+  BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
       headers: options,
     }).subscribe(resp => {
-      this.branchlocationlist = JSON.stringify(resp);
-      this.branchlocationlist = JSON.parse(this.branchlocationlist);
+      this.branchlist1 = resp;
+      // this.branchlocationlist = JSON.stringify(resp);
+      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist1.length; i++) {
+        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+      }
+      console.log('getBID', this.getBID);
 
     }, error => {
 
@@ -97,26 +117,66 @@ export class IssueLedgerPage implements OnInit {
     });
   };
 
-  getLocationdata(branchlocation) {
+  getLocationdata(branch) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-
+    this.get_Bid = branch;
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
-      this.customerlocation = resp
-      for (var i = 0; i < this.customerlocation.length; i++) {
-
-        this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
-
+      this.branchlocationlist = resp;
+      for (var i = 0; i < this.branchlocationlist.length; i++) {
+        this.loca_id = this.branchlocationlist[i].LOCATION_ID;
       }
-      console.log(this.locationcode1, 'fyttr')
-    })
+    });
+    // let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
+    //   headers: options,
+    // }).subscribe(resp => {
+    //   console.log("location", resp);
+    //   this.customerlocation = resp;
+    //   for (var i = 0; i < this.customerlocation.length; i++) {
+
+    //     this.locationcode1.push(this.customerlocation[i].LOCATION_DESC);
+
+    //   }
+    //   console.log(this.locationcode1, 'fyttr');
+    // });
   };
 
+  newPropertyCode(branchlocation) {
 
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+    let data = {
+      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      propertyCode: 0,
+      branch_Id: this.get_Bid,
+      loca_Id: this.loca_id
+    };
+
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log('click t  call', resp);
+
+      // set val to the value of the searchbar
+
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+    });
+
+  }
   getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
@@ -196,7 +256,7 @@ export class IssueLedgerPage implements OnInit {
       console.log(this.respContact);
 
       this.propertyDesc = this.respContact[0]['property_building_name'];
-      
+
       this.Customer = this.respContact[0]['Customer'];
       // this.contact1 = JSON.parse(this.respContact);
       // console.log(this.contact1);
@@ -223,23 +283,23 @@ export class IssueLedgerPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + this.functionID + "/" + this.branchID + "/" + "0/0/0/0/0/0/0/0", {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + this.functionID + "/" + 0 + "/" + "0/0/0/0/0/0/0/0", {
       headers: options,
     }).subscribe((res: any) => {
       console.log(res, "issueledgerlist");
-      this.propertyissueledger = res
+      this.propertyissueledger = res;
 
 
 
       if (this.propertyissueledger == null) {
         // alert("hh")
-        this.showdata = "No Data Found"
+        this.showdata = "No Data Found";
       }
       else {
         this.showdata = this.propertyissueledger.length;
       }
 
-    })
+    });
 
   }
 
@@ -261,26 +321,26 @@ export class IssueLedgerPage implements OnInit {
       AssignedTo: this.AssignedTo ? this.AssignedTo : 0,
       Status: this.Status ? this.Status : 0,
 
-    }
+    };
 
 
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.Status + "/" + data.Customer + "/" + data.AssignedTo, {
       headers: options,
     }).subscribe((res: any) => {
       console.log(res, "issueledgerlist");
-      this.propertyissueledger = res
+      this.propertyissueledger = res;
 
 
 
       if (this.propertyissueledger == null) {
-        alert("hh")
-        this.showdata = "No Data Found"
+
+        this.showdata = "No Data Found";
       }
       else {
         this.showdata = this.propertyissueledger.length;
       }
 
-    })
+    });
 
   }
 

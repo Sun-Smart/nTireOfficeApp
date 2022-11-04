@@ -177,8 +177,8 @@ openpdf(invoiceNumber){
   // this.iab.create('https://ionicframework.com/');
   // window.open(test[0].test)
 
-this.open=test[0].test
-this.iab.create(this.open);
+// this.open=test[0].test
+// this.iab.create(this.open);
   // console.log(this.pdfSrc);
 
   // for (let i = 0; i < this.pdfSrc.length; i++) {

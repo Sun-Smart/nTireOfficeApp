@@ -9,10 +9,9 @@ import { DatePipe } from '@angular/common';
 })
 export class MaterialRequestPage implements OnInit {
   showbtn: boolean = true;
-  showlineItems: boolean = true;
+  showlineItems: boolean = false;
   showviewlist:boolean=false
   hideviewlist:boolean=false
-  showfilter:boolean=true
   hidefilter:boolean=true
   loading:boolean=false
   mrscode:String;
@@ -35,6 +34,19 @@ export class MaterialRequestPage implements OnInit {
   usertype;
   fromdate;
   todate;
+  priority;
+  reasonrequest;
+  requiredbefore;
+  sno;
+  itemcode;
+  itemdepreciation;
+  uom;
+  unitprice;
+  stockqty;
+  requestqty;
+  remarks;
+  requestby;
+  mrsdate;
   constructor( private router :Router,private toastmessageservice :ToastmessageService,private datePipe: DatePipe) { 
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
@@ -43,18 +55,63 @@ export class MaterialRequestPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
     this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
+    this.requestby = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
+    var todayDate = new Date();
+    todayDate.setDate(todayDate.getDate());
+    this.mrsdate = this.datePipe.transform(todayDate,'YYYY/MM/dd');
+    console.log(this.mrsdate);
   }
-
+  setValue(value:any){
+    console.log(value)
+    if(this.priority==1){
+      let getdate = new Date();
+    
+      getdate.setDate(getdate.getDate());
+      console.log(getdate);
+      this.requiredbefore = this.datePipe.transform(getdate , 'yyyy-MM-dd')
+      console.log(this.requiredbefore)
+    }
+    if(this.priority==2){
+      let getdate = new Date();
+    
+      getdate.setDate(getdate.getDate()+2);
+      console.log(getdate);
+      this.requiredbefore = this.datePipe.transform(getdate , 'yyyy-MM-dd')
+      console.log(this.requiredbefore)
+    
+    }
+    if(this.priority==3){
+    
+      let getdate = new Date();
+    
+      getdate.setDate(getdate.getDate()+3);
+      console.log(getdate);
+      this.requiredbefore = this.datePipe.transform(getdate , 'yyyy-MM-dd')
+      console.log(this.requiredbefore)
+    
+    }
+    if(this.priority==4){
+    
+      let getdate = new Date();
+    
+      getdate.setDate(getdate.getDate()+1);
+      console.log(getdate);
+      this.requiredbefore = this.datePipe.transform(getdate , 'yyyy-MM-dd')
+      console.log(this.requiredbefore)
+    }
+      }
   SearchItems(){
     this.showviewlist = true
     this.showbtn = true
     
   }
   Addnewitem(){
-    this.showlineItems1 = !this.showlineItems1;
+    // this.showlineItems1 = !this.showlineItems1;
+
+
     this.ShowAllItem = false;
 
   }
@@ -62,54 +119,23 @@ export class MaterialRequestPage implements OnInit {
     this.toastmessageservice.presentAlert1('saved successfully','this process is saved successfully')
     // this.showlineItems =!this.showlineItems;
     this.expenseArray=[];
-    this.overallsubmitnew = false;
+    this.initialSearch=true;
+    this.showlineItems=false;
+    // this.showbtn = true
+  // this.ngOnInit();
     
   }
 
   showline(){
-    this.showlineItems = false;
+
+    // this.showlineItems = false;
     this.Showcard = true;
     this.shownewcard =false;
     this.overallsubmit = true;
     this.submitview =!this.submitview;
     this.overallsubmitnew =true;
     this.expenseArray.push({
-      prsid: "",
-      itemid: 'PO2202',
-      i_function_id: "1",
-      required_qty: 5,
-      UOM: "15",
-      expected_cost: "100",
-      exp_date: 6/10/2020,
-      status: "A",
-      created_by: "210",
-      netprice: 5,
-      ipaddress: "",
-      unit_price:2,
-      Limit: "",
-      Availlimit: "",
-      BalanceLimit: "",
-      CATEGORY: 'hello',
-      TAX1: "",
-      TAX2: "",
-      TAX1DESC: "",
-      TAX2DESC: "",
-      OTHERCHARGES: "",
-      item_short_desc: 'hai',
-      item_long_desc: 'test',
-      REMARKS: "",
-      CategoryID: "",
-      SubCategoryID: "",
-      prsDetailID: "",
-      FreightVALUE: "",
-      FreightID: "",
-      RecoveryVALUE: "",
-      RecoveryID: "",
-      BDC: "",
-      PTM: "",
-      ACC: "",
-      CPC: "",
-      flag: "I"
+
 
     })
     console.log(this.expenseArray)
@@ -117,8 +143,8 @@ export class MaterialRequestPage implements OnInit {
   }
   Searchlist(){
     debugger;
-    this.initialSearch =! this.initialSearch;
-    this.showfilter =! this.showfilter;
+    // this.initialSearch =! this.initialSearch;
+    // this.showfilter =! this.showfilter;
     this.showbtn = true;
   }
   
@@ -129,11 +155,13 @@ export class MaterialRequestPage implements OnInit {
     // this.shownewcard==!this.shownewcard
   }
   new(){
-        this.showlineItems = !this.showlineItems
-    this.showviewlist = false;
-    this.Showcard = false;
+        // this.showlineItems = !this.showlineItems
+    // this.showviewlist = false;
+    // this.Showcard = false;
     this.overallsubmit=true;
     this.initialSearch = false;
+    this.showlineItems = true;
+
     this.showbtn = false;
 
 
@@ -145,7 +173,7 @@ export class MaterialRequestPage implements OnInit {
    
   hideline(){
     this.hidelineItems=!this.hidelineItems
-    this.showfilter = !this.showfilter;
+    // this.showfilter = !this.showfilter;
     // this.Additem = !this.Additem;
     // this.visible = !this.visible
   }
@@ -155,15 +183,13 @@ export class MaterialRequestPage implements OnInit {
   }
 
   togglefilter(){
-    this.showfilter = !this.showfilter;
+    // this.showfilter = !this.showfilter;
     this.hidefilter = !this.hidefilter;
   }
   close(){
-    // this.showviewlist=true
-    this.showlineItems=!this.showlineItems
-    this.hidelineItems=!this.hidelineItems
-
-  }
+    this.reasonrequest='';
+    this.priority = '';
+    }
   Search() {
     this.loading=true
   
