@@ -198,9 +198,6 @@ export class AdditionalPagePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
-
-
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
@@ -216,7 +213,8 @@ export class AdditionalPagePage implements OnInit {
       for (var i = 0; i < this.companiesstr.length; i++) {
         // this.propertyCode1.push(this.companiesstr[i].property_code);
         this.propertyCode1.push({
-          property_code: this.companiesstr[i].property_code, binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
+          property_code: this.companiesstr[i].property_code, 
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
           rental_pro_id: this.companiesstr[i].property_id
         });
       };
