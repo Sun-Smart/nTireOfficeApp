@@ -58,10 +58,15 @@ export class AdditionalPagePage implements OnInit {
   showError: boolean;
   showReceipt: any = [];
   rentalID: any;
+  property_id: string;
+  rental_pro_id: any;
+  rent_code_ID: any;
+  propertycodeDesc: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
-    public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) { }
+    public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) {
+  }
 
   ngOnInit() {
     this.Getbranches();
@@ -101,6 +106,7 @@ export class AdditionalPagePage implements OnInit {
 
   togglefilter() {
     this.showfilter = !this.showfilter;
+    this.getListItems();
   };
 
   Getbranches() {
@@ -124,6 +130,7 @@ export class AdditionalPagePage implements OnInit {
 
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
@@ -178,20 +185,30 @@ export class AdditionalPagePage implements OnInit {
 
 
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
+
       console.log(this.companiesstr);
 
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
-      }
+        // this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({
+          property_code: this.companiesstr[i].property_code, binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
+          rental_pro_id: this.companiesstr[i].property_id
+        });
+      };
+      // for (var i = 0; i < this.companiesstr.length; i++) {
+      //   this.propertyCode1.push(this.companiesstr[i].property_code);
+      // }
+      console.log('this.rental_pro_id ', this.rental_pro_id);
+
       const val = ev.target.value;
 
       // if the value is an empty string don't filter the items
@@ -211,7 +228,8 @@ export class AdditionalPagePage implements OnInit {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.rental_pro_id = item.rental_pro_id;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -223,13 +241,14 @@ export class AdditionalPagePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.rental_pro_id, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
       console.log(this.respContact);
 
-      this.propertyDesc = this.respContact[0]['property_building_name'];
+      // this.propertyDesc = this.respContact[0]['property_building_name'];
+      this.rentalID = this.respContact[0]['rental_id'];
       // this.contact1 = JSON.parse(this.respContact);
       // console.log(this.contact1);
       // if (this.contact1.length == 0) {
@@ -272,7 +291,7 @@ export class AdditionalPagePage implements OnInit {
     console.log('property grid ', i);
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get('https://demo.herbie.ai/nTireMobileCoreAPIFM/api/Property/getadditionalchargegrid/' + i.PROPERTY_ID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getadditionalchargegrid/' + i.PROPERTY_ID, {
       headers: options,
     }).subscribe(resp => {
       console.log("location", resp);
@@ -291,10 +310,10 @@ export class AdditionalPagePage implements OnInit {
 
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-      Branch: 1,
-      Location: 1,
-      Property_ID: 1,
-      rent_ID: 1
+      Branch: 0,
+      Location: 0,
+      Property_ID: 0,
+      rent_ID: 0
       // Description: this.propDesc ? this.propDesc : 0,
       // Pay_Date: this.payDate ? this.payDate : 0
     };
@@ -323,7 +342,7 @@ export class AdditionalPagePage implements OnInit {
         strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
         Branch: this.branch ? this.branch : 1,
         Location: this.branchlocation ? this.branchlocation : 1,
-        Property_code: this.propertycode ? this.propertycode : 0,
+        Property_code: this.rental_pro_id ? this.rental_pro_id : 0,
         rent: this.rentalID ? this.rentalID : 1
         // Description: this.propDesc ? this.propDesc : 0,
         // Pay_Date: this.payDate ? this.payDate : 0
@@ -353,4 +372,5 @@ export class AdditionalPagePage implements OnInit {
 
     await alert.present();
   };
+
 }

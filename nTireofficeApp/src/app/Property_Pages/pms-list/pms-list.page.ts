@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable prefer-const */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -67,6 +69,14 @@ export class PmsListPage implements OnInit {
   status: string;
   PropertyType: any;
   propertynature: any;
+  propertydescription: any;
+  fDate: any;
+  tDate: any;
+  status1: any;
+  propertyType: any;
+  propertyOwner: any;
+  propertyNature: any;
+  propertycodeDesc: any;
 
 
 
@@ -74,28 +84,28 @@ export class PmsListPage implements OnInit {
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient,
-    public Ipaddressservice: IpaddressService) { 
-      
+    public Ipaddressservice: IpaddressService) {
+
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.accessToken = localStorage.getItem('token');
-    }
+  }
 
   ngOnInit() {
     this.branchcode = ('')
     this.locationcode = ('')
     this.Getbranches();
-   
+
     this.getpropertylistreport()
   }
-  togglefilter(){
+  togglefilter() {
     this.showfilter = !this.showfilter
   }
 
 
- ;
+  ;
   strBranchcode(strBranchcode: any) {
     throw new Error('Method not implemented.');
   };
@@ -122,9 +132,11 @@ export class PmsListPage implements OnInit {
 
   BranchLocationdata(branchid) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let user_ID = parseInt(localStorage.getItem('TUM_USER_ID'));
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + branchid, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + user_ID, {
       headers: options,
     }).subscribe(resp => {
       this.branchlocationlist = JSON.stringify(resp);
@@ -143,7 +155,7 @@ export class PmsListPage implements OnInit {
 
   getLocationdata(branchlocation) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branchlocation, {
@@ -177,7 +189,7 @@ export class PmsListPage implements OnInit {
   getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    
+
     console.log("one");
     this.propertyCode1 = [];
     if (ev.target.value == "") {
@@ -199,15 +211,22 @@ export class PmsListPage implements OnInit {
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log(this.companiesstr);
-if(this.companiesstr=="No data found"){
-  this.nodatafound="No data found"
+      if (this.companiesstr == "No data found") {
+        this.nodatafound = "No data found"
 
-}
+      }
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
+      // for (var i = 0; i < this.companiesstr.length; i++) {
+      //   this.propertyCode1.push(this.companiesstr[i].property_code);
+      // }
+
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
-      }
+        // this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,
+          binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
+      };
+
       const val = ev.target.value;
 
       // if the value is an empty string don't filter the items
@@ -227,7 +246,8 @@ if(this.companiesstr=="No data found"){
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.property_code;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -239,7 +259,7 @@ if(this.companiesstr=="No data found"){
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation , {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycodeDesc + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -264,65 +284,79 @@ if(this.companiesstr=="No data found"){
 
 
 
-// total get
+  // total get
 
-getpropertylistreport(){
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/'+ this.functionID + "/" + this.branchID + "/" +"0/0/0/0/0/0/0/0/0", {
-    headers: options,
-  }).subscribe((res:any)=>{
-    console.log(res,"reportlist");
-   this.reportpropertylist=res
+  getpropertylistreport() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let data = {
+      functionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+      branchId: this.branch ? this.branch : 0,
+      locationid: this.branchlocation ? this.branchlocation : 0,
+      propertyCode: this.propertycode ? this.propertycode : 0,
+      Propertydesc: this.propertydescription ? this.propertydescription : 0,
+      fromdate: this.fDate ? this.fDate : 0,
+      todate: this.tDate ? this.tDate : 0,
+      status: this.status1 ? this.status1 : 0,
+      PropertyType: this.propertyType ? this.propertyType : 0,
+      PropertyOwner: this.propertyOwner ? this.propertyOwner : 0,
+      PropertyNature: this.propertyNature ? this.propertyNature : 0,
+    };
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/' + data.functionId + "/" + data.branchId + "/" + data.locationid + "/"
+      + data.propertyCode + '/' + data.Propertydesc + '/' + data.fromdate + '/' + data.todate + '/' + data.status + '/' + data.PropertyType + '/' + data.PropertyOwner + '/' + data.PropertyNature, {
+      headers: options,
+    }).subscribe((res: any) => {
+      console.log(res, "reportlist");
+      this.reportpropertylist = res
 
 
-   
-   if (this.reportpropertylist == null) {
 
-    this.showdata = "No Data Found"
+      if (this.reportpropertylist == null) {
+
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.reportpropertylist.length;
+      }
+
+    })
+
   }
-  else {
-    this.showdata = this.reportpropertylist.length;
+
+  filterpropertylistreport() {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    let data = {
+      functionID: localStorage.getItem('FUNCTION_ID'),
+      branchid: this.branch ? this.branch : 1,
+      locationid: this.branchlocation ? this.branchlocation : 1,
+      propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
+      status: this.status ? this.status : 0,
+      propertytype: this.PropertyType ? this.PropertyType : 0,
+      propertynature: this.propertynature ? this.propertynature : 0,
+
+    }
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.status + "/" + data.propertytype + "/0" + "/" + data.propertynature, {
+      headers: options,
+    }).subscribe((res: any) => {
+      console.log(res, "reportlist");
+      this.reportpropertylist = res
+
+
+
+      if (this.reportpropertylist == null) {
+
+        this.showdata = "No Data Found"
+      }
+      else {
+        this.showdata = this.reportpropertylist.length;
+      }
+
+    })
+
   }
-    
-  })
-
-}
-
-filterpropertylistreport(){
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  let data ={
-    functionID: localStorage.getItem('FUNCTION_ID'),
-    branchid: this.branch ? this.branch : 1,
-    locationid: this.branchlocation ? this.branchlocation : 1,
-    propertyID: this.propertycode ? this.propertycode : 0,
-    status: this.status ? this.status : 0,
-    propertytype: this.PropertyType ? this.PropertyType : 0,
-    propertynature: this.propertynature ? this.propertynature : 0,
-
-  }
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/'+ data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" +"0/0/0/" + data.status +"/" + data.propertytype +"/0" +"/" + data.propertynature, {
-    headers: options,
-  }).subscribe((res:any)=>{
-    console.log(res,"reportlist");
-   this.reportpropertylist=res
-
-
-   
-   if (this.reportpropertylist == null) {
-
-    this.showdata = "No Data Found"
-  }
-  else {
-    this.showdata = this.reportpropertylist.length;
-  }
-    
-  })
-
-}
 
 
 

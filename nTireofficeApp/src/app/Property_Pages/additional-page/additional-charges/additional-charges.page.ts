@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
 /* eslint-disable arrow-body-style */
@@ -49,9 +50,10 @@ export class AdditionalChargesPage implements OnInit {
   rentid: any;
   propertySplitid: any;
   rentalID: any;
+  rental_pro_id: any;
 
 
-  constructor(private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
+  constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
 
   ngOnInit() {
     this.Getbranches();
@@ -62,7 +64,7 @@ export class AdditionalChargesPage implements OnInit {
 
   }
   cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+    this.model.dismiss();
   }
   Getbranches() {
 
@@ -148,6 +150,7 @@ export class AdditionalChargesPage implements OnInit {
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.rental_pro_id = this.companiesstr[i]['property_id'];
       }
       const val = ev.target.value;
 
@@ -180,13 +183,14 @@ export class AdditionalChargesPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.rental_pro_id, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
       console.log(this.respContact);
 
-      this.propertyDesc = this.respContact[0]['property_building_name'];
+      // this.propertyDesc = this.respContact[0]['property_building_name'];
+      this.rentalID = this.respContact[0]['rental_id'];
       // this.contact1 = JSON.parse(this.respContact);
       // console.log(this.contact1);
       // if (this.contact1.length == 0) {
@@ -203,13 +207,13 @@ export class AdditionalChargesPage implements OnInit {
     });
   };
   createAdditional() {
-    if (this.branch == "<< Select >>" || this.branchlocation == "<< Select >>" || (this.propertycode == "" || this.propertycode == "undefined" || this.propertycode == null) || (this.rentalID == "" || this.rentalID == "undefined" || this.rentalID == null) || (this.property_desc == "" || this.property_desc == "undefined" || this.property_desc == null) || (this.payAmount == "" || this.payAmount == "undefined" || this.payAmount == null) || (this.payDate == "" || this.payDate == "undefined" || this.payDate == null)) {
+    if (this.branch == "<< Select >>" || this.branchlocation == "<< Select >>" || (this.propertycode == "" || this.propertycode == "undefined" || this.propertycode == null) || (this.property_desc == "" || this.property_desc == "undefined" || this.property_desc == null) || (this.payAmount == "" || this.payAmount == "undefined" || this.payAmount == null) || (this.payDate == "" || this.payDate == "undefined" || this.payDate == null)) {
       this.presentAlert("", "Please enter all fields");
     } else {
       const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
       let data = {
-        "propertyid": this.propertyid ? this.propertyid : "0",
+        "propertyid": this.rental_pro_id ? this.rental_pro_id : "0",
         "DAMAGE_DESCRIPTION": this.property_desc ? this.property_desc : "0",
         "AMOUNT": this.payAmount ? this.payAmount : 0,
         "status": this.status ? this.status : "P",
@@ -218,7 +222,7 @@ export class AdditionalChargesPage implements OnInit {
         "functionid": parseInt(localStorage.getItem('FUNCTION_ID')),
         "branchid": parseInt(this.branch) ? parseInt(this.branch) : 1,
         "locationid": parseInt(this.branchlocation) ? parseInt(this.branchlocation) : 0,
-        "rentid": this.rentid ? this.rentid : "1",
+        "rentid": this.rentalID ? this.rentalID : "1",
         "userid": parseInt(localStorage.getItem('TUM_USER_ID')),
         "PROPERTYSPLITID": this.propertySplitid ? this.propertySplitid : "0"
 
@@ -229,7 +233,7 @@ export class AdditionalChargesPage implements OnInit {
         headers: options, responseType: 'text'
       }).subscribe(resp => {
         // this.dataStatus = JSON.parse(resp);
-        this.presentAlert("success", resp);
+        this.presentAlert1("success", resp);
         console.log(this.dataStatus);
         this.cancelBtn();
         this.router.navigate(['/additional-page']);
@@ -259,5 +263,15 @@ export class AdditionalChargesPage implements OnInit {
 
     await alert.present();
   };
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
 
+    await alert.present();
+  };
 }

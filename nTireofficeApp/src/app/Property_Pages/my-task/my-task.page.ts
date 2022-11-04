@@ -60,6 +60,9 @@ export class MyTaskPage implements OnInit {
   getBranch: any;
   branchid: any;
   pmm_asset_code: any;
+  status1: any;
+  getTaskStatus: any;
+  showdata: string;
 
 
 
@@ -89,6 +92,17 @@ export class MyTaskPage implements OnInit {
       buttons: ['OK']
     });
 
+    await alert.present();
+  }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
     await alert.present();
   }
 
@@ -261,7 +275,7 @@ export class MyTaskPage implements OnInit {
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      tag: 0,
+      asset_code: this.assetCode ? this.assetCode : 0,
       strUserId: 0,
       UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
       pageIndex: 0,
@@ -282,7 +296,7 @@ export class MyTaskPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-      + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+      + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
       + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
       headers: options,
     }).subscribe((resp: any) => {
@@ -296,11 +310,11 @@ export class MyTaskPage implements OnInit {
 
       for (var i = 0; i < this.getBranch.length; i++) {
         this.propertyCode1.push(this.getBranch[i].pmm_asset_code);
-
         console.log(this.propertyCode1.push(this.getBranch[i].pmm_asset_code));
-        
       };
+
       const val = ev.target.value;
+
       if (val && val.trim() != '') {
         this.isPropertycodeAvailable = true;
         this.propertyCode1 = this.propertyCode1.filter((item) => {
@@ -312,16 +326,14 @@ export class MyTaskPage implements OnInit {
       }
     });
   }
+
   addPropertycode(item: any) {
 
-    
+    this.assetCode = item;
 
-    this.propertycode = item;
-    console.log("checking deepak",this.propertycode);
-    
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.getBranch.length; i++) {
-      if (this.propertycode == this.getBranch[i].pmm_asset_code) {
+      if (this.assetCode == this.getBranch[i].pmm_asset_code) {
         this.pmm_asset_code = this.getBranch[i].id;
         console.log(this.pmm_asset_code);
       }
@@ -330,7 +342,7 @@ export class MyTaskPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
-    
+
     let data = {
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
       branch: this.branchid ? this.branchid : 1,
@@ -339,7 +351,7 @@ export class MyTaskPage implements OnInit {
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      tag: 0,
+      asset_code: this.assetCode ? this.assetCode : 0,
       strUserId: 0,
       UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
       pageIndex: 0,
@@ -349,6 +361,7 @@ export class MyTaskPage implements OnInit {
       drpcategory: 0,
       drptype: 0,
       TASKTYPE: 0,
+      PropCode: this.propertycode ? this.propertycode : 0,
       PropDesc: this.PrDesc ? this.PrDesc : 0,
       strCriticality: 0,
       assetName: this.assetname ? this.assetname : 0,
@@ -358,10 +371,10 @@ export class MyTaskPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-      + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
-      + data.drptype + '/' + data.TASKTYPE + '/' + this.propertycode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
+      + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+      + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
       headers: options,
-    
+
     }).subscribe(resp => {
       this.respContact = resp;
       console.log(this.respTaskDetails);
@@ -381,10 +394,10 @@ export class MyTaskPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-  }respTaskDetails(respTaskDetails: any) {
+  } respTaskDetails(respTaskDetails: any) {
     throw new Error('Method not implemented.');
   }
-;
+  ;
 
 
   taskDetails() {
@@ -400,7 +413,7 @@ export class MyTaskPage implements OnInit {
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      tag: 0,
+      asset_code: this.assetCode ? this.assetCode : 0,
       strUserId: 0,
       UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
       pageIndex: 0,
@@ -420,9 +433,11 @@ export class MyTaskPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-      + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
-      + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
+    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionid + '/'+ data.branch + '/'+ data.Mode + '/'
+    + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'+ data.UserType + '/'
+    + data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'+ data.drptype + '/'+ data.TASKTYPE + '/'
+    + data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+    + data.wrkordno, { 
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp);
@@ -430,11 +445,19 @@ export class MyTaskPage implements OnInit {
       this.myTaskDetailsList = resp;
 
       console.log(this.myTaskDetailsList);
-
-      this.pmr_reference = this.myTaskDetailsList[0]['pmr_asset_reference'];
-      this.assetCode = this.myTaskDetailsList[0]['pmm_asset_code'];
+      for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+        this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+      };
       console.log('kuhgg', this.pmr_reference);
     });
+
+    if (this.myTaskDetailsList== null) {
+  
+      this.showdata = "0";
+    }
+    else {
+      this.showdata = this.myTaskDetailsList.length;
+    }
   };
 
 
@@ -442,7 +465,7 @@ export class MyTaskPage implements OnInit {
 
   filterMyTask() {
     if (this.branch == "undefined" || this.branch == null || this.branch == "") {
-      this.presentAlert("", "Please select Branch");
+      this.presentAlert1("", "Please select Branch");
       return;
     } else {
 
@@ -457,7 +480,7 @@ export class MyTaskPage implements OnInit {
         toDate: this.tdate ? this.tdate : 0,
         Status: 0,
         dept: 0,
-        tag: 0,
+        asset_code: this.assetCode ? this.assetCode :0 ,
         strUserId: 0,
         UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
         pageIndex: 0,
@@ -476,36 +499,50 @@ export class MyTaskPage implements OnInit {
       };
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branchid + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-        + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
-        + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
-
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionid + '/' + data.branchid + '/'+ data.Mode + '/'
+      + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'
+      + data.UserType + '/'+ data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'
+      + data.drptype + '/'+ data.TASKTYPE + '/'+ data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+      + data.wrkordno, { 
         headers: options,
       }).subscribe((resp: any) => {
         console.log(resp);
+        this.myTaskDetailsList = resp;
 
+        console.log(this.myTaskDetailsList);
+
+        for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+          this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+        };
+  
+       
       });
     };
   };
 
   updateStatus() {
-debugger;
-
-
-const header = new Headers();
-header.append("Content-Type", "application/json");
+    debugger;
+    this.getTaskStatus = this.status1
+    console.log("getTaskStatus,,,,,,,,,,,,,,",this.getTaskStatus);
+    if (this.getTaskStatus == "undefined" || this.getTaskStatus == null || this.getTaskStatus == "") {
+      this.presentAlert1("", "Please select Issue Status...");
+      return;
+    } else {
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
     let data = {
-      status: this.status,
-      pmr_reference: parseInt(this.pmr_reference),
+      status: this.getTaskStatus,
+      pmr_reference: this.pmr_reference,
     };
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'mytaskstatusupdate/', data, {
-      headers:options,
+      headers: options,
     }).subscribe((resp: any) => {
-        this.updateStatusRes = resp;
-        console.log(this.updateStatusRes);
-        this.presentAlert("Success", "Status Updated Sucessfully...");
-      })
+      this.updateStatusRes = resp;
+      console.log(this.updateStatusRes);
+      this.presentAlert("Success", "Status Updated Sucessfully...");
+    })
   };
+}
 }
