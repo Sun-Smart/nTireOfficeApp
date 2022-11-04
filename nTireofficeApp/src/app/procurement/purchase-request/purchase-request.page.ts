@@ -59,22 +59,139 @@ export class PurchaseRequestPage implements OnInit {
   showbtn: boolean = true;
   showsubmit: boolean = false;
   showsavebtn: boolean = false;
+  showcancel: boolean = true;
+  showdel: boolean = true;
   itemcode: any;
   getitemdata: any;
   getitemid: any;
   getParamID: string;
   getcategory: string;
+  status: any;
+  setitemcode: any;
+  setredqty: any;
+  setexpcost: any;
+  setexpdate: any;
+  setcretedby: any;
+  setunitprice: any;
+  getshort: any;
+  setcategorydes: any;
+  showupdate: boolean = false
+  getprsmode: any;
+  getitemdetails: any;
+  getprsdetails: any;
+  prsdate1: string;
   // release
 
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
-
     this.getParamID = this.route.snapshot.paramMap.get('id');
-    console.log(this.getParamID)
+    if (this.getParamID != null) {
+      console.log(this.getParamID)
+      // if (!this.getParamID) {
+      this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "get_edit_prs" + '/' + this.getParamID + '/' + 1).subscribe((resp: any) => {
+        console.log(resp)
+        console.log(resp.itemDetails[0])
+        this.getitemdetails = resp.itemDetails
+        console.log(resp.prsDetails[0])
+        this.getprsdetails = resp.prsDetails[0]
+        // resp.itemDetails[0].iTEM_CODE
 
+
+        if (resp.prsDetails[0].status == "p" || resp.prsDetails[0].status == "P") {
+          this.release = true
+          this.showdel = false
+          this.showcancel = false
+          this.showbtn = false
+        }
+        if (resp.prsDetails[0].status == "N" || resp.prsDetails[0].status == "n") {
+          this.release = false
+          // this.showsubmit = true
+          this.showupdate = true;
+          this.showcancel = false
+        }
+
+        let getdate1 = resp.prsDetails[0].created_on
+        // getdate1.setDate(getdate1.getDate());
+        console.log(getdate1);
+        this.prsdate1 = this.datePipe.transform(getdate1, 'MM/dd/yyyy');
+        console.log(this.prsdate1);
+        if (resp.prsDetails[0].request_type == "D") {
+          this.getprsmode = "Direct"
+        }
+        if (resp.prsDetails[0].request_type == "B") {
+          this.getprsmode = "Blanket"
+        }
+        if (resp.prsDetails[0].request_type == "Q") {
+          this.getprsmode = "Quotation"
+        }
+        if (resp.prsDetails[0].request_type == "T") {
+          this.getprsmode = "Tender"
+        }
+        console.log(this.getprsmode)
+        this.prscode = resp.prsDetails[0].prs_code
+        this.prsdate = this.prsdate1
+        this.prsmode = resp.prsDetails[0].request_type
+        this.requestby = resp.prsDetails[0].lst_upd_by
+        this.reasonpurchase = resp.prsDetails[0].reason_purchase
+        this.order = resp.prsDetails[0].pRIORITY
+        this.rfpcomments = resp.prsDetails[0].request_comments
+
+        for (let i = 0; i < resp.itemDetails.length; i++) {
+          this.setitemcode = resp.itemDetails[i].iTEM_CODE;
+          this.setredqty = resp.itemDetails[i].rEQUIRED_QTY;
+          this.setexpcost = resp.itemDetails[i].eXPECTED_COST;
+          this.setexpdate = resp.itemDetails[i].eXP_DATE;
+          this.setcretedby = resp.itemDetails[i].created_by;
+          this.setunitprice = resp.itemDetails[i].uNIT_PRICE;
+          this.setcategorydes = resp.itemDetails[i].cATEGORY;
+          this.getshort = resp.itemDetails[i].iTEM_SHORT_DESC;
+          this.expenseArray.push({
+            prsid: this.getprsdetails.prs_id.toString(),
+            itemid: this.setitemcode,
+            i_function_id: "1",
+            required_qty: this.setredqty,
+            UOM: "15",
+            expected_cost: this.setexpcost,
+            exp_date: this.setexpdate,
+            status: "P",
+            created_by: this.setcretedby,
+            ipaddress: "",
+            unit_price: this.setunitprice,
+            Limit: "",
+            Availlimit: "",
+            BalanceLimit: "",
+            CATEGORY: this.setcategorydes,
+            TAX1: "",
+            TAX2: "",
+            TAX1DESC: "",
+            TAX2DESC: "",
+            OTHERCHARGES: "",
+            item_short_desc: this.getshort,
+            item_long_desc: this.getshort,
+            REMARKS: "",
+            CategoryID: "",
+            SubCategoryID: "",
+            prsDetailID: "",
+            FreightVALUE: "",
+            FreightID: "",
+            RecoveryVALUE: "",
+            RecoveryID: "",
+            BDC: "",
+            PTM: "",
+            ACC: "",
+            CPC: "",
+            flag: "I"
+          })
+        }
+
+
+
+
+      })
+    }
+    // }
   }
-
   ngOnInit() {
     // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
@@ -102,6 +219,42 @@ export class PurchaseRequestPage implements OnInit {
 
 
     await alert.present();
+  }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  checkbox() {
+    console.log(this.release)
+    // if (this.status == "N") {
+    //   if (this.release == false) {
+    //     this.showsubmit = true
+    //   }
+    //   if (this.release == true) {
+    //     this.showsubmit = false
+    //   }
+    // }
+    // if (this.status == "P") {
+    //   if (this.release == false) {
+    //     this.showupdate = true
+    //   }
+    //   if (this.release == true) {
+    //     this.showupdate = false
+    //   }
+    // }
+
+
+
+
   }
   fetchreconcilation(itemcode: any) {
     console.log(itemcode)
@@ -232,8 +385,6 @@ export class PurchaseRequestPage implements OnInit {
       this.qty = "",
       this.itemdescription = ""
 
-
-
   }
 
   showline() {  //submit btn
@@ -246,9 +397,7 @@ export class PurchaseRequestPage implements OnInit {
     }
     if (this.Category == "S") {
       this.getcategory = "Service"
-
     }
-
     this.expenseArray.push({
       prsid: "",
       itemid: this.getitemid,
@@ -292,10 +441,8 @@ export class PurchaseRequestPage implements OnInit {
 
   orderpriority() {
     console.log(this.order)
-
     if (this.order == "2") //urjent
     {
-
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 2);
       console.log(getdate);
@@ -307,7 +454,6 @@ export class PurchaseRequestPage implements OnInit {
       getdate.setDate(getdate.getDate() + 1);
       console.log(getdate);
       this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
-
     }
     if (this.order == "3") //high
     {
@@ -328,12 +474,32 @@ export class PurchaseRequestPage implements OnInit {
     let getdate = new Date();
     this.prsdate = this.datePipe.transform(getdate, 'yyyy-MM-dd');
   }
-
-
   delete(i) {
     this.expenseArray.splice(i, 1);
   }
+  edit(i) {
+    console.log(i)
+    this.showlineItems = !this.showlineItems
+    let J = i
+    this.itemcode = this.getitemdetails[J].iTEM_CODE,
+      this.Description = this.getitemdetails[J].iTEM_SHORT_DESC,
+      this.unitprice = this.getitemdetails[J].uNIT_PRICE,
+      // this.netprice = this.getitemdetails[J].iTEM_CODE,
+      this.qty = this.getitemdetails[J].rEQUIRED_QTY,
+      this.itemdescription = this.getitemdetails[J].iTEM_SHORT_DESC
 
+
+
+    // this.setitemcode = resp.itemDetails[i].iTEM_CODE;
+    // this.setredqty = resp.itemDetails[i].rEQUIRED_QTY;
+    // this.setexpcost = resp.itemDetails[i].eXPECTED_COST;
+    // this.setexpdate = resp.itemDetails[i].eXP_DATE;
+    // this.setcretedby = resp.itemDetails[i].created_by;
+    // this.setunitprice = resp.itemDetails[i].uNIT_PRICE;
+    // this.setcategorydes = resp.itemDetails[i].cATEGORY;
+    // this.getshort = resp.itemDetails[i].iTEM_SHORT_DESC;
+
+  }
   async clear() {
     const alert = await this.alertController.create({
       header: 'Confirm',
@@ -349,10 +515,9 @@ export class PurchaseRequestPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-
             this.prsmode = ""
             this.reasonpurchase = ""
-            this.referenceifany = ""
+            // this.referenceifany = ""
             this.rfpcomments = ""
             this.order = ""
             this.requestby = ""
@@ -371,15 +536,32 @@ export class PurchaseRequestPage implements OnInit {
     this.showlineItems = !this.showlineItems
     this.showbtn = true
   }
-  submit() {
 
+  update() {
 
+    if (this.release == false) {
+      this.presentAlert1("add item failed", 'Please click Release');
+
+    }
+    // else if (this.Category = "" || this.Category == "undefined" || this.Category == null) {
+    //   this.presentAlert1("add item failed", 'Please Enter add-item Fields');
+    // }
+    // else if (this.itemcode == "" || this.itemcode == "undefined" || this.itemcode == null) {
+    //   this.presentAlert1("add item failed", 'Please Enter All Fields');
+    // }
+
+    if (this.release == true) {
+      this.status = "P"
+    }
+    if (this.release == false) {
+      this.status = "N"
+    }
     this.getresponse.push({
       "prscategory": this.Category,
       "functionid": "1",
-      "prsid": "",
+      "prsid": this.getprsdetails.prs_id.toString(),
       "prscode": "",
-      "status": "P",
+      "status": this.status,
       "createdby": this.requestby,
       "ipaddress": "0",
       "reasonpurchase": this.reasonpurchase,
@@ -393,7 +575,7 @@ export class PurchaseRequestPage implements OnInit {
       "userid": this.userid,
       "requestby": this.requestby,
       "requestdate": this.prsdate,
-      "requettype": "Q",
+      "requettype": this.prsmode,
       "issinglevendor": "",
       "orderpriority": "",
       "release": this.release.toString(),
@@ -418,6 +600,64 @@ export class PurchaseRequestPage implements OnInit {
     })
 
 
+
+
+
+
+
+
+
+  }
+  submit() {
+
+    if (this.release == true) {
+      this.status = "P"
+    }
+    if (this.release == false) {
+      this.status = "N"
+    }
+    this.getresponse.push({
+      "prscategory": this.Category,
+      "functionid": "1",
+      "prsid": "",
+      "prscode": "",
+      "status": this.status,
+      "createdby": this.requestby,
+      "ipaddress": "0",
+      "reasonpurchase": this.reasonpurchase,
+      "netamount": this.netprice,
+      "currency": "0",
+      "requestcomments": "sample",
+      "isbid": "0",
+      "prstype": "0",
+      "branchid": "1",
+      "prsref": "0",
+      "userid": this.userid,
+      "requestby": this.requestby,
+      "requestdate": this.prsdate,
+      "requettype": this.prsmode,
+      "issinglevendor": "",
+      "orderpriority": "",
+      "release": this.release.toString(),
+      "Itemsdetail": this.expenseArray,
+    })
+    // window.location.reload()
+    // this.router.navigate(['/purchase-request'])
+    // this.showviewlist = true
+    // this.showlineItems = !this.showlineItems
+    var body = {
+      prsdetail: this.getresponse,
+      // "Itemsdetail": this.expenseArray,
+    }
+    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body, {
+      headers: options, responseType: 'text'
+    }).subscribe((res: any) => {
+      this.getresponse = res;
+      // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+      this.presentAlert("", this.getresponse);
+      this.router.navigate(['/prsstatus'])
+    })
   }
 
 
