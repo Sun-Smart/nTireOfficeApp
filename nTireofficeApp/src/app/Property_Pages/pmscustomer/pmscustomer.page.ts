@@ -301,7 +301,6 @@ export class PmscustomerPage implements OnInit {
       branch_Id: this.get_Bid,
       loca_Id: this.loca_id
     };
-
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -318,7 +317,7 @@ export class PmscustomerPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
     });
 
-  }
+  };
 
   getPropertyCode(ev: any) {
 
