@@ -124,45 +124,51 @@
       <ion-card-content>
         <ion-row>
           <ion-col size="6">
-            <ion-label>Branch</ion-label>
+            <ion-label class="labelHead-text">Branch</ion-label>
           </ion-col>
-          <ion-col size="6">
-            <ion-label >: {{item.BRANCH_DESC}}</ion-label>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-label>Location</ion-label>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label >: {{item.LOCATION_DESC}}</ion-label>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text">{{item.BRANCH_DESC}}</ion-label>
           </ion-col>
 
           <ion-col size="6">
-            <ion-label>Property Code</ion-label>
+            <ion-label class="labelHead-text">Location</ion-label>
           </ion-col>
-          <ion-col size="6">
-            <ion-label >: {{item.property_code}}</ion-label>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-label>Pay Description</ion-label>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label >: {{item.payment_desc}}</ion-label>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.LOCATION_DESC}}</ion-label>
           </ion-col>
 
           <ion-col size="6">
-            <ion-label>Pay Amount</ion-label>
+            <ion-label class="labelHead-text">Property Code</ion-label>
           </ion-col>
-          <ion-col size="6">
-            <ion-label>: {{item.Amount}}</ion-label>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.property_code}}</ion-label>
           </ion-col>
 
           <ion-col size="6">
-            <ion-label>Pay Last Date</ion-label>
+            <ion-label class="labelHead-text">Pay Description</ion-label>
           </ion-col>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.payment_desc}}</ion-label>
+          </ion-col>
+
           <ion-col size="6">
-            <ion-label>: {{item.pay_date}}</ion-label>
+            <ion-label class="labelHead-text">Pay Amount</ion-label>
+          </ion-col>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text">{{item.Amount}}</ion-label>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-label class="labelHead-text">Pay Last Date</ion-label>
+          </ion-col>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.pay_date}}</ion-label>
           </ion-col>
 
         </ion-row>

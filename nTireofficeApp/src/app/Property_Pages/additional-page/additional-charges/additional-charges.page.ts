@@ -55,6 +55,7 @@ export class AdditionalChargesPage implements OnInit {
   branchId: any =[];
   get_Bid: any;
   loca_id: any;
+  propertycodeDesc: any;
 
 
   constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
@@ -183,8 +184,9 @@ export class AdditionalChargesPage implements OnInit {
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.rental_pro_id = this.companiesstr[i]['property_id'];
+        this.propertyCode1.push({rental_pro_id: this.companiesstr[i].property_id,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name},
+        this.rental_pro_id = this.companiesstr[i]['property_id'])
       }
       const val = ev.target.value;
 
@@ -205,7 +207,9 @@ export class AdditionalChargesPage implements OnInit {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    // this.propertycode = item;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.rental_pro_id;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -217,7 +221,7 @@ export class AdditionalChargesPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.rental_pro_id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.propertycodeDesc, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
