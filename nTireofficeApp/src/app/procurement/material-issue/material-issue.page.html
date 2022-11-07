@@ -20,12 +20,12 @@
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Mode</ion-label>
-            <select style="padding: 10px;" style=" display:inline-block;padding: 8px;"
+            <select #selectList style="padding: 10px;" (change)="setValue(selectList.value)" style=" display:inline-block;padding: 8px;"
               class="Input-text-field textareaField">
-              <option value="null"> Select</option>
-              <option value="loc">Location Transfer</option>
-               <option value="Req"> Material Requisition Slip </option>
-            <option value="Sal"> Sales Return </option>
+              <option value="0"> Select</option>
+              <option value="L">Location Transfer</option>
+               <option value="MI"> Material Requisition Slip </option>
+            <option value="SR"> Sales Return </option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>
@@ -58,7 +58,7 @@
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
-            <ion-button (click)="Submit()" class="ion-color-success" expand="block">
+            <ion-button (click)="SearchList()" class="ion-color-success" expand="block">
               <ion-icon style="color:white ;" name="search-outline"></ion-icon>
               Search
             </ion-button>

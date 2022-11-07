@@ -63,6 +63,15 @@ export class MyTaskPage implements OnInit {
   status1: any;
   getTaskStatus: any;
   showdata: string;
+  assetData: any[];
+  assetCodeBinding: any;
+  ASSET_CODE : any;
+  assetDesc: any;
+  department: any;
+  assetid: any;
+  assetownerid: any;
+  gatagory: any;
+  subGatagory: any;
 
 
 
@@ -78,7 +87,7 @@ export class MyTaskPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    // this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
   }
@@ -113,77 +122,77 @@ export class MyTaskPage implements OnInit {
   ngOnInit() {
 
 
-    this.Getbranches();
+    // this.Getbranches();
     this.taskDetails();
   };
 
 
-  Getbranches() {
+  // Getbranches() {
 
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
-      headers: options,
-    }).subscribe(resp => {
-      this.branchlist1 =resp;
-      // this.branchlist1 = JSON.stringify(resp);
-      // this.branchlist1 = JSON.parse(this.branchlist);
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element);
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
-    }, error => {
-    });
-  };
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     this.branchlist1 =resp;
+  //     // this.branchlist1 = JSON.stringify(resp);
+  //     // this.branchlist1 = JSON.parse(this.branchlist);
+  //     this.branchlist.forEach(element => {
+  //       this.branchlist1.push(element);
+  //       console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+  //     });
+  //   }, error => {
+  //   });
+  // };
 
 
-  BranchLocationdata(branchid) {
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+  // BranchLocationdata(branchid) {
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
 
-    let data = {
-      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branch: this.branchid ? this.branchid : 1,
-      Mode: this.mode ? this.mode : 0,
-      fromDate: this.fdate ? this.fdate : 0,
-      toDate: this.tdate ? this.tdate : 0,
-      Status: 0,
-      dept: 0,
-      tag: 0,
-      strUserId: 0,
-      UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
-      pageIndex: 0,
-      pageSize: 50,
-      sortExpression: 0,
-      alphaname: 0,
-      drpcategory: 0,
-      drptype: 0,
-      TASKTYPE: 0,
-      PropCode: this.PrCode ? this.PrCode : 0,
-      PropDesc: this.PrDesc ? this.PrDesc : 0,
-      strCriticality: 0,
-      assetName: this.assetname ? this.assetname : 0,
-      actmaintenence: 0,
-      wrkordno: 0,
-    };
+  //   let data = {
+  //     functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+  //     branch: this.branchid ? this.branchid : 0,
+  //     Mode: this.mode ? this.mode : 0,
+  //     fromDate: this.fdate ? this.fdate : 0,
+  //     toDate: this.tdate ? this.tdate : 0,
+  //     Status: 0,
+  //     dept: 0,
+  //     tag: 0,
+  //     strUserId: 0,
+  //     UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+  //     pageIndex: 0,
+  //     pageSize: 50,
+  //     sortExpression: 0,
+  //     alphaname: 0,
+  //     drpcategory: 0,
+  //     drptype: 0,
+  //     TASKTYPE: 0,
+  //     PropCode: this.PrCode ? this.PrCode : 0,
+  //     PropDesc: this.PrDesc ? this.PrDesc : 0,
+  //     strCriticality: 0,
+  //     assetName: this.assetname ? this.assetname : 0,
+  //     actmaintenence: 0,
+  //     wrkordno: 0,
+  //   };
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-      + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
-      + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
-      headers: options,
-    }).subscribe((resp: any) => {
-      console.log(resp);
+  //   this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
+  //     + data.tag + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+  //     + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
+  //     headers: options,
+  //   }).subscribe((resp: any) => {
+  //     console.log(resp);
 
-      this.getBranch = resp;
+  //     this.getBranch = resp;
 
-      console.log(this.getBranch);
+  //     console.log(this.getBranch);
 
-    });
-  }
+  //   });
+  // }
 
   // getLocationdata(branchlocation) {
   //   let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
@@ -257,28 +266,164 @@ export class MyTaskPage implements OnInit {
 
   // };
 
-  getPropertyCode(ev: any) {
+  // getPropertyCode(ev: any) {
 
-    this.propertyCode1 = [];
+  //   this.propertyCode1 = [];
+  //   if (ev.target.value == "") {
+  //     this.propertyCode1 = [];
+  //     this.isPropertycodeAvailable = false;
+  //   }
+
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
+
+  //   let data = {
+  //     functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+  //     branch: this.branchid ? this.branchid : 1,
+  //     Mode: this.mode ? this.mode : 0,
+  //     fromDate: this.fdate ? this.fdate : 0,
+  //     toDate: this.tdate ? this.tdate : 0,
+  //     Status: 0,
+  //     dept: 0,
+  //     asset_code: this.assetCode ? this.assetCode : 0,
+  //     strUserId: 0,
+  //     UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+  //     pageIndex: 0,
+  //     pageSize: 50,
+  //     sortExpression: 0,
+  //     alphaname: 0,
+  //     drpcategory: 0,
+  //     drptype: 0,
+  //     TASKTYPE: 0,
+  //     PropCode: this.PrCode ? this.PrCode : 0,
+  //     PropDesc: this.PrDesc ? this.PrDesc : 0,
+  //     strCriticality: 0,
+  //     assetName: this.assetname ? this.assetname : 0,
+  //     actmaintenence: 0,
+  //     wrkordno: 0,
+  //   };
+
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+  //   this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
+  //     + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+  //     + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
+  //     headers: options,
+  //   }).subscribe((resp: any) => {
+  //     console.log(resp);
+  //     this.propertyCode1 = [];
+  //     this.getBranch = resp;
+  //     this.isPropertycodeAvailable = false;
+  //     console.log(this.getBranch);
+
+  //     this.isRecordShow = true;
+
+  //     for (var i = 0; i < this.getBranch.length; i++) {
+  //       this.propertyCode1.push(this.getBranch[i].pmm_asset_code);
+  //       console.log(this.propertyCode1.push(this.getBranch[i].pmm_asset_code));
+  //     };
+
+  //     const val = ev.target.value;
+
+  //     if (val && val.trim() != '') {
+  //       this.isPropertycodeAvailable = true;
+  //       this.propertyCode1 = this.propertyCode1.filter((item) => {
+  //         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  //       });
+  //     }
+  //     else {
+  //       this.isPropertycodeAvailable = false;
+  //     }
+  //   });
+  // }
+
+  // addPropertycode(item: any) {
+
+  //   this.assetCode = item;
+
+  //   this.isPropertycodeAvailable = false;
+  //   for (var i = 0; i < this.getBranch.length; i++) {
+  //     if (this.assetCode == this.getBranch[i].pmm_asset_code) {
+  //       this.pmm_asset_code = this.getBranch[i].id;
+  //       console.log(this.pmm_asset_code);
+  //     }
+  //   };
+
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
+
+
+  //   let data = {
+  //     functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+  //     branch: this.branchid ? this.branchid : 1,
+  //     Mode: this.mode ? this.mode : 0,
+  //     fromDate: this.fdate ? this.fdate : 0,
+  //     toDate: this.tdate ? this.tdate : 0,
+  //     Status: 0,
+  //     dept: 0,
+  //     asset_code: this.assetCode ? this.assetCode : 0,
+  //     strUserId: 0,
+  //     UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+  //     pageIndex: 0,
+  //     pageSize: 50,
+  //     sortExpression: 0,
+  //     alphaname: 0,
+  //     drpcategory: 0,
+  //     drptype: 0,
+  //     TASKTYPE: 0,
+  //     PropCode: this.propertycode ? this.propertycode : 0,
+  //     PropDesc: this.PrDesc ? this.PrDesc : 0,
+  //     strCriticality: 0,
+  //     assetName: this.assetname ? this.assetname : 0,
+  //     actmaintenence: 0,
+  //     wrkordno: 0,
+  //   };
+
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
+  //     + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
+  //     + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
+  //     headers: options,
+
+  //   }).subscribe(resp => {
+  //     this.respContact = resp;
+  //     console.log(this.respTaskDetails);
+
+  //     this.propertyDesc = this.respTaskDetails[0]['pmm_asset_desc'];
+  //     // this.contact1 = JSON.parse(this.respContact);
+  //     // console.log(this.contact1);
+  //     // if (this.contact1.length == 0) {
+  //     //   this.presentAlert('Alert', 'Add company Contact Number!');
+
+  //     // } else {
+
+  //     //   this.contact_array = this.contact1;
+  //     // }
+  //   }, error => {
+
+  //     console.log("error : " + JSON.stringify(error));
+
+  //   });
+  // } 
+
+  getItems(ev: any) {
+
+    this.assetData = [];
     if (ev.target.value == "") {
-      this.propertyCode1 = [];
-      this.isPropertycodeAvailable = false;
-    }
-
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+      this.assetData = [];
+      this.isItemAvailable = false;
+    };
 
     let data = {
-      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branch: this.branchid ? this.branchid : 1,
+      functionID : this.functionID ? this.functionID : 0,
+      branchID : 0,
       Mode: this.mode ? this.mode : 0,
       fromDate: this.fdate ? this.fdate : 0,
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      asset_code: this.assetCode ? this.assetCode : 0,
       strUserId: 0,
-      UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+      UserType: 0,
       pageIndex: 0,
       pageSize: 50,
       sortExpression: 0,
@@ -294,67 +439,72 @@ export class MyTaskPage implements OnInit {
       wrkordno: 0,
     };
 
+
+    // Reset items back to all of the items
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
-    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-      + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
-      + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
+    
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + data.functionID + '/' + data.branchID + '/' + ev.target.value, {
+      
+      // this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionID + '/'+ data.branchID + '/'+ data.Mode + '/'
+      // + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ ev.target.value + '/'+ data.strUserId + '/'+ data.UserType + '/'
+      // + data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'+ data.drptype + '/'+ data.TASKTYPE + '/'
+      // + data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+      // + data.wrkordno, {
+      
       headers: options,
-    }).subscribe((resp: any) => {
-      console.log(resp);
-      this.propertyCode1 = [];
-      this.getBranch = resp;
-      this.isPropertycodeAvailable = false;
-      console.log(this.getBranch);
+    }).subscribe(resp => {
+      this.assetData = [];
+      this.isItemAvailable = false;
 
-      this.isRecordShow = true;
+      // set val to the value of the searchbar
+      this.companiesstr = resp;
+      console.log('dfkjbsdkfj', this.companiesstr);
 
-      for (var i = 0; i < this.getBranch.length; i++) {
-        this.propertyCode1.push(this.getBranch[i].pmm_asset_code);
-        console.log(this.propertyCode1.push(this.getBranch[i].pmm_asset_code));
+      for (var i = 0; i < this.companiesstr.length; i++) {
+        this.assetData.push({
+          ASSET_CODE: this.companiesstr[i].ASSET_CODE, binding: this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
+          NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE
+        });
       };
 
       const val = ev.target.value;
 
       if (val && val.trim() != '') {
-        this.isPropertycodeAvailable = true;
-        this.propertyCode1 = this.propertyCode1.filter((item) => {
+        this.isItemAvailable = true;
+        this.assetData = this.assetData.filter((item) => {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         });
       }
-      else {
-        this.isPropertycodeAvailable = false;
-      }
+    }, error => {
     });
-  }
+  };
 
   addPropertycode(item: any) {
-
-    this.assetCode = item;
-
-    this.isPropertycodeAvailable = false;
-    for (var i = 0; i < this.getBranch.length; i++) {
-      if (this.assetCode == this.getBranch[i].pmm_asset_code) {
-        this.pmm_asset_code = this.getBranch[i].id;
-        console.log(this.pmm_asset_code);
+    debugger;
+    this.assetCode = item.binding;
+    this.assetCodeBinding = item.ASSET_CODE
+    this.isItemAvailable = false;
+    for (var i = 0; i < this.companiesstr.length; i++) {
+      if (this.assetCode == this.companiesstr[i].companyName) {
+        this.ASSET_CODE = this.companiesstr[i].id;
+        console.log(this.ASSET_CODE);
       }
     };
 
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-
-
     let data = {
-      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branch: this.branchid ? this.branchid : 1,
+      functionID : this.functionID ? this.functionID : 0,
+      branchID : this.branchID ? this.branchID : 0,
       Mode: this.mode ? this.mode : 0,
       fromDate: this.fdate ? this.fdate : 0,
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      asset_code: this.assetCode ? this.assetCode : 0,
+      asset_code: this.assetCodeBinding ? this.assetCodeBinding : 0,
       strUserId: 0,
-      UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+      UserType: 0,
       pageIndex: 0,
       pageSize: 50,
       sortExpression: 0,
@@ -362,7 +512,7 @@ export class MyTaskPage implements OnInit {
       drpcategory: 0,
       drptype: 0,
       TASKTYPE: 0,
-      PropCode: this.propertycode ? this.propertycode : 0,
+      PropCode: this.PrCode ? this.PrCode : 0,
       PropDesc: this.PrDesc ? this.PrDesc : 0,
       strCriticality: 0,
       assetName: this.assetname ? this.assetname : 0,
@@ -370,35 +520,32 @@ export class MyTaskPage implements OnInit {
       wrkordno: 0,
     };
 
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.functionid + '/' + data.branch + '/' + data.Mode + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/'
-      + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/'
-      + data.drptype + '/' + data.TASKTYPE + '/' + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/' + data.wrkordno, {
-      headers: options,
 
+    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + data.functionID + '/' + data.branchID + '/' + item.ASSET_CODE, {
+      
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/'+ data.functionID + '/'+ data.branchID + '/'+ data.Mode + '/'
+      + data.fromDate + '/'+ data.toDate + '/'+ data.Status + '/'+ data.dept + '/'+ data.asset_code + '/'+ data.strUserId + '/'+ data.UserType + '/'
+      + data.pageIndex + '/'+ data.pageSize + '/'+ data.sortExpression + '/'+ data.alphaname + '/'+ data.drpcategory + '/'+ data.drptype + '/'+ data.TASKTYPE + '/'
+      + data.PropCode + '/'+ data.PropDesc + '/'+ data.strCriticality + '/'+ data.assetName + '/'+ data.actmaintenence + '/'
+      + data.wrkordno, {
+    
+      headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
-      console.log(this.respTaskDetails);
 
-      this.propertyDesc = this.respTaskDetails[0]['pmm_asset_desc'];
-      // this.contact1 = JSON.parse(this.respContact);
-      // console.log(this.contact1);
-      // if (this.contact1.length == 0) {
-      //   this.presentAlert('Alert', 'Add company Contact Number!');
+      console.log(this.respContact);
 
-      // } else {
 
-      //   this.contact_array = this.contact1;
-      // }
+      // this.assetCode = this.respContact[0]['property_desc'];
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
 
     });
-  } respTaskDetails(respTaskDetails: any) {
-    throw new Error('Method not implemented.');
   }
-  ;
 
 
   taskDetails() {
@@ -408,7 +555,7 @@ export class MyTaskPage implements OnInit {
 
     let data = {
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branch: this.branchid ? this.branchid : 1,
+      branch: this.branchid ? this.branchid : 0,
       Mode: this.mode ? this.mode : 0,
       fromDate: this.fdate ? this.fdate : 0,
       toDate: this.tdate ? this.tdate : 0,
@@ -416,7 +563,7 @@ export class MyTaskPage implements OnInit {
       dept: 0,
       asset_code: this.assetCode ? this.assetCode : 0,
       strUserId: 0,
-      UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+      UserType: 0,
       pageIndex: 0,
       pageSize: 50,
       sortExpression: 0,
@@ -465,10 +612,6 @@ export class MyTaskPage implements OnInit {
 
 
   filterMyTask() {
-    if (this.branch == "undefined" || this.branch == null || this.branch == "") {
-      this.presentAlert1("", "Please select Branch");
-      return;
-    } else {
 
       const header = new Headers();
       header.append("Content-Type", "application/json");
@@ -481,9 +624,9 @@ export class MyTaskPage implements OnInit {
         toDate: this.tdate ? this.tdate : 0,
         Status: 0,
         dept: 0,
-        asset_code: this.assetCode ? this.assetCode :0 ,
+        asset_code: this.assetCodeBinding ? this.assetCodeBinding :0 ,
         strUserId: 0,
-        UserType: parseInt(localStorage.getItem('TUM_USER_TYPE')),
+        UserType: 0,
         pageIndex: 0,
         pageSize: 50,
         sortExpression: 0,
@@ -518,7 +661,6 @@ export class MyTaskPage implements OnInit {
 
 
       });
-    };
   };
 
   updateStatus() {
