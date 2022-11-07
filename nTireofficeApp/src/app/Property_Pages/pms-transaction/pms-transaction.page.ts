@@ -70,6 +70,7 @@ export class PmsTransactionPage implements OnInit {
   getBID: any;
   get_Bid: any;
   loca_id: any;
+  propertycodeDesc: any;
 
 
   constructor(public alertController: AlertController, private router: Router, private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
@@ -152,7 +153,7 @@ export class PmsTransactionPage implements OnInit {
         functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
         branchid: this.branch ? this.branch : 1,
         locationid: this.branchlocation ? this.branchlocation : 1,
-        strPropertyId: this.propertycode ? this.propertycode : 0,
+        strPropertyId: this.propertycodeDesc ? this.propertycodeDesc : 0,
         strPropertyDesc: 0,
         rentelCode: 0,
         strStatus: 0,
@@ -340,7 +341,11 @@ export class PmsTransactionPage implements OnInit {
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
+        // this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({
+          property_code: this.companiesstr[i].property_code,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+        });
       }
       const val = ev.target.value;
 
@@ -361,7 +366,8 @@ export class PmsTransactionPage implements OnInit {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.property_code;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -373,7 +379,7 @@ export class PmsTransactionPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getPropertycode/' + this.propertycodeDesc + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
