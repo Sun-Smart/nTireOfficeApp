@@ -81,6 +81,11 @@ export class MyTaskPage implements OnInit {
   loca_id: any;
   get_Bid: any;
   propertycodeDesc: any;
+  assetCodeList: any;
+  assetCodeDesc: any;
+  assetcode: any;
+  asset_code: any;
+  respAsset: Object;
 
 
 
@@ -278,14 +283,85 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
+
       console.log(this.respContact);
+
+      // for(var i=0; i < this.respContact.length; i++){
+
+      //   this.assetCode1.push(this.respContact[i].ASSET_CODE );
+      //   this.assetCode1.push(this.respContact[i].ASSET_DESCRIPTION);
+
+      // }
 
       this.propertyDesc = this.respContact[0]['property_building_name'];
     }, error => {
       console.log("error : " + JSON.stringify(error));
     });
-  }
+  };
+  getItems(event:any){
 
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    this.assetCode1 = [];
+    if (event.target.value == "") {
+      this.assetCode1 = [];
+      this.isPropertycodeAvailable = false;
+    };
+
+        // Reset items back to all of the items
+        const header = new Headers();
+        header.append("Content-Type", "application/json");
+    
+        let options = new HttpHeaders().set('Content-Type', 'application/json');
+        this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + event.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+          headers: options,
+        }).subscribe(resp => {
+          this.assetCode1 = [];
+          this.assetCodeList = JSON.stringify(resp);
+          this.assetCodeList = JSON.parse(this.assetCodeList);
+
+          console.log(this.assetCodeList);
+
+          for(var i=0; i < this.assetCodeList.length; i++){
+            this.assetCode1.push( {ASSET_CODE : this.assetCodeList[i].ASSET_CODE,
+              binding : this.assetCodeList[i].ASSET_CODE + '-' + this.assetCodeList[i].ASSET_DESCRIPTION,
+              ASSET_DESCRIPTION :this.assetCodeList[i].ASSET_DESCRIPTION});
+          };
+
+          console.log(this.assetCode1);
+          
+
+        });
+  }
+  addAssetcode(items){
+    this.assetCode = items.binding;
+    this.assetCodeDesc = items.ASSET_CODE;
+    this.isPropertycodeAvailable = false;
+    for (var i = 0; i < this.assetCodeList.length; i++) {
+      if (this.assetcode == this.assetCodeList[i].companyName) {
+        this.asset_code = this.assetCodeList[i].id;
+        console.log(this.asset_code);
+      }
+    };
+
+    let data = {
+      functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
+      branchids: this.branchid ? this.branchid : 1,
+      locationid: this.branchlocation ? this.branchlocation : 1,
+    }
+     // Reset items back to all of the items
+     const header = new Headers();
+     header.append("Content-Type", "application/json");
+ 
+     let options = new HttpHeaders().set('Content-Type', 'application/json');
+     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.assetCodeDesc + + "/" + data.functionid + "/" + data.branchids + "/" + data.locationid, {
+      headers: options,
+    }).subscribe(resp => {
+
+      this.respAsset = resp;
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
+    });
+  };
   taskDetails() {
     debugger
     const header = new Headers();
@@ -299,7 +375,7 @@ export class MyTaskPage implements OnInit {
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      asset_code: 0,
+      asset_code:  this.assetCodeDesc ?  this.assetCodeDesc : 0,
       strUserId: 0,
       UserType: 0,
       pageIndex: 0,
@@ -309,7 +385,7 @@ export class MyTaskPage implements OnInit {
       drpcategory: 0,
       drptype: 0,
       TASKTYPE: 0,
-      PropCode: this.PrCode ? this.PrCode : 0,
+      PropCode:  this.propertycodeDesc ?  this.propertycodeDesc : 0,
       PropDesc: this.PrDesc ? this.PrDesc : 0,
       strCriticality: 0,
       assetName: this.assetname ? this.assetname : 0,
@@ -362,7 +438,7 @@ export class MyTaskPage implements OnInit {
         toDate: this.tdate ? this.tdate : 0,
         Status: 0,
         dept: 0,
-        asset_code: this.assetCodeBinding ? this.assetCodeBinding :0 ,
+        asset_code:  this.assetCodeDesc ?  this.assetCodeDesc : 0,
         strUserId: 0,
         UserType: 0,
         pageIndex: 0,
@@ -372,7 +448,7 @@ export class MyTaskPage implements OnInit {
         drpcategory: 0,
         drptype: 0,
         TASKTYPE: 0,
-        PropCode: this.PrCode ? this.PrCode : 0,
+        PropCode:  this.propertycodeDesc ?  this.propertycodeDesc : 0,
         PropDesc: this.PrDesc ? this.PrDesc : 0,
         strCriticality: 0,
         assetName: this.assetname ? this.assetname : 0,
