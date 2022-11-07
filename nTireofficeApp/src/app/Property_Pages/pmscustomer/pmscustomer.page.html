@@ -8,6 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-grid style="margin: 0; padding:0;">
 <ion-content>
   <ion-row class="top-header">
 
@@ -94,7 +95,7 @@
         </ion-col> -->
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Unique Refference :</ion-label>
+          <ion-label class="ContentName">Unique Reference :</ion-label>
           <!-- <ion-input class="form-control"></ion-input>  -->
           <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="uniqueRef" animated="true">
           </ion-searchbar>
@@ -299,6 +300,5 @@
       {{username}}
     </ion-col>
   </ion-row>
-
-
 </ion-footer>
+</ion-grid>

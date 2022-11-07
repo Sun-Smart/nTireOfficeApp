@@ -155,7 +155,7 @@ export class PmsListPage implements OnInit {
 
   getLocationdata(branch:any) {
     console.log(branch);
-    
+
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
     this.get_Bid = branch;
@@ -171,7 +171,7 @@ export class PmsListPage implements OnInit {
     });
   };
 
-  
+
   newPropertyCode(branchlocation) {
 
     let data = {
@@ -223,7 +223,12 @@ export class PmsListPage implements OnInit {
       this.companiesstr = resp;
 
       console.log(this.companiesstr);
-
+      if (this.companiesstr == "No data found") {
+        console.log('check pr code');
+        this.companiesstr = "";
+      }else{
+        console.log('is available');
+      }
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {

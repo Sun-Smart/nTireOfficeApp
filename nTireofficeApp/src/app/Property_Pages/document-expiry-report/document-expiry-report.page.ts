@@ -191,7 +191,7 @@ export class DocumentExpiryReportPage implements OnInit {
     }).subscribe(resp => {
       console.log('click t  call', resp);
 
-      
+
 
       // set val to the value of the searchbar
 
@@ -229,7 +229,12 @@ export class DocumentExpiryReportPage implements OnInit {
       this.companiesstr = resp;
 
       console.log(this.companiesstr);
-
+      if (this.companiesstr == "No data found") {
+        console.log('check pr code');
+        this.companiesstr = "";
+      }else{
+        console.log('is available');
+      }
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {

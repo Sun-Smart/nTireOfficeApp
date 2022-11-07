@@ -85,7 +85,7 @@ export class PropertyCondactListPage implements OnInit {
   //   });
   // };
 
-  
+
   // BranchLocationdata(branchid) {
   //   let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -126,7 +126,7 @@ export class PropertyCondactListPage implements OnInit {
 
   getLocationdata(branch:any) {
     console.log(branch);
-    
+
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
     this.get_Bid = branch;
@@ -194,7 +194,12 @@ export class PropertyCondactListPage implements OnInit {
       this.companiesstr = resp;
 
       console.log(this.companiesstr);
-
+      if (this.companiesstr == "No data found") {
+        console.log('check pr code');
+        this.companiesstr = "";
+      }else{
+        console.log('is available');
+      }
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
@@ -275,7 +280,7 @@ getpropertycondactlist(){
    this.propetycondactlist=res
 
 
-   
+
    if (this.propetycondactlist == null) {
     // alert("hh")
     this.showdata = "No Data Found"
@@ -283,7 +288,7 @@ getpropertycondactlist(){
   else {
     this.showdata = this.propetycondactlist.length;
   }
-    
+
   })
 
 }
@@ -299,7 +304,7 @@ filterpropertycondactlist(){
   let data ={
     functionID: localStorage.getItem('FUNCTION_ID'),
     branchid: this.branch ? this.branch : 1,
-  
+
     propertyID: this.propertycode ? this.propertycode : 0,
   }
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertycontactlistreport/'+ data.functionID + "/" + data.branchid + "/" + data.propertyID+ "/0", {
@@ -308,14 +313,14 @@ filterpropertycondactlist(){
     console.log(resp,"reportlist");
     this.propetycondactlist = [];
    this.propetycondactlist=resp;
-   
+
    if (resp == null) {
     this.showRecords = true;
   } else {
     this.showRecords = false;
     this.propetycondactlist = resp;
   }
-    
+
   })
 
 }
