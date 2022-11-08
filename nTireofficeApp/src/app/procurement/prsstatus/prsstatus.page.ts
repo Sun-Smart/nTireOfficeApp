@@ -20,9 +20,11 @@ export class PRSstatusPage implements OnInit {
   todate: any;
   fromdate: any;
   editprs: boolean = false;
-  loading: boolean = false
+  loading: boolean = false;
+  showdeledit: boolean = true
   Branchname;
   getprsid: any;
+  getstatus: any;
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
@@ -151,10 +153,10 @@ export class PRSstatusPage implements OnInit {
 
   Search() {
     this.loading = true
-    console.log(this.prscode)
-    console.log(this.status)
-    console.log(this.todate)
-    console.log(this.fromdate)
+    // console.log(this.prscode)
+    // console.log(this.status)
+    // console.log(this.todate)
+    // console.log(this.fromdate)
     this.showviewlist = true
     if (this.prscode == undefined) {
       this.prscode = ''
@@ -219,14 +221,20 @@ export class PRSstatusPage implements OnInit {
 
       console.log("Response", res)
       console.log("Response", res)
+      console.log(res.status)
+      if (res.status == "d" || res.status == "D") {
+        this.showdeledit = false
+      }
       for (let item of this.getresponse) {
         console.log(item);
         this.getprsid = item.PRS_ID
+        this.getstatus = item.STATUS
+        console.log(this.getstatus)
+      }
+      if (this.getstatus == "Denied" || this.getstatus == "D") {
+        this.showdeledit = false
       }
     })
-
-
-
 
     //   const header = new Headers();
     //   header.append("Content-Type", "application/json");
