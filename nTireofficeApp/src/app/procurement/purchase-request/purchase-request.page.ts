@@ -560,7 +560,7 @@ export class PurchaseRequestPage implements OnInit {
             // this.referenceifany = ""
             this.rfpcomments = ""
             this.order = ""
-            this.requestby = ""
+            // this.requestby = ""
             this.expenseArray = []
           }
         }
