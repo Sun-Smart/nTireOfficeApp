@@ -22,9 +22,7 @@ export class AdditionallistPage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
   arra: any=[];
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router, public Ipaddressservice: IpaddressService) {
-
   }
-
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.data = params;
@@ -33,20 +31,15 @@ export class AdditionallistPage implements OnInit {
     this.GetList();
   }
   GetList() {
-
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getadditionalchargegrid/' + this.data.property, {
       headers: options,
     }).subscribe(resp => {
       this.ShowAddionalList = resp;
       if (resp == "No data found") {
-        this.ShowAddionalList=[]
-        // this.arra.push(this.ShowAddionalList)
-        // console.log(this.arra);
-        
+        this.ShowAddionalList=[];
         this.showError = true;
       } else {
         this.showError = false;
@@ -57,6 +50,5 @@ export class AdditionallistPage implements OnInit {
   };
   cancel() {
     this.router.navigate(['/additional-page']);
-    // return this.modalCtrl.dismiss(null, 'cancel');
   }
 }
