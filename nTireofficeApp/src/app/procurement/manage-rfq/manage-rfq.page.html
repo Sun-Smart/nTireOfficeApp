@@ -46,35 +46,19 @@
           </thead>
           <tbody class="table-body">
             <ng-container>
-              <tr>
+              <tr *ngFor="let item of manageRFQCard">
                 <!-- <td><input type="checkbox" id="checkbox" [checked]="selectAllissue"></td> -->
-                <td>RFQ8976</td>
-                <td>7865</td>
-                <td>77</td>
-                <td>12/09/2020</td>
-                <td><a (click)="find()">Find</a></td>
+                <td>{{item.rFQCode}}</td>
+                <td>{{item.item_Code}}</td>
+                <td></td>
+                <td>{{item.requested_Date}}</td>
+                <td><a (click)="findrfq(item)">Find</a></td>
 
               </tr>
 
-              <tr>
-                <!-- <td><input type="checkbox" id="checkbox" [checked]="selectAllissue"></td> -->
-                <td>RFQ8976</td>
-                <td>7865</td>
-                <td>77</td>
-                <td>12/09/2020</td>
-                <td><a (click)="find()">Find</a></td>
 
-              </tr>
 
-              <tr>
-                <!-- <td><input type="checkbox" id="checkbox" [checked]="selectAllissue"></td> -->
-                <td>RFQ8976</td>
-                <td>7865</td>
-                <td>77</td>
-                <td>12/09/2020</td>
-                <td><a (click)="find()">Find</a></td>
 
-              </tr>
             </ng-container>
           </tbody>
         </table>

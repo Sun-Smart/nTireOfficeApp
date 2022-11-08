@@ -28,11 +28,13 @@ export class RFQPage implements OnInit {
   showCRFQ: boolean = false;
 
   erefref
-  getresponse: any;
+  getresponse: any =[];
   getraisedrfq: any;
   getrfqcancel: any;
   splitted;
   managerfqdetails;
+  getresponsestr;
+  getresponsenew;
   constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
@@ -217,19 +219,8 @@ export class RFQPage implements OnInit {
 
       this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).then((res: any) => {
         this.getresponse = res;
-        console.log("Response", res);
-        console.log(res[0].RFQCode2)
-        var str = res[0].RFQCode2;
-        this.splitted = str.split('/');
-        console.log(this.splitted);
-       this.splitted = this.splitted[1];
-        console.log('new',this.splitted)
+
       });
-
-
-
-
-
 
     } else if (this.status == "A") {
       this.showRfq = false;
@@ -304,13 +295,16 @@ export class RFQPage implements OnInit {
         // this.presentAlert("", "RFQ 345/AT Raised Successfully");
       });
   }
-  manageRFQlink() {
+  manageRFQlink(item:any) {
+    console.log('New Item',item)
+    var str =item ;
+        console.log(str)
+        this.splitted = str.split('/');
+        console.log(this.splitted);
+       this.splitted = this.splitted[1];
+        console.log('new',this.splitted)
 
-   this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'get_Manage_RFQ/'+this.splitted).then((res:any) => {
-    this.managerfqdetails = res;
-    console.log(this.managerfqdetails)
-   })
-     this.router.navigate(['/manage-rfq'])
+     this.router.navigate(['/manage-rfq/',this.splitted])
   }
 
   async presentAlert(heading, tittle) {
