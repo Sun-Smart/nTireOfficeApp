@@ -40,6 +40,8 @@ export class PmsdashboardPage implements OnInit {
   userID: string;
   functionID: string;
   branchID: string;
+  issueDesc: any;
+  tovaccantchartcount: any[];
 
   constructor(private http: HttpClient, 
     private platform: Platform, 
@@ -50,12 +52,17 @@ export class PmsdashboardPage implements OnInit {
     this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.columnsStatus = [
+      { name: 'issuedescription', },
       { name: 'issuecode', },
       { name: 'issuedate', },
-      { name: 'issuedescription', },
       { name: 'status', },
       { name: 'tenant', }
     ];
+
+     this.tovaccantchartcount = [
+      {name: 'Days'},
+      { name: 'Count', },
+     ];
 
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
@@ -87,7 +94,17 @@ issueStatus(){
       headers:options
     }).subscribe((resp: any) => {
       console.log(resp)
-      this.dataStatus = resp
+      this.dataStatus = resp;
+
+      console.log(this.dataStatus);
+
+      for(var i=0; i< this.dataStatus.length; i++ ){
+        this.issueDesc = this.dataStatus[i].issuedescription;
+      };
+
+      console.log(this.issueDesc);
+      
+      
     })
 
 }
@@ -173,19 +190,7 @@ issueStatus(){
               }
             }]
           },
-          // tooltips: {
-
-          //   callbacks: {
-          //     title: function (tooltipItem, data) {
-          //       return data['labels'][tooltipItem[0]['index']];
-          //     },
-          //     label: function (tooltipItem, data) {
-          //       return data.datasets[0]['label'] + " : " + data['datasets'][0]['data'][tooltipItem['index']];
-          //     },
-
-          //   },
-          // },
-        }
+        },
       })
     });
   }
@@ -422,10 +427,9 @@ issueStatus(){
     }).subscribe((resp: any) => {
       console.log(resp)
       debugger
-      this.tovaccantchart = resp;
+      this.tovaccantchartcount = resp;
 
-      this.tovaccantchartcount = this.tovaccantchart;
-      console.log(this.branchCount);
+      console.log("ToBeVaccant",this.tovaccantchartcount);
       this.labels = [];
       this.data = [];
       for (var i = 0; i < this.tovaccantchartcount.length; i++) {

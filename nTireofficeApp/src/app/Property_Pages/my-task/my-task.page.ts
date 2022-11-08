@@ -1,17 +1,4 @@
-/* eslint-disable no-debugger */
-/* eslint-disable @typescript-eslint/semi */
-/* eslint-disable @typescript-eslint/dot-notation */
-/* eslint-disable arrow-body-style */
-/* eslint-disable eqeqeq */
-/* eslint-disable @typescript-eslint/prefer-for-of */
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable prefer-const */
-/* eslint-disable radix */
-/* eslint-disable no-var */
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/no-inferrable-types */
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -146,10 +133,10 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.branchlist1 = resp;
-      console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
       // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for (var i = 0; i < this.branchlist1.length; i++) {
-        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+        this.getBID = this.branchlist1[i].BRANCH_ID;
       }
       console.log('getBID', this.getBID);
 
@@ -202,6 +189,32 @@ export class MyTaskPage implements OnInit {
       this.assetCode1 = [];
       this.isPropertycodeAvailable = false;
     };
+
+    // let data = {
+    //   strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+    //   branch_Id: this.get_Bid ? this.get_Bid : 0,
+    //   Mode: this.mode ? this.mode : 0,
+    //   fromDate: this.fdate ? this.fdate : 0,
+    //   toDate: this.tdate ? this.tdate : 0,
+    //   Status: 0,
+    //   dept: 0,
+    //   asset_code: ev.target.value ? ev.target.value : 0,
+    //   strUserId: 0,
+    //   UserType: 0,
+    //   pageIndex: 0,
+    //   pageSize: 50,
+    //   sortExpression: 0,
+    //   alphaname: 0,
+    //   drpcategory: 0,
+    //   drptype: 0,
+    //   TASKTYPE: 0,
+    //   PropCode: 0,
+    //   PropDesc: 0,
+    //   strCriticality: 0,
+    //   assetName: 0,
+    //   actmaintenence: 0,
+    //   wrkordno: 0,
+    // };
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       branch_Id: this.get_Bid,
@@ -211,7 +224,13 @@ export class MyTaskPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + data.strFunctionId + "/" + data.branch_Id + "/" + ev.target.value, {
+      
+      // this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
+      // + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/'
+      // + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/' + data.drptype + '/' + data.TASKTYPE + '/'
+      // + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/'
+      // + data.wrkordno, { 
       headers: options,
     }).subscribe(resp => {
       this.assetCode1 = [];
@@ -249,15 +268,49 @@ export class MyTaskPage implements OnInit {
         console.log(this.property_code);
       }
     };
+
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      Mode: this.mode ? this.mode : 0,
+      fromDate: this.fdate ? this.fdate : 0,
+      toDate: this.tdate ? this.tdate : 0,
+      Status: 0,
+      dept: 0,
+      asset_code: this.assetCodeDesc ? this.assetCodeDesc : 0,
+      strUserId: 0,
+      UserType: 0,
+      pageIndex: 0,
+      pageSize: 50,
+      sortExpression: 0,
+      alphaname: 0,
+      drpcategory: 0,
+      drptype: 0,
+      TASKTYPE: 0,
+      PropCode: 0,
+      PropDesc: 0,
+      strCriticality: 0,
+      assetName: 0,
+      actmaintenence: 0,
+      wrkordno: 0,
     };
+
+    // let data = {
+    //   strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+    //   branch_Id: this.get_Bid,
+    //   loca_Id: this.loca_id
+    // };
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.assetCodeDesc + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.assetCodeDesc + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+     
+      this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
+      + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/'
+      + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/' + data.drptype + '/' + data.TASKTYPE + '/'
+      + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/'
+      + data.wrkordno, { 
+     
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;

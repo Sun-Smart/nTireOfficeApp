@@ -52,6 +52,9 @@ export class PmsCreateIssuePage implements OnInit {
   assetownerid: any;
   categoryid: any;
   assetCodeBinding: any;
+  branchlist1: any;
+  getBID: any;
+  branchId: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
@@ -65,7 +68,7 @@ export class PmsCreateIssuePage implements OnInit {
 
 
     this.function = localStorage.getItem('FUNCTION_DESC');
-    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    // this.branch = localStorage.getItem('TUM_BRANCH_CODE');
 
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.user_ID = JSON.parse(this.userID);
@@ -84,6 +87,7 @@ export class PmsCreateIssuePage implements OnInit {
   }
 
   ngOnInit() {
+    this. BranchLocationdata();
   }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -102,7 +106,28 @@ export class PmsCreateIssuePage implements OnInit {
     });
 
     await alert.present();
-  }
+  };
+
+  BranchLocationdata() {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
+      headers: options,
+    }).subscribe(resp => {
+      this.branchlist1 = resp;
+      console.log(this.branchlist1);
+      
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist1.length; i++) {
+        this.getBID = this.branchlist1[i].BRANCH_ID;
+      }
+      console.log('getBID', this.getBID);
+    }, error => {
+      console.log("branchlist1 : " + JSON.stringify(error));
+    });
+  };
 
   getItems(ev: any) {
 
@@ -117,7 +142,7 @@ export class PmsCreateIssuePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + this.functionID + '/' + this.getBID + '/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.assetData = [];
@@ -169,7 +194,7 @@ export class PmsCreateIssuePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + item.ASSET_CODE, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.getBID + '/' + item.ASSET_CODE, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
