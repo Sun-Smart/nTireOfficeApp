@@ -4,6 +4,7 @@
         <ion-button (click)="cancel()">
         <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon>
       </ion-button>
+      </ion-buttons>
       <ion-title>Vendor Details</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -48,44 +49,25 @@
                 <th> Tax 1 </th>
                 <th>Tax 2</th>
                 <th>TC</th>
-
               </tr>
             </thead>
             <tbody class="table-body">
               <ng-container>
-                <tr>
-                  <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor"> </td>
-                  <td>Suneel</td>
-                  <td>7865</td>
-                  <td>77</td>
-                  <td>324</td>
-                  <td>77</td>
-                  <td>324</td>
+                <tr *ngFor="let item of findVendorDetails">
+                  <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor" (change)="fieldsChange($event,item)"> </td>
+                  <td>{{item.vendorName}}</td>
+                  <td>{{item.currency}}</td>
+                  <td>{{item.unit_price}}</td>
+                  <td>{{item.tax1}}</td>
+                  <td>{{item.tax2}}</td>
+                  <td>{{item.tC}}</td>
 
                   <!-- <td><a (click)="find()"><ion-icon name="search-circle-outline">find</ion-icon></a></td> -->
                 </tr>
 
-                <tr>
-                  <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor"> </td>
-                  <td>Suneel</td>
-                  <td>7865</td>
-                  <td>77</td>
-                  <td>324</td>
-                  <td>77</td>
-                  <td>324</td>
-                  <!-- <td><a (click)="find()"><ion-icon name="search-circle-outline">find</ion-icon></a></td> -->
-                </tr>
 
-                <tr>
-                  <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor"> </td>
-                  <td>Suneel</td>
-                  <td>7865</td>
-                  <td>77</td>
-                  <td>324</td>
-                  <td>77</td>
-                  <td>324</td>
-                  <!-- <td><a (click)="find()"><ion-icon name="search-circle-outline"></ion-icon></a></td> -->
-                </tr>
+
+
               </ng-container>
             </tbody>
           </table>
@@ -97,7 +79,7 @@
       <ion-row>
         <ion-col>
           <ion-col style="text-align: center;">
-            <ion-button class="ion-color-success" (click)="add()"  style="margin-top: -18px;" expand="block">Add</ion-button>
+            <ion-button class="ion-color-success" (click)="add($event)"  style="margin-top: -18px;" expand="block">Add</ion-button>
           </ion-col>
         </ion-col>
         <ion-col>

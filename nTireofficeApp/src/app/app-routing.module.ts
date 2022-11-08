@@ -73,6 +73,10 @@ const routes: Routes = [
     loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then(m => m.VendorsdetailsPageModule)
   },
   {
+    path: 'vendorsdetails/:id/:category/:subcategory/:itemid',
+    loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then(m => m.VendorsdetailsPageModule)
+  },
+  {
     path: 'vendorsitems',
     loadChildren: () => import('./procurement/vendorsitems/vendorsitems.module').then(m => m.VendorsitemsPageModule)
   },
@@ -383,6 +387,10 @@ const routes: Routes = [
 
   {
     path: 'manage-rfq',
+    loadChildren: () => import('./procurement/manage-rfq/manage-rfq.module').then(m => m.ManageRfqPageModule)
+  },
+  {
+    path: 'manage-rfq/:id',
     loadChildren: () => import('./procurement/manage-rfq/manage-rfq.module').then(m => m.ManageRfqPageModule)
   },
   {
