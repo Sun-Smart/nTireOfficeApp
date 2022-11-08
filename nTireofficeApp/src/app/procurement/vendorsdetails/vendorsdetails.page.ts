@@ -69,18 +69,10 @@ export class VendorsdetailsPage implements OnInit {
      })
   }
 
-  add(){
-    this.router.navigate(['/manage-rfq']);
-    if(this.value == false)
-    {
-    this.showitemdetails_grid = true;
-    this.showvendorlist_grid = true;
-  }
-  else
-  {
-    this.showitemdetails_grid = true;
-    this.showvendorlist_grid = false;
-  }
+  add(event : any){
+
+    console.log(this.VendorDetails,'new')
+
 }
 
 selectAllvendorCheckbox(value) {
@@ -101,9 +93,17 @@ fieldsChange(values:any,item:any):void {
     this.VendorDetails.push(item);
     console.log(this.VendorDetails);
   }
-  else if(this.Checked == false){
-    this.VendorDetails = this.VendorDetails.filter(id => id != item.id);
+  else {
+    var index = this.VendorDetails.indexOf(item);
+    if(index > -1){
+      this.VendorDetails.splice(index,1)
+      console.log(this.VendorDetails,'filterarray');
+    }
+
+
   }
 }
 }
-
+//  var index = d.indexOf(s);
+//             if (index > -1) {
+//                 d.splice(index, 1);

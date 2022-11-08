@@ -49,13 +49,12 @@
                 <th> Tax 1 </th>
                 <th>Tax 2</th>
                 <th>TC</th>
-
               </tr>
             </thead>
             <tbody class="table-body">
               <ng-container>
                 <tr *ngFor="let item of findVendorDetails">
-                  <td><input type="checkbox" id="checkbox" (change)="fieldsChange($event,item)"> </td>
+                  <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor" (change)="fieldsChange($event,item)"> </td>
                   <td>{{item.vendorName}}</td>
                   <td>{{item.currency}}</td>
                   <td>{{item.unit_price}}</td>
@@ -80,7 +79,7 @@
       <ion-row>
         <ion-col>
           <ion-col style="text-align: center;">
-            <ion-button class="ion-color-success" (click)="add()"  style="margin-top: -18px;" expand="block">Add</ion-button>
+            <ion-button class="ion-color-success" (click)="add($event)"  style="margin-top: -18px;" expand="block">Add</ion-button>
           </ion-col>
         </ion-col>
         <ion-col>
