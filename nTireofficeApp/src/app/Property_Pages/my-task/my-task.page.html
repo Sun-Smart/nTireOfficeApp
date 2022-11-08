@@ -41,7 +41,7 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Branch Location</ion-label>
           <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
-          (change)="newPropertyCode(branchlocation)">
+          (change)="newAssetCode(branchlocation)">
             <option [ngValue]="undefined" selected disabled>
               << Select >>
             </option>
@@ -52,26 +52,26 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
-          <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
+          <ion-searchbar [(ngModel)]="asset_code" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
-            <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
+            <ion-item *ngFor="let item of assetCode1" (click)="addAssetCode(item)"
               style="background:none !important;color:#444 !important;display: block;">
               {{item.binding}}
             </ion-item>
           </ion-list>
         </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Asset Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
           <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 250px;">
-            <ion-item *ngFor="let items of assetData" (click)="addAssetcode(items)"
+            <ion-item *ngFor="let items of assetCode1" (click)="addAssetcode(items)"
               style="background:none !important;color:#444 !important;display: block;">
               {{item.binding}}
             </ion-item>
           </ion-list>
-        </ion-col>
+        </ion-col> -->
 
 
         <ion-col size="12">
