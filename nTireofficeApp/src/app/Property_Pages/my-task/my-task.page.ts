@@ -1,3 +1,17 @@
+/* eslint-disable no-debugger */
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable arrow-body-style */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable prefer-const */
+/* eslint-disable radix */
+/* eslint-disable no-var */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -10,11 +24,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./my-task.page.scss'],
 })
 export class MyTaskPage implements OnInit {
-
-
   showfilter: boolean = true;
   isItemAvailable: boolean;
-
   function: any;
   branch: any;
   userID: any;
@@ -24,9 +35,6 @@ export class MyTaskPage implements OnInit {
   branchID: any;
   functionID: any;
   username: any;
-
-  //  filter Branch, Location & property code,
-
   branchlist1: any = [];
   branchlist: any;
   branchlocationlist: any = [];
@@ -41,7 +49,6 @@ export class MyTaskPage implements OnInit {
   respContact: any;
   propertyDesc: any;
   isRecordShow: Boolean;
-
   mode: any;
   fromDate: any;
   toDate: any;
@@ -87,17 +94,12 @@ export class MyTaskPage implements OnInit {
   asset_code: any;
   respAsset: any;
   getAssetCode: any;
-
-
-
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
     public Ipaddressservice: IpaddressService,
     private activatedRoute: ActivatedRoute) {
-
     this.function = localStorage.getItem('FUNCTION_DESC');
-    // this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
@@ -115,7 +117,6 @@ export class MyTaskPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 
@@ -129,16 +130,13 @@ export class MyTaskPage implements OnInit {
     });
     await alert.present();
   }
-
   togglefilter() {
     this.showfilter = !this.showfilter;
   };
-
   ngOnInit() {
     this.BranchLocationdata();
     this.taskDetails();
   };
-
   BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
@@ -148,9 +146,8 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.branchlist1 = resp;
-      // this.branchlocationlist = JSON.stringify(resp);
-      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // eslint-disable-next-line @typescript-eslint/prefer-for-of
       for (var i = 0; i < this.branchlist1.length; i++) {
         this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
       }
@@ -164,9 +161,7 @@ export class MyTaskPage implements OnInit {
 
   getLocationdata(branch: any) {
     console.log(branch);
-
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-
     this.get_Bid = branch;
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
@@ -181,7 +176,6 @@ export class MyTaskPage implements OnInit {
   };
 
   newAssetCode(branchlocation: any) {
-
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
@@ -190,30 +184,19 @@ export class MyTaskPage implements OnInit {
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
       this.companiesstr = resp;
-
       console.log(this.companiesstr);
-
-
-      // set val to the value of the searchbar
-
-
     }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
-
   };
 
   getPropertyCode(ev: any) {
-
-    // console.log("one");
     this.assetCode1 = [];
     if (ev.target.value == "") {
       this.assetCode1 = [];
@@ -224,11 +207,9 @@ export class MyTaskPage implements OnInit {
       branch_Id: this.get_Bid,
       loca_Id: this.loca_id
     };
-
     // Reset items back to all of the items
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
       headers: options,
@@ -237,20 +218,15 @@ export class MyTaskPage implements OnInit {
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.getAssetCode = resp;
-
       console.log(this.getAssetCode);
       for (var i = 0; i < this.getAssetCode.length; i++) {
-        // this.propertyCode1.push(this.companiesstr[i].property_code);
         this.assetCode1.push({
           asset_code: this.getAssetCode[i].ASSET_CODE,
           binding: this.getAssetCode[i].ASSET_CODE + "-" + this.getAssetCode[i].property_building_name
         });
       };
-
       console.log(this.assetCode1);
-
       const val = ev.target.value;
-
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isPropertycodeAvailable = true;
@@ -259,13 +235,11 @@ export class MyTaskPage implements OnInit {
         });
       }
     }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
   };
 
   addAssetCode(item: any) {
-
     this.asset_code = item.binding;
     this.assetCodeDesc = item.ASSET_CODE;
     this.isPropertycodeAvailable = false;
@@ -275,7 +249,6 @@ export class MyTaskPage implements OnInit {
         console.log(this.property_code);
       }
     };
-
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       branch_Id: this.get_Bid,
@@ -283,15 +256,12 @@ export class MyTaskPage implements OnInit {
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.assetCodeDesc + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
-
       console.log(this.respContact);
-
       this.propertyDesc = this.respContact[0]['property_building_name'];
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -302,7 +272,6 @@ export class MyTaskPage implements OnInit {
     debugger
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       branch_Id: 0,
@@ -328,9 +297,7 @@ export class MyTaskPage implements OnInit {
       actmaintenence: 0,
       wrkordno: 0,
     };
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
       + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/'
       + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/' + data.drptype + '/' + data.TASKTYPE + '/'
@@ -339,33 +306,23 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp);
-
       this.myTaskDetailsList = resp;
-
       console.log(this.myTaskDetailsList);
       for (var i = 0; i < this.myTaskDetailsList.length; i++) {
         this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
       };
       console.log('kuhgg', this.pmr_reference);
     });
-
     if (this.myTaskDetailsList == null) {
-
       this.showdata = "0";
     }
     else {
       this.showdata = this.myTaskDetailsList.length;
     }
   };
-
-
-
-
   filterMyTask() {
-
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       branch_Id: this.get_Bid,
@@ -391,7 +348,6 @@ export class MyTaskPage implements OnInit {
       actmaintenence: 0,
       wrkordno: 0,
     };
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
       + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/'
@@ -402,14 +358,10 @@ export class MyTaskPage implements OnInit {
     }).subscribe((resp: any) => {
       console.log(resp);
       this.myTaskDetailsList = resp;
-
       console.log(this.myTaskDetailsList);
-
       for (var i = 0; i < this.myTaskDetailsList.length; i++) {
         this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
       };
-
-
     });
   };
 
@@ -427,7 +379,6 @@ export class MyTaskPage implements OnInit {
         status: this.getTaskStatus,
         pmr_reference: this.pmr_reference,
       };
-
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'mytaskstatusupdate/', data, {
         headers: options,
