@@ -12,7 +12,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable object-shorthand */
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { PmsCreateIssuePage } from '../pms-create-issue/pms-create-issue.page';
@@ -63,6 +63,8 @@ export class AdditionalPagePage implements OnInit {
   loca_id: any;
   get_Bid: any; rental_code: any;
   rental_Code: any;
+  data: any;
+  sub: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,

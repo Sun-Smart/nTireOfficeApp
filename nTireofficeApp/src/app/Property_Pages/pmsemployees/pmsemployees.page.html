@@ -6,20 +6,11 @@
     <ion-title>PMS EMPLOYEES</ion-title>
   </ion-toolbar>
 </ion-header>
-<!-- <div style="display: flex;"> -->
-
-
-
-
-
 <ion-content class="ion-padding">
   <ion-button id="open-modal" expand="block">My Task</ion-button>
   <ion-button id="open-modal0" expand="block">Additonal</ion-button>
-
-
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>
-
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
@@ -30,14 +21,10 @@
           <ion-title>My Tasks</ion-title>
         </ion-toolbar>
       </ion-header>
-
-
-
     </ng-template>
   </ion-modal>
   <ion-modal trigger="open-modal0">
     <ng-template>
-
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
@@ -45,14 +32,11 @@
               <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon>
             </ion-button>
           </ion-buttons>
-
           <ion-title>Additional Charges</ion-title>
         </ion-toolbar>
       </ion-header>
-
     </ng-template>
   </ion-modal>
-
 </ion-content>
 
 

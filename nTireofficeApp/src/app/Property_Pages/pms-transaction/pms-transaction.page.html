@@ -6,7 +6,6 @@
     <ion-title>PMS Transaction</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-row class="top-header">
     <ion-col size="4">
@@ -15,7 +14,6 @@
       </ion-button>
     </ion-col>
   </ion-row>
-
   <ion-card *ngIf="showfilter">
     <ion-card-content>
       <ion-row>
@@ -28,7 +26,6 @@
             </option>
           </select>
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Branch Location</ion-label>
           <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
@@ -38,8 +35,6 @@
               {{location.LOCATION_DESC}}</option>
           </select>
         </ion-col>
-
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
@@ -75,7 +70,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text"> {{items.Location}}</ion-label>
         </ion-col>
-
         <ion-col size="5">
           <ion-label>Property Code</ion-label>
         </ion-col>
@@ -83,8 +77,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.property_code}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5">
           <ion-label>Rental Code</ion-label>
         </ion-col>
@@ -92,7 +84,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.rental_code}}</ion-label>
         </ion-col>
-
         <ion-col size="5">
           <ion-label>Description</ion-label>
         </ion-col>
@@ -100,8 +91,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.property_desc}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5">
           <ion-label>Catagory</ion-label>
         </ion-col>
@@ -109,8 +98,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.Category}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5">
           <ion-label>Customer</ion-label>
         </ion-col>
@@ -118,8 +105,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.CustomerName}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5">
           <ion-label>Start Date</ion-label>
         </ion-col>
@@ -127,8 +112,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.start_date}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5">
           <ion-label>End Date</ion-label>
         </ion-col>
@@ -136,8 +119,6 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.end_date}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5">
           <ion-label>Type</ion-label>
         </ion-col>
@@ -145,19 +126,13 @@
         <ion-col size="6">
           <ion-label class="labelData-text">{{items.rent_type}}</ion-label>
         </ion-col>
-
-
         <ion-col size="5" style="display: flex;align-items: center;">
           <ion-label>Action</ion-label>
         </ion-col>
-
         <ion-col size="1" class="labelData-text" style="display: flex;align-items: center;"> : </ion-col>
-
         <ion-col size="6" style="text-align: center;">
           <ion-button color="primary" size="small" (click)="viewReciept(items)"> View </ion-button>
         </ion-col>
-
-
       </ion-row>
     </ion-card-content>
   </ion-card>
