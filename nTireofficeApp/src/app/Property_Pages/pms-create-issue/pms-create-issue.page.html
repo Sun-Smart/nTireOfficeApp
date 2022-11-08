@@ -1,28 +1,27 @@
 <ion-header>
   <ion-toolbar>
 
-        <ion-buttons slot="start" >
-          <ion-button (click)="cancel()">
-            <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon> 
-            <span  style="color:white;">Back</span>
-          </ion-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        <ion-icon name="chevron-back-outline" style="color:white;"></ion-icon>
+        <span style="color:white;">Back</span>
+      </ion-button>
+    </ion-buttons>
 
-        <ion-title style="margin: 0 20px;">Create Issue</ion-title>
+    <ion-title style="margin: 0 20px;">Create Issue</ion-title>
 
 
- 
+
   </ion-toolbar>
 </ion-header>
+<ion-grid style="margin: 0; padding:0;">
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content>
+      </ion-refresher-content>
+    </ion-refresher>
 
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content>
-    </ion-refresher-content>
-  </ion-refresher>
 
- 
-  <ion-grid>
     <ion-row>
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -43,55 +42,56 @@
       </ion-col>
 
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Asset Description</ion-label>
-          <ion-input [(ngModel)]="assetDesc"  style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"></ion-input>
-        </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Asset Description</ion-label>
+        <ion-input [(ngModel)]="assetDesc" style="background-color: #d4d4d4!important;" class="form-control"
+          [disabled]="true"></ion-input>
+      </ion-col>
 
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Asset Code</ion-label>
           <ion-input [(ngModel)]="assetCode" class="form-control" [disabled]="true"></ion-input>
         </ion-col> -->
 
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Department</ion-label>
           <ion-input [(ngModel)]="department"  style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"></ion-input>
         </ion-col> -->
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="date" class="form-control"  [(ngModel)]="createDate"></ion-input>
-        </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-input type="date" class="form-control" [(ngModel)]="createDate"></ion-input>
+      </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Category</ion-label>
-          <select  [(ngModel)]="categoryissue" class="form-control" >
-            <option>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let item of gatagoryDetails; let i = index">{{item.text}}
-            </option>
-          </select>
-        </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Category</ion-label>
+        <select [(ngModel)]="categoryissue" class="form-control">
+          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option *ngFor="let item of gatagoryDetails; let i = index">{{item.text}}
+          </option>
+        </select>
+      </ion-col>
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <select [(ngModel)]="priority" class="form-control" >
-            <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
-            <option class="ContentName" value="3">High</option>
-        <option class="ContentName" value="4">Low</option>
-        <option class="ContentName" value="1">Medium</option>
-        <option class="ContentName" value="2">Normal</option>
-        <option class="ContentName" value="5">Very High</option>
-          </select>
-          </ion-col>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <select [(ngModel)]="priority" class="form-control">
+          <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+          <option class="ContentName" value="3">High</option>
+          <option class="ContentName" value="4">Low</option>
+          <option class="ContentName" value="1">Medium</option>
+          <option class="ContentName" value="2">Normal</option>
+          <option class="ContentName" value="5">Very High</option>
+        </select>
+      </ion-col>
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
-    <ion-textarea maxlength="200" [(ngModel)]="textDetails" style="height:auto !important" class="form-control" >
-    </ion-textarea>
-    <span *ngIf="noofchars && noofchars != 'undefined' && noofchars.length > 0"
-      class="customCounter">{{200 - noofchars.length}}</span>
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Details <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-textarea maxlength="200" [(ngModel)]="textDetails" style="height:auto !important" class="form-control">
+        </ion-textarea>
+        <span *ngIf="noofchars && noofchars != 'undefined' && noofchars.length > 0" class="customCounter">{{200 -
+          noofchars.length}}</span>
 
-          </ion-col>
+      </ion-col>
     </ion-row>
     <ion-row size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
@@ -100,151 +100,23 @@
         {{priority}}
         {{noofchars}}
         {{date1}} -->
-        <ion-button class="ion-color-success" 
-        [disabled]="branch==undefined || assetCode==undefined || department==undefined || createDate==undefined || categoryissue==undefined || priority==true || textDetails==true"
-        (click)="createissue()" >Save
+        <ion-button class="ion-color-success"
+          [disabled]="branch==undefined || assetCode==undefined || department==undefined || createDate==undefined || categoryissue==undefined || priority==true || textDetails==true"
+          (click)="createissue()">Save
         </ion-button>
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-content>
 
-
-</ion-content>
-
-<!-- [disabled]="(assetcode==undefined || priority=='<< Select >>'|| noofchars== undefined || doi == undefined)"  expand="block"  -->
-
-
-
-<!-- <ion-content>
-
-  <ion-card >
-    <ion-card-content class="card_content">
-      <ion-grid>
-        <ion-row>
-
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text"> Branch :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput" ></ion-input>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text">Property Code :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput"></ion-input>
-
-          </ion-col>
-
-          <ion-col size="5" class="col_height">
-
-              <p class="card_left_text">Date :</p>
-
-          </ion-col>
-          <ion-col size="7" class="col_height">
-
-
-              <ion-datetime-button datetime="datetime"></ion-datetime-button>
-
-              <ion-modal [keepContentsMounted]="true">
-                <ng-template>
-                  <ion-datetime id="datetime"></ion-datetime>
-                </ng-template>
-              </ion-modal>
-
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text">Category :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput"></ion-input>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text">Priority :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput"></ion-input>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text">Property Details :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput"></ion-input>
-
-          </ion-col>
-
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text">Property Description :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput"></ion-input>
-
-          </ion-col>
-          <ion-col size="7" class="col_height">
-
-              <p class="card_left_text">Property Owner :</p>
-
-          </ion-col>
-          <ion-col size="5" class="col_height">
-
-              <ion-input placeholder="Text Input" class="createInput"></ion-input>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid>
-
-        <ion-row>
-          <ion-col size="6">
-            <ion-button  color="danger" (click)="cancel()">Cancel</ion-button>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-button class="ion-color-success" style="color: #fff;" (click)="save()">Save</ion-button>
-          </ion-col>
-        </ion-row>
-
-      </ion-grid>
-    </ion-card-content>
-
-  </ion-card>
-
-</ion-content> -->
-
-<ion-footer >
-  <ion-row>
-  <ion-col size="6">
-    © SunSmart Global Inc
-  </ion-col>
-  <ion-col size="6" style="text-align: right;">
-    {{username}}
- </ion-col>
-  </ion-row>
- </ion-footer>
+  <ion-footer>
+    <ion-row>
+      <ion-col size="6">
+        © SunSmart Global Inc
+      </ion-col>
+      <ion-col size="6" style="text-align: right;">
+        {{username}}
+      </ion-col>
+    </ion-row>
+  </ion-footer>
+</ion-grid>

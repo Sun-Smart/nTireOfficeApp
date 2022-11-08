@@ -12,9 +12,7 @@ import { HttprequestService } from '../../service/httprequest.service';
 export class RFQPage implements OnInit {
 
   showviewlist: boolean = false
-
   selectAll: boolean = false;
-
   indeterminateState: boolean;
   checkParent: boolean;
   Checkboxes: any;
@@ -33,6 +31,8 @@ export class RFQPage implements OnInit {
   getresponse: any;
   getraisedrfq: any;
   getrfqcancel: any;
+  splitted;
+  managerfqdetails;
   constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
@@ -218,6 +218,12 @@ export class RFQPage implements OnInit {
       this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).then((res: any) => {
         this.getresponse = res;
         console.log("Response", res);
+        console.log(res[0].RFQCode2)
+        var str = res[0].RFQCode2;
+        this.splitted = str.split('/');
+        console.log(this.splitted);
+       this.splitted = this.splitted[1];
+        console.log('new',this.splitted)
       });
 
 
@@ -299,6 +305,11 @@ export class RFQPage implements OnInit {
       });
   }
   manageRFQlink() {
+
+   this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'get_Manage_RFQ/'+this.splitted).then((res:any) => {
+    this.managerfqdetails = res;
+    console.log(this.managerfqdetails)
+   })
      this.router.navigate(['/manage-rfq'])
   }
 

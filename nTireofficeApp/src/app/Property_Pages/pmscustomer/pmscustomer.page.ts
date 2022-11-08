@@ -178,7 +178,7 @@ export class PmscustomerPage implements OnInit {
     }
   };
 
-  
+
   // Getbranches() {
 
   //   let data = {
@@ -194,10 +194,10 @@ export class PmscustomerPage implements OnInit {
   //     headers: options,
   //   }).subscribe(resp => {
   //     this.branchlist = resp;
-      
+
   //     console.log(this.branchlist);
   //     for (var i = 0; i < this.branchlist.length; i++) {
-  //       this.branchid = this.branchlist[i].BRANCH_ID; 
+  //       this.branchid = this.branchlist[i].BRANCH_ID;
   //     };
   //     console.log(this.branchid);
 
@@ -210,8 +210,8 @@ export class PmscustomerPage implements OnInit {
 
     let data = {
       functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branchids : 0,
-      locationid:  0,
+      branchids: 0,
+      locationid: 0,
       strPropertyId: 0,
       strPropertyDesc: 0,
       rentelCode: 0,
@@ -237,8 +237,8 @@ export class PmscustomerPage implements OnInit {
       for (var i = 0; i < this.propertyCodeResult.length; i++) {
         this.branchlocation = this.propertyCodeResult[i].location_id;
       }
-      console.log( this.branchlocation);
-    
+      console.log(this.branchlocation);
+
       if (this.propertyCodeResult == null) {
         this.showdata = "No Data Found"
       }
@@ -274,10 +274,10 @@ export class PmscustomerPage implements OnInit {
     });
   };
 
-  
-  getLocationdata(branch:any) {
+
+  getLocationdata(branch: any) {
     console.log(branch);
-    
+
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
     this.get_Bid = branch;
@@ -301,7 +301,6 @@ export class PmscustomerPage implements OnInit {
       branch_Id: this.get_Bid,
       loca_Id: this.loca_id
     };
-
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -318,9 +317,9 @@ export class PmscustomerPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
     });
 
-  }
+  };
 
-    getPropertyCode(ev: any) {
+  getPropertyCode(ev: any) {
 
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
 
@@ -343,6 +342,12 @@ export class PmscustomerPage implements OnInit {
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
+      if (this.companiesstr == "No data found") {
+        console.log('check pr code');
+        this.companiesstr = "";
+      }else{
+        console.log('is available');
+      }
 
       console.log(this.companiesstr);
 
@@ -408,7 +413,7 @@ export class PmscustomerPage implements OnInit {
 
 
 
-   async presentAlert(heading, tittle) {
+  async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',

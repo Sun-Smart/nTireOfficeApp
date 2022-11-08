@@ -32,10 +32,6 @@ export class AdditionalPagePage implements OnInit {
   name: any;
   message: string;
   showfilter: boolean = true;
-
-
-  //  filter Branch, Location & property code,
-
   branchlist1: any = [];
   branchlist: any;
   branchlocationlist: any = [];
@@ -65,16 +61,14 @@ export class AdditionalPagePage implements OnInit {
   branchId: any = [];
   getBID: any;
   loca_id: any;
-  get_Bid: any;rental_code:any;
+  get_Bid: any; rental_code: any;
   rental_Code: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
     public Ipaddressservice: IpaddressService, private datePipe: DatePipe = new DatePipe("es-ES")) {
   }
-
   ngOnInit() {
-    // this.Getbranches();
     this.getListItems();
     this.BranchLocationdata();
   }
@@ -88,27 +82,21 @@ export class AdditionalPagePage implements OnInit {
     }
   }
   async createModal() {
-
     const model = await this.modalCtrl.create({
-
       component: AdditionalChargesPage,
     });
     return await model.present();
     const { data, role } = await model.onWillDismiss();
-
     if (role === 'confirm') {
       this.name = data;
-
     }
   }
-
   async newIssueCreate() {
     const model = await this.modalCtrl.create({
       component: PmsCreateIssuePage,
     });
     return await model.present();
   }
-
   togglefilter() {
     this.showfilter = !this.showfilter;
     this.getListItems();
@@ -208,7 +196,12 @@ export class AdditionalPagePage implements OnInit {
       this.companiesstr = resp;
 
       console.log(this.companiesstr);
-
+      if (this.companiesstr == "No data found") {
+        console.log('check pr code');
+        this.companiesstr = "";
+      } else {
+        console.log('is available');
+      }
       // this.companiesstr = JSON.parse(this.companiesstr);
       // this.companiesstr = JSON.parse(resp.toString());
       for (var i = 0; i < this.companiesstr.length; i++) {
