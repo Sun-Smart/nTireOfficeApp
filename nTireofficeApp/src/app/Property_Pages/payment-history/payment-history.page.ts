@@ -20,7 +20,6 @@ export class PaymentHistoryPage implements OnInit {
   sub: any;
   data: any;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalCtrl: ModalController, private IpaddressService: IpaddressService, private http: HttpClient) { }
-
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.data = params;
@@ -29,7 +28,6 @@ export class PaymentHistoryPage implements OnInit {
     this.getReceiptDetails();
   }
   cancel() {
-    // return this.modalCtrl.dismiss(null, 'cancel');
     this.router.navigate(['/pms-transaction']);
   }
   getReceiptDetails() {
