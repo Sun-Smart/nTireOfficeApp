@@ -37,7 +37,7 @@
               << Select >>
             </option>
             <option *ngIf="showdata">
-              No records found..
+              No Data found..
             </option>
             <option *ngFor="let item of get_assetData; let i = index" [ngValue]="item.pmm_asset_code">
               {{item.pmm_asset_code}} - {{item.pmm_asset_desc}}</option>

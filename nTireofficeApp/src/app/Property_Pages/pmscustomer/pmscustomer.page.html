@@ -37,12 +37,12 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Location :</ion-label>
-          <select id="selectbutton"  class="form-control"
+          <select id="selectbutton"  class="form-control"  [(ngModel)]="branchlocation"
           (change)="newPropertyCode(branchlocation)">
             <option [ngValue]="undefined" selected>
               << Select >>
             </option>
-            <option *ngFor="let location of customerlocation; let i = index" ngValue="location.LOCATION_ID">
+            <option *ngFor="let location of customerlocation; let i = index" [ngValue]="location.LOCATION_ID">
               {{location.LOCATION_DESC}}</option>
           </select>
         </ion-col>
@@ -73,7 +73,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  
+
   <center *ngIf="propertyCodeResult" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
     Total records: {{propertyCodeResult.length}}</center>
 
