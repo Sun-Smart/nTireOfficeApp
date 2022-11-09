@@ -31,7 +31,7 @@
             <ion-label>Branch Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
               (change)="newPropertyCode(branchlocation)">
-              <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
+              <option [ngValue]="undefined" selected>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let item of branchlocationlist;let i = index" [ngValue]="item.LOCATION_ID">
                 {{item.LOCATION_DESC}}</option>
             </select>

@@ -51,17 +51,17 @@
         <ion-input type="date" class="form-control" [(ngModel)]="createDate"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Category</ion-label>
+        <ion-label class="ContentName">Category <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="categoryissue" class="form-control">
-          <option [ngValue]="undefined" selected>&lt;&lt; Select &gt;&gt;</option>
+          <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let item of gatagoryDetails; let i = index">{{item.text}}
           </option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="priority" class="form-control">
-          <option [ngValue]="undefined" selected>&lt;&lt; Select &gt;&gt;</option>
+          <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" value="3">High</option>
           <option class="ContentName" value="4">Low</option>
           <option class="ContentName" value="1">Medium</option>
@@ -81,7 +81,7 @@
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
       <ion-col size="12">
         <ion-button class="ion-color-success"
-          [disabled]="branch==undefined || assetCode==undefined || department==undefined || createDate==undefined || categoryissue==undefined || priority==true || textDetails==true"
+          [disabled]="branch==undefined || assetCode==undefined || priority ==undefined ||department==undefined || createDate==undefined || categoryissue==undefined || textDetails==undefined || textDetails==null ||textDetails==''"
           (click)="createissue()">Save
         </ion-button>
       </ion-col>
