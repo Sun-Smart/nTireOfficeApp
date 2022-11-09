@@ -205,8 +205,8 @@ export class QuickReceiptPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       functionID: localStorage.getItem('FUNCTION_ID'),
-      branchid: this.branch ? this.branch : 1,
-      locationid: this.branchlocation ? this.branchlocation : 1,
+      branchid: this.branch ? this.branch : 0,
+      locationid: this.branchlocation ? this.branchlocation : 0,
       propertyID: this.propertycode ? this.propertycode : 0,
     };
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/' + data.functionID + "/" + data.locationid + "/" + data.propertyID + "/" + "0", {
