@@ -58,6 +58,8 @@ export class PmsCreateIssuePage implements OnInit {
   branchlist1: any;
   getBID: any;
   branchId: any;
+  get_Bid: any;
+  customerlocation: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
@@ -123,12 +125,31 @@ export class PmsCreateIssuePage implements OnInit {
       console.log(this.branchlist1);
 
       // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
-      for (var i = 0; i < this.branchlist1.length; i++) {
-        this.getBID = this.branchlist1[i].BRANCH_ID;
-      }
-      console.log('getBID', this.getBID);
+      // for (var i = 0; i < this.branchlist1.length; i++) {
+      //   this.getBID = this.branchlist1[i].BRANCH_ID;
+      // }
+      // console.log('getBID', this.getBID);
     }, error => {
       console.log("branchlist1 : " + JSON.stringify(error));
+    });
+  };
+
+  getLocationdata(branch: any) {
+    console.log(branch);
+
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+    
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log("location", resp);
+      this.customerlocation = resp;
+      for (var i = 0; i < this.customerlocation.length; i++) {
+        this.getBID = this.customerlocation[i].BRANCH_ID;
+      }
+      console.log('getBID', this.getBID);
     });
   };
 
