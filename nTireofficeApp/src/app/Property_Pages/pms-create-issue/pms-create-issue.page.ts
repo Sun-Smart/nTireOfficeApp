@@ -89,7 +89,8 @@ export class PmsCreateIssuePage implements OnInit {
     this.accessToken = localStorage.getItem('token');
 
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
-    this.branch_id = JSON.parse(this.branchID);
+    // this.branch_id = JSON.parse(this.branchID);
+    this.branch_id = this.getBID;
 
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.function_ID = JSON.parse(this.functionID);
@@ -298,10 +299,9 @@ export class PmsCreateIssuePage implements OnInit {
     const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
     let data = {
-
       userid: this.user_ID,
       functionid: this.function_ID,
-      branchid: this.branch_id,
+      branchid: parseInt(this.getBID),
       Priority: this.priority,
       pm_due_date: this.createDate,
       drpPMType: this.categoryid,

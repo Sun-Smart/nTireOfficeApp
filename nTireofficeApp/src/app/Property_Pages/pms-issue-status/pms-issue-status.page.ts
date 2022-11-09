@@ -45,6 +45,7 @@ export class PmsIssueStatusPage implements OnInit {
   getIssueStatus() {
 
     this.propertyId = this.viewStatus.property_id;
+    this.branchID = this.viewStatus.branch_id;
     console.log(this.propertyId);
 
     const header = new Headers();
@@ -54,15 +55,15 @@ export class PmsIssueStatusPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getissuestatus/' + this.functionID + '/' + this.branchID + '/' + this.propertyId, {
       headers: options,
     }).subscribe(resp => {
-    
+
       this.getStatus = resp;
       console.log(this.getStatus);
 
-      if(this.getStatus = null){
-        this.isViewStatusCard = false;
-      }else{
-        this.isViewStatusCard = true;
-      }
+      // if(this.getStatus = null){
+      //   this.isViewStatusCard = false;
+      // }else{
+      //   this.isViewStatusCard = true;
+      // }
 
     });
   };
