@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 /* eslint-disable prefer-const */
 /* eslint-disable radix */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -58,6 +59,7 @@ export class PmsCreateIssuePage implements OnInit {
   branchlist1: any;
   getBID: any;
   branchId: any;
+  fromdate: string;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
@@ -69,7 +71,10 @@ export class PmsCreateIssuePage implements OnInit {
 
     console.log(this.createDate);
 
+    var today = new Date();
 
+    this.createDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    // this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.function = localStorage.getItem('FUNCTION_DESC');
     // this.branch = localStorage.getItem('TUM_BRANCH_CODE');
 
