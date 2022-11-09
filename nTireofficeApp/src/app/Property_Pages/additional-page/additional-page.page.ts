@@ -179,7 +179,7 @@ export class AdditionalPagePage implements OnInit {
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({
           property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_desc,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
           rental_pro_id: this.companiesstr[i].property_id
         });
       };
