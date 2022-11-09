@@ -28,6 +28,9 @@ export class IpaddressService {
   tokenlogin: string;
   hrmslogindata: string;
   dynamicmenu: string;
+  getLoginLinkFM: string;
+  serviceurllosFM: string;
+  dynamicmenuFM: string;
 
   constructor() {
 
@@ -77,9 +80,17 @@ export class IpaddressService {
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
     // this.serviceurlSales = "/dms/DMS/sales/";
 
-    this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
+    this.getLoginLink = '/nTireMobileCoreAPIFM/api/Login';
     this.serviceurllos = "/los/LOS/";
     this.dynamicmenu = '/nTireMobileCoreAPI/api';
+
+    // Login for Property
+
+    this.getLoginLinkFM = '/nTireMobileCoreAPIFM/api/Login';
+    this.serviceurllosFM = "/los/LOS/";
+    this.dynamicmenuFM = '/nTireMobileCoreAPI/api';
+
+
     //Cams
 
     // this.serviceurlCamsNode = "/dms/DMS/cams_hrms_sales"

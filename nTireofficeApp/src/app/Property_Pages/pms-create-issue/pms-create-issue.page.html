@@ -18,13 +18,22 @@
     </ion-refresher>
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Branch</ion-label>
-        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
-          [(ngModel)]="branch"></ion-input>
+        <ion-label>Branch <span style="color:red;">*</span></ion-label>
+        <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="getLocationdata(branch)">
+          <option [ngValue]="undefined" selected disabled>
+            << Select >>
+          </option>
+          <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
+            {{branch.BRANCH_DESC}}
+          </option>
+        </select>
+        <!-- <ion-label class="ContentName">Branch</ion-label>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control"
+          [(ngModel)]="branch"></ion-input> -->
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)" show-clear-button="always"></ion-searchbar>
         <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 250px;">
           <ion-item *ngFor="let item of assetData" (click)="addPropertycode(item)"
             style="background:none !important;color:#444 !important;display: block;">
@@ -42,17 +51,17 @@
         <ion-input type="date" class="form-control" [(ngModel)]="createDate"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Category</ion-label>
+        <ion-label class="ContentName">Category <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="categoryissue" class="form-control">
-          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let item of gatagoryDetails; let i = index">{{item.text}}
           </option>
         </select>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Priority<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="priority" class="form-control">
-          <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+          <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" value="3">High</option>
           <option class="ContentName" value="4">Low</option>
           <option class="ContentName" value="1">Medium</option>
@@ -72,7 +81,7 @@
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
       <ion-col size="12">
         <ion-button class="ion-color-success"
-          [disabled]="branch==undefined || assetCode==undefined || department==undefined || createDate==undefined || categoryissue==undefined || priority==true || textDetails==true"
+          [disabled]="branch==undefined || assetCode==undefined || priority ==undefined ||department==undefined || createDate==undefined || categoryissue==undefined || textDetails==undefined || textDetails==null ||textDetails==''"
           (click)="createissue()">Save
         </ion-button>
       </ion-col>

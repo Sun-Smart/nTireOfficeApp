@@ -102,18 +102,14 @@ export class PRSstatusPage implements OnInit {
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
       this.loading = false
       this.getresponse = res;
-      this.presentAlert("", this.getresponse);
+      this.presentAlert("", res);
+      this.Search();
       // console.log("Response", res)
       // console.log("Response", res)
       // for (let item of this.getresponse) {
       //   console.log(item);
       // }
     })
-
-
-
-
-
   }
 
 
@@ -254,11 +250,6 @@ export class PRSstatusPage implements OnInit {
     //     console.log("error : " + JSON.stringify(error));
 
     //   });
-
-
-
-
-
   }
 
 }

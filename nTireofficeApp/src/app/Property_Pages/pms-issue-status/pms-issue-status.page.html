@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<center *ngIf="isViewStatusCard" style="margin: 50% auto;font-weight: 600;">No records found</center>
+<center *ngIf="isViewStatusCard" style="margin: 50% auto;font-weight: 600;color: #000;">No records found</center>
   <ion-card *ngIf="isViewStatusCard">
     <ion-card-content *ngFor="let item of getStatus">
       <ion-row>
@@ -36,7 +36,7 @@
           <ion-label class="labelHead-text">Issue date & Time</ion-label>
         </ion-col>
         <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text"> :&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+          <ion-label class="labelData-text"> :&nbsp;&nbsp;&nbsp;&nbsp;{{item.pm_next_maintenance}}</ion-label>
         </ion-col>
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text"> Issue Status :</ion-label>
