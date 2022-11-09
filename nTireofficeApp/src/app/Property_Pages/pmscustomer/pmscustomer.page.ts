@@ -275,11 +275,11 @@ export class PmscustomerPage implements OnInit {
       this.isPropertycodeAvailable = false;
       this.companiesstr = resp;
 
-      if (this.companiesstr == "No data found") {
-        this.companiesstr = "";
-      } else {
-        console.log('is available');
-      }
+      // if (this.companiesstr == "No data found") {
+      //   this.companiesstr = "";
+      // } else {
+      //   console.log('is available');
+      // }
       console.log(this.companiesstr);
 
       for (var i = 0; i < this.companiesstr.length; i++) {

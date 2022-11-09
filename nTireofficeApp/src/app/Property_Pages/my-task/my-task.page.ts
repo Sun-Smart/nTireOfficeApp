@@ -80,7 +80,10 @@ export class MyTaskPage implements OnInit {
   assetcode: any;
   asset_code: any;
   respAsset: any;
-  getAssetCode: any;
+  AssetCode: any;
+  get_assetData: any;
+  filter_asset: any;
+
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
@@ -133,141 +136,16 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.branchlist1 = resp;
-      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
-      // eslint-disable-next-line @typescript-eslint/prefer-for-of
-      for (var i = 0; i < this.branchlist1.length; i++) {
-        this.getBID = this.branchlist1[i].BRANCH_ID;
-      }
-      console.log('getBID', this.getBID);
-
     }, error => {
-
       console.log("branchlist1 : " + JSON.stringify(error));
     });
   };
 
-  getLocationdata(branch: any) {
+  getAssetdata(branch: any) {
+
     console.log(branch);
-    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
     this.get_Bid = branch;
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
-      headers: options,
-    }).subscribe(resp => {
-      console.log("location", resp);
-      this.customerlocation = resp;
-      for (var i = 0; i < this.customerlocation.length; i++) {
-        this.loca_id = this.customerlocation[i].LOCATION_ID;
-      }
-    });
-  };
-
-  newAssetCode(branchlocation: any) {
-    let data = {
-      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-      propertyCode: 0,
-      branch_Id: this.get_Bid,
-      branchlocation: this.loca_id
-    };
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.branchlocation, {
-      headers: options,
-    }).subscribe(resp => {
-      console.log('click t  call', resp);
-      this.companiesstr = resp;
-      console.log(this.companiesstr);
-    }, error => {
-      console.log("error : " + JSON.stringify(error));
-    });
-  };
-
-  getPropertyCode(ev: any) {
-    this.assetCode1 = [];
-    if (ev.target.value == "") {
-      this.assetCode1 = [];
-      this.isPropertycodeAvailable = false;
-    };
-
-    // let data = {
-    //   strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-    //   branch_Id: this.get_Bid ? this.get_Bid : 0,
-    //   Mode: this.mode ? this.mode : 0,
-    //   fromDate: this.fdate ? this.fdate : 0,
-    //   toDate: this.tdate ? this.tdate : 0,
-    //   Status: 0,
-    //   dept: 0,
-    //   asset_code: ev.target.value ? ev.target.value : 0,
-    //   strUserId: 0,
-    //   UserType: 0,
-    //   pageIndex: 0,
-    //   pageSize: 50,
-    //   sortExpression: 0,
-    //   alphaname: 0,
-    //   drpcategory: 0,
-    //   drptype: 0,
-    //   TASKTYPE: 0,
-    //   PropCode: 0,
-    //   PropDesc: 0,
-    //   strCriticality: 0,
-    //   assetName: 0,
-    //   actmaintenence: 0,
-    //   wrkordno: 0,
-    // };
-    let data = {
-      strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
-    };
-    // Reset items back to all of the items
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + data.strFunctionId + "/" + data.branch_Id + "/" + ev.target.value, {
-      
-      // this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
-      // + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/'
-      // + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/' + data.drptype + '/' + data.TASKTYPE + '/'
-      // + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/'
-      // + data.wrkordno, { 
-      headers: options,
-    }).subscribe(resp => {
-      this.assetCode1 = [];
-      this.isPropertycodeAvailable = false;
-      // set val to the value of the searchbar
-      this.getAssetCode = resp;
-      console.log(this.getAssetCode);
-      for (var i = 0; i < this.getAssetCode.length; i++) {
-        this.assetCode1.push({
-          asset_code: this.getAssetCode[i].ASSET_CODE,
-          binding: this.getAssetCode[i].ASSET_CODE + "-" + this.getAssetCode[i].property_building_name
-        });
-      };
-      console.log(this.assetCode1);
-      const val = ev.target.value;
-      // if the value is an empty string don't filter the items
-      if (val && val.trim() != '') {
-        this.isPropertycodeAvailable = true;
-        this.assetCode1 = this.assetCode1.filter((item) => {
-          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-        });
-      }
-    }, error => {
-      console.log("error : " + JSON.stringify(error));
-    });
-  };
-
-  addAssetCode(item: any) {
-    this.asset_code = item.binding;
-    this.assetCodeDesc = item.ASSET_CODE;
-    this.isPropertycodeAvailable = false;
-    for (var i = 0; i < this.companiesstr.length; i++) {
-      if (this.propertycode == this.companiesstr[i].companyName) {
-        this.property_code = this.companiesstr[i].id;
-        console.log(this.property_code);
-      }
-    };
 
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
@@ -277,7 +155,7 @@ export class MyTaskPage implements OnInit {
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      asset_code: this.assetCodeDesc ? this.assetCodeDesc : 0,
+      asset_code: 0,
       strUserId: 0,
       UserType: 0,
       pageIndex: 0,
@@ -295,15 +173,9 @@ export class MyTaskPage implements OnInit {
       wrkordno: 0,
     };
 
-    // let data = {
-    //   strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-    //   branch_Id: this.get_Bid,
-    //   loca_Id: this.loca_id
-    // };
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.assetCodeDesc + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
      
       this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
       + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/'
@@ -313,12 +185,82 @@ export class MyTaskPage implements OnInit {
      
       headers: options,
     }).subscribe(resp => {
-      this.respContact = resp;
-      console.log(this.respContact);
-      this.propertyDesc = this.respContact[0]['property_building_name'];
-    }, error => {
-      console.log("error : " + JSON.stringify(error));
-    });
+      this.get_assetData = resp;
+
+      console.log(this.get_assetData);
+      
+
+  }, error => {
+    console.log("error : " + JSON.stringify(error));
+  });
+};
+
+
+  // getAssetCode() {
+
+    // let data = {
+    //   strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
+    //   branch_Id: this.get_Bid  ? this.get_Bid  : 0,
+    //   Mode: this.mode ? this.mode : 0,
+    //   fromDate: this.fdate ? this.fdate : 0,
+    //   toDate: this.tdate ? this.tdate : 0,
+    //   Status: 0,
+    //   dept: 0,
+    //   asset_code: 0,
+    //   strUserId: 0,
+    //   UserType: 0,
+    //   pageIndex: 0,
+    //   pageSize: 50,
+    //   sortExpression: 0,
+    //   alphaname: 0,
+    //   drpcategory: 0,
+    //   drptype: 0,
+    //   TASKTYPE: 0,
+    //   PropCode: 0,
+    //   PropDesc: 0,
+    //   strCriticality: 0,
+    //   assetName: 0,
+    //   actmaintenence: 0,
+    //   wrkordno: 0,
+    // };
+    // console.log(data.branch_Id)
+
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+      
+    //   this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'getmytask/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.Mode + '/'
+    //   + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.dept + '/' + data.asset_code + '/' + data.strUserId + '/' + data.UserType + '/'
+    //   + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.drpcategory + '/' + data.drptype + '/' + data.TASKTYPE + '/'
+    //   + data.PropCode + '/' + data.PropDesc + '/' + data.strCriticality + '/' + data.assetName + '/' + data.actmaintenence + '/'
+    //   + data.wrkordno, { 
+     
+    //   headers: options,
+    // }).subscribe(resp => {
+      
+    //   this.isPropertycodeAvailable = false;
+
+    //   this.AssetCode = resp;
+    //   console.log(this.AssetCode);
+
+    //   for (var i = 0; i < this.AssetCode.length; i++) {
+    //     this.assetCode1.push({
+    //       assetcode: this.AssetCode[i].pmm_asset_code,
+    //       binding: this.AssetCode[i].pmm_asset_code + "-" + this.getAssetCode[i].pmm_asset_desc
+    //     });
+    //   };
+
+    //   console.log(this.assetCode1);
+    // }, error => {
+    //   // console.log("error : " + JSON.stringify(error));
+    // });
+  // };
+
+  addAssetCode(item:any) {
+    console.log(item);
+
+    this.filter_asset = item;
+  
   };
 
   taskDetails() {
@@ -373,6 +315,7 @@ export class MyTaskPage implements OnInit {
       this.showdata = this.myTaskDetailsList.length;
     }
   };
+
   filterMyTask() {
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -384,7 +327,7 @@ export class MyTaskPage implements OnInit {
       toDate: this.tdate ? this.tdate : 0,
       Status: 0,
       dept: 0,
-      asset_code: this.assetCodeDesc ? this.assetCodeDesc : 0,
+      asset_code: this.filter_asset ? this.filter_asset : 0,
       strUserId: 0,
       UserType: 0,
       pageIndex: 0,

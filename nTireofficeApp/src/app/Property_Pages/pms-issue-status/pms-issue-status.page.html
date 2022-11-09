@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<center *ngIf="isViewStatusCard" style="margin: 50% auto;font-weight: 600;">No records found</center>
+<center *ngIf="isViewStatusCard" style="margin: 50% auto;font-weight: 600;color: #000;">No records found</center>
   <ion-card *ngIf="isViewStatusCard">
     <ion-card-content *ngFor="let item of getStatus">
       <ion-row>

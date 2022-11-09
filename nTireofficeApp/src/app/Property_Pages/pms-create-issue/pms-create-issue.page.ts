@@ -2,7 +2,7 @@
 /* eslint-disable radix */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -64,7 +64,8 @@ export class PmsCreateIssuePage implements OnInit {
   constructor(private modalCtrl: ModalController,
     private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) {
+    public Ipaddressservice: IpaddressService,
+    public loadingController: LoadingController,) {
 
     this.isItemAvailable = false;
     this.createDate = this.datePipe.transform(this.createDate, 'dd/MM/yyyy');
@@ -112,6 +113,22 @@ export class PmsCreateIssuePage implements OnInit {
 
     await alert.present();
   };
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'lines-sharp',
+      duration: 500,
+      // message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+
+    });
+    return await loading.present();
+  };
+  async loadingdismiss() {
+
+    return await this.loadingController.dismiss();
+  }
 
   BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
@@ -272,6 +289,7 @@ export class PmsCreateIssuePage implements OnInit {
 
   createissue() {
     debugger;
+    this.loadingdismiss(); 
     const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
     let data = {
@@ -300,6 +318,7 @@ export class PmsCreateIssuePage implements OnInit {
       this.refNum = this.dataStatus[0].Column1;
       // this.refNum =  this.dataStatus.map(({Column1}) => [Column1]);
       console.log(this.refNum);
+
 
 
       this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");
