@@ -1,3 +1,6 @@
+/* eslint-disable prefer-const */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -87,7 +90,7 @@ export class PmsCreateIssuePage implements OnInit {
   }
 
   ngOnInit() {
-    this. BranchLocationdata();
+    this.BranchLocationdata();
   }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -118,7 +121,7 @@ export class PmsCreateIssuePage implements OnInit {
     }).subscribe(resp => {
       this.branchlist1 = resp;
       console.log(this.branchlist1);
-      
+
       // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
       for (var i = 0; i < this.branchlist1.length; i++) {
         this.getBID = this.branchlist1[i].BRANCH_ID;
