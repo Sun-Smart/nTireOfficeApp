@@ -63,6 +63,7 @@ export class PmsTransactionPage implements OnInit {
   get_Bid: any;
   loca_id: any;
   propertycodeDesc: any;
+  location: any;
   constructor(public alertController: AlertController, private router: Router, private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
     this.columns = [
       { name: 'Name', width: "110", sorting: true },
@@ -203,17 +204,17 @@ export class PmsTransactionPage implements OnInit {
       console.log(this.locationcode1, 'fyttr')
     })
   }
-  newPropertyCode(branchlocation) {
+  newPropertyCode(branchlocation:any) {
+    this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
-    this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);

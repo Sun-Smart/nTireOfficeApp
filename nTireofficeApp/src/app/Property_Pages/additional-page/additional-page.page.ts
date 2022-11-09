@@ -65,6 +65,7 @@ export class AdditionalPagePage implements OnInit {
   rental_Code: any;
   data: any;
   sub: any;
+  location: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -132,18 +133,18 @@ export class AdditionalPagePage implements OnInit {
       }
     });
   };
-  newPropertyCode(branchlocation) {
+  newPropertyCode(branchlocation:any) {
+    this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
