@@ -56,7 +56,7 @@ export class MyTaskPage implements OnInit {
   pmm_asset_code: any;
   status1: any;
   getTaskStatus: any;
-  showdata: string;
+  showdata: boolean = false;
   assetData: any[];
   assetCodeBinding: any;
   ASSET_CODE: any;
@@ -188,6 +188,12 @@ export class MyTaskPage implements OnInit {
       this.get_assetData = resp;
 
       console.log(this.get_assetData);
+
+      if(this.get_assetData == null){
+        this.showdata = true;
+      }else{
+        this.showdata = false;
+      }
       
 
   }, error => {
@@ -308,12 +314,6 @@ export class MyTaskPage implements OnInit {
       };
       console.log('kuhgg', this.pmr_reference);
     });
-    if (this.myTaskDetailsList == null) {
-      this.showdata = "0";
-    }
-    else {
-      this.showdata = this.myTaskDetailsList.length;
-    }
   };
 
   filterMyTask() {

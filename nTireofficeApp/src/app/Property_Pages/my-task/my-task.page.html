@@ -33,8 +33,11 @@
           <ion-label>Asset Code :</ion-label>
           <select id="selectbutton" [(ngModel)]="asset_code" class="form-control"
            (change)="addAssetCode(asset_code)">
-            <option  selected >
+            <option  selected disabled>
               << Select >>
+            </option>
+            <option *ngIf="showdata">
+              No records found..
             </option>
             <option *ngFor="let item of get_assetData; let i = index" [ngValue]="item.pmm_asset_code">
               {{item.pmm_asset_code}} - {{item.pmm_asset_desc}}</option>
