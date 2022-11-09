@@ -34,7 +34,10 @@ export class RFQPage implements OnInit {
   splitted;
   managerfqdetails;
   getresponsestr;
-  getresponsenew;
+  getresponsenew;;
+  Checked;
+  RaisedRFQ :any =[];
+  RaisedRFQdetails:any = [];
   constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
@@ -281,13 +284,36 @@ export class RFQPage implements OnInit {
     // }
   }
 
+  fieldsChange(values:any,item:any):void {
+    console.log(values.currentTarget.checked);
+    this.Checked = values.currentTarget.checked;
+    console.log(item);
+  
+    if(this.Checked == true){
+      this.RaisedRFQ.push(item);
+      console.log(this.RaisedRFQ);
+    }
+    else {
+      var index = this.RaisedRFQ.indexOf(item);
+      if(index > -1){
+        this.RaisedRFQ.splice(index,1)
+        console.log(this.RaisedRFQ,'filterarray');
+      }
+  
+  
+    }
+  }
 
-
-  raiseRFQ() {
+  raiseRFQ(item : any) {
+    console.log(item);
+    this.RaisedRFQdetails = this.RaisedRFQ;
+    console.log(this.RaisedRFQdetails);
+    let body ={
+      "vendordetail" : this.RaisedRFQdetails
+    }
     // this.presentAlert("", "RFQ 345/AT Raised Successfully");
     // Raise RFQ Button
-    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getraiserfq').
-      then((res: any) => {
+    this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaiseRFQ',body).then((res: any) => {
         this.getraisedrfq = res;
         console.log(this.getraisedrfq)
         // this.showrfq = true;
