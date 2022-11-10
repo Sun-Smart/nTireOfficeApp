@@ -40,10 +40,13 @@
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-            {{item}}
+            {{item.binding}}
+            </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
             </ion-item>
           </ion-list>
         </ion-col>
@@ -53,9 +56,14 @@
         </ion-row>
       </ion-card-content>
     </ion-card>
-     <center *ngIf="quickreceipt"
+
+     <center *ngIf="!showdata"
      style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{quickreceipt.length}}</center>
-    <ion-card *ngFor="let item of quickreceipt; let i=index " >
+    
+    <center *ngIf="showdata"
+    style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center>
+
+     <ion-card *ngFor="let item of quickreceipt; let i=index " >
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="7">

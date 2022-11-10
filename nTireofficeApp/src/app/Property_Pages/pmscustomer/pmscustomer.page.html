@@ -35,6 +35,7 @@
             </option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Location :</ion-label>
           <select id="selectbutton"  class="form-control"  [(ngModel)]="branchlocation"
@@ -46,14 +47,18 @@
               {{location.LOCATION_DESC}}</option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code :</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
               {{item.binding}}
+            </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
             </ion-item>
           </ion-list>
         </ion-col>

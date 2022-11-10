@@ -47,7 +47,7 @@ export class PmsListPage implements OnInit {
   branchid: any;
   branchID: string;
   propertyCodeResultLength: any;
-  showdata: any;
+  showdata: boolean;
   customerbranch: any;
   isItemAvailable: boolean = false;
   branchcode: any;
@@ -87,6 +87,7 @@ export class PmsListPage implements OnInit {
   getBID: any;
   get_Bid: any;
   loca_id: any;
+  pmslistDataCount: any;
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient,
@@ -118,7 +119,7 @@ export class PmsListPage implements OnInit {
     }).subscribe(resp => {
       this.branchlist1 = resp;
       for (var i = 0; i < this.branchlist1.length; i++) {
-        this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
+        this.getBID = this.branchlist1[i].BRANCH_ID;
       }
     }, error => {
     });
@@ -176,17 +177,18 @@ export class PmsListPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
       if (this.companiesstr == "No data found") {
-        console.log('check pr code');
-        this.companiesstr = "";
-      }else{
-        console.log('is available');
-      }
+        debugger
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({
           property_code: this.companiesstr[i].property_code,
           binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
         });
       };
+    };
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
@@ -199,6 +201,7 @@ export class PmsListPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
     });
   };
+
   addPropertycode(item: any) {
     this.propertycode = item.binding;
     this.propertycodeDesc = item.property_code;
@@ -250,15 +253,24 @@ export class PmsListPage implements OnInit {
       headers: options,
     }).subscribe((res: any) => {
       console.log(res, "reportlist");
+
       this.reportpropertylist = res;
+
+      this.pmslistDataCount = this.reportpropertylist.length;
+
+      console.log("count",this.pmslistDataCount);
+      
+
       if (this.reportpropertylist == null) {
-        this.showdata = "No Data Found";
+        this.showdata = true;
       }
       else {
-        this.showdata = this.reportpropertylist.length;
+        this.showdata = false;
+        this.pmslistDataCount;
       }
     });
-  }
+  };
+
   filterpropertylistreport() {
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -278,10 +290,10 @@ export class PmsListPage implements OnInit {
       console.log(res, "reportlist");
       this.reportpropertylist = res;
       if (this.reportpropertylist == null) {
-        this.showdata = "No Data Found";
+        this.showdata = true;
       }
       else {
-        this.showdata = this.reportpropertylist.length;
+        this.showdata = false;
       }
     });
   }
