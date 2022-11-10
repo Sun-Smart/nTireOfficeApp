@@ -31,11 +31,6 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Asset Code :</ion-label>
-          <select id="selectbutton"  class="form-control" [(ngModel)] = "asset_code"
-           (change)="addAssetCode(asset_code)">
-           
-            <option [ngValue]="undefined" selected disabled>
-              << Select >>
           <select id="selectbutton" [(ngModel)]="asset_code" class="form-control" (change)="addAssetCode(asset_code)">
             <option [ngValue]="undefined" selected>
               << Select>>
