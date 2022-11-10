@@ -16,7 +16,7 @@ export class PmscustomerPage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
 
   showfilter: boolean = true;
-  showdata: boolean = false;
+  showdata: boolean
   showAllrecords: any = [];
 
 
@@ -116,7 +116,7 @@ export class PmscustomerPage implements OnInit {
       let data = {
         functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
         branchids: this.get_Bid ? this.get_Bid : 0,
-        locationid: 0,
+        locationid:  this.location ?  this.location : 0,
         strPropertyCode: this.propertycodeDesc ? this.propertycodeDesc : 0,
         strPropertyDesc: 0,
         rentelCode: 0,
@@ -134,10 +134,17 @@ export class PmscustomerPage implements OnInit {
       this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchids + '/' + data.locationid + '/' + data.strPropertyCode + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
         headers: options,
       }).subscribe(resp => {
-        this.propertyCodeResult = [];
-        this.propertyCodeResult = resp;
+      ;
+     this.propertyCodeResult = resp;
         console.log(this.propertyCodeResult);
 
+        if (this.propertyCodeResult == null) {
+          this.propertyCodeResult = []
+          this.showdata = true;
+        } else {
+          this.showdata = false;
+          this.propertyCodeResult = resp;
+        }
       });
 
     };
@@ -251,15 +258,7 @@ export class PmscustomerPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
-      console.log('click t  call', resp);
-
-
-
-      if (resp == "No data found") {
-        this.showdata = true;
-      } else {
-        this.showdata = false;
-      }
+      console.log('click t  call', resp)
 
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -276,8 +275,7 @@ export class PmscustomerPage implements OnInit {
     if (ev.target.value == "") {
       this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
-    }
-
+    };
     // Reset items back to all of the items
     const header = new Headers();
     header.append("Content-Type", "application/json");

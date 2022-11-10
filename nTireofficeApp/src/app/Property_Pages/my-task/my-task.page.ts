@@ -56,7 +56,7 @@ export class MyTaskPage implements OnInit {
   pmm_asset_code: any;
   status1: any;
   getTaskStatus: any;
-  showdata: boolean = false;
+  showdata: boolean;
   assetData: any[];
   assetCodeBinding: any;
   ASSET_CODE: any;
@@ -190,6 +190,7 @@ export class MyTaskPage implements OnInit {
       console.log(this.get_assetData);
 
       if(this.get_assetData == null){
+        this.get_assetData = [];
         this.showdata = true;
       }else{
         this.showdata = false;
@@ -321,7 +322,7 @@ export class MyTaskPage implements OnInit {
     header.append("Content-Type", "application/json");
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
-      branch_Id: this.get_Bid,
+      branch_Id: this.get_Bid ? this.get_Bid : 0,
       Mode: this.mode ? this.mode : 0,
       fromDate: this.fdate ? this.fdate : 0,
       toDate: this.tdate ? this.tdate : 0,
@@ -355,9 +356,14 @@ export class MyTaskPage implements OnInit {
       console.log(resp);
       this.myTaskDetailsList = resp;
       console.log(this.myTaskDetailsList);
-      for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-        this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
-      };
+
+      if (this.myTaskDetailsList == null) {
+        this.myTaskDetailsList = []
+        this.showdata = true;
+      } else {
+        this.showdata = false;
+        this.myTaskDetailsList = resp;
+      }
     });
   };
 
