@@ -14,15 +14,15 @@
         <ion-row>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="">RFQ Code :</ion-label>
-            <ion-label class="plabel">RFQ98898</ion-label>
+            <ion-label class="plabel">{{this.RFQCODE}}</ion-label>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="">Item Code :</ion-label>
-            <ion-label class="plabel">IC878654</ion-label>
+            <ion-label class="plabel">{{this.ITEMCODE}}</ion-label>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="">Item Description :</ion-label>
-            <ion-label class="plabel">654367</ion-label>
+            <ion-label class="plabel">{{this.ITEMDESC}}</ion-label>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -32,7 +32,7 @@
       <ion-card-header class="card_header">
         <ion-card-title class="card_header_text">Vendor Details</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content style="padding: 0px;">
 
         <div class="table">
           <table class="table table-striped">
@@ -44,7 +44,7 @@
                   (change)="selectAllvendorCheckbox(selectAllvendor)"> </th>
 
                 <th>Vendor Name</th>
-                <th>Currency</th>
+                <!-- <th>Currency</th> -->
                 <th>Unit price</th>
                 <th> Tax 1 </th>
                 <th>Tax 2</th>
@@ -56,7 +56,7 @@
                 <tr *ngFor="let item of findVendorDetails">
                   <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor" (change)="fieldsChange($event,item)"> </td>
                   <td>{{item.vendorName}}</td>
-                  <td>{{item.currency}}</td>
+                  <!-- <td>{{item.currency}}</td> -->
                   <td>{{item.unit_price}}</td>
                   <td>{{item.tax1}}</td>
                   <td>{{item.tax2}}</td>
@@ -78,15 +78,15 @@
 
       <ion-row>
         <ion-col>
-          <ion-col style="text-align: center;">
+          <ion-col style="text-align: center;" size="12">
             <ion-button class="ion-color-success" (click)="add($event)"  style="margin-top: -18px;" expand="block">Add</ion-button>
           </ion-col>
         </ion-col>
-        <ion-col>
+        <!-- <ion-col>
           <ion-col style="text-align: center;">
             <ion-button class="ion-color-danger" (click)="close()"  style="margin-top: -18px;" expand="block">close</ion-button>
           </ion-col>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
 
     </ion-card>
