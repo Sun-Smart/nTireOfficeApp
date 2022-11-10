@@ -23,7 +23,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 })
 export class PaymentDetailsPage implements OnInit {
   showfilter: boolean = true;
-  showdata: any;
+  showdata: boolean;
   branchlist1: any = [];
   branchlist: any;
   branchlocationlist: any = [];
@@ -153,6 +153,7 @@ export class PaymentDetailsPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.getPaymentDetailsList = resp;
+      
       console.log(this.getPaymentDetailsList);
       for (var i = 0; i < this.getPaymentDetailsList.length; i++) {
         this.branch = this.getPaymentDetailsList[i].branch_id;
@@ -173,10 +174,10 @@ export class PaymentDetailsPage implements OnInit {
       branchids: this.branch ? this.branch : 0,
       locationid: this.branchlocation ? this.branchlocation : 0,
       property_code: this.propertycodeDesc ? this.propertycodeDesc : 0,
-      custname: this.customerName ? this.customerName : "0",
-      Status: this.status ? this.status : "0",
-      payMode: this.paymode ? this.paymode : "0",
-      chequeNo: this.chequeno ? this.chequeno : "0",
+      custname: this.customerName ? this.customerName : 0,
+      Status: this.status ? this.status :0,
+      payMode: this.paymode ? this.paymode : 0,
+      chequeNo: this.chequeno ? this.chequeno : 0,
       fromDate: 0,
       toDate: 0
     };
@@ -187,6 +188,7 @@ export class PaymentDetailsPage implements OnInit {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log(this.branchlocationlist);
+
       for (var i = 0; i < this.branchlocationlist.length; i++) {
         this.branchlocation = this.branchlocationlist[i].location_id;
         this.branchid = this.branchlocationlist[i].branch_id;
@@ -254,15 +256,16 @@ export class PaymentDetailsPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
       if (this.companiesstr == "No data found") {
-        console.log('check pr code');
-        this.companiesstr = "";
-      }else{
-        console.log('is available');
-      }
+        debugger
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({property_code:this.companiesstr[i].property_code,
           binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
       };
+    };
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {

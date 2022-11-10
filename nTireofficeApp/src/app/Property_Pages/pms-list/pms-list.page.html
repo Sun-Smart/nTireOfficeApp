@@ -17,6 +17,7 @@
   <ion-card *ngIf="showfilter">
     <ion-card-content>
       <ion-row>
+
         <ion-col size="12">
           <ion-label>Branch <span style="color:red;">*</span></ion-label>
           <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="getLocationdata(branch)">
@@ -28,6 +29,7 @@
             </option>
           </select>
         </ion-col>
+
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Location</ion-label>
         <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
@@ -39,17 +41,22 @@
             {{location.LOCATION_DESC}}</option>
         </select>
       </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
               {{item.binding}}
             </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
+            </ion-item>
           </ion-list>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Status</ion-label>
           <select id="selectbutton" [(ngModel)]="status" class="form-control">
@@ -62,6 +69,7 @@
             <option> Rejected</option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Type</ion-label>
           <select id="selectbutton" [(ngModel)]="PropertyType" class="form-control">
@@ -72,6 +80,7 @@
             <option> Commercial</option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Nature</ion-label>
           <select id="selectbutton" [(ngModel)]="PropertyNature" class="form-control">
@@ -82,14 +91,22 @@
             <option> Available</option>
           </select>
         </ion-col>
+
         <ion-col size="12">
           <ion-button color="success" size="default" (click)="filterpropertylistreport()">SEARCH</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}
-  </p>
+<!-- 
+  <center *ngIf="!showdata"
+  style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">
+  Total Records : {{reportpropertylist.length}}</center> -->
+ 
+ <center *ngIf="showdata"
+ style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">
+ No records found</center>
+
   <ion-card *ngFor="let items of reportpropertylist; let i = index">
     <ion-card-header class="card_header">
       <ion-row>

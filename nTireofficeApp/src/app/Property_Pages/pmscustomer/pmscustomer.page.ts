@@ -16,7 +16,7 @@ export class PmscustomerPage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
 
   showfilter: boolean = true;
-  showdata: any;
+  showdata: boolean = false;
   showAllrecords: any = [];
 
 
@@ -139,9 +139,9 @@ export class PmscustomerPage implements OnInit {
         console.log(this.propertyCodeResult);
 
       });
-    
+
     };
-  
+
   };
 
 
@@ -178,12 +178,12 @@ export class PmscustomerPage implements OnInit {
       }
       console.log(this.branchlocation);
 
-      if (this.propertyCodeResult == null) {
-        this.showdata = "No Data Found"
-      }
-      else {
-        this.showdata = this.propertyCodeResult.length;
-      }
+      // if (this.propertyCodeResult == null) {
+      //   this.showdata = "No Data Found"
+      // }
+      // else {
+      //   this.showdata = this.propertyCodeResult.length;
+      // }
     }, error => {
       // console.log("showAllrecords : " + JSON.stringify(error));
     });
@@ -229,15 +229,15 @@ export class PmscustomerPage implements OnInit {
         this.loca_id = this.customerlocation[i].LOCATION_ID;
       };
       console.log(this.loca_id);
-      
+
     });
   };
 
-  newPropertyCode(branchlocation:any) {
+  newPropertyCode(branchlocation: any) {
 
     this.location = branchlocation;
     console.log(this.location);
-    
+
 
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
@@ -252,6 +252,14 @@ export class PmscustomerPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
+
+
+
+      if (resp == "No data found") {
+        this.showdata = true;
+      } else {
+        this.showdata = false;
+      }
 
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -282,19 +290,25 @@ export class PmscustomerPage implements OnInit {
       this.isPropertycodeAvailable = false;
       this.companiesstr = resp;
 
-      // if (this.companiesstr == "No data found") {
-      //   this.companiesstr = "";
-      // } else {
-      //   console.log('is available');
-      // }
       console.log(this.companiesstr);
 
-      for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push({
-          property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
-        });
+      if (this.companiesstr == "No data found") {
+        debugger
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
+        for (var i = 0; i < this.companiesstr.length; i++) {
+          this.propertyCode1.push({
+            property_code: this.companiesstr[i].property_code,
+            binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+          });
+        };
       };
+
+
+
+      console.log(this.propertyCode1);
 
       const val = ev.target.value;
 

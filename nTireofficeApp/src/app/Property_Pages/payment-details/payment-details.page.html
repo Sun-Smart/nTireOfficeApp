@@ -26,6 +26,7 @@
             </option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Location</ion-label>
@@ -37,6 +38,7 @@
             </select>
           </ion-col>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
@@ -46,12 +48,17 @@
               style="background:none !important;color:#444 !important;display: block;">
               {{item.binding}}
             </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
+            </ion-item>
           </ion-list>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Customer</ion-label>
           <ion-input type="text" class="form-control" [(ngModel)]="customerName"></ion-input>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Status</ion-label>
           <select [(ngModel)]="status" class="form-control">
@@ -61,6 +68,7 @@
             <option value="Returned">Returned</option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Pay Mode</ion-label>
           <select [(ngModel)]="paymode" class="form-control">
@@ -71,19 +79,25 @@
             <option value="RTGS">RTGS</option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Cheque No</ion-label>
           <ion-input type="text" class="form-control" [(ngModel)]="chequeno"></ion-input>
         </ion-col>
+
         <ion-col size="12">
           <ion-button color="success" size="default" (click)="filtergetPaymentDetails()">SEARCH</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <p *ngIf="getPaymentDetailsList" style="text-align: center;font-weight: bold; margin: 30px;color: black;"> Total Records
-    :
-    {{getPaymentDetailsList.length}}</p>
+
+  <!-- <center *ngIf="!showdata"
+  style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{getPaymentDetailsList.length}}</center>
+  -->
+ <center *ngIf="showdata"
+ style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center>
+
   <ion-card *ngFor="let items of getPaymentDetailsList; let i = index">
     <ion-card-header class="card_header">
       <ion-row>

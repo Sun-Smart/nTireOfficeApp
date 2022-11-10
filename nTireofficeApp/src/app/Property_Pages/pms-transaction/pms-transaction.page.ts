@@ -63,6 +63,7 @@ export class PmsTransactionPage implements OnInit {
   get_Bid: any;
   loca_id: any;
   propertycodeDesc: any;
+  showdata: boolean = false;
   location: any;
   constructor(public alertController: AlertController, private router: Router, private IpaddressService: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
     this.columns = [
@@ -242,18 +243,20 @@ export class PmsTransactionPage implements OnInit {
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log(this.companiesstr);
+      
       if (this.companiesstr == "No data found") {
-        console.log('check pr code');
-        this.companiesstr = "";
-      }else{
-        console.log('is available');
-      }
+        debugger
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({
           property_code: this.companiesstr[i].property_code,
           binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
         });
       }
+    }
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
