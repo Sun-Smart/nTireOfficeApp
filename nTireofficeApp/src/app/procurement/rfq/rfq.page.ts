@@ -330,7 +330,7 @@ export class RFQPage implements OnInit {
        this.splitted = this.splitted[1];
         console.log('new',this.splitted)
 
-     this.router.navigate(['/manage-rfq/',this.splitted])
+     this.router.navigate(['/manage-rfq',this.splitted,item])
   }
 
   async presentAlert(heading, tittle) {

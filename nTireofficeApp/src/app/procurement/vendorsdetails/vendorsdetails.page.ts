@@ -32,6 +32,9 @@ export class VendorsdetailsPage implements OnInit {
   RFQID;
   CATEGORY;
   SUBCAT;
+  RFQCODE;
+  ITEMCODE;
+  ITEMDESC;
   VendorDetails:any=[];
   Checked;
   constructor( private router :Router,private activatedRoute: ActivatedRoute,private IpaddressService: IpaddressService, private httpclient: HttprequestService){
@@ -53,6 +56,9 @@ export class VendorsdetailsPage implements OnInit {
       this.CATEGORY=this.data.category;
       this.ItemID=this.data.itemid;
       this.SUBCAT=this.data.subcategory;
+      this.RFQCODE = this.data.rfq;
+      this.ITEMCODE = this.data.itemCode;
+      this.ITEMDESC = this.data.itemdesc;
       console.log(this.ItemID);
     });
       this.getCards();
