@@ -314,11 +314,17 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp);
-      this.myTaskDetailsList = resp;
-      console.log(this.myTaskDetailsList);
-      for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-        this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
-      };
+      if (resp == null || resp == "No data found") {
+        this.myTaskDetailsList = [];
+        this.showdata1 = true;
+      } else {
+        this.showdata1 = false;
+        this.myTaskDetailsList = resp;
+        console.log(this.myTaskDetailsList);
+        for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+          this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+        };
+      }
       console.log('kuhgg', this.pmr_reference);
     });
   };
@@ -327,7 +333,7 @@ export class MyTaskPage implements OnInit {
     if (this.branch == "<< Select >>" || this.branch == null || this.branch == "undefined") {
       this.presentAlert1('Error', 'Please select branch');
       return;
-    }else{
+    } else {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let data = {

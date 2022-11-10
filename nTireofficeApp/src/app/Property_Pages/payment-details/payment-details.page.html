@@ -95,9 +95,10 @@
   <!-- <center *ngIf="!showdata"
   style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{getPaymentDetailsList.length}}</center>
   -->
- <center *ngIf="showdata"
- style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center>
-
+ <!-- <center *ngIf="showdata"
+ style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center> -->
+ <center *ngIf="getPaymentDetailsList" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+  Total records: {{getPaymentDetailsList.length ? getPaymentDetailsList.length : '0'}}</center>
   <ion-card *ngFor="let items of getPaymentDetailsList; let i = index">
     <ion-card-header class="card_header">
       <ion-row>
@@ -185,7 +186,7 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <center *ngIf="showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No data found</center>
+  <!-- <center *ngIf="showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">No data found</center> -->
 </ion-content>
 <ion-footer>
   <ion-row>

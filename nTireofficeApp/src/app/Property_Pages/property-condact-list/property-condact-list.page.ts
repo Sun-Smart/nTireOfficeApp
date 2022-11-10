@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable arrow-body-style */
 /* eslint-disable eqeqeq */
@@ -139,7 +140,7 @@ export class PropertyCondactListPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
       if (this.companiesstr == "No data found") {
-        debugger
+        debugger;
         this.propertyCode1 = [];
         this.showdata = true;
       } else {
@@ -208,13 +209,13 @@ export class PropertyCondactListPage implements OnInit {
       headers: options,
     }).subscribe((res: any) => {
       console.log(res, 'reportlist');
-      this.propetycondactlist = res;
-      
-      if (this.propetycondactlist == null) {
+      if (res == null || res == "No data found") {
         this.showdata = true;
+        this.propetycondactlist = [];
       }
       else {
         this.showdata = false;
+        this.propetycondactlist = res;
       }
     });
   };
@@ -232,11 +233,9 @@ export class PropertyCondactListPage implements OnInit {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp, 'reportlist');
-      this.propetycondactlist = [];
-      this.propetycondactlist = resp;
-
-      if (resp == null) {
+      if (resp == null || resp == "No data found") {
         this.showdata = true;
+        this.propetycondactlist = [];
       } else {
         this.showdata = false;
         this.propetycondactlist = resp;

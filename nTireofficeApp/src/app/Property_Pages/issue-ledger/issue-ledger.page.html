@@ -71,7 +71,9 @@
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
+    <center *ngIf="propertyissueledger" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+      Total records: {{propertyissueledger.length ? propertyissueledger.length : '0'}}</center>
+    <!-- <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p> -->
     <ion-card  *ngFor="let items of propertyissueledger; let i = index">
       <ion-card-header class="card_header">
         <ion-row>
