@@ -78,7 +78,7 @@ export class PmsdashboardPage implements OnInit {
 
     this.issueStatus();
     this.customerPayment();
-    this.getBranchCountChart();
+    this.getProprtyStatusChart();
     this.getEmployeeCountChart();
     this.getToBevaccantChart();
 
@@ -338,7 +338,7 @@ issueStatus(){
 
   // }
 
-  getBranchCountChart = function () {
+  getProprtyStatusChart = function () {
     debugger
     var sourcearray = [];
     const header = new Headers();

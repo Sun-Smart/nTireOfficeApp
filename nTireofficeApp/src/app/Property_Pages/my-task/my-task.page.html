@@ -31,9 +31,10 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Asset Code :</ion-label>
-          <select id="selectbutton" [(ngModel)]="asset_code" class="form-control"
+          <select id="selectbutton"  class="form-control" [(ngModel)] = "asset_code"
            (change)="addAssetCode(asset_code)">
-            <option  selected disabled>
+           
+            <option [ngValue]="undefined" selected disabled>
               << Select >>
             </option>
             <option *ngIf="showdata">
@@ -143,11 +144,11 @@
         </ion-col>
         <ion-col size="1" style="align-items: center;display: flex;">:</ion-col>
         <ion-col size="6" class="col_height">
-          <select [(ngModel)]="status1" class="form-control">
-            <option selected ngValue="N">New</option>
-            <option ngValue="S">Started</option>
-            <option ngValue="C">Completed</option>
-          </select>
+          <ion-select [(ngModel)]="status1" class="form-control" placeholder="New" style="display: flex;">
+            <ion-select-option selected value="N">New</ion-select-option >
+            <ion-select-option  value="S">Started</ion-select-option >
+            <ion-select-option  value="C">Completed</ion-select-option >
+          </ion-select>
         </ion-col>
       </ion-row>
       <ion-row>

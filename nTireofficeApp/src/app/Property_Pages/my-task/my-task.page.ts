@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./my-task.page.scss'],
 })
 export class MyTaskPage implements OnInit {
+
+
   showfilter: boolean = true;
   isItemAvailable: boolean;
   function: any;
