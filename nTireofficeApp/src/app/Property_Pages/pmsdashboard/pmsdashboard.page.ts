@@ -52,11 +52,12 @@ export class PmsdashboardPage implements OnInit {
     this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.columnsStatus = [
-      { name: 'issuedescription', },
-      { name: 'issuecode', },
-      { name: 'issuedate', },
-      { name: 'status', },
-      { name: 'tenant', }
+      { name: 'Property_Building_Name', },
+      { name: 'Property_Code', },
+      { name: 'Issue_Description', },
+      { name: 'Issue_Date', },
+      { name: 'Status', },
+      { name: 'Tenant', }
     ];
 
      this.tovaccantchartcount = [
