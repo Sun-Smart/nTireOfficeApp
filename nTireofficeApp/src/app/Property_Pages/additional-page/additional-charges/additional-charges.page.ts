@@ -144,7 +144,7 @@ export class AdditionalChargesPage implements OnInit {
       }
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({rental_pro_id: this.companiesstr[i].property_id,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name},
+          binding: this.companiesstr[i].property_code + " - " + this.companiesstr[i].property_building_name},
         this.rental_pro_id = this.companiesstr[i]['property_id']);
       }
       const val = ev.target.value;
