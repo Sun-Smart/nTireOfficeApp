@@ -1,3 +1,6 @@
+/* eslint-disable no-debugger */
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/member-delimiter-style */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable arrow-body-style */
@@ -89,6 +92,7 @@ export class PmsListPage implements OnInit {
   loca_id: any;
   pmslistDataCount: any;
   location: any;
+  PropertyNature: any;
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient,
@@ -125,7 +129,7 @@ export class PmsListPage implements OnInit {
     }, error => {
     });
   };
-  getLocationdata(branch:any) {
+  getLocationdata(branch: any) {
     console.log(branch);
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     this.get_Bid = branch;
@@ -183,13 +187,13 @@ export class PmsListPage implements OnInit {
         this.showdata = true;
       } else {
         this.showdata = false;
-      for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push({
-          property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
-        });
+        for (var i = 0; i < this.companiesstr.length; i++) {
+          this.propertyCode1.push({
+            property_code: this.companiesstr[i].property_code,
+            binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+          });
+        };
       };
-    };
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
@@ -259,8 +263,8 @@ export class PmsListPage implements OnInit {
 
       this.pmslistDataCount = this.reportpropertylist.length;
 
-      console.log("count",this.pmslistDataCount);
-      
+      console.log("count", this.pmslistDataCount);
+
 
       if (this.reportpropertylist == null) {
         this.showdata = true;
@@ -273,35 +277,52 @@ export class PmsListPage implements OnInit {
   };
 
   filterpropertylistreport() {
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    let data = {
-      functionID: localStorage.getItem('FUNCTION_ID'),
-      branchid: this.branch ? this.branch : 1,
-      locationid: this.branchlocation ? this.branchlocation : 1,
-      propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
-      status: this.status ? this.status : 0,
-      propertytype: this.PropertyType ? this.PropertyType : 0,
-      propertynature: this.propertynature ? this.propertynature : 0,
-    };
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.status + "/" + data.propertytype + "/0" + "/" + data.propertynature, {
-      headers: options,
-    }).subscribe((res: any) => {
-      console.log(res, "reportlist");
-      this.reportpropertylist = res;
-      if (this.reportpropertylist == null) {
-        this.showdata = true;
-      }
-      else {
-        this.showdata = false;
-      }
-    });
+    debugger;
+    if (this.branch == "<< Select >>" || this.branch == "undefined" || this.branch == null) {
+      this.presentAlert1('Error', 'Please select branch');
+      return;
+    } else {
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      let data = {
+        functionID: localStorage.getItem('FUNCTION_ID'),
+        branchid: this.branch ? this.branch : 1,
+        locationid: this.branchlocation ? this.branchlocation : 1,
+        propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
+        status: this.status ? this.status : 0,
+        propertytype: this.PropertyType ? this.PropertyType : 0,
+        propertynature: this.PropertyNature ? this.PropertyNature : 0,
+      };
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertylistreports/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.status + "/" + data.propertytype + "/0" + "/" + data.propertynature, {
+        headers: options,
+      }).subscribe((res: any) => {
+        console.log(res, "reportlist");
+        if (res == null || res == "No data found") {
+          this.showdata = true;
+          this.reportpropertylist = [];
+        }
+        else {
+          this.showdata = false;
+          this.reportpropertylist = res;
+        }
+      });
+    }
   }
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']

@@ -42,13 +42,13 @@ export class IssueLedgerPage implements OnInit {
   usertype: string;
   accessToken: string;
   propertyissueledger: any;
-  showdata: string;
+  showdata: boolean;
   Customer: any;
   Status: any;
   AssignedTo: any;
   propertycodeDesc: any;
   getBID: any;
-  branchId: any =[];
+  branchId: any = [];
   get_Bid: any;
   loca_id: any;
   location: any;
@@ -98,7 +98,7 @@ export class IssueLedgerPage implements OnInit {
     });
   };
 
-  newPropertyCode(branchlocation:any) {
+  newPropertyCode(branchlocation: any) {
     this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -139,7 +139,7 @@ export class IssueLedgerPage implements OnInit {
       if (this.companiesstr == "No data found") {
         console.log('check pr code');
         this.companiesstr = "";
-      }else{
+      } else {
         console.log('is available');
       }
       for (var i = 0; i < this.companiesstr.length; i++) {
@@ -194,40 +194,56 @@ export class IssueLedgerPage implements OnInit {
       headers: options,
     }).subscribe((res: any) => {
       console.log(res, "issueledgerlist");
-      this.propertyissueledger = res;
-      if (this.propertyissueledger == null) {
-        // alert("hh")
-        this.showdata = "No Data Found";
+      if (res == null || res == "No data found") {
+        this.showdata = true;
+        this.propertyissueledger = [];
       }
       else {
-        this.showdata = this.propertyissueledger.length;
+        this.showdata = false;
+        this.propertyissueledger = res;
       }
     });
   }
   Filterpropertyissueledger() {
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    let data = {
-      functionID: localStorage.getItem('FUNCTION_ID'),
-      branchid: this.branch ? this.branch : 1,
-      locationid: this.branchlocation ? this.branchlocation : 1,
-      propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
-      Customer: this.Customer ? this.Customer : 0,
-      AssignedTo: this.AssignedTo ? this.AssignedTo : 0,
-      Status: this.Status ? this.Status : 0,
-    };
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.Status + "/" + data.Customer + "/" + data.AssignedTo, {
-      headers: options,
-    }).subscribe((res: any) => {
-      console.log(res, "issueledgerlist");
-      this.propertyissueledger = res;
-      if (this.propertyissueledger == null) {
-        this.showdata = "No Data Found";
-      }
-      else {
-        this.showdata = this.propertyissueledger.length;
-      }
+    if (this.branch == "<< Select >>" || this.branch == "undefined" || this.branch == null) {
+      this.presentAlert1('Error', 'Please select branch');
+      return;
+    } else {
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      let data = {
+        functionID: localStorage.getItem('FUNCTION_ID'),
+        branchid: this.branch ? this.branch : 1,
+        locationid: this.branchlocation ? this.branchlocation : 1,
+        propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
+        Customer: this.Customer ? this.Customer : 0,
+        AssignedTo: this.AssignedTo ? this.AssignedTo : 0,
+        Status: this.Status ? this.Status : 0,
+      };
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpropertyissueledger/' + data.functionID + "/" + data.branchid + "/" + data.locationid + "/" + data.propertyID + "/" + "0/0/0/" + data.Status + "/" + data.Customer + "/" + data.AssignedTo, {
+        headers: options,
+      }).subscribe((res: any) => {
+        console.log(res, "issueledgerlist");
+        if (res == null || res == "No data found") {
+          this.showdata = true;
+          this.propertyissueledger =[];
+        }
+        else {
+          this.showdata = false;
+          this.propertyissueledger = res;
+        }
+      });
+    }
+  }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
     });
+    await alert.present();
   }
 }

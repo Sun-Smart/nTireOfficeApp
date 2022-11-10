@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable arrow-body-style */
@@ -98,14 +99,14 @@ export class DocumentExpiryReportPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getdocumentexpiryreport/' + data.functionid + '/' + data.branchid + '/' + data.propertycode + '/' + data.issuedate + '/' + data.expirydate + '/' + data.clientcode + '/' + data.clientname, {
       headers: options,
     }).subscribe(resp => {
-      this.getdocumentexpiryList = resp;
       console.log(this.getdocumentexpiryList);
-
-      if (this.getdocumentexpiryList == null) {
+      if (resp == null || resp == "No data found") {
         this.showdata = true;
+        this.getdocumentexpiryList = [];
       }
       else {
         this.showdata = false;
+        this.getdocumentexpiryList = resp;
       }
     });
   }
@@ -183,13 +184,13 @@ export class DocumentExpiryReportPage implements OnInit {
         this.showdata = true;
       } else {
         this.showdata = false;
-      for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push({
-          property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
-        });
+        for (var i = 0; i < this.companiesstr.length; i++) {
+          this.propertyCode1.push({
+            property_code: this.companiesstr[i].property_code,
+            binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+          });
+        };
       };
-    };
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
@@ -231,29 +232,45 @@ export class DocumentExpiryReportPage implements OnInit {
     });
   }
   filterdocumentexpiryreport() {
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    let data = {
-      functionID: localStorage.getItem('FUNCTION_ID'),
-      branchid: this.branch ? this.branch : 0,
-      propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
-      clientname: this.clientname ? this.clientname : 0,
-    };
-    this.fromdate = this.datePipe.transform(this.fromdate, 'dd-MM-yyyy')
-    this.todate = this.datePipe.transform(this.todate, 'dd-MM-yyyy'),
-      this.issuedate = this.fromdate ? this.fromdate : 0
-    this.expirydate = this.todate ? this.todate : 0
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getdocumentexpiryreport/' + data.functionID + '/' + data.branchid + '/' + data.propertyID + '/' + this.issuedate + "/" + this.expirydate + '/' + 0 + '/' + data.clientname, {
-      headers: options,
-    }).subscribe(resp => {
-      this.getdocumentexpiryList = resp;
-      if (this.getdocumentexpiryList == null) {
-        this.showdata = true
-      }
-      else {
-        this.showdata = false
-      }
+    if (this.branch == "<< Select >>" || this.branch == "undefined" || this.branch == null) {
+      this.presentAlert1('', '');
+      return;
+    } else {
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      let data = {
+        functionID: localStorage.getItem('FUNCTION_ID'),
+        branchid: this.branch ? this.branch : 0,
+        propertyID: this.propertycodeDesc ? this.propertycodeDesc : 0,
+        clientname: this.clientname ? this.clientname : 0,
+      };
+      this.fromdate = this.datePipe.transform(this.fromdate, 'dd-MM-yyyy')
+      this.todate = this.datePipe.transform(this.todate, 'dd-MM-yyyy'),
+        this.issuedate = this.fromdate ? this.fromdate : 0
+      this.expirydate = this.todate ? this.todate : 0
+      this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getdocumentexpiryreport/' + data.functionID + '/' + data.branchid + '/' + data.propertyID + '/' + this.issuedate + "/" + this.expirydate + '/' + 0 + '/' + data.clientname, {
+        headers: options,
+      }).subscribe(resp => {
+        if (resp == null || resp == "No data found") {
+          this.showdata = true;
+          this.getdocumentexpiryList = [];
+        }
+        else {
+          this.showdata = false
+          this.getdocumentexpiryList = resp;
+        }
+      });
+    }
+  }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
     });
+    await alert.present();
   }
 }

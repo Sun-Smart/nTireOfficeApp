@@ -58,12 +58,13 @@
       </ion-card-content>
     </ion-card>
 
-    <center *ngIf="!showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+    <!-- <center *ngIf="!showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
       Total records: {{propetycondactlist.length}}</center>
 
       <center *ngIf="showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
-       No records found.</center>
-      
+       No records found.</center> -->
+       <center *ngIf="propetycondactlist" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+        Total records: {{propetycondactlist.length ? propetycondactlist.length : '0'}}</center>
     <ion-card  *ngFor="let items of propetycondactlist; let i = index">
       <ion-card-header class="card_header">
         <ion-row>
