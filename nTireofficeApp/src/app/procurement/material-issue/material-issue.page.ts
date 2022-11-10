@@ -26,8 +26,13 @@ export class MaterialIssuePage implements OnInit {
   todate;
   responseData;
   responseDatalength;
+  mode: string;
+
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
+  getresponse: any;
+  getsetvalue: any;
+  getstatusvalue: any;
 
   constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
@@ -44,25 +49,98 @@ export class MaterialIssuePage implements OnInit {
 
   setValue(value:any){
     console.log(value)
+    this.getsetvalue =value
+  }
+  setstatusvalue(value:any){
+    this.getstatusvalue =value
   }
 
   SearchList() {
-    this.showviewlist = true
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+this.showviewlist = true; 
+
+
+
+
+let body =  {
+  "FUNCTIONIDMI":"1",
+  "BRANCHIDMI":"1",
+  "ITEM_CODEMI":"",
+  "ITEM_REFMI":"",
+  "ILT_REFMI":"",
+  "SR_REFMI":"",
+  "FROMDATEMI":this.fromdate,
+  "TODATEMI":this.todate,
+  "STATUSMI":this.getstatusvalue,
+  "ALPHANAMEMI":"",
+  "SORTEXPRESSIONMI":"item_short_desc",
+  "PAGEINDEXMI":0,
+  "PAGESIZEMI":20,
+  "SEARCH_TYPEMI":this.getsetvalue
+}
+
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress1+
+      this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails' , body).subscribe((res:any) =>{
+        console.log(res)
+        this.getresponse =res
+      })
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Mode : Location
+
+
+
+ 
+    // this.showviewlist = true
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
   
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceerpapi+'Getodersummary?strbranch='+this.branch_ID+'&function='+this.funtionID+'&ponumber=null&vendorcode=null&fromdate=null&todate=null&status=null&itemcode=null&usertype=1&userid=1&pageIndex=1&pageSize=25&sortExpression=sortExpression&alphaname=null&prscode=null',{
-                             
-      headers: options,
-    }).subscribe(resp => {
-       this.responseData = resp;
-       console.log(this.responseData);
-       this.responseDatalength = this.responseData.length;
-    }, error => {
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    // this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails',
+    //   {  
+    //   headers: options,
+    // }).subscribe(resp => {
+    //    this.responseData = resp;
+    //    console.log(this.responseData);
+    //    this.responseDatalength = this.responseData.length;
+    // }, error => {
   
-      console.log(JSON.stringify(error));
-    });
+    //   console.log(JSON.stringify(error));
+    // });
   }
   transCancel() {
     this.modalCtrl.dismiss();

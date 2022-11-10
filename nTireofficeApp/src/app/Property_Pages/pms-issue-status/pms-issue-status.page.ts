@@ -59,11 +59,11 @@ export class PmsIssueStatusPage implements OnInit {
       this.getStatus = resp;
       console.log(this.getStatus);
 
-      // if(this.getStatus = null){
-      //   this.isViewStatusCard = false;
-      // }else{
-      //   this.isViewStatusCard = true;
-      // }
+      if(this.getStatus = null){
+        this.isViewStatusCard = false;
+      }else{
+        this.isViewStatusCard = true;
+      }
 
     });
   };

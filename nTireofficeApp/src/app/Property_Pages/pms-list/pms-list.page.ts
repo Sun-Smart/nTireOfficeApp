@@ -88,6 +88,7 @@ export class PmsListPage implements OnInit {
   get_Bid: any;
   loca_id: any;
   pmslistDataCount: any;
+  location: any;
   constructor(private modalCtrl: ModalController,
     public alertController: AlertController,
     private http: HttpClient,
@@ -139,16 +140,16 @@ export class PmsListPage implements OnInit {
     });
   };
   newPropertyCode(branchlocation) {
+    this.location = branchlocation;
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
       branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
