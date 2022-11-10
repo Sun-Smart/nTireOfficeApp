@@ -120,14 +120,14 @@
 
 <!-- Pending RFQ -->
 <ion-card *ngIf="showRfq">
-  <ion-card  *ngFor="let item of getresponse">
+  <ion-card *ngFor="let item of getresponse">
           <ion-card-header class="card_header" style="padding: 5px !important;">
         <ion-row>
           <ion-col size="4">
             <!-- <ion-label class="card_header_text1">{{item.Name}}</ion-label> -->
             <!-- <input type="checkbox" id="checkbox" [checked]="selectAll" (change)="selectAllCheckbox(selectAll)"> -->
 
-            <input type="checkbox" class="checkboxbg" [checked]="selectAll"  (change)="selectAllCheckbox(item.RFQID)">
+            <input type="checkbox" class="checkboxbg" [checked]="selectAll"  (change)="fieldsChange($event,item)">
           </ion-col>
           <ion-col size="8">
             <ion-label class="card_header_text1"> {{item.prs_code}}</ion-label>
@@ -192,7 +192,7 @@
         </ion-col>
         <ion-col size="5">
           <!-- <ion-label class="card_header_text"> {{item.prscode}}/{{item.itemcode}}</ion-label> -->
-          <ion-button class="ion-color-successrfq" (click)="manageRFQlink()"> Manage RFQ </ion-button>
+          <ion-button class="ion-color-successrfq" (click)="manageRFQlink(item.RFQCode2)"> Manage RFQ </ion-button>
         </ion-col>
       </ion-row>
     </ion-card-header>

@@ -20,8 +20,11 @@ export class PRSstatusPage implements OnInit {
   todate: any;
   fromdate: any;
   editprs: boolean = false;
-  loading: boolean = false
+  loading: boolean = false;
+  showdeledit: boolean = true
   Branchname;
+  getprsid: any;
+  getstatus: any;
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
@@ -36,11 +39,77 @@ export class PRSstatusPage implements OnInit {
   next() {
     this.router.navigate(['/purchase-request'])
   }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
 
+
+    await alert.present();
+  }
 
 
   edit() {
     this.router.navigate(['/updateprsstatus'])
+  }
+
+
+  async testdetele() {
+    // const alert = await this.alertController.create({
+    //   header: 'Confirm',
+    //   message: 'Are you sure want to delete this recoed',
+    //   buttons: [
+    //     {
+    //       text: 'No',
+    //       role: 'cancel',
+    //       cssClass: 'secondary',
+    //       handler: (blah) => {
+    //         console.log('Confirm Cancel: blah');
+    //       }
+    //     }, {
+    //       text: 'Yes',
+    //       handler: () => {
+
+
+    //         let body = {
+    //           "prsid": this.prscode
+    //         }
+    //         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
+    //           this.loading = false
+    //           this.getresponse = res;
+    //           this.presentAlert("", this.getresponse);
+    //           // console.log("Response", res)
+    //           // console.log("Response", res)
+    //           // for (let item of this.getresponse) {
+    //           //   console.log(item);
+    //           // }
+    //         })
+
+
+    //       }
+    //     }
+    //   ]
+    // });
+
+
+    let body = {
+      "prsid": this.getprsid
+    }
+    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
+      this.loading = false
+      this.getresponse = res;
+      this.presentAlert("", res);
+      this.Search();
+      // console.log("Response", res)
+      // console.log("Response", res)
+      // for (let item of this.getresponse) {
+      //   console.log(item);
+      // }
+    })
   }
 
 
@@ -80,10 +149,10 @@ export class PRSstatusPage implements OnInit {
 
   Search() {
     this.loading = true
-    console.log(this.prscode)
-    console.log(this.status)
-    console.log(this.todate)
-    console.log(this.fromdate)
+    // console.log(this.prscode)
+    // console.log(this.status)
+    // console.log(this.todate)
+    // console.log(this.fromdate)
     this.showviewlist = true
     if (this.prscode == undefined) {
       this.prscode = ''
@@ -148,13 +217,20 @@ export class PRSstatusPage implements OnInit {
 
       console.log("Response", res)
       console.log("Response", res)
+      console.log(res.status)
+      if (res.status == "d" || res.status == "D") {
+        this.showdeledit = false
+      }
       for (let item of this.getresponse) {
         console.log(item);
+        this.getprsid = item.PRS_ID
+        this.getstatus = item.STATUS
+        console.log(this.getstatus)
+      }
+      if (this.getstatus == "Denied" || this.getstatus == "D") {
+        this.showdeledit = false
       }
     })
-
-
-
 
     //   const header = new Headers();
     //   header.append("Content-Type", "application/json");
@@ -174,11 +250,6 @@ export class PRSstatusPage implements OnInit {
     //     console.log("error : " + JSON.stringify(error));
 
     //   });
-
-
-
-
-
   }
 
 }

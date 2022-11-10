@@ -6,41 +6,35 @@
     <ion-title>Issue Ledger</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-row class="top-header">
     <ion-col size="4" style="margin-left: 15px;">
       <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
     </ion-col>
   </ion-row>
-
     <ion-card *ngIf="showfilter">
       <ion-card-content >
         <ion-row>
-
           <ion-col size="12">
             <ion-label>Branch <span style="color:red;">*</span></ion-label>
             <select id="selectbutton" [(ngModel)]="branch" class="form-control"
-              (change)="BranchLocationdata(branch)">
+              (change)="getLocationdata(branch)">
               <option value="undefined" selected disabled><< Select >></option>
               <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}
               </option>
             </select>
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Branch Location</ion-label>
-            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="getLocationdata(branchlocation)">
-              <option value="undefined" selected disabled><< Select >></option>
-              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.BRANCH_ID">
-                {{location.BRANCH_DESC}}</option>
+            <ion-label>Location</ion-label>
+            <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="newPropertyCode(branchlocation)">
+              <option [ngValue]="undefined" selected disabled><< Select >></option>
+              <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.LOCATION_ID">
+                {{location.LOCATION_DESC}}</option>
             </select>
           </ion-col>
         </ion-col>
-
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
@@ -52,17 +46,14 @@
             </ion-item>
           </ion-list>
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Customer</ion-label>
        <ion-input type="text" class="form-control"  [(ngModel)]="Customer"></ion-input>
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>AssignedTo</ion-label>
        <ion-input type="text" class="form-control"  [(ngModel)]="AssignedTo"></ion-input>
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Status</ion-label>
           <select id="selectbutton" [(ngModel)]="Status" class="form-control" >
@@ -72,237 +63,108 @@
             <option> New</option>
             <option> Pending</option>
             <option> Rejected</option>
-
-
           </select>
         </ion-col>
-
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Property Description :</ion-label>
-            <ion-input class="form-control"></ion-input>
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="propertyDescription" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="propertyDescriptioN(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col> -->
-
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Property Type :</ion-label>
-            <ion-input class="form-control"></ion-input>
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col> -->
-
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Status :</ion-label>
-            <ion-input class="form-control"></ion-input>
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col> -->
-
           <ion-col size="12">
-            <ion-button color="success" size="default" (click)="Filterpropertyissueledger()">SEARCH</ion-button>
+            <ion-button class="ion-color-success" size="default" (click)="Filterpropertyissueledger()">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-
-
-
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
-
+    <center *ngIf="propertyissueledger" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+      Total records: {{propertyissueledger.length ? propertyissueledger.length : '0'}}</center>
+    <!-- <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p> -->
     <ion-card  *ngFor="let items of propertyissueledger; let i = index">
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="7">
             <ion-label class="card_header_text">Issue Ledger</ion-label>
           </ion-col>
-
           <ion-col size="5">
             <ion-label class="card_header_text"> #{{i+1}}</ion-label>
           </ion-col>
         </ion-row>
-
-
       </ion-card-header>
       <ion-card-content class="card_content">
         <ion-grid>
           <ion-row>
-
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text"> Branch </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.Branch}}</ion-label>
-
             </ion-col>
-
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text">Location </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.Location}}</ion-label>
-
             </ion-col>
-
-
-
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text">Property Code </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
               <ion-label class="labelData-text">: {{items.PropertyCode}}</ion-label>
-
             </ion-col>
-
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text">Description </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.Description}}</ion-label>
-
             </ion-col>
-
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text">Customer </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
               <ion-label class="labelData-text">: {{items.Customer}}</ion-label>
-
             </ion-col>
-
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text">Issue Ref</ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.IssueRef}}</ion-label>
             </ion-col>
             <ion-col size="6" class="col_height" style="justify-content: center;align-items: center;display: flex;">
-
               <ion-label class="labelHead-text">Issue Description </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.IssueDesc}}</ion-label>
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text"> Criticality </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.Criticality}}</ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text"> Assigned To </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.AssignedTo}}</ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text"> Target Date </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.TargetDate}}</ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text"> Completion Date Time </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.CompletionDateTime}}</ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelHead-text"> Status </ion-label>
-
             </ion-col>
             <ion-col size="6" class="col_height">
-
               <ion-label class="labelData-text">: {{items.Status}}</ion-label>
-
             </ion-col>
-
-
-            <!-- <ion-col size="5" class="col_height">
-
-              <option [ngValue]="null"  disabled  selected>--Select--</option>
-              <ion-list>
-                <ion-item style=" border: none;background-color: transparent;">
-                  <ion-select placeholder="Select" [multiple]="true">
-                    <ion-select-option value="apples">New</ion-select-option>
-                    <ion-select-option value="oranges">Pending</ion-select-option>
-                    <ion-select-option value="bananas">Completed</ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </ion-list>
-
-
-            </ion-col> -->
           </ion-row>
         </ion-grid>
-        <!-- <ion-row>
-          <ion-col size="12">
-            <ion-button color="success">Update</ion-button>
-          </ion-col>
-
-           <ion-col size="6">
-            <ion-button class="ion-color-success" (click)="newIssueCreate()">New</ion-button>
-          </ion-col>
-         </ion-row>  -->
       </ion-card-content>
-
     </ion-card>
-
-
 </ion-content>
-
 <ion-footer>
   <ion-row>
     <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">

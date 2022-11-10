@@ -1,5 +1,4 @@
 <ion-header>
-
   <ion-toolbar style="box-shadow: 4px 2px 4px 2px grey !important;margin-top: 1px;">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -8,31 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-grid style="margin: 0; padding:0;">
 <ion-content>
   <ion-row class="top-header">
-
     <ion-col size="4" style="margin-left: 15px;">
       <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter">
         </ion-icon>
       </ion-button>
     </ion-col>
-
     <ion-col size="1"></ion-col>
-
     <ion-col size="6" style="display: flex;" class="probDetails">
       <ion-button class="ion-color-success" expand="block" size="small" (click)="createModal()">Create Your Issue
       </ion-button>
     </ion-col>
-
     <ion-col size="1"></ion-col>
-
   </ion-row>
-
   <ion-card *ngIf="showfilter">
-
     <ion-card-content>
       <ion-row>
-
         <ion-col size="12">
           <ion-label>Branch <span style="color:red;">*</span></ion-label>
           <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="getLocationdata(branch)">
@@ -44,12 +36,13 @@
             </option>
           </select>
         </ion-col>
-        
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Branch Location</ion-label>
-          <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
+          <ion-label>Location :</ion-label>
+          <select  class="form-control"  [(ngModel)]="branchlocation"
           (change)="newPropertyCode(branchlocation)">
-            <option [ngValue]="undefined" selected disabled>
+          
+            <option [ngValue]="undefined" selected>
               << Select >>
             </option>
             <option *ngFor="let location of customerlocation; let i = index" [ngValue]="location.LOCATION_ID">
@@ -57,46 +50,23 @@
           </select>
         </ion-col>
 
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Property Code</ion-label>
+          <ion-label>Property Code :</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
               {{item.binding}}
             </ion-item>
-          </ion-list>
-        </ion-col>
-
-        
-        <!-- Code with Description -->
-        
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Property Code</ion-label>
-          <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
-          </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
-            <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
-              style="background:none !important;color:#444 !important;display: block;">
-              {{item.PropertyCodeDesc}}
+            <ion-item *ngIf="showdata">
+              No Data found..
             </ion-item>
           </ion-list>
-        </ion-col> -->
-
-
-        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Property Description :</ion-label>
-
-          <ion-input style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="this.propertyDesc"
-            animated="true" [disabled]="true"></ion-input>
-        </ion-col> -->
-
+        </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="ContentName">Unique Refference :</ion-label>
-          <!-- <ion-input class="form-control"></ion-input>  -->
-          <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="uniqueRef" animated="true">
+          <ion-label class="ContentName">Unique Reference :</ion-label>
+          <ion-searchbar placeholder="Search"  [(ngModel)]="uniqueRef" >
           </ion-searchbar>
           <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
             <ion-item (click)="rentalCodE(data)" *ngFor="let data of uniqueRef | filter:filterTerm">
@@ -104,20 +74,21 @@
             </ion-item>
           </ion-list>
         </ion-col>
-
-
         <ion-col size="12">
           <ion-button class="ion-color-success" (click)="filterRecords()" expand="block">SEARCH</ion-button>
         </ion-col>
-
-
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <center *ngIf="propertyCodeResult" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+
+  <center *ngIf="!showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
     Total records: {{propertyCodeResult.length}}</center>
 
+    <center *ngIf="showdata" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+      No records found</center>
+
   <ion-card *ngFor="let items of propertyCodeResult; let i = index">
+
     <ion-card-header class="card_header">
       <ion-row>
         <ion-col size="7">
@@ -128,142 +99,157 @@
           <ion-label class="card_header_text"> #{{items.ROW_NUM}}</ion-label>
         </ion-col>
       </ion-row>
-
-
     </ion-card-header>
-    <ion-card-content class="card_content">
 
+    <ion-card-content class="card_content">
       <ion-row>
+
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Branch </ion-label>
         </ion-col>
-        <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_country}} </ion-label>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.property_city}} </ion-label>
         </ion-col>
 
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Location </ion-label>
         </ion-col>
-        <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_state}} , {{items.property_city}} </ion-label>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.Location}}</ion-label>
         </ion-col>
+
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Property Code </ion-label>
         </ion-col>
-        <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_code}} </ion-label>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.property_code}} </ion-label>
         </ion-col>
 
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Building Name </ion-label>
         </ion-col>
-        <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_building_name}}
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.property_building_name}}
           </ion-label>
         </ion-col>
 
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Address </ion-label>
         </ion-col>
-        <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_add1}}
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.property_add1}}
           </ion-label>
         </ion-col>
 
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Property Description </ion-label>
         </ion-col>
-        <ion-col size="7" class="col_height">
-          <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_desc}}</ion-label>
+        <ion-col size="1" style="display: flex; align-items: center;">:</ion-col>
+        <ion-col size="6" class="col_height" style="display: flex; align-items: center;">
+          <ion-label class="labelData-text">{{items.property_desc}}</ion-label>
         </ion-col>
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <a (click)="showmore(i)">
-            <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
-
             <i id="imageidvalsp{{0+i}}" class="fa fa-angle-double-down" aria-hidden="true"
               style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 3px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right"></i>
           </a>
         </ion-col>
+
         <div id="dividvalsp{{0+i}}" style="display:none;">
           <ion-row>
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Property Type </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.Category}}</ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.Category}}</ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Total Floors </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.total_floors}}</ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.total_floors}}</ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Property On Floors </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.property_floor}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.property_floor}} </ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Corporate Area (Sq.ft) </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.superbuildup_area}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.superbuildup_area}} </ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Responsible Person </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp;<span>{{items.Incharge}}</span></ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.Incharge}}</ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Customer Name </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.CustomerName}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.CustomerName}} </ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Agreement Start Date</ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.start_date}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.start_date}} </ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Agreement End Date </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.end_date}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.end_date}} </ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Property Status </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.status}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.status}} </ion-label>
             </ion-col>
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Rent Type </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; {{items.rent_type}} </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.rent_type}} </ion-label>
             </ion-col>
-
 
             <ion-col size="5" class="col_height">
               <ion-label class="labelHead-text">Rent Amount </ion-label>
             </ion-col>
-            <ion-col size="7" class="col_height">
-              <ion-label class="labelData-text">:&nbsp;&nbsp;&nbsp; 9000 </ion-label>
+            <ion-col size="1">:</ion-col>
+            <ion-col size="6" class="col_height">
+              <ion-label class="labelData-text">{{items.Rentamount}} </ion-label>
             </ion-col>
 
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
@@ -271,7 +257,6 @@
               <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
                   style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
             </ion-col>
-
             <ion-col size="3"></ion-col>
             <ion-col size="6">
               <ion-button expand="block" (click)="viewModal(items)" style="margin: auto;">View Status</ion-button>
@@ -280,16 +265,9 @@
           </ion-row>
         </div>
       </ion-row>
-      
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-
-
-
-
-
 <ion-footer>
   <ion-row>
     <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
@@ -299,6 +277,5 @@
       {{username}}
     </ion-col>
   </ion-row>
-
-
 </ion-footer>
+</ion-grid>

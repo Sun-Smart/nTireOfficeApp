@@ -19,8 +19,8 @@ export class PaymentHistoryPage implements OnInit {
   historyDetailslist: any;
   sub: any;
   data: any;
+  showError: boolean;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalCtrl: ModalController, private IpaddressService: IpaddressService, private http: HttpClient) { }
-
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.data = params;
@@ -29,7 +29,6 @@ export class PaymentHistoryPage implements OnInit {
     this.getReceiptDetails();
   }
   cancel() {
-    // return this.modalCtrl.dismiss(null, 'cancel');
     this.router.navigate(['/pms-transaction']);
   }
   getReceiptDetails() {
@@ -37,7 +36,12 @@ export class PaymentHistoryPage implements OnInit {
     this.http.get(this.IpaddressService.ipaddress + this.IpaddressService.serviceurlProperty + 'getpaymenthistorydetailsgrid/' + this.data.propertyid, {
       headers: options,
     }).subscribe(resp => {
-      this.historyDetailslist = resp;
+      if (resp == null) {
+        this.showError = true;
+      }else{
+        this.showError = false;
+        this.historyDetailslist = resp;
+      }
       console.log(this.historyDetailslist);
     });
   }

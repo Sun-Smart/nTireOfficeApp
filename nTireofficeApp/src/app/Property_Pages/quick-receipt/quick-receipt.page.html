@@ -7,18 +7,12 @@
     <ion-title>PMS Quick Receipt</ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
-
     <ion-row class="top-header">
       <ion-col size="4" style="margin-left: 15px;">
         <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter"></ion-icon></ion-button>
       </ion-col>
     </ion-row>
-
-
-
     <ion-card *ngIf="showfilter">
       <ion-card-content >
         <ion-row>
@@ -32,243 +26,100 @@
               </option>
             </select>
         </ion-col>
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Branch Location</ion-label>
+            <ion-label>Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="newPropertyCode(branchlocation)">
-              <option value="undefined" selected ><< Select >></option>
+              <option [ngValue]="undefined" selected><< Select >></option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.LOCATION_ID">
                 {{location.LOCATION_DESC}}</option>
             </select>
           </ion-col>
         </ion-col>
-
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-            {{item}}
+            {{item.binding}}
+            </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
             </ion-item>
           </ion-list>
         </ion-col>
-
-
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Customer Name :</ion-label>
-
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="customer_name" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="propertyDescriptioN(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Property type :</ion-label>
-
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col> -->
-
-          <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="ContentName">Rental Code :</ion-label>
-            <ion-input class="form-control"></ion-input>
-            <ion-searchbar placeholder="Search..." class="form-control" [(ngModel)]="rentalCode" animated="true"></ion-searchbar>
-            <ion-list  *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item   (click)="rentalCodE(data)" *ngFor="let data of propertyCode | filter:filterTerm">
-                <ion-label>{{data.id}}</ion-label>
-                <ion-label>{{data.name}}</ion-label>
-                <ion-label>{{data.email}}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col> -->
-
           <ion-col size="12">
-            <ion-button color="success" size="default" (click)="filterquickreceipt()">SEARCH</ion-button>
+            <ion-button color="success" size="default" 
+            [disabled]="branch==undefined || branchlocation==undefined"
+            (click)="filterquickreceipt()" style="color: #fff !important;">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
 
-    <!-- <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
-     -->
-     <center *ngIf="quickreceipt"
+     <center *ngIf="!showdata"
      style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{quickreceipt.length}}</center>
-    <ion-card *ngFor="let item of quickreceipt; let i=index " >
+    
+    <center *ngIf="showdata"
+    style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center>
+
+     <ion-card *ngFor="let item of quickreceipt; let i=index " >
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="7">
             <ion-label class="card_header_text">Pending Payments</ion-label>
           </ion-col>
-
           <ion-col size="5">
-            <!-- <ion-label class="card_header_text">#{{item+1}}</ion-label> -->
           </ion-col>
         </ion-row>
       </ion-card-header>
-
       <ion-card-content>
         <ion-row>
           <ion-col size="6">
-            <ion-label>Branch</ion-label>
+            <ion-label class="labelHead-text">Branch</ion-label>
+          </ion-col>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text">{{item.BRANCH_DESC}}</ion-label>
           </ion-col>
           <ion-col size="6">
-            <ion-label >: {{item.BRANCH_DESC}}</ion-label>
+            <ion-label class="labelHead-text">Location</ion-label>
           </ion-col>
-
-          <ion-col size="6">
-            <ion-label>Location</ion-label>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label >: {{item.LOCATION_DESC}}</ion-label>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-label>Property Code</ion-label>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.LOCATION_DESC}}</ion-label>
           </ion-col>
           <ion-col size="6">
-            <ion-label >: {{item.property_code}}</ion-label>
+            <ion-label class="labelHead-text">Property Code</ion-label>
           </ion-col>
-
-          <ion-col size="6">
-            <ion-label>Pay Description</ion-label>
-          </ion-col>
-          <ion-col size="6">
-            <ion-label >: {{item.payment_desc}}</ion-label>
-          </ion-col>
-
-          <ion-col size="6">
-            <ion-label>Pay Amount</ion-label>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.property_code}}</ion-label>
           </ion-col>
           <ion-col size="6">
-            <ion-label>: {{item.Amount}}</ion-label>
+            <ion-label class="labelHead-text">Pay Description</ion-label>
           </ion-col>
-
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.payment_desc}}</ion-label>
+          </ion-col>
           <ion-col size="6">
-            <ion-label>Pay Last Date</ion-label>
+            <ion-label class="labelHead-text">Pay Amount</ion-label>
+          </ion-col>
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text">{{item.Amount}}</ion-label>
           </ion-col>
           <ion-col size="6">
-            <ion-label>: {{item.pay_date}}</ion-label>
+            <ion-label class="labelHead-text">Pay Last Date</ion-label>
           </ion-col>
-
+          <ion-col size="1">:</ion-col>
+          <ion-col size="5">
+            <ion-label class="labelData-text"> {{item.pay_date}}</ion-label>
+          </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-
-
-<!-- <ion-card>
-  <ion-card-header class="card_header">
-    <ion-row>
-      <ion-col size="6">
-        <ion-label class="card_header_text1">Property Reciept</ion-label>
-      </ion-col>
-      </ion-row>
-  </ion-card-header>
-  <ion-card-content>
-<ion-row>
-  <ion-col size="6">
-    <ion-label>PayMode</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-  <ion-col size="6">
-    <ion-label>Amount</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-
-  <ion-col size="6">
-    <ion-label>Bank Name</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-  <ion-col size="6">
-    <ion-label>Cheque No</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-
-  <ion-col size="6">
-    <ion-label>Cheque Date</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-
-  <ion-col size="6">
-    <ion-label>Customer</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-
-  <ion-col size="6">
-    <ion-label>Remarks</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-
-  <ion-col size="6">
-    <ion-label>Payment Description</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">:</ion-label>
-  </ion-col>
-
-
-  <ion-col size="6" >
-    <ion-label>Payment Date</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">: </ion-label>
-  </ion-col>
-
-  <ion-col size="6" >
-    <ion-label>Status</ion-label>
-  </ion-col>
-  <ion-col size="6">
-    <ion-label class="labelData-text">: </ion-label>
-  </ion-col>
-
- <ion-col size="6" style="display: flex;align-items: center;">
-    <ion-label>Action</ion-label>
-  </ion-col>
-
-  <ion-col size="1" class="labelData-text" style="display: flex;align-items: center;"> : </ion-col>
-
-  <ion-col size="5" style="text-align: center;">
-    <ion-button color="primary" size="small" style="width: fit-content;" (click)="viewReciept()"> View </ion-button>
-  </ion-col>
-
-
-</ion-row>
-  </ion-card-content>
-</ion-card> -->
-
 </ion-content>

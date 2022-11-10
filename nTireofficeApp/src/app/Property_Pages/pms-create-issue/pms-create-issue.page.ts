@@ -1,5 +1,9 @@
+/* eslint-disable no-var */
+/* eslint-disable prefer-const */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -52,20 +56,30 @@ export class PmsCreateIssuePage implements OnInit {
   assetownerid: any;
   categoryid: any;
   assetCodeBinding: any;
+  branchlist1: any;
+  getBID: any;
+  branchId: any;
+  fromdate: string;
+  get_Bid: any;
+  customerlocation: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) {
+    public Ipaddressservice: IpaddressService,
+    public loadingController: LoadingController,) {
 
     this.isItemAvailable = false;
     this.createDate = this.datePipe.transform(this.createDate, 'dd/MM/yyyy');
 
     console.log(this.createDate);
 
+    var today = new Date();
 
+    this.createDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    // this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.function = localStorage.getItem('FUNCTION_DESC');
-    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    // this.branch = localStorage.getItem('TUM_BRANCH_CODE');
 
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.user_ID = JSON.parse(this.userID);
@@ -75,7 +89,8 @@ export class PmsCreateIssuePage implements OnInit {
     this.accessToken = localStorage.getItem('token');
 
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
-    this.branch_id = JSON.parse(this.branchID);
+    // this.branch_id = JSON.parse(this.branchID);
+    this.branch_id = this.getBID;
 
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.function_ID = JSON.parse(this.functionID);
@@ -84,6 +99,7 @@ export class PmsCreateIssuePage implements OnInit {
   }
 
   ngOnInit() {
+    this.BranchLocationdata();
   }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -102,7 +118,63 @@ export class PmsCreateIssuePage implements OnInit {
     });
 
     await alert.present();
+  };
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'lines-sharp',
+      duration: 500,
+      // message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+
+    });
+    return await loading.present();
+  };
+  async loadingdismiss() {
+
+    return await this.loadingController.dismiss();
   }
+
+  BranchLocationdata() {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
+      headers: options,
+    }).subscribe(resp => {
+      this.branchlist1 = resp;
+      console.log(this.branchlist1);
+
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      // for (var i = 0; i < this.branchlist1.length; i++) {
+      //   this.getBID = this.branchlist1[i].BRANCH_ID;
+      // }
+      // console.log('getBID', this.getBID);
+    }, error => {
+      console.log("branchlist1 : " + JSON.stringify(error));
+    });
+  };
+
+  getLocationdata(branch: any) {
+    console.log(branch);
+
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log("location", resp);
+      this.customerlocation = resp;
+      for (var i = 0; i < this.customerlocation.length; i++) {
+        this.getBID = this.customerlocation[i].BRANCH_ID;
+      }
+      console.log('getBID', this.getBID);
+    });
+  };
 
   getItems(ev: any) {
 
@@ -117,36 +189,28 @@ export class PmsCreateIssuePage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + this.functionID + '/' + this.branchID + '/' + ev.target.value, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty/' + this.functionID + '/' + this.getBID + '/' + ev.target.value, {
       headers: options,
     }).subscribe(resp => {
       this.assetData = [];
       this.isItemAvailable = false;
+
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log('dfkjbsdkfj', this.companiesstr);
 
-      // this.companiesstr = JSON.parse(this.companiesstr);
-      // this.companiesstr = JSON.parse(resp.toString());
 
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.assetData.push({
           ASSET_CODE: this.companiesstr[i].ASSET_CODE, binding: this.companiesstr[i].ASSET_CODE + "-" + this.companiesstr[i].ASSET_DESCRIPTION,
           NeedData: this.companiesstr[i].ASSET_CATEGORY + "-" + this.companiesstr[i].ASSET_TYPE
         });
-        // this.assetData.push({description:this.companiesstr[i].ASSET_DESCRIPTION});
-        // console.log(this.assetData,"assetdata")
       };
 
       const val = ev.target.value;
 
       this.gatagory = this.assetData[0]['ASSET_CATEGORY'];
-
       this.subGatagory = this.assetData[0]['ASSET_TYPE'];
-
-
-
 
       // if the value is an empty string don't filter the items
 
@@ -157,8 +221,6 @@ export class PmsCreateIssuePage implements OnInit {
         });
       }
     }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
-      // console.log("error : " + JSON.stringify(error));
     });
   }
 
@@ -179,7 +241,7 @@ export class PmsCreateIssuePage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.branchID + '/' + item.ASSET_CODE, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindproperty' + '/' + this.functionID + '/' + this.getBID + '/' + item.ASSET_CODE, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -233,13 +295,13 @@ export class PmsCreateIssuePage implements OnInit {
 
   createissue() {
     debugger;
+    this.loadingdismiss(); 
     const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
     let data = {
-
       userid: this.user_ID,
       functionid: this.function_ID,
-      branchid: this.branch_id,
+      branchid: parseInt(this.getBID),
       Priority: this.priority,
       pm_due_date: this.createDate,
       drpPMType: this.categoryid,
@@ -261,6 +323,7 @@ export class PmsCreateIssuePage implements OnInit {
       this.refNum = this.dataStatus[0].Column1;
       // this.refNum =  this.dataStatus.map(({Column1}) => [Column1]);
       console.log(this.refNum);
+
 
 
       this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");

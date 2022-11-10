@@ -40,22 +40,31 @@ export class PmsdashboardPage implements OnInit {
   userID: string;
   functionID: string;
   branchID: string;
+  issueDesc: any;
+  tovaccantchartcount: any[];
 
-  constructor(private http: HttpClient, 
-    private platform: Platform, 
-    public  Ipaddressservice: IpaddressService, 
+  constructor(private http: HttpClient,
+    private platform: Platform,
+    public  Ipaddressservice: IpaddressService,
     private tableApi: TableSampleService)
      {
 
     this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.columnsStatus = [
-      { name: 'issuecode', },
-      { name: 'issuedate', },
+      { name: 'propertycode', },
+      { name: 'propertybuildingname', },
       { name: 'issuedescription', },
+      // { name: 'issuecode', },
+      { name: 'issuedate', },
       { name: 'status', },
       { name: 'tenant', }
     ];
+
+     this.tovaccantchartcount = [
+      {name: 'Days'},
+      { name: 'Count', },
+     ];
 
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
@@ -82,18 +91,28 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID,{ 
+     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID,{
    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchID + '/' + this.userID,{
       headers:options
     }).subscribe((resp: any) => {
       console.log(resp)
-      this.dataStatus = resp
+      this.dataStatus = resp;
+
+      console.log(this.dataStatus);
+
+      for(var i=0; i< this.dataStatus.length; i++ ){
+        this.issueDesc = this.dataStatus[i].issuedescription;
+      };
+
+      console.log(this.issueDesc);
+
+
     })
 
 }
   customerPayment = function () {
     debugger
- 
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -173,19 +192,7 @@ issueStatus(){
               }
             }]
           },
-          // tooltips: {
-
-          //   callbacks: {
-          //     title: function (tooltipItem, data) {
-          //       return data['labels'][tooltipItem[0]['index']];
-          //     },
-          //     label: function (tooltipItem, data) {
-          //       return data.datasets[0]['label'] + " : " + data['datasets'][0]['data'][tooltipItem['index']];
-          //     },
-
-          //   },
-          // },
-        }
+        },
       })
     });
   }
@@ -232,7 +239,7 @@ issueStatus(){
         //   this.labels2[i] ="Total,Completed,Pending" ;//"Total="+this.employeeCount[i].Total + " "+ "Completed=" + this.employeeCount[i].Completed + " "+"Pending="+ this.employeeCount[i].Pending;
         //   this.data2[i] = "Total =" + this.employeeCount[i].Completed +this.employeeCount[i].Pending;
         //  this.data2[i] = "Completed =" + this.employeeCount[i].Completed ;
-        //   this.data2[i] =  "Pending ="+this.employeeCount[i].Pending;        
+        //   this.data2[i] =  "Pending ="+this.employeeCount[i].Pending;
 
       }
 
@@ -280,7 +287,7 @@ issueStatus(){
   //   const header = new Headers();
   //   header.append("Content-Type", "application/json");
 
-  //   let options = new HttpHeaders().set('Content-Type', 'application/json');     
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
   //   this.http.get(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlProperty+'customerpayments?strfunction=1&branch=1&userid=1').subscribe(resp => {
   //     debugger
   //     this.result = resp;
@@ -422,10 +429,9 @@ issueStatus(){
     }).subscribe((resp: any) => {
       console.log(resp)
       debugger
-      this.tovaccantchart = resp;
+      this.tovaccantchartcount = resp;
 
-      this.tovaccantchartcount = this.tovaccantchart;
-      console.log(this.branchCount);
+      console.log("ToBeVaccant",this.tovaccantchartcount);
       this.labels = [];
       this.data = [];
       for (var i = 0; i < this.tovaccantchartcount.length; i++) {

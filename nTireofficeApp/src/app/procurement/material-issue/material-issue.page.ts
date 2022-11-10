@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from 'src/app/Property_Pages/table-sample.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { IpaddressService } from 'src/app/service/ipaddress.service';
 
 @Component({
   selector: 'app-material-issue',
@@ -23,10 +24,17 @@ export class MaterialIssuePage implements OnInit {
   branch;
   fromdate;
   todate;
+  responseData;
+  responseDatalength;
+  mode: string;
+
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
+  getresponse: any;
+  getsetvalue: any;
+  getstatusvalue: any;
 
-  constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService) {
+  constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -38,8 +46,101 @@ export class MaterialIssuePage implements OnInit {
   ngOnInit() {
    
   }
-  Submit() {
-    this.showviewlist = true
+
+  setValue(value:any){
+    console.log(value)
+    this.getsetvalue =value
+  }
+  setstatusvalue(value:any){
+    this.getstatusvalue =value
+  }
+
+  SearchList() {
+this.showviewlist = true; 
+
+
+
+
+let body =  {
+  "FUNCTIONIDMI":"1",
+  "BRANCHIDMI":"1",
+  "ITEM_CODEMI":"",
+  "ITEM_REFMI":"",
+  "ILT_REFMI":"",
+  "SR_REFMI":"",
+  "FROMDATEMI":this.fromdate,
+  "TODATEMI":this.todate,
+  "STATUSMI":this.getstatusvalue,
+  "ALPHANAMEMI":"",
+  "SORTEXPRESSIONMI":"item_short_desc",
+  "PAGEINDEXMI":0,
+  "PAGESIZEMI":20,
+  "SEARCH_TYPEMI":this.getsetvalue
+}
+
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress1+
+      this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails' , body).subscribe((res:any) =>{
+        console.log(res)
+        this.getresponse =res
+      })
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Mode : Location
+
+
+
+ 
+    // this.showviewlist = true
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+  
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    // this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails',
+    //   {  
+    //   headers: options,
+    // }).subscribe(resp => {
+    //    this.responseData = resp;
+    //    console.log(this.responseData);
+    //    this.responseDatalength = this.responseData.length;
+    // }, error => {
+  
+    //   console.log(JSON.stringify(error));
+    // });
   }
   transCancel() {
     this.modalCtrl.dismiss();

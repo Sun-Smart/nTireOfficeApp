@@ -55,58 +55,32 @@ export class AdditionalChargesPage implements OnInit {
   branchId: any =[];
   get_Bid: any;
   loca_id: any;
-
-
+  propertycodeDesc: any;
+  location: any;
   constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
-
   ngOnInit() {
     this.BranchLocationdata();
   }
   submit() {
     debugger;
     this.showView = true;
-
   }
   cancel() {
     this.model.dismiss();
   }
-  // Getbranches() {
-
-  //   const header = new Headers();
-  //   header.append("Content-Type", "application/json");
-
-  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  //   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getbranchid', {
-  //     headers: options,
-  //   }).subscribe(resp => {
-  //     this.branchlist = JSON.stringify(resp);
-  //     this.branchlist = JSON.parse(this.branchlist);
-  //     this.branchlist.forEach(element => {
-  //       this.branchlist1.push(element);
-  //       console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-  //     });
-  //   }, error => {
-  //   });
-  // };
   BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist1 = resp;
-      // this.branchlocationlist = JSON.stringify(resp);
-      // this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
       for (var i = 0; i < this.branchlist1.length; i++) {
         this.getBID = this.branchId.push(this.branchlist1[i].BRANCH_ID);
       }
-      console.log('getBID', this.getBID);
-
     }, error => {
-
       console.log("branchlist1 : " + JSON.stringify(error));
     });
   };
@@ -114,48 +88,35 @@ export class AdditionalChargesPage implements OnInit {
   getLocationdata(branch) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     this.get_Bid = branch;
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
       headers: options,
     }).subscribe(resp => {
-      console.log("location", resp);
       this.branchlocationlist = resp;
       for (var i = 0; i < this.branchlocationlist.length; i++) {
         this.loca_id = this.branchlocationlist[i].LOCATION_ID;
       }
     });
   };
-  newPropertyCode(branchlocation) {
-
+  newPropertyCode(branchlocation:any) {
+    this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
-
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
-
-      // set val to the value of the searchbar
-
     }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
-
   }
   getPropertyCode(ev: any) {
-
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     console.log("one");
     this.propertyCode1 = [];
@@ -163,13 +124,10 @@ export class AdditionalChargesPage implements OnInit {
       this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
     }
-
     // Reset items back to all of the items
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
@@ -177,17 +135,19 @@ export class AdditionalChargesPage implements OnInit {
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
-      // this.property_desc = this.companiesstr['property_desc'];
       console.log(this.companiesstr);
-
-      // this.companiesstr = JSON.parse(this.companiesstr);
-      // this.companiesstr = JSON.parse(resp.toString());
+      if (this.companiesstr == "No data found") {
+        console.log('check pr code');
+        this.companiesstr = "";
+      }else{
+        console.log('is available');
+      }
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
-        this.rental_pro_id = this.companiesstr[i]['property_id'];
+        this.propertyCode1.push({rental_pro_id: this.companiesstr[i].property_id,
+          binding: this.companiesstr[i].property_code + " - " + this.companiesstr[i].property_building_name},
+        this.rental_pro_id = this.companiesstr[i]['property_id']);
       }
       const val = ev.target.value;
-
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isPropertycodeAvailable = true;
@@ -196,16 +156,14 @@ export class AdditionalChargesPage implements OnInit {
         });
       }
     }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
     });
   };
 
   addPropertycode(item: any) {
-
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.rental_pro_id;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -213,31 +171,17 @@ export class AdditionalChargesPage implements OnInit {
         console.log(this.property_code);
       }
     };
-
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.rental_pro_id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertyrent/' + strFunctionId + "/" + this.branch + "/" + this.branchlocation + "/" + this.propertycodeDesc, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
       console.log(this.respContact);
-
-      // this.propertyDesc = this.respContact[0]['property_building_name'];
       this.rentalID = this.respContact[0]['rental_id'];
-      // this.contact1 = JSON.parse(this.respContact);
-      // console.log(this.contact1);
-      // if (this.contact1.length == 0) {
-      //   this.presentAlert('Alert', 'Add company Contact Number!');
-
-      // } else {
-
-      //   this.contact_array = this.contact1;
-      // }
     }, error => {
-
       console.log("error : " + JSON.stringify(error));
-
     });
   };
   createAdditional() {
@@ -245,7 +189,6 @@ export class AdditionalChargesPage implements OnInit {
       this.presentAlert("", "Please enter all fields");
     } else {
       const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
-
       let data = {
         "propertyid": this.rental_pro_id ? this.rental_pro_id : "0",
         "DAMAGE_DESCRIPTION": this.property_desc ? this.property_desc : "0",
@@ -259,19 +202,15 @@ export class AdditionalChargesPage implements OnInit {
         "rentid": this.rentalID ? this.rentalID : "1",
         "userid": parseInt(localStorage.getItem('TUM_USER_ID')),
         "PROPERTYSPLITID": this.propertySplitid ? this.propertySplitid : "0"
-
       };
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-
       this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'insertadditionalcharges', data, {
         headers: options, responseType: 'text'
       }).subscribe(resp => {
-        // this.dataStatus = JSON.parse(resp);
         this.presentAlert1("success", resp);
         console.log(this.dataStatus);
         this.cancelBtn();
         this.router.navigate(['/additional-page']);
-        // this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :");
       }, (error => {
         console.log(error);
       }));
@@ -294,7 +233,6 @@ export class AdditionalChargesPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
   };
   async presentAlert1(heading, tittle) {
@@ -305,7 +243,6 @@ export class AdditionalChargesPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
   };
 }

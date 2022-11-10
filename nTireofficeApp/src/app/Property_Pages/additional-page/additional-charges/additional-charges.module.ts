@@ -15,6 +15,6 @@ import { AdditionalChargesPage } from './additional-charges.page';
     IonicModule,
     AdditionalChargesPageRoutingModule
   ],
-  declarations: [AdditionalChargesPage]
+  declarations: [AdditionalChargesPage],
 })
 export class AdditionalChargesPageModule {}

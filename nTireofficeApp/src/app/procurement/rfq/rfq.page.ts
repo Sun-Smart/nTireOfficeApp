@@ -12,9 +12,7 @@ import { HttprequestService } from '../../service/httprequest.service';
 export class RFQPage implements OnInit {
 
   showviewlist: boolean = false
-
   selectAll: boolean = false;
-
   indeterminateState: boolean;
   checkParent: boolean;
   Checkboxes: any;
@@ -30,9 +28,16 @@ export class RFQPage implements OnInit {
   showCRFQ: boolean = false;
 
   erefref
-  getresponse: any;
+  getresponse: any =[];
   getraisedrfq: any;
   getrfqcancel: any;
+  splitted;
+  managerfqdetails;
+  getresponsestr;
+  getresponsenew;;
+  Checked;
+  RaisedRFQ :any =[];
+  RaisedRFQdetails:any = [];
   constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
     // this.Checkboxes = [
     //   {
@@ -217,13 +222,8 @@ export class RFQPage implements OnInit {
 
       this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).then((res: any) => {
         this.getresponse = res;
-        console.log("Response", res);
+
       });
-
-
-
-
-
 
     } else if (this.status == "A") {
       this.showRfq = false;
@@ -284,13 +284,36 @@ export class RFQPage implements OnInit {
     // }
   }
 
+  fieldsChange(values:any,item:any):void {
+    console.log(values.currentTarget.checked);
+    this.Checked = values.currentTarget.checked;
+    console.log(item);
+  
+    if(this.Checked == true){
+      this.RaisedRFQ.push(item);
+      console.log(this.RaisedRFQ);
+    }
+    else {
+      var index = this.RaisedRFQ.indexOf(item);
+      if(index > -1){
+        this.RaisedRFQ.splice(index,1)
+        console.log(this.RaisedRFQ,'filterarray');
+      }
+  
+  
+    }
+  }
 
-
-  raiseRFQ() {
+  raiseRFQ(item : any) {
+    console.log(item);
+    this.RaisedRFQdetails = this.RaisedRFQ;
+    console.log(this.RaisedRFQdetails);
+    let body ={
+      "vendordetail" : this.RaisedRFQdetails
+    }
     // this.presentAlert("", "RFQ 345/AT Raised Successfully");
     // Raise RFQ Button
-    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getraiserfq').
-      then((res: any) => {
+    this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaiseRFQ',body).then((res: any) => {
         this.getraisedrfq = res;
         console.log(this.getraisedrfq)
         // this.showrfq = true;
@@ -298,8 +321,16 @@ export class RFQPage implements OnInit {
         // this.presentAlert("", "RFQ 345/AT Raised Successfully");
       });
   }
-  manageRFQlink() {
-     this.router.navigate(['/manage-rfq'])
+  manageRFQlink(item:any) {
+    console.log('New Item',item)
+    var str =item ;
+        console.log(str)
+        this.splitted = str.split('/');
+        console.log(this.splitted);
+       this.splitted = this.splitted[1];
+        console.log('new',this.splitted)
+
+     this.router.navigate(['/manage-rfq',this.splitted,item])
   }
 
   async presentAlert(heading, tittle) {

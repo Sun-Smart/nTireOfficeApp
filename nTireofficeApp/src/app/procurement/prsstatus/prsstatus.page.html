@@ -25,7 +25,7 @@
             style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
-      </select>
+            </select>
         </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Code</ion-label>
@@ -49,7 +49,7 @@
           <ion-label class="plabel">Status</ion-label>
           <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option>&lt;&lt; Select &gt;&gt;</option>
+            <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option value="New">New</option>
             <option value="Pending">Pending</option>
             <option value="Approved">Approved</option>
@@ -107,16 +107,17 @@
           <ion-col size="9">
             <ion-label class="plabel" style="color:white ;">{{item.ITEM_DETAILED_DESCRIPTION}} </ion-label>
           </ion-col>
-          <ion-col size="3">
+          <ion-col size="3" *ngIf="showdeledit">
             <ion-label class="card_header_text">
 
               <ion-icon [routerLink]="['/purchase-request',item.PRS_CODE]" routerLinkActive="router-link-active"
                 style="color: #fff;" name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
-              <ion-icon style="color: red;" name="trash-outline"></ion-icon>
+              <ion-icon (click)="testdetele()" style="color: red;" name="trash-outline"></ion-icon>
             </ion-label>
             <ion-label class="card_header_text">
               <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
             </ion-label>
+
           </ion-col>
         </ion-row>
       </ion-card-header>
