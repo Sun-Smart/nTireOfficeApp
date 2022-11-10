@@ -10,24 +10,20 @@ ion-content {
 .plabel{
   font-weight: bold;
  }
- th {
-  // background-color: #f2f2f2 !important;
-  color: #ffffff;
-  padding: 2px !important;
-  background-image: none !important;
-  // font-size: large !important;
-
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-table td {
-  padding: 7px !important;
-
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
-td {
-  // font-size: large !important;
-  color: #242424 !important;
-  border:none
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 ion-card-header+.card-content-md {
   padding-top: 0;

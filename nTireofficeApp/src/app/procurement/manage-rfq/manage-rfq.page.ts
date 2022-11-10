@@ -37,6 +37,7 @@ export class ManageRfqPage implements OnInit {
   findVendorDetails;
   findvedor;
   ItemID;
+  RFQCODE;
   constructor(private router: Router, private alertcontroller: AlertController, private activatedRoute: ActivatedRoute, private IpaddressService: IpaddressService, private httpclient: HttprequestService) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -51,8 +52,9 @@ export class ManageRfqPage implements OnInit {
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.data = params;
+      this.data = params;  
       console.log('this.data ', this.data);
+      this.RFQCODE = this.data.rfq;
 
     });
     this.getCards();
@@ -76,7 +78,7 @@ export class ManageRfqPage implements OnInit {
     console.log(this.splitted);
     this.splitted = this.splitted[1];
     console.log('new', this.splitted)
-    this.router.navigate(['/vendorsdetails', this.splitted,item.itemCategory,item.itemSubCategory,item.itemID]);
+    this.router.navigate(['/vendorsdetails', this.splitted,item.itemCategory,item.itemSubCategory,item.itemID,item.rFQCode,item.item_Code,item.item_short_Desc]);
   }
   // item.itemDetails.itemSubCategory,item.itemDetails.rFQCode,item.itemDetails.itemID
   // VendorQuotation() {

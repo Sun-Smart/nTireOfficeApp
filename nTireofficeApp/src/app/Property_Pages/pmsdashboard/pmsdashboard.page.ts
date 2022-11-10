@@ -43,21 +43,22 @@ export class PmsdashboardPage implements OnInit {
   issueDesc: any;
   tovaccantchartcount: any[];
 
-  constructor(private http: HttpClient, 
-    private platform: Platform, 
-    public  Ipaddressservice: IpaddressService, 
+  constructor(private http: HttpClient,
+    private platform: Platform,
+    public  Ipaddressservice: IpaddressService,
     private tableApi: TableSampleService)
      {
 
     this.username = localStorage.getItem('TUM_USER_NAME');
 
     this.columnsStatus = [
-      { name: 'Property_Building_Name', },
-      { name: 'Property_Code', },
-      { name: 'Issue_Description', },
-      { name: 'Issue_Date', },
-      { name: 'Status', },
-      { name: 'Tenant', }
+      { name: 'propertycode', },
+      { name: 'propertybuildingname', },
+      { name: 'issuedescription', },
+      // { name: 'issuecode', },
+      { name: 'issuedate', },
+      { name: 'status', },
+      { name: 'tenant', }
     ];
 
      this.tovaccantchartcount = [
@@ -79,7 +80,7 @@ export class PmsdashboardPage implements OnInit {
 
     this.issueStatus();
     this.customerPayment();
-    this.getProprtyStatusChart();
+    this.getBranchCountChart();
     this.getEmployeeCountChart();
     this.getToBevaccantChart();
 
@@ -90,7 +91,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID,{ 
+     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID,{
    // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchID + '/' + this.userID,{
       headers:options
     }).subscribe((resp: any) => {
@@ -104,14 +105,14 @@ issueStatus(){
       };
 
       console.log(this.issueDesc);
-      
-      
+
+
     })
 
 }
   customerPayment = function () {
     debugger
- 
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -238,7 +239,7 @@ issueStatus(){
         //   this.labels2[i] ="Total,Completed,Pending" ;//"Total="+this.employeeCount[i].Total + " "+ "Completed=" + this.employeeCount[i].Completed + " "+"Pending="+ this.employeeCount[i].Pending;
         //   this.data2[i] = "Total =" + this.employeeCount[i].Completed +this.employeeCount[i].Pending;
         //  this.data2[i] = "Completed =" + this.employeeCount[i].Completed ;
-        //   this.data2[i] =  "Pending ="+this.employeeCount[i].Pending;        
+        //   this.data2[i] =  "Pending ="+this.employeeCount[i].Pending;
 
       }
 
@@ -286,7 +287,7 @@ issueStatus(){
   //   const header = new Headers();
   //   header.append("Content-Type", "application/json");
 
-  //   let options = new HttpHeaders().set('Content-Type', 'application/json');     
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
   //   this.http.get(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlProperty+'customerpayments?strfunction=1&branch=1&userid=1').subscribe(resp => {
   //     debugger
   //     this.result = resp;
@@ -339,7 +340,7 @@ issueStatus(){
 
   // }
 
-  getProprtyStatusChart = function () {
+  getBranchCountChart = function () {
     debugger
     var sourcearray = [];
     const header = new Headers();
