@@ -139,17 +139,17 @@ export class AdditionalChargesPage implements OnInit {
       this.isPropertycodeAvailable = false;
       // set val to the value of the searchbar
       this.companiesstr = resp;
-      console.log(this.companiesstr);
-      if (this.companiesstr == "No data found" || resp == null) {
-        console.log('check pr code');
-        this.companiesstr = "";
-      }else{
-        console.log('is available');
-      }
+      // console.log(this.companiesstr);
+      // if (this.companiesstr == "No data found" || resp == null) {
+      //   console.log('check pr code');
+      //   this.companiesstr = "";
+      // }else{
+      //   console.log('is available');
+      // }
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({rental_pro_id: this.companiesstr[i].property_id,
-          binding: this.companiesstr[i].property_code + " - " + this.companiesstr[i].property_building_name},
-        this.rental_pro_id = this.companiesstr[i]['property_id']);
+          binding: this.companiesstr[i].property_code + " - " + this.companiesstr[i].property_building_name});
+        this.rental_pro_id = this.companiesstr[i]['property_id'];
       }
       const val = ev.target.value;
       // if the value is an empty string don't filter the items

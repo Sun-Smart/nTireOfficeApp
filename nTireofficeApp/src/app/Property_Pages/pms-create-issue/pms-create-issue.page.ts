@@ -1,3 +1,10 @@
+/* eslint-disable no-debugger */
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable no-var */
 /* eslint-disable prefer-const */
 /* eslint-disable radix */
@@ -228,7 +235,7 @@ export class PmsCreateIssuePage implements OnInit {
   addPropertycode(item: any) {
     debugger;
     this.assetCode = item.binding;
-    this.assetCodeBinding = item.ASSET_CODE
+    this.assetCodeBinding = item.ASSET_CODE;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.assetCode == this.companiesstr[i].companyName) {
@@ -288,7 +295,7 @@ export class PmsCreateIssuePage implements OnInit {
 
       console.log(this.gatagoryDetails);
 
-    })
+    });
   }
 
   // postmethod create issue,
@@ -310,8 +317,8 @@ export class PmsCreateIssuePage implements OnInit {
       assetid: this.assetid,
       assetcode: this.assetCodeBinding,
 
-    }
-    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    };
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details/', data, {
       headers: options, responseType: 'text'
@@ -330,7 +337,7 @@ export class PmsCreateIssuePage implements OnInit {
       this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");
       this.reset();
 
-    })
+    });
   };
 
   reset() {
