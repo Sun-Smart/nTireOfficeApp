@@ -295,7 +295,7 @@ export class PmsCreateIssuePage implements OnInit {
 
   createissue() {
     debugger;
-    this.loadingdismiss(); 
+    this.presentLoadingWithOptions();
     const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
     let data = {
@@ -321,6 +321,7 @@ export class PmsCreateIssuePage implements OnInit {
       console.log(this.dataStatus);
 
       this.refNum = this.dataStatus[0].Column1;
+      this.loadingdismiss();
       // this.refNum =  this.dataStatus.map(({Column1}) => [Column1]);
       console.log(this.refNum);
 
