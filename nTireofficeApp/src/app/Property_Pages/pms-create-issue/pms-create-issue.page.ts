@@ -342,5 +342,7 @@ export class PmsCreateIssuePage implements OnInit {
     this.priority = '';
     this.textDetails = '';
   }
-
+  onCancel(){
+    this.assetDesc = '';
+  }
 }
