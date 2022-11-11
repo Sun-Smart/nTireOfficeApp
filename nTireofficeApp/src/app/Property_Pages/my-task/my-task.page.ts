@@ -401,11 +401,13 @@ export class MyTaskPage implements OnInit {
       };
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'mytaskstatusupdate/', data, {
-        headers: options,
+        headers: options, responseType: 'text'
       }).subscribe((resp: any) => {
         this.updateStatusRes = resp;
-        console.log(this.updateStatusRes);
-        this.presentAlert("Success", "Status Updated Sucessfully...");
+        if (resp) {
+          console.log(this.updateStatusRes);
+          this.presentAlert("Success", "Status Updated Sucessfully");
+        }
       });
     };
   }

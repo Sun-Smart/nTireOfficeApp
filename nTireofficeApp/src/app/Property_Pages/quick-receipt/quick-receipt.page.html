@@ -51,7 +51,7 @@
           </ion-list>
         </ion-col>
           <ion-col size="12">
-            <ion-button color="success" size="default" 
+            <ion-button class="ion-color-success" size="default"
             [disabled]="branch==undefined || branchlocation==undefined"
             (click)="filterquickreceipt()" style="color: #fff !important;">SEARCH</ion-button>
           </ion-col>
@@ -61,7 +61,7 @@
 
      <center *ngIf="!showdata"
      style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{quickreceipt.length}}</center>
-    
+
     <center *ngIf="showdata"
     style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center>
 

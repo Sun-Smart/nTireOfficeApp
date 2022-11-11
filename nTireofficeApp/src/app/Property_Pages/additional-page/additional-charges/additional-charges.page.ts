@@ -57,7 +57,11 @@ export class AdditionalChargesPage implements OnInit {
   loca_id: any;
   propertycodeDesc: any;
   location: any;
-  constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) { }
+  constructor(private model: ModalController, private router: Router, public Ipaddressservice: IpaddressService, public alertController: AlertController, private modalCtrl: ModalController, private http: HttpClient,) {
+    var today = new Date();
+
+    this.payDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+   }
   ngOnInit() {
     this.BranchLocationdata();
   }
