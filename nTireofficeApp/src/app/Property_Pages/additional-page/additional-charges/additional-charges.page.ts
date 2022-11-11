@@ -140,7 +140,7 @@ export class AdditionalChargesPage implements OnInit {
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log(this.companiesstr);
-      if (this.companiesstr == "No data found") {
+      if (this.companiesstr == "No data found" || resp == null) {
         console.log('check pr code');
         this.companiesstr = "";
       }else{
