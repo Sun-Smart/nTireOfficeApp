@@ -40,16 +40,16 @@ export class PmsdashboardPage implements OnInit {
   userID: string;
   functionID: string;
   issueDesc: any;
-  branchlist:any;
+  branchlist: any;
   tovaccantchartcount: any[];
   branchId: any;
   getBID: any;
+  branch_id: any;
 
   constructor(private http: HttpClient,
     private platform: Platform,
-    public  Ipaddressservice: IpaddressService,
-    private tableApi: TableSampleService)
-     {
+    public Ipaddressservice: IpaddressService,
+    private tableApi: TableSampleService) {
 
     this.username = localStorage.getItem('TUM_USER_NAME');
 
@@ -63,10 +63,10 @@ export class PmsdashboardPage implements OnInit {
       { name: 'tenant', }
     ];
 
-     this.tovaccantchartcount = [
-      {name: 'Days'},
+    this.tovaccantchartcount = [
+      { name: 'Days' },
       { name: 'Count', },
-     ];
+    ];
 
     // this.branchId = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
@@ -80,7 +80,7 @@ export class PmsdashboardPage implements OnInit {
     this.data = this.tableApi.getDashbTable1();
     console.log(this.data);
 
-    this. BranchLocationdata();
+    this.BranchLocationdata();
 
     this.issueStatus();
     this.customerPayment();
@@ -100,37 +100,40 @@ export class PmsdashboardPage implements OnInit {
     }).subscribe(resp => {
       this.branchlist = resp;
       console.log(this.branchlist);
-      
+
       // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
       for (var i = 0; i < this.branchlist.length; i++) {
-        this.branchId = this.branchlist[i].BRANCH_ID;
-
-        console.log("this Branch",this.branchId);
-        
+        this.branch_id = this.branchlist[i].BRANCH_ID;
+        console.log("this Branch", this.branch_id);
       }
-   
-
     }, error => {
 
       console.log("branchlist1 : " + JSON.stringify(error));
     });
   };
-issueStatus(){
 
-      const header = new Headers();
+  issueStatus() {
+
+    let data = {
+      functionId : this.functionID ? this.functionID : 0, 
+      branchId : this.branch_id ? this.branch_id : 0,
+      user_id : this.userID ? this.userID : 0,
+    }
+
+    const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID,{
-   // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchId + '/' + this.userID,{
-      headers:options
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + data.functionId + '&branch=' + data.branchId + '&userid=' + data.user_id, {
+      // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchId + '/' + this.userID,{
+      headers: options
     }).subscribe((resp: any) => {
       console.log(resp)
       this.dataStatus = resp;
 
       console.log(this.dataStatus);
 
-      for(var i=0; i< this.dataStatus.length; i++ ){
+      for (var i = 0; i < this.dataStatus.length; i++) {
         this.issueDesc = this.dataStatus[i].issuedescription;
       };
 
@@ -139,15 +142,21 @@ issueStatus(){
 
     })
 
-}
+  }
   customerPayment = function () {
     debugger
+
+    let data = {
+      functionId : this.functionID ? this.functionID : 0, 
+      branchId : this.branch_id ? this.branch_id : 0,
+      user_id : this.userID ? this.userID : 0,
+    }
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction=' + data.functionId + '&branch=' + data.branchId+ '&userid=' + data.user_id, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -229,12 +238,19 @@ issueStatus(){
 
   getEmployeeCountChart = function () {
     debugger;
+
+    let data = {
+      functionId : this.functionID ? this.functionID : 0, 
+      branchId : this.branch_id ? this.branch_id : 0,
+      user_id : this.userID ? this.userID : 0,
+    };
+
     var sourcearray = [];
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'emloyeemaintenance?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID).subscribe(resp => {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'emloyeemaintenance?strfunction=' + data.functionId + '&branch=' + data.branchId + '&userid=' + data.user_id).subscribe(resp => {
       debugger
       this.result = resp;
 
@@ -371,13 +387,20 @@ issueStatus(){
   // }
 
   getBranchCountChart = function () {
-    debugger
+    debugger;
+
+    let data = {
+      functionId : this.functionID ? this.functionID : 0, 
+      branchId : this.branch_id ? this.branch_id : 0,
+      user_id : this.userID ? this.userID : 0,
+    };
+
     var sourcearray = [];
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction=' + data.functionId + '&branch=' + data.branchId + '&userid=' + data.user_id, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -399,7 +422,7 @@ issueStatus(){
       sourcearray = [
         {
           data: this.data,
-          backgroundColor: ['rgb(16, 99, 16)', 'rgb(68, 49, 9)','rgb(98, 89, 6)'],
+          backgroundColor: ['rgb(16, 99, 16)', 'rgb(68, 49, 9)', 'rgb(98, 89, 6)'],
         }]
       if (this.sourcechart) {
         this.sourcechart.destroy();
@@ -436,7 +459,7 @@ issueStatus(){
                 return data['labels'][tooltipItem[0]['index']];
               },
               label: function (tooltipItem, data) {
-                return  "Target : " + data['datasets'][0]['data'][tooltipItem['index']];
+                return "Target : " + data['datasets'][0]['data'][tooltipItem['index']];
               },
 
             },
@@ -448,20 +471,25 @@ issueStatus(){
   }
 
   getToBevaccantChart = function () {
-    debugger
+    let data = {
+      functionId : this.functionID ? this.functionID : 0, 
+      branchId : this.branch_id ? this.branch_id : 0,
+      user_id : this.userID ? this.userID : 0,
+    };
+
     var sourcearray = [];
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'tobevaccant?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'tobevaccant?strfunction=' + data.functionId + '&branch=' + data.branchId + '&userid=' +  data.user_id, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
       debugger
       this.tovaccantchartcount = resp;
 
-      console.log("ToBeVaccant",this.tovaccantchartcount);
+      console.log("ToBeVaccant", this.tovaccantchartcount);
       this.labels = [];
       this.data = [];
       for (var i = 0; i < this.tovaccantchartcount.length; i++) {

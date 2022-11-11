@@ -99,6 +99,7 @@ export class MyTaskPage implements OnInit {
   get_assetData: any;
   filter_asset: any;
   showdata1: boolean;
+  pmr_referenceid: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -324,10 +325,10 @@ export class MyTaskPage implements OnInit {
         this.myTaskDetailsList = resp;
         console.log(this.myTaskDetailsList);
         for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-          this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
+          this.pmr_referenceid = this.myTaskDetailsList[i].pmr_reference;
         };
       }
-      console.log('kuhgg', this.pmr_reference);
+      console.log('kuhgg', this.pmr_referenceid);
     });
   };
 
@@ -387,17 +388,17 @@ export class MyTaskPage implements OnInit {
 
   updateStatus() {
     debugger;
-    this.getTaskStatus = this.status1;
-    console.log("getTaskStatus,,,,,,,,,,,,,,", this.getTaskStatus);
-    if (this.getTaskStatus == "undefined" || this.getTaskStatus == null || this.getTaskStatus == "") {
+    // this.getTaskStatus = this.status1;
+    console.log("getTaskStatus,,,,,,,,,,,,,,", this.status1);
+    if (this.status1 == "undefined" || this.status1 == null || this.status1 == "") {
       this.presentAlert1("", "Please select Issue Status...");
       return;
     } else {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let data = {
-        status: this.getTaskStatus,
-        pmr_reference: this.pmr_reference,
+        status: this.status1,
+        pmr_reference: this.pmr_referenceid,
       };
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'mytaskstatusupdate/', data, {
