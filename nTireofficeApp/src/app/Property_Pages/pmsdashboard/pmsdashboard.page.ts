@@ -39,9 +39,11 @@ export class PmsdashboardPage implements OnInit {
   accessToken: string;
   userID: string;
   functionID: string;
-  branchID: string;
   issueDesc: any;
+  branchlist:any;
   tovaccantchartcount: any[];
+  branchId: any;
+  getBID: any;
 
   constructor(private http: HttpClient,
     private platform: Platform,
@@ -66,7 +68,7 @@ export class PmsdashboardPage implements OnInit {
       { name: 'Count', },
      ];
 
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    // this.branchId = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
@@ -78,6 +80,8 @@ export class PmsdashboardPage implements OnInit {
     this.data = this.tableApi.getDashbTable1();
     console.log(this.data);
 
+    this. BranchLocationdata();
+
     this.issueStatus();
     this.customerPayment();
     this.getBranchCountChart();
@@ -85,14 +89,40 @@ export class PmsdashboardPage implements OnInit {
     this.getToBevaccantChart();
 
   }
+
+  BranchLocationdata() {
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+    let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'bindbranch/' + strFunctionId + "/" + userId, {
+      headers: options,
+    }).subscribe(resp => {
+      this.branchlist = resp;
+      console.log(this.branchlist);
+      
+      // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
+      for (var i = 0; i < this.branchlist.length; i++) {
+        this.branchId = this.branchlist[i].BRANCH_ID;
+
+        console.log("this Branch",this.branchId);
+        
+      }
+   
+
+    }, error => {
+
+      console.log("branchlist1 : " + JSON.stringify(error));
+    });
+  };
 issueStatus(){
 
       const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID,{
-   // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchID + '/' + this.userID,{
+     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?strfunction=' + this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID,{
+   // this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'issuestatus?' + this.functionID + '/' + this.branchId + '/' + this.userID,{
       headers:options
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -117,7 +147,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'customerpayments?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -204,7 +234,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'emloyeemaintenance?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID).subscribe(resp => {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'emloyeemaintenance?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID).subscribe(resp => {
       debugger
       this.result = resp;
 
@@ -347,7 +377,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'propertystatus?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)
@@ -424,7 +454,7 @@ issueStatus(){
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'tobevaccant?strfunction='+ this.functionID + '&branch=' + this.branchID +'&userid=' + this.userID, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'tobevaccant?strfunction='+ this.functionID + '&branch=' + this.branchId +'&userid=' + this.userID, {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp)

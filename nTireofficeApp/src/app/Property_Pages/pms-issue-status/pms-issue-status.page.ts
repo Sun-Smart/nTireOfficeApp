@@ -56,13 +56,14 @@ export class PmsIssueStatusPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
 
-      this.getStatus = resp;
-      console.log(this.getStatus);
+      // this.getStatus = resp;
+      // console.log(this.getStatus);
 
-      if(this.getStatus = null){
-        this.isViewStatusCard = false;
-      }else{
+      if(resp == null || resp == "No data found"){
         this.isViewStatusCard = true;
+      }else{
+        this.isViewStatusCard = false;
+        this.getStatus = resp;
       }
 
     });

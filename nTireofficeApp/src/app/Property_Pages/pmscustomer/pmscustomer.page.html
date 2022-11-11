@@ -9,6 +9,9 @@
 
 <ion-grid style="margin: 0; padding:0;">
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-row class="top-header">
     <ion-col size="4" style="margin-left: 15px;">
       <ion-button expand="block" size="small" (click)="togglefilter()"> Filter &nbsp;&nbsp;<ion-icon name="filter">
@@ -64,7 +67,8 @@
             </ion-item>
           </ion-list>
         </ion-col>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Unique Reference :</ion-label>
           <ion-searchbar placeholder="Search"  [(ngModel)]="uniqueRef" >
           </ion-searchbar>
@@ -73,7 +77,8 @@
               <ion-label>{{data.id}}</ion-label>
             </ion-item>
           </ion-list>
-        </ion-col>
+        </ion-col> -->
+
         <ion-col size="12">
           <ion-button class="ion-color-success" (click)="filterRecords()" expand="block">SEARCH</ion-button>
         </ion-col>
