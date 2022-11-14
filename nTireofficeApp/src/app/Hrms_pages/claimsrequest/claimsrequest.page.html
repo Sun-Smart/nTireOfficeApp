@@ -52,7 +52,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Amount</ion-label>
-        <ion-input type="tel" class="form-control" [(ngModel)]="expenseamount"></ion-input>
+        <ion-input type="number" class="form-control" [(ngModel)]="expenseamount" (keypress)="numberOnly($event)"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Description<span class="validatecolor">*</span></ion-label>

@@ -95,7 +95,7 @@ export class AttendancePage implements OnInit {
   getAttendance() {
     this.nodata = false;
     this.attendanceList = [];
-   
+
     // console.log(this.attendance.empID);
     if (this.yeardata == undefined) {
       this.yeardata = "0";
@@ -106,35 +106,35 @@ export class AttendancePage implements OnInit {
 
     if ((this.yeardata == '' && this.monthdata == '') || (this.yeardata != '' && this.monthdata == '') || (this.yeardata == '' && this.monthdata != '')) {
       this.presentAlert(' ', 'Please Select Year & Month');
-    }else{
+    } else {
       this.presentLoadingWithOptions();
-    var obj = {
-      empID: this.employee_id,
-      year: this.yeardata,
-      month: this.monthdata
+      var obj = {
+        empID: this.employee_id,
+        year: this.yeardata,
+        month: this.monthdata
 
+      }
+      this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp: any) => {
+
+        this.loadingdismiss();
+        // this.attendanceList = JSON.parse(resp.toString());
+        this.attendanceList = resp;
+        console.log(resp)
+        console.log("" + JSON.stringify(this.attendanceList));
+        if (this.attendanceList.length == 0 || resp == "No data found") {
+          this.nodata = true;
+        }
+        debugger
+        for (var i = 0; i < this.attendanceList.length; i++) {
+          this.attendanceList[i].TxnDate = this.getDateObj(this.attendanceList[i].TxnDate)
+        }
+        this.attendanceList = this.attendanceList.sort((a, b) => a.TxnDate - b.TxnDate)
+      }, error => {
+
+        console.log("error : " + JSON.stringify(error));
+
+      });
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeDailyAttendance/" + obj.empID + "/" + obj.year + "/" + obj.month + "/1").then((resp: any) => {
-
-      this.loadingdismiss();
-      // this.attendanceList = JSON.parse(resp.toString());
-      this.attendanceList = resp;
-      console.log(resp)
-      console.log("" + JSON.stringify(this.attendanceList));
-      if (this.attendanceList.length == 0) {
-        this.nodata = true;
-      }
-      debugger
-      for (var i = 0; i < this.attendanceList.length; i++) {
-        this.attendanceList[i].TxnDate = this.getDateObj(this.attendanceList[i].TxnDate)
-      }
-      this.attendanceList = this.attendanceList.sort((a, b) => a.TxnDate - b.TxnDate)
-    }, error => {
-
-      console.log("error : " + JSON.stringify(error));
-
-    });
-  }
   }
 
   getDateObj(value) {
