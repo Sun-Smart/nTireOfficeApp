@@ -100,6 +100,7 @@ export class MyTaskPage implements OnInit {
   filter_asset: any;
   showdata1: boolean;
   pmr_referenceid: any;
+  taskDetailsLength: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -320,10 +321,13 @@ export class MyTaskPage implements OnInit {
 
       this.myTaskDetailsList = resp;
       console.log(this.myTaskDetailsList);
-      
+
+
       for (var i = 0; i < this.myTaskDetailsList.length; i++) {
         this.pmr_referenceid = this.myTaskDetailsList[i].pmr_reference;
       };
+
+
 
       // if (resp == null || resp == "No data found") {
       //   this.myTaskDetailsList = [];
