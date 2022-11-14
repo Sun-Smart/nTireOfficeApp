@@ -99,7 +99,7 @@ export class MyTaskPage implements OnInit {
   get_assetData: any;
   filter_asset: any;
   showdata1: boolean;
-  pmr_referenceid: any;
+  pmr_referenceid: any=[]
   taskDetailsLength: any;
 
   constructor(private modalCtrl: ModalController,
@@ -324,7 +324,9 @@ export class MyTaskPage implements OnInit {
 
 
       for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-        this.pmr_referenceid = this.myTaskDetailsList[i].pmr_reference;
+        this.pmr_referenceid.push({
+            pmr_reference_Id:this.myTaskDetailsList[i].pmr_reference
+          });
       };
 
 
@@ -337,6 +339,8 @@ export class MyTaskPage implements OnInit {
       //   console.log(this.myTaskDetailsList);
       // };
       console.log('kuhgg', this.pmr_referenceid);
+
+      // console.log('kuhggkkkuku', this.pmr_referenceid.pmr_reference_Id);
     });
   };
 
@@ -394,7 +398,7 @@ export class MyTaskPage implements OnInit {
     }
   };
 
-  updateStatus() {
+  updateStatus(items) {
     debugger;
     // this.getTaskStatus = this.status1;
     console.log("getTaskStatus,,,,,,,,,,,,,,", this.status1);
@@ -406,8 +410,11 @@ export class MyTaskPage implements OnInit {
       header.append("Content-Type", "application/json");
       let data = {
         status: this.status1,
-        pmr_reference: this.pmr_referenceid,
+        pmr_reference: items.pmr_reference,
       };
+
+      console.log("dkjvbsfkjbgskjdfbvks",data.pmr_reference);
+      
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'mytaskstatusupdate/', data, {
         headers: options, responseType: 'text'
