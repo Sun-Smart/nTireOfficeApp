@@ -317,17 +317,21 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp);
-      if (resp == null || resp == "No data found") {
-        this.myTaskDetailsList = [];
-        this.showdata1 = true;
-      } else {
-        this.showdata1 = false;
-        this.myTaskDetailsList = resp;
-        console.log(this.myTaskDetailsList);
-        for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-          this.pmr_referenceid = this.myTaskDetailsList[i].pmr_reference;
-        };
-      }
+
+      this.myTaskDetailsList = resp;
+      console.log(this.myTaskDetailsList);
+      
+      for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+        this.pmr_referenceid = this.myTaskDetailsList[i].pmr_reference;
+      };
+
+      // if (resp == null || resp == "No data found") {
+      //   this.myTaskDetailsList = [];
+      //   this.showdata1 = true;
+      // } else {
+      //   this.showdata1 = false;
+      //   console.log(this.myTaskDetailsList);
+      // };
       console.log('kuhgg', this.pmr_referenceid);
     });
   };
