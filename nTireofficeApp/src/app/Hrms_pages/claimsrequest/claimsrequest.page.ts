@@ -689,4 +689,12 @@ export class ClaimsrequestPage implements OnInit {
   DeleteImage(index) {
     this.Images.splice(index, 1);
   }
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
 }
