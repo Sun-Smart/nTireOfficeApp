@@ -167,4 +167,15 @@ td {
   transition: width 0.3s ease;
   font-size: 14px;
   font-weight: 400;
+};
+.ngx-datatable.material .datatable-footer .page-count {
+  line-height: 50px;
+  height: 50px;
+  padding: 0 15px !important;
+  text-transform: uppercase;
+}
+.ngx-datatable .datatable-footer .datatable-pager {
+  flex: 1 1 50% !important;
+  text-align: right !important;
+  margin: 0 15px !important;
 }
