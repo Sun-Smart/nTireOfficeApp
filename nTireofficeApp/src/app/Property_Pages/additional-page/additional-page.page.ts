@@ -129,13 +129,11 @@ export class AdditionalPagePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.customerlocation = resp;
-      if( this.customerlocation == "No data found"){
-        this.presentAlert("","There is no location for this branch");
-      }else{
+
         for (var i = 0; i < this.customerlocation.length; i++) {
           this.loca_id = this.customerlocation[i].LOCATION_ID;
         };
-      }
+    
 
   
     });
