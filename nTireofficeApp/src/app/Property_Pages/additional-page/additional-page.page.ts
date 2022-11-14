@@ -121,6 +121,7 @@ export class AdditionalPagePage implements OnInit {
     });
   };
   getLocationdata(branch) {
+
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     this.get_Bid = branch;
     let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -128,9 +129,15 @@ export class AdditionalPagePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.customerlocation = resp;
-      for (var i = 0; i < this.customerlocation.length; i++) {
-        this.loca_id = this.customerlocation[i].LOCATION_ID;
+      if( this.customerlocation == "No data found"){
+        this.presentAlert("","There is no location for this branch");
+      }else{
+        for (var i = 0; i < this.customerlocation.length; i++) {
+          this.loca_id = this.customerlocation[i].LOCATION_ID;
+        };
       }
+
+  
     });
   };
   newPropertyCode(branchlocation:any) {
