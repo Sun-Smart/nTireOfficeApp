@@ -30,7 +30,7 @@ export class EmployeesPage implements OnInit {
   totalemployee;
   profilephoto: any;
   profilesplit: any;
-  showfilter: boolean = true;
+  showfilter: boolean = false;
   loading: boolean = false;
   obj;
   username = window.localStorage.getItem('TUM_USER_NAME');

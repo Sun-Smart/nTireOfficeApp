@@ -144,10 +144,10 @@
               <ion-label style="color:black !important">Date of Birth</ion-label>
               <br />
               <ion-input type="date" style="color: #000 !important;"
-                max="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" class="profileOutput labelData-text"
+                max="{{dat_valid.currentDate | date: 'MM/dd/yyyy'}}" class="profileOutput labelData-text"
                 *ngIf="personalToggle === 1" [(ngModel)]="profile.DOB" [disabled]="personalToggle === 0"></ion-input>
               <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.DOB | date:
-                'dd-MM-yyyy'}}</span>
+                'MM-dd-yyyy'}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
               <ion-label style="color:black !important;">Qualification</ion-label>
