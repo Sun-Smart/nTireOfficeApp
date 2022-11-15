@@ -2,12 +2,19 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { InAppBrowser, InAppBrowserOptions } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
+import { Platform } from '@ionic/angular';
+
+
+
+declare var window;
+declare let cordova: any;
 @Component({
   selector: 'app-upload-invoice',
   templateUrl: './upload-invoice.page.html',
   styleUrls: ['./upload-invoice.page.scss'],
+
 })
 export class UploadInvoicePage implements OnInit {
   @ViewChild('popover') popover;
@@ -36,7 +43,12 @@ export class UploadInvoicePage implements OnInit {
   pdfdata: any;
   fest: any=[];
   open: any;
-  constructor( public alertController: AlertController,private modalCtrl: ModalController,private iab: InAppBrowser) {
+  openfile: any;
+  getopen: string;
+ 
+  windowop: any;
+  filePath: string;
+  constructor( public alertController: AlertController,private modalCtrl: ModalController,private readonly iab: InAppBrowser, public platform: Platform) {
 
     this.dat_valid = {
       currentDate: new Date()
@@ -130,7 +142,7 @@ else{
  const file = new Blob([byteArray], { type: "application/pdf" });
  const fileURL = URL.createObjectURL(file);
  var obj = {
-   test:fileURL,
+   test:this.url,
    test2:this.invoicedata[0].invoicenumber,
  }
  this.pdfSrc.push(obj);
@@ -165,6 +177,40 @@ onSelectFile(event) {
  
 }
 
+// openPDF (stringBase64PDF) {
+//   debugger
+//   fetch('data:application/pdf;base64,' + stringBase64PDF, {
+//       method: "GET"
+//   })
+//   .then(res => res.blob()).then(blob => {
+//     console.log("created blob");
+//     this.file.createFile(this.file.dataDirectory, 'temp.pdf', true)
+//     .then(() => {
+//       console.log("file created");
+//       this.file.writeFile(this.file.dataDirectory, 'temp.pdf', blob, { replace: true })
+//       .then(res => {
+//         console.log("file writed");
+//         this.fileOpener.open(res.toInternalURL(), 'application/pdf')
+//         .then((res) => {
+//           console.log('file opened')
+//         }).catch(err => {
+//           console.log('open error')
+//         });
+//       }).catch(err => {
+//         console.log('write error')     
+//       });
+//     }).catch(() => {
+//       console.log("create error");
+//     })
+    
+//   }).catch(err => {
+//     console.log('blob error')
+//   });
+// }
+
+
+
+
 openpdf(invoiceNumber){
  debugger
   var test = this.pdfSrc.filter(src=> {
@@ -177,7 +223,74 @@ openpdf(invoiceNumber){
   // this.iab.create('https://ionicframework.com/');
   // window.open(test[0].test)
 
-// this.open=test[0].test
+ this.open=test[0].test
+ 
+//  localStorage.setItem('open',this.open)
+//  this.getopen=localStorage.getItem("open")
+ console.log(this.open);
+ this.openfile=this.open.slice(5)
+ window.PreviewAnyFile.previewBase64(
+   success=>console.log("on success",success),
+  error=>console.log("on error", error),
+  this.open
+   
+ )
+// window.open(this.open +'.pdf');
+//  console.log(window.open);
+//  var pathFile = "";
+//  var fileName ='PdfName.pdf';
+// var contentFile =  this.open;
+// // var contentType = "application/pdf";
+// if (this.platform.is('ios')) {
+//      pathFile = cordova.file.documentsDirectory
+// } else {
+//      pathFile = cordova.file.externalRootDirectory
+// }
+//         let filePath = (this.platform.is('android')) ? 
+//         this.file.externalRootDirectory : this.file.cacheDirectory;
+//         this.file.createFile(filePath, fileName, true)
+//         .then(() => {
+//   this.file.writeFile(filePath, fileName, contentFile,{ replace: true }).then(FileEntry => {
+// console.log(FileEntry);
+
+//   console.log("File created!");          
+//   this.fileOpener.open(FileEntry.toURL(), 'application/pdf')
+//     .then(() => console.log('File is opened'))
+//     .catch(err => console.error('Error openening file: ' + err));
+// })
+// })
+//   .catch((err) => {
+//     console.error("Error creating file: " + err);
+//     throw err;  
+//   });
+
+
+
+
+//  console.log(this.openfile);
+//  this.fileOpener.open( this.open, 'application/pdf')
+// let options: InAppBrowserOptions = {
+//   location: 'yes',
+//   hideurlbar: 'yes',
+//   hidenavigationbuttons: 'yes',
+//   clearcache: 'no',
+//   clearsessioncache: 'yes',
+//   closebuttoncaption: 'Close',
+//   zoom: 'no',
+//   closebuttoncolor: '#888888',
+//   height:"300px",
+//   width:"200px"
+// };
+
+
+
+// RESULT_BROWSER.show();
+//  html2pdf()
+//  .set(opt)
+// html2pdf().set(opt).from(element).topdf().get('pdf').then(pdf=>{
+//   this.iab.create(pdf.output("bloburl"));
+
+// })
 // this.iab.create(this.open);
   // console.log(this.pdfSrc);
 
@@ -189,6 +302,9 @@ openpdf(invoiceNumber){
     // this.getinvoice = this.arr[i];
   // }
 }
+
+
+
 
 // async createModal() {
 //   const model = await this.modalCtrl.create({
@@ -205,6 +321,8 @@ openpdf(invoiceNumber){
 removeItem(index : number){
   this.getinvoice.splice(index,1);
 }
+
+
 
 
 

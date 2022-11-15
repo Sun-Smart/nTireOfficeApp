@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
         debugger
 
         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.
-          getLoginLink + '/loginMobileLos', credentials).subscribe((resp: any) => {
+          getLoginLinkFM + '/loginMobileLos', credentials).subscribe((resp: any) => {
 
             console.log(resp)
 

@@ -23,7 +23,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
 })
 export class PaymentDetailsPage implements OnInit {
   showfilter: boolean = true;
-  showdata: any;
+  showdata: boolean;
   branchlist1: any = [];
   branchlist: any;
   branchlocationlist: any = [];
@@ -51,7 +51,7 @@ export class PaymentDetailsPage implements OnInit {
   access_token: string;
   branchid: any;
   location: any;
-  branchId: any =[];
+  branchId: any = [];
   getBID: any;
   loca_id: any;
   get_Bid: any;
@@ -64,7 +64,7 @@ export class PaymentDetailsPage implements OnInit {
     this.user_id = localStorage.getItem('TUM_USER_ID');
     this.user_type = localStorage.getItem('TUM_USER_TYPE');
     this.access_token = localStorage.getItem('token');
-     }
+  }
   ngOnInit() {
     this.BranchLocationdata();
     this.getPaymentDetails();
@@ -106,13 +106,14 @@ export class PaymentDetailsPage implements OnInit {
       this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.Branch_id + '/' + data.locationid + '/' + data.property_code + '/' + data.custname + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.payMode + '/' + data.chequeNo, {
         headers: options,
       }).subscribe(resp => {
-        this.getPaymentDetailsList = resp;
         console.log(this.getPaymentDetailsList);
-        if (resp == null) {
+        if (resp == null || resp == "No data found") {
           this.showdata = true;
+          this.getPaymentDetailsList = [];
         }
         else {
           this.showdata = false;
+          this.getPaymentDetailsList = resp;
         }
       });
     }
@@ -152,16 +153,17 @@ export class PaymentDetailsPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getpaymentdetailsreports/' + data.Function_id + '/' + data.Branch_id + '/' + data.locationid + '/' + data.property_code + '/' + data.custname + '/' + data.fromDate + '/' + data.toDate + '/' + data.Status + '/' + data.payMode + '/' + data.chequeNo, {
       headers: options,
     }).subscribe(resp => {
-      this.getPaymentDetailsList = resp;
-      console.log(this.getPaymentDetailsList);
-      for (var i = 0; i < this.getPaymentDetailsList.length; i++) {
-        this.branch = this.getPaymentDetailsList[i].branch_id;
-      }
-      if (resp == null) {
+      if (resp == null || resp == "No data found") {
         this.showdata = true;
+        this.getPaymentDetailsList = [];
       }
       else {
         this.showdata = false;
+        this.getPaymentDetailsList = resp;
+        console.log(this.getPaymentDetailsList);
+        for (var i = 0; i < this.getPaymentDetailsList.length; i++) {
+          this.branch = this.getPaymentDetailsList[i].branch_id;
+        }
       }
     });
   };
@@ -173,10 +175,10 @@ export class PaymentDetailsPage implements OnInit {
       branchids: this.branch ? this.branch : 0,
       locationid: this.branchlocation ? this.branchlocation : 0,
       property_code: this.propertycodeDesc ? this.propertycodeDesc : 0,
-      custname: this.customerName ? this.customerName : "0",
-      Status: this.status ? this.status : "0",
-      payMode: this.paymode ? this.paymode : "0",
-      chequeNo: this.chequeno ? this.chequeno : "0",
+      custname: this.customerName ? this.customerName : 0,
+      Status: this.status ? this.status : 0,
+      payMode: this.paymode ? this.paymode : 0,
+      chequeNo: this.chequeno ? this.chequeno : 0,
       fromDate: 0,
       toDate: 0
     };
@@ -187,6 +189,7 @@ export class PaymentDetailsPage implements OnInit {
       this.branchlocationlist = JSON.stringify(resp);
       this.branchlocationlist = JSON.parse(this.branchlocationlist);
       console.log(this.branchlocationlist);
+
       for (var i = 0; i < this.branchlocationlist.length; i++) {
         this.branchlocation = this.branchlocationlist[i].location_id;
         this.branchid = this.branchlocationlist[i].branch_id;
@@ -210,17 +213,17 @@ export class PaymentDetailsPage implements OnInit {
       }
     });
   };
-  newPropertyCode(branchlocation) {
+  newPropertyCode(branchlocation: any) {
+    this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
@@ -254,14 +257,17 @@ export class PaymentDetailsPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
       if (this.companiesstr == "No data found") {
-        console.log('check pr code');
-        this.companiesstr = "";
-      }else{
-        console.log('is available');
-      }
-      for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push({property_code:this.companiesstr[i].property_code,
-          binding:this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name});
+        debugger;
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
+        for (var i = 0; i < this.companiesstr.length; i++) {
+          this.propertyCode1.push({
+            property_code: this.companiesstr[i].property_code,
+            binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+          });
+        };
       };
       const val = ev.target.value;
       // if the value is an empty string don't filter the items

@@ -27,11 +27,11 @@
           </select>
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Branch Location</ion-label>
+          <ion-label>Location</ion-label>
           <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
           (change)="newPropertyCode(branchlocation)">
-            <option [ngValue]="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
-            <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.LOCATION_ID">
+            <option [ngValue]="undefined" selected>&lt;&lt; Select &gt;&gt;</option>
+            <option *ngFor="let location of branchlocationlist; let i = index" [value]="location.LOCATION_ID">
               {{location.LOCATION_DESC}}</option>
           </select>
         </ion-col>
@@ -39,9 +39,12 @@
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)">
               {{item.binding}}
+            </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
             </ion-item>
           </ion-list>
         </ion-col>
@@ -53,6 +56,7 @@
     </ion-card-content>
   </ion-card>
   <center *ngIf="showAllrecords" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">Total records: {{showAllrecords.length}}</center>
+  
   <ion-card *ngFor="let items of showAllrecords">
     <ion-card-header class="card_header">
       <ion-row>

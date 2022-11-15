@@ -1,5 +1,16 @@
+/* eslint-disable no-debugger */
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/dot-notation */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable max-len */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable no-var */
+/* eslint-disable prefer-const */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -55,18 +66,25 @@ export class PmsCreateIssuePage implements OnInit {
   branchlist1: any;
   getBID: any;
   branchId: any;
+  fromdate: string;
+  get_Bid: any;
+  customerlocation: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient, private datePipe: DatePipe = new DatePipe("es-ES"),
     public alertController: AlertController,
-    public Ipaddressservice: IpaddressService,) {
+    public Ipaddressservice: IpaddressService,
+    public loadingController: LoadingController,) {
 
     this.isItemAvailable = false;
     this.createDate = this.datePipe.transform(this.createDate, 'dd/MM/yyyy');
 
     console.log(this.createDate);
 
+    var today = new Date();
 
+    this.createDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    // this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.function = localStorage.getItem('FUNCTION_DESC');
     // this.branch = localStorage.getItem('TUM_BRANCH_CODE');
 
@@ -78,7 +96,8 @@ export class PmsCreateIssuePage implements OnInit {
     this.accessToken = localStorage.getItem('token');
 
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
-    this.branch_id = JSON.parse(this.branchID);
+    // this.branch_id = JSON.parse(this.branchID);
+    this.branch_id = this.getBID;
 
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.function_ID = JSON.parse(this.functionID);
@@ -87,7 +106,7 @@ export class PmsCreateIssuePage implements OnInit {
   }
 
   ngOnInit() {
-    this. BranchLocationdata();
+    this.BranchLocationdata();
   }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -108,6 +127,22 @@ export class PmsCreateIssuePage implements OnInit {
     await alert.present();
   };
 
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'lines-sharp',
+      duration: 500,
+      // message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+
+    });
+    return await loading.present();
+  };
+  async loadingdismiss() {
+
+    return await this.loadingController.dismiss();
+  }
+
   BranchLocationdata() {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     let userId = parseInt(localStorage.getItem('TUM_USER_ID'));
@@ -118,14 +153,33 @@ export class PmsCreateIssuePage implements OnInit {
     }).subscribe(resp => {
       this.branchlist1 = resp;
       console.log(this.branchlist1);
-      
+
       // console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
-      for (var i = 0; i < this.branchlist1.length; i++) {
-        this.getBID = this.branchlist1[i].BRANCH_ID;
-      }
-      console.log('getBID', this.getBID);
+      // for (var i = 0; i < this.branchlist1.length; i++) {
+      //   this.getBID = this.branchlist1[i].BRANCH_ID;
+      // }
+      // console.log('getBID', this.getBID);
     }, error => {
       console.log("branchlist1 : " + JSON.stringify(error));
+    });
+  };
+
+  getLocationdata(branch: any) {
+    console.log(branch);
+
+    let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
+
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getlocation/' + strFunctionId + "/" + branch, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log("location", resp);
+      this.customerlocation = resp;
+      for (var i = 0; i < this.customerlocation.length; i++) {
+        this.getBID = this.customerlocation[i].BRANCH_ID;
+      }
+      console.log('getBID', this.getBID);
     });
   };
 
@@ -181,7 +235,7 @@ export class PmsCreateIssuePage implements OnInit {
   addPropertycode(item: any) {
     debugger;
     this.assetCode = item.binding;
-    this.assetCodeBinding = item.ASSET_CODE
+    this.assetCodeBinding = item.ASSET_CODE;
     this.isItemAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.assetCode == this.companiesstr[i].companyName) {
@@ -241,20 +295,20 @@ export class PmsCreateIssuePage implements OnInit {
 
       console.log(this.gatagoryDetails);
 
-    })
+    });
   }
 
   // postmethod create issue,
 
   createissue() {
     debugger;
+    this.presentLoadingWithOptions();
     const header = new Headers().set('Content-Type', 'text/plain; charset=utf-8');
 
     let data = {
-
       userid: this.user_ID,
       functionid: this.function_ID,
-      branchid: this.branch_id,
+      branchid: parseInt(this.getBID),
       Priority: this.priority,
       pm_due_date: this.createDate,
       drpPMType: this.categoryid,
@@ -263,8 +317,8 @@ export class PmsCreateIssuePage implements OnInit {
       assetid: this.assetid,
       assetcode: this.assetCodeBinding,
 
-    }
-    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    };
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.http.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'get_training_details/', data, {
       headers: options, responseType: 'text'
@@ -274,14 +328,16 @@ export class PmsCreateIssuePage implements OnInit {
       console.log(this.dataStatus);
 
       this.refNum = this.dataStatus[0].Column1;
+      this.loadingdismiss();
       // this.refNum =  this.dataStatus.map(({Column1}) => [Column1]);
       console.log(this.refNum);
+
 
 
       this.presentAlert("Success", "Issue Raised Sucessfully.. Issue Ref Number :" + this.refNum + "");
       this.reset();
 
-    })
+    });
   };
 
   reset() {
@@ -293,5 +349,7 @@ export class PmsCreateIssuePage implements OnInit {
     this.priority = '';
     this.textDetails = '';
   }
-
+  onCancel(){
+    this.assetDesc = '';
+  }
 }

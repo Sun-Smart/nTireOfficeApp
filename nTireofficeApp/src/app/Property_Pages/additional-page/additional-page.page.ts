@@ -65,6 +65,7 @@ export class AdditionalPagePage implements OnInit {
   rental_Code: any;
   data: any;
   sub: any;
+  location: any;
   constructor(private modalCtrl: ModalController,
     private router: Router, public alertController: AlertController,
     private http: HttpClient,
@@ -120,6 +121,7 @@ export class AdditionalPagePage implements OnInit {
     });
   };
   getLocationdata(branch) {
+
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     this.get_Bid = branch;
     let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -127,23 +129,27 @@ export class AdditionalPagePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.customerlocation = resp;
-      for (var i = 0; i < this.customerlocation.length; i++) {
-        this.loca_id = this.customerlocation[i].LOCATION_ID;
-      }
+
+        for (var i = 0; i < this.customerlocation.length; i++) {
+          this.loca_id = this.customerlocation[i].LOCATION_ID;
+        };
+    
+
+  
     });
   };
-  newPropertyCode(branchlocation) {
+  newPropertyCode(branchlocation:any) {
+    this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
@@ -178,7 +184,7 @@ export class AdditionalPagePage implements OnInit {
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({
           property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_desc,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name,
           rental_pro_id: this.companiesstr[i].property_id
         });
       };

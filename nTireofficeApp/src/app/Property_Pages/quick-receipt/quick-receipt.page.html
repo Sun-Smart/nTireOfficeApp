@@ -28,9 +28,9 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Branch Location</ion-label>
+            <ion-label>Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="newPropertyCode(branchlocation)">
-              <option value="undefined" selected ><< Select >></option>
+              <option [ngValue]="undefined" selected><< Select >></option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.LOCATION_ID">
                 {{location.LOCATION_DESC}}</option>
             </select>
@@ -40,22 +40,32 @@
           <ion-label>Property Code</ion-label>
           <ion-searchbar [(ngModel)]="propertycode" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: auto;">
             <ion-item *ngFor="let item of propertyCode1" (click)="addPropertycode(item)"
               style="background:none !important;color:#444 !important;display: block;">
-            {{item}}
+            {{item.binding}}
+            </ion-item>
+            <ion-item *ngIf="showdata">
+              No Data found..
             </ion-item>
           </ion-list>
         </ion-col>
           <ion-col size="12">
-            <ion-button color="success" size="default" (click)="filterquickreceipt()">SEARCH</ion-button>
+            <ion-button class="ion-color-success" size="default"
+            [disabled]="branch==undefined || branchlocation==undefined"
+            (click)="filterquickreceipt()" style="color: #fff !important;">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-     <center *ngIf="quickreceipt"
+
+     <center *ngIf="!showdata"
      style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">Total Records : {{quickreceipt.length}}</center>
-    <ion-card *ngFor="let item of quickreceipt; let i=index " >
+
+    <center *ngIf="showdata"
+    style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important; ">No records found</center>
+
+     <ion-card *ngFor="let item of quickreceipt; let i=index " >
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="7">

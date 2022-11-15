@@ -25,7 +25,7 @@ export class MaterialIssuePage implements OnInit {
   fromdate;
   todate;
   responseData;
-  mode;
+  mode : any;
   mrscode;
   fromdate1;
   todate1;
@@ -37,8 +37,12 @@ export class MaterialIssuePage implements OnInit {
   usertype;
   username
   responseDatalength;
+
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
+  getresponse: any;
+  getsetvalue: any;
+  getstatusvalue: any;
 
   constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
@@ -60,75 +64,98 @@ export class MaterialIssuePage implements OnInit {
 
   setValue(value:any){
     console.log(value)
+    this.getsetvalue =value
+  }
+  setstatusvalue(value:any){
+    this.getstatusvalue =value
   }
 
   SearchList() {
-    this.showviewlist = true;
-    if(this.mode == "<< Select >>" || this.mode == undefined){
-      var Mode = "null";
-     }else{
-      Mode= this.mode;
-     }
+this.showviewlist = true;
 
-     if(this.Status == "<< Select >>" || this.Status == undefined){
-      var STATUS = 'null';
-     }else{
-      STATUS= this.Status
-     }
 
-     if(this.fromdate1 == "<< Select >>" || this.fromdate1 == undefined){
-      var fromdate1 = 'null';
-     }else{
-      this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd-MM-yyyy');
-      fromdate1= this.fromdate2
-     }
 
-     if(this.todate1 == "<< Select >>" || this.todate1 == undefined){
-      var todate1 = 'null';
-     }else{
-      this.todate2 = this.datePipe.transform(this.todate, 'dd-MM-yyyy');
-      todate1= this.todate2
-     }
 
-     if(this.mrscode == undefined){
-      var MRSCODE = 'null';
-     }else{
-       MRSCODE = this.mrscode;
-     }
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+let body =  {
+  "FUNCTIONIDMI":"1",
+  "BRANCHIDMI":"1",
+  "ITEM_CODEMI":"",
+  "ITEM_REFMI":"",
+  "ILT_REFMI":"",
+  "SR_REFMI":"",
+  "FROMDATEMI":this.fromdate,
+  "TODATEMI":this.todate,
+  "STATUSMI":this.getstatusvalue,
+  "ALPHANAMEMI":"",
+  "SORTEXPRESSIONMI":"item_short_desc",
+  "PAGEINDEXMI":0,
+  "PAGESIZEMI":20,
+  "SEARCH_TYPEMI":this.getsetvalue
+}
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    var body = {
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress1+
+      this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails' , body).subscribe((res:any) =>{
+        console.log(res)
+        this.getresponse =res
+      })
 
-        FUNCTIONIDMI : this.funtionID,
-        BRANCHIDMI :this.branch_ID,
-        ITEM_CODEMI:"ITEM16",
-        ITEM_REFMI:"",
-        ILT_REFMI:"",
-        SR_REFMI:"",
-        FROMDATEMI:"19/07/2020",
-        TODATEMI:"19/07/2022",
-        STATUSMI:"0",
-        ALPHANAMEMI:"",
-        SORTEXPRESSIONMI:"item_short_desc",
-        PAGEINDEXMI:0,
-        PAGESIZEMI:20,
-        SEARCH_TYPEMI:"MI"
-       
 
-    }
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails',
-    {
-      headers: options,
-    }).subscribe(resp => {
-       this.responseData = resp;
-       console.log(this.responseData);
-       this.responseDatalength = this.responseData.length;
-    }, error => {
 
-      console.log(JSON.stringify(error));
-    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Mode : Location
+
+
+
+
+    // this.showviewlist = true
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+
+    // let options = new HttpHeaders().set('Content-Type', 'application/json');
+    // this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails',
+    //   {
+    //   headers: options,
+    // }).subscribe(resp => {
+    //    this.responseData = resp;
+    //    console.log(this.responseData);
+    //    this.responseDatalength = this.responseData.length;
+    // }, error => {
+
+    //   console.log(JSON.stringify(error));
+    // });
   }
 
   transCancel() {

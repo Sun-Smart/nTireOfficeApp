@@ -37,7 +37,7 @@ export class QuickReceiptPage implements OnInit {
   respContact: any;
   propertyDesc: any;
   quickreceipt: any = [];
-  showdata: string;
+  showdata: boolean;
   branchID: string;
   functionID: string;
   userID: string;
@@ -48,6 +48,8 @@ export class QuickReceiptPage implements OnInit {
   getBID: any;
   loca_id: any;
   get_Bid: any;
+  propertycodeDesc: any;
+  location: any;
   constructor(
     private route: Router,
     private http: HttpClient,
@@ -96,17 +98,17 @@ export class QuickReceiptPage implements OnInit {
     });
   };
 
-  newPropertyCode(branchlocation) {
+  newPropertyCode(branchlocation:any) {
+    this.location = branchlocation;
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
@@ -136,14 +138,18 @@ export class QuickReceiptPage implements OnInit {
       this.companiesstr = resp;
       console.log(this.companiesstr);
       if (this.companiesstr == "No data found") {
-        console.log('check pr code');
-        this.companiesstr = "";
-      }else{
-        console.log('is available');
-      }
+        debugger
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
       for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push(this.companiesstr[i].property_code);
+        this.propertyCode1.push({
+          property_code: this.companiesstr[i].property_code,
+          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+        });;
       }
+    }
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
@@ -159,7 +165,8 @@ export class QuickReceiptPage implements OnInit {
 
   addPropertycode(item: any) {
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
-    this.propertycode = item;
+    this.propertycode = item.binding;
+    this.propertycodeDesc = item.property_code;
     this.isPropertycodeAvailable = false;
     for (var i = 0; i < this.companiesstr.length; i++) {
       if (this.propertycode == this.companiesstr[i].companyName) {
@@ -170,7 +177,7 @@ export class QuickReceiptPage implements OnInit {
     const header = new Headers();
     header.append("Content-Type", "application/json");
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycode + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + this.propertycodeDesc+ "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
       headers: options,
     }).subscribe(resp => {
       this.respContact = resp;
@@ -204,8 +211,8 @@ export class QuickReceiptPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     let data = {
       functionID: localStorage.getItem('FUNCTION_ID'),
-      branchid: this.branch ? this.branch : 1,
-      locationid: this.branchlocation ? this.branchlocation : 1,
+      branchid: this.branch ? this.branch : 0,
+      locationid: this.branchlocation ? this.branchlocation : 0,
       propertyID: this.propertycode ? this.propertycode : 0,
     };
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'quickrecipt/' + data.functionID + "/" + data.locationid + "/" + data.propertyID + "/" + "0", {
@@ -215,9 +222,10 @@ export class QuickReceiptPage implements OnInit {
       this.quickreceipt = res;
       if (res == "No data found") {
         this.quickreceipt = [];
-        this.showdata = "No Data Found";
+        this.showdata = true;
       } else {
-        this.showdata = this.quickreceipt.length;
+        this.showdata = false;
+        this.quickreceipt = res;
       }
     });
   }

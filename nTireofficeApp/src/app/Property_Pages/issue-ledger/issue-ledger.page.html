@@ -27,9 +27,9 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Branch Location</ion-label>
+            <ion-label>Location</ion-label>
             <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control" (change)="newPropertyCode(branchlocation)">
-              <option value="undefined" selected disabled><< Select >></option>
+              <option [ngValue]="undefined" selected disabled><< Select >></option>
               <option *ngFor="let location of branchlocationlist; let i = index" [ngValue]="location.LOCATION_ID">
                 {{location.LOCATION_DESC}}</option>
             </select>
@@ -66,12 +66,14 @@
           </select>
         </ion-col>
           <ion-col size="12">
-            <ion-button color="success" size="default" (click)="Filterpropertyissueledger()">SEARCH</ion-button>
+            <ion-button class="ion-color-success" size="default" (click)="Filterpropertyissueledger()">SEARCH</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
     </ion-card>
-    <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
+    <center *ngIf="propertyissueledger" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+      Total records: {{propertyissueledger.length ? propertyissueledger.length : '0'}}</center>
+    <!-- <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p> -->
     <ion-card  *ngFor="let items of propertyissueledger; let i = index">
       <ion-card-header class="card_header">
         <ion-row>

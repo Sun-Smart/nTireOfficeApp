@@ -16,7 +16,7 @@ export class PmscustomerPage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
 
   showfilter: boolean = true;
-  showdata: any;
+  showdata: boolean
   showAllrecords: any = [];
 
 
@@ -51,6 +51,7 @@ export class PmscustomerPage implements OnInit {
   loca_id: any;
   propertyCodeResult: any = [];
   showRecords: boolean;
+  location: any;
 
 
   constructor(private modalCtrl: ModalController,
@@ -69,6 +70,12 @@ export class PmscustomerPage implements OnInit {
   ngOnInit() {
     this.getcustomerItems();
     this.BranchLocationdata();
+  };
+  handleRefresh(event) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
   };
 
   showmore(idvalue) {
@@ -115,7 +122,7 @@ export class PmscustomerPage implements OnInit {
       let data = {
         functionid: parseInt(localStorage.getItem('FUNCTION_ID')),
         branchids: this.get_Bid ? this.get_Bid : 0,
-        locationid: 0,
+        locationid:  this.location ?  this.location : 0,
         strPropertyCode: this.propertycodeDesc ? this.propertycodeDesc : 0,
         strPropertyDesc: 0,
         rentelCode: 0,
@@ -133,14 +140,21 @@ export class PmscustomerPage implements OnInit {
       this.http.get(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'fm_rental_summary/' + data.functionid + '/' + data.branchids + '/' + data.locationid + '/' + data.strPropertyCode + '/' + data.strPropertyDesc + '/' + data.rentelCode + '/' + data.strStatus + '/' + data.pageIndex + '/' + data.pageSize + '/' + data.sortExpression + '/' + data.alphaname + '/' + data.Split_ID + '/' + data.strusertype + '/' + data.userid, {
         headers: options,
       }).subscribe(resp => {
-        this.propertyCodeResult = [];
-        this.propertyCodeResult = resp;
+      ;
+     this.propertyCodeResult = resp;
         console.log(this.propertyCodeResult);
 
+        if (this.propertyCodeResult == null) {
+          this.propertyCodeResult = []
+          this.showdata = true;
+        } else {
+          this.showdata = false;
+          this.propertyCodeResult = resp;
+        }
       });
-    
+
     };
-  
+
   };
 
 
@@ -173,16 +187,16 @@ export class PmscustomerPage implements OnInit {
       this.propertyCodeResult = resp;
 
       for (var i = 0; i < this.propertyCodeResult.length; i++) {
-        this.branchlocation = this.propertyCodeResult[i].location_id;
+        // this.branchlocation = this.propertyCodeResult[i].location_id;
       }
       console.log(this.branchlocation);
 
-      if (this.propertyCodeResult == null) {
-        this.showdata = "No Data Found"
-      }
-      else {
-        this.showdata = this.propertyCodeResult.length;
-      }
+      // if (this.propertyCodeResult == null) {
+      //   this.showdata = "No Data Found"
+      // }
+      // else {
+      //   this.showdata = this.propertyCodeResult.length;
+      // }
     }, error => {
       // console.log("showAllrecords : " + JSON.stringify(error));
     });
@@ -223,28 +237,33 @@ export class PmscustomerPage implements OnInit {
     }).subscribe(resp => {
       console.log("location", resp);
       this.customerlocation = resp;
+
       for (var i = 0; i < this.customerlocation.length; i++) {
         this.loca_id = this.customerlocation[i].LOCATION_ID;
-      }
+      };
+      console.log(this.loca_id);
+
     });
   };
 
-  newPropertyCode(branchlocation) {
+  newPropertyCode(branchlocation: any) {
+
+    this.location = branchlocation;
+    console.log(this.location);
 
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
       branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + "/" + data.strFunctionId + "/" + data.branch_Id + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
-      console.log('click t  call', resp);
+      console.log('click t  call', resp)
 
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -261,33 +280,38 @@ export class PmscustomerPage implements OnInit {
     if (ev.target.value == "") {
       this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
-    }
-
+    };
     // Reset items back to all of the items
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.branchlocation, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + ev.target.value + "/" + strFunctionId + "/" + this.branch + "/" + this.location, {
       headers: options,
     }).subscribe(resp => {
       this.propertyCode1 = [];
       this.isPropertycodeAvailable = false;
       this.companiesstr = resp;
 
-      if (this.companiesstr == "No data found") {
-        this.companiesstr = "";
-      } else {
-        console.log('is available');
-      }
       console.log(this.companiesstr);
 
-      for (var i = 0; i < this.companiesstr.length; i++) {
-        this.propertyCode1.push({
-          property_code: this.companiesstr[i].property_code,
-          binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
-        });
+      if (this.companiesstr == "No data found") {
+        debugger
+        this.propertyCode1 = [];
+        this.showdata = true;
+      } else {
+        this.showdata = false;
+        for (var i = 0; i < this.companiesstr.length; i++) {
+          this.propertyCode1.push({
+            property_code: this.companiesstr[i].property_code,
+            binding: this.companiesstr[i].property_code + "-" + this.companiesstr[i].property_building_name
+          });
+        };
       };
+
+
+
+      console.log(this.propertyCode1);
 
       const val = ev.target.value;
 

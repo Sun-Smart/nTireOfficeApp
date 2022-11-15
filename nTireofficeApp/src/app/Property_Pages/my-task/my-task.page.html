@@ -19,28 +19,32 @@
       <ion-row>
         <ion-col size="12">
           <ion-label>Branch <span style="color:red;">*</span></ion-label>
-          <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="getLocationdata(branch)">
+          <select id="selectbutton" [(ngModel)]="branch" class="form-control" (change)="getAssetdata(branch)">
             <option [ngValue]="undefined" selected disabled>
-              << Select >>
+              << Select>>
             </option>
             <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
               {{branch.BRANCH_DESC}}
             </option>
           </select>
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Branch Location</ion-label>
-          <select id="selectbutton" [(ngModel)]="branchlocation" class="form-control"
-          (change)="newAssetCode(branchlocation)">
-            <option [ngValue]="undefined" selected disabled>
-              << Select >>
+          <ion-label>Asset Code :</ion-label>
+          <select id="selectbutton" [(ngModel)]="asset_code" class="form-control" (change)="addAssetCode(asset_code)">
+            <option [ngValue]="undefined" selected>
+              << Select>>
             </option>
-            <option *ngFor="let location of customerlocation; let i = index" [ngValue]="location.LOCATION_ID">
-              {{location.LOCATION_DESC}}</option>
+            <option *ngIf="showdata">
+              No Data found..
+            </option>
+            <option *ngFor="let item of get_assetData; let i = index" [ngValue]="item.pmm_asset_code">
+              {{item.pmm_asset_code}} - {{item.pmm_asset_desc}}</option>
           </select>
         </ion-col>
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Property Code</ion-label>
+
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>Asset Code :</ion-label>
           <ion-searchbar [(ngModel)]="asset_code" type="text" debounce="500" (ionInput)="getPropertyCode($event)">
           </ion-searchbar>
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
@@ -49,14 +53,25 @@
               {{item.binding}}
             </ion-item>
           </ion-list>
-        </ion-col>
+        </ion-col> -->
+
         <ion-col size="12">
           <ion-button class="ion-color-success" (click)="filterMyTask()" expand="block">SEARCH</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <p style="text-align: center;font-weight: bold; margin: 30px;color: black !important;"> Total Records : {{showdata}}</p>
+
+  <!-- <center *ngIf="!showdata1" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+    Total records: {{myTaskDetailsList.length}}</center> -->
+  <!-- <center *ngIf="!showdata1" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+      {{resp}}</center> -->
+  <!-- <center *ngIf="showdata1" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+      No records found</center> -->
+  <center *ngIf="myTaskDetailsList" style="text-align: center;font-weight: bold;font-size: 17px;color: #000 !important;">
+    Total records: {{myTaskDetailsList.length ? myTaskDetailsList.length : '0'}}</center>
+
+
   <ion-card *ngFor="let items of myTaskDetailsList">
     <ion-card-header class="card_header">
       <ion-row>
@@ -77,20 +92,40 @@
         <ion-col size="6" class="col_height">
           <ion-label class="labelData-text">{{items.pmr_reference}}</ion-label>
         </ion-col>
+
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelHead-text"> Branch </ion-label>
+        </ion-col>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.Branch}}</ion-label>
+        </ion-col>
+
+
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelHead-text"> Work Order No </ion-label>
+        </ion-col>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.WorkorderNo}}</ion-label>
+        </ion-col>
+
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Asset Code </ion-label>
         </ion-col>
         <ion-col size="1">:</ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text">  {{items.pmm_asset_code}}</ion-label>
+          <ion-label class="labelData-text"> {{items.pmm_asset_code}}</ion-label>
         </ion-col>
+
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Asset Description </ion-label>
         </ion-col>
         <ion-col size="1" style="align-items: center;display: flex;">:</ion-col>
         <ion-col size="6" class="col_height" style=" justify-content: center;align-items: center;display: flex;">
-          <ion-label class="labelData-text">  {{items.pmm_asset_desc}}</ion-label>
+          <ion-label class="labelData-text"> {{items.pmm_asset_desc}}</ion-label>
         </ion-col>
+
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Asset Type</ion-label>
         </ion-col>
@@ -105,42 +140,62 @@
         <ion-col size="6" class="col_height">
           <ion-label class="labelData-text"> {{items.amd_activity_desc}}</ion-label>
         </ion-col>
+
         <ion-col size="5" class="col_height">
-          <ion-label class="labelHead-text">Issue Category </ion-label>
+          <ion-label class="labelHead-text">Criticality </ion-label>
         </ion-col>
         <ion-col size="1">:</ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelData-text"> {{items.Criticality}}</ion-label>
         </ion-col>
+
         <ion-col size="5" class="col_height">
-          <ion-label class="labelHead-text">Assign Date </ion-label>
+          <ion-label class="labelHead-text">PM Duration </ion-label>
+        </ion-col>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text"> {{items.amd_maintenance_duration}}</ion-label>
+        </ion-col>
+
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelHead-text">Due Date </ion-label>
         </ion-col>
         <ion-col size="1">:</ion-col>
         <ion-col size="6" class="col_height">
           <ion-label class="labelData-text"> {{items.amd_start_date}}</ion-label>
         </ion-col>
+
         <ion-col size="5" class="col_height">
           <ion-label class="labelHead-text">Assign To</ion-label>
         </ion-col>
         <ion-col size="1">:</ion-col>
         <ion-col size="6" class="col_height">
-          <ion-label class="labelData-text"> </ion-label>
+          <ion-label class="labelData-text">{{items.TUM_USER_NAME}}</ion-label>
         </ion-col>
+
+        <ion-col size="5" class="col_height">
+          <ion-label class="labelHead-text">Status</ion-label>
+        </ion-col>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="6" class="col_height">
+          <ion-label class="labelData-text">{{items.Realease_status}}</ion-label>
+        </ion-col>
+
         <ion-col size="5" class="col_height" style=" justify-content: center;align-items: center;display: flex;">
           <ion-label class="labelHead-text">Issue Status </ion-label>
         </ion-col>
-        <ion-col size="1"  style="align-items: center;display: flex;">:</ion-col>
+        <ion-col size="1" style="align-items: center;display: flex;">:</ion-col>
         <ion-col size="6" class="col_height">
-          <select [(ngModel)]="status1" class="form-control">
-            <option selected ngValue="N">New</option>
-            <option ngValue="S">Started</option>
-            <option ngValue="C">Completed</option>
-          </select>
+          <ion-select [(ngModel)]="status1" class="form-control" placeholder="New" style="display: flex;">
+            <ion-select-option selected value="N" disabled style="color: #000;">New</ion-select-option>
+            <ion-select-option value="S" style="color: #000;">Start</ion-select-option>
+            <ion-select-option value="C" style="color: #000;">Completed</ion-select-option>
+          </ion-select>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-button class="ion-color-success" expand="block" (click)="updateStatus()">Update</ion-button>
+          <ion-button class="ion-color-success" expand="block" (click)="updateStatus(items)">Update</ion-button>
         </ion-col>
       </ion-row>
     </ion-card-content>

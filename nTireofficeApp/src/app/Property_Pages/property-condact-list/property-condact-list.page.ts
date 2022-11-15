@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable arrow-body-style */
 /* eslint-disable eqeqeq */
@@ -21,6 +22,7 @@ import { IpaddressService } from '../../service/ipaddress.service';
   styleUrls: ['./property-condact-list.page.scss'],
 })
 export class PropertyCondactListPage implements OnInit {
+
   showfilter: boolean = true;
   branchlist1: any = [];
   branchlist: any;
@@ -36,7 +38,7 @@ export class PropertyCondactListPage implements OnInit {
   property_code: any;
   respContact: any;
   propertyDesc: any;
-  showdata: any;
+  showdata: boolean = false;
   propetycondactlist: any;
   branchID: any;
   functionID: string;
@@ -50,6 +52,9 @@ export class PropertyCondactListPage implements OnInit {
   branchId: any;
   getBID: any;
   showRecords: boolean;
+
+
+  location: any;
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
     public alertController: AlertController,
@@ -97,16 +102,16 @@ export class PropertyCondactListPage implements OnInit {
     });
   };
   newPropertyCode(branchlocation) {
+    this.location = branchlocation;
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),
       propertyCode: 0,
-      branch_Id: this.get_Bid,
-      loca_Id: this.loca_id
+      branch_Id: this.get_Bid
     };
     const header = new Headers();
     header.append('Content-Type', 'application/json');
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + '/' + data.strFunctionId + '/' + data.branch_Id + '/' + data.loca_Id, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlProperty + 'getPropertycode/' + data.propertyCode + '/' + data.strFunctionId + '/' + data.branch_Id + '/' + this.location, {
       headers: options,
     }).subscribe(resp => {
       console.log('click t  call', resp);
@@ -134,18 +139,19 @@ export class PropertyCondactListPage implements OnInit {
       // set val to the value of the searchbar
       this.companiesstr = resp;
       console.log(this.companiesstr);
-      if (this.companiesstr == 'No data found') {
-        console.log('check pr code');
-        this.companiesstr = '';
+      if (this.companiesstr == "No data found") {
+        debugger;
+        this.propertyCode1 = [];
+        this.showdata = true;
       } else {
-        console.log('is available');
-      }
+        this.showdata = false;
       for (var i = 0; i < this.companiesstr.length; i++) {
         this.propertyCode1.push({
           property_code: this.companiesstr[i].property_code,
           binding: this.companiesstr[i].property_code + '-' + this.companiesstr[i].property_building_name
         });
       };
+    }
       const val = ev.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
@@ -158,6 +164,7 @@ export class PropertyCondactListPage implements OnInit {
       console.log('error : ' + JSON.stringify(error));
     });
   };
+
   addPropertycode(item: any) {
     this.propertycode = item.binding;
     this.propertycodeDesc = item.property_code;
@@ -185,7 +192,8 @@ export class PropertyCondactListPage implements OnInit {
     }, error => {
       console.log('error : ' + JSON.stringify(error));
     });
-  }
+  };
+
   // total get
   getpropertycondactlist() {
     let data = {
@@ -201,15 +209,17 @@ export class PropertyCondactListPage implements OnInit {
       headers: options,
     }).subscribe((res: any) => {
       console.log(res, 'reportlist');
-      this.propetycondactlist = res;
-      if (this.propetycondactlist == null) {
-        this.showdata = 'No Data Found';
+      if (res == null || res == "No data found") {
+        this.showdata = true;
+        this.propetycondactlist = [];
       }
       else {
-        this.showdata = this.propetycondactlist.length;
+        this.showdata = false;
+        this.propetycondactlist = res;
       }
     });
-  }
+  };
+
   filterpropertycondactlist() {
     const header = new Headers();
     header.append('Content-Type', 'application/json');
@@ -223,12 +233,11 @@ export class PropertyCondactListPage implements OnInit {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp, 'reportlist');
-      this.propetycondactlist = [];
-      this.propetycondactlist = resp;
-      if (resp == null) {
-        this.showRecords = true;
+      if (resp == null || resp == "No data found") {
+        this.showdata = true;
+        this.propetycondactlist = [];
       } else {
-        this.showRecords = false;
+        this.showdata = false;
         this.propetycondactlist = resp;
       }
     });
