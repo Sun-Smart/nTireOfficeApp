@@ -651,7 +651,11 @@ const routes: Routes = [
   {
     path: 'additionallist/:property',
     loadChildren: () => import('./Property_Pages/additionallist/additionallist.module').then(m => m.AdditionallistPageModule)
+  },  {
+    path: 'mytask-completed-page',
+    loadChildren: () => import('./Property_Pages/mytask-completed-page/mytask-completed-page.module').then( m => m.MytaskCompletedPagePageModule)
   },
+
 
 
 

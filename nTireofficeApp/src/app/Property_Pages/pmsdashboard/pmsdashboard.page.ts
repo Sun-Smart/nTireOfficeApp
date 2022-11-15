@@ -188,8 +188,7 @@ export class PmsdashboardPage implements OnInit {
             label: "Invoice",
             stack: "Base",
             backgroundColor: "#E1BA24",
-            data: [this.customerPayment[0].Invoice, this.customerPayment[0].Invoice]
-
+            data: [this.customerPayment[0].Invoice, this.customerPayment[0].Invoice],
           }
             ,
           {
@@ -198,7 +197,7 @@ export class PmsdashboardPage implements OnInit {
             label: "OutStanding",
             stack: "Sensitivity",
             backgroundColor: "#2A93CE",
-            data: [this.customerPayment[0].OutStanding, this.customerPayment[1].OutStanding]
+            data: [this.customerPayment[0].OutStanding, this.customerPayment[1].OutStanding],
 
           },
           {
@@ -207,7 +206,7 @@ export class PmsdashboardPage implements OnInit {
             label: "Paid",
             stack: "solid",
             backgroundColor: "#004073",
-            data: [this.customerPayment[0].Paid, this.customerPayment[1].Paid]
+            data: [this.customerPayment[0].Paid, this.customerPayment[1].Paid],
 
           }
           ]
