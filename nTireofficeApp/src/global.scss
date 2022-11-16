@@ -362,15 +362,15 @@ ion-footer {
   // background: red !important;
   // position: absolute;
   bottom: 0 !important;
-  height: 40px;
+  height: 30px;
   // border-radius: 16px 16px 0 0 !important;
-  border-radius: 0 0 16px 16px !important;
+  // border-radius: 0 0 16px 16px !important;
 
   // background-color: beige;
   ion-row {
     ion-col {
       color: white;
-      top: 6px;
+      // top: 6px;
     }
   }
 }
@@ -764,6 +764,16 @@ ion-item {
   /* padding-top: 6px; */
   text-align: center;
 }
+
+.empion-label {
+  color: #000;
+  font-weight: 500;
+  width: 100%;
+  border-width: 1px;
+  font-size: 15px;
+  top: 11px;
+}
+
 
 ion-label {
   color: #000;
@@ -1330,3 +1340,7 @@ input#checkbox {
   font-weight: bold;
 }
 
+.alert-radio-label.sc-ion-alert-ios {
+  color: #000 !important;
+  font-weight: 600 !important;
+}

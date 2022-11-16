@@ -1,4 +1,5 @@
 <!-- eslint-disable @angular-eslint/template/eqeqeq -->
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -10,8 +11,10 @@
     <ion-title style="margin: 0 20px;">Create Issue</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-grid style="margin: 0; padding:0;">
+
+<ion-card style="margin: 0; padding:0; height: inherit;">
   <ion-content>
+
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content>
       </ion-refresher-content>
@@ -33,7 +36,7 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)" show-clear-button="always"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="assetCode" type="text" debounce="500" (ionInput)="getItems($event)" (ionClear)="onCancel()" show-clear-button="always"></ion-searchbar>
         <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 250px;">
           <ion-item *ngFor="let item of assetData" (click)="addPropertycode(item)"
             style="background:none !important;color:#444 !important;display: block;">
@@ -87,7 +90,11 @@
       </ion-col>
       <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4"></ion-col>
     </ion-row>
+ 
   </ion-content>
+</ion-card>
+
+
   <ion-footer>
     <ion-row>
       <ion-col size="6">
@@ -98,4 +105,5 @@
       </ion-col>
     </ion-row>
   </ion-footer>
-</ion-grid>
+
+

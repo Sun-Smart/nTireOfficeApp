@@ -9,7 +9,6 @@ import { IpaddressService } from 'src/app/service/ipaddress.service';
 })
 export class VendorquotationPage implements OnInit {
 
-
   vendorquotdropdown = true;
   usertypechk = window.localStorage['TUM_USER_TYPE'];
   vendorItemcode='';
@@ -30,9 +29,6 @@ export class VendorquotationPage implements OnInit {
   }
 
   ngOnInit() {
-
-
-
   }
 
   checkvendors(itemcode){
@@ -40,9 +36,7 @@ export class VendorquotationPage implements OnInit {
       // alert('hi')
       this.vendorquotdropdown = false;
       var userid = window.localStorage['TUM_USER_ID'];
-
       var usertoken = window.localStorage['usertoken'];
-
       var token = window.localStorage['token'];
 
       var obj = {
@@ -65,7 +59,6 @@ export class VendorquotationPage implements OnInit {
         console.log(err);
       })
 
-
     } else {
       this.vendoritemsview(itemcode);
     }
@@ -85,19 +78,15 @@ export class VendorquotationPage implements OnInit {
   }
 
     showmore(){
-
     }
 
     showless(){
-
     }
 
     vendoritemsview(itemcode){
       this.vendorItemcode = localStorage.getItem("ITEM_CODE");
       var userid = window.localStorage['TUM_USER_ID'];
-
       var usertoken = window.localStorage['usertoken'];
-
       var token = window.localStorage['token'];
 
       var ven_obj = {
@@ -144,7 +133,7 @@ export class VendorquotationPage implements OnInit {
       VendorQuot.VENDOR_ID = item.VENDOR_ID;
       this.vendor_id = item.VENDOR_ID;
       VendorQuot.itemid = item.ITEM_ID;
-    //  vendor_id = item.VENDOR_ID;
+      // vendor_id = item.VENDOR_ID;
       this.RFQID = item.VENDOR_ID;
       console.log(this.vendor_id,VendorQuot);
       var ven_obj = {
@@ -200,13 +189,8 @@ export class VendorquotationPage implements OnInit {
       }
       console.log(VendorQuot);
 
-
       // $state.go("app.vendorsQuotUpdate")
-
       // this.show();
     }
-
-
-
 }
 

@@ -39,7 +39,7 @@ import { Subscription, fromEvent } from 'rxjs';
 })
 export class ExpensedetailsPage implements OnInit {
   allappointments;
-  brach;
+  branch;
   datfil;
   IsVisible;
   user_id;
@@ -95,10 +95,10 @@ export class ExpensedetailsPage implements OnInit {
   username: any;
   private backbuttonSubscription: Subscription;
   constructor(private nativeGeocoder: NativeGeocoder, public alertController: AlertController, public modalController: ModalController, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService, private geolocation: Geolocation) {
-    this.brach = localStorage.getItem('BRANCH_ID');
+    this.branch = localStorage.getItem('BRANCH_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.IsVisible = true;
-    this.brach = "";
+    this.branch = "";
     this.Getbranches();
     var today = new Date();
 
@@ -140,7 +140,7 @@ export class ExpensedetailsPage implements OnInit {
   searchAppointment(val, usertype, fromdate, todate) {
     debugger;
     this.allmeetingArray1 = [];
-    if (this.brach == "") {
+    if (this.branch == "") {
       this.presentAlert1('', 'Please Enter Branch');
     }
     else if (fromdate == '' || fromdate == undefined) {
@@ -164,7 +164,7 @@ export class ExpensedetailsPage implements OnInit {
           $('#oneUserAlert').hide();
           $('#alluserTablebyDate').hide();
           $('#tableCard').show();
-          this.getAllMeeting(this.brach);
+          this.getAllMeeting(this.branch);
           // alert('Please Enter User');
         } else {
 
@@ -193,7 +193,7 @@ export class ExpensedetailsPage implements OnInit {
             }).subscribe(resp => {
               this.allappointments = resp;
 
-              //console.log(this.allappointments)
+              console.log(this.allappointments)
               if (this.allappointments.length != 0) {
                 this.meetingArray.push({
                   User: obj.TUM_USER_CODE
@@ -203,13 +203,13 @@ export class ExpensedetailsPage implements OnInit {
 
                   var app_date = this.allappointments[i].TCC_NEXT_CALL_DATE;
                   var datetime = app_date.split('T');
-                  var date = this.datePipe.transform(datetime[0], 'dd/MM/yyyy');
+                  var date = this.datePipe.transform(datetime[i], 'dd/MM/yyyy');
 
                   this.today = new Date();
                   // console.log(this.today)
                   this.formattedDate = this.datePipe.transform(this.today, 'dd-MM-yyyy');
 
-                  this.formattedDate1 = this.datePipe.transform(datetime[0], 'dd-MM-yyyy');
+                  this.formattedDate1 = this.datePipe.transform(datetime[i], 'dd-MM-yyyy');
 
                   this.formattedTime = this.datePipe.transform(this.today, 'HH:mma');
 
@@ -324,10 +324,11 @@ export class ExpensedetailsPage implements OnInit {
           $('#alluserTable').hide();
           this.meetingArray = [];
           this.user_id = parseInt(window.localStorage['TUM_USER_ID']);
-          var dataJSONtmp = { fdate: this.fromdate, tdate: this.todate, BRANCHID: parseInt(this.brach) }
+          var dataJSONtmp = { fdate: this.fromdate, tdate: this.todate, BRANCHID: parseInt(this.branch) }
           this.token = window.localStorage['token'];
           var tokenJSON = { access_token: this.token, userid: this.user_id, 'usertoken': window.localStorage['usertoken'] };
           var getleadJSON = Object.assign(dataJSONtmp, tokenJSON);
+          
           const header = new Headers();
           header.append("Content-Type", "application/json");
           let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -337,8 +338,10 @@ export class ExpensedetailsPage implements OnInit {
             //sales_services.get_AllappointmentsbyDate(this.fromdate, this.todate).then(function(resp) {
             //console.log(resp)
             this.allMeetings1 = resp;
+            console.log(this.allMeetings1);
+            
             this.allUsername1 = [];
-            this.allmeetingArray1 = [];
+            // this.allmeetingArray1 = [];
             for (var i = 0; i < this.allMeetings1.length; i++) {
 
               var cc = this.fromdate.split('-')

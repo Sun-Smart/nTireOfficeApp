@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
@@ -12,8 +13,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './od-request.page.html',
   styleUrls: ['./od-request.page.scss'],
 })
-export class OdRequestPage implements OnInit
-{
+export class OdRequestPage implements OnInit {
   odFrom;
   odTo;
   travelstatus;
@@ -116,7 +116,10 @@ export class OdRequestPage implements OnInit
     this.getEmployeeDetails();
     this.getAdvancedCurrency();
     this.getTravelMode();
+    var today = new Date();
 
+    this.from = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    this.to = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.travelmode = "";
 
     this.urldata = this.route.params.subscribe(params => {
@@ -550,7 +553,12 @@ export class OdRequestPage implements OnInit
     }
     if (this.empID == undefined) {
       this.toastmessageService.presentAlert1("alert", "Invalid Emp ID");
-    } else {
+    }
+    if (this.fromHour > this.toHour) {
+      this.presentAlert1('Error', 'from hour should be lesser than or equal to to hour');
+      return;
+    }
+    else {
       //  this.show();
 
       if (isODrequestOK == true) {
@@ -911,6 +919,7 @@ export class OdRequestPage implements OnInit
                 usertoken: this.usertoken,
                 access_token: window.localStorage.token
               }
+
               this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getreportingto", reportobj).then(resp => {
                 this.from = undefined;
                 this.to = undefined;
@@ -1129,18 +1138,18 @@ export class OdRequestPage implements OnInit
       buttons: ['OK']
     });
     await alert.present();
-    }
+  }
 
-    async presentAlert1(heading, tittle) {
-      var alert = await this.alertController.create({
-        header: heading,
-        cssClass: 'buttonCss',
-        backdropDismiss: false,
-        message: tittle,
-        buttons: ['OK']
-      });
-      await alert.present();
-      }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
 }
 

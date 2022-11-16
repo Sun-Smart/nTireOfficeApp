@@ -25,18 +25,28 @@ export class MaterialIssuePage implements OnInit {
   fromdate;
   todate;
   responseData;
+  mode : any;
+  mrscode;
+  fromdate1;
+  todate1;
+  Status;
+  fromdate2;
+  todate2;
+  function;
+  userID;
+  usertype;
+  username
   responseDatalength;
-  mode;
+
 
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
   getresponse: any;
   getsetvalue: any;
   getstatusvalue: any;
-  fromdate2;
-  todate2;
+
   mrsCode;
-  Status;
+
   MaterialIssue;
 
   constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
@@ -51,7 +61,7 @@ export class MaterialIssuePage implements OnInit {
    }
 
   ngOnInit() {
-   
+
   }
 
   setValue(value:any){
@@ -117,7 +127,7 @@ let body =  {
       console.log(this.responseData);
       this.responseDatalength = this.responseData.length;
       })
-   
+
 
 
 
@@ -155,24 +165,25 @@ let body =  {
 
 
 
- 
+
     // this.showviewlist = true
     // const header = new Headers();
     // header.append("Content-Type", "application/json");
-  
+
     // let options = new HttpHeaders().set('Content-Type', 'application/json');
     // this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails',
-    //   {  
+    //   {
     //   headers: options,
     // }).subscribe(resp => {
     //    this.responseData = resp;
     //    console.log(this.responseData);
     //    this.responseDatalength = this.responseData.length;
     // }, error => {
-  
+
     //   console.log(JSON.stringify(error));
     // });
   }
+
   transCancel() {
     this.modalCtrl.dismiss();
   }

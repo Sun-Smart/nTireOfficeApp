@@ -17,6 +17,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IpaddressService } from '../../service/ipaddress.service';
 import { ActivatedRoute } from '@angular/router';
+import { MytaskCompletedPagePage } from '../mytask-completed-page/mytask-completed-page.page';
 
 @Component({
   selector: 'app-my-task',
@@ -99,6 +100,8 @@ export class MyTaskPage implements OnInit {
   get_assetData: any;
   filter_asset: any;
   showdata1: boolean;
+  pmr_referenceid: any=[]
+  taskDetailsLength: any;
 
   constructor(private modalCtrl: ModalController,
     private http: HttpClient,
@@ -316,18 +319,29 @@ export class MyTaskPage implements OnInit {
       headers: options,
     }).subscribe((resp: any) => {
       console.log(resp);
-      if (resp == null || resp == "No data found") {
-        this.myTaskDetailsList = [];
-        this.showdata1 = true;
-      } else {
-        this.showdata1 = false;
-        this.myTaskDetailsList = resp;
-        console.log(this.myTaskDetailsList);
-        for (var i = 0; i < this.myTaskDetailsList.length; i++) {
-          this.pmr_reference = this.myTaskDetailsList[i]['pmr_asset_reference'];
-        };
-      }
-      console.log('kuhgg', this.pmr_reference);
+
+      this.myTaskDetailsList = resp;
+      console.log(this.myTaskDetailsList);
+
+
+      for (var i = 0; i < this.myTaskDetailsList.length; i++) {
+        this.pmr_referenceid.push({
+            pmr_reference_Id:this.myTaskDetailsList[i].pmr_reference
+          });
+      };
+
+
+
+      // if (resp == null || resp == "No data found") {
+      //   this.myTaskDetailsList = [];
+      //   this.showdata1 = true;
+      // } else {
+      //   this.showdata1 = false;
+      //   console.log(this.myTaskDetailsList);
+      // };
+      console.log('kuhgg', this.pmr_referenceid);
+
+      // console.log('kuhggkkkuku', this.pmr_referenceid.pmr_reference_Id);
     });
   };
 
@@ -385,28 +399,46 @@ export class MyTaskPage implements OnInit {
     }
   };
 
-  updateStatus() {
+  updateStatus(items) {
     debugger;
-    this.getTaskStatus = this.status1;
-    console.log("getTaskStatus,,,,,,,,,,,,,,", this.getTaskStatus);
-    if (this.getTaskStatus == "undefined" || this.getTaskStatus == null || this.getTaskStatus == "") {
+    // this.getTaskStatus = this.status1;
+    console.log("getTaskStatus,,,,,,,,,,,,,,", this.status1);
+    if (this.status1 == "undefined" || this.status1 == null || this.status1 == "") {
       this.presentAlert1("", "Please select Issue Status...");
       return;
     } else {
       const header = new Headers();
       header.append("Content-Type", "application/json");
       let data = {
-        status: this.getTaskStatus,
-        pmr_reference: this.pmr_reference,
+        status: this.status1,
+        pmr_reference: items.pmr_reference,
       };
+
+      console.log("dkjvbsfkjbgskjdfbvks",data.pmr_reference);
+      
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlProperty + 'mytaskstatusupdate/', data, {
-        headers: options,
+        headers: options, responseType: 'text'
       }).subscribe((resp: any) => {
         this.updateStatusRes = resp;
-        console.log(this.updateStatusRes);
-        this.presentAlert("Success", "Status Updated Sucessfully...");
+        if (resp) {
+          console.log(this.updateStatusRes);
+          this.presentAlert("Success", "Status Updated Sucessfully");
+        }
       });
     };
-  }
+  };
+  async taskCompleted(completed:any){
+
+    console.log(completed);
+    
+    debugger;
+    if(completed == "C"){
+      const model = await this.modalCtrl.create({
+        component: MytaskCompletedPagePage,
+      });
+      return await model.present();
+    }else{};
+
+  };
 }

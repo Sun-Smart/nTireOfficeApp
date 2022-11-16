@@ -150,7 +150,11 @@ export class VendorpoconfirmPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'list_po_order/', po_list).subscribe(res => {
       console.log(res);
       this.PO_list_res = res;
+      console.log(  this.PO_list_res,"polist");
+      
       this.PO_list = this.PO_list_res.recordset;
+      console.log( this.PO_list );
+      
       if (this.PO_list == undefined) {
         this.PO_list = [];
       }

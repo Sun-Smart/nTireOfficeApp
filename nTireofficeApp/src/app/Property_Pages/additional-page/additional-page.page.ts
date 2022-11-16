@@ -121,6 +121,7 @@ export class AdditionalPagePage implements OnInit {
     });
   };
   getLocationdata(branch) {
+
     let strFunctionId = parseInt(localStorage.getItem('FUNCTION_ID'));
     this.get_Bid = branch;
     let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -128,9 +129,13 @@ export class AdditionalPagePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.customerlocation = resp;
-      for (var i = 0; i < this.customerlocation.length; i++) {
-        this.loca_id = this.customerlocation[i].LOCATION_ID;
-      }
+
+        for (var i = 0; i < this.customerlocation.length; i++) {
+          this.loca_id = this.customerlocation[i].LOCATION_ID;
+        };
+    
+
+  
     });
   };
   newPropertyCode(branchlocation:any) {

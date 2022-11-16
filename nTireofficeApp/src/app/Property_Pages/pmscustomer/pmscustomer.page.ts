@@ -71,6 +71,12 @@ export class PmscustomerPage implements OnInit {
     this.getcustomerItems();
     this.BranchLocationdata();
   };
+  handleRefresh(event) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
+  };
 
   showmore(idvalue) {
     //        alert(idvalue);
@@ -181,7 +187,7 @@ export class PmscustomerPage implements OnInit {
       this.propertyCodeResult = resp;
 
       for (var i = 0; i < this.propertyCodeResult.length; i++) {
-        this.branchlocation = this.propertyCodeResult[i].location_id;
+        // this.branchlocation = this.propertyCodeResult[i].location_id;
       }
       console.log(this.branchlocation);
 
@@ -244,7 +250,6 @@ export class PmscustomerPage implements OnInit {
 
     this.location = branchlocation;
     console.log(this.location);
-
 
     let data = {
       strFunctionId: parseInt(localStorage.getItem('FUNCTION_ID')),

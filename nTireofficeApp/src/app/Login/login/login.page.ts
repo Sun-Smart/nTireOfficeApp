@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
   //  userdata=[]
   data1 = []
 
- 
+
 
 
 
@@ -119,7 +119,7 @@ export class LoginPage implements OnInit {
             if (resp['Column1'] != undefined) {
               var b = resp['Column1'];
               setTimeout(() => {
-                this.loadingdismiss();                                                                                          
+                this.loadingdismiss();
                 // this.presentAlert('Alert1', b);
                 console.log("" + resp['Column1'])
               }, 5000);
@@ -304,5 +304,5 @@ export class LoginPage implements OnInit {
 
   ngOnDestroy() {
     //this.backButtonSubscription.unsubscribe();
-  }
+  }
 }

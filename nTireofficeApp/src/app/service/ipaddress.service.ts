@@ -80,13 +80,13 @@ export class IpaddressService {
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
     // this.serviceurlSales = "/dms/DMS/sales/";
 
-    this.getLoginLink = '/nTireMobileCoreAPIFM/api/Login';
+    this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
     this.serviceurllos = "/los/LOS/";
     this.dynamicmenu = '/nTireMobileCoreAPI/api';
 
     // Login for Property
 
-    this.getLoginLinkFM = '/nTireMobileCoreAPIFM/api/Login';
+    this.getLoginLinkFM = '/nTireMobileCoreAPI/api/Login';
     this.serviceurllosFM = "/los/LOS/";
     this.dynamicmenuFM = '/nTireMobileCoreAPI/api';
 

@@ -9,15 +9,12 @@
 
 <ion-content>
   <ion-card *ngIf="showfilter">
-
     <ion-grid *ngIf="showlineItems===true">
       <ion-row>
-
-
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Branch</ion-label>
           <select style="padding: 10px;" disabled=""
-            style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+            style=" background-color: #d4d4d4!important; display:inline-block; padding: 8px;"
             class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
           </select>
@@ -32,13 +29,13 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">From TRF Date</ion-label>
-          <input type="date" [(ngModel)]="fromtrfdate" class="Input-text-field textareaField"
-            style=" display:inline-block;padding: 8px;color: black !important;
+          <input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField"
+            style=" display:inline-block; padding: 8px; color: black !important;
             font-weight: 600;">
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">To TRF Date</ion-label>
-          <input type="date" [(ngModel)]="totrfdate" class="Input-text-field textareaField"
+          <input type="date" [(ngModel)]="todate" class="Input-text-field textareaField"
             style=" display:inline-block;padding: 8px;color: black !important;
             font-weight: 600;">
         </ion-col>
@@ -51,16 +48,16 @@
           </select>
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label class="plabel">Status</ion-label>
+          <span *ngFor="let item of interlocation"></span><ion-label class="plabel" >Status</ion-label>
           <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
             <option>&lt;&lt; Select &gt;&gt;</option>
-            <option value="New">New</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Denied">Denied</option>
-            <option value="Under Process">Under Process</option>
-            <option value="Cancelled">Cancelled</option>
+            <option value="N">New</option>
+            <option value="P">Pending</option>
+            <option value="A">Approved</option>
+            <option value="D">Denied</option>
+            <option value="U">Under Process</option>
+            <option value="C">Cancelled</option>
           </select>
         </ion-col>
       </ion-row>
@@ -70,20 +67,19 @@
           <ion-button class="ion-color-primary" (click)="showline()" expand="block">New</ion-button>
         </ion-col>
         <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
-          <ion-button class="ion-color-danger" expand="block" (click)="clear()">
-            Clear
-          </ion-button>
+          <ion-button class="ion-color-danger" expand="block" (click)="clear()"> Clear </ion-button>
         </ion-col>
         <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4" style="text-align: center;">
           <ion-button class="ion-color-success" expand="block" (click)="Search()">
-            <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-            Search
-          </ion-button>
+            <ion-icon style="color:white ;" name="search-outline"></ion-icon> Search </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
 
+  <div class = "nodata" *ngIf="interlocation == null">
+    No record found
+  </div>
   <!-- <p style="text-align:center;">inter Location transfer </p> -->
   <ion-card *ngIf="showfilter">
     <ion-grid *ngIf="showlineItems===false">
