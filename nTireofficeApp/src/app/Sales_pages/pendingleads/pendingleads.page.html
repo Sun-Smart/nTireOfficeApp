@@ -32,6 +32,8 @@
         <ion-row>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
+              <option [ngValue]="undefined" selected>
+                << Select >></option>
 
               <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
@@ -111,14 +113,15 @@
 
     <p class="totalCount" *ngIf="!pendingleadsdatalength">{{showData}}</p>
     <ion-card *ngFor="let items of pendleaddetails; let i = index">
+
       <ion-card-header class="card_header">
         <ion-row>
-          <ion-col>
+          <ion-col size="6">
             <ion-label class="card_header_text">{{items.CustFullName}}</ion-label>
           </ion-col>
 
-          <ion-col>
-            <ion-label class="card_header_text"> #{{items.CUST_LEAD_ID}}</ion-label>
+          <ion-col size="6" >
+            <ion-label class="card_header_text" style="justify-content: left !important;"> #{{items.CUST_LEAD_ID}}</ion-label>
           </ion-col>
         </ion-row>
       </ion-card-header>
@@ -275,7 +278,7 @@
                 Exp. Closed Date
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <span *ngIf="items.ClosedDate != '1900-01-01'"><b>{{items.ClosedDate|date:'dd/MM/yyyy'}}</b></span>
+                <span *ngIf="items.ClosedDate != '1900-01-01'" placeholder="select Date"><b>{{items.ClosedDate|date:'dd/MM/yyyy'}}</b></span>
                 <!-- <span *ngIf="items.ClosedDate != '1900-01-01'">-</span> -->
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">

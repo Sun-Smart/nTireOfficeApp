@@ -82,6 +82,8 @@ export class PermissionRequestPage implements OnInit {
         // this.workflow_no=this.permissiondata.workflow_no;
         this.disabledvalue = true;
       }
+      
+      
     });
   }
 
@@ -164,6 +166,7 @@ export class PermissionRequestPage implements OnInit {
           this.userID = this.userID;
           // console.log(split[2]);
           this.reqtype = 'null';
+
           if (split[2] == "Permission Saved Successfully") {
             this.toastmessageService.presentAlert("Request Sent", "Permission Request saved Successfully <br> Req Ref : " + this.reqID2);
 
@@ -217,10 +220,14 @@ export class PermissionRequestPage implements OnInit {
       this.toastmessageService.presentAlert("", "Permission Request saved Successfully")
       this.permCancel();
     }
+    
   }
 
   getEmployeeDetails() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/GetEmployees/" + this.empCode).then(resp => {
+
+      console.log("response Details",resp);
+      
       if (resp == "Employee not Exist") {
         this.toastmessageService.presentAlert1("", "Employee Does not Exist");
 

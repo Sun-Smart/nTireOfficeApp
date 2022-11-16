@@ -73,7 +73,7 @@ export class TeammeetingsPage implements OnInit {
   constructor(public alertController: AlertController, public modalController: ModalController, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.branch = "";
     this.Getbranches();
-    this.getAllMeeting(window.localStorage['TUM_BRANCH_ID']);
+    // this.getAllMeeting(window.localStorage['TUM_BRANCH_ID']);
     this.username = localStorage.getItem('TUM_USER_NAME');
     var today = new Date();
 
@@ -121,6 +121,9 @@ export class TeammeetingsPage implements OnInit {
     }
     else if (todate == undefined) {
       this.presentAlert1('', 'Please Select To Date');
+    }
+    else if (fromdate > todate) {
+      this.presentAlert1('', 'From Date should not be Greater than To Date');
     }
     else {
       if ((val == '' || val == undefined) || (fromdate == '' || fromdate == undefined) || (todate == '' || todate == undefined) || (branchid == '' || branchid == undefined)) {
@@ -636,7 +639,9 @@ export class TeammeetingsPage implements OnInit {
         if (this.meetArrayLength >= max) {
           max = this.meetArrayLength;
           this.maxArray = this.allmeetingArray[j].meeting_array;
-        }
+        };
+        console.log("fjgndkvndfkjgvhdfgjgnmekrvsejgi", this.maxArray);
+        
         for (var k = 0; k < this.allmeetingArray[j].meeting_array.length; k++) {
           this.allmeetingArray[j].meeting_array[k].Meeting = 'Meeting' + [k + 1];
           var app_date = this.allmeetingArray[j].meeting_array[k].TCC_NEXT_CALL_DATE;

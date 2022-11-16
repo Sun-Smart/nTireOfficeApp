@@ -16,7 +16,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AlertController, MenuController, NavController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController, NavController } from '@ionic/angular';
 import { Chart } from 'chart.js';
 import { IpaddressService } from '../../service/ipaddress.service';
 declare let $;
@@ -58,7 +58,7 @@ export class DashboardPage implements OnInit {
   username: any;
   // This property will save the callback which we can unsubscribe when we leave this view
   public unsubscribeBackEvent: any;
-  constructor(private platform: Platform, public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService, private navCtrl: NavController, private menuCtrl: MenuController) {
+  constructor(public loadingController: LoadingController, private platform: Platform, public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService, private navCtrl: NavController, private menuCtrl: MenuController) {
     this.menuCtrl.enable(true, 'first');
     this.Getbranches();
 
@@ -73,6 +73,17 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem('TUM_USER_NAME');
+  }
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'lines-sharp',
+      duration: 500,
+      // message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+
+    });
+    return await loading.present();
   }
 
   Getbranches() {
@@ -105,7 +116,7 @@ export class DashboardPage implements OnInit {
     });
   }
   branchchange(branchid) {
-
+    this.presentLoadingWithOptions();
     this.Stagewisegraph(branchid);
     this.Sourcewisegrph(branchid);
     this.productwisegraph(branchid);

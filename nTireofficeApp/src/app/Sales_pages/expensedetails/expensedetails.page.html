@@ -11,7 +11,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <select style="width:100%" [(ngModel)]="brach" class="form-control">
+        <select style="width:100%" [(ngModel)]="branch" class="form-control">
           <option value="">Please Select Branch</option>
           <option *ngFor="let branchlist of branchlist1; let i = index" value="{{branchlist.BRANCH_ID}}">
             {{branchlist.BRANCH_DESC}}</option>
