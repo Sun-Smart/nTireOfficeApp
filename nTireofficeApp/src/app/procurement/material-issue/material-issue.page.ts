@@ -26,21 +26,28 @@ export class MaterialIssuePage implements OnInit {
   todate;
   responseData;
   responseDatalength;
-  mode: string;
+  mode;
 
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
   getresponse: any;
   getsetvalue: any;
   getstatusvalue: any;
+  fromdate2;
+  todate2;
+  mrsCode;
+  Status;
+  MaterialIssue;
 
   constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
   
-    this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
-    this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
+    this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/YYYY');
+    this.todate = this.datePipe.transform(this.todate, 'dd/MM/YYYY');
+    this.mode = "<< Select >>";
+
    }
 
   ngOnInit() {
@@ -57,25 +64,46 @@ export class MaterialIssuePage implements OnInit {
 
   SearchList() {
 this.showviewlist = true; 
+if(this.mode == "<< Select >>" || this.mode == undefined){
+  var MRSMODE = "null";
+ }else{
+  MRSMODE= this.mode;
+ }
+ if(this.Status == "<< Select >>" || this.Status == undefined){
+  var MISTATUS = "0";
+ }else{
+  MISTATUS= this.Status;
+ }
+if(this.fromdate == "<< Select >>" || this.fromdate == undefined){
+  var fromdate = 'null';
+ }else{
+  this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd/MM/YYYY');
+  fromdate= this.fromdate2;
+ }
 
-
+ if(this.todate == "<< Select >>" || this.todate == undefined){
+  var todate = 'null';
+ }else{
+  this.todate2 = this.datePipe.transform(this.todate, 'dd/MM/YYYY');
+  todate= this.todate2;
+ }
 
 
 let body =  {
-  "FUNCTIONIDMI":"1",
-  "BRANCHIDMI":"1",
+  "FUNCTIONIDMI":this.funtionID,
+  "BRANCHIDMI":this.branch_ID,
   "ITEM_CODEMI":"",
   "ITEM_REFMI":"",
   "ILT_REFMI":"",
   "SR_REFMI":"",
-  "FROMDATEMI":this.fromdate,
-  "TODATEMI":this.todate,
-  "STATUSMI":this.getstatusvalue,
+  "FROMDATEMI":fromdate,
+  "TODATEMI":todate,
+  "STATUSMI":MISTATUS,
   "ALPHANAMEMI":"",
   "SORTEXPRESSIONMI":"item_short_desc",
   "PAGEINDEXMI":0,
   "PAGESIZEMI":20,
-  "SEARCH_TYPEMI":this.getsetvalue
+  "SEARCH_TYPEMI":MRSMODE
 }
 
     // const header = new Headers();
@@ -84,7 +112,10 @@ let body =  {
     this.http.post(this.Ipaddressservice.ipaddress1+
       this.Ipaddressservice.serviceerpapi+'MaterialIssueAllDetails' , body).subscribe((res:any) =>{
         console.log(res)
-        this.getresponse =res
+        this.MaterialIssue =res;
+        this.responseData =this.MaterialIssue;
+      console.log(this.responseData);
+      this.responseDatalength = this.responseData.length;
       })
    
 

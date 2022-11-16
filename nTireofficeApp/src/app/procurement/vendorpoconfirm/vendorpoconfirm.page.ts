@@ -140,6 +140,7 @@ export class VendorpoconfirmPage implements OnInit {
       STATUS: postatus,
       ITEMCODE: '',
       userid: userid,
+      alphaname:"",
       usertype: window.localStorage['TUM_USER_TYPE'],
       usertoken: usertoken,
       access_token: window.localStorage['token']

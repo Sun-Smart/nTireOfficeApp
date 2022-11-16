@@ -393,6 +393,7 @@ const routes: Routes = [
     path: 'manage-rfq/:id/:rfq',
     loadChildren: () => import('./procurement/manage-rfq/manage-rfq.module').then(m => m.ManageRfqPageModule)
   },
+
   {
     path: 'purchase-request/:id',
     loadChildren: () => import('./procurement/purchase-request/purchase-request.module').then(m => m.PurchaseRequestPageModule)

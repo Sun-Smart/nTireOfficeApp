@@ -89,12 +89,12 @@
           </thead>
           <tbody class="table-body">
             <ng-container>
-              <tr>
-                <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor"> </td>
-                <td>RFQ8976</td>
-                <td>13232</td>
-                <td>77</td>
-                <td>98788</td>
+              <tr *ngFor="let item of VendorList">
+                <td><input type="checkbox" id="checkbox" (change)="fieldsChange($event,item)"> </td>
+                <td>{{item.VENDOR_NAME}}</td>
+                <td>{{item.REQQTY}}</td>
+                <td>{{item.UNIT_PRICE}}</td>
+                <td>{{item.NET_PRICE_PER_UNIT}}</td>
                 <td *ngIf="showvendorqrotationaction" style="text-align: center;"><a (click)="find()">
                     <ion-icon name="trash-outline"></ion-icon>
                   </a></td>
@@ -102,31 +102,6 @@
                     Quotation</a></td>
               </tr>
 
-              <tr>
-                <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor"></td>
-                <td>RFQ8976</td>
-                <td>7865</td>
-                <td>77</td>
-                <td>87346</td>
-                <td *ngIf="showvendorqrotationaction" style="text-align: center;"><a (click)="find()">
-                    <ion-icon name="trash-outline"></ion-icon>
-                  </a></td>
-                <td *ngIf="showvendorqrotation" style=" font-size: 11px;"><a (click)="VendorQuotation()">Vendor
-                    Quotation</a></td>
-              </tr>
-
-              <tr>
-                <td><input type="checkbox" id="checkbox" [checked]="selectAllvendor"></td>
-                <td>RFQ8976</td>
-                <td>7865</td>
-                <td>77</td>
-                <td>76348</td>
-                <td *ngIf="showvendorqrotationaction" style="text-align: center;"><a (click)="find()">
-                    <ion-icon name="trash-outline"></ion-icon>
-                  </a></td>
-                <td *ngIf="showvendorqrotation" style="font-size: 11px;"><a (click)="VendorQuotation()">Vendor
-                    Quotation</a></td>
-              </tr>
             </ng-container>
           </tbody>
         </table>
@@ -137,7 +112,7 @@
       <ion-col>
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-success" (click)="RequestVenderQuotation()" style="margin-top: -18px;"
-            expand="block" [disabled]="selectAllvendor == false">Request Vender Quotation</ion-button>
+            expand="block" >Request Vender Quotation</ion-button>
         </ion-col>
       </ion-col>
       <!-- <ion-col>

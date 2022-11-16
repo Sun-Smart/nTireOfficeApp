@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { HttprequestService } from '../../service/httprequest.service';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-rfq',
   templateUrl: './rfq.page.html',
@@ -36,36 +37,31 @@ export class RFQPage implements OnInit {
   getresponsestr;
   getresponsenew;;
   Checked;
+  function;
+  branch;
+  userID;
+  usertype;
+  userToken;
+  accessToken;
+  branchID;
+  functionID;
+  username;
+  lastdate;
   RaisedRFQ :any =[];
   RaisedRFQdetails:any = [];
-  constructor(private router: Router, private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) {
-    // this.Checkboxes = [
-    //   {
-    //     name: "PRS Code",
-    //     prscode: "PRS573864533464",
-    //     itemcode: "7865",
-    //     requisitiondate: "12/09/2020",
-    //     isItemChecked: false
-    //   }, {
-    //     name: "PRS Code",
-    //     prscode: "PRS573864533464",
-    //     itemcode: "7865",
-    //     requisitiondate: "12/09/2020",
-    //     isItemChecked: false
-    //   }, {
-    //     name: "PRS Code",
-    //     prscode: "PRS573864533464",
-    //     itemcode: "7865",
-    //     requisitiondate: "12/09/2020",
-    //     isItemChecked: false
-    //   }, {
-    //     name: "PRS Code",
-    //     prscode: "PRS573864533464",
-    //     itemcode: "7865",
-    //     requisitiondate: "12/09/2020",
-    //     isItemChecked: false
-    //   }
-    // ];
+  constructor(private router: Router,private datePipe: DatePipe, private alertController: AlertController, private httpclient: HttpClient, private IpaddressService: IpaddressService) {
+    this.function = localStorage.getItem('FUNCTION_DESC');
+    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.userToken = localStorage.getItem('usertoken');
+    this.accessToken = localStorage.getItem('token');
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.username = localStorage.getItem('TUM_USER_NAME');
+    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
+    console.log(this.lastdate);
+
   }
   CheckAllOptions() {
     if (this.checkboxes.every(val => val.checked == true))
@@ -73,6 +69,11 @@ export class RFQPage implements OnInit {
     else
       this.checkboxes.forEach(val => { val.checked = true });
   }
+  // date(lastdate:any){
+  //   debugger;
+
+  //   console.log(this.lastdate)
+  // }
 
   selectAllCheckbox(value) {
     console.log(value);
@@ -112,6 +113,7 @@ export class RFQPage implements OnInit {
 
 
   Submit() {
+
     this.showviewlist = true;
     console.log('this.status ', this.status);
     // Status : Pending RFQ
@@ -126,11 +128,11 @@ export class RFQPage implements OnInit {
     }
 
     if (this.fromdate == undefined) {
-      this.fromdate = "0";
+      this.fromdate = "";
     }
 
     if (this.toDate == undefined) {
-      this.toDate = "0";
+      this.toDate = "";
     }
 
 
@@ -139,22 +141,6 @@ export class RFQPage implements OnInit {
       this.showRfq = true;
       this.showMRFQ = false;
       this.showCRFQ = false;
-
-      // if (this.status == "P") {
-      //   this.status = "P"
-      // }
-
-      // if (this.status == "RFQ") {
-      //   this.status = "RFQ Raised";
-      // }
-
-      // if (this.status == "Cancelled") {
-      //   this.status = "A";
-      // }
-
-
-
-
 
       let body = {
         "functionid": "1",
@@ -174,7 +160,7 @@ export class RFQPage implements OnInit {
         "alphaname": ""
       }
 
-      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body).then((res: any) => {
+      this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body).subscribe((res: any) => {
         this.getresponse = res;
         console.log("Response", res);
       });
@@ -220,7 +206,7 @@ export class RFQPage implements OnInit {
 
       }
 
-      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).then((res: any) => {
+      this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaisedRFQDetails', body).subscribe((res: any) => {
         this.getresponse = res;
 
       });
@@ -258,13 +244,21 @@ export class RFQPage implements OnInit {
         "alphaname": ""
       }
 
-      this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'CancelledRFQDetails', body).then((res: any) => {
+      this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'CancelledRFQDetails', body).subscribe((res: any) => {
         this.getrfqcancel = res;
         console.log("Response", res);
       });
     }
   }
 
+
+  
+  test(){
+    // alert("ih")
+    // console.log(e.target.value)
+    console.log(this.lastdate)
+
+  }
 
   getVal(item: string) {
     console.log(item);
@@ -288,9 +282,40 @@ export class RFQPage implements OnInit {
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
-  
+  this.test()
     if(this.Checked == true){
-      this.RaisedRFQ.push(item);
+      this.RaisedRFQ.push({
+        
+          "ROW_NUM":item.ROW_NUM,
+          "rowid": item.rowid,
+          "RFQCode1": item.RFQCode1,
+          "RFQ_Date": this.lastdate,
+          "RFQCode2": item.RFQCode2,
+          "RFQID": item.RFQID,
+          "prs_id": item.prs_id,
+          "branch_id": item.branch_id,
+          "prs_category": item.prs_category,
+          "IS_SINGLE_VENDOR": item.IS_SINGLE_VENDOR,
+          "prs_code": item.prs_code,
+          "item_id": item.item_id,
+          "item_short_Desc": item.item_short_Desc,
+          "item_Code": item.item_Code,
+          "uomtext": item.uomtext,
+          "uomval": item.uomval,
+          "required_qty": item.required_qty,
+          "requested_Date": item.requested_Date,
+          "request_comments": item.request_comments,
+          "RFQCode": item.RFQCode,
+          "ItemDescription": item.ItemDescription,
+          "RequiredBefore": this.lastdate,
+          "RFQDate": this.lastdate,
+          "Type": item.Type,
+          "ISBid": item.ISBid,
+          "Auction_status": item.Auction_status,
+          "GRIDVIEWCOUNT": item.GRIDVIEWCOUNT,
+          "Created_by": this.userID
+        
+      });
       console.log(this.RaisedRFQ);
     }
     else {
@@ -306,19 +331,33 @@ export class RFQPage implements OnInit {
 
   raiseRFQ(item : any) {
     console.log(item);
-    this.RaisedRFQdetails = this.RaisedRFQ;
+    // this.RaisedRFQdetails = this.RaisedRFQ;
     console.log(this.RaisedRFQdetails);
+    // for(let i=0; i< this.RaisedRFQ.length; i++) {
+    //   this.RaisedRFQ[i]['Created_by'] = this.userID;
+      // this.RaisedRFQ[i]['']
+    
+    // }
     let body ={
-      "vendordetail" : this.RaisedRFQdetails
+      "RFQ_raise":[
+        {
+          "RFQ_details":this.RaisedRFQ
+        }
+      ]
     }
     // this.presentAlert("", "RFQ 345/AT Raised Successfully");
     // Raise RFQ Button
-    this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaiseRFQ',body).then((res: any) => {
+    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaiseRFQ',body,{
+      headers: options, responseType: 'text'
+    }).subscribe((res: any) => {
+
         this.getraisedrfq = res;
         console.log(this.getraisedrfq)
         // this.showrfq = true;
         this.showviewlist = false;
-        // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+     
+        this.presentAlert("", res);
       });
   }
   manageRFQlink(item:any) {

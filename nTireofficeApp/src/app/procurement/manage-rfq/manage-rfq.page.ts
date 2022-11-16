@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { IpaddressService } from './../../service/ipaddress.service';
 import { HttprequestService } from '../../service/httprequest.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-rfq',
@@ -38,7 +39,12 @@ export class ManageRfqPage implements OnInit {
   findvedor;
   ItemID;
   RFQCODE;
-  constructor(private router: Router, private alertcontroller: AlertController, private activatedRoute: ActivatedRoute, private IpaddressService: IpaddressService, private httpclient: HttprequestService) {
+  RFQID;
+  VendorList;
+  Checked;
+  Requestrequstion:any=[];
+  quotationDetails;
+  constructor(private router: Router, private alertcontroller: AlertController, private activatedRoute: ActivatedRoute, private IpaddressService: IpaddressService, private httpclient: HttpClient) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -48,25 +54,40 @@ export class ManageRfqPage implements OnInit {
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
-  }
 
-  ngOnInit() {
+
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.data = params;  
       console.log('this.data ', this.data);
       this.RFQCODE = this.data.rfq;
+      this.RFQID = this.data.id;
+    
 
     });
+  }
+
+  ngOnInit() {
+
     this.getCards();
+    this.getVendorDetails();
   }
   getCards() {
 
-    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'get_Manage_RFQ/' + this.data.id).then((res: any) => {
+    this.httpclient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'get_Manage_RFQ/' + this.data.id).subscribe((res: any) => {
       this.managerfqdetails = res;
       console.log(this.managerfqdetails)
       this.manageRFQCard = this.managerfqdetails.itemDetails;
     })
   }
+
+getVendorDetails(){
+  this.httpclient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getvendor_RFQ?functionId='+this.functionID+'&rfqcode='+this.RFQCODE).subscribe((res : any) =>{
+    console.log(res);
+    this.VendorList = res;
+ 
+      }) 
+}
+
 
   findrfq(item: any) {
     console.log(item)
@@ -80,15 +101,56 @@ export class ManageRfqPage implements OnInit {
     console.log('new', this.splitted)
     this.router.navigate(['/vendorsdetails', this.splitted,item.itemCategory,item.itemSubCategory,item.itemID,item.rFQCode,item.item_Code,item.item_short_Desc]);
   }
-  // item.itemDetails.itemSubCategory,item.itemDetails.rFQCode,item.itemDetails.itemID
-  // VendorQuotation() {
-  //   this.RequestVenderQuotation==true
-  //   showvendorqrotation
-  // }
+  fieldsChange(values:any,item:any):void {
+    console.log(values.currentTarget.checked);
+    this.Checked = values.currentTarget.checked;
+    console.log(item);
+  
+    if(this.Checked == true){
+      this.Requestrequstion.push({
+        "ItemID":item.ITEM_ID,
+        "RFQID":item.RFQID,
+        "vendor_id":item.VENDOR_ID,
+        "branchid":item.branch_id,
+        "quotationdate":item.quotationdate,
+        "itemsubcategory":item.ITEMSUBCATEGORY,
+        "requiredqty":item.requiredqty,
+        "NetPrice":item.NET_PRICE_PER_UNIT,
+        "strUserId":this.userID,
+        "strIpAddress":"",
+        "Email":item.Email,
+        "VENDORITEMID":item.VENDORITEMID,
+        "PRSDetailsID":item.PRSDetailsID,
+        "NETP":item.netp
+       
+      });
+      console.log(this.Requestrequstion);
+    }
+    else {
+      var index = this.Requestrequstion.indexOf(item);
+      if(index > -1){
+        this.Requestrequstion.splice(index,1)
+        console.log(this.Requestrequstion,'filterarray');
+      }
+  
+  
+    }
+  }
 
   RequestVenderQuotation() {
     // this.showvendorqrotation = true;
     // this.showvendorqrotationaction = false;
+    let body={
+      "Raise_quotation" :[
+        {
+          "Raise_details" : this.Requestrequstion
+        }
+      ]
+    }
+
+    this.httpclient.post(this.IpaddressService.ipaddress1+this.IpaddressService.serviceerpapi+'Request_for_quotation',body).subscribe((res :any) =>{
+      this.quotationDetails = res;
+    })
     this.presentAlert("", "Quotation Requested Successfully");
   }
 
