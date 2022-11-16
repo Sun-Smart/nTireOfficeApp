@@ -100,11 +100,11 @@ getinvoiceCode(e:any){
     this.poinvoicecode = [];
     this.isPropertycodeAvailable = false;
   }
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  // const header = new Headers();
+  // header.append("Content-Type", "application/json");
+   let options = new HttpHeaders().set('Content-Type', 'application/json');
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getponnumber/' +this.functionID+ "/" +  this.branchID + "/" + e.target.value, {
-  
+    headers: options,
   }).subscribe(resp => {
     this.poinvoicecode = [];
     this.isPropertycodeAvailable = false;
@@ -145,9 +145,9 @@ addponumbercode(item:any){
 
 
 filterinvoicelist(){
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getinvoicedetails/' +  this.functionID + "/" +     this.branchID + "/" + this.poid, {
-    headers: options,
+    headers: headers,
   }).subscribe(resp => {
     this.invoiceget = resp;
  

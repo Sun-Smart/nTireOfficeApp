@@ -103,11 +103,11 @@ export class AssetDetailsPage implements OnInit {
     this.assetcode1 = [];
     this.newasset = ev.target.value;
     console.log(this.newasset);
-    
+
     if (ev.target.value == "") {
       this.assetcode1 = [];
       console.log(this.assetcode1);
-      
+
       this.isItemAvailable = false;
     }
     // Reset items back to all of the items
@@ -122,7 +122,7 @@ export class AssetDetailsPage implements OnInit {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
       "assetcode" :this.newasset,
-      
+
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
@@ -438,7 +438,7 @@ debugger;
           console.log(resp);
           if (resp == null) {
             this.imagesucessres.push(resp);
-            this.presentAlert("Sucess", "Updated Successfully")  
+            this.presentAlert("Sucess", "Updated Successfully")
             //$scope.getuserlist();
           }
 

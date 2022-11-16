@@ -1530,7 +1530,7 @@ export class NewleadRetailPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess/', params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getBranchAccess', params, {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
@@ -1538,12 +1538,7 @@ export class NewleadRetailPage implements OnInit {
         this.branchlist1.push(element);
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
-
-
-
     }, error => {
-
-
     });
   }
   BranchLocationdata(branchid) {

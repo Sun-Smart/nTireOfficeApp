@@ -13,8 +13,9 @@ import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors
   templateUrl: './assetssummary.page.html',
   styleUrls: ['./assetssummary.page.scss'],
 })
+
 export class AssetssummaryPage implements OnInit {
-  showfilter: boolean = true;
+  showfilter: boolean = false;
   categoryData : any=[];
   subCategoryData:any=[];
   FUNCTION_ID;
@@ -38,7 +39,6 @@ export class AssetssummaryPage implements OnInit {
     this.status="";
     this.filterAsset(undefined);
     this.getAssetCategory();
-
   }
   ngOnInit() {
   }
@@ -52,9 +52,7 @@ export class AssetssummaryPage implements OnInit {
 //   this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+ "/LoadAssetCategory/"+this.FUNCTION_ID+ "" + Value).then(resp=>{
 //     this.categoryData = JSON.parse(resp.toString());
 //    }, error => {
-
 //    console.log("error : "+JSON.stringify(error));
-
 //    });
 // }
 
@@ -67,8 +65,8 @@ getAssetCategory() {
   }, error => {
     console.log("error : " + JSON.stringify(error));
   });
-
 }
+
 //get assests sub category
 getAssestsSubcat(){
   debugger
@@ -123,9 +121,7 @@ this.getAssestsSubcat();
  changeOrder(){
   this.error=''
   this.display = this.display1.filter((data) => {
-
     return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
-
   });
   if(this.display.length==0){
     this.error = "No data found";
@@ -203,6 +199,4 @@ async cancelRequest(permData){
   });
   await alert.present();
 }
-
-
 }
