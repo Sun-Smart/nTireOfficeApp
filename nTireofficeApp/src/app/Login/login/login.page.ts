@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
 
   Loginevent() {
     if (this.username == "" && this.password == "") {
-      this.presentAlert('', 'Enter User Id & Password');
+      this.presentAlert('', 'Enter Username & Password');
       return;
     } else if (this.username == "" || this.username == undefined) {
       this.presentAlert('', 'Enter Username');
@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
         debugger
 
         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.
-          getLoginLinkFM + '/loginMobileLos', credentials).subscribe((resp: any) => {
+          getLoginLink + '/loginMobileLos', credentials).subscribe((resp: any) => {
 
             console.log(resp)
 
@@ -292,18 +292,6 @@ export class LoginPage implements OnInit {
     return await this.loadingController.dismiss();
   }
 
-  keyPressNumbers(event) {
-    var charCode = (event.which) ? event.which : event.keyCode;
-    // Only Numbers 0-9
-    if ((charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-
   onPageDidEnter() {
     // the left menu should be disabled on the login page
     // this.menuCtrl.enable(false);
@@ -316,5 +304,5 @@ export class LoginPage implements OnInit {
 
   ngOnDestroy() {
     //this.backButtonSubscription.unsubscribe();
-  }
+  }
 }
