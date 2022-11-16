@@ -186,21 +186,6 @@ export class RFQPage implements OnInit {
       this.showRfq = false;
       this.showCRFQ = false;
 
-
-      // if (this.status == "Pending") {
-      //   this.status = "P"
-      // }
-
-      // if (this.status == "A") {
-      //   this.status = "RFQ Raised";
-      // }
-
-      // if (this.status == "Cancelled") {
-      //   this.status = "A";
-      // }
-
-
-
       let body = {
         "functionid": "1",
         "prscode": "",
