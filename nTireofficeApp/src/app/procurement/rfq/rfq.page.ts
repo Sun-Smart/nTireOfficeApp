@@ -288,7 +288,7 @@ export class RFQPage implements OnInit {
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
-  
+
     if(this.Checked == true){
       this.RaisedRFQ.push(item);
       console.log(this.RaisedRFQ);
@@ -299,8 +299,8 @@ export class RFQPage implements OnInit {
         this.RaisedRFQ.splice(index,1)
         console.log(this.RaisedRFQ,'filterarray');
       }
-  
-  
+
+
     }
   }
 
