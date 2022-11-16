@@ -186,11 +186,11 @@
         </ion-col>
         <ion-col size="1" style="align-items: center;display: flex;">:</ion-col>
         <ion-col size="6" class="col_height">
-          <ion-select [(ngModel)]="status1" class="form-control" placeholder="New" style="display: flex;">
-            <ion-select-option selected value="N" disabled style="color: #000;">New</ion-select-option>
-            <ion-select-option value="S" style="color: #000;">Start</ion-select-option>
-            <ion-select-option value="C" style="color: #000;">Completed</ion-select-option>
-          </ion-select>
+          <select [(ngModel)]="status1" class="form-control" placeholder="New" style="display: flex;" (change)="taskCompleted(status1)">
+            <option selected [ngValue]="undefined" disabled>New</option>
+            <option value="S" style="color: #000;">Start</option>
+            <option value="C" style="color: #000;" >Completed</option>
+          </select>
         </ion-col>
       </ion-row>
       <ion-row>

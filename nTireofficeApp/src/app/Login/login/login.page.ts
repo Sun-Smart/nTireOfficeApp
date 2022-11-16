@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
   //  userdata=[]
   data1 = []
 
- 
+
 
 
 
@@ -86,7 +86,7 @@ export class LoginPage implements OnInit {
         debugger
 
         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.
-          getLoginLinkFM + '/loginMobileLos', credentials).subscribe((resp: any) => {
+          getLoginLink + '/loginMobileLos', credentials).subscribe((resp: any) => {
 
             console.log(resp)
 
@@ -119,7 +119,7 @@ export class LoginPage implements OnInit {
             if (resp['Column1'] != undefined) {
               var b = resp['Column1'];
               setTimeout(() => {
-                this.loadingdismiss();                                                                                          
+                this.loadingdismiss();
                 // this.presentAlert('Alert1', b);
                 console.log("" + resp['Column1'])
               }, 5000);
@@ -304,5 +304,5 @@ export class LoginPage implements OnInit {
 
   ngOnDestroy() {
     //this.backButtonSubscription.unsubscribe();
-  }
+  }
 }

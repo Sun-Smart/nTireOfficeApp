@@ -22,7 +22,7 @@
             <ion-label class="plabel">Mode</ion-label>
             <select #selectList style="padding: 10px;" [(ngModel)]="mode" (change)="setValue(selectList.value)" style=" display:inline-block;padding: 8px;"
               class="Input-text-field textareaField">
-              <option value="0"> Select</option>
+              <option value="null">  Select >> </option>
               <option value="L">Location Transfer</option>
                <option value="MI"> Material Requisition Slip </option>
             <option value="SR"> Sales Return </option>
@@ -33,17 +33,17 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">MRS Code</ion-label>
-            <ion-input style=" display:inline-block;padding: 8px;" type="text" class="Input-text-field textareaField">
+            <ion-input [(ngModel)]="mrscode" style=" display:inline-block;padding: 8px;" type="text" class="Input-text-field textareaField">
             </ion-input>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">From Date</ion-label>
-            <ion-input style="  display:inline-block;padding: 8px;" type="date" class="Input-text-field textareaField">
+            <ion-input [(ngModel)]="fromdate1" style="  display:inline-block;padding: 8px;" type="date" class="Input-text-field textareaField">
             </ion-input>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">To Date</ion-label>
-            <ion-input style="display:inline-block;padding: 8px;" type="date" class="Input-text-field textareaField">
+            <ion-input [(ngModel)]="todate1" style="display:inline-block;padding: 8px;" type="date" class="Input-text-field textareaField">
             </ion-input>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -87,7 +87,7 @@
     <ion-card-header class="card_header">
       <ion-row>
         <ion-col-4>
-          <ion-label class="card_header_text">Quatation Ref</ion-label>
+          <ion-label class="card_header_text" >Quotation Ref</ion-label>
         </ion-col-4>
 
         <ion-col-8 style="margin-left: 120px;">
@@ -146,7 +146,7 @@
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
        <ion-input type="text" class="Input-text-field textareaField"> </ion-input>
-        </ion-col>     
+        </ion-col>
         <ion-col size="12" style="font-weight:bold;">
           <ion-button expand="block" class="ion-color-success" [routerLink]="['/issue-details']" routerLinkActive="router-link-active" >Issue
           </ion-button>

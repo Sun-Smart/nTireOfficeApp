@@ -17,6 +17,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IpaddressService } from '../../service/ipaddress.service';
 import { ActivatedRoute } from '@angular/router';
+import { MytaskCompletedPagePage } from '../mytask-completed-page/mytask-completed-page.page';
 
 @Component({
   selector: 'app-my-task',
@@ -426,5 +427,18 @@ export class MyTaskPage implements OnInit {
         }
       });
     };
-  }
+  };
+  async taskCompleted(completed:any){
+
+    console.log(completed);
+    
+    debugger;
+    if(completed == "C"){
+      const model = await this.modalCtrl.create({
+        component: MytaskCompletedPagePage,
+      });
+      return await model.present();
+    }else{};
+
+  };
 }
