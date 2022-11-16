@@ -716,20 +716,20 @@ export class MyprofilePage implements OnInit {
       if (this.personalToggle == 0) {
         this.personalToggle = 1;
         // this.profile.DOB = $filter('date')(new Date(this.profile.DOB), "MM-dd-yyyy");
-        this.profile.DOB = this.datepipe.transform(this.profile.DOB, "MM/dd/yyyy")
+        this.profile.DOB = this.datepipe.transform(this.profile.DOB, "MM-dd-yyyy")
         console.log(this.profile.DOB)
         console.log(Date.parse(this.profile.DOB))
-        // if (this.profile.DOB) {
-        //   var date = new Date(this.profile.DOB);
-        //   var splitfirst = date.toLocaleDateString().split('/');
+        if (this.profile.DOB) {
+          var date = new Date(this.profile.DOB);
+          var splitfirst = date.toLocaleDateString().split('/');
 
-        //   console.log(splitfirst)
-        //   if (Number(splitfirst[0]) < 10) {
-        //     splitfirst[0] = '0' + String(splitfirst[0]);
-        //   }
-        //   this.profile.DOB = splitfirst[2] + '-' + splitfirst[0] + '-' + splitfirst[1];
-        //   console.log("" + this.profile.DOB)
-        // }
+          console.log(splitfirst)
+          if (Number(splitfirst[0]) < 10) {
+            splitfirst[0] = '0' + String(splitfirst[0]);
+          }
+          this.profile.DOB = splitfirst[2] + '-' + splitfirst[0] + '-' + splitfirst[1];
+          console.log("" + this.profile.DOB)
+        }
         var indexval = this.qualification.findIndex(x => x.VALUE == this.profile.emp_qualification);
         console.log('dddd', this.qualification);
         this.emp.qualification = this.qualification[0].VALUE;
@@ -778,7 +778,7 @@ export class MyprofilePage implements OnInit {
           Type: "PersonalDetails",
           FirstName: this.profile.FirstName,
           LastName: this.profile.LastName,
-          DOB: this.profile.DOB,
+          DOB: dob,
           Qualification: this.emp.qualification,
           SubQualification: this.emp.subQualification
         };

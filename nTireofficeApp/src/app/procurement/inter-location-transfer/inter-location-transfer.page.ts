@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
+import { IpaddressService } from './../../service/ipaddress.service';
+import { HttprequestService } from '../../service/httprequest.service';
 
 
 @Component({
@@ -18,15 +20,15 @@ export class InterLocationTransferPage implements OnInit {
   fromtrfdate: any;
   totrfdate: any;
   status: any;
-
-
-
   loading: boolean = false
   transferid: string;
   transferrefer: string;
   release: string;
   Remarks: string;
-  constructor(private alertController: AlertController) { }
+  interlocation: any;
+  toastmessageService: any;
+
+  constructor(private alertController: AlertController, private httpclient: HttprequestService, private IpaddressService: IpaddressService) { }
 
   ngOnInit() {
   }
@@ -45,14 +47,52 @@ export class InterLocationTransferPage implements OnInit {
     this.showfilter = !this.showfilter;
     this.hidefilter = !this.hidefilter;
   }
+
   Search() {
     this.loading = true
-
     this.showviewlist = true
+
+    if (this.trforderno == undefined) {
+      this.trforderno = "";
+    }
+
+if(this.Itemcode == undefined)
+{
+  this.Itemcode = "";
+}
+
+if(this.fromtrfdate == undefined)
+{
+  this.fromtrfdate = "";
+}
+
+  let body = {
+  "FUNCTIONIDILT":"1",
+  "BRANCHIDILT":"1",
+  "FROMDATEILT":"",
+  "TODATEILT":"",
+  "STATUSILT":"",
+  "MODEILT":"",
+  "INTERREFILT":"",
+  "STRITEMCODEILT":"",
+  "ALPHANAMEILT":"",
+  "SORTEXPRESSIONILT":"CodeDesc",
+  "PAGEINDEXILT":0,
+  "PAGESIZEILT":20
+  }
+
+    this.httpclient.PostRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'InterLocationTransferSummary', body).then((res: any) => {
+      this.interlocation = res;
+      console.log("Response", res);
+      this.toastmessageService.presentAlert1("", "Career Details Removed");
+    });
+
     if (this.trforderno == undefined) {
       this.trforderno = ''
     }
-  }
+}
+
+
   submit() {
     this.showviewlist = true
     // this.hideviewlist=true
@@ -118,6 +158,21 @@ export class InterLocationTransferPage implements OnInit {
 
     await alert.present();
   }
+
+
+  async presentAlert1 (heading, title)
+  {
+var alert = await this.alertController.create({
+  header: heading,
+  cssClass: 'buttonCss',
+  backdropDismiss: false,
+  message: title,
+  buttons: ['OK']
+});
+await alert.present();
+  }
+
+
 }
 
 
