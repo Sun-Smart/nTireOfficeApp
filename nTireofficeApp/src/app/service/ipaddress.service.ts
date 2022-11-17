@@ -44,11 +44,21 @@ export class IpaddressService {
     // this.ipaddress1 = "http://prod.herbie.ai";
     // this.ipaddress ="https://prod.herbie.ai:8033";
 
+    // this.ipaddress1 = "https://demo.herbie.ai";
+    // this.ipaddress = "https://demo.herbie.ai";
     this.ipaddress1 = "https://demo.herbie.ai";
     this.ipaddress = "https://demo.herbie.ai";
 
-    this.tokenlogin = "/nTireMobileCoreAPISSG/api";
-    this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
+    this.tokenlogin = "/nTireMobileCoreAPI/api";
+    this.hrmslogindata = "/nTireMobileCoreAPI/api";
+
+    this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
+    this.serviceurllos = "/los/LOS/";
+    this.dynamicmenu = '/nTireMobileCoreAPI/api';
+
+    // this.tokenlogin = "/nTireMobileCoreAPISSG/api";
+    // this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
+
     // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";
     // this.ipaddress = "http://192.168.43.214:8033";
@@ -64,10 +74,10 @@ export class IpaddressService {
 
 
 
-    this.serviceurlhrms = "/nTireMobileCoreAPISSG/api/HRMS";
-    this.serviceurlhrms1 = "/nTireMobileCoreAPISSG/api/HRMS/";
-    this.serviceurlhrms2 = "/nTireMobileCoreAPISSG/api/HRMS/";
-    this.serviceurlhrms3 = "/nTireMobileCoreAPISSG/api/HRMS/";
+    this.serviceurlhrms = "/nTireMobileCoreAPI/api/HRMS";
+    this.serviceurlhrms1 = "/nTireMobileCoreAPI/api/HRMS/";
+    this.serviceurlhrms2 = "/nTireMobileCoreAPI/api/HRMS/";
+    this.serviceurlhrms3 = "/nTireMobileCoreAPI/api/HRMS/";
     // this.serviceurlhrms4 = "/dms/DMS/dmsapi/DMS/";
     // this.serviceurlhrms5 = "/dms/DMS/E-attendence/";
 
@@ -80,15 +90,15 @@ export class IpaddressService {
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
     // this.serviceurlSales = "/dms/DMS/sales/";
 
-    this.getLoginLink = '/nTireMobileCoreAPIFM/api/Login';
-    this.serviceurllos = "/los/LOS/";
-    this.dynamicmenu = '/nTireMobileCoreAPI/api';
+    // this.getLoginLink = '/nTireMobileCoreAPIFM/api/Login';
+    // this.serviceurllos = "/los/LOS/";
+    // this.dynamicmenu = '/nTireMobileCoreAPI/api';
 
     // Login for Property
 
-    this.getLoginLinkFM = '/nTireMobileCoreAPIFM/api/Login';
-    this.serviceurllosFM = "/los/LOS/";
-    this.dynamicmenuFM = '/nTireMobileCoreAPI/api';
+    // this.getLoginLinkFM = '/nTireMobileCoreAPIFM/api/Login';
+    // this.serviceurllosFM = "/los/LOS/";
+    // this.dynamicmenuFM = '/nTireMobileCoreAPI/api';
 
 
     //Cams
