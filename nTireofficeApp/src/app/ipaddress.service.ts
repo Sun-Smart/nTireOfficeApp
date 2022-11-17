@@ -38,7 +38,7 @@ export class IpaddressService {
     // this.ipaddress ="https://prod.herbie.ai:8033";
 
 
-    this.ipaddress1 = "http://demo.herbie.ai";
+    this.ipaddress1 = "https://demo.herbie.ai";
     this.ipaddress ="https://demo.herbie.ai:8033";
 
 // ICRISAT
@@ -87,7 +87,7 @@ export class IpaddressService {
     this.serviceerpapi = "/nTireMobileCoreAPI/api/ERP/"
     // https://demo.herbie.ai/nTireMobileCoreAPI/api/ERP/get_PRS_search
 
-   
+
 
   }
 

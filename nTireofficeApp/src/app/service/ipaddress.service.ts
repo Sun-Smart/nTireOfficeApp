@@ -44,11 +44,21 @@ export class IpaddressService {
     // this.ipaddress1 = "http://prod.herbie.ai";
     // this.ipaddress ="https://prod.herbie.ai:8033";
 
+    // this.ipaddress1 = "https://demo.herbie.ai";
+    // this.ipaddress = "https://demo.herbie.ai";
     this.ipaddress1 = "https://demo.herbie.ai";
     this.ipaddress = "https://demo.herbie.ai";
 
-    this.tokenlogin = "/nTireMobileCoreAPISSG/api";
-    this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
+    this.tokenlogin = "/nTireMobileCoreAPI/api";
+    this.hrmslogindata = "/nTireMobileCoreAPI/api";
+
+    this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
+    this.serviceurllos = "/los/LOS/";
+    this.dynamicmenu = '/nTireMobileCoreAPI/api';
+
+    // this.tokenlogin = "/nTireMobileCoreAPISSG/api";
+    // this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
+
     // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";
     // this.ipaddress = "http://192.168.43.214:8033";
@@ -80,13 +90,13 @@ export class IpaddressService {
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
     // this.serviceurlSales = "/dms/DMS/sales/";
 
-    this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
+    this.getLoginLink = '/nTireMobileCoreAPIFM/api/Login';
     this.serviceurllos = "/los/LOS/";
     this.dynamicmenu = '/nTireMobileCoreAPI/api';
 
     // Login for Property
 
-    this.getLoginLinkFM = '/nTireMobileCoreAPI/api/Login';
+    this.getLoginLinkFM = '/nTireMobileCoreAPIFM/api/Login';
     this.serviceurllosFM = "/los/LOS/";
     this.dynamicmenuFM = '/nTireMobileCoreAPI/api';
 

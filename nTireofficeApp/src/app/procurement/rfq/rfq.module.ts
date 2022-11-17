@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RFQPageRoutingModule } from './rfq-routing.module';
 import { RFQPage } from './rfq.page';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   imports: [
     CommonModule,
@@ -12,6 +12,7 @@ import { RFQPage } from './rfq.page';
     IonicModule,
     RFQPageRoutingModule
   ],
-  declarations: [RFQPage]
+  declarations: [RFQPage],
+  providers:[DatePipe]
 })
 export class RFQPageModule {}
