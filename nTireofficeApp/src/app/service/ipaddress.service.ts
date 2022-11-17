@@ -64,10 +64,10 @@ export class IpaddressService {
 
 
 
-    this.serviceurlhrms = "/nTireMobileCoreAPISSG/api/HRMS";
-    this.serviceurlhrms1 = "/nTireMobileCoreAPISSG/api/HRMS/";
-    this.serviceurlhrms2 = "/nTireMobileCoreAPISSG/api/HRMS/";
-    this.serviceurlhrms3 = "/nTireMobileCoreAPISSG/api/HRMS/";
+    this.serviceurlhrms = "/nTireMobileCoreAPI/api/HRMS";
+    this.serviceurlhrms1 = "/nTireMobileCoreAPI/api/HRMS/";
+    this.serviceurlhrms2 = "/nTireMobileCoreAPI/api/HRMS/";
+    this.serviceurlhrms3 = "/nTireMobileCoreAPI/api/HRMS/";
     // this.serviceurlhrms4 = "/dms/DMS/dmsapi/DMS/";
     // this.serviceurlhrms5 = "/dms/DMS/E-attendence/";
 
