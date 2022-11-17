@@ -289,6 +289,7 @@ export class PurchaseRequestPage implements OnInit {
         this.getitemid = this.getitemdata[0].item_id
     });
   }
+
   getItems(event: any) {
     let items = this.Category;
 

@@ -17,11 +17,11 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Branch</ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
-            [(ngModel)]="branch"></ion-input>
+            [(ngModel)]="BRANCH_ID"></ion-input>
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">MRS Code</ion-label>
-          <ion-input type="text" [(ngModel)]="mrscode" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text" [(ngModel)]="MRS_CODE" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -38,28 +38,18 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px;"
+          <select style="padding: 10px;"[(ngModel)]="status" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option value="null"> Select </option>
-            <option value="New">New</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Denied">Denied</option>
-            <option value="Under Process">Under Process</option>
-            <option value="Cancelled">Cancelled</option>
+            <option value="0"> Select </option>
+            <option value="N">New</option>
+            <option value="P">Pending</option>
+            <option value="A">Approved</option>
+            <option value="D">Denied</option>
+         <option value="I">Inactive</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
-
-
-
         <!-- for view mode -->
-
-
-
-
-
-
 
         <!-- close for view mode -->
       </ion-row>
@@ -73,13 +63,10 @@
           <ion-button (click)="clear()" class="ion-color-danger" expand="block">Cancel</ion-button>
         </ion-col>
         <ion-col style="text-align: center;">
-          <ion-button (click)="SearchItems()" class="ion-color-success" expand="block">Search</ion-button>
+          <ion-button (click)="SearchItems()" class="ion-color-success" expand="block"><span *ngFor="let item of materialrequestsearch"></span>Search</ion-button>
         </ion-col>
-
       </ion-row>
-
     </ion-grid>
-
   </ion-card>
 
 
@@ -103,7 +90,7 @@
           <ion-label class="plabel">Branch</ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="branch"></ion-input>
-        
+
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -147,76 +134,77 @@
               <ion-label class="ContentName">Release</ion-label>
             </div>
           </ion-col>
+
           <ion-col size="6">
             <div style="padding: 12px;display: flex;">
-
-              <ion-label class="ContentName">Current Status : <span *ngIf="release===false">New</span><span
-                  *ngIf="release===true">Pending</span>
+              <ion-label class="ContentName">Current Status : <span *ngIf="release==false">New</span><span
+                  *ngIf="release==true">Pending</span>
               </ion-label>
             </div>
           </ion-col>
         </ion-row>
         <!-- close -->
+
         <!-- saved cards -->
         <div class="div" *ngIf="Showcard">
           <ion-card *ngFor="let items of expenseArray">
             <ion-row>
               <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" class="leadscolumn">
-               
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 SNO
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Item Code
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Item Description
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 UOM
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Unit Price
               </ion-col>
-              <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-               
+              <ion-col style="font-weight: 600; color: black;" type="number" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Stock Qty
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-               
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Request Qty
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Required Before Date
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                
+
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 Remarks
               </ion-col>
               <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-               
+
               </ion-col>
             </ion-row>
           </ion-card>
@@ -282,8 +270,8 @@
 
 
 
-  
-      
+
+
           <ion-col  size="4" *ngIf="overallsubmit">
             <ion-button (click)="Additems()" class="ion-color-primary" expand="block">Add item</ion-button>
           </ion-col>
@@ -294,25 +282,25 @@
           <ion-col  size="4" *ngIf="overallsubmit">
             <ion-button (click)="close()" class="ion-color-danger" expand="block">Cancel</ion-button>
           </ion-col>
-      
+
 
 
       <ion-col style="text-align: center;"  *ngIf ="overallsubmit">
         <ion-button (click)="onsubmit()" class="ion-color-success" expand="block">Submit</ion-button>
       </ion-col>
         <!-- over addtem -->
-       
+
 
       </ion-row>
 
-    
+
 
 
     </ion-grid>
 
 
   </ion-card>
-  
+
 </ion-content>
 
 

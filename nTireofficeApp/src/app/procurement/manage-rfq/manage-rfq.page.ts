@@ -55,14 +55,11 @@ export class ManageRfqPage implements OnInit {
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
 
-
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.data = params;  
+      this.data = params;
       console.log('this.data ', this.data);
       this.RFQCODE = this.data.rfq;
       this.RFQID = this.data.id;
-    
-
     });
   }
 
@@ -84,8 +81,8 @@ getVendorDetails(){
   this.httpclient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getvendor_RFQ?functionId='+this.functionID+'&rfqcode='+this.RFQCODE).subscribe((res : any) =>{
     console.log(res);
     this.VendorList = res;
- 
-      }) 
+
+      })
 }
 
 
@@ -105,7 +102,7 @@ getVendorDetails(){
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
-  
+
     if(this.Checked == true){
       this.Requestrequstion.push({
         "ItemID":item.ITEM_ID,
@@ -122,7 +119,7 @@ getVendorDetails(){
         "VENDORITEMID":item.VENDORITEMID,
         "PRSDetailsID":item.PRSDetailsID,
         "NETP":item.netp
-       
+
       });
       console.log(this.Requestrequstion);
     }
@@ -132,8 +129,8 @@ getVendorDetails(){
         this.Requestrequstion.splice(index,1)
         console.log(this.Requestrequstion,'filterarray');
       }
-  
-  
+
+
     }
   }
 
