@@ -1504,6 +1504,7 @@ export class NewleadRetailPage implements OnInit {
     this.Getcallnature();
     this.Getcallstage();
     this.Getleadsource();
+ 
     this.autocompleteItems = [];
     this.autocomplete = {
       query: ''
@@ -1513,6 +1514,7 @@ export class NewleadRetailPage implements OnInit {
     currentDate: new Date()
   };
   ngOnInit(): any {
+       // this.Getnextaction('');
 
   }
 
@@ -1715,6 +1717,9 @@ export class NewleadRetailPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'customerresponse/' + this.curr_prod_category, {
       headers: options,
     }).subscribe(resp => {
+
+      console.log("hfdfnieyfg",resp);
+      
 
       this.nextactionarray = JSON.stringify(resp);
       this.nextactionarray = JSON.parse(this.nextactionarray);
@@ -2178,7 +2183,7 @@ export class NewleadRetailPage implements OnInit {
       this.closedDate = [day1, month1, year1].join('-');
       if (this.closedDate == "NaN-NaN-NaN" || this.closedDate == '') {
 
-        this.closedDate = ' ';
+        this.closedDate = 0;
 
 
       }
@@ -2197,7 +2202,7 @@ export class NewleadRetailPage implements OnInit {
 
       var currency;
 
-      if (this.Currency == "<< Select >>") {
+      if (this.Currency == "<< Select >>" || this.Currency == '' ) {
         currency = 0;
       }
       else {
@@ -2283,6 +2288,7 @@ export class NewleadRetailPage implements OnInit {
             this.appointmentLatLong = null;
           }
 
+console.log(lead_id_new);
 
 
           var obj = {

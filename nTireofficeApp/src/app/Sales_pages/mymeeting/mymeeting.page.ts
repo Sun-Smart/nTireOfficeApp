@@ -28,7 +28,7 @@ declare var $: any;
 import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 
 import { LocationupdateleadsPage } from '../locationupdateleads/locationupdateleads.page';
 // declare var google: any;
@@ -72,7 +72,12 @@ export class MymeetingPage implements OnInit {
   showhidenorecords:boolean = true;
   @ViewChild('map') mapElement: ElementRef;
   username:any;
-  constructor(public modalController: ModalController, private router: Router, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
+  chosenDate: any;
+  data: any;
+
+
+
+  constructor(public alertController: AlertController, public modalController: ModalController, private router: Router, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     var today = new Date();
 
     this.fromdate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
@@ -81,7 +86,22 @@ export class MymeetingPage implements OnInit {
   }
 
   ngOnInit() {
+  };
+
+
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
+
   Getmeetings(from_datemeet, to_datemeet) {
     debugger;
 
@@ -116,7 +136,16 @@ export class MymeetingPage implements OnInit {
       $('#mapDetailsTable').hide();
       // $('#showdivs').hide();
 
-    } else {
+    }    else if (from_datemeet == undefined) {
+      this.presentAlert1('', 'Please Select From Date');
+    }
+    else if (to_datemeet == undefined) {
+      this.presentAlert1('', 'Please Select To Date');
+    }
+    else if (from_datemeet > to_datemeet) {
+      this.presentAlert1('', 'From Date should not be Greater than To Date');
+    } 
+    else {
        this.showhidenorecords = false;
 
     const header = new Headers();

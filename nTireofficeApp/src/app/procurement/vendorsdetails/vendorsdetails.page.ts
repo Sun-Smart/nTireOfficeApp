@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IpaddressService } from './../../service/ipaddress.service';
 import { HttprequestService } from '../../service/httprequest.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-vendorsdetails',
   templateUrl: './vendorsdetails.page.html',
@@ -37,7 +38,12 @@ export class VendorsdetailsPage implements OnInit {
   ITEMDESC;
   VendorDetails:any=[];
   Checked;
-  constructor( private router :Router,private activatedRoute: ActivatedRoute,private IpaddressService: IpaddressService, private httpclient: HttprequestService){
+  AddVendor;
+  addvalue;
+  RequestRequisition;
+  splitted;
+  item;
+  constructor(  private router :Router,private activatedRoute: ActivatedRoute,private httpresponse: HttprequestService,private IpaddressService: IpaddressService,private http: HttpClient){
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -59,16 +65,22 @@ export class VendorsdetailsPage implements OnInit {
       this.RFQCODE = this.data.rfq;
       this.ITEMCODE = this.data.itemCode;
       this.ITEMDESC = this.data.itemdesc;
-      console.log(this.ItemID);
+      this.splitted = this.data.id;
+      console.log(this.splitted)
+       this.item = this.data.rfq;
+      console.log(this.item);
     });
       this.getCards();
 
   }
-  close(){
-    this.router.navigate(['/manage-rfq']);
+  close(splitted,item){
+    console.log(item);
+    console.log(splitted)
+    // this.router.navigate(['/manage-rfq']);
+    // this.router.navigate(['/manage-rfq',this.splitted,this.item])
   }
   getCards(){
-    this.httpclient.GetRequest(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'get_Find_vendor?functionid='+this.functionID+'&branch='+this.branchID+'&itemCategory='+this.CATEGORY+'&itemSubCategory='+this.SUBCAT+'&rFQCode='+this.RFQID+'&keyword=null&VendorCode=null&Brand=null&Model=null&qtyval=null&ItemID='+this.ItemID).then((res:any) => {
+    this.http.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'get_Find_vendor?functionid='+this.functionID+'&branch='+this.branchID+'&itemCategory='+this.CATEGORY+'&itemSubCategory='+this.SUBCAT+'&rFQCode='+this.RFQID+'&keyword=null&VendorCode=null&Brand=null&Model=null&qtyval=null&ItemID='+this.ItemID).subscribe((res:any) => {
       this.findvendor = res;
       this.findVendorDetails = this.findvendor.vendorDetails;
       console.log(this.findvendor);
@@ -76,11 +88,39 @@ export class VendorsdetailsPage implements OnInit {
   }
 
   add(event : any){
+    this.addvalue =event.target.value;
+    this.AddVendor = this.VendorDetails[0];
+    console.log(this.AddVendor);
+    let data = this.AddVendor;
+    console.log(data);
 
-    console.log(this.VendorDetails,'new')
+    // for (var i =0; i< this.AddVendor.length; i ++) {
+         
+    // }
+
+    let body ={
+
+      "Add_vendor":[
+        {
+          
+          "Vendor_details":this.VendorDetails
+        }
+      ]
+    }
+    console.log(body);
+    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    this.http.post(this.IpaddressService.ipaddress1+this.IpaddressService.serviceerpapi +'Add_Vendor', body,{
+      headers: options, responseType: 'text'
+    } 
+      ).subscribe((resp :any)=>{
+        console.log(resp)
+      })
 
 }
-
+cancel(){
+  this.router.navigate(['/manage-rfq',this.splitted,this.item])
+  // this.router.navigate(['/manage-rfq'])
+}
 selectAllvendorCheckbox(value) {
   console.log(value);
   if (value == false) {
@@ -96,7 +136,34 @@ fieldsChange(values:any,item:any):void {
   console.log(item);
 
   if(this.Checked == true){
-    this.VendorDetails.push(item);
+    this.VendorDetails.push({
+      "functionid":this.functionID,
+      "rfqcode":this.RFQCODE,
+      "vendorid":item.vENDOR_ID,
+      "itemid":"",
+      "itemcategory":item.categoryVal,
+      "itemsubcategory":item.sub_category_id,
+      "brand":item.brand,
+      "model":item.model,
+      "rating":"",
+      "mode":"",
+      "userid":this.userID,
+      "ipaddress":"",
+      "unitprice":item.unit_price,
+      "netamount":"",
+      "discount":item.discount,
+      "taxes":item.tax1,
+      "transportcharges":item.transport_charges,
+      "fromqty":item.from_qty,
+      "toqty":item.to_qty,
+      "leadtime":item.lead_time,
+      "itemcode":this.ITEMCODE,
+      "itemdesc1":item.itemDescription,
+      "tamount":item.amount,
+      "qty":"",
+      "vendoritemid":item.vendorItemID,
+      "prsid":""
+    });
     console.log(this.VendorDetails);
   }
   else {
