@@ -31,6 +31,7 @@ export class MaterialRequestPage implements OnInit {
   initialSearch:boolean=true;
   overallsubmitnew:boolean=false;
   showfilter: boolean = false;
+  filter: boolean = true;
   release=false;
   funtionID;
   branch_ID;
@@ -200,6 +201,8 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     this.expenseArray=[];
     this.initialSearch=true;
     this.showlineItems=false;
+    this.showfilter = true;
+    this.filter = true;
     // this.showbtn = true
   // this.ngOnInit();
 
@@ -308,6 +311,8 @@ subscribe((res: any) => {
     this.initialSearch = false;
     this.showlineItems = true;
     this.showbtn = false;
+    this.showfilter = false;
+    this.filter = false;
   }
 
   clear(){

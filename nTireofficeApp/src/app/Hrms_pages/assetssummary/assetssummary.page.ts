@@ -131,12 +131,6 @@ togglefilter() {
   this.showfilter = !this.showfilter;
 }
 
-new()
-{
-
-
-}
-
 async openModal(value){
   // this.traveldetails={
   //  User_ID:this.Userid,
