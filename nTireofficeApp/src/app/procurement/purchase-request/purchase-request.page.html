@@ -9,7 +9,7 @@
 
 <ion-content>
   <div style="margin: 10px 0px;"><span style="font-size: 24px;margin: 10px ;color: black;" (click)="togglefilter()"><i
-        class="fa fa-filter" aria-hidden="true"></i></span></div>
+        class="fa fa-filter" *ngIf="filter" aria-hidden="true"></i></span></div>
 
   <ion-card *ngIf="showfilter">
 
@@ -103,7 +103,7 @@
           <ion-col size="6">
             <div style="padding: 12px;display: flex;">
 
-              <ion-label class="ContentName">Current Status : <span *ngIf="release===false">New</span><span
+              <ion-label class="ContentName">Current Status : <span *ngIf="release===false" (click)="new()">New</span><span
                   *ngIf="release===true">Pending</span>
               </ion-label>
             </div>

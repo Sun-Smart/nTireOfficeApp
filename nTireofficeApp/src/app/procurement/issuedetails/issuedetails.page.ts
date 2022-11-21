@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-issuedetails',
@@ -14,38 +15,90 @@ export class IssuedetailsPage implements OnInit {
   branch;
   fromdate;
   todate;
-  constructor(private http: HttpClient,public Ipaddressservice: IpaddressService,private datePipe: DatePipe) { 
+  sub;
+  data;
+  ITEMCODE;
+  AVAILABLEQUANTITY;
+  LocationDetails;
+  BinLocationDetails;
+  constructor(  private http: HttpClient,private activatedRoute: ActivatedRoute,public Ipaddressservice: IpaddressService,private datePipe: DatePipe) { 
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
   
     this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/YYYY');
     this.todate = this.datePipe.transform(this.todate, 'dd/MM/YYYY');
+
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      this.data = params;  
+      console.log('this.data ', this.data);
+      this.ITEMCODE = this.data.item_Code11;
+      this.AVAILABLEQUANTITY = this.data.STOCKQTY;
+    
+    
+
+    });
   }
 
   ngOnInit() {
+    this.getLocation();
+    this.getBinLocation();
+  }
+
+  getLocation(){
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi +'getmaterialpopupLocationdesc/'+this.funtionID+'/'+this.branch_ID , {
+      // Pendingsearchs11?strfunction=1&branch
+      // =1&fdate=28-01-2018&tdate=28-09-2022&Status=Pending&strUserId=193&UserType=11
+      // &drpcategory=null&drptype=6&TASKTYPE=84&AssetCode=MT
+      headers: options,
+    }).subscribe(resp => {
+      this.LocationDetails = resp;
+      console.log(this.LocationDetails);
+    });
+  }
+  getBinLocation(){
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi +'getmaterialpopupbindesc/'+this.funtionID+'/'+this.branch_ID , {
+      // Pendingsearchs11?strfunction=1&branch
+      // =1&fdate=28-01-2018&tdate=28-09-2022&Status=Pending&strUserId=193&UserType=11
+      // &drpcategory=null&drptype=6&TASKTYPE=84&AssetCode=MT
+      headers: options,
+    }).subscribe(resp => {
+      this.BinLocationDetails = resp;
+      console.log(this.BinLocationDetails);
+    });
   }
   SearchList(){
 
     let body =  {
-      "FUNCTIONIDMIS":"1",
-      "BRANCHIDMIS":"1",
-      "LOCATION_IDMIS":"12",
-      "BINMIS":"36",
-      "ITEM_IDMIS":"1272",
-      "ALPHANAMEMIS":"",
-      "SORTEXPRESSIONMIS":"batch_serial_no desc",
-      "PAGEINDEXMIS":0,
-      "PAGESIZEMIS":10,
-      "STOREEMIS":"165",
-      "RACKEMIS":"5953"
+      
+        "FUNCTIONIDMIS":this.funtionID,
+        "BRANCHIDMIS":this.branch_ID,
+        "LOCATION_IDMIS":12,
+        "BINMIS":36,
+        "ITEM_IDMIS":1272,
+        "ALPHANAMEMIS":"",
+        "SORTEXPRESSIONMIS":"batch_serial_no desc",
+        "PAGEINDEXMIS":0,
+        "PAGESIZEMIS":10,
+        "STOREEMIS":165,
+        "RACKEMIS":5953
+       
+    
     }
     
         // const header = new Headers();
         // header.append("Content-Type", "application/json");
         // let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(this.Ipaddressservice.ipaddress1+
-          this.Ipaddressservice.serviceerpapi+'MaterialIssueDetailsPopupSearch' , body).subscribe((res:any) =>{
+          this.Ipaddressservice.serviceerpapi+'MaterialIssueDetailsLinkSearch' , body).subscribe((res:any) =>{
             console.log(res)
          
           })

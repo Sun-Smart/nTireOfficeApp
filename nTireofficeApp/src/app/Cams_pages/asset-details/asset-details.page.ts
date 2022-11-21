@@ -103,11 +103,8 @@ export class AssetDetailsPage implements OnInit {
     this.assetcode1 = [];
     this.newasset = ev.target.value;
     console.log(this.newasset);
-
     if (ev.target.value == "") {
       this.assetcode1 = [];
-      console.log(this.assetcode1);
-
       this.isItemAvailable = false;
     }
     // Reset items back to all of the items
@@ -122,14 +119,13 @@ export class AssetDetailsPage implements OnInit {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
       "assetcode" :this.newasset,
-
     };
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
+    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodelist',params, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
       // set val to the value of the searchbar
-      this.assetcodeResult = resp;
+      this.assetcodeResult= resp;
       this.assetcode1str = this.assetcodeResult;
 
       for (var i = 0; i < this.assetcode1str.length; i++) {
@@ -137,7 +133,7 @@ export class AssetDetailsPage implements OnInit {
         this.assetcode1.push(this.assetcode1str[i].ASSET_CODE);
       }
       const val = ev.target.value;
-debugger;
+
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
@@ -151,7 +147,6 @@ debugger;
       console.log("error : " + JSON.stringify(error));
 
     });
-
   }
 
   //  scancoderecon(){

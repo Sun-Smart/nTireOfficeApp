@@ -295,7 +295,7 @@ export class RFQPage implements OnInit {
           "RequiredBefore": this.lastdate,
           "RFQDate": this.lastdate,
           "Type": item.Type,
-          "ISBid": item.ISBid,
+          "ISBid": "Y",
           "Auction_status": item.Auction_status,
           "GRIDVIEWCOUNT": item.GRIDVIEWCOUNT,
           "Created_by": this.userID

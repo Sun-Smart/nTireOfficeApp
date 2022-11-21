@@ -30,6 +30,8 @@ export class MaterialRequestPage implements OnInit {
   submitview: boolean =false;
   initialSearch:boolean=true;
   overallsubmitnew:boolean=false;
+  showfilter: boolean = false;
+  filter: boolean = true;
   release=false;
   funtionID;
   branch_ID;
@@ -183,7 +185,6 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     // this.showlineItems1 = !this.showlineItems1;
 
     this.ShowAllItem = false;
-
     if(this.release ==true)
      {
       this.status= 'P';
@@ -200,6 +201,8 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     this.expenseArray=[];
     this.initialSearch=true;
     this.showlineItems=false;
+    this.showfilter = true;
+    this.filter = true;
     // this.showbtn = true
   // this.ngOnInit();
 
@@ -219,6 +222,71 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     })
     console.log(this.expenseArray)
     this.showbtn = true;
+
+    if(this.status == "<< Select >>" || this.status == undefined){
+      var INSUPSTATUS = "0";
+     }else{
+      INSUPSTATUS= this.status;
+     }
+
+
+    let body =
+      {
+        "mrsdetail": [
+          {
+            "FUNCTION_ID": this.funtionID,
+            "BRANCH_ID": this.branch_ID,
+            "mrs_id": "0",
+             "MRS_CODE": "0",
+             "requested_by":"0",
+             "requested_Date":"2022-11-05",
+            "REQUEST_REFERENCE": "0",
+            "REQUEST_REASON": "0",
+           "CREATED_BY":"0",
+           "LST_UPD_BY":"0",
+           "IPADDRESS":"0",
+           "flag":"N",
+           "STATUS": INSUPSTATUS,
+           "product_id":"0",
+           "campaign_id":"0",
+           "netamount":"0",
+           "Order_Priority":"0",
+
+            "MRSDdetail": [
+              {
+                "mrsdetail_id":0,
+                "MRS_ID": "1",
+                "Item_Id": "123",
+                "FUNCTION_ID": "1",
+                "RequiredQty": "1",
+                "EXP_DATE": "2022-11-05",
+                "CREATED_BY": "1",
+
+                "LST_UPD_BY": "1",
+                "IPADDRESS": "",
+                "STATUS": "A",
+                "unitprice": "12",
+                "netamount": "23",
+
+                "remarks": "A",
+                "item_detailed_description": "Setail",
+                "BDC": "BDC",
+                "PTM": "PTM",
+                "ACC":"ACC",
+                "CPC":"CPC",
+                "VechileNO":"12345"
+              }
+        ]
+    }
+    ]
+      }
+
+this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'MaterialRequistion_Insert_Update', body).
+subscribe((res: any) => {
+  this.materialrequestsearch = res;
+  console.log(this.materialrequestsearch)
+  this.materialreqsearch = this.materialrequestsearch.itemDetails;
+})
   }
 
   Searchlist(){
@@ -239,17 +307,17 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
         // this.showlineItems = !this.showlineItems
     // this.showviewlist = false;
     // this.Showcard = false;
-    this.overallsubmit=true;
+    this.overallsubmit=false;
     this.initialSearch = false;
     this.showlineItems = true;
     this.showbtn = false;
+    this.showfilter = false;
+    this.filter = false;
   }
 
   clear(){
     alert("67")
-
   }
-
 
   hideline(){
     this.hidelineItems=!this.hidelineItems
@@ -264,8 +332,8 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
   }
 
   togglefilter(){
-    // this.showfilter = !this.showfilter;
-    this.hidefilter = !this.hidefilter;
+    this.showfilter = !this.showfilter;
+    // this.hidefilter = !this.hidefilter;
   }
 
   close(){
@@ -274,9 +342,8 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     }
 
   Search() {
-    this.loading=true
-
-    this.showviewlist = true
+    this.loading=true;
+    this.showviewlist = true;
     if(this.mrscode ==undefined){
       this.mrscode=''
     }}

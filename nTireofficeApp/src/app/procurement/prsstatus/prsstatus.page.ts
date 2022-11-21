@@ -1,3 +1,4 @@
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,6 +13,7 @@ import { IpaddressService } from 'src/app/service/ipaddress.service';
 export class PRSstatusPage implements OnInit {
 
   showfilter: boolean = true;
+  filter : boolean = true;
   showviewlist: boolean = false
   expression: boolean = true
   getresponse: any;
@@ -57,6 +59,11 @@ export class PRSstatusPage implements OnInit {
     this.router.navigate(['/updateprsstatus'])
   }
 
+  new()
+  {
+    this.showfilter = false;
+    this.filter = false;
+  }
 
   async testdetele() {
     // const alert = await this.alertController.create({
