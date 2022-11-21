@@ -645,6 +645,10 @@ const routes: Routes = [
     loadChildren: () => import('./procurement/issuedetails/issuedetails.module').then(m => m.IssuedetailsPageModule)
   },
   {
+    path: 'issuedetails/:item',
+    loadChildren: () => import('./procurement/issuedetails/issuedetails.module').then(m => m.IssuedetailsPageModule)
+  },
+  {
     path: 'additionallist',
     loadChildren: () => import('./Property_Pages/additionallist/additionallist.module').then(m => m.AdditionallistPageModule)
   },

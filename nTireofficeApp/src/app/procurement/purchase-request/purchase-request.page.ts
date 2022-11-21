@@ -508,11 +508,11 @@ export class PurchaseRequestPage implements OnInit {
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 4);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+      this.Requiredbefore = this.datePipe.transform(getdate, 'dd/MM/yyyy');
 
     }
     let getdate = new Date();
-    this.prsdate = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+    this.prsdate = this.datePipe.transform(getdate, 'dd/MM/yyyy');
   }
   delete(i) {
     this.expenseArray.splice(i, 1);

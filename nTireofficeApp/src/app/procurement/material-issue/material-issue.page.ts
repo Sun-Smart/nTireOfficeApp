@@ -37,7 +37,7 @@ export class MaterialIssuePage implements OnInit {
   usertype;
   username
   responseDatalength;
-
+  currentqty;
 
   @ViewChild('firstTable') myTable1: MaterialIssuePage;
   @ViewChild('secondTable') myTable2: MaterialIssuePage;
@@ -49,7 +49,7 @@ export class MaterialIssuePage implements OnInit {
 
   MaterialIssue;
 
-  constructor(private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
+  constructor(private router: Router,private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -63,7 +63,12 @@ export class MaterialIssuePage implements OnInit {
   ngOnInit() {
 
   }
+  IssueDetails(item : any){
+    console.log(item);
+    console.log(this.currentqty);
+    this.router.navigate(['/issuedetails',item])
 
+  }
   setValue(value:any){
     console.log(value)
     this.getsetvalue =value

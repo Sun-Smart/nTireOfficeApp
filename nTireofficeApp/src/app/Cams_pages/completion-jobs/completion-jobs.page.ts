@@ -46,6 +46,8 @@ export class CompletionJobsPage implements OnInit {
   username:any;
   remove_array:any=[];
   responseData2=[];
+  fromdate2;
+  todate2;
   constructor(public modalController:ModalController,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router: Router) {
 
 
@@ -61,12 +63,12 @@ export class CompletionJobsPage implements OnInit {
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
 
-    this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
-    this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
-    this.Realease_status = "<< Select >>";
-    this.category="<< Select >>";
-    this.subCategory="<< Select >>";
-    this.jobs="<< Select >>";
+    this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/yyyy');
+    this.todate = this.datePipe.transform(this.todate, 'dd/MM/yyyy');
+    // this.Realease_status = "<<Select>>";
+    this.category="<<Select>>";
+    this.subCategory="<<Select>>";
+    this.jobs="<<Select>>";
     this.getAssertCatergory();
     this.getReferMax();
 
@@ -171,30 +173,30 @@ export class CompletionJobsPage implements OnInit {
     });
   }
 
-  requestedJobs() {
-    console.log(this.jobs)
-    this.responseData1 = [];
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+//   requestedJobs() {
+//     console.log(this.jobs)
+//     this.responseData1 = [];
+//     const header = new Headers();
+//     header.append("Content-Type", "application/json");
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE='+this.jobs+'&AssetCode=null', {
-                                                                                                         // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
-                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
+//     let options = new HttpHeaders().set('Content-Type', 'application/json');
+//     this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE='+this.jobs+'&AssetCode=null', {
+//                                                                                                          // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
+//                                                                                                       // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
 
-      headers: options,
-    }).subscribe(resp => {
-      this.carddata=resp;
-      this.responseData1 = JSON.parse(this.carddata);
-      console.log(this.responseData1);
-      this.responseDatalength = this.responseData1.length;
-      this.branch1 = this.responseData1[0].Branch;
+//       headers: options,
+//     }).subscribe(resp => {
+//       this.carddata=resp;
+//       this.responseData1 = JSON.parse(this.carddata);
+//       console.log(this.responseData1);
+//       this.responseDatalength = this.responseData1.length;
+//       this.branch1 = this.responseData1[0].Branch;
 
-    }, error => {
+//     }, error => {
 
-      console.log(JSON.stringify(error));
-    });
-}
+//       console.log(JSON.stringify(error));
+//     });
+// }
 
 showmore(idvalue) {
   //        alert(idvalue);
@@ -233,6 +235,7 @@ getReferMax(){
 
   });
 }
+// requestedJobs(){}
 
 closecompletejob(item){
 
@@ -308,81 +311,150 @@ async reopenActionModal(obj){
   console.log(obj);
   this.router.navigate(['/completion-jobs-reopen',obj]);
   }
+// nandhini//
+requestedJobs() {
+  debugger;
+  console.log(this.jobs)
+  // this.responseData = {};
 
-  compdateval(){
-    debugger
-    this.responseData1=[];
-    var from = this.fromdate;
-    var from_timestamp = new Date(from).getTime();
-    console.log(from_timestamp);
-    var to = this.todate;
-    var to_timestamp = new Date(to).getTime();
+  // if (this.Realease_status == "<< Select >>" || this.Realease_status == undefined) {
+  //   var status = "null";
+  // } else {
+  //   status = this.Realease_status
+  // }
 
-    console.log(from_timestamp);
-    console.log(to_timestamp);
-
-    if (from != null) {
-
-      if (from_timestamp <= to_timestamp) {
-        const header = new Headers();
-        header.append("Content-Type", "application/json");
-
-        let options = new HttpHeaders().set('Content-Type', 'application/json');
-        this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate='+this.fromdate+'&tdate='+this.todate+'&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null',{
-                                                                                                             // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
-                                                                                                      // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
-          headers: options,
-        }).subscribe(resp => {
-          this.carddata=resp;
-          console.log(this.carddata);
-          debugger;
-
-          this.responseData2 = this.carddata;
-          debugger;
-          console.log(this.responseData2);
-          debugger;
-         for (var i = 0; i < this.responseData2.length; i++) {
-          //console.log(this.responseData1);
-            var newtemp = this.responseData2[i].pm_due_date.split("/");
-          //  console.log(newtemp)
-            var newDate = newtemp[1] + "/" + newtemp[0] + "/" + newtemp[2];
-            var pmDate_timestamp = new Date(newDate).getTime();
-          //  console.log(pmDate_timestamp)
-            if (from_timestamp < pmDate_timestamp && to_timestamp > pmDate_timestamp) {
-            //  console.log("test")
-            } else {
-              console.log(i);
-             this.remove_array.push(i);
-             console.log(this.remove_array);
-
-            }
-          }
-          //this.remove_array.sort((a, b) => {return b - a });
-          // this.remove_array.sort(function(a, b) { return b - a });
-          // for (var j = 0; j < this.remove_array.length; j++) {
-          //   console.log(this.remove_array[j]);
-
-
-          //   this.responseData1=this.responseData2.splice(this.remove_array[j], 1);
-          //   console.log(this.remove_array[j]);
-          //   this.responseDatalength = this.responseData1.length;
-          //   console.log(this.responseData1)
-          // }
-          this.responseData1=this.responseData2.splice(this.remove_array[i]);
-          console.log(this.responseData1);
-
-        }, error => {
-
-          console.log(JSON.stringify(error));
-        });
-         console.log(this.responseData1)
-      }else{
-      this.presentAlert('Invalid date','From date should be lesser than To date!');
-      }
-
-    }else{
-      this.presentAlert('Invalid date','From Date should not be empty!');
-    }
+  if (this.jobs == "<<Select>>" || this.jobs == undefined) {
+    var jobs = 'MT';
+  } else {
+    jobs = this.jobs
   }
+
+  if (this.category == "<<Select>>" || this.category == undefined) {
+    var assetCat = 'null';
+  } else {
+    assetCat = this.category
+    console.log(assetCat)
+  }
+
+  if (this.subCategory == "<<Select>>" || this.subCategory == undefined) {
+    var assetSubCat = 'null';
+  } else {
+    assetSubCat = this.subCategory
+  }
+
+  if (this.fromdate == "<<Select>>" || this.fromdate == undefined) {
+    var fromdate = 'null';
+  } else {
+    this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd/MM/yyyy');
+    fromdate = this.fromdate2
+  }
+
+  if (this.todate == "<<Select>>" || this.todate == undefined) {
+    var todate = 'null';
+  } else {
+    this.todate2 = this.datePipe.transform(this.todate, 'dd/MM/yyyy');
+    todate = this.todate2
+  }
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs+'&AssetCode=null', {
+    // &TASKTYPE=84&AssetCode=MT
+    headers: options,
+  }).subscribe(resp => {
+    console.log(resp);
+    if (resp == null || resp == "No data found" || resp == "[]") {
+      this.responseData1 = [];
+    } else {
+      this.carddata = resp;
+      this.responseData1 = this.carddata;
+      console.log(this.responseData1);
+      this.responseDatalength = this.responseData1.length;
+      this.branch1 =this.responseData1[0].Branch;
+    }
+
+  }, error => {
+
+    console.log(JSON.stringify(error));
+  });
+}
+
+  // nandhini//
+  // compdateval(){
+  //   debugger
+  //   this.responseData1=[];
+  //   var from = this.fromdate;
+  //   var from_timestamp = new Date(from).getTime();
+  //   console.log(from_timestamp);
+  //   var to = this.todate;
+  //   var to_timestamp = new Date(to).getTime();
+
+  //   console.log(from_timestamp);
+  //   console.log(to_timestamp);
+
+  //   if (from != null) {
+
+  //     if (from_timestamp <= to_timestamp) {
+  //       const header = new Headers();
+  //       header.append("Content-Type", "application/json");
+
+  //       let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //       this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH/?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate='+this.fromdate+'&tdate='+this.todate+'&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null',{
+  //                                                                                                            // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
+  //                                                                                                     // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
+  //         headers: options,
+  //       }).subscribe(resp => {
+  //         this.carddata=resp;
+  //         console.log(this.carddata);
+  //         debugger;
+
+  //         this.responseData2 = this.carddata;
+  //         debugger;
+  //         console.log(this.responseData2);
+  //         debugger;
+  //        for (var i = 0; i < this.responseData2.length; i++) {
+  //         //console.log(this.responseData1);
+  //           var newtemp = this.responseData2[i].pm_due_date.split("/");
+  //         //  console.log(newtemp)
+  //           var newDate = newtemp[1] + "/" + newtemp[0] + "/" + newtemp[2];
+  //           var pmDate_timestamp = new Date(newDate).getTime();
+  //         //  console.log(pmDate_timestamp)
+  //           if (from_timestamp < pmDate_timestamp && to_timestamp > pmDate_timestamp) {
+  //           //  console.log("test")
+  //           } else {
+  //             console.log(i);
+  //            this.remove_array.push(i);
+  //            console.log(this.remove_array);
+
+  //           }
+  //         }
+  //         //this.remove_array.sort((a, b) => {return b - a });
+  //         // this.remove_array.sort(function(a, b) { return b - a });
+  //         // for (var j = 0; j < this.remove_array.length; j++) {
+  //         //   console.log(this.remove_array[j]);
+
+
+  //         //   this.responseData1=this.responseData2.splice(this.remove_array[j], 1);
+  //         //   console.log(this.remove_array[j]);
+  //         //   this.responseDatalength = this.responseData1.length;
+  //         //   console.log(this.responseData1)
+  //         // }
+  //         this.responseData1=this.responseData2.splice(this.remove_array[i]);
+  //         console.log(this.responseData1);
+
+  //       }, error => {
+
+  //         console.log(JSON.stringify(error));
+  //       });
+  //        console.log(this.responseData1)
+  //     }else{
+  //     this.presentAlert('Invalid date','From date should be lesser than To date!');
+  //     }
+
+  //   }else{
+  //     this.presentAlert('Invalid date','From Date should not be empty!');
+  //   }
+  // }
 }
 

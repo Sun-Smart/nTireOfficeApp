@@ -145,10 +145,10 @@
           <ion-label class="labelHead-text">Current Qty &nbsp;&nbsp; </ion-label>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-       <ion-input type="text" class="Input-text-field textareaField"> </ion-input>
+       <ion-input type="text" class="Input-text-field textareaField" [(ngModel)]="currentqty"> </ion-input>
         </ion-col>
         <ion-col size="12" style="font-weight:bold;">
-          <ion-button expand="block" class="ion-color-success" [routerLink]="['/issue-details']" routerLinkActive="router-link-active" >Issue
+          <ion-button expand="block" class="ion-color-success"  (click)="IssueDetails(item)" >Issue
           </ion-button>
         </ion-col>
           </ion-row>

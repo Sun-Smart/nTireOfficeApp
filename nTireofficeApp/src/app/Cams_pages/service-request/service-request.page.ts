@@ -89,6 +89,7 @@ export class ServiceRequestPage implements OnInit {
   newvendor: any;
   newreplaceasset: any;
   assetucode: any;
+  
   numberOnly(event):boolean{
     const charCode = (event.which)?event.which:event.keyCode;
     if(charCode >31 &&(charCode<48||charCode>57)){
@@ -154,6 +155,12 @@ export class ServiceRequestPage implements OnInit {
    }
 
   ngOnInit() {
+    const element = document.getElementById("box");
+
+element.scrollIntoView();
+element.scrollIntoView(false);
+element.scrollIntoView({block: "end"});
+element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
   }
 
   doRefresh(event){
