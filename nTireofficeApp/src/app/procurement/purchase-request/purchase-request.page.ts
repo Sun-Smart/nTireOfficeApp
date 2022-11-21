@@ -22,7 +22,7 @@ export class PurchaseRequestPage implements OnInit {
   getdataitem = [];
   itemNew: any;
   prsdate: any;
-
+filter : boolean = true;
   userid
   branchid
   hideitem: boolean = false;
@@ -289,6 +289,7 @@ export class PurchaseRequestPage implements OnInit {
         this.getitemid = this.getitemdata[0].item_id
     });
   }
+
   getItems(event: any) {
     let items = this.Category;
 
@@ -397,7 +398,7 @@ export class PurchaseRequestPage implements OnInit {
   Additems() {
     this.showlineItems = !this.showlineItems
     this.showbtn = false;
-
+this.filter = false;
 
     this.itemcode = "",
       this.Description = "",
@@ -405,7 +406,11 @@ export class PurchaseRequestPage implements OnInit {
       this.netprice = "",
       this.qty = "",
       this.itemdescription = ""
+  }
 
+  new()
+  {
+    this.filter = false;
   }
 
   showline() {  //submit btn

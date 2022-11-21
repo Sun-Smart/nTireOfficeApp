@@ -1,15 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Permission Request</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Permission Request</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-grid style="border-radius: 5px;margin: 0px;padding: 0px;">
-    <ion-content>
+<ion-grid style="border-radius: 5px;margin: 0px;padding: 0px;">
+  <ion-content scroll="true">
     <ion-row>
       <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
@@ -18,25 +17,25 @@
       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Branch</ion-label>
-        <ion-input value="custom" class="form-control"  [(ngModel)]="branch"></ion-input>
+        <ion-input value="custom" class="form-control" [(ngModel)]="branch"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" >Name</ion-label>
+        <ion-label class="ContentName">Name</ion-label>
         <ion-input style="background-color: white;
-                        color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
+                        color: black;" class="form-control" [(ngModel)]="name"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" >Contact Number</ion-label>
-        <ion-input type="number"onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
-         style="background-color: white;color: black;" class="form-control"  [(ngModel)]="contact"></ion-input>
+        <ion-label class="ContentName">Contact Number</ion-label>
+        <ion-input type="number" onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
+          style="background-color: white;color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" >Request Reference</ion-label>
-        <ion-input style="background-color: white;
-                                color: black;" class="form-control"  [(ngModel)]="reqID2"></ion-input>
+        <ion-label class="ContentName">Request Reference</ion-label>
+        <ion-input style="background-color: rgb(219, 210, 210);
+                                color: black;" class="form-control" [(ngModel)]="reqID2" [disabled]></ion-input>
       </ion-col>
       <ion-col *ngIf="reqdate!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" >Requested Date</ion-label>
+        <ion-label class="ContentName">Requested Date</ion-label>
         <ion-input class="form-control" disabled [(ngModel)]="reqdate"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -53,7 +52,7 @@
                                         <ion-input type="date" disabled class="form-control"  [(ngModel)]="Status"></ion-input>
                                       </ion-col> -->
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName" >From Hours<span class="validatecolor">*</span></ion-label>
+        <ion-label class="ContentName">From Hours<span class="validatecolor">*</span></ion-label>
         <ion-input type="time" class="form-control" [(ngModel)]="fromHour"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -64,36 +63,37 @@
         <ion-label id="ContentName">Reason<span class="validatecolor">*</span></ion-label>
         <ion-textarea class="form-control" [(ngModel)]="reason"></ion-textarea>
         <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
-
-  <ion-content scroll="true">
-      <ion-grid style="border-radius: 5px;">
+      </ion-col>
+    </ion-row>
+    
+      
         <ion-row>
           <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
             <ion-input style="background-color: white;
                     color: black;" class="form-control" disabled [(ngModel)]="company"></ion-input>
-          </ion-col> -->
+          </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label class="ContentName">Branch</ion-label>
-            <ion-input value="custom" class="form-control"  [(ngModel)]="branch"></ion-input>
+            <ion-input value="custom" class="form-control" [(ngModel)]="branch"></ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-label class="ContentName" >Name</ion-label>
+            <ion-label class="ContentName">Name</ion-label>
             <ion-input style="background-color: white;
-                            color: black;" class="form-control"  [(ngModel)]="name"></ion-input>
+                            color: black;" class="form-control" [(ngModel)]="name"></ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-label class="ContentName" >Contact Number</ion-label>
-            <ion-input type="number"onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
-             style="background-color: white;color: black;" class="form-control"  [(ngModel)]="contact"></ion-input>
+            <ion-label class="ContentName">Contact Number</ion-label>
+            <ion-input type="number" onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
+              style="background-color: white;color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-label class="ContentName" >Request Reference</ion-label>
+            <ion-label class="ContentName">Request Reference</ion-label>
             <ion-input style="background-color: white;
-                                    color: black;" class="form-control"  [(ngModel)]="reqID2"></ion-input>
+                                    color: black;" class="form-control" [(ngModel)]="reqID2"></ion-input>
           </ion-col>
           <ion-col *ngIf="reqdate!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-label class="ContentName" >Requested Date</ion-label>
+            <ion-label class="ContentName">Requested Date</ion-label>
             <ion-input class="form-control" disabled [(ngModel)]="reqdate"></ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -101,16 +101,16 @@
             <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
               [(ngModel)]="permDate"></ion-input>
           </ion-col>
-          <!-- <ion-col *ngIf="BETWEEN!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+          <ion-col *ngIf="BETWEEN!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                                         <ion-label>Between</ion-label>
                                           <ion-input type="date" disabled class="form-control"  [(ngModel)]="BETWEEN"></ion-input>
                                         </ion-col>
                                         <ion-col *ngIf="Status!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                                           <ion-label>Status</ion-label>
                                             <ion-input type="date" disabled class="form-control"  [(ngModel)]="Status"></ion-input>
-                                          </ion-col> -->
+                                          </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-label class="ContentName" >From Hours<span class="validatecolor">*</span></ion-label>
+            <ion-label class="ContentName">From Hours<span class="validatecolor">*</span></ion-label>
             <ion-input type="time" class="form-control" [(ngModel)]="fromHour"></ion-input>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -122,8 +122,9 @@
             <ion-textarea class="form-control" [(ngModel)]="reason"></ion-textarea>
             <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
 
-          </ion-col>
-          <ion-col *ngIf="!disabledvalue" size="6" >
+          </ion-col> -->
+         
+          <ion-col *ngIf="!disabledvalue" size="6">
             <div style="padding: 12px;display: flex;">
               <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
               <ion-label class="ContentName">Release</ion-label>
@@ -132,7 +133,8 @@
           <ion-col *ngIf="!disabledvalue" size="6">
             <div style="padding: 12px;display: flex;">
 
-              <ion-label class="ContentName">Current Status : <span *ngIf="release==false">New</span><span *ngIf="release==true">Pending</span>
+              <ion-label class="ContentName">Current Status : <span *ngIf="release==false">New</span><span
+                  *ngIf="release==true">Pending</span>
               </ion-label>
             </div>
           </ion-col>
@@ -140,34 +142,36 @@
             <div style="padding: 12px;display: flex;">
 
               <ion-label class="ContentName">Current Status : <span *ngIf="currentstatus == 'P'">Pending</span><span
-                  *ngIf="currentstatus == 'A'">Approved</span><span *ngIf="currentstatus == 'D'">Denied</span></ion-label>
+                  *ngIf="currentstatus == 'A'">Approved</span><span *ngIf="currentstatus == 'D'">Denied</span>
+              </ion-label>
             </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-            <ion-button class="ion-color-success" *ngIf="!disabledvalue"  expand="block"
+            <ion-button class="ion-color-success" *ngIf="!disabledvalue" expand="block"
               [disabled]="permDate==undefined || fromHour==undefined || toHour==undefined || reason==undefined"
               (click)="permissionSubmit()">SAVE</ion-button>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 
-        <ion-button *ngIf="!disabledvalue" class="listButton" expand="block" (click)="permissionList()">LIST</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-content>
+            <ion-button *ngIf="!disabledvalue" class="listButton" expand="block" (click)="permissionList()">LIST
+            </ion-button>
+          </ion-col>
+        </ion-row>
+    </ion-content>
 
 
-<ion-footer>
+    <ion-footer>
 
-  <ion-row>
-    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
-      © SunSmart Global Inc
-    </ion-col>
-    <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
-      {{username}}
-    </ion-col>
-  </ion-row>
-</ion-footer>
+      <ion-row>
+        <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
+          © SunSmart Global Inc
+        </ion-col>
+        <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5" style="text-align: right;">
+          {{username}}
+        </ion-col>
+      </ion-row>
+    </ion-footer>
 </ion-grid>

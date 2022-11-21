@@ -111,7 +111,7 @@ export class IpaddressService {
     this.serviceurlProperty = "/nTireMobileCoreAPIFM/api/Property/";
 
 
-  }
+  }
 
 
 }

@@ -45,7 +45,7 @@ export class PermissionRequestPage implements OnInit {
   release = false;
   currentstatus;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(public alertController: AlertController,private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
+  constructor(public alertController: AlertController, private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.status = "P";
     this.userID = window.localStorage['TUM_USER_ID'];
     this.empCode = window.localStorage['TUM_EMP_CODE'];
@@ -82,13 +82,37 @@ export class PermissionRequestPage implements OnInit {
         // this.workflow_no=this.permissiondata.workflow_no;
         this.disabledvalue = true;
       }
-      
-      
+
+
     });
   }
 
   ngOnInit() {
-  }
+  };
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  };
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  };
+
   permissionSubmit() {
     if (this.release == true) {
       this.status = 'P';
@@ -107,20 +131,21 @@ export class PermissionRequestPage implements OnInit {
     var thour = this.toHour.split(":")
     var toHour = thour[0] + "@" + thour[1];
     if (fromHour == toHour) {
-      this.toastmessageService.presentAlert1("", "From hour and to hour should not be same");
+      this.presentAlert1("", "From hour and To hour should not be same");
+      return
     }
     else {
       if (this.contact == undefined) {
         this.contact = null;
       }
-      this.reqID = "@";
+      this.reqID = "0";
       // this.reqID = " ";
       // this.perm.status = "N";
       this.userID = this.userID;
 
       var perm = {
         contact: this.contact,
-        reqID: "@",
+        reqID: "0",
         userID: this.userID,
         empID: this.empID,
         status: this.status
@@ -130,26 +155,30 @@ export class PermissionRequestPage implements OnInit {
 
         if (resp == '"Permission is not enabled for this Employee"') {
           // console.log("Gotcha : " + resp);
-          this.toastmessageService.presentAlert1("Request Not Sent", "Permission is not enabled for this Employee");
+          this.presentAlert1("Request Not Sent", "Permission is not enabled for this Employee");
+          return
         }
         else if (resp == '"Coff already available for this date"') {
-          this.toastmessageService.presentAlert1("Request Not Sent", "Coff already available for this date");
-
+          this.presentAlert1("Request Not Sent", "Coff already available for this date");
+          return
         }
         else if (resp == '"No of permissions for the requested month are already taken"') {
-          this.toastmessageService.presentAlert1("Request Not Sent", "No of permissions for the requested month are already taken");
-
+          this.presentAlert1("Request Not Sent", "No of permissions for the requested month are already taken");
+          return
         } else if (resp == '"Permission not available for Weekoff/Holiday"') {
-          this.toastmessageService.presentAlert1("Request Not Sent", "Permission not available for Weekoff/Holiday");
+          this.presentAlert1("Request Not Sent", "Permission not available for Weekoff/Holiday");
+          return
         }
         else if (resp == '"Permission is limited to 1 hour per day') {
-          this.toastmessageService.presentAlert1("Request Not Sent", "Permission is limited to 1 hour per day");
+          this.presentAlert1("Request Not Sent", "Permission is limited to 1 hour per day");
+          return
         }
         else if (resp == '"Permission already available for this date"') {
-          this.toastmessageService.presentAlert1("Request Not Sent", "Permission already available for this date");
+          this.presentAlert1("Request Not Sent", "Permission already available for this date");
+          return
         } else if (resp == '"Permission duration exceeds the applicable limit"') {
-          this.toastmessageService.presentAlert1("Request Not Sent", "Permission duration exceeds the applicable limit");
-
+          this.presentAlert1("Request Not Sent", "Permission duration exceeds the applicable limit");
+          return
         } else {
           //IF ATTENDANCE IS PRESENT
 
@@ -168,7 +197,7 @@ export class PermissionRequestPage implements OnInit {
           this.reqtype = 'null';
 
           if (split[2] == "Permission Saved Successfully") {
-            this.toastmessageService.presentAlert("Request Sent", "Permission Request saved Successfully <br> Req Ref : " + this.reqID2);
+            this.presentAlert("Request Sent", "Permission Request saved Successfully <br> Req Ref : " + this.reqID2);
 
             if (this.status == "P") {
 
@@ -217,19 +246,19 @@ export class PermissionRequestPage implements OnInit {
         console.log("error : " + JSON.stringify(error));
 
       });
-      this.toastmessageService.presentAlert("", "Permission Request saved Successfully")
-      this.permCancel();
+      this.presentAlert("", "Permission Request saved Successfully")
+      // this.permCancel();
     }
-    
+
   }
 
   getEmployeeDetails() {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/GetEmployees/" + this.empCode).then(resp => {
 
-      console.log("response Details",resp);
-      
+      console.log("response Details", resp);
+
       if (resp == "Employee not Exist") {
-        this.toastmessageService.presentAlert1("", "Employee Does not Exist");
+        this.presentAlert1("", "Employee Does not Exist");
 
       } else {
         this.status = "P";
@@ -314,7 +343,7 @@ export class PermissionRequestPage implements OnInit {
             this.fromHour = "";
             this.toHour = "";
             this.reason = "";
-           
+
           }
         }
       ]
