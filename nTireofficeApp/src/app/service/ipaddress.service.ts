@@ -106,7 +106,7 @@ export class IpaddressService {
 
     this.dynamicmenu ="/nTireMobileCoreAPI/api";
 
-    // Property
+    // Property p
 
     this.serviceurlProperty = "/nTireMobileCoreAPIFM/api/Property/";
 
