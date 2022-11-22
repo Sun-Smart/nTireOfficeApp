@@ -28,6 +28,11 @@ export class ViewInvoiceStatusPage implements OnInit {
   isPropertycodeAvailable: boolean=false;
   ponumber: any;
   poid: any;
+  showdata1: boolean=true;
+  showdata: string;
+  showcount: any;
+  showcount1: boolean=false;
+  verify: any;
   constructor(private alertController: AlertController, public Ipaddressservice: IpaddressService,  private http: HttpClient,) {
     this.dat_valid = {
       currentDate: new Date()
@@ -85,8 +90,17 @@ getinvoice(){
     headers: options,
   }).subscribe(resp => {
     this.invoiceget = resp;
+    if(this.invoiceget==null||this.invoiceget==''){
+      this.showdata="NO Record Found"
+    }else {
+      this.showdata="Total Count:" +" "+this.invoiceget.length
+     
+    }
+   
+  
  
   });
+  
 }
 
 
@@ -145,11 +159,18 @@ addponumbercode(item:any){
 
 
 filterinvoicelist(){
+  this.showdata1=false
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
   this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getinvoicedetails/' +  this.functionID + "/" +     this.branchID + "/" + this.poid, {
     headers: headers,
   }).subscribe(resp => {
     this.invoiceget = resp;
+    if(this.invoiceget==null||this.invoiceget==''){
+      this.showdata="NO Record Found"
+    }else {
+      this.showdata="Total Count:" +" "+this.invoiceget.length
+     
+    }
  
   });
 }

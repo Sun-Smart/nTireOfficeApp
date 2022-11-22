@@ -11,7 +11,7 @@
 <ion-card>
   <ion-card-content>
   <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-    <ion-label>Invoice Number</ion-label>
+    <ion-label>PO Number</ion-label>
     <ion-searchbar [(ngModel)]="ponumber" type="text" debounce="500" (ionInput)="getinvoiceCode($event)">
     </ion-searchbar>
     <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
@@ -29,7 +29,9 @@
 </ion-card-content>
 
 </ion-card>
-
+<!-- <p style="font-weight: bold;text-align: center;color:black;" *ngIf="showdata1">No Records Found</p> -->
+  <p style="font-weight: bold;text-align: center;color:black;" > {{this.showdata}}</p>
+ 
 
   <ion-card *ngFor="let items of invoiceget; let i = index">
     <ion-card-header class="card_header">

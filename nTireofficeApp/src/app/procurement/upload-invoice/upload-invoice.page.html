@@ -14,6 +14,19 @@
   <ion-grid style="border-radius: 5px;">
     <ion-row>
       <form  [formGroup]="invoiceform">
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label>PO Number</ion-label>
+          <ion-searchbar [(ngModel)]="ponumber"  formControlName="pocode" type="text" debounce="500" (ionInput)="getinvoiceCode($event)">
+          </ion-searchbar>
+          <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+            <ion-item *ngFor="let item of poinvoive_no" (click)="addponumbercode(item)"
+              style="background:none !important;color:#444 !important;display: block;">
+              {{item.po_number}} 
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Number</ion-label>
         <ion-input type="number" class="form-control" formControlName="invoicenumber" ></ion-input>
@@ -24,8 +37,9 @@
 
       <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Date<span class="validatecolor">*</span></ion-label>
-        <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
-          (ionChange)="validateFromDate()" formControlName="fromDate"></ion-input>
+        <ion-input type="date" class="form-control"  formControlName="fromDate"></ion-input>
+        <!-- min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
+          (ionChange)="validateFromDate()" -->
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Document</ion-label>

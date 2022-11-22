@@ -1,18 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ModalController, NavController } from '@ionic/angular';
 // import { IpaddressService } from 'src/app/ipaddress.service';
 // import { VendorpaymentsPage } from '../vendorpayments/vendorpayments.page';
 import { Router } from '@angular/router';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
+import { DatePipe } from '@angular/common';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-vendorpoconfirm',
   templateUrl: './vendorpoconfirm.page.html',
   styleUrls: ['./vendorpoconfirm.page.scss'],
 })
 export class VendorpoconfirmPage implements OnInit {
-
+  public poconform = new FormGroup({
+    // invoicenumber: new FormControl('', Validators.compose([Validators.required])),
+    branch: new FormControl(''),
+    vendorcode: new FormControl(''),
+    ponum: new FormControl(''),
+    Status: new FormControl(''),
+    fromdate: new FormControl(''),
+    todate: new FormControl(''),
+   
+  });
 
   vendorcode = window.localStorage['VENDOR_CODE'];
   branch_id = localStorage.getItem('TUM_BRANCH_ID');
@@ -44,15 +56,26 @@ export class VendorpoconfirmPage implements OnInit {
   todate: any;
   fromdate: any;
   postatus: any;
-  constructor(public modalController: ModalController, private router: Router, private http: HttpClient, public navCtrl: NavController, public Ipaddressservice: IpaddressService,) {
+  polength: any;
+  showdata: any;
+  showdata1: boolean=true;
+  isPropertycodeAvailable: boolean;
+  conformvendorcode: any[];
+  vendorres: any;
+  vendornum: any;
+  from: string;
+  to: string;
+  constructor(public modalController: ModalController, private router: Router, private http: HttpClient, public navCtrl: NavController, public Ipaddressservice: IpaddressService,public datepipe: DatePipe) {
     this.username = localStorage.getItem('TUM_USER_NAME');
   }
 
   ngOnInit() {
+    
   }
 
   ionViewDidEnter() {
     this.getallbranches();
+  
   }
 
   togglefilter() {
@@ -127,17 +150,29 @@ export class VendorpoconfirmPage implements OnInit {
     var usertoken = window.localStorage['usertoken'];
 
     var token = window.localStorage['token'];
+
+    // this.fromdate = this.datepipe.transform(this.fromdate, 'dd-MM-yyyy');
+    // this.todate = this.datepipe.transform(this.todate, 'dd-MM-yyyy');
+
+
+this.from=this.poconform.value.fromdate
+this.to=this.poconform.value.todate
+
+this.from= this.datepipe.transform(this.fromdate, 'dd-MM-yyyy');
+this.to = this.datepipe.transform(this.to, 'dd-MM-yyyy');
+console.log( this.from);
+
     var po_list = {
       functionid: "1",
       branchid: branch_id,
       FUNCTION_ID: window.localStorage['FUNCTION_ID'],
       // BRANCH_ID: branch_id,
       PONUMBER: ponum,
-      VENDORCODE: vendor_code,
-      FROMDATE: this.fromDate,
-      TODATE: this.toDate,
+      VENDORCODE: this.poconform.value.vendorcode,
+      FROMDATE:  this.from,
+      TODATE:  this.to,
       SORTEXPRESSION: 'po_reference',
-      STATUS: postatus,
+      STATUS: this.poconform.value.Status,
       ITEMCODE: '',
       userid: userid,
       alphaname:"",
@@ -150,6 +185,13 @@ export class VendorpoconfirmPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'list_po_order/', po_list).subscribe(res => {
       console.log(res);
       this.PO_list_res = res;
+      if(this.PO_list_res==null||this.PO_list_res==''){
+        this.showdata="NO Record Found"
+      }else {
+        this.showdata="Total Count:" +" "+this.PO_list_res.length
+       
+      }
+
       console.log(  this.PO_list_res,"polist");
       
       this.PO_list = this.PO_list_res.recordset;
@@ -175,9 +217,9 @@ export class VendorpoconfirmPage implements OnInit {
     var po_confirm = {
       FUNCTION_ID: function_id,
       POID: item.po_id,
-      userid: userid,
-      usertoken: usertoken,
-      access_token: window.localStorage['token']
+      // userid: userid,
+      // usertoken: usertoken,
+      // access_token: window.localStorage['token']
     }
 
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'Confirm_poDetails/', po_confirm).subscribe(res => {
@@ -230,4 +272,62 @@ export class VendorpoconfirmPage implements OnInit {
       console.log(err);
     })
   }
+
+
+
+
+
+  getVendorCode(e:any){
+
+
+    this.conformvendorcode = [];
+    if (e.target.value == "") {
+      this.conformvendorcode = [];
+      this.isPropertycodeAvailable = false;
+    }
+    // const header = new Headers();
+    // header.append("Content-Type", "application/json");
+     let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getvendorcode' + "/" + e.target.value, {
+      headers: options,
+    }).subscribe(resp => {
+      this.conformvendorcode = [];
+      this.isPropertycodeAvailable = false;
+  
+  this.vendorres=resp
+  console.log(this.vendorres);
+  
+  for (var i = 0; i < this.vendorres.length; i++) {
+    this.conformvendorcode.push({
+      VENDOR_CODE: this.vendorres[i].VENDOR_CODE,
+        
+    });
+  };
+  
+  const val = e.target.value;
+  if (val && val.trim() != '') {
+    this.isPropertycodeAvailable = true;
+    this.conformvendorcode = this.conformvendorcode.filter((item) => {
+      return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    });
+  }
+  
+    })
+  }
+  
+  
+  
+  
+  
+  
+  addponumbercode(item:any){
+    console.log(item,"item");
+
+  this.vendornum=item.VENDOR_CODE;
+    this.isPropertycodeAvailable = false;
+  
+  }
+
+
+
 }

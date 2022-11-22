@@ -24,39 +24,46 @@
   <ion-card *ngIf="showfilter">
 
     <ion-card-content class="card_content">
+    
       <ion-grid>
+        <form  [formGroup]="poconform">
         <ion-row>
           <ion-col size="6">
             <ion-label class="card_content_label">Branch</ion-label>
 
             <ion-select class="Input-text-field" style="display:flex;"
-              [(ngModel)]="branch_id">
-              <ion-select-option  class="selectoption" value="">
+              [(ngModel)]="branch_id"  formControlName="branch">
+              <ion-select-option class="selectoption" value="" >
                 << Select>>
               </ion-select-option>
               <ion-select-option class="selectoption" *ngFor="let item of allbranch" value={{item.BRANCH_ID}}>{{item.BRANCH_CODE}}
               </ion-select-option>
             </ion-select>
           </ion-col>
-          <ion-col size="6">
-            <ion-label class="card_content_label">Vendor Code</ion-label>
-
-            <ion-input [(ngModel)]="vendorcode"
-            class="Input-text-field" type="text" style="display:flex;">
-            </ion-input>
-          </ion-col>
+            <ion-col size="6" >
+    <ion-label>Vendor Code</ion-label>
+    <ion-searchbar [(ngModel)]="vendornum" type="text" debounce="500"  formControlName="vendorcode" (ionInput)="getVendorCode($event)">
+    </ion-searchbar>
+    <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
+      <ion-item *ngFor="let item of vendorres" (click)="addponumbercode(item)"
+        style="background:none !important;color:#444 !important;display: block;">
+        {{item.VENDOR_CODE}} 
+      </ion-item>
+    </ion-list>
+  </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col size="6">
             <ion-label class="card_content_label">PO Number</ion-label>
-            <ion-input [(ngModel)]="ponum"
+            <ion-input [(ngModel)]="ponum"  formControlName="ponum"
             class="Input-text-field" type="text" style="display:flex;">
             </ion-input>
           </ion-col>
           <ion-col size="6">
+        
             <ion-label class="card_content_label">Status</ion-label>
-            <ion-select [(ngModel)]="postatus"
+            <ion-select  formControlName="Status"
             class="Input-text-field" style="display:flex;">
               <ion-select-option class="selectoption" value="" >
                 << Select>>
@@ -69,7 +76,7 @@
               <ion-select-option class="selectoption" value="CN">Vendor Confirmed</ion-select-option>
               <ion-select-option class="selectoption" value="X">Approved</ion-select-option>
             </ion-select>
-
+         
           </ion-col>
         </ion-row>
 
@@ -78,7 +85,7 @@
             <ion-label class="card_content_label">From Date</ion-label>
             <span class=""><i class="icon ion-calendar placeholder-icon" style="padding-left: 0px;"></i>
             </span>
-            <input [(ngModel)]="fromdate" type="date"
+            <input [(ngModel)]="fromdate" type="date"  formControlName="fromdate"
               style="padding: 8px;display:flex;" class="Input-text-field" />
 
           </ion-col>
@@ -87,11 +94,11 @@
             <span class=""><i class="icon ion-calendar placeholder-icon"
                 style="background:white;padding-left: 0px;"></i>
             </span>
-            <input type="date" min="{{fromdate | date: 'yyyy-MM-dd'}}" [(ngModel)]="todate" required=""
+            <input type="date" min="{{fromdate | date: 'yyyy-MM-dd'}}" [(ngModel)]="todate"  formControlName="todate" required=""
             style="padding: 8px;display:flex;" class="Input-text-field"/>
           </ion-col>
         </ion-row>
-
+     
 
         <ion-row>
           <ion-col style="text-align: center;">
@@ -103,15 +110,14 @@
           </ion-col>
 
         </ion-row>
-
+      </form>
       </ion-grid>
     </ion-card-content>
   </ion-card>
 
+  <p style="font-weight: bold;text-align: center;color:black;" > {{this.showdata}}</p>
 
 
-
-  <div >
     <ion-card *ngFor="let item of PO_list_res; let i=index">
       <ion-card-header class="card_header">
         <ion-row>
@@ -220,9 +226,9 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-  </div>
 
-  <p style="font-weight: bold;text-align: center;color:black;" *ngIf="PO_list.length===0">No record Found</p>
+  
+
   <!-- <p style="font-weight: bold;text-align: center;color:black;" *ngIf="PO_list_res.length!=0">Total : {{polength}}</p> -->
 
 </ion-content>
