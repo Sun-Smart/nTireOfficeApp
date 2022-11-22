@@ -37,8 +37,9 @@
 
       <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Date<span class="validatecolor">*</span></ion-label>
-        <ion-input type="date" class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
-          (ionChange)="validateFromDate()" formControlName="fromDate"></ion-input>
+        <ion-input type="date" class="form-control"  formControlName="fromDate"></ion-input>
+        <!-- min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
+          (ionChange)="validateFromDate()" -->
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Document</ion-label>

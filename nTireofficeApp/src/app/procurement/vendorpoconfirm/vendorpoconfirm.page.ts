@@ -63,6 +63,8 @@ export class VendorpoconfirmPage implements OnInit {
   conformvendorcode: any[];
   vendorres: any;
   vendornum: any;
+  from: string;
+  to: string;
   constructor(public modalController: ModalController, private router: Router, private http: HttpClient, public navCtrl: NavController, public Ipaddressservice: IpaddressService,public datepipe: DatePipe) {
     this.username = localStorage.getItem('TUM_USER_NAME');
   }
@@ -149,11 +151,16 @@ export class VendorpoconfirmPage implements OnInit {
 
     var token = window.localStorage['token'];
 
-//     this.fromdate = this.datepipe.transform(this.fromdate, 'dd-MM-yyyy');
-//     this.todate = this.datepipe.transform(this.todate, 'dd-MM-yyyy');
-// console.log( this.fromdate);
+    // this.fromdate = this.datepipe.transform(this.fromdate, 'dd-MM-yyyy');
+    // this.todate = this.datepipe.transform(this.todate, 'dd-MM-yyyy');
 
 
+this.from=this.poconform.value.fromdate
+this.to=this.poconform.value.todate
+
+this.from= this.datepipe.transform(this.fromdate, 'dd-MM-yyyy');
+this.to = this.datepipe.transform(this.to, 'dd-MM-yyyy');
+console.log( this.from);
 
     var po_list = {
       functionid: "1",
@@ -162,8 +169,8 @@ export class VendorpoconfirmPage implements OnInit {
       // BRANCH_ID: branch_id,
       PONUMBER: ponum,
       VENDORCODE: this.poconform.value.vendorcode,
-      FROMDATE: this.fromDate,
-      TODATE: this.toDate,
+      FROMDATE:  this.from,
+      TODATE:  this.to,
       SORTEXPRESSION: 'po_reference',
       STATUS: this.poconform.value.Status,
       ITEMCODE: '',
@@ -178,18 +185,12 @@ export class VendorpoconfirmPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'list_po_order/', po_list).subscribe(res => {
       console.log(res);
       this.PO_list_res = res;
-      this.polength=this.PO_list_res.length;
-console.log(this.polength);
-
-if(this.polength==null){
-  this.showdata= "No Records Found"
-  this.showdata1=true
-
-}else{
-  this.showdata= "Total Count :"+ " " + this.polength
-  this.showdata1=false
-
-}
+      if(this.PO_list_res==null||this.PO_list_res==''){
+        this.showdata="NO Record Found"
+      }else {
+        this.showdata="Total Count:" +" "+this.PO_list_res.length
+       
+      }
 
       console.log(  this.PO_list_res,"polist");
       

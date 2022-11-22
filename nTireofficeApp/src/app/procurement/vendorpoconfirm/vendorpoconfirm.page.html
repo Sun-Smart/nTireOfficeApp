@@ -33,7 +33,7 @@
 
             <ion-select class="Input-text-field" style="display:flex;"
               [(ngModel)]="branch_id"  formControlName="branch">
-              <ion-select-option  class="selectoption" value="">
+              <ion-select-option class="selectoption" value="" >
                 << Select>>
               </ion-select-option>
               <ion-select-option class="selectoption" *ngFor="let item of allbranch" value={{item.BRANCH_ID}}>{{item.BRANCH_CODE}}
@@ -63,7 +63,7 @@
           <ion-col size="6">
         
             <ion-label class="card_content_label">Status</ion-label>
-            <ion-select [(ngModel)]="postatus" formControlName="Status"
+            <ion-select  formControlName="Status"
             class="Input-text-field" style="display:flex;">
               <ion-select-option class="selectoption" value="" >
                 << Select>>
@@ -115,9 +115,7 @@
     </ion-card-content>
   </ion-card>
 
-
-  <p style="font-weight: bold;text-align: center;color:black;" *ngIf="showdata1">No Records Found</p>
-  <p style="font-weight: bold;text-align: center;color:black;"> {{this.showdata}}</p>
+  <p style="font-weight: bold;text-align: center;color:black;" > {{this.showdata}}</p>
 
 
     <ion-card *ngFor="let item of PO_list_res; let i=index">

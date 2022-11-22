@@ -123,7 +123,7 @@ export class LoginPage implements OnInit {
                 // this.presentAlert('Alert1', b);
                 console.log("" + resp['Column1'])
               }, 5000);
-              // nandhini
+           
             }
 
             // this.loadingdismiss();

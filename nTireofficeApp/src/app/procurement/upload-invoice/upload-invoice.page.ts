@@ -61,6 +61,8 @@ export class UploadInvoicePage implements OnInit {
   poinvoive_no: any;
   poid: any;
   ponumber: any;
+  conven: any;
+  uploaddata: any;
   constructor( public alertController: AlertController,private modalCtrl: ModalController,private readonly iab: InAppBrowser, public platform: Platform , public Ipaddressservice: IpaddressService,  private http: HttpClient) {
 
     this.dat_valid = {
@@ -186,22 +188,28 @@ if(this.invoiceform.value.invoicenumber==""|| this.invoiceform.value.invoicenumb
 else{
 
 let data={
+  
   "filename": this.filename,
   "functionid": this.functionID ,
   "branchid": this.branchID,
   "poid":this.poid,
   "invoicedate":this.invoiceform.value.fromDate,
   "invoiceref":"INN001",
-  "invoiceamount":this.invoiceform.value.invoiceamount,
+  "invoiceamount":this.invoiceform.value.invoiceamount.toString(),
   "remarks":this.invoiceform.value.invoiceremark,
   "userid": this.userID ,
   "filedata":this.pdfdata
 
 }
-
-this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'uploadinvoice/', data).subscribe(res => {
+console.log(data);
+debugger
+let options = new HttpHeaders().set('Content-Type', 'application/json');
+this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'uploadinvoice/', data,{ headers: options,responseType: 'text'}).subscribe(res => {
+ 
+ 
 if(res="Uploaded successfully"){
   this.presentAlert1("add item Success",'Insert Successfully');
+  this.invoiceform.reset();
 }
 })
 
@@ -271,8 +279,10 @@ onSelectFile(event) {
 
     reader.onload = (event) => { // called once readAsDataURL is completed
       this.url = event.target.result;
+      console.log(this.url);
+      this.pdfdata=this.url.slice(28)
     }
-    this.pdfdata=this.url.slice(28)
+ 
     // reader.readAsArrayBuffer($img.files[0]);
     // console.log( $img.files[0]);
     // this.pdfimg= $img.files[0]
