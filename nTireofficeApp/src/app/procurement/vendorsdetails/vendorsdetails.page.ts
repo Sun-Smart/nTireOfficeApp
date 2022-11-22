@@ -1,6 +1,7 @@
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { IpaddressService } from './../../service/ipaddress.service';
 import { HttprequestService } from '../../service/httprequest.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -43,7 +44,7 @@ export class VendorsdetailsPage implements OnInit {
   RequestRequisition;
   splitted;
   item;
-  constructor(  private router :Router,private activatedRoute: ActivatedRoute,private httpresponse: HttprequestService,private IpaddressService: IpaddressService,private http: HttpClient){
+  constructor(  private router :Router, private alertcontroller: AlertController,private activatedRoute: ActivatedRoute,private httpresponse: HttprequestService,private IpaddressService: IpaddressService,private http: HttpClient){
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -113,7 +114,8 @@ export class VendorsdetailsPage implements OnInit {
       headers: options, responseType: 'text'
     } 
       ).subscribe((resp :any)=>{
-        console.log(resp)
+        console.log(resp);
+        this.presentAlert("",resp );
       })
 
 }
@@ -141,8 +143,8 @@ fieldsChange(values:any,item:any):void {
       "rfqcode":this.RFQCODE,
       "vendorid":item.vENDOR_ID,
       "itemid":this.ItemID,
-      "itemcategory":item.categoryVal,
-      "itemsubcategory":item.sub_category_id,
+      "itemcategory":this.CATEGORY,
+      "itemsubcategory":this.SUBCAT,
       "brand":item.brand,
       "model":item.model,
       "rating":"",
@@ -175,6 +177,18 @@ fieldsChange(values:any,item:any):void {
 
 
   }
+}
+
+async presentAlert(heading, tittle) {
+  var alert = await this.alertcontroller.create({
+    header: heading,
+    cssClass: 'Cssbutton',
+    backdropDismiss: false,
+    message: tittle,
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
 }
 //  var index = d.indexOf(s);

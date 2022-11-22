@@ -332,7 +332,7 @@ export class RFQPage implements OnInit {
     }
     // this.presentAlert("", "RFQ 345/AT Raised Successfully");
     // Raise RFQ Button
-    let options = new HttpHeaders().set('Content-Type', 'application/json')
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaiseRFQ',body,{
       headers: options, responseType: 'text'
     }).subscribe((res: any) => {
