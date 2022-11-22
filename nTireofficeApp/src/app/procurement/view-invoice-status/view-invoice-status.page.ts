@@ -33,6 +33,9 @@ export class ViewInvoiceStatusPage implements OnInit {
   showcount: any;
   showcount1: boolean=false;
   verify: any;
+  poidref: any;
+  invoiceref: any;
+  pdfpath: string;
   constructor(private alertController: AlertController, public Ipaddressservice: IpaddressService,  private http: HttpClient,) {
     this.dat_valid = {
       currentDate: new Date()
@@ -174,5 +177,26 @@ filterinvoicelist(){
  
   });
 }
+
+
+
+getpdffile(item:any){
+  console.log(item,"iteee");
+  this.poidref=parseInt(item.PO_ID),
+  this.invoiceref=parseInt(item.INVOICE_ID)
+  
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'downloadinvoice/' +  this.poidref + "/" +     this.invoiceref , {
+    headers: headers,responseType: 'text',
+  }).subscribe(resp => {
+    this.pdfpath=resp
+    console.log(this.pdfpath);
+    window.open(this.pdfpath, '_blank');
+    
+
+  })
+
+}
+
 
 }

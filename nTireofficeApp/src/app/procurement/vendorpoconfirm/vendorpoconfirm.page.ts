@@ -215,8 +215,8 @@ console.log( this.from);
 
     var token = window.localStorage['token'];
     var po_confirm = {
-      FUNCTION_ID: function_id,
-      POID: item.po_id,
+      "functionid": function_id,
+      "poid": item.po_id,
       // userid: userid,
       // usertoken: usertoken,
       // access_token: window.localStorage['token']

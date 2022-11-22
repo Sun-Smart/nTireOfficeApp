@@ -63,7 +63,7 @@ export class UploadInvoicePage implements OnInit {
   ponumber: any;
   conven: any;
   uploaddata: any;
-  constructor( public alertController: AlertController,private modalCtrl: ModalController,private readonly iab: InAppBrowser, public platform: Platform , public Ipaddressservice: IpaddressService,  private http: HttpClient) {
+  constructor( public alertController: AlertController,private modalCtrl: ModalController,private iab: InAppBrowser, public platform: Platform , public Ipaddressservice: IpaddressService,  private http: HttpClient) {
 
     this.dat_valid = {
       currentDate: new Date()
@@ -194,7 +194,7 @@ let data={
   "branchid": this.branchID,
   "poid":this.poid,
   "invoicedate":this.invoiceform.value.fromDate,
-  "invoiceref":"INN001",
+  "invoiceref":this.invoiceform.value.invoicenumber.toString(),
   "invoiceamount":this.invoiceform.value.invoiceamount.toString(),
   "remarks":this.invoiceform.value.invoiceremark,
   "userid": this.userID ,
@@ -326,7 +326,9 @@ onSelectFile(event) {
 
 
 
-
+openlink(){
+  this.iab.create('https://demo.herbie.ai/nTireERP/SmartERP/UI/Forms/Userfiles/deepak.pdf');
+}
 
 
 

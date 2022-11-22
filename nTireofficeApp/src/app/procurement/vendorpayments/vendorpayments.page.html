@@ -8,15 +8,15 @@
       <ion-title>Vendor Payments</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card>
+  <!-- <ion-card>
     <ion-card-header class="card_header">
       <ion-card-title style="color:#fff ;" >Vendor Payments</ion-card-title>
     </ion-card-header>
   <ion-card-content class="card_content">
-    <ion-grid>
+    <ion-grid> -->
 
     <!-- <ion-grid style="border-radius: 5px; background: #c882e06b; margin: 10px;"> -->
-      <ion-row>
+      <!-- <ion-row>
         <ion-col size="7">
           <p style="padding:0;font-weight: 700;color:black;">Vendor Name</p>
           {{vendor_name}}
@@ -37,7 +37,7 @@
           <p style="padding:0;text-align: right;font-weight: 700;color:black;">PO Date</p>
           {{Po_date}}
         </ion-col>
-      </ion-row>
+      </ion-row> -->
 
       <!-- <ion-row>
         <ion-col style="padding-left: 0;text-align: center;">
@@ -45,10 +45,47 @@
       text-decoration: underline;">View Payment Details</a>
         </ion-col>
       </ion-row> -->
-    </ion-grid>
+    <!-- </ion-grid>
   </ion-card-content>
 
-  </ion-card>
+  </ion-card> -->
+
+
+
+
+
+
+
+  <!-- payment verification method -->
+    <ion-card>
+    <ion-card-header class="card_header">
+      <ion-card-title style="color:#fff ;" >Vendor Payments</ion-card-title>
+    </ion-card-header>
+  <ion-card-content class="card_content">
+    <ion-grid>
+      <ion-row>
+  <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+    <ion-label class="ContentName">Remarks</ion-label>
+    <ion-input type="number" class="form-control" [(ngModel)]="Remarks" ></ion-input>
+   
+    
+  </ion-col>
+ 
+
+  <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+    <ion-label class="ContentName">Payment Date<span class="validatecolor">*</span></ion-label>
+    <ion-input type="date" class="form-control" [(ngModel)]="payment_date" ></ion-input>
+    <!-- min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
+      (ionChange)="validateFromDate()" -->
+  </ion-col>
+
+  <ion-button (click)="additem()" class="ion-color-success" expand="block"> Conform Payment</ion-button>
+  </ion-row>
+</ion-grid>
+</ion-card-content>
+
+</ion-card> 
+
 
     <!-- *ngFor="let item of poPayment;" -->
     <ion-card *ngFor="let item of poPayment;">
