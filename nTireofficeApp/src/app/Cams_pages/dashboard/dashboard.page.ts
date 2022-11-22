@@ -20,6 +20,7 @@ export class DashboardPage implements OnInit {
   username:any;
   sourcechart: any;
   myChart:any;
+  functionID:any;
 
   @ViewChild('sourcecanvas1') sourcecanvas1;
   constructor(private platform: Platform,public alertController: AlertController, private http: HttpClient, public Ipaddressservice: IpaddressService,private navCtrl: NavController,private menuCtrl: MenuController,private router: Router) {
@@ -27,6 +28,7 @@ export class DashboardPage implements OnInit {
 this.menuCtrl.enable(true, 'first');
     this.userid= window.localStorage['TUM_USER_ID'];
     this.username=localStorage.getItem('TUM_USER_NAME');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
     this.currentDate = new Date();
     this.getCategoryCountChart();
     this.getMaintenanceCountChart();
@@ -163,7 +165,7 @@ debugger
   header.append("Content-Type", "application/json");
 
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams+'camsbranchcount',{
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams+'camsbranchcount/'+ this.functionID,{
     headers: options,
   }).subscribe((resp:any) => {
     console.log(resp)

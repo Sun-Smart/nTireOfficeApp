@@ -41,8 +41,10 @@ export class IssuedetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
     this.getLocation();
     this.getBinLocation();
+
   }
 
   getLocation(){

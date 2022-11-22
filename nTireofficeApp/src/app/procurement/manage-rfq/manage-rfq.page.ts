@@ -144,11 +144,14 @@ getVendorDetails(){
         }
       ]
     }
-
-    this.httpclient.post(this.IpaddressService.ipaddress1+this.IpaddressService.serviceerpapi+'Request_for_quotation',body).subscribe((res :any) =>{
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.httpclient.post(this.IpaddressService.ipaddress1+this.IpaddressService.serviceerpapi+'Request_for_quotation',body ,{
+      headers: options, responseType: 'text'
+    }).subscribe((res :any) =>{
       this.quotationDetails = res;
+      this.presentAlert("",res );
     })
-    this.presentAlert("", "Quotation Requested Successfully");
+
   }
 
   cancel() {
