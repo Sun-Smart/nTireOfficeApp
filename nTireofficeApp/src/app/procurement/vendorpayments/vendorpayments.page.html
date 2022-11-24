@@ -64,9 +64,10 @@
   <ion-card-content class="card_content">
     <ion-grid>
       <ion-row>
+        <form [formGroup]="paymentform">
   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
     <ion-label class="ContentName">Remarks</ion-label>
-    <ion-input type="number" class="form-control" [(ngModel)]="Remarks" ></ion-input>
+    <ion-input type="text" class="form-control"  formControlName="Remarks" ></ion-input>
    
     
   </ion-col>
@@ -74,12 +75,13 @@
 
   <ion-col *ngIf="LEAVEFRMDATE==undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
     <ion-label class="ContentName">Payment Date<span class="validatecolor">*</span></ion-label>
-    <ion-input type="date" class="form-control" [(ngModel)]="payment_date" ></ion-input>
+    <ion-input type="date" class="form-control" [(ngModel)]="payment_date" formControlName="payment_date"  ></ion-input>
     <!-- min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}"
       (ionChange)="validateFromDate()" -->
   </ion-col>
 
-  <ion-button (click)="additem()" class="ion-color-success" expand="block"> Conform Payment</ion-button>
+  <ion-button (click)="conformedpayment()" class="ion-color-success" expand="block"> Conform Payment</ion-button>
+</form>
   </ion-row>
 </ion-grid>
 </ion-card-content>

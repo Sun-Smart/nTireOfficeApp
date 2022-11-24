@@ -45,7 +45,7 @@
     <ion-searchbar [(ngModel)]="vendornum" type="text" debounce="500"  formControlName="vendorcode" (ionInput)="getVendorCode($event)">
     </ion-searchbar>
     <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
-      <ion-item *ngFor="let item of vendorres" (click)="addponumbercode(item)"
+      <ion-item *ngFor="let item of vendorres" (click)="addvendornumbercode(item)"
         style="background:none !important;color:#444 !important;display: block;">
         {{item.VENDOR_CODE}} 
       </ion-item>
@@ -54,12 +54,21 @@
         </ion-row>
 
         <ion-row>
+       
           <ion-col size="6">
-            <ion-label class="card_content_label">PO Number</ion-label>
-            <ion-input [(ngModel)]="ponum"  formControlName="ponum"
-            class="Input-text-field" type="text" style="display:flex;">
-            </ion-input>
+            <ion-label>PO Number</ion-label>
+            <ion-searchbar [(ngModel)]="ponumber"  formControlName="ponum" type="text" debounce="500" (ionInput)="getinvoiceCode($event)">
+            </ion-searchbar>
+            <ion-list *ngIf="isPocodeAvailable" class="searchlist" style="height: 100px;">
+              <ion-item *ngFor="let item of poinvoive_no" (click)="addponumbercode(item)"
+                style="background:none !important;color:#444 !important;display: block;">
+                {{item.po_number}} 
+              </ion-item>
+            </ion-list>
           </ion-col>
+
+
+
           <ion-col size="6">
         
             <ion-label class="card_content_label">Status</ion-label>

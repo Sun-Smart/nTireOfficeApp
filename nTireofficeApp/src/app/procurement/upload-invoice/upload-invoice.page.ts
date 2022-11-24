@@ -63,6 +63,7 @@ export class UploadInvoicePage implements OnInit {
   ponumber: any;
   conven: any;
   uploaddata: any;
+  browser: any;
   constructor( public alertController: AlertController,private modalCtrl: ModalController,private iab: InAppBrowser, public platform: Platform , public Ipaddressservice: IpaddressService,  private http: HttpClient) {
 
     this.dat_valid = {
@@ -178,11 +179,13 @@ if(this.invoiceform.value.invoicenumber==""|| this.invoiceform.value.invoicenumb
   this.presentAlert("add item failed",'Please Enter All Fields');
 }else if(this.invoiceform.value.fromDate==""|| this.invoiceform.value.fromDate=="undefined" || this.invoiceform.value.fromDate==null){
   this.presentAlert("add item failed",'Please Enter All Fields');
-}else  if(this.invoiceform.value.invoiceamount==""|| this.invoiceform.value.invoiceamount=="undefined" || this.invoiceform.value.invoiceamount==null){
+}else  if(this.invoiceform.value.pocode==""|| this.invoiceform.value.pocode=="undefined" || this.invoiceform.value.pocode==null){
   this.presentAlert("add item failed",'Please Enter All Fields');
   }else   if(this.invoiceform.value.documentupload==""|| this.invoiceform.value.documentupload=="undefined" || this.invoiceform.value.documentupload==null){
     this.presentAlert("add item failed",'Please Enter All Fields');
   }else if(this.invoiceform.value.invoiceremark==""|| this.invoiceform.value.invoiceremark=="undefined" || this.invoiceform.value.invoiceremark==null){
+    this.presentAlert("add item failed",'Please Enter All Fields');
+  }else if(this.invoiceform.value.invoiceamount==""|| this.invoiceform.value.invoiceamount=="undefined" || this.invoiceform.value.invoiceamount==null){
     this.presentAlert("add item failed",'Please Enter All Fields');
   }
 else{
@@ -326,9 +329,8 @@ onSelectFile(event) {
 
 
 
-openlink(){
-  this.iab.create('https://demo.herbie.ai/nTireERP/SmartERP/UI/Forms/Userfiles/deepak.pdf');
-}
+
+
 
 
 

@@ -5,7 +5,7 @@ import { ModalController, NavController } from '@ionic/angular';
 // import { IpaddressService } from 'src/app/ipaddress.service';
 // import { VendorpaymentsPage } from '../vendorpayments/vendorpayments.page';
 import { Router } from '@angular/router';
-import { IpaddressService } from 'src/app/service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
@@ -65,8 +65,24 @@ export class VendorpoconfirmPage implements OnInit {
   vendornum: any;
   from: string;
   to: string;
+  poinvoicecode: any[];
+  poinvoive_no: any;
+  branchID: string;
+  functionID: string;
+  userID: string;
+  usertype: string;
+  accessToken: string;
+  poid: any;
+  ponumber: any;
+  isPocodeAvailable: boolean;
   constructor(public modalController: ModalController, private router: Router, private http: HttpClient, public navCtrl: NavController, public Ipaddressservice: IpaddressService,public datepipe: DatePipe) {
     this.username = localStorage.getItem('TUM_USER_NAME');
+    
+    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.accessToken = localStorage.getItem('token');
   }
 
   ngOnInit() {
@@ -167,8 +183,8 @@ console.log( this.from);
       branchid: branch_id,
       FUNCTION_ID: window.localStorage['FUNCTION_ID'],
       // BRANCH_ID: branch_id,
-      PONUMBER: ponum,
-      VENDORCODE: this.poconform.value.vendorcode,
+      PONUMBER: this.ponumber||"",
+      VENDORCODE: this.poconform.value.vendorcode ||null,
       FROMDATE:  this.from,
       TODATE:  this.to,
       SORTEXPRESSION: 'po_reference',
@@ -178,7 +194,8 @@ console.log( this.from);
       alphaname:"",
       usertype: window.localStorage['TUM_USER_TYPE'],
       usertoken: usertoken,
-      access_token: window.localStorage['token']
+      access_token: window.localStorage['token'],
+      
     }
     console.log(po_list);
 
@@ -320,7 +337,7 @@ console.log( this.from);
   
   
   
-  addponumbercode(item:any){
+  addvendornumbercode(item:any){
     console.log(item,"item");
 
   this.vendornum=item.VENDOR_CODE;
@@ -329,5 +346,50 @@ console.log( this.from);
   }
 
 
+
+  
+
+getinvoiceCode(e:any){
+
+
+  this.poinvoicecode = [];
+  if (e.target.value == "") {
+    this.poinvoicecode = [];
+    this.isPocodeAvailable = false;
+  }
+  // const header = new Headers();
+  // header.append("Content-Type", "application/json");
+   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getponnumber/' +this.functionID+ "/" +  this.branchID + "/" + e.target.value, {
+    headers: options,
+  }).subscribe(resp => {
+    this.poinvoicecode = [];
+    this.isPocodeAvailable = false;
+
+this.poinvoive_no=resp
+for (var i = 0; i < this.poinvoive_no.length; i++) {
+  this.poinvoicecode.push({
+    po_number: this.poinvoive_no[i].po_number,
+      
+  });
+};
+
+const val = e.target.value;
+if (val && val.trim() != '') {
+  this.isPocodeAvailable = true;
+  this.poinvoicecode = this.poinvoicecode.filter((item) => {
+    return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  });
+}
+
+  })
+}
+addponumbercode(item:any){
+  console.log(item,"item");
+  this.poid=item.po_id;
+  this.ponumber=item.po_number;
+  this.isPocodeAvailable = false;
+
+}
 
 }

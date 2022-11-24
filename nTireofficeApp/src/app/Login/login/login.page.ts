@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
 
             //  this.httpresponse.PostRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.
             //   getLoginLink+'/loginMobileLos',credentials,).then((resp:any)=>{
-            debugger
+         
             console.log(resp)
             // console.log(resp[0].BranchAccess)
             // console.log(this.suneel);

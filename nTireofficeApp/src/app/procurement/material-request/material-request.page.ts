@@ -30,7 +30,7 @@ export class MaterialRequestPage implements OnInit {
   submitview: boolean =false;
   initialSearch:boolean=true;
   overallsubmitnew:boolean=false;
-  showfilter: boolean = false;
+  showfilter: boolean = true;
   filter: boolean = true;
   release=false;
   funtionID;
@@ -60,6 +60,7 @@ export class MaterialRequestPage implements OnInit {
   fromdate2;
   status;
   cusstatus: any;
+  MRS_CODE: any;
 
   constructor( private router :Router,private toastmessageservice :ToastmessageService,private datePipe: DatePipe, private HttpClient: HttpClient, private IpaddressService: IpaddressService)
   {
@@ -157,7 +158,7 @@ var cusstatus = "0";
     {
         "FUNCTIONIDM": this.funtionID,
        "BRANCHM": this.branch_ID,
-       "MRSCODEM":"MRS",
+       "MRSCODEM":this.MRS_CODE||"",
        "ITEMCODEM":"ITE",
        "DATEFROMM": fromdate,
        "DATETOM": todate,
@@ -176,7 +177,7 @@ var cusstatus = "0";
 this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'MaterialRewuistionDetails',body).subscribe((res: any) => {
   this.materialrequestsearch = res;
   console.log(this.materialrequestsearch)
-  this.materialreqsearch = this.materialrequestsearch.itemDetails;
+  // this.materialreqsearch = this.materialrequestsearch.itemDetails;
 })
   }
 
