@@ -143,7 +143,7 @@ export class AssetrequestPage implements OnInit {
     else {
       this.status = 'N';
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + date1 + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + date2 + "/" + this.reason + "/" + this.status).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + this.requestDate + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + this.returnDate +  "/" + this.reason + "/" + this.status).then(resp => {
       if (resp == '"Attendance not available"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date");
 
@@ -229,7 +229,7 @@ export class AssetrequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    this.toastmessageService.presentAlert("Request Sent", "Request saved Successfully ");
+    // this.toastmessageService.presentAlert("Request Sent", "Request saved Successfully ");
      this.assestCancel();
   }
   formatDate(value) {
@@ -257,7 +257,9 @@ export class AssetrequestPage implements OnInit {
     this.reason = undefined;
   }
 
-  async assestCancel1() {
+
+
+  async refresh() {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Cancel the Process',
@@ -283,9 +285,9 @@ export class AssetrequestPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
+
 
 
 
@@ -306,6 +308,6 @@ export class AssetrequestPage implements OnInit {
   //   this.reason = undefined;
   // }
   assesstsList() {
-    this.router.navigateByUrl('/assetssummary')
+    this.router.navigateByUrl('assetssummary')
   }
 }

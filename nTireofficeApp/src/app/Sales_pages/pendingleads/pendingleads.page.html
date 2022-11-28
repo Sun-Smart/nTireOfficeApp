@@ -157,14 +157,14 @@
             <span>
               <a (click)="makeCall(items.MOBILE,i)"
                 style="text-decoration:none !important;cursor:pointer;">{{items.MOBILE}}</a>
-              <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
-                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.OFFPHONE}}&nbsp;</a><a
+              <!-- <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.MOBILE}}&nbsp;</a><a
                 *ngIf="items.OFFPHONE == '011'"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
               <i>|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.RESPHONE}}</a>
               <a *ngIf="items.RESPHONE == '011'"
-                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a> -->
             </span>
 
           </ion-col>

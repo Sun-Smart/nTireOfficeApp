@@ -37,10 +37,12 @@ export class AssetssummaryPage implements OnInit {
     this.assestCategory="";
     this.assestsubCategory="";
     this.status="";
-    this.filterAsset(undefined);
-    this.getAssetCategory();
+   
   }
   ngOnInit() {
+    debugger
+    this.getAssetCategory();
+    this.filterAsset("");
   }
 
   cancel(){
@@ -80,11 +82,14 @@ getAssestsSubcat(){
    console.log("error : "+JSON.stringify(error));
    });
 }
+
 filterAsset(data){
   this.display=[];
+  debugger
 if(data=='subcat'){
 this.getAssestsSubcat();
 }
+debugger
    if (this.fromDate == undefined || this.fromDate == "") {
      fromDate = "01-01-1990";
    } else {
@@ -101,22 +106,32 @@ this.getAssestsSubcat();
   if (this.assestsubCategory == "") {
     this.assestsubCategory = "0";
   }
+  debugger
    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "/SearchAssets/" + this.empID + "/" + fromDate + "/" + toDate + "/" + this.assestCategory + "/" +this.assestsubCategory).then(resp=>{
-     if (resp != "No Records found") {
-       this.display = resp;
-       this.display1= resp;
-       // console.log($scope.display)
-       var status = this.display[0].Status;
-       this.error = "";
+    console.log(resp) 
+    var res = resp;
+    console.log(res) 
+    if (res == "No data found") {
+      debugger
+      this.display = [];
+      this.error = "No Records Found";
      } else {
-       this.display = [];
-       this.error = "No Records Found";
+       debugger
+      this.display = res;
+      this.display1= res;
+      // console.log($scope.display)
+      var status = this.display[0].Status;
+      this.error = "";
+     
      }
-   }, error => {
-   alert('Server Error, Data not loaded.')
-   console.log("error : "+JSON.stringify(error));
+   }
+  //  , error => {
+  //  alert('Server Error, Data not loaded.')
+  //  console.log("error : "+JSON.stringify(error));
 
-   });
+  //  }
+   
+   );
  }
  changeOrder(){
   this.error=''

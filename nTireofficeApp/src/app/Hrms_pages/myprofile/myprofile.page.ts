@@ -113,6 +113,23 @@ export class MyprofilePage implements OnInit {
   username = window.localStorage.getItem('TUM_USER_NAME');
   empID: any;
   showSave: boolean;
+  createform: {
+    empID: string; Type: string; Email: any; Mobile:
+      /* eslint-disable @typescript-eslint/no-inferrable-types */
+      /* eslint-disable @typescript-eslint/member-ordering */
+      /* eslint-disable @typescript-eslint/dot-notation */
+      /* eslint-disable no-debugger */
+      /* eslint-disable prefer-const */
+      /* eslint-disable quote-props */
+      /* eslint-disable @typescript-eslint/no-shadow */
+      /* eslint-disable eqeqeq */
+      /* eslint-disable no-var */
+      /* eslint-disable max-len */
+      /* eslint-disable @typescript-eslint/semi */
+      /* eslint-disable @typescript-eslint/quotes */
+      /* eslint-disable @typescript-eslint/naming-convention */
+      any; EmergencyContactName: any; EmergencyContactNumber: any;
+  };
   constructor(public modalController: ModalController, public alertController: AlertController,
     public toastmessageService: ToastmessageService, private datepipe: DatePipe, public sanitizer: DomSanitizer, private base64: Base64, private crop: Crop, private camera: Camera, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, private http: HttpClient, public actionSheetController: ActionSheetController) {
     this.emp_id = window.localStorage['TUM_EMP_CODE'];
@@ -134,7 +151,7 @@ export class MyprofilePage implements OnInit {
 
   ngOnInit() {
   }
-  //Get emeployee detail based on login user id
+  //Get emeployee detail based on login user idEmail
   //*params="empID,name,code,designation,branch,department,top,increment"
 
   // phonenumber(inputtxt) {
@@ -695,9 +712,11 @@ export class MyprofilePage implements OnInit {
     await alert.present();
   }
 
-  hidePersonalPanel(value) {
+  hidePersonalPanel(value ) {
     debugger;
     console.log(value);
+   
+    
 
     // var emailcheck = validateemail(value);
     // if (emailcheck == false) {
