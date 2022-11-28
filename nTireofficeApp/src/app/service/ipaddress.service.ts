@@ -47,7 +47,7 @@ export class IpaddressService {
     this.ipaddress1 = "https://demo.herbie.ai";
     this.ipaddress = "https://demo.herbie.ai";
 
-    this.tokenlogin = "/nTireMobileCoreAPISSG/api";
+    this.tokenlogin = "/nTireMobileCoreAPI/api";
     this.hrmslogindata = "/nTireMobileCoreAPISSG/api";
     // ICRISAT
     // this.ipaddress = "http://192.168.0.154:8033";
@@ -80,7 +80,7 @@ export class IpaddressService {
     // this.serviceurl = "/SSGmobileapi/LMS/LMS.svc/";
     // this.serviceurlSales = "/dms/DMS/sales/";
 
-    this.getLoginLink = '/nTireMobileCoreAPI/api/Login';
+    this.getLoginLink = '/nTireMobileCoreAPISSG/api/Login';
     this.serviceurllos = "/los/LOS/";
     this.dynamicmenu = '/nTireMobileCoreAPI/api';
 
@@ -112,6 +112,6 @@ export class IpaddressService {
 
 
   }
-// s
+
 
 }

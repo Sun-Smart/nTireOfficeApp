@@ -88,21 +88,21 @@ export class LoginPage implements OnInit {
         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.
           getLoginLink + '/loginMobileLos', credentials).subscribe((resp: any) => {
 
-            console.log(resp)
+            console.log(resp[0])
 
-            console.log(resp.FunAccess)
+            console.log(resp[0].FunAccess)
 
             //  this.httpresponse.PostRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.
             //   getLoginLink+'/loginMobileLos',credentials,).then((resp:any)=>{
             debugger
-            console.log(resp)
+            console.log(resp[0])
             // console.log(resp[0].BranchAccess)
             // console.log(this.suneel);
             // console.log(this.suneel[0].BranchAccess);
 
-            console.log(resp["TUM_FORCE_LOGON"]);
-            console.log(resp);
-            this.data1 = resp;
+            console.log(resp[0]["TUM_FORCE_LOGON"]);
+            console.log(resp[0]);
+            this.data1 = resp[0];
             var userdata = this.data1
             console.log('userdata response', userdata);
 
@@ -116,12 +116,12 @@ export class LoginPage implements OnInit {
             // console.log(this.suneel[0].BranchAccess)
             // this.loadingdismiss();
 
-            if (resp['Column1'] != undefined) {
-              var b = resp['Column1'];
+            if (resp[0]['Column1'] != undefined) {
+              var b = resp[0]['Column1'];
               setTimeout(() => {
                 this.loadingdismiss();
                 // this.presentAlert('Alert1', b);
-                console.log("" + resp['Column1'])
+                console.log("" + resp[0]['Column1'])
               }, 5000);
            
             }
@@ -129,14 +129,14 @@ export class LoginPage implements OnInit {
             // this.loadingdismiss();
             // if(userdata['TUM_FORCE_LOGON']=='Y'){
             // }else{
-            this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.tokenlogin + '/Login/GetUserToken/' + resp.TUM_USER_NAME + '/' + password).subscribe((res) => {
+            this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.tokenlogin + '/Login/GetUserToken/' + resp[0].TUM_USER_NAME + '/' + password).subscribe((res) => {
               console.log('check token', res);
               localStorage.setItem('expires', resp['expires']);
               localStorage.setItem('token', res['token']);
               localStorage.setItem('usertoken', resp['usertoken']);
             });
 
-            this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.hrmslogindata + '/HRMS/EmployeeDetail/' + resp.TUM_USER_CODE).subscribe((res) => {
+            this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.hrmslogindata + '/HRMS/EmployeeDetail/' + resp[0].TUM_USER_CODE).subscribe((res) => {
               console.log('HRM', res);
               // if (window.localStorage['TUM_USER_TYPE'] == 11) {
               localStorage.setItem('EmployeeID', res[0]['em_emp_id']);
