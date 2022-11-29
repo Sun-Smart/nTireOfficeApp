@@ -43,6 +43,7 @@ export class ExpensedetailsPage implements OnInit {
   datfil;
   IsVisible;
   user_id;
+  user_token:any;
   meetingArray = [];
   token;
   fromdate;
@@ -97,9 +98,10 @@ export class ExpensedetailsPage implements OnInit {
   constructor(private nativeGeocoder: NativeGeocoder, public alertController: AlertController, public modalController: ModalController, private datePipe: DatePipe, private http: HttpClient, public Ipaddressservice: IpaddressService, private geolocation: Geolocation) {
     this.branch = localStorage.getItem('BRANCH_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
+    this.user_token = localStorage.getItem('usertoken');
     this.IsVisible = true;
     this.branch = "";
-    this.Getbranches();
+
     var today = new Date();
 
     this.fromdate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
@@ -107,8 +109,10 @@ export class ExpensedetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    this. Getbranches();
   }
   Getbranches() {
+
     var params = {
       access_token: window.localStorage['token'],
       userid: parseInt(window.localStorage['TUM_USER_ID']),
@@ -124,10 +128,13 @@ export class ExpensedetailsPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.branchlist = resp;
-      this.branchlist.forEach(element => {
-        this.branchlist1.push(element)
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
-      });
+
+      console.log(this.branchlist);
+      
+      // this.branchlist.forEach(element => {
+      //   this.branchlist1.push(element)
+      //   console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+      // });
 
 
 

@@ -63,31 +63,35 @@
           <span class="error">Valid email is required</span>
         </span>
       </ion-col>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label
-        >Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
+      <ion-col   size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label >Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-input type="tel" class="form-control"  pattern="[0-9]*" type="number" pattern="/^-?\d+\.?\d*$/"
+        onKeyPress="if(this.value.length==10) return false;"
+        [(ngModel)]="mobile" pattern="[0-9]*" minlength="10" maxlength="10" #umobile="ngModel"></ion-input>
 
-        <!-- <ion-input class="form-control" type="number" maxlength="10"
-          [(ngModel)]="mobile"></ion-input>
-        <span *ngIf="mobile != undefined && mobile.length < 10" style="color: red">valid mobile number required</span> (keyup)="numberOnlyValidation($event)"-->
-        <ion-input class="form-control"  pattern="[0-9]*" type="number" pattern="/^-?\d+\.?\d*$/"
-        onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
-        (keyup)="phonenumber(profile.Mobile) " [(ngModel)]="mobile" minlength="10" maxlength="13"
-          #umobile="ngModel"></ion-input>
+          <!-- <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+            <ion-label>Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-input type="tel" class="form-control"  pattern="[0-9]*" type="number" pattern="/^-?\d+\.?\d*$/"
+            onKeyPress="if(this.value.length==10) return false;"
+           [(ngModel)]="mobile" pattern="[0-9]*" minlength="10" maxlength="10" #umobile="ngModel"></ion-input> -->
+    
         <div *ngIf="mobile && umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
         </div>
+
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Office Number</ion-label>
-        <ion-input type="number" class="form-control" pattern="[0-9]*"
-          onKeyPress="if(this.value.length==13) return false;" [(ngModel)]="OffPhone" minlength="10" maxlength="13"
+        <ion-label>Office Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-input type="tel" class="form-control" pattern="[0-9]*"
+        type="number" pattern="/^-?\d+\.?\d*$/"
+            onKeyPress="if(this.value.length==10) return false;"
+             [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10" maxlength="1"
           #uname="ngModel"></ion-input>
         <!-- <span *ngIf="uname.errors?.number">
           <p style="color:red;">Valid office number is required</p>
         </span> -->
         <div *ngIf="OffPhone && uname.errors?.minlength || uname.errors?.maxlength">
-          <p style="color:red;">Office number should be 10-13 digits</p>
+          <p style="color:red;">valid mobile number required</p>
         </div>
         <!-- <span *ngIf="((OffPhone.$error.minlength ||
                                          OffPhone.$error.maxlength) &&
@@ -95,13 +99,16 @@
                                          <p style="color:red;">Office number should be 10-13 digits</p>
                                   </span> -->
       </ion-col>
+      
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Telephone Number</ion-label>
-        <ion-input type="number" class="form-control" pattern="[0-9]*"
-          onKeyPress="if(this.value.length==13) return false;" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
+        <ion-label>Telephone Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-input  type="tel" class="form-control"  pattern="[0-9]*"
+        type="number" pattern="/^-?\d+\.?\d*$/"
+          onKeyPress="if(this.value.length==10) return false;" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
           #resnum="ngModel"></ion-input>
+
         <div *ngIf="ResPhone && resnum.errors?.minlength || resnum.errors?.maxlength">
-          <p style="color:red;">Telephone number should be 10-13 digits</p>
+          <p style="color:red;">Valid office number is required</p>
         </div>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">

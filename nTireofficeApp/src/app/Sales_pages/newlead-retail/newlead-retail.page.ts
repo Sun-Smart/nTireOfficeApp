@@ -2421,11 +2421,6 @@ console.log(lead_id_new);
   }
   async Cancelretail() {
     console.log('click check');
-
-    // if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.remarks == undefined)) {
-
-    // }
-    // else {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Cancel the Process',
