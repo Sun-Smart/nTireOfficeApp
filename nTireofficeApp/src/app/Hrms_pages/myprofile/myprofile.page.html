@@ -373,6 +373,7 @@
       <!-- Contact Detials -->
 
       <ion-card>
+        <form #createForm="ngForm">
         <ion-card-header class="card_header" style="padding: 0px !important;">
           <ion-row>
             <ion-col size="6" style="line-height: 2;">
@@ -388,7 +389,7 @@
                 (click)="hidePersonalPanel('contact.cancel')">
                 <i class="fa fa-times-circle" style="font-size:20px; margin-left:5px; color:red;"></i>
               </button>
-              <button *ngIf="contactToggle === 1" id="personalUpdate" (click)="hidePersonalPanel('contact')"
+              <button *ngIf="contactToggle === 1" id="personalUpdate" (click)="hidePersonalPanel('contact',createForm)"
                 [disabled]="!profile.Email || !profile.Mobile" style="margin-top: -13px!important;
                         font-size: 22px!important;background: transparent;">
                 <i class="fa fa-check-circle" style="font-size:20px; margin-left:5px; color:wheat;margin-top: -13px;
@@ -400,13 +401,16 @@
         </ion-card-header>
 
         <ion-card-content>
+        
           <ion-row>
+        
+          
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Email</ion-label>
               <br />
               <ion-input *ngIf="contactToggle === 1" (keyup)="emailnumbaervalid($event)"
                 class="profileOutput labelData-text" type="email" name="Email" placeholder="Email"
-                [(ngModel)]="profile.Email" [disabled]="contactToggle===0">
+                [(ngModel)]="profile.Email" [disabled]="contactToggle===0"    [ngModelOptions]="{standalone: true}" >
               </ion-input>
               <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.Email}}</span>
               <span *ngIf="validemail" class="profileOutput labelData-text">
@@ -416,11 +420,11 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Mobile</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile" pattern="[0-9]*"
-                type="number" pattern="/^-?\d+\.?\d*$/"
+              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile" 
+                type="number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" 
                 onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
                 (keyup)="phonenumber(profile.Mobile) " placeholder="Mobile" [(ngModel)]="profile.Mobile"
-                [disabled]="contactToggle===0"></ion-input>
+                [disabled]="contactToggle===0"    [ngModelOptions]="{standalone: true}" ></ion-input>
               <span *ngIf="contactToggle === 0" class="profileOutput labelData-text">{{profile.Mobile}}</span>
               <span *ngIf="validphone" class="profileOutput labelData-text">
                 <span class="error">Valid Phone number is required</span>
@@ -429,10 +433,9 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Emergency Contact Number</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="number"
-                pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
+              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
                 placeholder="Emergency Number" (keyup)="phonenumber(Mnumber)"
-                [(ngModel)]="profile.EmergencyContactNumber" [disabled]="contactToggle===0"></ion-input>
+                [(ngModel)]="profile.EmergencyContactNumber" [disabled]="contactToggle===0"    [ngModelOptions]="{standalone: true}" ></ion-input>
               <span *ngIf="contactToggle === 0"
                 class="profileOutput labelData-text">{{profile.EmergencyContactNumber}}</span>
             </ion-col>
@@ -441,13 +444,18 @@
               <br />
               <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" type="text"
                 placeholder="Emergency Contact Name" [(ngModel)]="profile.EmergencyContactName"
-                [disabled]="contactToggle===0"></ion-input>
+                [disabled]="contactToggle===0"    [ngModelOptions]="{standalone: true}" ></ion-input>
               <span *ngIf="contactToggle === 0"
                 class="profileOutput labelData-text">{{profile.EmergencyContactName}}</span>
             </ion-col>
 
+        
+         
           </ion-row>
+   
+      
         </ion-card-content>
+             </form>
       </ion-card>
       <!--  <ion-card>
           <ion-card-header class="hrms_header">

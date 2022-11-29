@@ -27,7 +27,7 @@
   <!-- <ion-searchbar type="text" debounce="500" (ionChange)="getItems($event)"></ion-searchbar> -->
 
   <ion-grid>
-    <ion-row style="text-align: center;">
+    <ion-row style="text-align: left;">
       <ion-col size="6">
         <label>From Date</label>
         <input style="padding:10px;width:100%;color: #000 !important;" class="form-control" [(ngModel)]="fromDate" type="date" />
@@ -88,12 +88,12 @@
           <span>
             <a (click)="makeCall(items)"
               style="text-decoration:none !important;cursor:pointer;"><b>{{items.MOBILE}}</b></a>
-            <i style="color:black;">|</i><a ng-if="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
+            <!-- <i style="color:black;">|</i><a ng-if="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
               style="text-decoration:none !important;cursor:pointer;">&nbsp;<b>{{items.OFFPHONE}}</b>&nbsp;</a><a
               ng-if="items.OFFPHONE == '011'" style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
             <i style="">|</i><a ng-if="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
               style="text-decoration:none !important;cursor:pointer;">&nbsp;<b>{{items.RESPHONE}}</b></a>
-            <a ng-if="items.RESPHONE == '011'" style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+            <a ng-if="items.RESPHONE == '011'" style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a> -->
           </span>
         </ion-col>
 

@@ -30,6 +30,7 @@ export class HttprequestService {
 
   //Get Request From service
   public GetRequest(url) {
+    debugger
     return new Promise((resolve, reject) => {
       const header = new Headers();
       header.append("Content-Type", "application/json");

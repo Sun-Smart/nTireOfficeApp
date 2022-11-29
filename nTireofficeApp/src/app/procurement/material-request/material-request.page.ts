@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastmessageService } from 'src/app/service/toastmessage.service';
 import { DatePipe } from '@angular/common';
 import { IpaddressService } from 'src/app/ipaddress.service';
-
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-material-request',
   templateUrl: './material-request.page.html',
@@ -23,10 +23,10 @@ export class MaterialRequestPage implements OnInit {
   Additem:boolean = true;
   expenseArray = [];
   showlineItems1:boolean=true;
-  shownewcard:boolean=true;
+  shownewcard:boolean=false;
   ShowAllItem:boolean=true;
   Showcard:boolean=false;
-  overallsubmit:boolean = false;
+  overallsubmit:boolean = true;
   submitview: boolean =false;
   initialSearch:boolean=true;
   overallsubmitnew:boolean=false;
@@ -61,8 +61,25 @@ export class MaterialRequestPage implements OnInit {
   status;
   cusstatus: any;
   MRS_CODE: any;
+  allbranch_res: string;
+  allbranch: any;
+  usertoken: any;
+  Branchname: any;
+  MRScode: any[];
+  isPropertycodeAvailable: boolean;
+  mrs_no: any;
+  mrsnum: any;
+  getdataitem: any[];
+  isItemAvailable: boolean;
+  getdata1: any;
+  itemNew: any;
+  getitemdata: any;
+  Description: any;
+  itemdescription: any;
+  getitemid: any;
+  netprice: any;
 
-  constructor( private router :Router,private toastmessageservice :ToastmessageService,private datePipe: DatePipe, private HttpClient: HttpClient, private IpaddressService: IpaddressService)
+  constructor( private router :Router,private alertController: AlertController,private toastmessageservice :ToastmessageService,private datePipe: DatePipe, private HttpClient: HttpClient, private IpaddressService: IpaddressService)
   {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
@@ -72,6 +89,7 @@ export class MaterialRequestPage implements OnInit {
     this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
     this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
     this.requestby = localStorage.getItem('TUM_USER_NAME');
+    this.usertoken = window.localStorage['usertoken'];
   }
 
   ngOnInit() {
@@ -79,7 +97,26 @@ export class MaterialRequestPage implements OnInit {
     todayDate.setDate(todayDate.getDate());
     this.mrsdate = this.datePipe.transform(todayDate,'YYYY/MM/dd');
     console.log(this.mrsdate);
+    this.Branchname = localStorage.getItem('TUM_BRANCH_CODE');
   }
+  // getallbranches() {
+  //   var obj = {
+  //     userid: this.userID,
+  //     usertoken: this.usertoken,
+  //     access_token: window.localStorage['token']
+  //   }
+  //   this.HttpClient.post(this.IpaddressService.ipaddress + this.IpaddressService.serviceerpapi + 'getAllBranches/', obj).subscribe(res => {
+  //     console.log(res);
+  //     let res1 = JSON.stringify(res)
+  //     this.allbranch_res = res1;
+  //     console.log(this.allbranch_res)
+
+  //     this.allbranch = JSON.parse(this.allbranch_res);
+  //     // this.allbranch = this.allbranch_res.recordset;
+  //   }, err => {
+  //     console.log(err);
+  //   })
+  // }
   setValue(value:any){
     console.log(value)
     if(this.priority==1){
@@ -157,13 +194,13 @@ var cusstatus = "0";
     let body =
     {
         "FUNCTIONIDM": this.funtionID,
-       "BRANCHM": this.branch_ID,
+       "BRANCHM": this.Branchname,
        "MRSCODEM":this.MRS_CODE||"",
        "ITEMCODEM":"ITE",
-       "DATEFROMM": fromdate,
-       "DATETOM": todate,
-        "STATUSM":MRSTATUS,
-        "CUTSTATUSM":"",
+       "DATEFROMM": fromdate||"",
+       "DATETOM": todate||"",
+        "STATUSM":"",
+        "CUTSTATUSM":MRSTATUS,
        "MENUIDM":"",
         "PAGEINDEXM":0,
        "PAGESIZEM":10,
@@ -218,8 +255,28 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     this.submitview =!this.submitview;
     this.overallsubmitnew =true;
     this.expenseArray.push({
+     
+      "mrsdetail_id":'',
+      "MRS_ID": "",
+      "Item_Id": this.getitemid ,
+      "FUNCTION_ID": "1",
+      "RequiredQty":this.requestqty,
+      "EXP_DATE": this.requiredbefore,
+      "CREATED_BY": this.userID,
 
+      "LST_UPD_BY": this.userID,
+      "IPADDRESS": "",
+      "STATUS": "A",
+      "unitprice": this.unitprice,
+      "netamount":  this.netprice,
 
+      "remarks":  this.remarks,
+      "item_detailed_description": this.itemdescription,
+      "BDC": "BDC",
+      "PTM": "PTM",
+      "ACC":"ACC",
+      "CPC":"CPC",
+      "VechileNO":"12345"
     })
     console.log(this.expenseArray)
     this.showbtn = true;
@@ -231,63 +288,6 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
      }
 
 
-    let body =
-      {
-        "mrsdetail": [
-          {
-            "FUNCTION_ID": this.funtionID,
-            "BRANCH_ID": this.branch_ID,
-            "mrs_id": "0",
-             "MRS_CODE": "0",
-             "requested_by":"0",
-             "requested_Date":"2022-11-05",
-            "REQUEST_REFERENCE": "0",
-            "REQUEST_REASON": "0",
-           "CREATED_BY":"0",
-           "LST_UPD_BY":"0",
-           "IPADDRESS":"0",
-           "flag":"N",
-           "STATUS": INSUPSTATUS,
-           "product_id":"0",
-           "campaign_id":"0",
-           "netamount":"0",
-           "Order_Priority":"0",
-
-            "MRSDdetail": [
-              {
-                "mrsdetail_id":0,
-                "MRS_ID": "1",
-                "Item_Id": "123",
-                "FUNCTION_ID": "1",
-                "RequiredQty": "1",
-                "EXP_DATE": "2022-11-05",
-                "CREATED_BY": "1",
-
-                "LST_UPD_BY": "1",
-                "IPADDRESS": "",
-                "STATUS": "A",
-                "unitprice": "12",
-                "netamount": "23",
-
-                "remarks": "A",
-                "item_detailed_description": "Setail",
-                "BDC": "BDC",
-                "PTM": "PTM",
-                "ACC":"ACC",
-                "CPC":"CPC",
-                "VechileNO":"12345"
-              }
-        ]
-    }
-    ]
-      }
-
-this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'MaterialRequistion_Insert_Update', body).
-subscribe((res: any) => {
-  this.materialrequestsearch = res;
-  console.log(this.materialrequestsearch)
-  this.materialreqsearch = this.materialrequestsearch.itemDetails;
-})
   }
 
   Searchlist(){
@@ -308,7 +308,7 @@ subscribe((res: any) => {
         // this.showlineItems = !this.showlineItems
     // this.showviewlist = false;
     // this.Showcard = false;
-    this.overallsubmit=false;
+    this.overallsubmit=true;
     this.initialSearch = false;
     this.showlineItems = true;
     this.showbtn = false;
@@ -316,8 +316,34 @@ subscribe((res: any) => {
     this.filter = false;
   }
 
-  clear(){
-    alert("67")
+  async clear() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+
+            this.MRS_CODE = "";
+            this.status = "";
+            this.todate = "";
+            this.fromdate = "";
+            
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   hideline(){
@@ -340,6 +366,8 @@ subscribe((res: any) => {
   close(){
     this.reasonrequest='';
     this.priority = '';
+    this.shownewcard=!this.shownewcard
+    this.overallsubmit=true;
     }
 
   Search() {
@@ -348,4 +376,197 @@ subscribe((res: any) => {
     if(this.mrscode ==undefined){
       this.mrscode=''
     }}
+
+
+close1(){
+  this.showlineItems=false
+  this.showfilter=true
+}
+
+getMRSCode(e:any){
+
+
+  this.MRScode = [];
+  if (e.target.value == "") {
+    this.MRScode = [];
+    this.isPropertycodeAvailable = false;
+  }
+  // const header = new Headers();
+  // header.append("Content-Type", "application/json");
+   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  this.HttpClient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'MRScode/'  + e.target.value, {
+    headers: options,
+  }).subscribe(resp => {
+    this.MRScode = [];
+    this.isPropertycodeAvailable = false;
+
+this.mrs_no=resp
+for (var i = 0; i < this.mrs_no.length; i++) {
+  this.MRScode.push({
+    mrs_code: this.mrs_no[i].mrs_code,
+      
+  });
+};
+
+const val = e.target.value;
+if (val && val.trim() != '') {
+  this.isPropertycodeAvailable = true;
+  this.MRScode = this.MRScode.filter((item) => {
+    return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+  });
+}
+
+  })
+}
+
+
+
+
+
+
+addponumbercode(item:any){
+  console.log(item,"item");
+
+  this.MRS_CODE=item.mrs_code;
+  this.isPropertycodeAvailable = false;
+
+}
+
+
+
+getItems(event: any) {
+  let items = "I";
+
+  
+    this.getdataitem = [];
+    this.isItemAvailable = false;
+  
+
+  this.HttpClient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + "getItemcode" + '/' + items).subscribe((resp: any) => {
+    console.log(resp)
+    this.getdata1 = resp;
+    this.itemNew = this.getdata1;
+    // this.getorder1.forEach(element => {
+    //   this.getdata.push(element)
+    console.log(this.itemNew);
+    for (var i = 0; i < this.itemNew.length; i++) {
+      // this.getdataitem.push({ id: this.itemNew[i].item_Code, desc: this.itemNew[i].item_id });
+      this.getdataitem.push(this.itemNew[i].item_Code);
+      // this.getdataitem.push(this.itemNew[i].);
+    }
+    console.log(this.getdataitem);
+    const val = event.target.value;
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.isItemAvailable = true;
+      this.getdataitem = this.getdataitem.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+      console.log(this.getdataitem)
+    }
+  })
+}
+
+fetchreconcilation(itemcode: any) {
+  console.log(itemcode)
+  this.itemcode = itemcode;
+  this.isItemAvailable = false;
+  this.HttpClient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + "getItemDetail" + '/' + this.itemcode).subscribe((resp: any) => {
+    console.log(resp)
+    this.getitemdata = resp;
+    console.log(this.getitemdata)
+    this.Description = this.getitemdata[0].item_short_Desc,
+      this.unitprice = this.getitemdata[0].Price
+    this.itemdescription = this.getitemdata[0].item_long_desc,
+      this.getitemid = this.getitemdata[0].item_id,
+      this.uom = this.getitemdata[0].WeightUOM
+      this.unitprice = this.getitemdata[0].Price
+      this.stockqty = this.getitemdata[0].stock_uom
+
+  
+  });
+ 
+}
+
+// orderpriority() {
+//   console.log(this.order)
+//   if (this.order == "2") //urjent
+//   {
+//     let getdate = new Date();
+//     getdate.setDate(getdate.getDate() + 2);
+//     console.log(getdate);
+//     this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+//   }
+//   if (this.order == "1") //critical
+//   {
+//     let getdate = new Date();
+//     getdate.setDate(getdate.getDate() + 1);
+//     console.log(getdate);
+//     this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+//   }
+//   if (this.order == "3") //high
+//   {
+//     let getdate = new Date();
+//     getdate.setDate(getdate.getDate() + 3);
+//     console.log(getdate);
+//     this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+
+//   }
+//   if (this.order == "4") //medium
+//   {
+//     let getdate = new Date();
+//     getdate.setDate(getdate.getDate() + 4);
+//     console.log(getdate);
+//     this.Requiredbefore = this.datePipe.transform(getdate, 'dd/MM/yyyy');
+
+//   }
+//   let getdate = new Date();
+//   this.prsdate = this.datePipe.transform(getdate, 'dd/MM/yyyy');
+// }
+
+
+submitdata(){
+  
+  let body =
+  {
+    "mrsdetail": [
+      {
+        "FUNCTION_ID": this.funtionID,
+        "BRANCH_ID": this.branch_ID,
+        "mrs_id": "0",
+         "MRS_CODE": "0",
+         "requested_by":this.requestby,
+         "requested_Date":"2022-11-05",
+        "REQUEST_REFERENCE": "",
+        "REQUEST_REASON": this.reasonrequest,
+       "CREATED_BY":this.userID,
+       "LST_UPD_BY":this.userID,
+       "IPADDRESS":"",
+       "flag":"N",
+       "STATUS": "",
+       "product_id":"0",
+       "campaign_id":"0",
+       "netamount":"0",
+       "Order_Priority":"0",
+
+        "MRSDdetail":this.expenseArray
+}
+]
+  }
+
+this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'MaterialRequistion_Insert_Update', body).
+subscribe((res: any) => {
+this.materialrequestsearch = res;
+console.log(this.materialrequestsearch)
+this.materialreqsearch = this.materialrequestsearch.itemDetails;
+})
+}
+
+netpriced(){
+ 
+  
+  this.netprice=this.unitprice*this.requestqty
+  console.log(this.netprice);
+  
+}
 }

@@ -291,6 +291,8 @@ filter : boolean = true;
   }
 
   getItems(event: any) {
+    console.log(this.Category);
+    
     let items = this.Category;
 
     if (this.Category == "") {
@@ -327,7 +329,7 @@ filter : boolean = true;
 
   getItemDetail(e: any) {
 
-    // console.log(e.target.value,'manoj')
+   
     this.showsavebtn = true
     // let dataa = e.target.value
     // console.log(dataa)
