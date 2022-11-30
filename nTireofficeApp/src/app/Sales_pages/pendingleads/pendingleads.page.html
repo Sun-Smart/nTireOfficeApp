@@ -157,14 +157,14 @@
             <span>
               <a (click)="makeCall(items.MOBILE,i)"
                 style="text-decoration:none !important;cursor:pointer;">{{items.MOBILE}}</a>
-              <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
-                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.OFFPHONE}}&nbsp;</a><a
+              <!-- <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.MOBILE}}&nbsp;</a><a
                 *ngIf="items.OFFPHONE == '011'"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
               <i>|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.RESPHONE}}</a>
               <a *ngIf="items.RESPHONE == '011'"
-                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a> -->
             </span>
 
           </ion-col>
@@ -174,14 +174,14 @@
             <span>
               <a (click)="makeCall(items.MOBILE,i)"
                 style="text-decoration:none !important;cursor:pointer;">{{items.MOBILE}}</a>
-              <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
+              <!-- <i style="color:black;">|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.OFFPHONE}}"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.OFFPHONE}}&nbsp;</a><a
                 *ngIf="items.OFFPHONE == '011'"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
               <i>|</i><a *ngIf="items.OFFPHONE != '011'" href="tel:{{items.RESPHONE}}"
                 style="text-decoration:none !important;cursor:pointer;">&nbsp;{{items.RESPHONE}}</a>
               <a *ngIf="items.RESPHONE == '011'"
-                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a>
+                style="text-decoration:none !important;cursor:pointer;">&nbsp;-&nbsp;</a> -->
             </span>
 
           </ion-col>
@@ -238,13 +238,25 @@
 
           </ion-col>
           <ion-col size="6">
-            <ion-label></ion-label> Priority&nbsp;&nbsp;&nbsp;<span
-              style="font-size: 14px;color:green;font-weight: bold;">{{items.PriorityText}}</span>
+            <ion-label></ion-label> Priority
+             
           </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <b  style="font-size: 14px;color:green;"> {{items.PriorityText}}</b>
+          </ion-col>
+
           <ion-col size="6">
+            <ion-label></ion-label> Rating
+             
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <b  style="font-size: 14px;color:red;"> {{items.Ratingtext}}</b>
+          </ion-col>
+
+          <!-- <ion-col size="6">
             <ion-label></ion-label>Rating&nbsp;&nbsp;&nbsp;<span
               style="font-size: 14px;color:red;font-weight: bold;">{{items.Ratingtext}}</span>
-          </ion-col>
+          </ion-col> -->
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <a (click)="showmore(i,items.CALL_ID)">
               <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->

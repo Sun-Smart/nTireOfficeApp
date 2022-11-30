@@ -18,7 +18,7 @@
       </ion-col> -->
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Company Name<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input class="form-control" [(ngModel)]="companyname" (keypress)="omit_special_char($event)"></ion-input>
+        <ion-input class="form-control" pattern="[a-zA-Z]" [(ngModel)]="companyname" (keypress)="omit_special_char($event)"></ion-input>
 
 
       </ion-col>
