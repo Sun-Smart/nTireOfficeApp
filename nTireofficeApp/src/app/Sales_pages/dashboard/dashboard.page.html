@@ -12,9 +12,7 @@
   
   <select [(ngModel)]="branch" style="margin-top:12px;margin-left:20px;width: 90%;" class="form-control"
     (change)="branchchange(branch)">
-    <ion-spinner name="crescent">
-    <option>Please Select Branch</option></ion-spinner>
-    
+    <option>Please Select Branch</option>
     <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">{{branch.BRANCH_DESC}}
     </option>
   
