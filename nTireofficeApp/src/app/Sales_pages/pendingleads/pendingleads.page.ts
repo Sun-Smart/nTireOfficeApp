@@ -590,6 +590,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         this.getbranchid = 1
       }
       localStorage.setItem('setbranchid', this.getbranchid)
+      console.log(this.getbranchid)
 
 
       var tmpPendJson = {
@@ -603,7 +604,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         RATING: "",
         LEADBY: "",
 
-        branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
+        branchid: window.localStorage['TUM_BRANCH_ID'],
         Name: "", CAMPAIGNNAME: "",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -801,7 +802,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       LEADBY: "",
       Name: "",
       CAMPAIGNNAME: "",
-      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
+      branchid: window.localStorage['TUM_BRANCH_ID'],
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,

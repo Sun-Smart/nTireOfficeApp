@@ -57,7 +57,7 @@ export class CompletionJobsPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     console.log(this.branchID);
 
     this.functionID = localStorage.getItem('FUNCTION_ID');
@@ -359,7 +359,7 @@ requestedJobs() {
   header.append("Content-Type", "application/json");
 
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs+'&AssetCode=null', {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+window.localStorage.getItem('id')+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs+'&AssetCode=null', {
     // &TASKTYPE=84&AssetCode=MT
     headers: options,
   }).subscribe(resp => {

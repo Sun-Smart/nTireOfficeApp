@@ -260,7 +260,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Remarks <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-textarea [(ngModel)]="remarks" (keyup)="offnumberOnlyValidation($event)" maxlength="4000"
+        <ion-textarea [(ngModel)]="remarks" id="messagearea" (keyup)="offnumberOnlyValidation($event)" maxlength="4000"
           style="height:auto !important" class="form-control">
         </ion-textarea>
         <span *ngIf="remarks && remarks != 'undefined' && remarks.length > 0" class="customCounter">{{4000 -

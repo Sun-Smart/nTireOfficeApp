@@ -17,7 +17,7 @@ export class MyapprovalsPage implements OnInit {
 
   reqby;
   functionId;
-  requests = [];
+  requests;
   reqType;
   requests1;
   show_request;
@@ -31,11 +31,14 @@ export class MyapprovalsPage implements OnInit {
   userid;
   userType;
   status;
+  requestId;
+  username;
   constructor(private router: Router, private datepipe: DatePipe,
     private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.functionId = window.localStorage["FUNCTION_ID"];
     this.userid = window.localStorage['TUM_USER_ID'];
     this.userType = window.localStorage['TUM_USER_TYPE'];
+    this.username = window.localStorage['TUM_USER_NAME']
     this.getReqtype();
   }
 
@@ -43,8 +46,8 @@ export class MyapprovalsPage implements OnInit {
   }
 
   getReqtype() {
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms3 + 'RequestType?prefixText=&functionid=' + this.functionId + '').then(resp => {
-      this.requests = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'RequestType?prefixText=null&sunctionid=' + this.functionId ).then(resp => {
+      this.requests = resp;
       console.log(this.requests);
 
     }, error => {
@@ -52,6 +55,11 @@ export class MyapprovalsPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
+  }
+  onSelectChange(event:any){
+    console.log(event.target.value);
+    this.requestId = event.target.value;
+
   }
   validrequestNumber(reqType) {
     if (this.reqType == null || this.reqType == '') {
@@ -83,10 +91,10 @@ export class MyapprovalsPage implements OnInit {
     var fromdate = this.datepipe.transform(this.fromdate, "dd/MM/yyyy");
     var todate = this.datepipe.transform(this.todate, "dd/MM/yyyy");
 
-
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms3 + 'getMailBoxHistory?strFunction=' + window.localStorage["FUNCTION_ID"] + '&strConfigId=' + this.reqType + '&Username=' + this.requestBy + '&strWorkFlowNo=' + this.reqnumber + '&strFromDate=' + fromdate + '&strToDate=' + todate + '&strWFstatus=' + this.status + '&strMode=&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
+    // this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getMailBoxHistory?strFunction=' + window.localStorage["FUNCTION_ID"] + '&strConfigId=' + this.reqType + '&Username=' + this.requestBy + '&strWorkFlowNo=' + this.reqnumber + '&strFromDate=' + fromdate + '&strToDate=' + todate + '&strWFstatus=' + this.status + '&strMode=&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'myapprovalsearch?strFunction=' + this.functionId+ '&strConfigId=' + this.requestId + '&Username=' + this.username + '&strWorkFlowNo=null&strFromDate=null&strToDate=null&strWFstatus=' + this.status + '&strMode=null&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
+     
       var dat_s = JSON.parse(resp.toString());
-
       if (dat_s.Table.length > 0) {
         this.approve_result1 = dat_s.Table;
         // this.approve_result=this.approve_result[0].RequestDate;
@@ -107,6 +115,7 @@ export class MyapprovalsPage implements OnInit {
 
 
   }
+
   showless(idvalue) {
     $("#dividvals" + idvalue).css("display", "none");
     $("#imageidvals" + idvalue).show();

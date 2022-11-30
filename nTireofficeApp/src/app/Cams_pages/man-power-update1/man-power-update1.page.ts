@@ -11,11 +11,11 @@ declare var jquery: any;
 declare var $: any;
 
 @Component({
-  selector: 'app-man-power-update',
-  templateUrl: './man-power-update.page.html',
-  styleUrls: ['./man-power-update.page.scss'],
+  selector: 'app-man-power-update1',
+  templateUrl: './man-power-update1.page.html',
+  styleUrls: ['./man-power-update1.page.scss'],
 })
-export class ManPowerUpdatePage implements OnInit {
+export class ManPowerUpdate1Page implements OnInit {
 
   userID:any;
   usertype:any;
@@ -51,7 +51,7 @@ export class ManPowerUpdatePage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.data=navParams.get('item');
     console.log(this.data);
@@ -61,22 +61,22 @@ export class ManPowerUpdatePage implements OnInit {
 
   ngOnInit() {
 
-
-    // this.sub = this.activatedRoute.params.subscribe(params => {
-    //   this.data = params;
+    
+    // this.sub = this.activatedRoute.params.subscribe(params => {  
+    //   this.data = params;   
     //   // this.assetid = params['assetid'];
     //   // this.assetactivityid= params['assetactivityid'];
     //   // this.assetpmref=params['assetpmref'];
-    // });
+    // });  
     // this.getManpowerskill();
     // this.getEmpre();
-
+    
   }
   getEmpre(){
 
     this.skill=this.data.TYPE_ID;
     console.log(this.skill);
-    var arr=this.data.actual_hrs;
+    var arr=this.data.actual_hrs.split(':');
     this.nomhours= $.trim(arr[0]);
     this.nomhoursm= $.trim(arr[1]);
     this.skillid=this.data.TYPE_ID;
@@ -84,8 +84,8 @@ export class ManPowerUpdatePage implements OnInit {
     this.rowuniqid=this.data.rowuniqueid;
     var datae = {
       'branchid': this.branchID,
-      'functionid':parseInt(this.functionID),
-      'usertype':this.data.VAL,
+      'functionid':this.functionID,
+      'usertype':this.usertype,
       'access_token':this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
@@ -93,9 +93,9 @@ export class ManPowerUpdatePage implements OnInit {
     console.log(datae);
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
+  
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerrefdtl',datae, {
+    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerrefdtlu',datae, {
       headers: options,
     }).subscribe(resp => {
       this.manpowerrefdetailu = resp;
@@ -105,8 +105,8 @@ export class ManPowerUpdatePage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-
-    });
+  
+    }); 
 
   }
 
@@ -121,7 +121,7 @@ export class ManPowerUpdatePage implements OnInit {
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
-
+  
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpoweskilldtl',data, {
       headers: options,
@@ -131,14 +131,14 @@ export class ManPowerUpdatePage implements OnInit {
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
-
-    });
+  
+    });  
 }
 
 manskilludfvdfv(val){
   var datae = {
-
-
+     
+      
     'branchid': this.branchID,
     'functionid':this.functionID,
     'usertype':val,
@@ -160,7 +160,7 @@ manskilludfvdfv(val){
     //this.presentAlert('Alert','Server Error,Contact not loaded');
     console.log("error : " + JSON.stringify(error));
 
-  });
+  });  
 }
 
 
@@ -179,7 +179,7 @@ var nomhrs=this.nomhours;
     if(nommin > 60){
     // alert("Number Of Hours(HH:MM) is not in proper format")
     this.presentAlert("Alert","Number Of Hours(HH:MM) is not in proper format")
-
+  
   }else{
 
     this.hhmm=nomhrs+':'+nommin;
@@ -207,7 +207,7 @@ var nomhrs=this.nomhours;
       console.log(dataemu);
       const header = new Headers();
       header.append("Content-Type", "application/json");
-
+    
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/manpowerupdateapp',dataemu, {
         headers: options,
@@ -222,8 +222,8 @@ var nomhrs=this.nomhours;
       }, error => {
         //this.presentAlert('Alert','Server Error,Contact not loaded');
         console.log("error : " + JSON.stringify(error));
-
-      });
+    
+      });  
   }
 }
 }
@@ -231,7 +231,7 @@ var nomhrs=this.nomhours;
 async presentAlert(heading, tittle) {
   var alert = await this.alertController.create({
     header: heading,
-    backdropDismiss:false,
+
     message: tittle,
     buttons: ['OK']
   });
@@ -241,7 +241,11 @@ async presentAlert(heading, tittle) {
 
 
 closemodel(){
-
+     
   this.model.dismiss();
 }
 }
+
+
+
+

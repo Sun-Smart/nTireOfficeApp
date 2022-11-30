@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
 @Component({
@@ -23,8 +24,8 @@ export class VendorquotationPage implements OnInit {
   Vendors_Item_List:any = [];
   vendor_name:any;
   vendor_code:any;
-
-  constructor(private http: HttpClient, public Ipaddressservice: IpaddressService,) {
+ 
+  constructor(private activatedRoute: ActivatedRoute,private http: HttpClient, public Ipaddressservice: IpaddressService,) {
 
   }
 

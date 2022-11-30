@@ -45,13 +45,13 @@ export class LocationWiseAssetPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
     this.getZone();
     this.getAssetLocationCategory();
 
-    this.ZoneLoc="<< Select >>";
+    this.ZoneLoc= "<< Select >>";
     this.region="<< Select >>";
     this.branchLoc="<< Select >>";
     this.category="<< Select >>";
@@ -60,6 +60,7 @@ export class LocationWiseAssetPage implements OnInit {
    }
 
   ngOnInit() {
+    this.  getCards();
   }
 
   doRefresh(event){
@@ -289,13 +290,52 @@ export class LocationWiseAssetPage implements OnInit {
 
     });
   }
+  getCards(){
+    var datafinal = {
+      'functionidrep': this.functionID,
+      'fzoneid': 0,
+      'fregionid': 0,
+      'fbranchid': 0,
+      'fassetcatid': 0,
+      'fassetsubcatid': 0,
+      'access_token':window.localStorage['token'],
+      'userid':this.userID,
+      'usertoken':this.userToken
+    }
+    console.log(datafinal);
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetloctionfilterfinal',datafinal, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp)
+      this.detailfinals= resp;
+      this.detailfinalsLength= this.detailfinals.length;
+      if (this.detailfinals.length < 1) {
+        this.presentAlert("Alert","No Data Found");
+      }
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+
+    });
+  }
 
   resetlocationreport(){
-    this.ZoneLoc='';
-    this.region='';
-    this.branchLoc='';
-    this.category='';
-    this.subcategory='';
+    this.ZoneLoc= "<< Select >>";
+   
+      // this.ZoneLoc='';
+      this.region="<< Select >>";
+      this.detailregion=[];
+      this.branchLoc="<< Select >>";
+      this.detailbranch=[];
+      this.category="<< Select >>" ;
+      this.detailcategory=[];
+      this.subcategory="<< Select >>" ;
+      this.detailsubcategory = [];
     this.detailfinals= ''||[];
 
   }

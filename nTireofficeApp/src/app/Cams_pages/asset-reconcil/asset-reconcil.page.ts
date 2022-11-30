@@ -54,7 +54,7 @@ export class AssetReconcilPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
    this.cotenthide=true;

@@ -1542,6 +1542,7 @@ export class NewleadRetailPage implements OnInit {
     });
   }
   BranchLocationdata(branchid) {
+    console.log(branchid,'hai')
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -1710,6 +1711,7 @@ export class NewleadRetailPage implements OnInit {
 
     var index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'productID', productdata);
     this.curr_prod_category = this.productdataarray[index].productCatID;
+    console.log(this.curr_prod_category);
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -2225,7 +2227,7 @@ export class NewleadRetailPage implements OnInit {
       var data = {
         functionid: parseInt(window.localStorage["FUNCTION_ID"]),
         userTypeid: window.localStorage['TUM_USER_TYPE'],
-        branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
+        branchid: parseInt(window.localStorage['id']),
         appointmentDate: appdata,
         closedDate: this.closedDate,
         appointmentTime: strTime,

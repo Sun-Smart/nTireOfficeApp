@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner/ngx";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { CommonModule, DatePipe } from '@angular/common';
+import {  DatePipe } from '@angular/common';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
@@ -29,7 +29,7 @@ import { AppComponent } from '././app.component';
     NgxDatatableModule,
     FormsModule,
     Ng2SearchPipeModule,
-    CommonModule,
+    // CommonModule,
     
    ],
 

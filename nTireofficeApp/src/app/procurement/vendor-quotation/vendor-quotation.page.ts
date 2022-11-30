@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from 'src/app/Property_Pages/table-sample.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IpaddressService } from 'src/app/service/ipaddress.service';
 // import { TableSampleService } from '../table-sample.service';
 @Component({
   selector: 'app-vendor-quotation',
@@ -13,99 +15,48 @@ import { TableSampleService } from 'src/app/Property_Pages/table-sample.service'
 export class VendorQuotationPage implements OnInit {
   showedit:boolean=false
   options = { checkboxes: true }
-  data: any=[];
-  // columns: any = [];
-  // rows: any
+  // data: any=[];
+  sub;
+  data;
+  rfqid;
+  rfqcode;
+  quoref;
+  quoDate;
+  statusvalue;
+  Unitprice;
+  Qty;
+  prsId;
+  ExpDate;
+  itemCode;
+  UpdateVendor;
+  splitted;
+  constructor( private router: Router,private activatedRoute: ActivatedRoute, public Ipaddressservice: IpaddressService,private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) { 
 
+    this.sub = this.activatedRoute.params.subscribe(params => {
+      this.data = params;
+      this.rfqid = this.data.RFQID;
+      this.rfqcode = this.data.RFQCODE;
+      this.quoref = this.data.QUOTE_REF;
+      this.quoDate = this.data.QUOTE_DATE;
+      this.statusvalue = this.data.STATUSVAL;
+      this.Unitprice = this.data.UNIT_PRICE;
+      this.Qty = this.data.QUANTITY;
+      this.prsId = this.data.PRSID;
+      this.ExpDate = this.data.EXPECTEDDATE;
+      this.itemCode = this.data.item_Code;
+      var str = this.data.item_Code;
+      console.log(str)
+      this.splitted = str.split('~');
+      console.log(this.splitted);
+      this.splitted = this.splitted[0];
+      console.log('new', this.splitted)
 
+    });
 
-  rows = [
-    // { 'category': 'Escape Room', 'qty': '13', 'upprice': '12', 'disc': 'computer',
-    //  'tax1': '876576578', 'tax2': '654678', 'tc' :'50053' ,'basev' :'765788' ,'bidv' :'87688' ,'expdate' :'10/08/1992',
-    //  'delivarydate': '12/02/2020', 'action':'yes' },
-    // { name: 'Dany', gender: 'Male', company: 'KFC' },
-    // { name: 'Molly', gender: 'Female', company: 'Burger King' },
-
-     {
-          "category": "Escape Room",
-          "qty": 12,
-          "upprice": 12,
-          "disc": "computer",
-          "tax1": 876576578,
-          "tax2": 654678,
-          "tc": 50053,
-          "basev": 764578457,
-          "bidv": 5847654,
-          "expdate": "12/09/2022",
-          "delivarydate": "12/09/2022",
-          "action":"edit"
-      },
-      {
-        "category": "Escape Room",
-        "qty": 12,
-        "upprice": 43,
-        "disc": "personal computer",
-        "tax1": 876576578,
-        "tax2": 654678,
-        "tc": 672743,
-        "basev": 3434343,
-        "bidv": 878887,
-        "expdate": "12/09/2022",
-        "delivarydate": "12/09/2022",
-        "action":"edit"
-    }
-  ];
-  columns = [
-    { name: 'Category', width: "110"  },
-      { name: 'QTY', width: "120"  },
-      { name: 'Unit Price', width: "120"  },
-      { name: 'disc%', width: "120"  },
-      { name: 'tax1', width: "120"  },
-      { name: 'tax2', width: "110"  },
-      { name: 'Tc', width: "110"  },
-      { name: 'BaseV', width: "120"  },
-      { name: 'BidV', width: "120"  },
-      { name: 'ExpDate', width: "120"  },
-      { name: 'DelivaryDate', width: "120"  },
-      { name: 'Action', width: "120"  },
-  ];
-  constructor(private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) { }
+  }
 
   ngOnInit() {
-    this.data= [
-      {
-          "category": "Escape Room",
-          "qty": 12,
-          "upprice": 12,
-          "disc": "computer",
-          "tax1": 876576578,
-          "tax2": 654678,
-          "tc": 50053,
-          "basev": 764578457,
-          "bidv": 5847654,
-          "expdate": "12/09/2022",
-          "delivarydate": "12/09/2022",
-          "action":"edit"
-      },
-      {
-        "category": "Escape Room",
-        "qty": 12,
-        "upprice": 43,
-        "disc": "personal computer",
-        "tax1": 876576578,
-        "tax2": 654678,
-        "tc": 672743,
-        "basev": 3434343,
-        "bidv": 878887,
-        "expdate": "12/09/2022",
-        "delivarydate": "12/09/2022",
-        "action":"edit"
-    }
-    ]
-    // console.log(this.data)
-
-    // this.data = this.tableApi.getData();
-  // console.log(this.data)
+   
   }
 
   transCancel(){
@@ -114,5 +65,13 @@ export class VendorQuotationPage implements OnInit {
 
   edit(){
     this.showedit=true
+  }
+  updatevendorquot(prs:any,itemcode:any){
+    console.log(prs,itemcode)
+    // https://demo.herbie.ai/nTireMobileCoreAPI/api/ERP/get_Quotation_Items/16094/ITEM9
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_Quotation_Items/' + prs + '/' + itemcode).subscribe((res: any) => {
+     this.UpdateVendor = res;
+    })
+    this.router.navigate(['/updatevendorquot'])
   }
 }

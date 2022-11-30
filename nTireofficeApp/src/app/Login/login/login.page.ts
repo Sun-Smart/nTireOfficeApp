@@ -220,6 +220,9 @@ export class LoginPage implements OnInit {
                   localStorage.setItem('TUM_USER_ID', userdata['TUM_USER_ID']);
                   localStorage.setItem('TUM_USER_TYPE', userdata['TUM_USER_TYPE']);
                   localStorage.setItem('TUM_BRANCH_ID', userdata['TUM_BRANCH_ID']);
+                  localStorage.setItem('id', userdata['TUM_BRANCH_ID'])
+                  localStorage.setItem('TUM_BRANCH_ID',userdata['TUM_BRANCH_ID'])
+                  console.log('hai',userdata['TUM_BRANCH_ID'])
                   localStorage.setItem('TUM_BRANCH_CODE', userdata['BRANCH_CODE']);
                   localStorage.setItem('TUM_USER_CODE', userdata['TUM_USER_CODE']);
                   localStorage.setItem('TUM_USER_NAME', userdata['TUM_USER_NAME']);
