@@ -62,7 +62,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="6">
         <ion-label>Contact Name<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input class="form-control" [(ngModel)]="contactname"></ion-input>
+        <ion-input class="form-control" [(ngModel)]="contactname" pattern="[a-zA-Z]" (keypress)="omit_special_char($event)"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="6">
         <ion-label>Designation<span style="color:red;margin-left: 5px;">*</span></ion-label>

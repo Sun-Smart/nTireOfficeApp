@@ -1513,8 +1513,8 @@ export class NewleadRetailPage implements OnInit {
   dat_valid = {
     currentDate: new Date()
   };
-  ngOnInit(): any {
-       // this.Getnextaction('');
+  ngOnInit() {
+        // this.Getnextaction('');
 
   }
 
@@ -1710,6 +1710,8 @@ export class NewleadRetailPage implements OnInit {
 
     var index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'productID', productdata);
     this.curr_prod_category = this.productdataarray[index].productCatID;
+    console.log( this.curr_prod_category ,"sss");
+    
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -1878,6 +1880,12 @@ export class NewleadRetailPage implements OnInit {
     if (!format.test(elementChecker)) {
       this.remarks = elementChecker.slice(0, -1);
     }
+  }
+
+  omit_special_chart(event) {
+    var k;
+    k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
   }
   pickImage() {
 

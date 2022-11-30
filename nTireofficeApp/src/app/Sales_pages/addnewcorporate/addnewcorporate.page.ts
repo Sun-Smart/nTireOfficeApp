@@ -96,10 +96,45 @@ debugger
 
     await alert.present();
   }
-  clearCorporateForm() {
-    this.companyname = undefined;
-    this.cropaddress = undefined;
+
+
+  async clearCorporateForm() {
+    console.log('click check');
+
+    // if ((this.branch == '<< Select >>' && this.branchlocation == '<< Select >>' && this.productdata == '<< Select >>' && this.Salutation == '<< Select >>' && this.firstname == undefined || this.lastname == undefined && this.mobile == undefined && this.callpriority == undefined && this.callrating == '<< Select >>' && this.callnature == '<< Select >>' && this.callstage == '<< Select >>' && this.nextaction == '<< Select >>' && this.leadby == '<< Select >>' && this.remarks == undefined)) {
+
+    // }
+    // else {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'No',
+          role: 'no',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.companyname = undefined;
+            this.cropaddress = undefined;
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+    // }
   }
+  // clearCorporateForm() {
+  //   this.companyname = undefined;
+  //   this.cropaddress = undefined;
+  // }
   async AddContact() {
     const modal = await this.modalController.create({
       component: AddcontactPage,
