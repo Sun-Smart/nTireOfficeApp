@@ -113,7 +113,7 @@ export class AddcontactPage implements OnInit {
 
     }
     this.function_id = window.localStorage["FUNCTION_ID"];
-    this.branch_id = window.localStorage['TUM_BRANCH_ID'];
+    this.branch_id = window.localStorage['id'];
     this.user_id = window.localStorage['TUM_USER_ID'];
     this.userType_id = window.localStorage['TUM_USER_TYPE'];
     if (this.officePhone == '') {

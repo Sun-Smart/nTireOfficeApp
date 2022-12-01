@@ -41,8 +41,8 @@ export class HeatmapPage implements OnInit {
     this.Getbranches();
     this.username=localStorage.getItem('TUM_USER_NAME');
     this.segmentdata = "11";
-    this.branchid = window.localStorage['TUM_BRANCH_ID'];
-    this.branch = window.localStorage['TUM_BRANCH_ID'];
+    this.branchid = window.localStorage['id'];
+    this.branch = window.localStorage['id'];
     this.status = "3";
     this.status1 = "3";
     this.getbranchusers(this.branchid, this.status);
@@ -96,9 +96,10 @@ export class HeatmapPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getbranchusers', obj, {
       headers: options,
     }).subscribe(resp => {
-      console.log("getbranchusers : " + JSON.stringify(resp));
-      this.branchuser_data1 = JSON.stringify(resp);
-      this.branchuser_data1 = JSON.parse(this.branchuser_data1);
+      console.log(resp)
+     
+      this.branchuser_data1 = resp;
+      this.branchuser_data1 = this.branchuser_data1;
       this.branchuser_data1.forEach(element => {
         this.branchuser_data.push(element);
       });

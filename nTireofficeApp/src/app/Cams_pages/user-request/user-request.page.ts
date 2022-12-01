@@ -305,11 +305,13 @@ export class UserRequestPage implements OnInit {
       this.priority = '';
       this.noofchars = '';
       this.categoryissue = '';
+      this.getReferMax();
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
 
     });
+    
 
   }
 

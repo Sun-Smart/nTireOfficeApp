@@ -62,7 +62,7 @@ export class DashboardPage implements OnInit {
     this.menuCtrl.enable(true, 'first');
     this.Getbranches();
 
-    var branchid = localStorage.getItem('TUM_BRANCH_ID');
+    var branchid = localStorage.getItem('id');
     this.branch_txt = localStorage.getItem('TUM_BRANCH_CODE');
 
     this.Stagewisegraph(branchid);
@@ -108,7 +108,7 @@ export class DashboardPage implements OnInit {
         console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
       });
 
-      this.branch = localStorage.getItem('TUM_BRANCH_ID');
+      this.branch = localStorage.getItem('id');
 
     }, error => {
 

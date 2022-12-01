@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>My Meetings</ion-title>
+    <ion-title style="margin-left: 35px !important;">My Meetings</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,8 +14,8 @@
       <ion-row>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">From Date</ion-label>
-          <ion-input placeholder="From Date" type="date" class="form-control" [(ngModel)]="fromdate">
-            <ion-icon name="calendar" slot="end" style="padding: 5px;position: fixed;"></ion-icon>
+          <ion-input placeholder="" type="date" class="form-control" [(ngModel)]="fromdate">
+            <!-- <ion-icon name="calendar" slot="end" style="padding: 5px;position: fixed;"></ion-icon> -->
           </ion-input>
         </ion-col>
 
@@ -37,7 +37,7 @@
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label>To Date</ion-label>
           <ion-input type="date" class="form-control" [(ngModel)]="todate">
-            <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+            <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
           </ion-input>
 
           <!-- <ion-datetime-button datetime="datetime"  ></ion-datetime-button>
@@ -83,16 +83,17 @@
                 <ion-col size="6">
                   <ion-label class="card_header_text">Meeting Details</ion-label>
                 </ion-col>
+                <ion-col size="6">
+                  <ion-label class="card_header_text">:&nbsp;{{item.BRANCH_DESC}}</ion-label>
+                </ion-col>
               </ion-row>
             </ion-card-header>
             <ion-card-content>
               <ion-row>
-                <ion-col size="6">
+                <!-- <ion-col size="6">
                   <ion-label class="card_content_label labelHead-text">Branch</ion-label>
-                </ion-col>
-                <ion-col size="6">
-                  <ion-label class="labelData-text">:&nbsp;{{item.BRANCH_DESC}}</ion-label>
-                </ion-col>
+                </ion-col> -->
+               
                 <ion-col size="6">
                   <ion-label class="card_content_label labelHead-text">Customer Name</ion-label>
                 </ion-col>

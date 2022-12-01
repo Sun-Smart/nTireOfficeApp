@@ -13,18 +13,29 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <select style="width:100%" [(ngModel)]="branch" class="form-control">
           <option value="">Please Select Branch</option>
-          <option *ngFor="let branchlist of branchlist1; let i = index" value="{{branchlist.BRANCH_ID}}">
+          <option *ngFor="let branchlist of branchlist; let i = index" value="{{branchlist.BRANCH_ID}}">
             {{branchlist.BRANCH_DESC}}</option>
         </select>
         <!-- <ion-input type="text" class="form-control"  [(ngModel)]="brach"></ion-input> -->
       </ion-col>
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>From Date</ion-label>
-        <ion-input type="date" class="form-control" [(ngModel)]="fromdate"></ion-input>
+        <input type="date" class="form-control" [(ngModel)]="fromdate">
+          <ion-icon name="calendar-outline" style="    position: relative;
+          color: black;
+          float: right;
+          bottom: 35px;"></ion-icon>
+        
+    
       </ion-col>
+   
       <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
         <ion-label>To Date</ion-label>
-        <ion-input type="date" class="form-control" [(ngModel)]="todate"></ion-input>
+        <input type="date" class="form-control" [(ngModel)]="todate">
+        <ion-icon name="calendar-outline" style="position: relative;
+        color: black; 
+        float: right;
+        bottom: 35px;"></ion-icon>
       </ion-col>
       <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12" style="text-align:center">
         <ion-button (click)="searchAppointment(val,branch,fromdate,todate)" style="--background: #11c1f3" size="full">

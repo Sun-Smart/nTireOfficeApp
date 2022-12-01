@@ -39,7 +39,7 @@ export class AddnewcorporatePage implements OnInit {
     var corp = {
       // eslint-disable-next-line @typescript-eslint/quotes
       function_id: window.localStorage["FUNCTION_ID"],
-      branch_id: window.localStorage['TUM_BRANCH_ID'],
+      branch_id: window.localStorage['id'],
       user_id: window.localStorage['TUM_USER_ID'],
       userType_id: window.localStorage['TUM_USER_TYPE'],
       pincode: 0,

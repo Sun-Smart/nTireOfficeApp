@@ -69,11 +69,14 @@ export class MymeetingPage implements OnInit {
   appointmentByLead = [];
   fromdate;
   todate;
-  showhidenorecords:boolean = true;
+  showhidenorecords:boolean = false
+  ;
   @ViewChild('map') mapElement: ElementRef;
   username:any;
   chosenDate: any;
   data: any;
+  currentDate: any;
+  allmeetinglocationnew: string;
 
 
 
@@ -122,171 +125,208 @@ export class MymeetingPage implements OnInit {
     // var year1 = date1.getFullYear();
     to_datemeet = ('0' + date1.getDate()).slice(-2) + '/' + ('0' + (date1.getMonth() + 1)).slice(-2) + '/' + date1.getFullYear();
 
+     if (from_datemeet == undefined) {
+           this.presentAlert1('', 'Please Select From Date');
+         }
+         else if (to_datemeet == undefined) {
+          this.presentAlert1('', 'Please Select To Date');
+        }
+        else if (from_datemeet > to_datemeet) {
+         this.presentAlert1('', 'From Date should not be Greater than To Date');
+        } 
+     
+
+
     this.token = window.localStorage['token'];
     var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['token'] };
 
     var getapppostJSONtmp = { user_id: userid, fdate: from_datemeet, tdate: to_datemeet }
     var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
     console.log("getapppostJSON : " + JSON.stringify(getapppostJSON));
-
-    if (this.allmeetinglocation == '') {
-      debugger; 
-      this.NoRecord = "No Meeting Found";
-      this.showhidenorecords = true;
-      $('#mapDetailsTable').hide();
-      // $('#showdivs').hide();
-
-    }    else if (from_datemeet == undefined) {
-      this.presentAlert1('', 'Please Select From Date');
-    }
-    else if (to_datemeet == undefined) {
-      this.presentAlert1('', 'Please Select To Date');
-    }
-    else if (from_datemeet > to_datemeet) {
-      this.presentAlert1('', 'From Date should not be Greater than To Date');
-    } 
-    else {
-       this.showhidenorecords = false;
-
     const header = new Headers();
-    header.append("Content-Type", "application/json");
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/',getapppostJSON, {
-      headers: options,
-    }).subscribe(resp => {
-      debugger; 
-      this.allmeetinglocation = JSON.stringify(resp);
-      this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
-      this.allmeetinglocation = this.allmeetinglocation;
-      // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
-      console.log(this.allmeetinglocation);
+      header.append("Content-Type", "application/json");
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/',getapppostJSON, {
+        headers: options,
+      }).subscribe(resp => {
+        debugger; 
+        this.allmeetinglocationnew = JSON.stringify(resp);
+        this.allmeetinglocation = JSON.parse(this.allmeetinglocationnew);
+        this.allmeetinglocation = this.allmeetinglocation;
+        // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
+        console.log(this.allmeetinglocation);
+        if (this.allmeetinglocationnew == ''|| this.allmeetinglocationnew == undefined){
+          this.NoRecord = "No Meeting Found";
+              this.showhidenorecords = true;
+              $('#mapDetailsTable').hide();
+              // $('#showdivs').hide();
+           }  else {
+            this.showhidenorecords = false;
+           }
+      });
+     
+
+  //   if (this.allmeetinglocation == '' || this.allmeetinglocation == undefined) {
+  //     debugger; 
+  //     this.NoRecord = "No Meeting Found";
+  //     this.showhidenorecords = true;
+  //     $('#mapDetailsTable').hide();
+  //     // $('#showdivs').hide();
+
+  //   }    else if (from_datemeet == undefined) {
+  //     this.presentAlert1('', 'Please Select From Date');
+  //   }
+  //   else if (to_datemeet == undefined) {
+  //     this.presentAlert1('', 'Please Select To Date');
+  //   }
+  //   else if (from_datemeet > to_datemeet) {
+  //     this.presentAlert1('', 'From Date should not be Greater than To Date');
+  //   } 
+  // else if (to_datemeet <= this.currentDate){
+  //   this.presentAlert1('','To Date should be current Date')
+  // }
+  //   else {
+  //      this.showhidenorecords = false;
+
+  //   const header = new Headers();
+  //   header.append("Content-Type", "application/json");
+  //   let options = new HttpHeaders().set('Content-Type', 'application/json');
+  //   this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/',getapppostJSON, {
+  //     headers: options,
+  //   }).subscribe(resp => {
+  //     debugger; 
+  //     this.allmeetinglocation = JSON.stringify(resp);
+  //     this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
+  //     this.allmeetinglocation = this.allmeetinglocation;
+  //     // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
+  //     console.log(this.allmeetinglocation);
 
        
-        // $('#showdivs').show();
-        this.NoRecord = "";
+  //       // $('#showdivs').show();
+  //       this.NoRecord = "";
 
-        for (var i = 0; i < this.allmeetinglocation.length; i++) {
+  //       for (var i = 0; i < this.allmeetinglocation.length; i++) {
 
-          var latlong = this.allmeetinglocation[i].TCC_LOCATION_TO_MEET;
+  //         var latlong = this.allmeetinglocation[i].TCC_LOCATION_TO_MEET;
 
-          var regex = /^[0-9.,]+$/;
-          if (latlong == '' || latlong == null) {
+  //         var regex = /^[0-9.,]+$/;
+  //         if (latlong == '' || latlong == null) {
 
-          } else {
-
-
-            if (latlong.match(regex)) {
-              console.log("its latlong")
-              window.localStorage['meet_loc'] = latlong
-              // return false;
-            }
-            else {
-              this.http.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + latlong + '&key=AIzaSyAoA0tJjXYQr7xGY5MuEezEQHfSas9n9T4', {
-                headers: options,
-              }).subscribe(resp => {
-                window.localStorage['meet_loc'] = resp['results'][0].geometry.location.lat + ',' + resp['results'][0].geometry.location.lng;
-                console.log(window.localStorage['meet_loc'])
-
-              });
-
-            }
-          }
-          if (window.localStorage['meet_loc'] != null || window.localStorage['meet_loc'] != 'null' || window.localStorage['meet_loc'] != undefined || window.localStorage['meet_loc'] != 'undefined') {
-            console.log(this.allmeetinglocation[i])
-            if (window.localStorage['meet_loc']) {
-              var index = window.localStorage['meet_loc'].split(",");
-              console.log(index);
-              var lat = index[0];
-              var lang = index[1];
-            }
-
-            var statis_array = [];
-
-            if (this.isValidLat(lat) && this.isValidLng(lang)) {
-
-              var date1 = new Date(this.allmeetinglocation[i].TCC_NEXT_CALL_DATE);
-              var meetDate = ('0' + date1.getDate()).slice(-2) + '/' + ('0' + (date1.getMonth() + 1)).slice(-2) + '/' + date1.getFullYear();
-              var parts = this.allmeetinglocation[i].TCC_NEXT_CALL_DATE.split('T');
-              var parts2 = parts[1];
-              var parts3 = parts2.split(':');
-              var date = new Date(0, 0, 0, parts3[0], parts3[1], 0); var meetTime = this.datePipe.transform(date, 'hh:mm a');
-              var meetDateTime = meetDate + ' ' + meetTime;
-              console.log(meetDateTime)
-              statis_array.push('meeting');
-              statis_array.push(lat);
-              statis_array.push(lang);
-              statis_array.push(this.allmeetinglocation[i].TCC_REMARKS);
-              statis_array.push(this.allmeetinglocation[i].TCC_REMARKS_PRIVATE);
-              statis_array.push(this.allmeetinglocation[i].TCC_NEXT_CALL_DATE);
-
-              var d = new Date(this.allmeetinglocation[i].START_TIME);
-
-              var h = this.addZero(d.getHours());
-              var m = this.addZero(d.getMinutes());
-              var s = this.addZero(d.getSeconds());
-
-              this.starttime = h + ":" + m + ":" + s;
-
-              statis_array.push(this.starttime);
-              statis_array.push(this.allmeetinglocation[i].CustFullName);
-              statis_array.push(this.allmeetinglocation[i].CUST_LEAD_ID);
-              statis_array.push(this.allmeetinglocation[i].MOBILE);
-              // statis_array.push(this.allmeetinglocation[i].Meeting_address);
-              statis_array.push(this.currAddress);
-              statis_array.push(meetDateTime);
-              var obj = {
-                "lat": lat,
-                "lng": lang
-              };
-              console.log(statis_array)
-              locations.push(statis_array);
-              this.meeting = statis_array;
-
-              console.log(this.meeting)
-              console.log(locations)
+  //         } else {
 
 
-            }
-          }
+  //           if (latlong.match(regex)) {
+  //             console.log("its latlong")
+  //             window.localStorage['meet_loc'] = latlong
+  //             // return false;
+  //           }
+  //           else {
+  //             this.http.post('https://maps.googleapis.com/maps/api/geocode/json?address=' + latlong + '&key=AIzaSyAoA0tJjXYQr7xGY5MuEezEQHfSas9n9T4', {
+  //               headers: options,
+  //             }).subscribe(resp => {
+  //               window.localStorage['meet_loc'] = resp['results'][0].geometry.location.lat + ',' + resp['results'][0].geometry.location.lng;
+  //               console.log(window.localStorage['meet_loc'])
 
-        }
+  //             });
+
+  //           }
+  //         }
+  //         if (window.localStorage['meet_loc'] != null || window.localStorage['meet_loc'] != 'null' || window.localStorage['meet_loc'] != undefined || window.localStorage['meet_loc'] != 'undefined') {
+  //           console.log(this.allmeetinglocation[i])
+  //           if (window.localStorage['meet_loc']) {
+  //             var index = window.localStorage['meet_loc'].split(",");
+  //             console.log(index);
+  //             var lat = index[0];
+  //             var lang = index[1];
+  //           }
+
+  //           var statis_array = [];
+
+  //           if (this.isValidLat(lat) && this.isValidLng(lang)) {
+
+  //             var date1 = new Date(this.allmeetinglocation[i].TCC_NEXT_CALL_DATE);
+  //             var meetDate = ('0' + date1.getDate()).slice(-2) + '/' + ('0' + (date1.getMonth() + 1)).slice(-2) + '/' + date1.getFullYear();
+  //             var parts = this.allmeetinglocation[i].TCC_NEXT_CALL_DATE.split('T');
+  //             var parts2 = parts[1];
+  //             var parts3 = parts2.split(':');
+  //             var date = new Date(0, 0, 0, parts3[0], parts3[1], 0); var meetTime = this.datePipe.transform(date, 'hh:mm a');
+  //             var meetDateTime = meetDate + ' ' + meetTime;
+  //             console.log(meetDateTime)
+  //             statis_array.push('meeting');
+  //             statis_array.push(lat);
+  //             statis_array.push(lang);
+  //             statis_array.push(this.allmeetinglocation[i].TCC_REMARKS);
+  //             statis_array.push(this.allmeetinglocation[i].TCC_REMARKS_PRIVATE);
+  //             statis_array.push(this.allmeetinglocation[i].TCC_NEXT_CALL_DATE);
+
+  //             var d = new Date(this.allmeetinglocation[i].START_TIME);
+
+  //             var h = this.addZero(d.getHours());
+  //             var m = this.addZero(d.getMinutes());
+  //             var s = this.addZero(d.getSeconds());
+
+  //             this.starttime = h + ":" + m + ":" + s;
+
+  //             statis_array.push(this.starttime);
+  //             statis_array.push(this.allmeetinglocation[i].CustFullName);
+  //             statis_array.push(this.allmeetinglocation[i].CUST_LEAD_ID);
+  //             statis_array.push(this.allmeetinglocation[i].MOBILE);
+  //             // statis_array.push(this.allmeetinglocation[i].Meeting_address);
+  //             statis_array.push(this.currAddress);
+  //             statis_array.push(meetDateTime);
+  //             var obj = {
+  //               "lat": lat,
+  //               "lng": lang
+  //             };
+  //             console.log(statis_array)
+  //             locations.push(statis_array);
+  //             this.meeting = statis_array;
+
+  //             console.log(this.meeting)
+  //             console.log(locations)
+
+
+  //           }
+  //         }
+
+  //       }
 
 
 
       
-      if (locations != []) {
-        var lat_lng = [];
-        this.showmap = true;
-        var waypts = [];
+  //     if (locations != []) {
+  //       var lat_lng = [];
+  //       this.showmap = true;
+  //       var waypts = [];
 
-        for (var i = 0; i < locations.length; i++) {
+  //       for (var i = 0; i < locations.length; i++) {
 
-          if (locations[i][0] == 'meeting') {
-            var data = locations[i];
-            var myLatlng = new google.maps.LatLng(data[1], data[2]);
+  //         if (locations[i][0] == 'meeting') {
+  //           var data = locations[i];
+  //           var myLatlng = new google.maps.LatLng(data[1], data[2]);
 
-            lat_lng.push(myLatlng);
+  //           lat_lng.push(myLatlng);
 
-          }
-        }
+  //         }
+  //       }
 
-      } else {
-        this.showmap = false;
-        alert("No Meetings");
-
-
-      }
-      google.maps.event.addDomListener(window, 'load');
+  //     } else {
+  //       this.showmap = false;
+  //       alert("No Meetings");
 
 
+  //     }
+  //     google.maps.event.addDomListener(window, 'load');
 
-    }, error => {
 
-      console.log("error : " + JSON.stringify(error));
 
-    });
+  //   }, error => {
 
-  }
+  //     console.log("error : " + JSON.stringify(error));
+
+  //   });
+
+  // }
 
   }
   initMap(markers) {
@@ -694,7 +734,14 @@ debugger;
 
 
   }
-
+  // todateValidation(todate:any){
+  //   debugger;
+  //   console.log(todate);
+  //   this.currentDate =this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+  //   if( this.currentDate >= todate){
+  //     this.presentAlert1('Alert','todate should not be above the current date')
+  //   }
+  // }
   async updateappointment() {
 
     const modal = await this.modalController.create({

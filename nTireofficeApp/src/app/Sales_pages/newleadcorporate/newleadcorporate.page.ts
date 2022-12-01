@@ -155,7 +155,7 @@ export class NewleadcorporatePage implements OnInit {
     this.ContactName = "<<Select>>";
     this.showmap = true;
     this.function = localStorage.getItem('FUNCTION_DESC');
-    this.branch = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    this.branch = parseInt(localStorage.getItem('id'));
     this.branch = '<< Select >>';
     this.BranchLocationdata(this.branch);
     // this.branch="<< Select>>"
@@ -237,7 +237,10 @@ export class NewleadcorporatePage implements OnInit {
     }
   }
   getItems(ev: any) {
+    debugger;
     console.log("one");
+
+
     this.companyname1 = [];
     if (ev.target.value == "") {
       this.companyname1 = [];
@@ -896,7 +899,7 @@ export class NewleadcorporatePage implements OnInit {
         var data = {
           functionid: parseInt(window.localStorage["FUNCTION_ID"]),
           userTypeid: parseInt(window.localStorage['TUM_USER_TYPE']),
-          branch_id: parseInt(window.localStorage['TUM_BRANCH_ID']),
+          branch_id: parseInt(window.localStorage['id']),
           ContactName: this.ContactName,
           mobile: this.mobile,
           OffPhone: this.OffPhone,
@@ -947,6 +950,7 @@ export class NewleadcorporatePage implements OnInit {
             var resultstrarray = this.result.split(" ");
             var lead_id_new = resultstrarray[4];
             lead_id_new = parseInt(lead_id_new);
+            console.log(lead_id_new)
             this.lead_id = lead_id_new;
             if (this.appointmentLatLong == undefined || this.appointmentLatLong == '') {
               this.appointmentLatLong = 0;
@@ -954,7 +958,9 @@ export class NewleadcorporatePage implements OnInit {
 
 
             var obj = {
-              'LeadID': lead_id_new, 'LatLong': this.appointmentLatLong, 'Address': this.placetomeet,
+              'LeadID': lead_id_new, 
+              'LatLong': this.appointmentLatLong, 
+              'Address': this.placetomeet,
               access_token: window.localStorage['token'],
               userid: parseInt(window.localStorage['TUM_USER_ID']),
               'usertoken': window.localStorage['usertoken'],
@@ -1274,7 +1280,7 @@ export class NewleadcorporatePage implements OnInit {
     // jqueryscope.contact.ContactName= obj.ContactName;
   }
   timeValidation(val) {
-
+debugger;
     var element = val;
     var compare_dates = function (date1, date2) {
       if (date1 > date2) return true;

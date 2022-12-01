@@ -135,7 +135,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     TCC_LEAD_RATING: "",
     TCM_CAMPAIGN_SHORTDESC: "",
     TCC_LEAD_BY: "",
-    branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
+    branchid: parseInt(window.localStorage['id']),
     CUST_FNAME: "",
   };
   geoencoderOptions: NativeGeocoderOptions = {
@@ -158,7 +158,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.branchid = parseInt(window.localStorage['TUM_BRANCH_ID']);
+    this.penleadfilter.branchid = parseInt(window.localStorage['id']);
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.penleadfilter.TCC_CUSTOMER_ID = 0;
     this.penleadfilter.CUST_LNAME = '';
@@ -265,7 +265,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
 
     });
-    this.penleadfilter.branchid = parseInt(window.localStorage['TUM_BRANCH_ID']);
+    this.penleadfilter.branchid = parseInt(window.localStorage['id']);
   }
 
   GetProduct() {
@@ -465,6 +465,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
 
   callforalldetails(values) {
+    debugger;
     this.penleadfilter.TCC_CUST_LEAD_ID = undefined;
     this.presentLoadingWithOptions();
     this.segment = values;
@@ -545,7 +546,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       PRIORITY: "",
       RATING: "",
       LEADBY: "",
-      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
+      branchid: parseInt(window.localStorage['id']),
       CUST_FNAME: "",
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,

@@ -145,7 +145,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     TCC_LEAD_RATING: "",
     TCM_CAMPAIGN_SHORTDESC: "",
     TCC_LEAD_BY: "",
-    branchid: window.localStorage['TUM_BRANCH_ID'],
+    branchid: window.localStorage['id'],
     CUST_FNAME: "",
   };
   geoencoderOptions: NativeGeocoderOptions = {
@@ -170,7 +170,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.segmentdata = 'new';
     // this.commonapi_sales = 'http://herbieai.com:88/COMMONAPI/uploads/sales/';
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
-    this.penleadfilter.branchid = window.localStorage['TUM_BRANCH_ID'];
+    this.penleadfilter.branchid = window.localStorage['id'];
     this.penleadfilter.TCC_CUSTOMER_ID = 0;
     this.penleadfilter.TCC_CUST_LEAD_ID = '';
     this.username = localStorage.getItem('TUM_USER_NAME');
@@ -279,7 +279,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
 
 
     });
-    this.penleadfilter.branchid = parseInt(localStorage.getItem('TUM_BRANCH_ID'));
+    this.penleadfilter.branchid = parseInt(localStorage.getItem('id'));
   }
 
   GetProduct() {
@@ -390,7 +390,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branchid: parseInt(window.localStorage['TUM_BRANCH_ID']),
+      branchid: parseInt(window.localStorage['id']),
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -604,7 +604,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         RATING: "",
         LEADBY: "",
 
-        branchid: window.localStorage['TUM_BRANCH_ID'],
+        branchid:parseInt(window.localStorage['id']),
         Name: "", CAMPAIGNNAME: "",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -802,7 +802,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       LEADBY: "",
       Name: "",
       CAMPAIGNNAME: "",
-      branchid: window.localStorage['TUM_BRANCH_ID'],
+      branchid: parseInt(window.localStorage['id']),
       CUST_FNAME: this.penleadfilter.CUST_LNAME,
       CUST_LNAME: this.penleadfilter.CUST_LNAME,
       MOBILE: this.penleadfilter.MOBILE,
