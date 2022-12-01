@@ -60,8 +60,8 @@
             </select>
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <div class="form-control" style="padding: 12px;display: flex;">
-              <ion-checkbox color="primary" [(ngModel)]="reporting" [value]="false"></ion-checkbox>
+            <div style="padding: 12px;display: flex;">
+              <ion-checkbox  class="checkboxbg" slot="start" [(ngModel)]="reporting" [value]="false"></ion-checkbox>
               <ion-label style="font-weight:normal;padding-left: 20px;padding-top: 3px;">Reporting To</ion-label>
             </div>
 
@@ -205,13 +205,20 @@
                 {{items.call_time}}</b></span>
 
           </ion-col>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <ion-label></ion-label>Priority&nbsp;&nbsp;&nbsp;<span
-              style="font-size: 14px;color:green;font-weight: 900;">{{items.PriorityText}}</span>
+          <ion-col size="6">
+            <ion-label></ion-label> Priority
+             
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            <ion-label></ion-label>Rating&nbsp;&nbsp;&nbsp;<span
-              style="font-size: 14px;color:red;font-weight: 900;">{{items.Ratingtext}}</span>
+            <b  style="font-size: 14px;color:green;"> {{items.PriorityText}}</b>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-label></ion-label> Rating
+             
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <b  style="font-size: 14px;color:red;"> {{items.Ratingtext}}</b>
           </ion-col>
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <a (click)="showmore(i,items.CALL_ID)">
