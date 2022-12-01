@@ -15,7 +15,7 @@
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">From Date</ion-label>
           <ion-input placeholder="From Date" type="date" class="form-control" [(ngModel)]="fromdate">
-            <ion-icon name="calendar" slot="end" style="padding: 5px;position: fixed;"></ion-icon>
+            <ion-icon name="calendar" slot="end" style="padding: 5px;position: fixed;padding-left: 32%;"></ion-icon>
           </ion-input>
         </ion-col>
 
@@ -37,8 +37,9 @@
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <ion-label>To Date</ion-label>
           <ion-input type="date" class="form-control" [(ngModel)]="todate">
-            <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+            <ion-icon name="calendar" slot="end" style="padding: 5px;position: fixed;padding-left: 32%;"></ion-icon>
           </ion-input>
+          
 
           <!-- <ion-datetime-button datetime="datetime"  ></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true">
