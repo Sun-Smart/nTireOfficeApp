@@ -756,7 +756,7 @@ export class NewleadcorporatePage implements OnInit {
     debugger;
     if ((this.branch == '<< Select >>' || this.productdata == '<< Select >>' || this.company == undefined || this.ContactName == undefined || this.mobile == undefined || this.company == undefined || this.ContactName == undefined || this.callpriority == undefined || this.callrating == '<< Select >>' || this.callnature == '<< Select >>' || this.callstage == '<< Select >>' || this.nextaction == '<< Select >>' || this.leadby == '<< Select >>' || this.remarks == undefined) || (this.nextaction == '1' && (this.placetomeet == undefined || this.followtime == undefined || this.followdate == undefined)) || (this.nextaction == '2' && (this.followtime == undefined || this.followdate == undefined)) || (this.leadby == 'E' && (this.Employeeid == undefined)) || (this.leadby == 'C' && (this.custname == undefined)) || (this.leadby == 'P' && (this.leadByval == undefined))) {
 
-      this.presentAlert('', 'Enter Mandatory Fields');
+      this.presentAlert1('', 'Enter Mandatory Fields');
     }
     else {
       if (window.localStorage['old_company_status'] == 'true') {
@@ -1137,13 +1137,6 @@ export class NewleadcorporatePage implements OnInit {
       backdropDismiss: false,
       buttons: [
         {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
           text: 'Yes',
           handler: () => {
             this.branch = "<< Select >>";
@@ -1177,6 +1170,13 @@ export class NewleadcorporatePage implements OnInit {
             this.currentlocation = undefined;
             this.remarks = undefined;
             this.showmap = true;
+          }
+        }, {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
           }
         }
       ]
@@ -1239,6 +1239,17 @@ export class NewleadcorporatePage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
       backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
