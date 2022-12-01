@@ -83,7 +83,8 @@ filter : boolean = true;
   prscategory: any;
   getpriority: string;
   // release
-
+  itemCategory;
+  itemsubcategory;
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
@@ -191,7 +192,7 @@ filter : boolean = true;
             OTHERCHARGES: "",
             item_short_desc: this.getshort,
             item_long_desc: this.getshort,
-            REMARKS: "",
+            REMARKS: this.getshort,
             CategoryID: "",
             SubCategoryID: "",
             prsDetailID: "",
@@ -287,6 +288,8 @@ filter : boolean = true;
         this.unitprice = this.getitemdata[0].Price
       this.itemdescription = this.getitemdata[0].item_long_desc,
         this.getitemid = this.getitemdata[0].item_id
+        this.itemCategory = this.getitemdata[0].itemCategory,
+        this.itemsubcategory = this.getitemdata[0].itemSubCategory
     });
   }
 
@@ -431,7 +434,7 @@ this.filter = false;
     this.showlineItems = false
     this.showlineItems = !this.showlineItems;
     if (this.Category == "I") {
-      this.getcategory = "Item"
+      this.getcategory = "Items"
     }
     if (this.Category == "S") {
       this.getcategory = "Service"
@@ -468,9 +471,9 @@ this.filter = false;
 
       item_short_desc: this.Description,
       item_long_desc: this.itemdescription,
-      REMARKS: "",
-      CategoryID: "",
-      SubCategoryID: "",
+      REMARKS: this.Description,
+      CategoryID:this.itemCategory,
+      SubCategoryID: this.itemsubcategory,
       prsDetailID: "",
       FreightVALUE: "",
       FreightID: "",
@@ -628,7 +631,7 @@ this.filter = false;
       "ipaddress": "0",
       "reasonpurchase": this.reasonpurchase,
       "netamount": this.netprice,
-      "currency": "0",
+      "currency": "1",
       "requestcomments": this.rfpcomments,
       "isbid": "0",
       "prstype": "0",
@@ -703,7 +706,7 @@ this.filter = false;
       "ipaddress": "0",
       "reasonpurchase": this.reasonpurchase,
       "netamount": this.netprice,
-      "currency": "0",
+      "currency": "1",
       "requestcomments": this.rfpcomments,
       "isbid": "0",
       "prstype": "0",

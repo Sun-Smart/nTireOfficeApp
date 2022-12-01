@@ -17,7 +17,7 @@
             <ion-label class="labelHead-text"> RFQ Code </ion-label>
           </ion-col>
           <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text"> : RFQ5656</ion-label>
+            <ion-label class="labelData-text"> : {{this.rfqcode}}</ion-label>
           </ion-col>
 
           <ion-col size="7" class="col_height">
@@ -27,7 +27,7 @@
           </ion-col>
           <ion-col size="5" class="col_height">
 
-            <ion-label class="labelData-text">: po930</ion-label>
+            <ion-label class="labelData-text">: {{this.quoref}}</ion-label>
 
           </ion-col>
 
@@ -39,7 +39,7 @@
 
           </ion-col>
           <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text">: Flat for sale</ion-label>
+            <ion-label class="labelData-text">: {{this.quoDate}}</ion-label>
 
           </ion-col>
 
@@ -50,7 +50,7 @@
           </ion-col>
           <ion-col size="5" class="col_height">
 
-            <ion-label class="labelData-text">: finding</ion-label>
+            <ion-label class="labelData-text">:{{this.statusvalue}}</ion-label>
 
           </ion-col>
 
@@ -60,7 +60,7 @@
 
           </ion-col>
           <ion-col size="5" class="col_height">
-            <ion-label class="labelData-text">: 765766</ion-label>
+            <ion-label class="labelData-text">: </ion-label>
 
           </ion-col>
 
@@ -71,7 +71,7 @@
           </ion-col>
           <ion-col size="5" class="col_height">
 
-            <ion-label class="labelData-text">: 8766</ion-label>
+            <ion-label class="labelData-text">: </ion-label>
           </ion-col>
           <ion-col size="7" class="col_height">
 
@@ -152,9 +152,10 @@
           <ion-col size="3">
             <ion-label class="card_header_text">
 
-              <ion-icon [routerLink]="['/updatevendorquot']" routerLinkActive="router-link-active" style="color: #fff;"
+              <ion-icon  style="color: #fff;" (click)="updatevendorquot(this.prsId,this.splitted)"
                 name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
               <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
+              <!-- updatevendorquot -->
             </ion-label>
             <ion-label class="card_header_text">
               <!-- <ion-icon style="color: red;" name="trash-outline"></ion-icon> -->
@@ -167,7 +168,7 @@
           <ion-label class="card_content_label labelHead-text">QTY </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{ item.PRS_CODE||"-"}}</ion-label> -->
+          <ion-label class="labelData-text">: {{this.Qty}}</ion-label>
         </ion-col>
       </ion-row>
 
@@ -176,7 +177,7 @@
           <ion-label class="card_content_label labelHead-text">Unit Price </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.item_Code||"-"}}</ion-label> -->
+          <ion-label class="labelData-text">: {{this.Unitprice }}</ion-label>
         </ion-col>
       </ion-row>
 
@@ -185,7 +186,7 @@
           <ion-label class="card_content_label labelHead-text">disc% </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.REQUESTED_DATE||"-"}}</ion-label> -->
+          <ion-label class="labelData-text">: </ion-label>
         </ion-col>
       </ion-row>
 
@@ -194,7 +195,7 @@
           <ion-label class="card_content_label labelHead-text">tax 1 </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text"> : {{item.REQUESTED_BY||"-"}}</ion-label> -->
+          <ion-label class="labelData-text"> : </ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -202,7 +203,7 @@
           <ion-label class="card_content_label labelHead-text">tax 2 </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.STATUS}}</ion-label> -->
+          <ion-label class="labelData-text">: </ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -210,7 +211,7 @@
           <ion-label class="card_content_label labelHead-text">Tc </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.CURRENT_STATUS}}</ion-label> -->
+          <ion-label class="labelData-text">: </ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -218,7 +219,7 @@
           <ion-label class="card_content_label labelHead-text">BaseV </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.CURRENT_STATUS}}</ion-label> -->
+          <ion-label class="labelData-text">: </ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -226,7 +227,7 @@
           <ion-label class="card_content_label labelHead-text">BidV </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.CURRENT_STATUS}}</ion-label> -->
+          <ion-label class="labelData-text">: </ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -234,15 +235,15 @@
           <ion-label class="card_content_label labelHead-text">ExpDate </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{item.CURRENT_STATUS}}</ion-label> -->
+          <ion-label class="labelData-text">: {{this.ExpDate}}</ion-label>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">DelivaryDate </ion-label>
+          <ion-label class="card_content_label labelHead-text">DeliveryDate </ion-label>
         </ion-col>
         <ion-col size="6">
-          <!-- <ion-label class="labelData-text">: {{i  tem.CURRENT_STATUS}}</ion-label> -->
+          <ion-label class="labelData-text">: </ion-label>
         </ion-col>
       </ion-row>
     </ion-card-content>

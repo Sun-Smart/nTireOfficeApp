@@ -106,7 +106,7 @@ export class ServiceRequestPage implements OnInit {
      this.usertype = localStorage.getItem('TUM_USER_TYPE');
      this.userToken = localStorage.getItem('usertoken');
      this.accessToken = localStorage.getItem('token');
-     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+     this.branchID = localStorage.getItem('id');
      this.functionID = localStorage.getItem('FUNCTION_ID');
      this.username=localStorage.getItem('TUM_USER_NAME');
     this.getServiceActegory();
@@ -155,12 +155,7 @@ export class ServiceRequestPage implements OnInit {
    }
 
   ngOnInit() {
-    const element = document.getElementById("box");
-
-// element.scrollIntoView();
-// element.scrollIntoView(false);
-// element.scrollIntoView({block: "end"});
-// element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+ 
   }
 
   doRefresh(event){
@@ -666,10 +661,10 @@ processassetservicereq(){
      insucompny = this.insucompany;
 
   }
-  if (this.insuamount == null) {
+  if (this.insuamount == null || this.insuamount == undefined || this.insuamount == '') {
     var insuamt = 0;
   } else {
-    insuamt = parseInt(this.insuamount);
+    insuamt = this.insuamount;
 
   }
 

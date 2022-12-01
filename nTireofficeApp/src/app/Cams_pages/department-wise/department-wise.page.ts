@@ -46,7 +46,7 @@ export class DepartmentWisePage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
     this.getZone();
@@ -61,15 +61,60 @@ export class DepartmentWisePage implements OnInit {
    }
 
   ngOnInit() {
+    this.getCards();
   }
+  getCards(){
+    var datafinal = {
+      'functionidrep': this.functionID,
+      'fzoneid': 0,
+      'fregionid':0,
+      'fbranchid': 0,
+      // 'fassetcatid':$scope.asstdtlocation.category,
+      // 'fassetsubcatid':$scope.asstdtlocation.subcategory,
+      'depatmentid': 0,
+      'locationidd':0,
+      'access_token':window.localStorage['token'],
+      'userid':this.userID,
+      'usertoken':this.userToken
 
+
+    }
+    console.log(datafinal);
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetdepatmentwiselocation',datafinal, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp)
+      this.detailfinals = resp;
+      //$scope.detailsdept = response.data.recordsets[1];
+      console.log(this.detailfinals);
+     // var al = $scope.detailfinals;
+     // console.log(al);
+      if (this.detailfinals.length < 1) {
+        this.presentAlert('Alert','No Data Found');
+      }
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+
+    });
+  }
  
   resetlocationreport(){
-    this.ZoneLoc='';
-    this.region='';
-    this.branchLoc='';
-    this.depatment='';
-    this.location='';
+
+    this.ZoneLoc="<< Select >>";
+    this.region="<< Select >>";
+    this.detailregion=[];
+    this.branchLoc="<< Select >>";
+    this.detailbranch=[];
+    this.depatment="<< Select >>";
+    this.detaildepatment=[];
+    this.location="<< Select >>";
+    this.locationchk=[];
     this.detailfinals= ''||[];
 
   }

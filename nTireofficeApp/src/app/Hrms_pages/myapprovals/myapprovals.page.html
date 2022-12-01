@@ -16,9 +16,9 @@
     <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
       <ion-label>Req.Type<span class="validatecolor">*</span></ion-label>
 
-      <ion-select [(ngModel)]="reqType" class="form-control">
-        <ion-select-option value="" selected>&lt;&lt; Select &gt;&gt;</ion-select-option>
-        <ion-select-option *ngFor="let req of requests; let i = index" [value]="req.WF_CONFIG_ID">{{req.WF_DESC}}</ion-select-option>
+      <ion-select [(ngModel)]="reqType" class="form-control" (ionChange)="onSelectChange($event)">
+        <ion-select-option value="null" selected>&lt;&lt; Select &gt;&gt;</ion-select-option>
+        <ion-select-option *ngFor="let y of requests; let i = index" value = "{{y.WF_CONFIG_ID}}">{{y.WF_CONFIG_DESC}}</ion-select-option>
       </ion-select>
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
@@ -42,7 +42,7 @@
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="4" size-lg="3" size-xl="3">
       <ion-label>Request Number</ion-label>
-      <ion-input type="text" class="form-control" [(ngModel)]="reqNum"></ion-input>
+      <ion-input type="text" class="form-control" [(ngModel)]="reqnumber"></ion-input>
       <!-- <span class="input-label {{show_color}}"
         *ngIf='reqNum==""||reqNum==null||reqNum.requestno==undefined'>{{show_request}}</span> -->
 

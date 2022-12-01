@@ -47,7 +47,10 @@ export class PendingJobsPage implements OnInit {
   branch_ID;
   newasset: any;
   TotalCountZero;
-
+  CurrentDate;
+  date: String = new Date().toISOString();
+  minDate:any = new Date().toISOString();
+ maxData : any = (new Date()).getFullYear() + 3;
   constructor(private Tabparams: TabparamserviceService, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone,
      private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
@@ -57,7 +60,7 @@ export class PendingJobsPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.funtionID = localStorage.getItem('FUNCTION_ID');
-    this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
+    this.branch_ID = localStorage.getItem('id')
 
 
     this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
@@ -67,12 +70,14 @@ export class PendingJobsPage implements OnInit {
     this.category = "<< Select >>";
     this.subCategory = "<< Select >>";
     this.getCards();
+  
 
   }
 
   ngOnInit() {
 
     this.getAssertCatergory();
+    
   }
 
   doRefresh(event) {
@@ -81,7 +86,16 @@ export class PendingJobsPage implements OnInit {
     this.assetCode = '';
     event.target.complete();
   }
-
+  toDate(todate:any){
+    debugger;
+    console.log(todate)
+    this.CurrentDate = this.datePipe.transform(new Date(), 'YYYY-MM-dd');
+    if( this.CurrentDate >= todate){
+console.log(this.CurrentDate);
+console.log(todate)
+this.presentAlert('Alert','Date should not be current Date')
+    }
+  }
   getItems(ev: any) {
     console.log(ev.target.value)
     this.newasset = ev.target.value;
@@ -299,6 +313,12 @@ export class PendingJobsPage implements OnInit {
   }
 
   getsubCategory(event) {
+    debugger;
+    if(event == "<< Select >>"){
+      this.subCategoryresp = [];
+      this.subCategory = "<< Select >>";
+      
+    }
     console.log(event)
     const header = new Headers();
     header.append("Content-Type", "application/json");

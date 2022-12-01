@@ -79,9 +79,9 @@ export class MymeetingPage implements OnInit {
 
   constructor(public alertController: AlertController, public modalController: ModalController, private router: Router, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     var today = new Date();
-    //this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
-   // this.fromdate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-    //this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+    // this.fromdate = "dd/mm/yyyy"
+    this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.username=localStorage.getItem('TUM_USER_NAME');
   }
 

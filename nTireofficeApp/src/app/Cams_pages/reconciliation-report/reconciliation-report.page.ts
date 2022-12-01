@@ -46,13 +46,54 @@ export class ReconciliationReportPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
 
    }
 
   ngOnInit() {
+    this.getCards();
+  }
+
+  getCards(){
+    var datarep = {
+      'functionidrep': this.functionID,
+      'rfdate': "",
+      'rtdate': "",
+      'rassetcode': null,
+      'rstatus': "",
+      'rbranch': this.branchID,
+      'access_token':this.accessToken,
+      'userid':this.userID,
+      'usertoken':this.userToken
+
+    }
+    this.detailrecons = [];
+    console.log(datarep);
+
+
+  const header = new Headers();
+  header.append("Content-Type", "application/json");
+
+  let options = new HttpHeaders().set('Content-Type', 'application/json');
+
+  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetreconciliationrep',datarep, {
+    headers: options,
+  }).subscribe(resp => {
+    console.log(resp)
+
+    this.detailrecons = resp;
+    if (this.detailrecons.length < 1) {
+
+      this.presentAlert("Alert","No Data Found");
+    }
+  }, error => {
+    //this.presentAlert('Alert','Server Error,Contact not loaded');
+    console.log("error : " + JSON.stringify(error));
+
+  });
+
   }
 
   doRefresh(event){

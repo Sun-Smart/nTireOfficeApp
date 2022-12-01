@@ -49,11 +49,11 @@
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>First Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input class="form-control" [(ngModel)]="firstname"></ion-input>
+        <ion-input class="form-control" [(ngModel)]="firstname"  (keypress)="omit_special_chart($event)"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Last Name <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input class="form-control" [(ngModel)]="lastname"></ion-input>
+        <ion-input class="form-control" [(ngModel)]="lastname"  (keypress)="omit_special_chart($event)"></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Email <span style="color:red;margin-left: 5px;">*</span></ion-label>
@@ -66,15 +66,16 @@
       <ion-col   size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label >Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input type="tel" class="form-control"  pattern="[0-9]*" type="number" pattern="/^-?\d+\.?\d*$/"
-        onKeyPress="if(this.value.length==10) return false;"
+        onKeyPress="if(this.value.length==10)  false;"
         [(ngModel)]="mobile" pattern="[0-9]*" minlength="10" maxlength="10" #umobile="ngModel"></ion-input>
 
-          <!-- <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label>Mobile Number <span style="color:red;margin-left: 5px;">*</span></ion-label>
-            <ion-input type="tel" class="form-control"  pattern="[0-9]*" type="number" pattern="/^-?\d+\.?\d*$/"
-            onKeyPress="if(this.value.length==10) return false;"
-           [(ngModel)]="mobile" pattern="[0-9]*" minlength="10" maxlength="10" #umobile="ngModel"></ion-input> -->
-    
+        <!-- <ion-input class="form-control" type="number" maxlength="10"
+          [(ngModel)]="mobile"></ion-input>
+        <span *ngIf="mobile != undefined && mobile.length < 10" style="color: red">valid mobile number required</span> (keyup)="numberOnlyValidation($event)"-->
+        <ion-input class="form-control"  pattern="[0-9]*" type="number" pattern="/^-?\d+\.?\d*$/"
+        onKeyPress="if(this.value!=undefined && this.value.length==10)  false;"
+        (keyup)="phonenumber(profile.Mobile) " [(ngModel)]="mobile" minlength="10" maxlength="10"
+          #umobile="ngModel"></ion-input>
         <div *ngIf="mobile && umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
         </div>
@@ -84,7 +85,7 @@
         <ion-label>Office Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input type="tel" class="form-control" pattern="[0-9]*"
         type="number" pattern="/^-?\d+\.?\d*$/"
-            onKeyPress="if(this.value.length==10) return false;"
+            onKeyPress="if(this.value.length==10)  false;"
              [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10" maxlength="1"
           #uname="ngModel"></ion-input>
         <!-- <span *ngIf="uname.errors?.number">
@@ -104,7 +105,7 @@
         <ion-label>Telephone Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input  type="tel" class="form-control"  pattern="[0-9]*"
         type="number" pattern="/^-?\d+\.?\d*$/"
-          onKeyPress="if(this.value.length==10) return false;" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
+          onKeyPress="if(this.value.length==10)  false;" minlength="10" maxlength="13" [(ngModel)]="ResPhone"
           #resnum="ngModel"></ion-input>
 
         <div *ngIf="ResPhone && resnum.errors?.minlength || resnum.errors?.maxlength">
@@ -267,7 +268,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Remarks <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-textarea [(ngModel)]="remarks" (keyup)="offnumberOnlyValidation($event)" maxlength="4000"
+        <ion-textarea [(ngModel)]="remarks" id="messagearea" (keyup)="offnumberOnlyValidation($event)" maxlength="4000"
           style="height:auto !important" class="form-control">
         </ion-textarea>
         <span *ngIf="remarks && remarks != 'undefined' && remarks.length > 0" class="customCounter">{{4000 -

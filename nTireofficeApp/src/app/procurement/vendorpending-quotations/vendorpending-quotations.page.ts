@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
@@ -16,7 +17,15 @@ export class VendorpendingQuotationsPage implements OnInit {
   Quotation: any;
   getresponse: any;
   responseDatalength: any;
-  constructor(private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) { }
+  sub;
+  data;
+  RFQCODE;
+  RFQID;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) { 
+
+
+
+  }
 
   ngOnInit() {
     this.Submit();
@@ -101,5 +110,8 @@ export class VendorpendingQuotationsPage implements OnInit {
     })
 
   }
-
+  Updatequotation(item:any){
+    console.log(item);
+    this.router.navigate(['/vendor-quotation',item])
+  }
 }

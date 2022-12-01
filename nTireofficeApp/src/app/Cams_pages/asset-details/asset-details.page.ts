@@ -71,6 +71,8 @@ export class AssetDetailsPage implements OnInit {
   products: any;
   @ViewChild('map') mapElement: ElementRef;
   newasset: any;
+  baseImage: any;
+  Base64Image: any;
   constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private crop: Crop, private base64: Base64, private camera: Camera, private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public sanitizer: DomSanitizer, private barcodeScanner: BarcodeScanner) {
 
     //,private qrScanner: QRScanner
@@ -80,7 +82,8 @@ export class AssetDetailsPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
+    console.log(this.branchID)
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
   }
@@ -242,22 +245,24 @@ export class AssetDetailsPage implements OnInit {
 
 
         var imgchk = resp[0].ImageUrl;
+        console.log(imgchk)
+        this.icheck = imgchk;
 
-        if (imgchk != null) {
-          var imglen = imgchk.length;
-          console.log(imgchk);
-          if (imglen < 4) {
-            this.icheck = null;
-            console.log("200")
+        // if (imgchk != null) {
+        //   var imglen = imgchk.length;
+        //   console.log(imgchk);
+        //   if (imglen < 4) {
+        //     this.icheck = null;
+        //     console.log("200")
 
-          } else {
-            this.icheck = resp[0].ImageUrl;
-            console.log("100")
-          }
+        //   } else {
+        //     this.icheck = resp[0].ImageUrl;
+        //     console.log("100")
+        //   }
 
-        } else {
-          this.icheck = null;
-        }
+        // } else {
+        //   this.icheck = null;
+        // }
 
         this.assetucode = resp[0].ASSET_CODE;
         this.assestid = resp[0].ASSET_ID;
@@ -367,16 +372,21 @@ export class AssetDetailsPage implements OnInit {
   }
 
   dataURLtoFile(dataURI, filename) {
-    console.log(dataURI)
+    console.log(dataURI);
+    var basefile = dataURI.split('data:image/jpeg;base64,')
+    this.baseImage = basefile
+    console.log(this.baseImage)
+    this.Base64Image = this.baseImage[1];
     console.log(filename)
 
     var binary = atob(dataURI.split(',')[1]);
     var array = [];
     for (var i = 0; i < binary.length; i++) {
       array.push(binary.charCodeAt(i));
-    }
+    } console.log(array)
 
     return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
+    console.log(array)
   };
 
   DeleteImage(index) {
@@ -413,11 +423,12 @@ export class AssetDetailsPage implements OnInit {
           'assetcode': this.assetucode,
           'branchid': this.branchID,
           'assetidrec': parseInt(this.assestid),
-          'functionida': this.functionID,
+          'functionid': parseInt(this.functionID),
           'doc_path': imagepagen,
           'access_token': this.accessToken,
           'userid': this.userID,
-          'usertoken': this.userToken
+          'usertoken': this.userToken,
+          "filebase":  this.Base64Image
         };
 
         console.log(JSON.stringify(obj));
@@ -427,12 +438,15 @@ export class AssetDetailsPage implements OnInit {
         let options = new HttpHeaders().set('Content-Type', 'application/json');
         debugger
         this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/uploadimage', obj, {
-          headers: options,
+          headers: options,responseType:'text'
+
+
         }).subscribe(resp => {
           debugger;
           console.log(resp);
-          if (resp == null) {
+          if (resp == null || resp == resp) {
             this.imagesucessres.push(resp);
+            console.log(this.imagesucessres)
             this.presentAlert("Sucess", "Updated Successfully")
             //$scope.getuserlist();
           }

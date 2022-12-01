@@ -7,8 +7,8 @@ import { Router} from '@angular/router';
 import {TabparamserviceService} from '../../service/tabparamservice.service'
 import { ActivatedRoute} from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { ManPowerUpdatePage} from '../man-power-update/man-power-update.page'
-
+// import { ManPowerUpdatePage} from '../man-power-update/man-power-update.page';
+import { ManPowerUpdate1Page} from '../man-power-update1/man-power-update1.page';
 @Component({
   selector: 'app-manpower-used',
   templateUrl: './manpower-used.page.html',
@@ -45,7 +45,7 @@ export class ManpowerUsedPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
 
     console.log(JSON.stringify(this.Tabparams.data));
@@ -309,7 +309,7 @@ data.assetactivityid = this.urldata.CMD_ACTIVITY_ID;
 data.assetpmref = this.urldata.pmr_reference;
 
   const modal = await this.modalController.create({
-    component: ManPowerUpdatePage,
+    component: ManPowerUpdate1Page,
     componentProps: {
       'item': data,
     }
