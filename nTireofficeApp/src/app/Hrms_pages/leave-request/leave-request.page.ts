@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttprequestService } from '../../service/httprequest.service';
 import { IpaddressService } from '../../service/ipaddress.service';
-import {ToastmessageService} from '../../service/toastmessage.service';
+import { ToastmessageService } from '../../service/toastmessage.service';
 import { DatePipe } from '@angular/common';
-import { Router,ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -24,7 +24,7 @@ export class LeaveRequestPage implements OnInit {
   FUNCTION_ID;
   em_emp_id;
   leaveType;
-  leavetypearray:any=[];
+  leavetypearray: any = [];
   leaveBal;
   preApprovalDays;
   dat_valid;
@@ -47,24 +47,24 @@ export class LeaveRequestPage implements OnInit {
   rreqid3: string;
   reqID2: string[];
   disabledvalue;
-  release=false;
+  release = false;
   refreqid: string;
   currentstatus;
   username = window.localStorage.getItem('TUM_USER_NAME');
-  constructor(private router: Router,private route:ActivatedRoute,private datepipe: DatePipe,private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService,public toastmessageService:ToastmessageService, private alertController: AlertController,
+  constructor(private router: Router, private route: ActivatedRoute, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService, private alertController: AlertController,
 
-    ) {
+  ) {
     this.disabledvalue = false;
-    this.empCode= window.localStorage['TUM_EMP_CODE'];
-    this.FUNCTION_ID=window.localStorage['FUNCTION_ID'];
+    this.empCode = window.localStorage['TUM_EMP_CODE'];
+    this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
     this.company = window.localStorage['FUNCTION_DESC'];
-   this.branch=window.localStorage['TUM_BRANCH_CODE'];
-    this.em_emp_id=window.localStorage['EmployeeID'];
-    this.TUM_USER_ID= window.localStorage['TUM_USER_ID'];
+    this.branch = window.localStorage['TUM_BRANCH_CODE'];
+    this.em_emp_id = window.localStorage['EmployeeID'];
+    this.TUM_USER_ID = window.localStorage['TUM_USER_ID'];
     console.log(this.TUM_USER_ID);
     this.usertoken = window.localStorage['usertoken'];
-    this.leaveType="";
-    this.dat_valid= {
+    this.leaveType = "";
+    this.dat_valid = {
       currentDate: new Date()
     };
     this.getEmployeeDetails();
@@ -72,44 +72,44 @@ export class LeaveRequestPage implements OnInit {
     this.urldata = this.route.params.subscribe(params => {
 
       // this.leavedata=JSON.parse(params.item);
-       let data1=params.item;
-      this.leavedata=data1;
+      let data1 = params.item;
+      this.leavedata = data1;
 
 
-      if(this.leavedata!=undefined){
-        this.LEAVEFRMDATE=this.leavedata.Leavefrmdate;
-        this.LEAVEFRMDATE=this.leavedata.Leavefrmdate.split('/');
-      this.LEAVEFRMDATE=this.LEAVEFRMDATE[2]+'-'+this.LEAVEFRMDATE[1]+'-'+this.LEAVEFRMDATE[0];
-        this.LEAVETODATE=this.leavedata.Leavetodate;
-        this.LEAVETODATE=this.leavedata.Leavetodate.split('/');
-      this.LEAVETODATE=this.LEAVETODATE[2]+'-'+this.LEAVETODATE[1]+'-'+this.LEAVETODATE[0];
-        this.LEAVEBALANCE=this.leavedata.Leavebalance;
-        this.LEAVEREASON=this.leavedata.Leavereason;
-        this.LEAVETYPE=this.leavedata.Leavetype;
+      if (this.leavedata != undefined) {
+        this.LEAVEFRMDATE = this.leavedata.Leavefrmdate;
+        this.LEAVEFRMDATE = this.leavedata.Leavefrmdate.split('/');
+        this.LEAVEFRMDATE = this.LEAVEFRMDATE[2] + '-' + this.LEAVEFRMDATE[1] + '-' + this.LEAVEFRMDATE[0];
+        this.LEAVETODATE = this.leavedata.Leavetodate;
+        this.LEAVETODATE = this.leavedata.Leavetodate.split('/');
+        this.LEAVETODATE = this.LEAVETODATE[2] + '-' + this.LEAVETODATE[1] + '-' + this.LEAVETODATE[0];
+        this.LEAVEBALANCE = this.leavedata.Leavebalance;
+        this.LEAVEREASON = this.leavedata.Leavereason;
+        this.LEAVETYPE = this.leavedata.Leavetype;
         // this.LEAVEREQUESTREF=this.leavedata.LEAVEREQUESTREF;
 
-        this.refreqid=this.leavedata.Txnreference;
-        this.noofDays=this.leavedata.Nodays;
-        this.RequestDate=this.leavedata.RequestDate;
-        this.RequestDate=this.leavedata.RequestDate.split('/');
-      this.RequestDate=this.RequestDate[2]+'-'+this.RequestDate[1]+'-'+this.RequestDate[0];
-        this.Status=this.leavedata.Status;
+        this.refreqid = this.leavedata.Txnreference;
+        this.noofDays = this.leavedata.Nodays;
+        this.RequestDate = this.leavedata.RequestDate;
+        this.RequestDate = this.leavedata.RequestDate.split('/');
+        this.RequestDate = this.RequestDate[2] + '-' + this.RequestDate[1] + '-' + this.RequestDate[0];
+        this.Status = this.leavedata.Status;
         this.currentstatus = this.leavedata.Currentstatus;
         this.disabledvalue = true;
       }
-   });
-   }
+    });
+  }
 
   ngOnInit() {
   }
 
-  leaveCancel1(){
-    this.leaveType="";
-    this.leaveBal=undefined;
-    this.fromDate=undefined;
-    this.toDate=undefined;
-    this.noofDays=undefined;
-    this.reason=undefined;
+  leaveCancel1() {
+    this.leaveType = "";
+    this.leaveBal = undefined;
+    this.fromDate = undefined;
+    this.toDate = undefined;
+    this.noofDays = undefined;
+    this.reason = undefined;
   }
 
   async leaveCancel() {
@@ -128,34 +128,34 @@ export class LeaveRequestPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-          this.leaveType="";
-    this.leaveBal=undefined;
-    this.fromDate=undefined;
-    this.toDate=undefined;
-    this.noofDays=undefined;
-    this.reason=undefined;
+            this.leaveType = "";
+            this.leaveBal = undefined;
+            this.fromDate = undefined;
+            this.toDate = undefined;
+            this.noofDays = undefined;
+            this.reason = undefined;
           }
         }
       ]
     });
 
     await alert.present();
-  }
+  }
 
-  getEmployeeDetails(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/GetEmployees/"+this.empCode).then(resp=>{
+  getEmployeeDetails() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/GetEmployees/" + this.empCode).then(resp => {
       console.log(resp);
       if (resp == "Employee not Exist") {
-        this.toastmessageService.presentAlert1("","Employee Does not Exist");
+        this.toastmessageService.presentAlert1("", "Employee Does not Exist");
 
       } else {
-          this.status = "P";
-          this.name = window.localStorage['TUM_USER_NAME'];
+        this.status = "P";
+        this.name = window.localStorage['TUM_USER_NAME'];
 
-          this.company = window.localStorage['FUNCTION_DESC'];
-          this.branch=window.localStorage['TUM_BRANCH_CODE']
-      //  var employeeDetails = JSON.parse(resp.toString());
-      var employeeDetails = resp;
+        this.company = window.localStorage['FUNCTION_DESC'];
+        this.branch = window.localStorage['TUM_BRANCH_CODE']
+        //  var employeeDetails = JSON.parse(resp.toString());
+        var employeeDetails = resp;
 
         this.department = employeeDetails[0].Department;
         this.empID = employeeDetails[0].EmpID;
@@ -164,40 +164,40 @@ export class LeaveRequestPage implements OnInit {
         this.contact = employeeDetails[0].ContactPhone;
 
       }
-     }, error => {
+    }, error => {
 
-     console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-     });
+    });
   }
 
-  getLeaveType(){
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/LoadLeaveType/"+ this.FUNCTION_ID + "/" + this.em_emp_id).then(resp=>{
+  getLeaveType() {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadLeaveType/" + this.FUNCTION_ID + "/" + this.em_emp_id).then(resp => {
       this.leavetypearray = resp;
       console.log(resp)
-     }, error => {
+    }, error => {
 
-     console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-     });
+    });
   }
-  getLeaveBalance(){
+  getLeaveBalance() {
     console.log(this.leaveType);
-    this.leaveBal=this.leaveType
+    this.leaveBal = this.leaveType
     // this.leaveBal="";
     // this.preApprovalDays="";
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/EmployeeLeaveConfig/"+this.leaveType+ "/" +this.em_emp_id).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/EmployeeLeaveConfig/" + this.leaveType + "/" + this.em_emp_id).then(resp => {
       var reaparray = JSON.parse(resp.toString());
       console.log(reaparray[0].cur_balance)
       this.leaveBal = reaparray[0].cur_balance;
       this.preApprovalDays = reaparray[0].PreApprovalDays
-     }, error => {
-     console.log("error : "+JSON.stringify(error));
-     });
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
+    });
   }
   fromDate;
   toDate;
-  validateFromDate(){
+  validateFromDate() {
     var date1 = this.fromDate;
     var date2 = this.toDate;
     // date1.setHours(00, 00, 00);
@@ -206,42 +206,42 @@ export class LeaveRequestPage implements OnInit {
     if (date1 != undefined) {
       if (date1 < date2) {
         // console.log("To date should be greater than from date")
-    alert("To date should be greater than from date");
-    this.toDate = "";
+        alert("To date should be greater than from date");
+        this.toDate = "";
       } else {
-        var fromDate =new Date(this.fromDate);
+        var fromDate = new Date(this.fromDate);
         var toDate = new Date(this.toDate);
 
 
-     // To calculate the time difference of two dates
-     var Difference_In_Time = fromDate.getTime() - toDate.getTime();
+        // To calculate the time difference of two dates
+        var Difference_In_Time = fromDate.getTime() - toDate.getTime();
 
-     // To calculate the no. of days between two dates
-     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-     this.noofDays=-Difference_In_Days;
+        // To calculate the no. of days between two dates
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        this.noofDays = -Difference_In_Days;
       }
     }
   }
- validateToDate(event){
+  validateToDate(event) {
 
     var date1 = this.fromDate;
     var date2 = this.toDate;
     if (date1 != undefined) {
       // console.log("To")
       if (date1 > date2) {
-      alert("To date should be greater than from date");
-      this.toDate = "";
+        alert("To date should be greater than from date");
+        this.toDate = "";
       } else {
 
-         var fromDate =new Date(this.fromDate);
-         var toDate = new Date(event.target.value);
+        var fromDate = new Date(this.fromDate);
+        var toDate = new Date(event.target.value);
 
-      // To calculate the time difference of two dates
-      var Difference_In_Time = fromDate.getTime() - toDate.getTime();
+        // To calculate the time difference of two dates
+        var Difference_In_Time = fromDate.getTime() - toDate.getTime();
 
-      // To calculate the no. of days between two dates
-      var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
-      this.noofDays=-Difference_In_Days+1;
+        // To calculate the no. of days between two dates
+        var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+        this.noofDays = -Difference_In_Days + 1;
 
       }
     }
@@ -252,18 +252,17 @@ export class LeaveRequestPage implements OnInit {
 
 
 
-  leaveSubmit(ltype){
-    console.log(this.leaveType,ltype);
+  leaveSubmit(ltype) {
+    console.log(this.leaveType, ltype);
     if (this.contact == undefined) {
       this.contact = null;
     }
 
-    if(this.release ==true)
-    {
-     this.status= 'P';
+    if (this.release == true) {
+      this.status = 'P';
     }
-    else{
-     this.status= 'N';
+    else {
+      this.status = 'N';
     }
     var fromDate = this.formatDate(this.fromDate);
     var toDate = this.formatDate(this.toDate);
@@ -271,34 +270,34 @@ export class LeaveRequestPage implements OnInit {
     var session = 0;
     var nod = this.noofDays;
     var reason = this.reason;
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms+"/SaveLeave/"+ this.FUNCTION_ID + "/" + this.TUM_USER_ID + "/" + window.localStorage['EmployeeID'] + "/@/" + typeSelected + "/" + fromDate + "/" + toDate + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.status).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveLeave/" + this.FUNCTION_ID + "/" + this.TUM_USER_ID + "/" + window.localStorage['EmployeeID'] + "/@/" + typeSelected + "/" + fromDate + "/" + toDate + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.status).then(resp => {
       if (resp == '"Attendance not available"') {
         // console.log("Gotcha : " + resp);
-     this.toastmessageService.presentAlert1("Request Not Sent","Attendance is not available on the requested date")
+        this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date")
 
       }
       else if (resp == '"Your request is on holiday, please choose different date"') {
-        this.toastmessageService.presentAlert1("Request Not Sent"," Your request is on holiday, please choose different date")
+        this.toastmessageService.presentAlert1("Request Not Sent", " Your request is on holiday, please choose different date")
 
       }
       else if (resp == '" Permission already available for this date"') {
-        this.toastmessageService.presentAlert1("Request Not Sent"," Permission already available for this date")
+        this.toastmessageService.presentAlert1("Request Not Sent", " Permission already available for this date")
 
       }
-       else if (resp == '"Coff already available for this date"') {
-        this.toastmessageService.presentAlert1("Request Not Sent","Coff already available for this date")
+      else if (resp == '"Coff already available for this date"') {
+        this.toastmessageService.presentAlert1("Request Not Sent", "Coff already available for this date")
 
       }
       else if (resp == '"Leave Request already available for this date"') {
-        this.toastmessageService.presentAlert1("Request Not Sent","Leave Request already available for this date")
+        this.toastmessageService.presentAlert1("Request Not Sent", "Leave Request already available for this date")
 
       } else if (resp == '"Leave Request already available for this date"') {
-        this.toastmessageService.presentAlert1("Request Not Sent","COFF Request already available for this date")
+        this.toastmessageService.presentAlert1("Request Not Sent", "COFF Request already available for this date")
 
 
       }
-      else if(resp=resp){
-        this.toastmessageService.presentAlert1("Saved Successfully",resp)
+      else if (resp = resp) {
+        this.toastmessageService.presentAlert1("Saved Successfully", resp)
 
       }
       else {
@@ -310,7 +309,7 @@ export class LeaveRequestPage implements OnInit {
         this.rreqid3 = split[0];
         // console.log(""+this.reqID);
         this.reqID2 = this.rreqid3.split(',');
-        this.reqID= this.reqID2[1];
+        this.reqID = this.reqID2[1];
         this.refreqid = this.reqID2[0];
         // console.log(""+ this.rreqid3+""+ this.reqID2)
         this.workflowTable = split[2];
@@ -327,13 +326,13 @@ export class LeaveRequestPage implements OnInit {
 
 
         if (split[1] == "Leave Saved Successfully") {
-          this.toastmessageService.presentAlert1("Request Sent","Request Saved Successfully <br> Req Ref : " + this.refreqid)
+          this.toastmessageService.presentAlert1("Request Sent", "Request Saved Successfully <br> Req Ref : " + this.refreqid)
 
-         this.getLeaveType();
+          this.getLeaveType();
           this.reqtype = 'null';
           if (this.status == "P") {
 
-            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 +this.Ipaddressservice.serviceurlhrms1+"WorkFlowAuth/"+ this.reqID + "/" + this.reqtype + "/null/null/" + this.userID + "/1/" + this.workflowTable).then(resp=>{
+            this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms1 + "WorkFlowAuth/" + this.reqID + "/" + this.reqtype + "/null/null/" + this.userID + "/1/" + this.workflowTable).then(resp => {
               if (resp == "1") {
                 console.log("Workflow called successfully :" + resp);
 
@@ -342,7 +341,7 @@ export class LeaveRequestPage implements OnInit {
               }
             }, error => {
 
-            console.log("error : "+JSON.stringify(error));
+              console.log("error : " + JSON.stringify(error));
 
             });
 
@@ -353,30 +352,30 @@ export class LeaveRequestPage implements OnInit {
             from: fromDate,
             to: toDate,
             typerequest: typerequest,
-            userid:this.TUM_USER_ID,
-            usertoken:this.usertoken,
+            userid: this.TUM_USER_ID,
+            usertoken: this.usertoken,
             access_token: window.localStorage.token
           }
-          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress +this.Ipaddressservice.serviceurlhrms2+"getreportingto/",reportobj).then(resp=>{
+          this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getreportingto/", reportobj).then(resp => {
 
           }, error => {
 
-          console.log("error : "+JSON.stringify(error));
+            console.log("error : " + JSON.stringify(error));
 
           });
 
-         this.getLeaveType();
+          this.getLeaveType();
 
         }
       }
-     }, error => {
+    }, error => {
 
-     console.log("error : "+JSON.stringify(error));
+      console.log("error : " + JSON.stringify(error));
 
-     });
-     this.leaveCancel1();
+    });
+    this.leaveCancel1();
   }
-  formatDate(value){
+  formatDate(value) {
     value = new Date(value);
 
     var day = value.getDate();
@@ -394,8 +393,13 @@ export class LeaveRequestPage implements OnInit {
   }
 
 
-  leavesummary(){
+  leavesummary() {
     this.router.navigateByUrl('/leavesummary');
+  }
+  omit_special_char(event) {
+    var k;
+    k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
   }
 }
 
