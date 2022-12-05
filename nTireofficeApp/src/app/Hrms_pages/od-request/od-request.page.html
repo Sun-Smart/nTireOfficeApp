@@ -188,8 +188,8 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <label class="ContentName">Contact Number</label>
-        <ion-input type="text" style="background-color: white;
-      color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
+        <ion-input type="number" style="background-color: white;
+      color: black;" class="form-control" [(ngModel)]="contact"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <label class="ContentName">OD Request Reference

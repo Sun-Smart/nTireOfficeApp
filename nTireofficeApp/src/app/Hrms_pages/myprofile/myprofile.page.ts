@@ -715,8 +715,8 @@ export class MyprofilePage implements OnInit {
   hidePersonalPanel(value ) {
     debugger;
     console.log(value);
-   
-    
+
+
 
     // var emailcheck = validateemail(value);
     // if (emailcheck == false) {
