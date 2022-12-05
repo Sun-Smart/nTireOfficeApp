@@ -353,4 +353,41 @@ export class PermissionRequestPage implements OnInit {
   }
 
 
+  omit_special_char(event) {
+    var k;
+    k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+  }
+
+  async permissionCancel() {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to Cancel the Process',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+          this.branch="";
+    this.reqID2="";
+    this.permDate="";
+    this.fromHour="";
+    this.toHour="";
+    this.reason="";
+    this.release=null;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

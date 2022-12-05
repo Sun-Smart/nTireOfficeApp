@@ -26,13 +26,12 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Contact Number</ion-label>
-        <ion-input type="number" onKeyPress="if(this.value!=undefined && this.value.length==13) return false;"
+        <ion-input type="number"(keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
           style="background-color: white;color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Request Reference</ion-label>
-        <ion-input style="background-color: rgb(219, 210, 210);
-                                color: black;" class="form-control" [(ngModel)]="reqID2" [disabled]></ion-input>
+        <ion-input class="form-control" [(ngModel)]="reqID2" [disabled]></ion-input>
       </ion-col>
       <ion-col *ngIf="reqdate!=undefined" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Requested Date</ion-label>
@@ -153,6 +152,12 @@
             <ion-button class="ion-color-success" *ngIf="!disabledvalue" expand="block"
               [disabled]="permDate==undefined || fromHour==undefined || toHour==undefined || reason==undefined"
               (click)="permissionSubmit()">SAVE</ion-button>
+          </ion-col>
+
+          <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
+
+            <ion-button *ngIf="!disabledvalue" class="ion-color-danger" expand="block" strong
+            (click)="permissionCancel()">CLEAR</ion-button>
           </ion-col>
           <ion-col size-sm="4" size="4" size-md="4" size-lg="4" size-xl="4">
 

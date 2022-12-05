@@ -164,7 +164,7 @@ this.loadingdismiss();
     if(this.fromDate!=undefined){
     var fromDate = this.formatDate(this.fromDate);
     var toDate = this.formatDate(this.toDate);
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "general leave" ).then(resp=>{
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlhrms+ "searchLeave/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + "generalleave" ).then(resp=>{
 
       this.loadingdismiss();
          if (resp != "No Records found") {
