@@ -50,7 +50,7 @@ export class LoanRequestPage implements OnInit {
   company;
   contact;
   branch;
-  reqtype;
+  reqtype:any;
   Scheme;
   emiamount;
   status;

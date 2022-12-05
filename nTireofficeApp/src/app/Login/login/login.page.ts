@@ -56,11 +56,11 @@ export class LoginPage implements OnInit {
   }
 
   Loginevent() {
-    if (this.username == "" && this.password == "") {
-      this.presentAlert('', 'Enter Username & Password');
+    if ((this.username == "" && this.password == "") || this.username == null && this.password == null) {
+      this.presentAlert('', 'Enter User code & Password');
       return;
     } else if (this.username == "" || this.username == undefined) {
-      this.presentAlert('', 'Enter Username');
+      this.presentAlert('', 'Enter User code');
       return;
     } else if (this.password == "" || this.password == undefined) {
       this.presentAlert('', 'Enter Password');
@@ -123,7 +123,7 @@ export class LoginPage implements OnInit {
                 // this.presentAlert('Alert1', b);
                 console.log("" + resp[0]['Column1'])
               }, 5000);
-           
+
             }
 
             // this.loadingdismiss();

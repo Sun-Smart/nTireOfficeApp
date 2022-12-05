@@ -47,6 +47,7 @@
     </ion-row>
   </ion-grid>
   <p style="text-align: center;">{{error}}</p>
+  <center style="color: #000 !important;text-align: center;" *ngIf="display">Total records: {{display.length}}</center>
   <ion-card *ngFor="let leaveDataItems of display; let i = index">
     <ion-grid style="padding: 0px;">
       <ion-row>

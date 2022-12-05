@@ -95,7 +95,7 @@ console.log(resp)
         this.loadingdismiss();
       }
     }, error => {
-    alert('Server Error, Data not loaded.')
+    // alert('Server Error, Data not loaded.')
     console.log("error : "+JSON.stringify(error));
 
 this.loadingdismiss();
@@ -190,7 +190,7 @@ this.loadingdismiss();
            this.loadingdismiss();
          }
        }, error => {
-       alert('Server Error, Data not loaded.')
+      //  alert('Server Error, Data not loaded.')
        console.log("error : "+JSON.stringify(error));
    this.loadingdismiss();
        });
