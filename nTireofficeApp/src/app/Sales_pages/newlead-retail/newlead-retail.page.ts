@@ -1551,12 +1551,17 @@ export class NewleadRetailPage implements OnInit {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.insertserviceurl + 'BranchLocation/' + branchid, {
       headers: options,
     }).subscribe(resp => {
-
-      this.branchlocationlist = JSON.stringify(resp);
-      this.branchlocationlist = JSON.parse(this.branchlocationlist);
-      if (this.branchlocationlist.length == 0) {
-        this.presentAlert('Alert', 'This Branch has no location');
-      }
+      debugger
+if(branchid=="0"){
+  this.branchlocationlist=null
+}else{
+  this.branchlocationlist = JSON.stringify(resp);
+  this.branchlocationlist = JSON.parse(this.branchlocationlist);
+  if (this.branchlocationlist.length == 0) {
+    this.presentAlert('Alert', 'This Branch has no location');
+  }
+}
+    
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
