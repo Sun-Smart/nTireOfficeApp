@@ -46,10 +46,12 @@ export class AssetrequestPage implements OnInit {
   dat_valid;
   rreqid3: string;
   reqID2: string[];
-  release: boolean;
+  release: any;
   disabledvalue: boolean;
   username = window.localStorage.getItem('TUM_USER_NAME');
   getvalue: any;
+  asset_Id: any;
+  user_ID: string;
   constructor(private router: Router, private route: ActivatedRoute,
     public alertController: AlertController, private datepipe: DatePipe, private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.status = "P";
@@ -131,7 +133,8 @@ export class AssetrequestPage implements OnInit {
     var date1 = this.formatDate(this.requestDate);
     var date2 = this.formatDate(new Date(this.returnDate));
     var date3 = this.formatDate(new Date(this.reqbeforedte));
-    this.reqID = 8
+    // this.reqID = 8
+    this.reqID = "@";
     // if (this.reqID == undefined) {
     //   this.reqID == 0
     // }
@@ -144,7 +147,12 @@ export class AssetrequestPage implements OnInit {
     else {
       this.status = 'N';
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + this.requestDate + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + this.returnDate + "/" + this.reason + "/" + this.status).then(resp => {
+
+    this.asset_Id = "NULL";
+    this.user_ID = localStorage.getItem('TUM_USER_ID');
+    this.release = "False";
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + this.requestDate + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + this.returnDate + "/" + this.reason + "/" + this.status + "/" + this.asset_Id + "/" + this.user_ID + "/" + this.release).then(resp => {
+      this.reqID = undefined;
       if (resp == '"Attendance not available"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date");
 
@@ -152,8 +160,8 @@ export class AssetrequestPage implements OnInit {
         this.toastmessageService.presentAlert1("Request Not Sent", "Employee Office Hrs should not be less that Total Office Hrs");
       } else if (resp == '"COFF Request already available for this date"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "COFF Request already available for this date");
-      }else {
-
+      } else {
+        this.reqID = undefined;
 
 
         var replace = resp.toString().replace(/"/g, '');
@@ -178,7 +186,6 @@ export class AssetrequestPage implements OnInit {
         // this.userID = this.userID;
         // // console.log(split[2]);
         // this.reqID = split[0];
-
         if (split[1] == "8@Asset Request Updated Successfully@HRMS_INFRASTRUCTURE_REQUEST_MASTER") {
           this.toastmessageService.presentAlert1("Request Sent", "Request saved Successfully <br> Req Ref : " + this.rreqid3);
 
