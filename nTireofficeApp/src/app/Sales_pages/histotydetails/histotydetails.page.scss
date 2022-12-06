@@ -22,3 +22,18 @@ ion-label {
 .colorfocus{
   color: black;
 }
+label {
+  color: black !important;
+  margin-left: 10px !important;
+}
+.card_header{
+  justify-content: left;
+}
+ .card_header_text {
+  font-size: 15px;
+  color: white !important;
+  margin: auto;
+  /* display: flex; */
+  justify-content: center;
+  font-weight: bold;
+}
