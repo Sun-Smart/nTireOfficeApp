@@ -29,6 +29,8 @@ export class PermissionsummaryPage implements OnInit {
     this.company = window.localStorage['FUNCTION_DESC'];
     this.empID = window.localStorage['EmployeeID'];
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
+    this.fromDate = "";
+    this.toDate = "";
     this.status = "";
     this.filterDate(undefined, undefined);
     // this.getRequestRef();
@@ -56,7 +58,7 @@ export class PermissionsummaryPage implements OnInit {
     } else {
       var toDate = this.formatDate(todate);
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate).then((resp: any) => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/searchPermission/" + this.FUNCTION_ID + "/" + this.empID + "/" + fromDate + "/" + toDate + "/" + this.status).then((resp: any) => {
       this.loadingdismiss();
       if (resp != "No Records found") {
         //  this.display = JSON.parse(resp.toString());
@@ -79,15 +81,15 @@ export class PermissionsummaryPage implements OnInit {
     });
   }
 
-  changeOrder(){
+  changeOrder() {
     console.log("permission")
-    this.error=''
+    this.error = ''
     this.display = this.display1.filter((data) => {
-      if(data.Status!=undefined){
-      return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
-    }
+      if (data.Status != undefined) {
+        return data.Status.toLowerCase().indexOf(this.status.toLowerCase()) > -1;
+      }
     });
-    if(this.display.length==0){
+    if (this.display.length == 0) {
       // this.error = "No data found";
     }
   }
@@ -99,21 +101,21 @@ export class PermissionsummaryPage implements OnInit {
   //   this.error = ''
   //   console.log("change status",this.changeOrder);
   //   debugger
-    // console.log(Object.values(this.display1).filter(user => this.display1.Status === 1));
-    // console.log(Object.values(this.display1).filter((data:any)=> this.display1.Status === 1));
-    // this.display = Object.values(this.display1).filter((data: any) => {
-      // console.log(data)
+  // console.log(Object.values(this.display1).filter(user => this.display1.Status === 1));
+  // console.log(Object.values(this.display1).filter((data:any)=> this.display1.Status === 1));
+  // this.display = Object.values(this.display1).filter((data: any) => {
+  // console.log(data)
 
-      // return data.Status.indexOf(this.status) > -1;
-      // console.log(data.Status.indexOf(this.status) != -1);
+  // return data.Status.indexOf(this.status) > -1;
+  // console.log(data.Status.indexOf(this.status) != -1);
 
-      // return data.indexOf(this.status) > -1;
+  // return data.indexOf(this.status) > -1;
 
-    // });
+  // });
 
-    // if (this.display.length == 0) {
-    //   this.error = "No data found";
-    // }
+  // if (this.display.length == 0) {
+  //   this.error = "No data found";
+  // }
   // }
   formatDate(value) {
     value = new Date(value);
