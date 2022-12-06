@@ -80,7 +80,14 @@
         <ion-label>Exp. Closed Date</ion-label>
         <ion-input class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" date='dd/MM/yyyy'
           min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" date='dd/MM/yyyy' type="date"
-          [(ngModel)]="dataobjs.ClosedDate"></ion-input>
+          [(ngModel)]="dataobjs.ClosedDate">
+          <ion-icon name="calendar" style="top: 0px; right:0px;"></ion-icon>  
+ 
+          <!-- <ion-icon name="calendar" style="position: relative; 
+          left: 80%;
+          bottom: 35px;"></ion-icon> -->
+         </ion-input>
+        
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Expected Amount</ion-label>

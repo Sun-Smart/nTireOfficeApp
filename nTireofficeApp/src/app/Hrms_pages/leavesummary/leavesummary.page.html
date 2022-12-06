@@ -33,7 +33,7 @@
           <option *ngFor="let item of leavetypearray">{{item.TEXT}}</option>
         </select>
       </ion-col>
-      <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
+      <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Status<span class="validatecolor">*</span></ion-label>
         <select [(ngModel)]="status" class="form-control" (click)="changeOrder()">
           <option value="">&lt;&lt; Select &gt;&gt;</option>
@@ -43,7 +43,7 @@
           <option>Cancelled</option>
           <option>Denied</option>
         </select>
-      </ion-col> -->
+      </ion-col>
     </ion-row>
   </ion-grid>
   <p style="text-align: center;">{{error}}</p>

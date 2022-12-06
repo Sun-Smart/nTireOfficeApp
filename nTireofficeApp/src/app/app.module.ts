@@ -23,16 +23,18 @@ import { AppComponent } from '././app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule,
-    IonicModule.forRoot({ mode: 'ios',
-    scrollAssist: false,
-    scrollPadding: false}),
+    IonicModule.forRoot({
+      mode: 'ios',
+      scrollAssist: false,
+      scrollPadding: false
+    }),
     AppRoutingModule,
     HttpClientModule,
     NgxDatatableModule,
     FormsModule,
     Ng2SearchPipeModule,
     // CommonModule,
-    
+
    ],
 
   providers: [StatusBar,

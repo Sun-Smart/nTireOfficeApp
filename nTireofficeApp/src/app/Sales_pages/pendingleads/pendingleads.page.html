@@ -61,7 +61,7 @@
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="penleadfilter.TCC_LEAD_PRIORITY" class="form-control" style="width:100%">
-              <option value=""> &lt;&lt; Call Priority &gt;&gt; </option>
+              <option value="select"> &lt;&lt; Call Priority &gt;&gt; </option>
 
               <option *ngFor="let call of callpriority1; let i = index" [ngValue]="call.value">{{call.text}}</option>
             </select>
@@ -121,7 +121,7 @@
           </ion-col>
 
           <ion-col size="6" >
-            <ion-label class="card_header_text" style="justify-content: left !important;"> #{{items.CUST_LEAD_ID}}</ion-label>
+            <ion-label class="card_header_text" style="justify-content: left !important; float: right;" > #{{items.CUST_LEAD_ID}}</ion-label>
           </ion-col>
         </ion-row>
       </ion-card-header>
@@ -267,7 +267,8 @@
               position: relative;
               bottom: 4px;
               box-shadow: rgb(0 0 0 / 30%) -1px 6px 11px -11px, rgb(0 0 0 / 30%) -9px 8px 20px -5px;
-              display: inline-block;"></i>
+              display: inline-block;
+              background-color: white;"></i>
             </a>
           </ion-col>
           <div id="dividvals{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">

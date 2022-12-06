@@ -22,23 +22,25 @@
        </ion-col>
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <ion-label>From (Date)<span class="validatecolor">*</span></ion-label>
-  <ion-input type='date' class="form-control" (ionChange)="filterDate($event.target.value,toDate)"  [(ngModel)]="fromDate"></ion-input>
+  <ion-input type='date' class="form-control" [(ngModel)]="fromDate"></ion-input>
                   </ion-col>
                   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                       <ion-label>To (Date)<span class="validatecolor">*</span></ion-label>
-                 <ion-input  type='date' class="form-control" (ionChange)="filterDate(fromDate,$event.target.value)" [(ngModel)]="toDate"></ion-input>
+                 <ion-input  type='date' class="form-control" [(ngModel)]="toDate"></ion-input>
                     </ion-col>
     <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>Status<span class="validatecolor">*</span></ion-label>
-     <select [(ngModel)]="status" class="form-control" (click)="changeOrder()">
-     <option value="">&lt;&lt; Select &gt;&gt;</option>
-     <option>Approved</option>
-     <option>Pending</option>
-     <option>New</option>
-     <option>Cancelled</option>
-     <option>Denied</option>
+     <select [(ngModel)]="status" class="form-control">
+     <option value="" selected>&lt;&lt; Select &gt;&gt;</option>
+     <option value="Approved">Approved</option>
+     <option value="Pending">Pending</option>
+     <option value="New">New</option>
+     <option value="Cancelled">Cancelled</option>
+     <option value="Denied">Denied</option>
      </select>
      </ion-col>
+     <ion-button class="ion-color-success"  expand="block" [disabled]="fromDate == '' || toDate == '' || status == ''"
+          (click)="filterDate(fromDate,toDate)">Search</ion-button>
     </ion-row>
    </ion-grid>
       <p style="text-align: center;">{{error}}</p>
