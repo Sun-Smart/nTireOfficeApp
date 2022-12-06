@@ -131,10 +131,10 @@
               <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.FirstName}}</span>
             </ion-col>
             <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-              <ion-label style="color:black !important">Family Name</ion-label>
+              <ion-label style="color:black !important">Last Name</ion-label>
               <br />
               <ion-input type="text" class="profileOutput labelData-text" *ngIf="personalToggle === 1"
-                placeholder="Family Name" [(ngModel)]="profile.LastName" [disabled]="personalToggle === 0"></ion-input>
+                placeholder="Last Name" [(ngModel)]="profile.LastName" [disabled]="personalToggle === 0"></ion-input>
               <span *ngIf="personalToggle === 0" class="profileOutput labelData-text">{{profile.LastName}}</span>
 
             </ion-col>
@@ -401,10 +401,10 @@
         </ion-card-header>
 
         <ion-card-content>
-        
+
           <ion-row>
-        
-          
+
+
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Email</ion-label>
               <br />
@@ -420,8 +420,8 @@
             <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
               <ion-label style="color:black !important">Mobile</ion-label>
               <br />
-              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile" 
-                type="number" pattern="[1-9]{1}[0-9]{9}" maxlength="10" 
+              <ion-input *ngIf="contactToggle === 1" class="profileOutput labelData-text" name="Mobile"
+                type="number" pattern="[1-9]{1}[0-9]{9}" maxlength="10"
                 onKeyPress="if(this.value!=undefined && this.value.length==10) return false;"
                 (keyup)="phonenumber(profile.Mobile) " placeholder="Mobile" [(ngModel)]="profile.Mobile"
                 [disabled]="contactToggle===0"    [ngModelOptions]="{standalone: true}" ></ion-input>
@@ -449,11 +449,11 @@
                 class="profileOutput labelData-text">{{profile.EmergencyContactName}}</span>
             </ion-col>
 
-        
-         
+
+
           </ion-row>
-   
-      
+
+
         </ion-card-content>
              </form>
       </ion-card>
