@@ -62,7 +62,7 @@
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <ion-input type="tel" (keyup)="mobilenumbervalid(mobile)" class="form-control" [(ngModel)]="mobile"></ion-input> -->
         <ion-input type="tel" class="form-control" pattern="[0-9]*" 
-        type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+        type="number" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
           [(ngModel)]="mobile" minlength="10" maxlength="10" #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
@@ -76,7 +76,7 @@
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <ion-input type="tel" class="form-control"pattern="[0-9]*" 
-        type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;"
+        type="number" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;"
  [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10" maxlength="13" #umobile="ngModel"></ion-input>
  <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
@@ -112,18 +112,18 @@
       </ion-col>
       <ion-col *ngIf="old_company == 'false'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input type="number" minlength="10" maxlength="15" class="form-control" [(ngModel)]="mobile"></ion-input>
+        <ion-input type="number" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13)"  minlength="10" maxlength="15" class="form-control" [(ngModel)]="mobile"></ion-input>
 
       </ion-col>
       <ion-col *ngIf="old_company == 'false'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number</ion-label>
-        <ion-input type="number" minlength="10" maxlength="15" class="form-control" [(ngModel)]="OffPhone"></ion-input>
+        <ion-input type="number" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13)" minlength="10" maxlength="15" class="form-control" [(ngModel)]="OffPhone"></ion-input>
 
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Call Priority <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select id="selectbutton" [(ngModel)]="callpriority" class="form-control">
-
+          <option>&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let prioriy of callpriorityarray; let i = index" [ngValue]="prioriy.value">{{prioriy.text}}
           </option>
         </select>
@@ -162,7 +162,7 @@
         <ion-label>Next Action <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select id="selectbutton"  class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let action of nextactionarray; let i = index" [ngValue]="action.val">{{action.text}}</option>
+          <option *ngFor="let action of nextactionarray; let i = index" [ngValue]="action.value">{{action.text}}</option>
         </select>
       </ion-col>
       <ion-col *ngIf="nextaction=='1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">

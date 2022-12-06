@@ -162,15 +162,16 @@ export class NewleadcorporatePage implements OnInit {
     this.branchlocation = "<< Select >>";
     this.productdata = "<< Select >>";
     this.nextaction = "<< Select >>";
-    this.callpriority = 1;
-    this.callstage = 1;
-    this.callrating = 1;
-    this.callnature = 1;
-    this.leadssource = 1;
+    this.callpriority = "<< Select >>";
+    this.callstage = "<< Select >>";
+    this.callrating = "<< Select >>";
+    this.callnature = "<< Select >>";
+    this.leadssource = "<< Select >>";
     this.source='<< Select >>';
+    this.leadby='<< Select >>'
     // this.source="<< Select >>";
     // this.leadssource ='<< Select >>' ;
-    this.leadby = "S";
+    // this.leadby = "S";
 
     this.username = localStorage.getItem('TUM_USER_NAME');
 
@@ -759,7 +760,7 @@ export class NewleadcorporatePage implements OnInit {
     debugger;
     console.log("branch", this.branch,"productdata",this.productdata,"company",this.company,"ContactName",this.ContactName,"mobile",this.mobile,"company",this.company,"ContactName",this.ContactName,"callpriority",this.callpriority,"callrating",this.callrating,"callnature",this.callnature,"callstage",this.callstage,"nextaction",this.nextaction,"leadby",this.leadby,"remarks",this.remarks,"nextaction",this.nextaction,"placetomeet",this.placetomeet,"followtime",this.followtime,"followdate",this.followdate,"nextaction",this.nextaction,"followtime",this.followtime,"followdate",this.followdate,"leadby",this.leadby,"Employeeid",this.Employeeid,"leadby",this.leadby,"custname",this.custname,"leadby",this.leadby,"leadByval",this.leadByval)
    //if ((this.branch == '<< Select >>' || this.productdata == '<< Select >>' || this.company == undefined || this.ContactName == undefined || this.mobile == undefined || this.company == undefined || this.ContactName == undefined || this.callpriority == undefined || this.callrating == '<< Select >>' || this.callnature == '<< Select >>' || this.callstage == '<< Select >>' || this.nextaction == '<< Select >>' || this.leadby == '<< Select >>' || this.remarks == undefined) || (this.nextaction == '1' && (this.placetomeet == undefined || this.followtime == undefined || this.followdate == undefined)) || (this.nextaction == '2' && (this.followtime == undefined || this.followdate == undefined)) || (this.leadby == 'E' && (this.Employeeid == undefined)) || (this.leadby == 'C' && (this.custname == undefined)) || (this.leadby == 'P' && (this.leadByval == undefined)))
-    if ((this.branch == '<< Select >>' || this.productdata == '<< Select >>' || this.company == undefined || this.ContactName == undefined || this.mobile == undefined || this.company == undefined || this.ContactName == undefined || this.callpriority == undefined || this.callrating == '<< Select >>' || this.callnature == '<< Select >>' || this.callstage == '<< Select >>' || this.nextaction == '<< Select >>' || this.leadby == '<< Select >>' || this.remarks == undefined) || (this.nextaction == '1' && (this.placetomeet == undefined || this.followtime == undefined || this.followdate == undefined)) || (this.nextaction == '2' && (this.followtime == undefined || this.followdate == undefined)) || (this.leadby == 'E' && (this.Employeeid == undefined)) || (this.leadby == 'C' && (this.custname == undefined)) || (this.leadby == 'P' && (this.leadByval == undefined))) {
+    if ((this.branch == '<< Select >>' || this.productdata == '<< Select >>' || this.company == undefined || this.ContactName == undefined || this.mobile == undefined || this.company == undefined || this.ContactName == undefined || this.callpriority == undefined || this.callrating == '<< Select >>' || this.callnature == '<< Select >>' || this.callstage == '<< Select >>'  || this.leadby == '<< Select >>' || this.remarks == undefined) ) {
       
       this.presentAlert1('', 'Enter Mandatory Fields');
     }
@@ -871,8 +872,8 @@ export class NewleadcorporatePage implements OnInit {
         var month1 = date1.getMonth() + 1;
         var year1 = date1.getFullYear();
         this.closedDate = [day1, month1, year1].join('-');
-        if (this.closedDate == "NaN-NaN-NaN" || this.closedDate == '') {
-          this.closedDate = ' ';
+        if (this.closedDate == NaN-NaN-NaN || this.closedDate == '') {
+          this.closedDate = 0;
         }
         if (appdata == '' || this.nextaction == 6 || this.nextaction == 5 || this.nextaction == 4 || this.nextaction == 7 || this.nextaction == 8 || this.nextaction == 9) {
 
@@ -907,7 +908,7 @@ export class NewleadcorporatePage implements OnInit {
           OffPhone: this.OffPhone,
           ResPhone: "0",
           appointmentDate: appdata1,
-          closedDate: this.closedDate,
+          closedDate: this.closedDate||0,
           appointmentTime: strTime1,
           company1: this.company,
           campaign: this.campaign,
@@ -915,7 +916,7 @@ export class NewleadcorporatePage implements OnInit {
           remarks: this.remarks,
           expectedAmount: this.expectedAmount,
           uservalue: this.uservalue,
-          followdate: this.followdate,
+          followdate: 0,
           followtime: this.followtime,
           prod_cat: this.curr_prod_category,
           product_id: this.productdata,
@@ -923,7 +924,7 @@ export class NewleadcorporatePage implements OnInit {
           rating: this.callrating,
           nature: this.callnature,
           stage: this.callstage,
-          response: this.nextaction,
+          response: 0,
           leadBy: this.leadby,
           LocationId: branchloc
 
@@ -1310,5 +1311,13 @@ debugger;
 
     }
   }
+
+
+  omit_special_char(event) {
+    var k;
+    k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+    return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+  }
+
 
 }

@@ -77,7 +77,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="6">
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input type="tel" class="form-control" minlength="10" maxlength="10" onKeyPress="if(this.value.length==10) return false;"  [(ngModel)]="mobilenumber"
+        <ion-input type="tel" class="form-control" minlength="10" maxlength="10"  (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"  [(ngModel)]="mobilenumber"
            #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
@@ -90,7 +90,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="6">
         <ion-label>Office Number</ion-label>
         <ion-input type="tel" class="form-control" pattern="[0-9]*" [(ngModel)]="officenumber" minlength="10"
-          maxlength="13" #uname="ngModel" onKeyPress="if(this.value.length==13) return false;"></ion-input>
+          maxlength="13" #uname="ngModel"  (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;"></ion-input>
         <div *ngIf="uname.errors?.minlength || uname.errors?.maxlength">
           <p style="color:red;">valid office number required</p>
         </div>
