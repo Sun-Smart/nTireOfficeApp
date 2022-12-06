@@ -22,12 +22,12 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>From (Date)<span class="validatecolor">*</span></ion-label>
-        <ion-input type='date' class="form-control" (ionChange)="filterAsset('filter')" [(ngModel)]="fromDate">
+        <ion-input type='date' class="form-control"  [(ngModel)]="fromDate">
         </ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>To (Date)<span class="validatecolor">*</span></ion-label>
-        <ion-input type='date' class="form-control" (ionChange)="filterAsset('filter')" [(ngModel)]="toDate">
+        <ion-input type='date' class="form-control" [(ngModel)]="toDate">
         </ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -40,7 +40,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Assest Subcategory<span class="validatecolor">*</span></ion-label>
-        <select id="selectbutton" [(ngModel)]="assestsubCategory" (ionChange)="filterAsset('filter')"
+        <select id="selectbutton" [(ngModel)]="assestsubCategory"
           class="form-control">
           <option value="">&lt;&lt; Select &gt;&gt; </option>
           <option *ngFor="let item of subCategoryData" [value]="item.id">{{item.TEXT}}</option>
@@ -57,13 +57,15 @@
           <option>Denied</option>
         </select>
       </ion-col>
+      <ion-button class="ion-color-success" expand="block"
+          (click)="filterAsset('filter')">Search</ion-button>
     </ion-row>
   </ion-grid>
 
 
-  <p style="text-align: center;">{{error}}</p>
+  <p style="text-align: center;color: #000;">{{error}}</p>
 
-  
+
   <ion-card *ngFor="let assetData of display; let i = index">
     <ion-grid style="padding: 0px;">
       <ion-row>

@@ -72,7 +72,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   filePath: string;
   fileName: string;
   audio: MediaObject;
-  TCC_CUST_LEAD_IDs;
+  TCC_CUST_LEAD_ID;
   audioList: any[] = [];
   private stream;
   private recorder;
@@ -153,6 +153,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
   user_type_val;
   imagename: any;
   username: any;
+  branch_id:any;
   private backbuttonSubscription: Subscription;
   constructor(private sanitizer: DomSanitizer, public platform: Platform, public media: Media, private datePipe: DatePipe, public loadingController: LoadingController, private router: Router, private geolocation: Geolocation, public alertController: AlertController, public modalController: ModalController, private callNumber: CallNumber, private file: File, private transfer: FileTransfer, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     this.segmentdata = 'new';
@@ -184,6 +185,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       //this.userservice.Updateofflinestatus("offline");
 
     });
+    this.branch_id = localStorage.getItem('id');
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.phonecalls();
     // this.checkPermissionCall();
@@ -220,6 +222,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
   }
   ngOnInit() {
+    this.Getusertype();
 
   }
   Getbranches() {
@@ -238,6 +241,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       this.branchlist = resp;
       this.branchlist.forEach(element => {
         this.branchlist1.push(element);
+        console.log(this.branchlist1);
         this.branchlist1.forEach((item, index) => {
           if (index !== this.branchlist1.findIndex(i => i.BRANCH_DESC.toUpperCase() == item.BRANCH_DESC.toUpperCase())) {
             this.branchlist1.splice(index, 1);
@@ -259,7 +263,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
           return 0;
         });
 
-        console.log("branchlist1 : " + JSON.stringify(this.branchlist1));
+        console.log(this.branchlist1);
       });
     }, error => {
 
@@ -276,8 +280,8 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'getProduct', {
       headers: options,
     }).subscribe(resp => {
-      this.products1 = JSON.stringify(resp);
-      this.products1 = JSON.parse(this.products1);
+      this.products1 = resp;
+      this.products1 = this.products1;
 
       this.products1.sort(function (a, b) {
         var c = a.productName.toUpperCase();
@@ -298,8 +302,8 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callpriority', {
       headers: options,
     }).subscribe(resp => {
-      this.callpriority1 = JSON.stringify(resp);
-      this.callpriority1 = JSON.parse(this.callpriority1);
+      this.callpriority1 = resp;
+      this.callpriority1 = this.callpriority1;
       // this.callpriority1 = JSON.parse(resp.toString());
       this.callpriority1.sort(function (a, b) {
         var c = a.text.toUpperCase();
@@ -320,8 +324,8 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurl + 'callrating', {
       headers: options,
     }).subscribe(resp => {
-      this.callrating1 = JSON.stringify(resp);
-      this.callrating1 = JSON.parse(this.callrating1);
+      this.callrating1 = resp;
+      this.callrating1 = this.callrating1;
       // this.callrating1 = JSON.parse(resp.toString());
       this.callrating1.sort(function (a, b) {
         var c = a.text.toUpperCase();
@@ -349,13 +353,13 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       headers: options,
     }).subscribe(resp => {
       //alert(""+JSON.st)
-      console.log("resp :" + JSON.stringify(resp));
+      console.log(resp);
       this.usertype = resp;
 
       this.usertype.forEach(element => {
         if (element.DESCRIPTION != 'நிர்வாகி') {
           this.usertype1.push(element);
-          console.log("usertype1 :" + JSON.stringify(this.usertype1));
+          console.log(this.usertype1);
         }
 
 
@@ -379,7 +383,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branchid: parseInt(branch_id)
+      branchid: parseInt(this.branch_id)
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -389,11 +393,11 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     }).subscribe(resp => {
 
       this.userdata = resp;
-      console.log("usertype1 :" + JSON.stringify(this.userdata));
+      console.log(this.userdata);
 
       this.userdata.forEach(element => {
         this.userdata1.push(element);
-        console.log("usertype1 :" + JSON.stringify(this.usertype1));
+        console.log(this.usertype1);
 
       });
       this.userdata1.sort(function (a, b) {
@@ -518,7 +522,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     var user_id_nw = parseInt(window.localStorage['TUM_USER_ID']);
 
 
-    this.getcustid = this.TCC_CUST_LEAD_IDs;
+    this.getcustid = this.TCC_CUST_LEAD_ID;
     console.log(this.getcustid);
 
     if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
@@ -554,12 +558,14 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
 
       'usertoken': window.localStorage['usertoken'],
-      TCC_CUST_LEAD_ID: this.penleadfilter.TCC_CUST_LEAD_ID.toString(),
+      // this.penleadfilter.TCC_CUST_LEAD_ID.toString()
+      
+      TCC_CUST_LEAD_ID:window.localStorage['setcustid'] ,
       TCC_LEAD_BY: this.penleadfilter.TCC_LEAD_BY.toString(),
       TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
       TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
       TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-      TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
+      TCC_CUSTOMER_ID: 0,
       BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
 
@@ -581,70 +587,72 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       } else {
         console.log("pendleadsdatalength : " + JSON.stringify(resp));
         this.pendingleadsdatalength = resp.length;
+        this.pendleaddetails = resp;
       }
     }, error => {
 
 
     });
 
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
-      headers: options,
-    }).subscribe(resp => {
-      if (resp == "No data found") {
-        this.showData = "No data found";
-        this.pendingleadsdatalength = 0;
-      } else {
+    // this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'pendleadsdata', pendJSON, {
+    //   headers: options,
+    // }).subscribe(resp => {
+    //   console.log(resp);
+    //   if (resp == "No data found") {
+    //     this.showData = "No data found";
+    //     this.pendingleadsdatalength = 0;
+    //   } else {
 
-        console.log("pendleaddetails1 : " + JSON.stringify(resp));
-        this.loadingdismiss();
-        this.pendleaddetails1.push(resp);
-        this.pendleaddetails1.forEach(element => {
-          this.pendleaddetails = element;
-          console.log("pendleaddetails1 : " + JSON.stringify(element));
+    //     console.log(resp);
+    //     this.loadingdismiss();
+    //     this.pendleaddetails1.push(resp);
+    //     this.pendleaddetails1.forEach(element => {
+    //       this.pendleaddetails = element;
+    //       console.log(element);
 
-        });
+    //     });
 
-        for (var i = 0; i < this.pendleaddetails.length; i++) {
-          console.log(this.pendleaddetails[i].MOBILE);
-          if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
-            this.pendleaddetails[i].MOBILE = '-';
-          }
-          if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
-            this.pendleaddetails[i].OFFPHONE = '-';
-          }
-          if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
-            this.pendleaddetails[i].RESPHONE = '-';
-          }
-          if (this.pendleaddetails[i].CreatedOn != undefined) {
+    //     for (var i = 0; i < this.pendleaddetails.length; i++) {
+    //       console.log(this.pendleaddetails[i].MOBILE);
+    //       if (this.pendleaddetails[i].MOBILE == "null" || this.pendleaddetails[i].MOBILE == '' || this.pendleaddetails[i].MOBILE == "undefined") {
+    //         this.pendleaddetails[i].MOBILE = '-';
+    //       }
+    //       if (this.pendleaddetails[i].OFFPHONE == "null" || this.pendleaddetails[i].OFFPHONE == '' || this.pendleaddetails[i].OFFPHONE == "undefined") {
+    //         this.pendleaddetails[i].OFFPHONE = '-';
+    //       }
+    //       if (this.pendleaddetails[i].RESPHONE == "null" || this.pendleaddetails[i].RESPHONE == '' || this.pendleaddetails[i].RESPHONE == "undefined") {
+    //         this.pendleaddetails[i].RESPHONE = '-';
+    //       }
+    //       if (this.pendleaddetails[i].CreatedOn != undefined) {
 
-            var date = this.pendleaddetails[i].CreatedOn1;
+    //         var date = this.pendleaddetails[i].CreatedOn1;
 
-            var timesp = date.split('T');
-            var time2 = timesp[1].split('.');
+    //         var timesp = date.split('T');
+    //         var time2 = timesp[1].split('.');
 
-            var d1 = new Date(timesp[0] + " " + time2[0]);
-            var d2 = new Date(d1);
-            d2.setMinutes(d2.getMinutes() + 30);
-            console.log('getMinutes' + d2);
+    //         var d1 = new Date(timesp[0] + " " + time2[0]);
+    //         var d2 = new Date(d1);
+    //         d2.setMinutes(d2.getMinutes() + 30);
+    //         console.log('getMinutes' + d2);
 
 
-            var penddata = this.datePipe.transform(d2, "hh:mm");
-            this.pendleaddetails[i].created_time = this.tConvert(penddata);
-          }
-          if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
-            this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
-          }
-          this.pendleaddetails[i].blobUrl = null;
-          this.pendleaddetails[i].isRecording = false;
-        }
+    //         var penddata = this.datePipe.transform(d2, "hh:mm");
+    //         this.pendleaddetails[i].created_time = this.tConvert(penddata);
+    //       }
+    //       if (this.pendleaddetails[i].TCC_NEXT_CALL_DATE != undefined) {
+    //         this.pendleaddetails[i].call_time = this.formatTime(this.pendleaddetails[i].TCC_NEXT_CALL_DATE);
+    //       }
+    //       this.pendleaddetails[i].blobUrl = null;
+    //       this.pendleaddetails[i].isRecording = false;
+    //     }
 
-      }
+    //   }
 
-    }, error => {
-      this.loadingdismiss();
-      console.log("error : " + JSON.stringify(error));
+    // }, error => {
+    //   this.loadingdismiss();
+    //   console.log("error : " + JSON.stringify(error));
 
-    });
+    // });
 
   }
   async imageview(image) {
