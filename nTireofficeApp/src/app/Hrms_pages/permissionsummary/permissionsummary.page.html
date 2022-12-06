@@ -22,15 +22,15 @@
        </ion-col>
         <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
           <ion-label>From (Date)<span class="validatecolor">*</span></ion-label>
-  <ion-input type='date' class="form-control" (ionChange)="filterDate($event.target.value,toDate)"  [(ngModel)]="fromDate"></ion-input>
+  <ion-input type='date' class="form-control" [(ngModel)]="fromDate"></ion-input>
                   </ion-col>
                   <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
                       <ion-label>To (Date)<span class="validatecolor">*</span></ion-label>
-                 <ion-input  type='date' class="form-control" (ionChange)="filterDate(fromDate,$event.target.value)" [(ngModel)]="toDate"></ion-input>
+                 <ion-input  type='date' class="form-control" [(ngModel)]="toDate"></ion-input>
                     </ion-col>
     <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>Status<span class="validatecolor">*</span></ion-label>
-     <select [(ngModel)]="status" class="form-control" (click)="changeOrder()">
+     <select [(ngModel)]="status" class="form-control">
      <option value="">&lt;&lt; Select &gt;&gt;</option>
      <option>Approved</option>
      <option>Pending</option>
@@ -39,9 +39,12 @@
      <option>Denied</option>
      </select>
      </ion-col>
+     <ion-button class="ion-color-success"  expand="block" [disabled]="fromDate == undefined || toDate == undefined || status == ''"
+          (click)="filterDate(fromDate,toDate)">Search</ion-button>
     </ion-row>
    </ion-grid>
       <p style="text-align: center;">{{error}}</p>
+      <center style="color: #000;font-weight: bold;" *ngIf="display">Total records: {{display.length}}</center>
       <ion-card *ngFor="let permissiondata of display; let i = index">
        <ion-grid style="padding: 0px;">
     <ion-row>

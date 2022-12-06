@@ -75,8 +75,9 @@ export class AssetrequestPage implements OnInit {
     this.getAssetCategory();
     this.urldata = this.route.params.subscribe(params => {
       // this.asstRequest = JSON.parse(params.item);
-      this.asstRequest = JSON.stringify(params.item);
+      console.log('Dhana test', this.asstRequest);
       if (this.asstRequest != undefined) {
+        this.asstRequest = JSON.stringify(params.item);
         this.ASSETCATEGORY = this.asstRequest.ASSETCATEGORY;
         this.ASSETSUBCATEGORY = this.asstRequest.ASSETSUBCATEGORY;
         this.ASSETCODE = this.asstRequest.ASSETCODE;
@@ -115,7 +116,7 @@ export class AssetrequestPage implements OnInit {
     this.getvalue = value;
     console.log(this.getvalue)
     // this.subCategoryData = [];
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + window.localStorage['FUNCTION_ID']+ "/" + this.getvalue).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/LoadAssetSubCategory/" + window.localStorage['FUNCTION_ID'] + "/" + this.getvalue).then(resp => {
       this.subCategoryData = resp;
       console.log(this.subCategoryData);
     }, error => {
@@ -143,7 +144,7 @@ export class AssetrequestPage implements OnInit {
     else {
       this.status = 'N';
     }
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + this.requestDate + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + this.returnDate +  "/" + this.reason + "/" + this.status).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveAssets/" + this.FUNCTION_ID + "/" + this.TUM_BRANCH_ID + "/" + this.reqID + "/" + this.empID + "/" + this.requestDate + "/" + this.assestCategory + "/" + this.assestsubCategory + "/" + this.returnDate + "/" + this.reason + "/" + this.status).then(resp => {
       if (resp == '"Attendance not available"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date");
 
@@ -151,9 +152,7 @@ export class AssetrequestPage implements OnInit {
         this.toastmessageService.presentAlert1("Request Not Sent", "Employee Office Hrs should not be less that Total Office Hrs");
       } else if (resp == '"COFF Request already available for this date"') {
         this.toastmessageService.presentAlert1("Request Not Sent", "COFF Request already available for this date");
-
-
-      } else {
+      }else {
 
 
 
@@ -230,7 +229,7 @@ export class AssetrequestPage implements OnInit {
 
     });
     // this.toastmessageService.presentAlert("Request Sent", "Request saved Successfully ");
-     this.assestCancel();
+    this.assestCancel();
   }
   formatDate(value) {
     value = new Date(value);
@@ -274,7 +273,7 @@ export class AssetrequestPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.reqID="";
+            this.reqID = "";
             this.assestCategory = "";
             this.assestsubCategory = "";
             this.requestDate = undefined;

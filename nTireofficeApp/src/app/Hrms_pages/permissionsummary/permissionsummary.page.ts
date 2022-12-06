@@ -29,6 +29,8 @@ export class PermissionsummaryPage implements OnInit {
     this.company = window.localStorage['FUNCTION_DESC'];
     this.empID = window.localStorage['EmployeeID'];
     this.FUNCTION_ID = window.localStorage['FUNCTION_ID'];
+    this.fromDate = "";
+    this.toDate = "";
     this.status = "";
     this.filterDate(undefined, undefined);
     // this.getRequestRef();
