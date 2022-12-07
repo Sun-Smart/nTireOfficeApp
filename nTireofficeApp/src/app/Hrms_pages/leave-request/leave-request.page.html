@@ -33,7 +33,7 @@
         <!-- <ion-input type="number" value=""></ion-input> -->
 
         <ion-input type="tel" style="background-color: white;
-                            color: black;" class="form-control" minlength="10" maxlength="10"  [(ngModel)]="contact"(keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" #umobile="ngModel">
+                            color: black;" class="form-control" minlength="10" maxlength="10"  [(ngModel)]="contact" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" #umobile="ngModel">
                             </ion-input>
                             <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
                               <p style="color:red;">valid mobile number required</p>

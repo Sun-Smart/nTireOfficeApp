@@ -26,7 +26,7 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Contact Number</ion-label>
-        <ion-input type="number"(keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
+        <ion-input type="tel" (keypress)="keyPress($event)" minlength="10" maxlength="10"
           style="background-color: white;color: black;" class="form-control" [(ngModel)]="contact"></ion-input>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -64,8 +64,8 @@
         <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
       </ion-col>
     </ion-row>
-    
-      
+
+
         <ion-row>
           <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label>Company Name<span class="validatecolor">*</span></ion-label>
@@ -122,7 +122,7 @@
             <span *ngIf="reason!=undefined" class="customCounter">{{4000 - reason.length}}</span>
 
           </ion-col> -->
-         
+
           <ion-col *ngIf="!disabledvalue" size="6">
             <div style="padding: 12px;display: flex;">
               <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
