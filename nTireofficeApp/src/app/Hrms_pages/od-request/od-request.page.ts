@@ -921,6 +921,7 @@ export class OdRequestPage implements OnInit {
               }
 
               this.HttpRequest.PostRequest(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlhrms2 + "getreportingto", reportobj).then(resp => {
+                this.presentAlert("",resp);
                 this.from = undefined;
                 this.to = undefined;
                 this.reason = undefined;
