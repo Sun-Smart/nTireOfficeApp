@@ -80,12 +80,14 @@ export class MymeetingPage implements OnInit {
 
 
 
+
   constructor(public alertController: AlertController, public modalController: ModalController, private router: Router, private datePipe: DatePipe, private nativeGeocoder: NativeGeocoder, private http: HttpClient, public Ipaddressservice: IpaddressService) {
     var today = new Date();
 
     // this.fromdate = "dd/mm/yyyy"
     this.todate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
     this.username=localStorage.getItem('TUM_USER_NAME');
+   
   }
 
   ngOnInit() {
@@ -117,7 +119,13 @@ export class MymeetingPage implements OnInit {
     // console.log(from_datemeet)
     // var month = date.getMonth() + 1;
     // var year = date.getFullYear();
-    from_datemeet = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
+   
+    if(from_datemeet == undefined || from_datemeet == '0' || from_datemeet == 'null'){
+      from_datemeet = null;
+    }else{
+      from_datemeet = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
+    }
+    // ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear();
 
     var date1 = new Date(to_datemeet);
     // var day1 = date1.getDate();
@@ -125,45 +133,49 @@ export class MymeetingPage implements OnInit {
     // var year1 = date1.getFullYear();
     to_datemeet = ('0' + date1.getDate()).slice(-2) + '/' + ('0' + (date1.getMonth() + 1)).slice(-2) + '/' + date1.getFullYear();
 
-     if (from_datemeet == undefined) {
+     if (from_datemeet == undefined || from_datemeet == '' || from_datemeet == 'null') {
            this.presentAlert1('', 'Please Select From Date');
          }
-         else if (to_datemeet == undefined) {
+         else if (to_datemeet == undefined || to_datemeet == '' || to_datemeet == 'null') {
           this.presentAlert1('', 'Please Select To Date');
         }
         else if (from_datemeet > to_datemeet) {
          this.presentAlert1('', 'From Date should not be Greater than To Date');
-        } 
+        } else{
+
+          this.token = window.localStorage['token'];
+          var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['token'] };
+      
+          var getapppostJSONtmp = { user_id: userid, fdate: from_datemeet, tdate: to_datemeet }
+          var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
+          console.log("getapppostJSON : " + JSON.stringify(getapppostJSON));
+          const header = new Headers();
+            header.append("Content-Type", "application/json");
+            let options = new HttpHeaders().set('Content-Type', 'application/json');
+            this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/',getapppostJSON, {
+              headers: options,
+            }).subscribe(resp => {
+              debugger; 
+              this.allmeetinglocationnew = JSON.stringify(resp);
+              this.allmeetinglocation = JSON.parse(this.allmeetinglocationnew);
+              this.allmeetinglocation = this.allmeetinglocation;
+              // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
+              console.log(this.allmeetinglocation);
+              if (this.allmeetinglocationnew == ''|| this.allmeetinglocationnew == undefined || this.allmeetinglocationnew == "null"){
+                this.NoRecord = "No Meeting Found";
+                    this.showhidenorecords = true;
+                    $('#mapDetailsTable').hide();
+                    // $('#showdivs').hide();
+                 } else {
+                  this.showhidenorecords = false;
+                 }
+            });
+
+        }
      
 
 
-    this.token = window.localStorage['token'];
-    var tokenJSON = { access_token: this.token, userid: parseInt(window.localStorage['TUM_USER_ID']), 'usertoken': window.localStorage['token'] };
-
-    var getapppostJSONtmp = { user_id: userid, fdate: from_datemeet, tdate: to_datemeet }
-    var getapppostJSON = Object.assign(getapppostJSONtmp, tokenJSON);
-    console.log("getapppostJSON : " + JSON.stringify(getapppostJSON));
-    const header = new Headers();
-      header.append("Content-Type", "application/json");
-      let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'getallappointments_post/',getapppostJSON, {
-        headers: options,
-      }).subscribe(resp => {
-        debugger; 
-        this.allmeetinglocationnew = JSON.stringify(resp);
-        this.allmeetinglocation = JSON.parse(this.allmeetinglocationnew);
-        this.allmeetinglocation = this.allmeetinglocation;
-        // this.allmeetinglocation = JSON.parse(this.allmeetinglocation);
-        console.log(this.allmeetinglocation);
-        if (this.allmeetinglocationnew == ''|| this.allmeetinglocationnew == undefined){
-          this.NoRecord = "No Meeting Found";
-              this.showhidenorecords = true;
-              $('#mapDetailsTable').hide();
-              // $('#showdivs').hide();
-           }  else {
-            this.showhidenorecords = false;
-           }
-      });
+  
      
 
   //   if (this.allmeetinglocation == '' || this.allmeetinglocation == undefined) {

@@ -600,11 +600,12 @@ export class TeammeetingsPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlSales + 'get_Allappointments', getappJSON, {
       headers: options,
     }).subscribe(resp => {
-      console.log(resp)
+      console.log("nandhini",resp)
 
 
-      this.allMeetings = JSON.stringify(resp);
-      this.allMeetings = JSON.parse(this.allMeetings);
+      this.allMeetings = resp;
+      console.log(this.allMeetings);
+      this.allMeetings = this.allMeetings;
       this.allUsername = [];
       this.allmeetingArray = [];
       this.lastlocationmeet = [];
@@ -624,6 +625,7 @@ export class TeammeetingsPage implements OnInit {
         var index = this.getIndexIfObjWithOwnAttr(this.allmeetingArray, 'Current_Caller', this.allMeetings[i].Current_Caller);
         if (index == -1) {
           this.allmeetingArray.push(objvalue);
+          console.log(objvalue);
         } else {
 
           this.allmeetingArray[index.toString()].meeting_array.push(this.allMeetings[i])
