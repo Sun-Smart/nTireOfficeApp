@@ -270,7 +270,7 @@ export class LeaveRequestPage implements OnInit {
     var session = 0;
     var nod = this.noofDays;
     var reason = this.reason;
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveLeave/" + this.FUNCTION_ID + "/" + this.TUM_USER_ID + "/" + window.localStorage['EmployeeID'] + "/@/" + typeSelected + "/" + fromDate + "/" + toDate + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.status).then(resp => {
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlhrms + "/SaveLeave/" + this.FUNCTION_ID + "/" + this.TUM_USER_ID + "/" + window.localStorage['EmployeeID'] + "/@/" + typeSelected + "/" + fromDate + "/" + toDate + "/" + nod + "/" + this.contact + "/" + reason + "/" + this.status+"/"+this.release).then(resp => {
       if (resp == '"Attendance not available"') {
         // console.log("Gotcha : " + resp);
         this.toastmessageService.presentAlert1("Request Not Sent", "Attendance is not available on the requested date")
