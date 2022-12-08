@@ -1515,7 +1515,7 @@ export class NewleadRetailPage implements OnInit {
   };
   ngOnInit() {
         // this.Getnextaction('');
-
+        this.branch = "<<Select>>";
   }
 
   Getbranches() {
