@@ -30,11 +30,15 @@
     <ion-row style="text-align: left;">
       <ion-col size="6">
         <label>From Date</label>
-        <input style="padding:10px;width:100%;color: #000 !important;" class="form-control" [(ngModel)]="fromDate" type="date" />
+        <ion-input class="form-control date-input" [(ngModel)]="fromDate"
+          type="date">
+        <ion-icon name="calendar" ></ion-icon></ion-input>
       </ion-col>
       <ion-col size="6">
         <label>To Date</label>
-        <input style="padding:10px;width:100%;color: #000 !important;" class="form-control" [(ngModel)]="toDate" type="date" />
+        <ion-input class="form-control date-input" [(ngModel)]="toDate"
+          type="date">
+        <ion-icon name="calendar"></ion-icon></ion-input>
       </ion-col>
       <ion-col style="text-align:center" size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <button (click)="searchFilter(fromDate,toDate)" size="full" style="background-color:green !important;color:#fff;width:100% !important;font-size: 17px;height: 2.8em;
