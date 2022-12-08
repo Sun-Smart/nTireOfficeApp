@@ -89,6 +89,7 @@ filter : boolean = true;
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
     this.getParamID = this.route.snapshot.paramMap.get('id');
+    
     if (this.getParamID != null) {
       console.log(this.getParamID)
       // if (!this.getParamID) {
@@ -229,7 +230,7 @@ filter : boolean = true;
     console.log(date)
     // this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
-    this.requestby = localStorage.getItem('TUM_USER_ID')
+    this.requestby = localStorage.getItem('TUM_USER_NAME')
   }
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({

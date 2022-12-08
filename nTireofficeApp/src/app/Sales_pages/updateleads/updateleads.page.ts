@@ -192,7 +192,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     /* console.log(this.item.LEADSTATUS)*/
     this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
     this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-    this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
+    this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
     //console.log(this.dataobjs.callstageval);
     this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
     // console.log(this.item.TCC_LEAD_SOURCE);
@@ -415,10 +415,10 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     console.log(objdatval);
     console.log(address);
 
-    if (objdatval.leadstatusval == '') {
+    if (objdatval.leadstatusval == '' ) {
       this.presentAlert("", "Please Select Priority");
     }
-    else if (objdatval.callratingval == '') {
+    else if (objdatval.callratingval == '' ) {
       this.presentAlert("", "Please Select Call Rating");
     }
     else if (objdatval.callnatureval == '') {
@@ -430,7 +430,8 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     else if (objdatval.nextactionval == '<< Select >>') {
       this.presentAlert("", "Please Select Next Action");
     }
-    else if (objdatval.remarks == '<< Select >>') {
+    
+    else if (objdatval.remarks == '') {
       this.presentAlert("", "Enter Remarks");
     }
     else if (objdatval.nextactionval == '2' && (objdatval.schedmeetdate == undefined || this.followtime == undefined)) {
