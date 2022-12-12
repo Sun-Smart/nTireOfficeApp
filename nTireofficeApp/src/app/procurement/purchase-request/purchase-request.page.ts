@@ -330,7 +330,7 @@ filter : boolean = true;
     })
   }
   qtymethod(){
-    
+    debugger
     if(this.qty=='' || this.qty==undefined || this.qty==null){
       this.showqty=true
     }else{

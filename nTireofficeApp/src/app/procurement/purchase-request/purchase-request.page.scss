@@ -19,3 +19,15 @@ ion-card {
     padding: 0px !important;
   }
 }
+
+textarea.native-textarea.sc-ion-textarea-md {
+  font-weight: bolder;
+  color: black;
+
+}
+
+.native-textarea[disabled].sc-ion-textarea-md {
+  /* opacity: 0.4; */
+  color: black !important;
+  font-weight: bolder !important;
+}
