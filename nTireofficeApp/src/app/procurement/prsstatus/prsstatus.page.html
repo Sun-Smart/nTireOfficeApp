@@ -45,21 +45,37 @@
           font-weight: 600;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="status" style="display:inline-block;padding: 8px; color: black;
-          font-weight: bold;"
+          <select style="padding: 10px;"[(ngModel)]="status" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option  value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
-            <option value="New">New</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Denied">Denied</option>
-            <option value="Under Process">Under Process</option>
-            <option value="Cancelled">Cancelled</option>
+            <option value="0"> Select </option>
+            <option value="N">New</option>
+            <option value="P">Pending</option>
+            <option value="A">Approved</option>
+            <option value="D">Denied</option>
+            <option value="U">Under Process</option>
+            <option value="C">Cancelled</option> 
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Status</ion-label>
+          <select style="padding: 10px;" [(ngModel)]="status" 
+          (change)="getVal($event.target.value)" style="display:inline-block;padding: 8px; color: black;
+          font-weight: bold;"
+            class="Input-text-field textareaField">
+            <option ngValue="undefined" selected disabled><<Select >></option>
+            <option ngValue="New">New</option>
+            <option ngValue="Pending">Pending</option>
+            <option ngValue="Approved">Approved</option>
+            <option ngValue="Denied">Denied</option>
+            <option ngvalue="Under Process">Under Process</option>
+            <option ngvalue="Cancelled">Cancelled</option> -->
+            <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
+          <!-- </select>
+        </ion-col> -->
         <ion-col style="text-align: center;">
           <ion-button class="ion-color-primary" (click)="new()" routerLink="/purchase-request" expand="block">New</ion-button>
         </ion-col>
@@ -80,7 +96,7 @@
 
   <p *ngIf="loading" class="totalCount">Please Wait..</p>
 
-  <div *ngIf="noRecord" style="text-align: center;">
+  <div *ngIf="noRecord" style="text-align: center; color: black; font-weight: bold;">
     No record found
   </div>
 

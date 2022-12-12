@@ -241,7 +241,7 @@
             <ion-label class="plabel">Category</ion-label>
             <select ngModel (ngModelChange)="getItemDetail($event)" style="padding: 10px;" [(ngModel)]="Category"
               class="Input-text-field textareaField">
-              <option value="select">&lt;&lt; Select &gt;&gt;</option>
+              <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
               <option value="I">Items</option>
               <option value="S">Service</option>
             </select>
