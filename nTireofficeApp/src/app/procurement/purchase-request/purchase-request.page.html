@@ -247,7 +247,7 @@
             </select>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
-            <ion-label class="plabel">Item/Service</ion-label>
+            <ion-label class="plabel">Item/Service<span style="color:red;margin-left: 5px;">*</span></ion-label>
             <select (click)="getitemvalue(Item)" style="padding: 10px;" [(ngModel)]="itemcode"
               class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
@@ -258,7 +258,7 @@
             </select>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
-            <ion-label class="plabel">Item/Service</ion-label>
+            <ion-label class="plabel">Item/Service<span style="color:red;margin-left: 5px;">*</span></ion-label>
             <ion-searchbar [(ngModel)]="itemcode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist"
@@ -295,12 +295,12 @@
 
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
-            <ion-label class="plabel">QTY</ion-label>
-            <ion-input type="number" [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
+            <ion-label class="plabel">QTY<span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-input type="number" [(ngModel)]="qty"  (click)="qtymethod()" class="Input-text-field textareaField"></ion-input>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
-            <ion-label class="plabel">QTY</ion-label>
-            <ion-input type="number" [(ngModel)]="qty" class="Input-text-field textareaField"></ion-input>
+            <ion-label class="plabel">QTY<span style="color:red;margin-left: 5px;">*</span></ion-label>
+            <ion-input type="number" [(ngModel)]="qty"  (click)="qtymethod()" class="Input-text-field textareaField"></ion-input>
           </ion-col>
 
 
@@ -364,7 +364,7 @@
               <ion-button class ="ion-color-primary" expand="block">List</ion-button>
             </ion-col> -->
           <ion-col style="text-align: center;" *ngIf="showsavebtn">
-            <ion-button (click)="showline()" class="ion-color-success" expand="block">Save</ion-button>
+            <ion-button (click)="showline()" class="ion-color-success" expand="block" [disabled]="showqty">Save</ion-button>
           </ion-col>
           <ion-col style="text-align: center;">
             <ion-button (click)="close()" class="ion-color-danger" expand="block">Close</ion-button>

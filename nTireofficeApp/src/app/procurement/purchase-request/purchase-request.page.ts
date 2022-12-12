@@ -85,6 +85,7 @@ filter : boolean = true;
   // release
   itemCategory;
   itemsubcategory;
+  showqty:boolean;
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
@@ -328,13 +329,26 @@ filter : boolean = true;
       }
     })
   }
-
+  qtymethod(){
+    
+    if(this.qty=='' || this.qty==undefined || this.qty==null){
+      this.showqty=true
+    }else{
+      this.showqty=false
+    }
+  }
 
 
   getItemDetail(e: any) {
 
    
     this.showsavebtn = true
+
+    if(this.qty=='' || this.qty==undefined || this.qty==null){
+      this.showqty=true
+    }else{
+      this.showqty=false
+    }
     // let dataa = e.target.value
     // console.log(dataa)
     let getcategory = e;
