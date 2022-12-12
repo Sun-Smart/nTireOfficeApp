@@ -89,6 +89,7 @@ filter : boolean = true;
   splititemcode: any;
   userID: string;
   splitres: any;
+  showqty: boolean;
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
@@ -298,7 +299,7 @@ filter : boolean = true;
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.splititemcode).subscribe((resp: any) => {
       console.log(resp)
       this.getitemdata = resp;
-      console.log(this.getitemdata,)
+      console.log(this.getitemdata)
       this.Description = this.getitemdata[0].item_short_Desc,
         this.unitprice = this.getitemdata[0].Price
       this.itemdescription = this.getitemdata[0].item_long_desc,
@@ -308,12 +309,11 @@ filter : boolean = true;
     });
   }
 
-  getItems(e: any) {
+  getItems(event: any) {
     console.log(this.Category);
     
     let items = this.Category;
-    let data=e.target.value
-
+let data=event.target.value
     if (data == "") {
       this.getdataitem = [];
       this.isItemAvailable = false;
@@ -339,24 +339,37 @@ filter : boolean = true;
         
       }
       console.log(this.getdataitem);
-      const val = e.target.value;
+      const val = event.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
         this.getdataitem = this.getdataitem.filter((item) => {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
-        console.log(this.getdataitem,"logm")
+        console.log(this.getdataitem)
       }
     })
   }
-
+  qtymethod(){
+    debugger
+    if(this.qty=='' || this.qty==undefined || this.qty==null){
+      this.showqty=true
+    }else{
+      this.showqty=false
+    }
+  }
 
 
   getItemDetail(e: any) {
 
    
     this.showsavebtn = true
+
+    if(this.qty=='' || this.qty==undefined || this.qty==null){
+      this.showqty=true
+    }else{
+      this.showqty=false
+    }
     // let dataa = e.target.value
     // console.log(dataa)
     let getcategory = e;
@@ -540,7 +553,7 @@ itemcode: this.splititemcode,
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 4);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+      this.Requiredbefore = this.datePipe.transform(getdate, 'dd/MM/yyyy');
 
     }
     let getdate = new Date();

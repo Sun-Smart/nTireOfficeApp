@@ -151,7 +151,9 @@ export class PRSstatusPage implements OnInit {
 
     await alert.present();
   }
-
+  getVal(item: string) {
+    console.log(item);
+  }
 
 
 getCards(){
