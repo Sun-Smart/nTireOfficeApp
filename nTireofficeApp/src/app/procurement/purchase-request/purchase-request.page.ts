@@ -85,6 +85,8 @@ filter : boolean = true;
   // release
   itemCategory;
   itemsubcategory;
+  itemdes: any=[];
+  splititemcode: any;
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
@@ -229,7 +231,7 @@ filter : boolean = true;
     console.log(date)
     // this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
-    this.requestby = localStorage.getItem('TUM_USER_ID')
+    this.requestby = localStorage.getItem('TUM_USER_NAME')
   }
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
@@ -278,12 +280,18 @@ filter : boolean = true;
   }
   fetchreconcilation(itemcode: any) {
     console.log(itemcode)
+    const myArray = itemcode.split("-");
+    console.log(myArray);
+    this.splititemcode=myArray[0]
+    // console.log("ee",this.splititemcode);
+    
+    
     this.itemcode = itemcode;
     this.isItemAvailable = false;
-    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.itemcode).subscribe((resp: any) => {
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.splititemcode).subscribe((resp: any) => {
       console.log(resp)
       this.getitemdata = resp;
-      console.log(this.getitemdata)
+      console.log(this.getitemdata,)
       this.Description = this.getitemdata[0].item_short_Desc,
         this.unitprice = this.getitemdata[0].Price
       this.itemdescription = this.getitemdata[0].item_long_desc,
@@ -293,17 +301,18 @@ filter : boolean = true;
     });
   }
 
-  getItems(event: any) {
+  getItems(e: any) {
     console.log(this.Category);
     
     let items = this.Category;
+    let data=e.target.value
 
     if (this.Category == "") {
       this.getdataitem = [];
       this.isItemAvailable = false;
     }
 
-    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + items).subscribe((resp: any) => {
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + data).subscribe((resp: any) => {
       console.log(resp)
       this.getdata1 = resp;
       this.itemNew = this.getdata1;
@@ -312,18 +321,20 @@ filter : boolean = true;
       console.log(this.itemNew);
       for (var i = 0; i < this.itemNew.length; i++) {
         // this.getdataitem.push({ id: this.itemNew[i].item_Code, desc: this.itemNew[i].item_id });
-        this.getdataitem.push(this.itemNew[i].item_Code);
-        // this.getdataitem.push(this.itemNew[i].);
+        this.getdataitem.push(this.itemNew[i].itemdetails,);
+         this.itemdes.push(this.itemNew[i].item_Code);
+        // console.log("itemdes", this.itemdes);
+        
       }
       console.log(this.getdataitem);
-      const val = event.target.value;
+      const val = e.target.value;
       // if the value is an empty string don't filter the items
       if (val && val.trim() != '') {
         this.isItemAvailable = true;
         this.getdataitem = this.getdataitem.filter((item) => {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
-        console.log(this.getdataitem)
+        console.log(this.getdataitem,"logm")
       }
     })
   }
@@ -518,7 +529,7 @@ this.filter = false;
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 4);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'dd/MM/yyyy');
+      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
 
     }
     let getdate = new Date();

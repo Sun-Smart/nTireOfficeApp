@@ -157,7 +157,7 @@
             Item/Service
           </ion-col>
           <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            : {{items.itemid}}
+            : {{items.item_Code}}
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             QTY
@@ -261,16 +261,16 @@
               <ion-item class="ContentName" *ngFor="let items of getdataitem" style="background-color: white !important;
              " (click)="fetchreconcilation(items)">
                 <!-- {{ item.id }} - {{ item.desc }} -->
-                {{ items }}
+                {{ items}}
               </ion-item>
             </ion-list>
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel">Description</ion-label>
-            <ion-textarea placeholder=" " disabled="" id="textareaID" [(ngModel)]="Description"
+            <ion-input placeholder=" " disabled="" id="textareaID" [(ngModel)]="Description"
               class="Input-text-field textareaField"
-              style=" width:100%;background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-              maxlength="150" required=""></ion-textarea>
+              style=" width:100%;background-color: #d4d4d4!important; color: black; font-weight: bold; height: 70px; display:inline-block;padding: 8px;"
+              maxlength="150" required=""></ion-input>
 
             <!-- (ionSelect)="resize()" -->
             <!-- (keyup)="checkTestPressure(this)" -->
@@ -280,7 +280,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel">Description</ion-label>
             <ion-textarea placeholder=" " [(ngModel)]="Description" id="textareaID"
-              class="Input-text-field textareaField" style="width:100%;" maxlength="150" required=""></ion-textarea>
+              class="Input-text-field textareaField" style="width:100%; " maxlength="150" required=""></ion-textarea>
             <!-- (ionSelect)="resize()" -->
             <!-- (keyup)="checkTestPressure(this)" -->
             <!-- [(ngModel)]="VendorQuot.remarks" -->
@@ -303,7 +303,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel">Unit Price</ion-label>
             <ion-input type="number" disabled="" [(ngModel)]="unitprice"
-              style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+              style=" background-color: #d4d4d4!important; color: black; font-weight: bold; display:inline-block;padding: 8px;"
               class="Input-text-field textareaField">
             </ion-input>
           </ion-col>
@@ -315,7 +315,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Net Price</ion-label>
             <ion-input type="text" value="{{qty*unitprice}}" [(ngModel)]="netprice" disabled=""
-              style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
+              style=" background-color: #d4d4d4!important; color: black; font-weight: bold; display:inline-block;padding: 8px;"
               class="Input-text-field textareaField"></ion-input>
           </ion-col>
 
@@ -328,10 +328,10 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel"> Item Detailed Description</ion-label>
-            <ion-textarea placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription"
+            <ion-input placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription"
               class="Input-text-field textareaField"
-              style=" width:100%;background-color: #d4d4d4!important; display:inline-block;padding: 8px;"
-              maxlength="150" required=""></ion-textarea>
+              style=" width:100%;background-color: #d4d4d4!important; color: black; font-weight: bold; height: 70px; display:inline-block;padding: 8px;"
+              maxlength="150" required=""></ion-input>
             <!-- (ionSelect)="resize()" -->
             <!-- (keyup)="checkTestPressure(this)" -->
             <!-- [(ngModel)]="VendorQuot.remarks" -->
