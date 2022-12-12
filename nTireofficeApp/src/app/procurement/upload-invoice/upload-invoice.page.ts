@@ -194,17 +194,17 @@ export class UploadInvoicePage implements OnInit {
   additem() {
 
 if(this.invoiceform.value.invoicenumber==""|| this.invoiceform.value.invoicenumber=="undefined" || this.invoiceform.value.invoicenumber==null){
-  this.presentAlert("add item failed",'Please Enter Invoice Number');
+  this.presentAlert("add item failed",'Please Enter All Details');
 }else if(this.invoiceform.value.fromDate==""|| this.invoiceform.value.fromDate=="undefined" || this.invoiceform.value.fromDate==null){
-  this.presentAlert("add item failed",'Please Enter  Invoice Date');
+  this.presentAlert("add item failed",'Please Enter  All Details');
 }else  if(this.invoiceform.value.pocode==""|| this.invoiceform.value.pocode=="undefined" || this.invoiceform.value.pocode==null){
-  this.presentAlert("add item failed",'Please Enter  Po Number');
+  this.presentAlert("add item failed",'Please Enter  All Details');
   }else   if(this.invoiceform.value.documentupload==""|| this.invoiceform.value.documentupload=="undefined" || this.invoiceform.value.documentupload==null){
-    this.presentAlert("add item failed",'Please Enter Document Upload');
+    this.presentAlert("add item failed",'Please Enter All Details');
   }else if(this.invoiceform.value.invoiceremark==""|| this.invoiceform.value.invoiceremark=="undefined" || this.invoiceform.value.invoiceremark==null){
-    this.presentAlert("add item failed",'Please Enter Remarks');
+    this.presentAlert("add item failed",'Please Enter All Details');
   }else if(this.invoiceform.value.invoiceamount==""|| this.invoiceform.value.invoiceamount=="undefined" || this.invoiceform.value.invoiceamount==null){
-    this.presentAlert("add item failed",'Please Enter Invoice Number');
+    this.presentAlert("add item failed",'Please Enter All Details');
   }
 else{
 

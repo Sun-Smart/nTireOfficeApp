@@ -29,7 +29,8 @@
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Number<span class="validatecolor">*</span></ion-label>
-        <ion-input type="text" class="form-control"  pattern="/^[a-zA-Z]*$/"type="text"  (keypress)="omit_special_chart($event)" formControlName="invoicenumber" ></ion-input>
+        <ion-input type="text" class="form-control" 
+        class="Input-text-field textareaField"  pattern="/^[a-zA-Z]*$/"type="text"  (keypress)="omit_special_chart($event)" formControlName="invoicenumber" ></ion-input>
        
         
       </ion-col>
@@ -43,7 +44,8 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label class="ContentName">Invoice Amount<span class="validatecolor">*</span></ion-label>
-        <ion-input type="number" class="form-control"   formControlName="invoiceamount" 
+        <ion-input type="number" disabled="" 
+        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"  class="form-control"   formControlName="invoiceamount" 
        ></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
