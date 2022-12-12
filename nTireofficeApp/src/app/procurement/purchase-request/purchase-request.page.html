@@ -45,7 +45,8 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Mode</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="prsmode" class="Input-text-field textareaField">
+          <select style="padding: 10px;color: black;
+          font-weight: bold;" [(ngModel)]="prsmode" class="Input-text-field textareaField">
             <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option value="Q">Quotation</option>
             <option value="D">Direct</option>
@@ -58,7 +59,8 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Requested By</ion-label>
-          <ion-input type="text" disabled="" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
+          <ion-input style="color: black;
+          font-weight: bold;" type="text" disabled="" [(ngModel)]="requestby" class="Input-text-field textareaField"></ion-input>
         </ion-col>
 
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -68,7 +70,8 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Reason For Purchase</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="reasonpurchase" class="Input-text-field textareaField">
+          <select style="padding: 10px;color: black;
+          font-weight: bold;" [(ngModel)]="reasonpurchase" class="Input-text-field textareaField">
             <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option value="1">Additional</option>
             <option value="2">New Project</option>
@@ -78,7 +81,8 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Order Priority</ion-label>
-          <select (click)="orderpriority()" style="padding: 10px;" [(ngModel)]="order"
+          <select (click)="orderpriority()" style="padding: 10px; color: black;
+          font-weight: bold;" [(ngModel)]="order"
             class="Input-text-field textareaField">
             <option value="undefined" selected disabled>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let items of getorder" value="{{items.val}}">{{items.text}}</option>
@@ -87,7 +91,8 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">RFP Comments</ion-label>
-          <ion-input type="text" [(ngModel)]="rfpcomments" class="Input-text-field textareaField"></ion-input>
+          <ion-textarea style="color: black;
+          font-weight: bold;" type="text" [(ngModel)]="rfpcomments" class="Input-text-field textareaField rfp"></ion-textarea>
         </ion-col>
 
 

@@ -5,3 +5,17 @@ ion-content {
 .plabel{
   font-weight: bold;
  }
+ ion-card {
+  .card_header {
+    background-image: linear-gradient(
+      to left,
+      rgb(34, 191, 241),
+      rgb(2, 154, 222) 50%,
+      rgb(2, 154, 222) 50%
+    ) !important;
+    color: white !important;
+    text-align: initial;
+    padding: 10px;
+    height: 53px;
+  }
+}

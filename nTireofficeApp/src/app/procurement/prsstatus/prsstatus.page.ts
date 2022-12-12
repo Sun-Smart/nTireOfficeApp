@@ -27,12 +27,14 @@ export class PRSstatusPage implements OnInit {
   Branchname;
   getprsid: any;
   getstatus: any;
+  noRecord: boolean = false;
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
 
   ngOnInit() {
     this.Branchname = localStorage.getItem('TUM_BRANCH_CODE');
+    this.getCards();
   }
 
   togglefilter() {
@@ -152,7 +154,52 @@ export class PRSstatusPage implements OnInit {
 
 
 
+getCards(){
+  var body = {
+    "functionid": "1",
+    "branchid": "1",
+    "prscode":null,
+    "fromdate": null,
+    "todate": null,
+    "reuestdate": "",
+    "status": "P",
+    "currentstatus": "",
+    "reqtype": "",
+    "menuid": "",
+    "usertype": "",
+    "requser": "",
+    "userid": "",
+    "alphaname": "",
+    "sortexpression": "PRS_CODE",
+    "qutype": "",
+    "prsref": "",
+    "pageindex1": 1,
+    "pagesize1": 10
 
+  };
+  this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
+    this.loading = false
+    this.getresponse = res;
+
+    console.log("Response", res)
+    console.log("Response", res)
+    console.log(res.status)
+    if (res.status == "d" || res.status == "D") {
+      this.showdeledit = false
+    }
+    for (let item of this.getresponse) {
+      console.log(item);
+      this.getprsid = item.PRS_ID
+      this.getstatus = item.STATUS
+      console.log(this.getstatus)
+    }
+    if (this.getstatus == "Denied" || this.getstatus == "D") {
+      this.showdeledit = false
+    }
+  })
+
+
+}
 
   Search() {
     this.loading = true
@@ -221,6 +268,9 @@ export class PRSstatusPage implements OnInit {
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
       this.loading = false
       this.getresponse = res;
+      if(this.getresponse == null) {
+        this.noRecord = true;
+      }
 
       console.log("Response", res)
       console.log("Response", res)

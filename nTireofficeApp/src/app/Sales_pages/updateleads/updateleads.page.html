@@ -43,7 +43,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Call Rating <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="dataobjs.callratingval" class="form-control">
-          <option value="0">
+          <option value="">
             << Select>>
           </option>
           <option value="3">Cold</option>
@@ -54,7 +54,7 @@
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Call Nature <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="dataobjs.callnatureval" class="form-control">
-          <option value="0"> &lt;&lt; Select &gt;&gt;</option>
+          <option value=""> &lt;&lt; Select &gt;&gt;</option>
           <option value="2">Courtesy Call</option>
           <option value="3">Others</option>
           <option value="1">Sales Call</option>
@@ -63,16 +63,16 @@
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <select [(ngModel)]="callstageval" class="form-control">
-          <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let stage of callstagearray; let i = index" [ngValue]="stage.value">{{stage.text}}</option>
+        <select [(ngModel)]="dataobjs.callstageval" class="form-control">
+          <option value="">&lt;&lt; Select &gt;&gt;</option>
+          <option  *ngFor="let stage of callstagearray; let i = index" [value]="stage.value">{{stage.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Lead Source</ion-label>
         <select [(ngModel)]="leadsrc" class="form-control">
           <option>&lt;&lt; Select &gt;&gt;</option>
-          <option *ngFor="let lead of leadsourcearray; let i = index" [ngValue]="lead.value">{{lead.text}}</option>
+          <option *ngFor="let lead of leadsourcearray; let i = index" [value]="lead.value">{{lead.text}}</option>
         </select>
       </ion-col>
 
@@ -178,9 +178,9 @@
         </div>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-button (click)="Updateschedulemeet(dataobjs,schedleadareaname)" class="ion-color-success" expand="block">
-          Submit</ion-button>
-      </ion-col>
+        <ion-button (click)="Updateschedulemeet(dataobjs,schedleadareaname)" class="ion-color-success" expand="block"> Submit</ion-button>
+
+             </ion-col>
 
     </ion-row>
   </ion-grid>

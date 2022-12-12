@@ -91,6 +91,7 @@ filter : boolean = true;
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
     this.getParamID = this.route.snapshot.paramMap.get('id');
+    
     if (this.getParamID != null) {
       console.log(this.getParamID)
       // if (!this.getParamID) {
