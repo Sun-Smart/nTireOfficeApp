@@ -61,7 +61,7 @@ export class RFQPage implements OnInit {
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
     console.log(this.lastdate);
-
+    this.status="Pending"
   }
   CheckAllOptions() {
     if (this.checkboxes.every(val => val.checked == true))

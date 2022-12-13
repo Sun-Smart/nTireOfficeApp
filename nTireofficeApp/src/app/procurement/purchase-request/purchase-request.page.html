@@ -262,7 +262,7 @@
             <ion-searchbar [(ngModel)]="itemcode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist"
-              [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
+              [ngStyle]="{'height':getdataitem.length >0?'90px':'0px'}">
               <ion-item class="ContentName" *ngFor="let items of getdataitem" style="background-color: white !important;
              " (click)="fetchreconcilation(items)">
                 <!-- {{ item.id }} - {{ item.desc }} -->
@@ -325,7 +325,7 @@
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Required Before</ion-label>
+            <ion-label class="plabel">Required Before <span style="color:red;margin-left: 5px;">*</span></ion-label>
             <ion-input type="date" [(ngModel)]="Requiredbefore" class="Input-text-field textareaField"></ion-input>
             <!-- [(ngModel)]="VendorQuot.qty" -->
           </ion-col>
@@ -364,7 +364,7 @@
               <ion-button class ="ion-color-primary" expand="block">List</ion-button>
             </ion-col> -->
           <ion-col style="text-align: center;" *ngIf="showsavebtn">
-            <ion-button (click)="showline()" class="ion-color-success" expand="block" [disabled]="showqty">Save</ion-button>
+            <ion-button (click)="showline()" class="ion-color-success" expand="block" [disabled]="showbtn">Save</ion-button>
           </ion-col>
           <ion-col style="text-align: center;">
             <ion-button (click)="close()" class="ion-color-danger" expand="block">Close</ion-button>

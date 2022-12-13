@@ -90,6 +90,8 @@ filter : boolean = true;
   userID: string;
   splitres: any;
   showqty: boolean;
+  duplicatePushArray: any=[];
+  newitem: any;
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
@@ -320,17 +322,20 @@ let data=event.target.value
       this.Description=''
       this.unitprice=''
       this.netprice=''
+      this.qty=''
       this.itemdescription=''
     }
 
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + data).subscribe((resp: any) => {
       console.log(resp)
-      this.getdataitem=[]
       this.getdata1 = resp;
+      this.getdataitem=[]
       // this.itemNew = this.getdata1;
       // this.getorder1.forEach(element => {
       //   this.getdata.push(element)
       console.log(this.getdata1);
+
+      if(this.getdata1!="No data found"){
       for (var i = 0; i < this.getdata1.length; i++) {
         // this.getdataitem.push({ id: this.getdata1[i].item_Code, desc: this.getdata1[i].item_id });
         this.getdataitem.push(this.getdata1[i].itemdetails,);
@@ -338,6 +343,9 @@ let data=event.target.value
         // console.log("itemdes", this.itemdes);
         
       }
+    }else{
+      this.getdataitem=[]
+    }
       console.log(this.getdataitem);
       const val = event.target.value;
       // if the value is an empty string don't filter the items
@@ -455,6 +463,16 @@ this.filter = false;
   }
 
   showline() {  //submit btn
+
+    if(this.itemcode==""|| this.itemcode=="undefined" || this.itemcode==null){
+      this.presentAlert1("add item failed",'Please Enter Item Code');
+    }else if(this.qty==""|| this.qty=="undefined" || this.qty==null){
+      this.presentAlert1("add item failed",'Please Enter Quantity');
+    }else  if(this.Requiredbefore==""|| this.Requiredbefore=="undefined" || this.Requiredbefore==null){
+      this.presentAlert1("add item failed",'Please Enter  Required Before Date');
+      }
+else{
+  debugger
     this.showviewlist = true
     this.showsubmit = true
 
@@ -481,47 +499,109 @@ this.filter = false;
     }
 
 
+      
+       
 
-    this.expenseArray.push({
-      prsid: "",
-      itemid: this.getitemid,
-      i_function_id: "1",
-      required_qty: this.qty.toString(),
-      UOM: "15",
-      expected_cost: this.netprice,
-      exp_date: this.Requiredbefore,
-      status: "P",
-      created_by:  this.userID ,
-      ipaddress: "",
-      unit_price: this.unitprice,
-      Limit: "",
-      Availlimit: "",
-      BalanceLimit: "",
-      CATEGORY: this.getcategory,
-      TAX1: "",
-      TAX2: "",
-      TAX1DESC: "",
-      TAX2DESC: "",
-      OTHERCHARGES: "",
+// this.newitem=new Set(this.expenseArray)
+// console.log(this.newitem);
+if(this.expenseArray.length==0){
+  this.expenseArray.push({
+    prsid: "",
+    itemid: this.getitemid,
+    i_function_id: "1",
+    required_qty: this.qty.toString(),
+    UOM: "15",
+    expected_cost: this.netprice,
+    exp_date: this.Requiredbefore,
+    status: "P",
+    created_by:  this.userID ,
+    ipaddress: "",
+    unit_price: this.unitprice,
+    Limit: "",
+    Availlimit: "",
+    BalanceLimit: "",
+    CATEGORY: this.getcategory,
+    TAX1: "",
+    TAX2: "",
+    TAX1DESC: "",
+    TAX2DESC: "",
+    OTHERCHARGES: "",
 itemcode: this.splititemcode,
-      item_short_desc: this.Description,
-      item_long_desc: this.itemdescription,
-      REMARKS: this.Description,
-      CategoryID:this.itemCategory,
-      SubCategoryID: this.itemsubcategory,
-      prsDetailID: "",
-      FreightVALUE: "",
-      FreightID: "",
-      RecoveryVALUE: "",
-      RecoveryID: "",
-      BDC: "",
-      PTM: "",
-      ACC: "",
-      CPC: "",
-      flag: "I"
-    })
+    item_short_desc: this.Description,
+    item_long_desc: this.itemdescription,
+    REMARKS: this.Description,
+    CategoryID:this.itemCategory,
+    SubCategoryID: this.itemsubcategory,
+    prsDetailID: "",
+    FreightVALUE: "",
+    FreightID: "",
+    RecoveryVALUE: "",
+    RecoveryID: "",
+    BDC: "",
+    PTM: "",
+    ACC: "",
+    CPC: "",
+    flag: "I"
+  })
+ 
+}else{
+  debugger
+        for(var i = 0; i < this.expenseArray.length ; i++){
+          if(this.expenseArray[i].itemid!=this.getitemid) {
+            this.expenseArray.push({
+              prsid: "",
+              itemid: this.getitemid,
+              i_function_id: "1",
+              required_qty: this.qty.toString(),
+              UOM: "15",
+              expected_cost: this.netprice,
+              exp_date: this.Requiredbefore,
+              status: "P",
+              created_by:  this.userID ,
+              ipaddress: "",
+              unit_price: this.unitprice,
+              Limit: "",
+              Availlimit: "",
+              BalanceLimit: "",
+              CATEGORY: this.getcategory,
+              TAX1: "",
+              TAX2: "",
+              TAX1DESC: "",
+              TAX2DESC: "",
+              OTHERCHARGES: "",
+        itemcode: this.splititemcode,
+              item_short_desc: this.Description,
+              item_long_desc: this.itemdescription,
+              REMARKS: this.Description,
+              CategoryID:this.itemCategory,
+              SubCategoryID: this.itemsubcategory,
+              prsDetailID: "",
+              FreightVALUE: "",
+              FreightID: "",
+              RecoveryVALUE: "",
+              RecoveryID: "",
+              BDC: "",
+              PTM: "",
+              ACC: "",
+              CPC: "",
+              flag: "I"
+            })
+           
+          }
+          else{
+            this.presentAlert1("add item failed", 'Item Was Already Exits!');
+          }
+        }
+      }
+        
+      }
+    
+
+   
     console.log(this.expenseArray)
+  
     this.showbtn = true
+  
   }
 
   orderpriority() {
@@ -707,6 +787,13 @@ itemcode: this.splititemcode,
   }
   submit() {
 
+    if(this.prsmode==""|| this.prsmode=="undefined" || this.prsmode==null){
+      this.presentAlert1("add item failed",'Please Enter Item Code');
+    }else if(this.reasonpurchase==""|| this.reasonpurchase=="undefined" || this.reasonpurchase==null){
+      this.presentAlert1("add item failed",'Please Enter Quantity');
+    }
+    else{
+
     if (this.release == true) {
       this.status = "P"
     }
@@ -779,5 +866,5 @@ this.prscode=this.splitres[1]
     })
   }
 
-
+  }
 }

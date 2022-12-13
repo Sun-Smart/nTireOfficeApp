@@ -29,7 +29,7 @@
         </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Code</ion-label>
-          <ion-input type="text" [(ngModel)]="prscode" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text"  (keypress)="keyUpChecker($event)" [(ngModel)]="prscode" class="Input-text-field textareaField" pattern="/^[A-Za-z0-9']*$/"  ></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
 

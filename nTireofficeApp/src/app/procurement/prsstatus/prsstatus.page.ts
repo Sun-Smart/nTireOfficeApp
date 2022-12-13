@@ -28,6 +28,9 @@ export class PRSstatusPage implements OnInit {
   getprsid: any;
   getstatus: any;
   noRecord: boolean = false;
+  arrayvalue: any=[];
+  prscoderes: any;
+  array: any;
   constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
@@ -68,57 +71,57 @@ export class PRSstatusPage implements OnInit {
   }
 
   async testdetele() {
-    // const alert = await this.alertController.create({
-    //   header: 'Confirm',
-    //   message: 'Are you sure want to delete this recoed',
-    //   buttons: [
-    //     {
-    //       text: 'No',
-    //       role: 'cancel',
-    //       cssClass: 'secondary',
-    //       handler: (blah) => {
-    //         console.log('Confirm Cancel: blah');
-    //       }
-    //     }, {
-    //       text: 'Yes',
-    //       handler: () => {
+    const alert = await this.alertController.create({
+      header: 'Confirm',
+      message: 'Are you sure want to delete this recoed',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
 
 
-    //         let body = {
-    //           "prsid": this.prscode
-    //         }
-    //         this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
-    //           this.loading = false
-    //           this.getresponse = res;
-    //           this.presentAlert("", this.getresponse);
-    //           // console.log("Response", res)
-    //           // console.log("Response", res)
-    //           // for (let item of this.getresponse) {
-    //           //   console.log(item);
-    //           // }
-    //         })
+            let body = {
+              "prsid": this.prscode
+            }
+            this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
+              this.loading = false
+              this.getresponse = res;
+              this.presentAlert("", this.getresponse);
+              // console.log("Response", res)
+              // console.log("Response", res)
+              // for (let item of this.getresponse) {
+              //   console.log(item);
+              // }
+            })
 
 
-    //       }
-    //     }
-    //   ]
-    // });
+          }
+        }
+      ]
+    });
 
 
-    let body = {
-      "prsid": this.getprsid
-    }
-    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
-      this.loading = false
-      this.getresponse = res;
-      this.presentAlert("", res);
-      this.Search();
-      // console.log("Response", res)
-      // console.log("Response", res)
-      // for (let item of this.getresponse) {
-      //   console.log(item);
-      // }
-    })
+    // let body = {
+    //   "prsid": this.getprsid
+    // }
+    // this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Delete', body).subscribe((res: any) => {
+    //   this.loading = false
+    //   this.getresponse = res;
+    //   this.presentAlert("", res);
+    //   this.Search();
+    //   // console.log("Response", res)
+    //   // console.log("Response", res)
+    //   // for (let item of this.getresponse) {
+    //   //   console.log(item);
+    //   // }
+    // })
   }
 
 
@@ -203,6 +206,18 @@ getCards(){
 
 }
 
+async presentAlert1(heading, tittle) {
+  var alert = await this.alertController.create({
+    header: heading,
+    cssClass: 'buttonCss',
+    backdropDismiss: false,
+    message: tittle,
+    buttons: ['OK']
+  });
+
+  await alert.present();
+}
+
   Search() {
     this.loading = true
     // console.log(this.prscode)
@@ -276,6 +291,42 @@ getCards(){
 
       console.log("Response", res)
       console.log("Response", res)
+      this.arrayvalue=[]
+      if(res&&res.length>0){
+        for (let i = 0; i < res.length; i++) {
+          const element = res[i].PRS_CODE;
+          console.log(element,"res"); 
+          if(this.prscode&&this.prscode!=null){
+            if(element==this.prscode){
+          
+            }else{
+              this.presentAlert1("add item failed", 'Invalid PRSCODE!');
+            }
+          }
+         
+        }
+      }else{
+        this.presentAlert1("add item failed", 'Invalid PRSCODE!');
+      }
+    
+      //   this.arrayvalue.push(element)
+      //   console.log( this.arrayvalue,
+      //     "asdad");
+      // }
+      // if(this.arrayvalue.includes(this.prscode)){
+      //   alert("crt")
+      // }else{
+      //   alert("wrg")
+      // }
+      
+      //  console.log(this.array,"this.array");
+        
+      
+
+
+   
+
+
       console.log(res.status)
       if (res.status == "d" || res.status == "D") {
         this.showdeledit = false
@@ -309,6 +360,38 @@ getCards(){
     //     console.log("error : " + JSON.stringify(error));
 
     //   });
+  }
+  public onKeyUp(event: any) {
+
+    let newValue = event.target.value;
+
+    let regExp = new RegExp('^[A-Za-z0-9? ]+$');
+
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
+    }
+  }
+
+
+ omit_special_char(event) {
+  var inp = String.fromCharCode(event.keyCode);
+
+  if (/[a-zA-Z0-9]/.test(inp)) {
+    return true;
+  } else {
+    event.preventDefault();
+    return false;
+  }
+}
+
+keyUpChecker(ev) {
+  let elementChecker: string;
+  let format = /^[a-z0-9 ]*$/i;
+  elementChecker = ev.target.value;
+  console.log(ev.target.value);
+  if(!format.test(elementChecker)){
+  this.prscode = elementChecker.slice(0, -1);
+  }
   }
 
 }

@@ -1877,6 +1877,7 @@ if(branchid=="0"){
       this.image.push(file_name);
       // this.Images.push(file_name)
 
+console.log(this.image,"image");
 
       // this.uploadingFiledocument();
 
