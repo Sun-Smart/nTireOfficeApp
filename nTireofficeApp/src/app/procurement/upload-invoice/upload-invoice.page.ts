@@ -64,6 +64,7 @@ export class UploadInvoicePage implements OnInit {
   conven: any;
   uploaddata: any;
   browser: any;
+  invoiceget: any;
   constructor( public alertController: AlertController,private modalCtrl: ModalController,private iab: InAppBrowser, public platform: Platform , public Ipaddressservice: IpaddressService,  private http: HttpClient) {
 
     this.dat_valid = {
@@ -169,24 +170,41 @@ export class UploadInvoicePage implements OnInit {
     this.ponumber=item.po_number;
     this.isPropertycodeAvailable = false;
   
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getpo_invoiceamount/' +  this.functionID + "/" +     this.branchID + "/" + this.poid, {
+      headers: headers,
+    }).subscribe(resp => {
+
+      console.log(resp,"num");
+      
+      // this.invoiceget = resp[0].po_amount
+      this.invoiceform.value.invoiceamount=resp[0].po_amount;
+      this.invoiceform.get('invoiceamount').setValue(this.invoiceform.value.invoiceamount)
+      
+      console.log( this.invoiceform.value.invoiceamount,"o");
+      
+  
+   
+    });
   }
 
 
+  
 
   additem() {
 
 if(this.invoiceform.value.invoicenumber==""|| this.invoiceform.value.invoicenumber=="undefined" || this.invoiceform.value.invoicenumber==null){
-  this.presentAlert("add item failed",'Please Enter All Fields');
+  this.presentAlert("add item failed",'Please Enter All Details');
 }else if(this.invoiceform.value.fromDate==""|| this.invoiceform.value.fromDate=="undefined" || this.invoiceform.value.fromDate==null){
-  this.presentAlert("add item failed",'Please Enter All Fields');
+  this.presentAlert("add item failed",'Please Enter  All Details');
 }else  if(this.invoiceform.value.pocode==""|| this.invoiceform.value.pocode=="undefined" || this.invoiceform.value.pocode==null){
-  this.presentAlert("add item failed",'Please Enter All Fields');
+  this.presentAlert("add item failed",'Please Enter  All Details');
   }else   if(this.invoiceform.value.documentupload==""|| this.invoiceform.value.documentupload=="undefined" || this.invoiceform.value.documentupload==null){
-    this.presentAlert("add item failed",'Please Enter All Fields');
+    this.presentAlert("add item failed",'Please Enter All Details');
   }else if(this.invoiceform.value.invoiceremark==""|| this.invoiceform.value.invoiceremark=="undefined" || this.invoiceform.value.invoiceremark==null){
-    this.presentAlert("add item failed",'Please Enter All Fields');
+    this.presentAlert("add item failed",'Please Enter All Details');
   }else if(this.invoiceform.value.invoiceamount==""|| this.invoiceform.value.invoiceamount=="undefined" || this.invoiceform.value.invoiceamount==null){
-    this.presentAlert("add item failed",'Please Enter All Fields');
+    this.presentAlert("add item failed",'Please Enter All Details');
   }
 else{
 
@@ -297,7 +315,11 @@ onSelectFile(event) {
 
  
 }
-
+omit_special_chart(event) {
+  var k;
+  k = event.charCode;  //         k = event.keyCode;  (Both can be used)
+  return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+}
 
 
 

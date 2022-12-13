@@ -85,10 +85,18 @@ filter : boolean = true;
   // release
   itemCategory;
   itemsubcategory;
+  itemdes: any=[];
+  splititemcode: any;
+  userID: string;
+  splitres: any;
+  showqty: boolean;
 
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
+    this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
+
+    
     if (this.getParamID != null) {
       console.log(this.getParamID)
       // if (!this.getParamID) {
@@ -178,7 +186,7 @@ filter : boolean = true;
             expected_cost: this.setexpcost,
             exp_date: this.setexpdate,
             status: "P",
-            created_by: this.setcretedby,
+            created_by:  this.userID ,
             ipaddress: "",
             unit_price: this.setunitprice,
             Limit: "",
@@ -216,6 +224,7 @@ filter : boolean = true;
     // }
   }
   ngOnInit() {
+    this.Category="<<Select>>"
     // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
       this.getorder1 = resp;
@@ -229,7 +238,7 @@ filter : boolean = true;
     console.log(date)
     // this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
-    this.requestby = localStorage.getItem('TUM_USER_ID')
+    this.requestby = localStorage.getItem('TUM_USER_NAME')
   }
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
@@ -277,10 +286,17 @@ filter : boolean = true;
 
   }
   fetchreconcilation(itemcode: any) {
+ 
     console.log(itemcode)
-    this.itemcode = itemcode;
+    const myArray = itemcode.split("-");
+    console.log(myArray);
+    this.splititemcode=myArray[0]
+    // console.log("ee",this.splititemcode);
+    
     this.isItemAvailable = false;
-    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.itemcode).subscribe((resp: any) => {
+    this.itemcode = itemcode;
+   
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.splititemcode).subscribe((resp: any) => {
       console.log(resp)
       this.getitemdata = resp;
       console.log(this.getitemdata)
@@ -297,23 +313,30 @@ filter : boolean = true;
     console.log(this.Category);
     
     let items = this.Category;
-
-    if (this.Category == "") {
+let data=event.target.value
+    if (data == "") {
       this.getdataitem = [];
       this.isItemAvailable = false;
+      this.Description=''
+      this.unitprice=''
+      this.netprice=''
+      this.itemdescription=''
     }
 
-    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + items).subscribe((resp: any) => {
+    this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + data).subscribe((resp: any) => {
       console.log(resp)
+      this.getdataitem=[]
       this.getdata1 = resp;
-      this.itemNew = this.getdata1;
+      // this.itemNew = this.getdata1;
       // this.getorder1.forEach(element => {
       //   this.getdata.push(element)
-      console.log(this.itemNew);
-      for (var i = 0; i < this.itemNew.length; i++) {
-        // this.getdataitem.push({ id: this.itemNew[i].item_Code, desc: this.itemNew[i].item_id });
-        this.getdataitem.push(this.itemNew[i].item_Code);
-        // this.getdataitem.push(this.itemNew[i].);
+      console.log(this.getdata1);
+      for (var i = 0; i < this.getdata1.length; i++) {
+        // this.getdataitem.push({ id: this.getdata1[i].item_Code, desc: this.getdata1[i].item_id });
+        this.getdataitem.push(this.getdata1[i].itemdetails,);
+      
+        // console.log("itemdes", this.itemdes);
+        
       }
       console.log(this.getdataitem);
       const val = event.target.value;
@@ -327,13 +350,26 @@ filter : boolean = true;
       }
     })
   }
-
+  qtymethod(){
+    debugger
+    if(this.qty=='' || this.qty==undefined || this.qty==null){
+      this.showqty=true
+    }else{
+      this.showqty=false
+    }
+  }
 
 
   getItemDetail(e: any) {
 
    
     this.showsavebtn = true
+
+    if(this.qty=='' || this.qty==undefined || this.qty==null){
+      this.showqty=true
+    }else{
+      this.showqty=false
+    }
     // let dataa = e.target.value
     // console.log(dataa)
     let getcategory = e;
@@ -446,7 +482,6 @@ this.filter = false;
 
 
 
-
     this.expenseArray.push({
       prsid: "",
       itemid: this.getitemid,
@@ -456,7 +491,7 @@ this.filter = false;
       expected_cost: this.netprice,
       exp_date: this.Requiredbefore,
       status: "P",
-      created_by: this.userid,
+      created_by:  this.userID ,
       ipaddress: "",
       unit_price: this.unitprice,
       Limit: "",
@@ -468,7 +503,7 @@ this.filter = false;
       TAX1DESC: "",
       TAX2DESC: "",
       OTHERCHARGES: "",
-
+itemcode: this.splititemcode,
       item_short_desc: this.Description,
       item_long_desc: this.itemdescription,
       REMARKS: this.Description,
@@ -627,7 +662,7 @@ this.filter = false;
       "prsid": this.getprsdetails.prs_id.toString(),
       "prscode": this.prscode,
       "status": this.status,
-      "createdby": this.requestby,
+      "createdby": this.userID,
       "ipaddress": "0",
       "reasonpurchase": this.reasonpurchase,
       "netamount": this.netprice,
@@ -637,7 +672,7 @@ this.filter = false;
       "prstype": "0",
       "branchid": "1",
       "prsref": "0",
-      "userid": this.userid,
+      "userid": this.userID,
       "requestby": this.requestby,
       "requestdate": this.prsdate,
       "requettype": this.prsmode,
@@ -665,7 +700,7 @@ this.filter = false;
       // this.getresponse = res;
 
       this.presentAlert("", "Successfully updated");
-      this.router.navigate(['/prsstatus'])
+      // this.router.navigate(['/prsstatus'])
     })
 
 
@@ -702,7 +737,7 @@ this.filter = false;
       "prsid": "",
       "prscode": "",
       "status": this.status,
-      "createdby": this.requestby,
+      "createdby": this.userID,
       "ipaddress": "0",
       "reasonpurchase": this.reasonpurchase,
       "netamount": this.netprice,
@@ -712,8 +747,8 @@ this.filter = false;
       "prstype": "0",
       "branchid": "1",
       "prsref": "0",
-      "userid": this.userid,
-      "requestby": this.requestby,
+      "userid": this.userID,
+      "requestby": this.userID,
       "requestdate": this.prsdate,
       "requettype": this.prsmode,
       "issinglevendor": "",
@@ -736,7 +771,11 @@ this.filter = false;
       this.getresponse = res;
       // this.presentAlert("", "RFQ 345/AT Raised Successfully");
       this.presentAlert("", this.getresponse);
-      this.router.navigate(['/prsstatus'])
+      this.splitres=res.split(":")
+this.prscode=this.splitres[1]
+      console.log("split",  this.splitres);
+      
+      // this.router.navigate(['/prsstatus'])
     })
   }
 

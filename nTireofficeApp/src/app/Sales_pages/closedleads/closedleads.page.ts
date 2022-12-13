@@ -383,7 +383,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: parseInt(window.localStorage['TUM_USER_ID']),
       type_id: type_id,
-      branchid: parseInt(this.branch_id)
+      BRANCH_ID: parseInt(this.branch_id)
     };
     const header = new Headers();
     header.append("Content-Type", "application/json");

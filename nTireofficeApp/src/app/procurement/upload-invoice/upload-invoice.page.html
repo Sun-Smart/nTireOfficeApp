@@ -15,7 +15,7 @@
     <ion-row>
       <form  [formGroup]="invoiceform">
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>PO Number</ion-label>
+          <ion-label>PO Number<span class="validatecolor">*</span></ion-label>
           <ion-searchbar [(ngModel)]="ponumber"  formControlName="pocode" type="text" debounce="500" (ionInput)="getinvoiceCode($event)">
           </ion-searchbar>
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
@@ -28,8 +28,9 @@
 
 
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Invoice Number</ion-label>
-        <ion-input type="number" class="form-control" formControlName="invoicenumber" ></ion-input>
+        <ion-label class="ContentName">Invoice Number<span class="validatecolor">*</span></ion-label>
+        <ion-input type="text" class="form-control" 
+        class="Input-text-field textareaField"  pattern="/^[a-zA-Z]*$/"type="text"  (keypress)="omit_special_chart($event)" formControlName="invoicenumber" ></ion-input>
        
         
       </ion-col>
@@ -42,11 +43,13 @@
           (ionChange)="validateFromDate()" -->
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Invoice Amount</ion-label>
-        <ion-input type="number" class="form-control"  formControlName="invoiceamount"></ion-input>
+        <ion-label class="ContentName">Invoice Amount<span class="validatecolor">*</span></ion-label>
+        <ion-input type="number" disabled="" 
+        style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"  class="form-control"   formControlName="invoiceamount" 
+       ></ion-input>
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label>Upload Document</ion-label>
+        <ion-label>Upload Document<span class="validatecolor">*</span></ion-label>
         <br />
         <!-- <i class="fa fa-paperclip" aria-hidden="true" style="font-size:28px;color:black;position: relative;left:50%"
           ios="ios-attach" md="md-attach" (click)="selectImage()"></i>
@@ -55,9 +58,9 @@
         </div> -->
        
         <div class="file-input-container">
-          <label>
+          <label >
        
-            <input (change)="onSelectFile($event)" type="file"  formControlName="documentupload">
+            <input (change)="onSelectFile($event)" type="file" accept="application/pdf"   formControlName="documentupload">
 
           </label>
         </div>
@@ -72,7 +75,7 @@
         </ion-list> -->
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-label class="ContentName">Invoice Remark</ion-label>
+        <ion-label class="ContentName">Invoice Remark<span class="validatecolor">*</span></ion-label>
         <ion-input type="text" class="form-control" formControlName="invoiceremark" ></ion-input>
       </ion-col>
     </form>
