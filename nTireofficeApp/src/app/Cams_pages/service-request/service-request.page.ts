@@ -89,6 +89,7 @@ export class ServiceRequestPage implements OnInit {
   newvendor: any;
   newreplaceasset: any;
   assetucode: any;
+  doi:any;
   
   numberOnly(event):boolean{
     const charCode = (event.which)?event.which:event.keyCode;
@@ -119,7 +120,7 @@ export class ServiceRequestPage implements OnInit {
     var day = todayDate.getDate();
     var month = todayDate.getMonth() + 1;
     var year = todayDate.getFullYear();
-    var finaltodayDate = month + "/" + day + "/" + year;
+    var finaltodayDate =day + "/" + month + "/" + year;
     this.reqdate = finaltodayDate;
     // this.ServiceExpensenew = [];
     // this.ServiceExpensenew=$rootScope.ServiceExpname;

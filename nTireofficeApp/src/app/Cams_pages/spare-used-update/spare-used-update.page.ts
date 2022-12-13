@@ -46,9 +46,11 @@ export class SpareUsedUpdatePage implements OnInit {
     this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.data=navParams.get('item');
+    this.sno=this.data.serialno;
+    console.log(this.sno);
     console.log(this.data);
     this.materialcode = this.data.MaterialCode;
-    this.getItem();
+    // this.getItem();
   }
 
   ngOnInit() {
@@ -65,6 +67,7 @@ export class SpareUsedUpdatePage implements OnInit {
     this.quantity=this.data.sparequantity;
     this.doi= this.data.doi;
     this.cost = this.data.SPARECOST;
+    this.materialcode = this.data.MaterialCode;
     var dataes = {
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),

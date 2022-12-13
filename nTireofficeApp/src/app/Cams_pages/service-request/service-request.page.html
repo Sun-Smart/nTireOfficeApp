@@ -22,10 +22,11 @@
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-          <ion-label>Requested Date</ion-label>
+          <ion-label class="ContentName">Requested Date</ion-label>
           <ion-input   style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
             [(ngModel)]="RequestDate"></ion-input>
         </ion-col>
+          
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label>Asset Code and Description</ion-label>
@@ -195,10 +196,15 @@
         </ion-card>
 
 
-        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Request Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-datetime style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="reqdate"
             displayFormat="MM/DD/YYYY" disabled></ion-datetime>
+        </ion-col> -->
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="ContentName">Request Date  <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input style="background-color: #bfbfbf!important; color: black !important;" class="form-control" [(ngModel)]="reqdate" disabled>
+          </ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">

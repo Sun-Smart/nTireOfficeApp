@@ -22,7 +22,7 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">Zone</ion-label>
-        <select [(ngModel)]="ZoneLoc" class="form-control" style="width:100%" (change)="selzone()">
+        <select [(ngModel)]="ZoneLoc" class="form-control" style="width:100%" (change)="selzone(ZoneLoc)">
           <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" *ngFor="let item of detailz; let i = index" [ngValue]="item.ZONE_ID">{{item.ZONE_DESC}}
           </option>
@@ -31,7 +31,7 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">Region</ion-label>
-        <select [(ngModel)]="region" class="form-control" style="width:100%" (change)="selregion()">
+        <select [(ngModel)]="region" class="form-control" style="width:100%" (change)="selregion(region)">
           <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" *ngFor="let item of detailregion; let i = index" [ngValue]="item.region_id">{{item.region_desc}}
           </option>
@@ -49,7 +49,7 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">Asset Category</ion-label>
-        <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="selcatdrop()">
+        <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="selcatdrop(category)">
           <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" *ngFor="let item of detailcategory; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
           </option>
@@ -77,7 +77,7 @@
         </ion-button>
       </ion-col>
     </ion-row>
-
+    <p class="totalCount" *ngIf="detailfinals">Total records: {{detailfinals.length}}</p>
     <ion-card *ngFor="let item1 of detailfinals; let i = index">
       <ion-card-header class="card_header">
         <ion-row>

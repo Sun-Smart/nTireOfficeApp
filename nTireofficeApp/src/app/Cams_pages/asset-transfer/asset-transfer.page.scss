@@ -5,3 +5,18 @@ ion-content {
   ion-item{
     border: 0px !important;
   }
+  .sc-ion-alert-ios-h{
+    --background: none !important;
+  }
+  .Cssbutton{
+    .alert-wrapper{
+      .alert-message{
+        --background: rgb(255, 254, 254) !important;
+        color: rgb(8, 8, 8) !important;
+      }
+    }
+
+
+}
+    
+  

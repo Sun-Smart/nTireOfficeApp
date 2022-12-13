@@ -41,8 +41,8 @@ export class CompletionJobsPage implements OnInit {
   responseDatalength:any;
   branch1:any;
   refmaxnum:any;
-  category;
-  subCategory;
+  category:any;
+  subCategory:any;
   username:any;
   remove_array:any=[];
   responseData2=[];
@@ -66,9 +66,9 @@ export class CompletionJobsPage implements OnInit {
     this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/yyyy');
     this.todate = this.datePipe.transform(this.todate, 'dd/MM/yyyy');
     // this.Realease_status = "<<Select>>";
-    this.category="<<Select>>";
-    this.subCategory="<<Select>>";
-    this.jobs="<<Select>>";
+    this.category = "<< Select >>";
+    this.subCategory = "<< Select >>";
+    this.jobs = "<< Select >>";
     this.getAssertCatergory();
     this.getReferMax();
 
@@ -336,7 +336,7 @@ requestedJobs() {
     console.log(assetCat)
   }
 
-  if (this.subCategory == "<<Select>>" || this.subCategory == undefined) {
+  if (this.subCategory == "<< Select >>" || this.subCategory == undefined) {
     var assetSubCat = 'null';
   } else {
     assetSubCat = this.subCategory
