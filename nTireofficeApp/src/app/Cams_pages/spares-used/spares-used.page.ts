@@ -87,10 +87,11 @@ export class sparesUsedPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/spareitemdtl',dataes, {
       headers: options,
     }).subscribe(resp => {
-      this.sparematerialddtl =JSON.stringify(resp) ;
-      this.sparematerialddtl=JSON.parse(this.sparematerialddtl);
-      this.sparematerialddtl=JSON.parse(this.sparematerialddtl);
-      this.sparematerialddtl=this.sparematerialddtl
+      this.sparematerialddtl =resp ;
+      console.log(this.sparematerialddtl);
+      // this.sparematerialddtl=JSON.parse(this.sparematerialddtl);
+      // this.sparematerialddtl=JSON.parse(this.sparematerialddtl);
+      // this.sparematerialddtl=this.sparematerialddtl
 
       console.log(this.sparematerialddtl);
     }, error => {
@@ -105,7 +106,7 @@ export class sparesUsedPage implements OnInit {
     var dataesp = {
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),
-      'itemid':parseInt(mat),
+      'itemid':mat,
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -122,6 +123,7 @@ export class sparesUsedPage implements OnInit {
       console.log(resp)
       this.materialdescp = resp[0].ITEM_DESCRIPTION;
       this.itemcodein=resp[0].ITEM_CODE;
+      console.log(this.itemcodein);
       console.log(this.materialdescp);
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
@@ -132,7 +134,7 @@ export class sparesUsedPage implements OnInit {
 
 
   insertspare(){
-
+console.log(this.itemcodein)
     var instdte=this.datePipe.transform(this.doi, 'yyyy-MM-dd');
     var dataem = {
     'branchid': this.branchID,
@@ -141,7 +143,7 @@ export class sparesUsedPage implements OnInit {
     'assetid':parseInt(this.urldata.CMD_ASSET_ID),
     'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
     'assetpmref':parseInt(this.urldata.pmr_reference),
-    'itemcode':parseInt(this.itemcodein),
+    'itemcode':this.itemcodein,
     'spareqty':parseInt(this.quantity),
     //'spareqty':$scope.spares.quantity,
     'instdte':instdte,
@@ -285,6 +287,7 @@ this.presentAlert("Alert", "Already added a consumables");
 
     console.log(data);
     console.log(index)
+    this.sno = data.serialno;
   data.assetid=this.urldata.CMD_ASSET_ID;
   data.assetactivityid = this.urldata.CMD_ACTIVITY_ID;
   data.assetpmref = this.urldata.pmr_reference;

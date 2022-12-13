@@ -193,9 +193,10 @@ ion-input {
 ion-searchbar {
   padding: 0;
   border-radius: 2px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
-  height: 42px;
+  height: 30px;
+  color: black !important;
 }
 
 .companyautopop {
@@ -590,10 +591,10 @@ ion-searchbar {
 
 .searchbar-input.sc-ion-searchbar-md {
   display: block;
-  height: 42px;
+  height: 25px;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #111;
+  color:black!important;
   background-color: #fff;
   background-image: none;
   border: 1px solid #ccc;
@@ -1234,7 +1235,7 @@ strong {
   color: black;
 }
 ion-searchbar {
-  height: 40px;
+  height: 30px;
   background-color: white;
 }
 

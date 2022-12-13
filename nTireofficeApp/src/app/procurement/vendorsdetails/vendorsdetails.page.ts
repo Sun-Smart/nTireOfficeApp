@@ -44,6 +44,7 @@ export class VendorsdetailsPage implements OnInit {
   RequestRequisition;
   splitted;
   item;
+  addVendor:boolean = false;
   constructor(  private router :Router, private alertcontroller: AlertController,private activatedRoute: ActivatedRoute,private httpresponse: HttprequestService,private IpaddressService: IpaddressService,private http: HttpClient){
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -71,6 +72,7 @@ export class VendorsdetailsPage implements OnInit {
        this.item = this.data.rfq;
       console.log(this.item);
     });
+this.addVendor = true;
       this.getCards();
 
   }
@@ -133,6 +135,12 @@ selectAllvendorCheckbox(value) {
   }
 }
 fieldsChange(values:any,item:any):void {
+ 
+  if( this.Checked == true){
+    this.addVendor = true;
+  }else{
+    this.addVendor = false;
+  }
   console.log(values.currentTarget.checked);
   this.Checked = values.currentTarget.checked;
   console.log(item);

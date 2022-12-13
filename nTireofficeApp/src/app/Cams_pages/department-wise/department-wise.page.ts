@@ -216,7 +216,18 @@ export class DepartmentWisePage implements OnInit {
 
   }
 
-  selzone(){
+  selzone(zone:any){
+    if(zone == "<< Select >>"){
+      this.detailregion = [];
+      this.region = "<< Select >>";
+      this.branchLoc ="<< Select >>";
+      this.detailbranch = [];
+    }else if(zone == zone){
+      this.region="<< Select >>";
+      this.branchLoc ="<< Select >>";
+      this.detailbranch = [];
+
+    }
     var dataz = {
       'functionidrep': this.functionID,
       'zoneid': parseInt(this.ZoneLoc),
@@ -243,7 +254,15 @@ export class DepartmentWisePage implements OnInit {
 
   }
 
-  selregion(){
+  selregion(region:any){
+    if( region== "<< Select >>"){
+      this.branchLoc ="<< Select >>";
+      this.detailbranch = [];
+    }else if(region == region){
+      this.branchLoc = "<< Select >>";
+     
+
+    }
     var dataz = {
       'functionidrep': this.functionID,
       'zoneid': parseInt(this.ZoneLoc),
@@ -352,13 +371,18 @@ export class DepartmentWisePage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.detailfinals = resp;
+      // this.detailfinals = resp;
       //$scope.detailsdept = response.data.recordsets[1];
-      console.log(this.detailfinals);
+      // console.log(this.detailfinals);
      // var al = $scope.detailfinals;
      // console.log(al);
-      if (this.detailfinals.length < 1) {
-        this.presentAlert('Alert','No Data Found');
+      // if (this.detailfinals.length < 1) {
+      //   this.presentAlert('Alert','No Data Found');
+      // }
+      if (resp == null || resp == undefined || resp == "No data found" || resp == "[]") {
+        this.detailfinals = [];
+      }else{
+      this.detailfinals = resp;
       }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');

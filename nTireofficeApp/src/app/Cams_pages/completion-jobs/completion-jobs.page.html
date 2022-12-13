@@ -59,6 +59,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Asset SubCategory</ion-label>
             <select [(ngModel)]="subCategory" class="form-control" style="width:100%">
+              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
               <option class="ContentName" *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">{{item.SUB_CATEGORY_DESC}}
               </option>
             </select>

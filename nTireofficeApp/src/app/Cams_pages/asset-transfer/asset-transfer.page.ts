@@ -344,7 +344,9 @@ export class AssetTransferPage implements OnInit {
       'createbytf': this.userID,
       'access_token': this.accessToken,
       'userid': this.userID,
-      'usertoken': this.userToken
+      'usertoken': this.userToken,
+      "tansfertype":"E"
+
 
     }
     console.log(dataub);
@@ -353,7 +355,7 @@ export class AssetTransferPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assettransferupdatebranch', dataub, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assettransferupdatebranchnew', dataub, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -604,7 +606,8 @@ export class AssetTransferPage implements OnInit {
         'createbytf': this.userID,
         'access_token': this.accessToken,
         'userid': this.userID,
-        'usertoken': this.userToken
+        'usertoken': this.userToken,
+        "tansfertype":"I"
 
       }
       console.log(dataubi);

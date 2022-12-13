@@ -35,7 +35,8 @@ export class RFQPage implements OnInit {
   splitted;
   managerfqdetails;
   getresponsestr;
-  getresponsenew;;
+  getresponsenew;requiredbefore: any;
+;
   Checked;
   function;
   branch;
@@ -49,6 +50,8 @@ export class RFQPage implements OnInit {
   lastdate;
   RaisedRFQ :any =[];
   RaisedRFQdetails:any = [];
+  itemprscode:any;
+  requiredDate:any;
   constructor(private router: Router,private datePipe: DatePipe, private alertController: AlertController, private httpclient: HttpClient, private IpaddressService: IpaddressService) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -163,6 +166,7 @@ export class RFQPage implements OnInit {
       this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'searchRFQLists', body).subscribe((res: any) => {
         this.getresponse = res;
         console.log("Response", res);
+       
       });
 
 
@@ -242,6 +246,7 @@ export class RFQPage implements OnInit {
     // alert("ih")
     // console.log(e.target.value)
     console.log(this.lastdate)
+   
 
   }
 
@@ -264,46 +269,94 @@ export class RFQPage implements OnInit {
   }
 
   fieldsChange(values:any,item:any):void {
+    debugger;
+    this.itemprscode=item.prs_code;
+    console.log(this.itemprscode)
+    // this.requiredDate = item.RequiredBefore;
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
+
   this.test()
-    if(this.Checked == true){
-      this.RaisedRFQ.push({
+    if(this.Checked == true ){
+if(this.RaisedRFQ.length == 0){
+  this.RaisedRFQ.push({
         
-          "ROW_NUM":item.ROW_NUM,
-          "rowid": item.rowid,
-          "RFQCode1": item.RFQCode1,
-          "RFQ_Date": this.lastdate,
-          "RFQCode2": item.RFQCode2,
-          "RFQID": item.RFQID,
-          "prs_id": item.prs_id,
-          "branch_id": item.branch_id,
-          "prs_category": item.prs_category,
-          "IS_SINGLE_VENDOR": item.IS_SINGLE_VENDOR,
-          "prs_code": item.prs_code,
-          "item_id": item.item_id,
-          "item_short_Desc": item.item_short_Desc,
-          "item_Code": item.item_Code,
-          "uomtext": item.uomtext,
-          "uomval": item.uomval,
-          "required_qty": item.required_qty,
-          "requested_Date": item.requested_Date,
-          "request_comments": item.request_comments,
-          "RFQCode": item.RFQCode,
-          "ItemDescription": item.ItemDescription,
-          "RequiredBefore": this.lastdate,
-          "RFQDate": this.lastdate,
-          "Type": item.Type,
-          "ISBid": "Y",
-          "Auction_status": item.Auction_status,
-          "GRIDVIEWCOUNT": item.GRIDVIEWCOUNT,
-          "Created_by": this.userID
+    "ROW_NUM":item.ROW_NUM,
+    "rowid": item.rowid,
+    "RFQCode1": item.RFQCode1,
+    "RFQ_Date": this.lastdate,
+    "RFQCode2": item.RFQCode2,
+    "RFQID": item.RFQID,
+    "prs_id": item.prs_id,
+    "branch_id": item.branch_id,
+    "prs_category": item.prs_category,
+    "IS_SINGLE_VENDOR": item.IS_SINGLE_VENDOR,
+    "prs_code": item.prs_code,
+    "item_id": item.item_id,
+    "item_short_Desc": item.item_short_Desc,
+    "item_Code": item.item_Code,
+    "uomtext": item.uomtext,
+    "uomval": item.uomval,
+    "required_qty": item.required_qty,
+    "requested_Date": item.requested_Date,
+    "request_comments": item.request_comments,
+    "RFQCode": item.RFQCode,
+    "ItemDescription": item.ItemDescription,
+    "RequiredBefore": this.lastdate,
+    "RFQDate": this.lastdate,
+    "Type": item.Type,
+    "ISBid": "Y",
+    "Auction_status": item.Auction_status,
+    "GRIDVIEWCOUNT": item.GRIDVIEWCOUNT,
+    "Created_by": this.userID
+  
+});
+console.log(this.RaisedRFQ);
+}else{
+  if(this.itemprscode == this.RaisedRFQ[0].prs_code){
+    this.RaisedRFQ.push({
         
-      });
-      console.log(this.RaisedRFQ);
-    }
-    else {
+      "ROW_NUM":item.ROW_NUM,
+      "rowid": item.rowid,
+      "RFQCode1": item.RFQCode1,
+      "RFQ_Date": this.lastdate,
+      "RFQCode2": item.RFQCode2,
+      "RFQID": item.RFQID,
+      "prs_id": item.prs_id,
+      "branch_id": item.branch_id,
+      "prs_category": item.prs_category,
+      "IS_SINGLE_VENDOR": item.IS_SINGLE_VENDOR,
+      "prs_code": item.prs_code,
+      "item_id": item.item_id,
+      "item_short_Desc": item.item_short_Desc,
+      "item_Code": item.item_Code,
+      "uomtext": item.uomtext,
+      "uomval": item.uomval,
+      "required_qty": item.required_qty,
+      "requested_Date": item.requested_Date,
+      "request_comments": item.request_comments,
+      "RFQCode": item.RFQCode,
+      "ItemDescription": item.ItemDescription,
+      "RequiredBefore": this.lastdate,
+      "RFQDate": this.lastdate,
+      "Type": item.Type,
+      "ISBid": "Y",
+      "Auction_status": item.Auction_status,
+      "GRIDVIEWCOUNT": item.GRIDVIEWCOUNT,
+      "Created_by": this.userID
+    
+  });
+  console.log(this.RaisedRFQ);
+  }
+  else{
+    this.presentAlert('Alert','PRS Code Should be same');
+  }
+}
+}
+   
+   
+     
       var index = this.RaisedRFQ.indexOf(item);
       if(index > -1){
         this.RaisedRFQ.splice(index,1)
@@ -311,18 +364,16 @@ export class RFQPage implements OnInit {
       }
 
 
-    }
+  
   }
 
   raiseRFQ(item : any) {
+    console.log(this.lastdate)
+    debugger;
     console.log(item);
-    // this.RaisedRFQdetails = this.RaisedRFQ;
-    console.log(this.RaisedRFQdetails);
-    // for(let i=0; i< this.RaisedRFQ.length; i++) {
-    //   this.RaisedRFQ[i]['Created_by'] = this.userID;
-      // this.RaisedRFQ[i]['']
-    
-    // }
+    console.log(this.RaisedRFQ)
+    this.requiredDate = this.RaisedRFQ[0].RequiredBefore;
+   if(this.lastdate <= this.requiredDate){
     let body ={
       "RFQ_raise":[
         {
@@ -330,8 +381,7 @@ export class RFQPage implements OnInit {
         }
       ]
     }
-    // this.presentAlert("", "RFQ 345/AT Raised Successfully");
-    // Raise RFQ Button
+   
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'RaiseRFQ',body,{
       headers: options, responseType: 'text'
@@ -343,7 +393,22 @@ export class RFQPage implements OnInit {
         this.showviewlist = false;
      
         this.presentAlert("", res);
+        this.RaisedRFQ =[];
       });
+   }else{
+    this.presentAlert('Alert',"last date should less then required before date")
+   }
+    
+  
+    
+    // this.RaisedRFQdetails = this.RaisedRFQ;
+    console.log(this.RaisedRFQdetails);
+    // for(let i=0; i< this.RaisedRFQ.length; i++) {
+    //   this.RaisedRFQ[i]['Created_by'] = this.userID;
+      // this.RaisedRFQ[i]['']
+    
+    // }
+   
   }
   manageRFQlink(item:any) {
     console.log('New Item',item)

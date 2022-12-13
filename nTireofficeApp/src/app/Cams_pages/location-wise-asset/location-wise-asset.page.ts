@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
-import { Router} from '@angular/router';
-import { ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 declare var jquery: any;
 declare var $: any;
 
@@ -14,18 +14,18 @@ declare var $: any;
   styleUrls: ['./location-wise-asset.page.scss'],
 })
 export class LocationWiseAssetPage implements OnInit {
-  userID:any;
-  usertype:any;
-  function:any;
-  branch:any;
-  userToken:any;
-  accessToken:any;
-  branchID:any;
-  functionID:any;
+  userID: any;
+  usertype: any;
+  function: any;
+  branch: any;
+  userToken: any;
+  accessToken: any;
+  branchID: any;
+  functionID: any;
   ZoneLoc;
   detailz;
   ZONE_DESC;
-  locationlistnew =[];
+  locationlistnew = [];
   detailcategory;
   detailregion;
   region;
@@ -36,8 +36,9 @@ export class LocationWiseAssetPage implements OnInit {
   subcategory;
   detailfinals;
   detailfinalsLength;
-  username:any;
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router) {
+  username: any;
+
+  constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -47,47 +48,47 @@ export class LocationWiseAssetPage implements OnInit {
     this.accessToken = localStorage.getItem('token');
     this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     this.getZone();
     this.getAssetLocationCategory();
 
-    this.ZoneLoc= "<< Select >>";
-    this.region="<< Select >>";
-    this.branchLoc="<< Select >>";
-    this.category="<< Select >>";
-    this.subcategory="<< Select >>";
+    this.ZoneLoc = "<< Select >>";
+    this.region = "<< Select >>";
+    this.branchLoc = "<< Select >>";
+    this.category = "<< Select >>";
+    this.subcategory = "<< Select >>";
 
-   }
-
-  ngOnInit() {
-    this.  getCards();
   }
 
-  doRefresh(event){
+  ngOnInit() {
+    this.getCards();
+  }
+
+  doRefresh(event) {
     this.getZone();
     this.getAssetLocationCategory();
-    this.detailfinals=[];
-    this.ZoneLoc="<< Select >>";
-    this.region="<< Select >>";
-    this.branchLoc="<< Select >>";
-    this.category="<< Select >>";
-    this.subcategory="<< Select >>";
+    this.detailfinals = [];
+    this.ZoneLoc = "<< Select >>";
+    this.region = "<< Select >>";
+    this.branchLoc = "<< Select >>";
+    this.category = "<< Select >>";
+    this.subcategory = "<< Select >>";
 
     event.target.complete();
   }
 
-  getZone(){
+  getZone() {
     var data = {
       'functionidrep': this.functionID,
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationzone',data, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetlocationzone', data, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
@@ -96,10 +97,10 @@ export class LocationWiseAssetPage implements OnInit {
       for (var i = 0; i < this.detailz.length; i++) {
         // console.log($scope.all_items[i]);
         // $scope.locationlistnew.push($scope.asstdtlocation.detailz[i].ZONE_DESC);
-        this.ZONE_DESC= this.detailz[i].zoneid + '--' + this.detailz[i].ZONE_DESC;
+        this.ZONE_DESC = this.detailz[i].zoneid + '--' + this.detailz[i].ZONE_DESC;
         this.locationlistnew.push(this.ZONE_DESC);
 
-    }
+      }
 
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
@@ -108,13 +109,24 @@ export class LocationWiseAssetPage implements OnInit {
     });
 
   }
-  selzone(){
+  selzone(zone :any) {
+    if(zone == "<< Select >>"){
+      this.detailregion = [];
+      this.region = "<< Select >>";
+      this.branchLoc ="<< Select >>";
+      this.detailbranch = [];
+    }else if(zone == zone){
+      this.region="<< Select >>";
+      this.branchLoc ="<< Select >>";
+      this.detailbranch = [];
+
+    }
     var dataz = {
       'functionidrep': this.functionID,
       'zoneid': parseInt(this.ZoneLoc),
       'access_token': this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(dataz);
 
@@ -122,11 +134,11 @@ export class LocationWiseAssetPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationregion',dataz, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetlocationregion', dataz, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.detailregion= resp;
+      this.detailregion = resp;
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
@@ -135,18 +147,18 @@ export class LocationWiseAssetPage implements OnInit {
 
   }
 
-  getAssetLocationCategory(){
+  getAssetLocationCategory() {
     var data = {
       'functionidrep': this.functionID,
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationcategory',data, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetlocationcategory', data, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
@@ -160,41 +172,50 @@ export class LocationWiseAssetPage implements OnInit {
 
   }
 
-  selregion(){
+  selregion(region:any) {
+    debugger;
+    if( region== "<< Select >>"){
+      this.branchLoc ="<< Select >>";
+      this.detailbranch = [];
+    }else if(region == region){
+      this.branchLoc = "<< Select >>";
+      this.detailbranch =[];
+
+    }
     var dataz = {
       'functionidrep': this.functionID,
       'zoneid': parseInt(this.ZoneLoc),
-      'regionid' : parseInt(this.region),
+      'regionid': parseInt(this.region),
       'access_token': this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(dataz);
-    if (this.ZoneLoc != '' || this.ZoneLoc != undefined)  {
-    const header = new Headers();
-    header.append("Content-Type", "application/json");
+    if (this.ZoneLoc != '' || this.ZoneLoc != undefined) {
+      const header = new Headers();
+      header.append("Content-Type", "application/json");
 
-    let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationbranch',dataz, {
-      headers: options,
-    }).subscribe(resp => {
-      console.log(resp)
-      this.detailbranch= resp;
-    }, error => {
-      //this.presentAlert('Alert','Server Error,Contact not loaded');
-      console.log("error : " + JSON.stringify(error));
+      let options = new HttpHeaders().set('Content-Type', 'application/json');
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetlocationbranch', dataz, {
+        headers: options,
+      }).subscribe(resp => {
+        console.log(resp)
+        this.detailbranch = resp;
+      }, error => {
+        //this.presentAlert('Alert','Server Error,Contact not loaded');
+        console.log("error : " + JSON.stringify(error));
 
-    });
-  }else{
-    this.presentAlert("Alert","Select Zone");
-  }
+      });
+    } else {
+      this.presentAlert("Alert", "Select Zone");
+    }
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
-      backdropDismiss:false,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
@@ -202,24 +223,29 @@ export class LocationWiseAssetPage implements OnInit {
     await alert.present();
   }
 
-  selcatdrop(){
+  selcatdrop(category:any) {
+    if(category == "<< Select >>"){
+      this.detailsubcategory = [];
+      this.subcategory = "<< Select >>";
+      
+    }
     var datac = {
       'functionidrep': this.functionID,
       'categoryid': parseInt(this.category),
       'access_token': this.accessToken,
       'userid': this.userID,
-      'usertoken':this.userToken
+      'usertoken': this.userToken
     }
     console.log(datac);
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationsubcategory',datac, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetlocationsubcategory', datac, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.detailsubcategory= resp;
+      this.detailsubcategory = resp;
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
@@ -227,36 +253,36 @@ export class LocationWiseAssetPage implements OnInit {
     });
   }
 
-  processlocationreport(){
+  processlocationreport() {
 
-    if(this.ZoneLoc == undefined || this.ZoneLoc == '<< Select >>'){
-      var LocZone= '0';
-    }else{
-      LocZone= this.ZoneLoc;
+    if (this.ZoneLoc == undefined || this.ZoneLoc == '<< Select >>') {
+      var LocZone = '0';
+    } else {
+      LocZone = this.ZoneLoc;
     }
 
-    if(this.region == undefined || this.region == '<< Select >>'){
-      var region1= '0';
-    }else{
-      region1= this.region;
+    if (this.region == undefined || this.region == '<< Select >>') {
+      var region1 = '0';
+    } else {
+      region1 = this.region;
     }
 
-    if(this.branchLoc == undefined || this.branchLoc == '<< Select >>'){
-      var branchLoc1= '0';
-    }else{
-      branchLoc1= this.branchLoc;
+    if (this.branchLoc == undefined || this.branchLoc == '<< Select >>') {
+      var branchLoc1 = '0';
+    } else {
+      branchLoc1 = this.branchLoc;
     }
 
-    if(this.category == undefined || this.category == '<< Select >>'){
-      var category1= '0';
-    }else{
-      category1= this.category;
+    if (this.category == undefined || this.category == '<< Select >>') {
+      var category1 = '0';
+    } else {
+      category1 = this.category;
     }
 
-    if(this.subcategory == undefined || this.subcategory == '<< Select >>'){
-      var subcategory1= '0';
-    }else{
-      subcategory1= this.subcategory;
+    if (this.subcategory == undefined || this.subcategory == '<< Select >>') {
+      var subcategory1 = '0';
+    } else {
+      subcategory1 = this.subcategory;
     }
     var datafinal = {
       'functionidrep': this.functionID,
@@ -265,9 +291,9 @@ export class LocationWiseAssetPage implements OnInit {
       'fbranchid': parseInt(branchLoc1),
       'fassetcatid': parseInt(category1),
       'fassetsubcatid': parseInt(subcategory1),
-      'access_token':window.localStorage['token'],
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': window.localStorage['token'],
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(datafinal);
 
@@ -275,22 +301,31 @@ export class LocationWiseAssetPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetloctionfilterfinal',datafinal, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetloctionfilterfinal', datafinal, {
       headers: options,
-    }).subscribe(resp => {
+    }).subscribe((resp) => {
       console.log(resp)
-      this.detailfinals= resp;
-      this.detailfinalsLength= this.detailfinals.length;
-      if (this.detailfinals.length < 1) {
-        this.presentAlert("Alert","No Data Found");
+      if (resp == null || resp == undefined || resp == "No data found" || resp == "[]") {
+        this.detailfinals = [];
+      }else{
+      this.detailfinals = resp;
       }
+      // this.detailfinalsLength= this.detailfinals.length;
+      // if (this.detailfinals.length < 1) {
+      //   this.presentAlert("Alert","No Data Found");
+      // }
+      // if (resp == "" ||resp == 'null' || resp == "No data found" || resp == undefined) {
+
+      // } else {
+
+      // }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
 
     });
   }
-  getCards(){
+  getCards() {
     var datafinal = {
       'functionidrep': this.functionID,
       'fzoneid': 0,
@@ -298,9 +333,9 @@ export class LocationWiseAssetPage implements OnInit {
       'fbranchid': 0,
       'fassetcatid': 0,
       'fassetsubcatid': 0,
-      'access_token':window.localStorage['token'],
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': window.localStorage['token'],
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(datafinal);
 
@@ -308,14 +343,14 @@ export class LocationWiseAssetPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetloctionfilterfinal',datafinal, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetloctionfilterfinal', datafinal, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
-      this.detailfinals= resp;
-      this.detailfinalsLength= this.detailfinals.length;
+      this.detailfinals = resp;
+      this.detailfinalsLength = this.detailfinals.length;
       if (this.detailfinals.length < 1) {
-        this.presentAlert("Alert","No Data Found");
+        this.presentAlert("Alert", "No Data Found");
       }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
@@ -324,19 +359,19 @@ export class LocationWiseAssetPage implements OnInit {
     });
   }
 
-  resetlocationreport(){
-    this.ZoneLoc= "<< Select >>";
-   
-      // this.ZoneLoc='';
-      this.region="<< Select >>";
-      this.detailregion=[];
-      this.branchLoc="<< Select >>";
-      this.detailbranch=[];
-      this.category="<< Select >>" ;
-      this.detailcategory=[];
-      this.subcategory="<< Select >>" ;
-      this.detailsubcategory = [];
-    this.detailfinals= ''||[];
+  resetlocationreport() {
+    this.ZoneLoc = "<< Select >>";
+
+    // this.ZoneLoc='';
+    this.region = "<< Select >>";
+    this.detailregion = [];
+    this.branchLoc = "<< Select >>";
+    this.detailbranch = [];
+    this.category = "<< Select >>";
+    this.detailcategory = [];
+    this.subcategory = "<< Select >>";
+    this.detailsubcategory = [];
+    this.detailfinals = '' || [];
 
   }
 
@@ -344,10 +379,10 @@ export class LocationWiseAssetPage implements OnInit {
     //        alert(idvalue);
     $("#dividvalsp" + idvalue).css("display", "block");
     $("#imageidvalsp" + idvalue).hide();
-}
-showless(idvalue) {
+  }
+  showless(idvalue) {
     //        alert(idvalue);
     $("#dividvalsp" + idvalue).css("display", "none");
     $("#imageidvalsp" + idvalue).show();
-};
+  };
 }

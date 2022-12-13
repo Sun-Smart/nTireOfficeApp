@@ -44,6 +44,7 @@ export class ManageRfqPage implements OnInit {
   Checked;
   Requestrequstion:any=[];
   quotationDetails;
+  requestquatation:boolean=true;
   constructor(private router: Router, private alertcontroller: AlertController, private activatedRoute: ActivatedRoute, private IpaddressService: IpaddressService, private httpclient: HttpClient) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -67,6 +68,10 @@ export class ManageRfqPage implements OnInit {
 
     this.getCards();
     this.getVendorDetails();
+    if(this.RFQID == this.RFQID){
+     this.requestquatation = true;
+
+    }
   }
   getCards() {
 
@@ -100,6 +105,12 @@ getVendorDetails(){
     
   }
   fieldsChange(values:any,item:any):void {
+    this.requestquatation = false;
+    if(this.Checked == true){
+      this.requestquatation = true;
+    }else{
+      this.requestquatation = false;
+    }
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
