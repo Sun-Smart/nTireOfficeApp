@@ -5,3 +5,25 @@ ion-content {
   ion-item{
     border: 0px !important;
   }
+
+  .native-textarea.sc-ion-textarea-md {
+    border-radius: var(--border-radius);
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border: 0;
+    outline: none;
+    background: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    resize: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    overflow: scroll;
+}
