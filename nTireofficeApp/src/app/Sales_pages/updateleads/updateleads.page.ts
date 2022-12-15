@@ -192,7 +192,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     /* console.log(this.item.LEADSTATUS)*/
     this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
     this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-    this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
+    this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
     //console.log(this.dataobjs.callstageval);
     this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
     // console.log(this.item.TCC_LEAD_SOURCE);
@@ -430,7 +430,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     else if (objdatval.nextactionval == '<< Select >>') {
       this.presentAlert("", "Please Select Next Action");
     }
-    
+
     else if (objdatval.remarks == '') {
       this.presentAlert("", "Enter Remarks");
     }
@@ -446,7 +446,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
 
       this.objdataupd.callnatureval = objdatval.callnatureval;
       this.objdataupd.callratingval = objdatval.callratingval;
-      this.objdataupd.callstageval = objdatval.callstageval;
+      this.objdataupd.callstageval = parseInt(objdatval.callstageval);
       this.objdataupd.leadstatusval = objdatval.leadstatusval;
       this.objdataupd.nextactionval = objdatval.nextactionval;
       this.objdataupd.LeadSource = parseInt(objdatval.leadsrc);
@@ -591,7 +591,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
       /* console.log(this.item.LEADSTATUS)*/
       this.dataobjs.callratingval = "" + this.item.TCC_LEAD_RATING;
       this.dataobjs.callnatureval = "" + this.item.TCC_LEAD_NATURE;
-      this.dataobjs.callstageval = this.item.TCC_LEAD_STAGE;
+      this.dataobjs.callstageval = parseInt(this.item.TCC_LEAD_STAGE);
       //console.log(this.dataobjs.callstageval);
       this.dataobjs.leadsrc = this.item.TCC_LEAD_SOURCE;
       // console.log(this.item.TCC_LEAD_SOURCE);

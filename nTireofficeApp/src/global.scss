@@ -517,6 +517,7 @@ app-login ion-content {
   /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   // border: 1px solid #ccc;
+  overflow: scroll;
 }
 
 .labelcls {
@@ -1345,4 +1346,26 @@ input#checkbox {
 .alert-radio-label.sc-ion-alert-ios {
   color: #000 !important;
   font-weight: 600 !important;
+}
+
+.native-textarea.sc-ion-textarea-ios {
+  border-radius: var(--border-radius);
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  overflow: scroll;
 }

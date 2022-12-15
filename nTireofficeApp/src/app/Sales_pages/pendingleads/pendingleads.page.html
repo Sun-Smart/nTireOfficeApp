@@ -33,7 +33,7 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <select [(ngModel)]="BRANCH_IDs" class="form-control" style="width:100%">
               <option [ngValue]="undefined" selected>
-                << Select >></option>
+                &lt;&lt; Select &gt;&gt;</option>
 
               <option *ngFor="let branch of branchlist1; let i = index" [ngValue]="branch.BRANCH_ID">
                 {{branch.BRANCH_DESC}}</option>
@@ -239,7 +239,7 @@
           </ion-col>
           <ion-col size="6">
             <ion-label></ion-label> Priority
-             
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <b  style="font-size: 14px;color:green;"> {{items.PriorityText}}</b>
@@ -247,7 +247,7 @@
 
           <ion-col size="6">
             <ion-label></ion-label> Rating
-             
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <b  style="font-size: 14px;color:red;"> {{items.Ratingtext}}</b>

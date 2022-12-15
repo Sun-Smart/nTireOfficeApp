@@ -98,7 +98,7 @@ filter : boolean = true;
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
 
-    
+
     if (this.getParamID != null) {
       console.log(this.getParamID)
       // if (!this.getParamID) {
@@ -217,10 +217,6 @@ filter : boolean = true;
             flag: "I"
           })
         }
-
-
-
-
       })
     }
     // }
@@ -288,16 +284,16 @@ filter : boolean = true;
 
   }
   fetchreconcilation(itemcode: any) {
- 
+
     console.log(itemcode)
     const myArray = itemcode.split("-");
     console.log(myArray);
     this.splititemcode=myArray[0]
     // console.log("ee",this.splititemcode);
-    
+
     this.isItemAvailable = false;
     this.itemcode = itemcode;
-   
+
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + this.splititemcode).subscribe((resp: any) => {
       console.log(resp)
       this.getitemdata = resp;
@@ -313,7 +309,7 @@ filter : boolean = true;
 
   getItems(event: any) {
     console.log(this.Category);
-    
+
     let items = this.Category;
 let data=event.target.value
     if (data == "") {
@@ -324,6 +320,9 @@ let data=event.target.value
       this.netprice=''
       this.qty=''
       this.itemdescription=''
+    }
+    else{
+      this.netprice='0';
     }
 
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + data).subscribe((resp: any) => {
@@ -339,9 +338,8 @@ let data=event.target.value
       for (var i = 0; i < this.getdata1.length; i++) {
         // this.getdataitem.push({ id: this.getdata1[i].item_Code, desc: this.getdata1[i].item_id });
         this.getdataitem.push(this.getdata1[i].itemdetails,);
-      
+
         // console.log("itemdes", this.itemdes);
-        
       }
     }else{
       this.getdataitem=[]
@@ -369,10 +367,7 @@ let data=event.target.value
 
 
   getItemDetail(e: any) {
-
-   
     this.showsavebtn = true
-
     if(this.qty=='' || this.qty==undefined || this.qty==null){
       this.showqty=true
     }else{
@@ -386,12 +381,10 @@ let data=event.target.value
       this.hideitem = true;
       this.showitem = false;
       this.qty = ""
-
       this.itemcode = "",
         this.Description = "",
         this.unitprice = "",
         this.netprice = ""
-
 
       this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemDetail" + '/' + getcategory).subscribe((resp: any) => {
         console.log(resp)
@@ -448,7 +441,6 @@ let data=event.target.value
     this.showlineItems = !this.showlineItems
     this.showbtn = false;
 this.filter = false;
-
     this.itemcode = "",
       this.Description = "",
       this.unitprice = "",
@@ -499,8 +491,8 @@ else{
     }
 
 
-      
-       
+
+
 
 // this.newitem=new Set(this.expenseArray)
 // console.log(this.newitem);
@@ -543,7 +535,7 @@ itemcode: this.splititemcode,
     CPC: "",
     flag: "I"
   })
- 
+
 }else{
   debugger
         for(var i = 0; i < this.expenseArray.length ; i++){
@@ -586,22 +578,22 @@ itemcode: this.splititemcode,
               CPC: "",
               flag: "I"
             })
-           
+
           }
           else{
             this.presentAlert1("add item failed", 'Item Was Already Exits!');
           }
         }
       }
-        
-      }
-    
 
-   
+      }
+
+
+
     console.log(this.expenseArray)
-  
+
     this.showbtn = true
-  
+
   }
 
   orderpriority() {
@@ -633,7 +625,7 @@ itemcode: this.splititemcode,
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 4);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'dd/MM/yyyy');
+      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
 
     }
     let getdate = new Date();
@@ -756,7 +748,7 @@ itemcode: this.splititemcode,
       "requestby": this.requestby,
       "requestdate": this.prsdate,
       "requettype": this.prsmode,
-      "issinglevendor": "",
+      "issinglevendor": "0",
       "orderpriority": this.order,
       "release": this.release.toString(),
       "Itemsdetail": this.expenseArray,
@@ -838,7 +830,7 @@ itemcode: this.splititemcode,
       "requestby": this.userID,
       "requestdate": this.prsdate,
       "requettype": this.prsmode,
-      "issinglevendor": "",
+      "issinglevendor": "0",
       "orderpriority": this.order,
       "release": this.release.toString(),
       "Itemsdetail": this.expenseArray,
@@ -861,7 +853,7 @@ itemcode: this.splititemcode,
       this.splitres=res.split(":")
 this.prscode=this.splitres[1]
       console.log("split",  this.splitres);
-      
+
       // this.router.navigate(['/prsstatus'])
     })
   }

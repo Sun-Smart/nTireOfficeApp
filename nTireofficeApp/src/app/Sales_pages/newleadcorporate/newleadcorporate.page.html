@@ -61,7 +61,7 @@
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Mobile Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
         <!-- <ion-input type="tel" (keyup)="mobilenumbervalid(mobile)" class="form-control" [(ngModel)]="mobile"></ion-input> -->
-        <ion-input type="tel" class="form-control" pattern="[0-9]*" 
+        <ion-input type="tel" class="form-control" pattern="[0-9]*"
         type="number" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"
           [(ngModel)]="mobile" minlength="10" maxlength="10" #umobile="ngModel"></ion-input>
         <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
@@ -75,17 +75,17 @@
       </ion-col>
       <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-input type="tel" class="form-control"pattern="[0-9]*" 
+        <ion-input type="tel" class="form-control"pattern="[0-9]*"
         type="number" (keypress)="omit_special_char($event)"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==13) return false;"
  [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10" maxlength="13" #umobile="ngModel"></ion-input>
  <div *ngIf="umobile.errors?.minlength || umobile.errors?.maxlength">
           <p style="color:red;">valid mobile number required</p>
         </div>
- 
+
 
       <!-- <ion-col *ngIf="old_company == 'true'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Office Number</ion-label>
-        <ion-input type="tel" class="form-control" [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10" 
+        <ion-input type="tel" class="form-control" [(ngModel)]="OffPhone" pattern="[0-9]*" minlength="10"
         maxlength="1"
          onKeyPress="if(this.value.length==13) return false;"></ion-input> -->
 
