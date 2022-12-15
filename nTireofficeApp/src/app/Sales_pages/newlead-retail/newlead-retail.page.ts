@@ -1504,7 +1504,7 @@ export class NewleadRetailPage implements OnInit {
     this.Getcallnature();
     this.Getcallstage();
     this.Getleadsource();
- 
+
     this.autocompleteItems = [];
     this.autocomplete = {
       query: ''
@@ -1545,7 +1545,7 @@ export class NewleadRetailPage implements OnInit {
     if(branchid == "0"){
       this.branchlocationlist = [];
       this.branchlocation = "<< Select >>";
-      
+
     }
     console.log(branchid,'hai')
 
@@ -1566,7 +1566,7 @@ if(branchid=="0"){
     this.presentAlert('Alert', 'This Branch has no location');
   }
 }
-    
+
       console.log("branchlocationlist one: " + JSON.stringify(this.branchlocationlist));
 
     }, error => {
@@ -1722,7 +1722,7 @@ if(branchid=="0"){
     var index = this.getIndexIfObjWithOwnAttr(this.productdataarray, 'productID', productdata);
     this.curr_prod_category = this.productdataarray[index].productCatID;
     console.log( this.curr_prod_category ,"sss");
-    
+
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
@@ -1732,7 +1732,7 @@ if(branchid=="0"){
     }).subscribe(resp => {
 
       console.log("hfdfnieyfg",resp);
-      
+
 
       this.nextactionarray = JSON.stringify(resp);
       this.nextactionarray = JSON.parse(this.nextactionarray);
@@ -2312,7 +2312,7 @@ console.log(lead_id_new);
 
 
           var obj = {
-            'LeadID': lead_id_new,
+            'LeadID': parseInt(lead_id_new),
             //  'LatLong': this.appointmentLatLong,
             'LatLong': 0,
             'Address': this.placetomeet,
