@@ -525,15 +525,15 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
     this.getcustid = this.TCC_CUST_LEAD_ID;
     console.log(this.getcustid);
 
-    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == '') {
       this.getcustid = 0;
     }
     localStorage.setItem('setcustid', this.getcustid);
-    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == '') {
       this.getcustid = 0;
     }
     this.getbranchid = this.BRANCH_IDs;
-    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == '') {
       this.getbranchid = 1;
     }
     localStorage.setItem('setbranchid', this.getbranchid);
@@ -559,7 +559,7 @@ export class ClosedleadsPage implements OnInit, OnDestroy {
 
       'usertoken': window.localStorage['usertoken'],
       // this.penleadfilter.TCC_CUST_LEAD_ID.toString()
-      
+
       TCC_CUST_LEAD_ID:window.localStorage['setcustid'] ,
       TCC_LEAD_BY: this.penleadfilter.TCC_LEAD_BY.toString(),
       TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),

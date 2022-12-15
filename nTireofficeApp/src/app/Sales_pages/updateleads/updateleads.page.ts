@@ -430,7 +430,7 @@ export class UpdateleadsPage implements OnInit, OnDestroy {
     else if (objdatval.nextactionval == '<< Select >>') {
       this.presentAlert("", "Please Select Next Action");
     }
-    
+
     else if (objdatval.remarks == '') {
       this.presentAlert("", "Enter Remarks");
     }

@@ -580,15 +580,15 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       this.getcustid = this.TCC_CUSTOMER_IDs
       console.log(this.getcustid)
 
-      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == '') {
         this.getcustid = 0
       }
       localStorage.setItem('setcustid', this.getcustid)
-      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+      if (this.getcustid == undefined || this.getcustid == null || this.getcustid == '') {
         this.getcustid = 0
       }
       this.getbranchid = this.BRANCH_IDs
-      if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+      if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == '') {
         this.getbranchid = 1
       }
       localStorage.setItem('setbranchid', this.getbranchid)
@@ -622,7 +622,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         TCC_CUST_LEAD_ID: String(this.TCC_CUSTOME_RIDs)||"" ,
         TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
         BRANCH_ID: parseInt(window.localStorage['setbranchid']),
-       
+
       };
       console.log(tmpPendJson)
       pendJSON = Object.assign(tokenJSON, tmpPendJson);
@@ -777,15 +777,15 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.getcustid = this.TCC_CUSTOMER_IDs
     console.log(this.getcustid)
 
-    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == '') {
       this.getcustid = 0
     }
     localStorage.setItem('setcustid', this.getcustid)
-    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == NaN) {
+    if (this.getcustid == undefined || this.getcustid == null || this.getcustid == '') {
       this.getcustid = 0
     }
     this.getbranchid = this.BRANCH_IDs
-    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == NaN) {
+    if (this.getbranchid == undefined || this.getbranchid == null || this.getbranchid == '') {
       this.getbranchid = 1
     }
     localStorage.setItem('setbranchid', this.getbranchid)
@@ -820,9 +820,9 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       TCC_CUST_LEAD_ID: String(this.TCC_CUSTOME_RIDs ||""),
       TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
       BRANCH_ID: parseInt(window.localStorage['setbranchid']),
-     
+
     };
-    
+
     console.log(tmpPendJson)
     pendJSON = Object.assign(tokenJSON, tmpPendJson);
     console.log(pendJSON);

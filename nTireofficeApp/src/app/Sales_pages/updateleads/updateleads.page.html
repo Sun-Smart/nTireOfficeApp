@@ -65,7 +65,7 @@
         <ion-label>Call Stage <span style="color:red;margin-left: 5px;">*</span></ion-label>
         <select [(ngModel)]="dataobjs.callstageval" class="form-control">
           <option value="">&lt;&lt; Select &gt;&gt;</option>
-          <option  *ngFor="let stage of callstagearray; let i = index" [value]="stage.value">{{stage.text}}</option>
+          <option *ngFor="let stage of callstagearray; let i = index" [value]="stage.value">{{stage.text}}</option>
         </select>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
@@ -81,13 +81,13 @@
         <ion-input class="form-control" min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" date='dd/MM/yyyy'
           min="{{dat_valid.currentDate | date: 'yyyy-MM-dd'}}" date='dd/MM/yyyy' type="date"
           [(ngModel)]="dataobjs.ClosedDate">
-          <ion-icon name="calendar" style="top: 0px; right:0px;"></ion-icon>  
- 
-          <!-- <ion-icon name="calendar" style="position: relative; 
+          <ion-icon name="calendar" style="top: 0px; right:0px;"></ion-icon>
+
+          <!-- <ion-icon name="calendar" style="position: relative;
           left: 80%;
           bottom: 35px;"></ion-icon> -->
-         </ion-input>
-        
+        </ion-input>
+
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
         <ion-label>Expected Amount</ion-label>
@@ -137,7 +137,7 @@
           <ion-icon name="calendar" style=" top: auto;
           float: right;
           margin-right: 0%;"></ion-icon>
-          </ion-input>
+        </ion-input>
       </ion-col>
       <ion-col *ngIf="dataobjs.nextactionval == '2' || dataobjs.nextactionval == '1'" size-sm="12" size="12"
         size-md="12" size-lg="12" size-xl="12">
@@ -149,7 +149,7 @@
           <ion-icon name='timer' style="top: auto;
           float: right;
           margin-right: 0%;"></ion-icon>
-          </ion-input>
+        </ion-input>
 
       </ion-col>
       <ion-col *ngIf="dataobjs.nextactionval == '1'" size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -178,9 +178,10 @@
         </div>
       </ion-col>
       <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-        <ion-button (click)="Updateschedulemeet(dataobjs,schedleadareaname)" class="ion-color-success" expand="block"> Submit</ion-button>
+        <ion-button (click)="Updateschedulemeet(dataobjs,schedleadareaname)" class="ion-color-success" expand="block"
+          [disabled]="remarks == '' || remarks == undefined || remarks == null"> Submit</ion-button>
 
-             </ion-col>
+      </ion-col>
 
     </ion-row>
   </ion-grid>
