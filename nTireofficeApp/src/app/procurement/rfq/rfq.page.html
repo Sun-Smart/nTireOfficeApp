@@ -22,22 +22,34 @@
         </ion-col> -->
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">RFQ Code</ion-label>
-          <ion-input type="text" [(ngModel)]="prscode" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text" [(ngModel)]="rfqcode" style="color: black;
+          font-weight: 700;" class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
+
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">PRS Code</ion-label>
+          <ion-input type="text" [(ngModel)]="prscode" style="color: black;
+          font-weight: 700;" class="Input-text-field textareaField"></ion-input>
+          <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-col>
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Item Code</ion-label>
-          <ion-input type="text" [(ngModel)]="itemcode" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="text" [(ngModel)]="itemcode"  style="color: black;
+          font-weight: 700;"  class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Requisition From Date</ion-label>
-          <ion-input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="date" [(ngModel)]="fromdate"  style="color: black;
+          font-weight: 700;"  class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Requisition To Date</ion-label>
-          <ion-input type="date" [(ngModel)]="toDate" class="Input-text-field textareaField"></ion-input>
+          <ion-input type="date" [(ngModel)]="toDate"   style="color: black;
+          font-weight: 700;"  class="Input-text-field textareaField"></ion-input>
           <!-- [(ngModel)]="VendorQuot.qty" -->
         </ion-col>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -48,7 +60,8 @@
           <ion-label class="plabel">Status</ion-label>
           <select [(ngModel)]="status" style="padding: 10px;"
            (change)="getVal($event.target.value)"
-            style="display:inline-block;padding: 8px;" class="Input-text-field textareaField" >
+            style="display:inline-block;padding: 8px; color: black;
+            font-weight: 700;"  class="Input-text-field textareaField" >
             <option ngValue="undefined" selected disabled><< Select >></option>
             <option ngValue="P">Pending</option>
             <option ngValue="RFQ Raised">Raised RFQ</option>

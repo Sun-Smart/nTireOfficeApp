@@ -33,6 +33,7 @@ export class MyapprovalsPage implements OnInit {
   status;
   requestId;
   username;
+  myapproval: any;
   constructor(private router: Router, private datepipe: DatePipe,
     private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
     this.functionId = window.localStorage["FUNCTION_ID"];
@@ -88,17 +89,21 @@ export class MyapprovalsPage implements OnInit {
   myApprovalSearch() {
 
     this.approve_result1 = [];
-    var fromdate = this.datepipe.transform(this.fromdate, "dd/MM/yyyy");
-    var todate = this.datepipe.transform(this.todate, "dd/MM/yyyy");
+    this.fromdate = this.datepipe.transform(this.fromdate, "dd/MM/yyyy")||null;
+    var todate = this.datepipe.transform(this.todate, "dd/MM/yyyy")||null;
+    var status=this.status||null
 
     // this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getMailBoxHistory?strFunction=' + window.localStorage["FUNCTION_ID"] + '&strConfigId=' + this.reqType + '&Username=' + this.requestBy + '&strWorkFlowNo=' + this.reqnumber + '&strFromDate=' + fromdate + '&strToDate=' + todate + '&strWFstatus=' + this.status + '&strMode=&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
-    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'myapprovalsearch?strFunction=' + this.functionId+ '&strConfigId=' + this.requestId + '&Username=' + this.username + '&strWorkFlowNo=null&strFromDate=null&strToDate=null&strWFstatus=' + this.status + '&strMode=null&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
-     
-      var dat_s = JSON.parse(resp.toString());
+    this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'myapprovalsearch?strFunction=' + this.functionId+ '&strConfigId=' + this.requestId + '&Username=' + this.username + '&strWorkFlowNo=null'+ '&strFromDate='+this.fromdate+ '&strToDate='+todate+'&strWFstatus=' + status + '&strMode=null&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
+    this.myapproval=resp
+      var dat_s1 = JSON.stringify(resp);
+      var dat_s=JSON.parse(dat_s1)
+      console.log(dat_s.Table);
+      
       if (dat_s.Table.length > 0) {
         this.approve_result1 = dat_s.Table;
         // this.approve_result=this.approve_result[0].RequestDate;
-        console.log(this.approve_result1);
+        console.log(this.approve_result1,"tab");
 
       } else {
         console.log('No record found');

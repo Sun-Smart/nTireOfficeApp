@@ -294,10 +294,10 @@ async presentAlert1(heading, tittle) {
       this.arrayvalue=[]
       if(res&&res.length>0){
         for (let i = 0; i < res.length; i++) {
-          const element = res[i].PRS_CODE;
+          const element = res[i].PRS_CODE.toLowerCase();
           console.log(element,"res"); 
           if(this.prscode&&this.prscode!=null){
-            if(element==this.prscode){
+            if(element==this.prscode.toLowerCase()){
           
             }else{
               this.presentAlert1("add item failed", 'Invalid PRSCODE!');

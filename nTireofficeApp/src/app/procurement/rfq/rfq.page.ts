@@ -36,6 +36,7 @@ export class RFQPage implements OnInit {
   managerfqdetails;
   getresponsestr;
   getresponsenew;requiredbefore: any;
+  rfqcode: any;
 ;
   Checked;
   function;
@@ -147,10 +148,10 @@ export class RFQPage implements OnInit {
 
       let body = {
         "functionid": "1",
-        "prscode": "",
+        "prscode":this.prscode,
         "itemcode": this.itemcode,
         "reuestdate": "",
-        "rfqcode": this.prscode,
+        "rfqcode": this.rfqcode,
         "fromdate": this.fromdate,
         "todate": this.toDate,
         "rfqfromdate": "",
@@ -178,10 +179,10 @@ export class RFQPage implements OnInit {
 
       let body = {
         "functionid": "1",
-        "prscode": "",
+        "prscode": this.prscode,
         "itemcode": this.itemcode,
         "reuestdate": "",
-        "rfqcode": this.prscode,
+        "rfqcode":this.rfqcode||"" ,
         "fromdate": this.fromdate,
         "todate": this.toDate,
         "rfqfromdate": "",
@@ -219,10 +220,10 @@ export class RFQPage implements OnInit {
 
       let body = {
         "functionid": "1",
-        "prscode": "",
+        "prscode":  this.prscode,
         "itemcode": this.itemcode,
         "reuestdate": "",
-        "rfqcode": this.prscode,
+        "rfqcode": this.rfqcode,
         "fromdate": this.fromdate,
         "todate": this.toDate,
         "status": this.status,
