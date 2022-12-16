@@ -90,7 +90,7 @@ export class ServiceRequestPage implements OnInit {
   newreplaceasset: any;
   assetucode: any;
   doi:any;
-  
+
   numberOnly(event):boolean{
     const charCode = (event.which)?event.which:event.keyCode;
     if(charCode >31 &&(charCode<48||charCode>57)){
@@ -156,7 +156,7 @@ export class ServiceRequestPage implements OnInit {
    }
 
   ngOnInit() {
- 
+
   }
 
   doRefresh(event){
@@ -169,11 +169,11 @@ export class ServiceRequestPage implements OnInit {
     this.assetcode1 = [];
     this.newasset = ev.target.value;
     console.log(this.newasset);
-    
+
     if (ev.target.value == "") {
       this.assetcode1 = [];
       console.log(this.assetcode1);
-      
+
       this.isItemAvailable = false;
     }
     // Reset items back to all of the items
@@ -188,7 +188,7 @@ export class ServiceRequestPage implements OnInit {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
       "assetcode" :this.newasset,
-      
+
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
@@ -368,8 +368,6 @@ export class ServiceRequestPage implements OnInit {
       for (var i = 0; i < this.vendor_code_det.length; i++) {
         // $scope.user_type1 = $scope.user_type[i].DESCRIPTION;
         this.vendor_code_det1.push(this.vendor_code_det[i].Vendor_Code+' - '+this.vendor_code_det[i].Vendor_Name);
-
-
       }
       const val = ev.target.value;
 

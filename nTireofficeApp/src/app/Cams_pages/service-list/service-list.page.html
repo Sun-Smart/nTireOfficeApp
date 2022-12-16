@@ -45,11 +45,39 @@
         <!-- </div> -->
       </ion-col>
 
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Vendor Code</ion-label>
-        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="vendorcode">
-        </ion-input>
+        <ion-input style="background-color: #d4d4d4!important;" class="form-control" [(ngModel)]="VENDORCODE"></ion-input>
+      </ion-col> -->
+
+      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Vendor Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-searchbar [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)">
+        </ion-searchbar>
+        <ion-list *ngIf="isVendorItemAvailable" class="searchlist" [ngStyle]="{'height':vendor_code_det1.length >0?'100px':'0px'}">
+          <ion-item *ngFor="let item of vendor_code_det1" style="background-color: white !important;
+            color: gray !important;" (click)="fetchservsvendorreq(item)">
+            {{ item }}
+          </ion-item>
+
+        </ion-list>
+        <input type="hidden" [(ngModel)]="vendorid">
       </ion-col>
+
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+        <ion-label class="ContentName">Vendor Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-searchbar [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)">
+        </ion-searchbar>
+        <ion-list *ngIf="isVendorItemAvailable" class="searchlist" [ngStyle]="{'height':vendor_code_det1.length >0?'100px':'0px'}" style="">
+          <ion-item *ngFor="let item of vendor_code_det1" style="background-color: white !important;
+            color: gray !important;" (click)="fetchservsvendorreq(item)">
+            {{ item }}
+          </ion-item>
+
+        </ion-list>
+        <input type="hidden" [(ngModel)]="vendorid">
+      </ion-col> -->
+
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Date Of Service</ion-label>

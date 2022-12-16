@@ -89,8 +89,6 @@ export class ManpowerUsedPage implements OnInit {
 
   manskill(){
     var datae = {
-
-
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),
       'usertype':this.usertype,

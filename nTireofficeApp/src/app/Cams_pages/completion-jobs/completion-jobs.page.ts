@@ -120,6 +120,18 @@ export class CompletionJobsPage implements OnInit {
   }
 
   getsubCategory(event){
+debugger
+    if(this.category == "<< Select >>")
+    {
+      this.subCategoryresp = [];
+      this.subCategory = "<< Select >>";
+    }
+    else if(this.category == this.category)
+    {
+      this.subCategoryresp = [];
+      this.subCategory = "<< Select >>";
+    }
+
     console.log(event)
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -132,14 +144,14 @@ export class CompletionJobsPage implements OnInit {
       userid: localStorage.getItem('TUM_USER_ID'),
       'usertoken': localStorage.getItem('usertoken'),
       USER_ID: localStorage.getItem('TUM_USER_ID'),
-      categoryid:parseInt(event)
+      categoryid: parseInt(event)
     };
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetlocationsubcategory',assetCatParms, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
+      this.subCategoryresp =resp;
       //var fulldata = resp.data;
-      this.subCategoryresp = resp;
       console.log(this.subCategoryresp);
 
     }, error => {
@@ -156,7 +168,7 @@ export class CompletionJobsPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null', {
+    this.http.get(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+this.branchID+'&fdate=null&tdate=null&Status=C&drpcategory=null&drptype=null&TASKTYPE=MT&AssetCode=null', {
                                                                                                              // /CAMSPENDING_COMPLTED_SEARCH?strfunction=1&branch=1&fdate=null&tdate=null&Status=P
                                                                                                       // &drpcategory=null&drptype=null&TASKTYPE=null&AssetCode=null
       headers: options,
@@ -359,7 +371,7 @@ requestedJobs() {
   header.append("Content-Type", "application/json");
 
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+window.localStorage.getItem('id')+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+assetCat+'&drptype='+assetSubCat+'&TASKTYPE='+jobs+'&AssetCode=null', {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+window.localStorage.getItem('id')+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+this.category+'&drptype='+assetSubCat+'&TASKTYPE=MT'+'&AssetCode=null', {
     // &TASKTYPE=84&AssetCode=MT
     headers: options,
   }).subscribe(resp => {

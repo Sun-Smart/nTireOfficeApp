@@ -16,7 +16,7 @@
             Manpower Used
           </ion-col>
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
-            <ion-label style="font-weight:bold;display: block;">Skills<span style="color:red;margin-left: 5px;">*</span>
+            <ion-label style="font-weight:bold;display: block;">User Role<span style="color:red;margin-left: 5px;">*</span>
             </ion-label>
             <select class="form-control" style="width:100%">
               <option>&lt;&lt; Select &gt;&gt;</option>
@@ -53,7 +53,7 @@
           <ion-col size-sm="3" size="3" size-md="3" size-lg="4" size-xl="3"></ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="4" size-xl="6">
             <ion-button (click)="manpowerinsert()"
-              [disabled]="(skill=='<< Select >>' || empref=='<< Select >>'|| nomhours== undefined || nomhoursm == undefined)"
+              [disabled]="(skill=='' || empref==''|| nomhours== undefined || nomhoursm == undefined)"
               text-center style="--background:#009689" size="small">Save
             </ion-button>
           </ion-col>

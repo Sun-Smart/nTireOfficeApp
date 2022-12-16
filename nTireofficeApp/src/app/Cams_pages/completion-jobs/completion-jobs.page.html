@@ -30,7 +30,7 @@
         <ion-input type="date" class="form-control" [(ngModel)]="fromdate">
           <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
         </ion-input>
-       
+
       </ion-col>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">To Date</ion-label>
@@ -45,9 +45,9 @@
           <option  class="ContentName" value="Completed">Completed</option>
         </select>
         </ion-col> -->
-       
+
           <!-- </div> -->
-         
+
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Asset Category</ion-label>
             <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="getsubCategory(category)">
@@ -97,7 +97,7 @@
           </ion-col>
         </ion-row>
       </ion-card-header>
-    
+
       <ion-card-content>
         <ion-row>
 
@@ -116,39 +116,39 @@
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelData-text">{{item1.Category}}</ion-label>
           </ion-col>
-          
+
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelHead-text">Sub Category</ion-label>
           </ion-col>
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelData-text">{{item1.AssetType}}</ion-label>
-            
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelHead-text">Status</ion-label>
-            
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelData-text">{{item1.Realease_status}}</ion-label>
-            
+
           </ion-col>
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelHead-text">Assigned</ion-label>
-            
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
             <ion-label class="labelData-text">{{item1.TUM_USER_NAME}}</ion-label>
-            
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelHead-text"> Criticality</ion-label>
-           
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelData-text">{{item1.Criticality}}</ion-label>
-            
+
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
@@ -160,7 +160,7 @@
             </a>
           </ion-col>
           <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
-            
+
             <ion-row>
 
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
@@ -176,17 +176,17 @@
               </ion-col>
 
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-label class="labelData-text">{{item1.AssetType}}</ion-label> 
+                <ion-label class="labelData-text">{{item1.AssetType}}</ion-label>
               </ion-col>
 
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" >
                 <ion-label class="labelHead-text">Assigned To</ion-label>
               </ion-col>
 
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"> 
-                <ion-label class="labelData-text">{{item1.TUM_USER_CODE}} </ion-label>   
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+                <ion-label class="labelData-text">{{item1.TUM_USER_CODE}} </ion-label>
               </ion-col>
-              
+
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelHead-text">PM Duration</ion-label>
               </ion-col>
@@ -217,7 +217,7 @@
                 <ion-button (click)="reopenActionModal(item1)" class="ion-color-success" expand="block">Reopen
                 </ion-button>
               </ion-col>
-            
+
             </ion-row>
           </div>
         </ion-row>
@@ -227,7 +227,7 @@
 </ion-content>
 
 <ion-footer>
-  
+
   <ion-row>
   <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
     © SunSmart Global Inc
@@ -236,7 +236,7 @@
    {{username}}
  </ion-col>
   </ion-row>
- 
-   
+
+
  </ion-footer>
 

@@ -93,7 +93,7 @@
             <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
               <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)">
               </ion-searchbar>
-              <ion-list *ngIf="isItemAvailable" class="searchlist" [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}" style="">
+              <ion-list *ngIf="isItemAvailable" class="searchlist" [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}" >
                 <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
                   color: gray !important;" (click)="processasset(item)">
                   {{ item }}
@@ -211,7 +211,7 @@
           <ion-label class="ContentName">Vendor Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-searchbar [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)">
           </ion-searchbar>
-          <ion-list *ngIf="isVendorItemAvailable" class="searchlist" [ngStyle]="{'height':vendor_code_det1.length >0?'100px':'0px'}" style="">
+          <ion-list *ngIf="isVendorItemAvailable" class="searchlist" [ngStyle]="{'height':vendor_code_det1.length >0?'100px':'0px'}">
             <ion-item *ngFor="let item of vendor_code_det1" style="background-color: white !important;
               color: gray !important;" (click)="fetchservsvendorreq(item)">
               {{ item }}
@@ -287,7 +287,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Expected Delivery Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input style="" class="form-control" type="date" [(ngModel)]="expdate"
+          <ion-input class="form-control" type="date" [(ngModel)]="expdate"
             [min]="today1">
             <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
           </ion-input>
@@ -295,7 +295,7 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Expected Expense</ion-label>
-          <ion-input style="" class="form-control" [(ngModel)]="expexpense" (keypress)="numberOnly($event)">
+          <ion-input class="form-control" [(ngModel)]="expexpense" (keypress)="numberOnly($event)">
           </ion-input>
         </ion-col>
 
@@ -323,7 +323,7 @@
             <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
               <ion-searchbar [(ngModel)]="repassetcode" type="text" debounce="500" (ionInput)="getreplaceItems($event)">
               </ion-searchbar>
-              <ion-list *ngIf="isrespItemAvailable" class="searchlist" [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}" style="">
+              <ion-list *ngIf="isrespItemAvailable" class="searchlist" [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}">
                 <ion-item *ngFor="let item of Asset_code_det1r" style="background-color: white !important;
                         color: gray !important;" (click)="fetchservsreqreplace(item)">
                   {{ item }}

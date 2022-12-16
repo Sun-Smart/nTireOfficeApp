@@ -31,7 +31,7 @@
           <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
         </ion-input>
       </ion-col>
-      
+
       <!-- (focusout)="pendateval()" -->
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">To Date</ion-label>
@@ -57,7 +57,7 @@
               (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist"
-              [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}" style="">
+              [ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}">
               <ion-item class="ContentName" *ngFor="let item of assetcode1" style="background-color: white !important;
                     color: gray !important;" (click)="adddata(item)">
                 {{ item }}
@@ -84,8 +84,7 @@
         <ion-label class="ContentName">Asset SubCategory</ion-label>
         <select [(ngModel)]="subCategory" class="form-control" style="width:100%">
           <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
-          <option class="ContentName" *ngFor="let item of subCategoryresp; let i = index"
-            [ngValue]="item.SUB_CATEGORY_ID">
+          <option class="ContentName" *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">
             {{item.SUB_CATEGORY_DESC}}
           </option>
         </select>
@@ -149,7 +148,7 @@
             <ion-label class="labelHead-text"> Status</ion-label>
           </ion-col>
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-            {{item1.Realease_status}} <ion-label class="labelData-text"> {{item1.Realease_status}} </ion-label>
+            <ion-label class="labelData-text"> {{item1.Realease_status}} </ion-label>
           </ion-col>
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
@@ -175,25 +174,28 @@
           </ion-col>
           <div id="dividvalsp{{0+i}}" style="display:none;" size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2">
             <ion-row>
-              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="font-weight:bold;">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
                 <ion-label class="labelHead-text"> Asset Description</ion-label>
               </ion-col>
-              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="6">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelData-text"> {{item1.pmm_asset_desc}} </ion-label>
               </ion-col>
-              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
                 <ion-label class="labelHead-text"> Activity Description</ion-label>
               </ion-col>
-              <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="6">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelData-text"> {{item1.amd_activity_desc}} </ion-label>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-
-                <ion-label style="font-weight:bold;display: block;"> Frequency</ion-label>
+                <ion-label class="labelHead-text"> Frequency</ion-label>
+                </ion-col>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelData-text"> {{item1.amd_frequency}} </ion-label>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-                <ion-label style="font-weight:bold;display: block;"> Due Date</ion-label>
+                <ion-label class="labelHead-text"> Due Date</ion-label>
+                </ion-col>
+                <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <ion-label class="labelData-text"> {{item1.pm_due_date}} </ion-label>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
@@ -203,7 +205,7 @@
                 <ion-label class="labelData-text"> {{item1.Department}} </ion-label>
               </ion-col>
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
-              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">
+              <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
                 <a (click)="showless(i)"><i class="fa fa-angle-double-up" aria-hidden="true"
                     style="font-size: 21px;background: #607d8b;color: white;border-radius: 50%;width: 26px;height: 26px;text-align: center;padding-top: 1px;position: relative;bottom: 4px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.3), 0 4px 20px 0 rgba(0,0,0,0.3);float:right;"></i></a>
 
@@ -218,7 +220,6 @@
                   [disabled]="item1.Realease_status === 'New'">Complete
                 </ion-button>
               </ion-col>
-
             </ion-row>
           </div>
         </ion-row>

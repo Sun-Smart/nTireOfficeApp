@@ -111,6 +111,8 @@ export class TeammeetingsPage implements OnInit {
 
     });
   }
+
+
   searchAppointment(val, branchid, fromdate, todate) {
 
     if (branchid == "") {
@@ -188,7 +190,6 @@ export class TeammeetingsPage implements OnInit {
 
 
                     this.formattedDate = this.datePipe.transform(this.today, 'yyyy-MM-dd')
-
                     this.formattedDate1 = this.datePipe.transform(datetime[0], 'yyyy-MM-dd')
                     this.formattedTime = this.datePipe.transform(this.today, 'HH:mma')
 
@@ -295,6 +296,7 @@ export class TeammeetingsPage implements OnInit {
           }
 
         }
+
 
         if (fromdate != undefined && todate != undefined && branchid != undefined) {
           this.fromdate = this.datePipe.transform(fromdate, 'dd-MM-yyyy')
@@ -643,7 +645,7 @@ export class TeammeetingsPage implements OnInit {
           this.maxArray = this.allmeetingArray[j].meeting_array;
         };
         console.log("fjgndkvndfkjgvhdfgjgnmekrvsejgi", this.maxArray);
-        
+
         for (var k = 0; k < this.allmeetingArray[j].meeting_array.length; k++) {
           this.allmeetingArray[j].meeting_array[k].Meeting = 'Meeting' + [k + 1];
           var app_date = this.allmeetingArray[j].meeting_array[k].TCC_NEXT_CALL_DATE;
@@ -911,4 +913,5 @@ export class TeammeetingsPage implements OnInit {
     return this.datePipe.transform(date, 'hh:mm a');
 
   };
+
 }

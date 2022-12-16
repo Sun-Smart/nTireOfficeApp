@@ -110,6 +110,7 @@ export class LocationWiseAssetPage implements OnInit {
 
   }
   selzone(zone :any) {
+
     if(zone == "<< Select >>"){
       this.detailregion = [];
       this.region = "<< Select >>";
@@ -180,7 +181,6 @@ export class LocationWiseAssetPage implements OnInit {
     }else if(region == region){
       this.branchLoc = "<< Select >>";
       this.detailbranch =[];
-
     }
     var dataz = {
       'functionidrep': this.functionID,
@@ -224,10 +224,13 @@ export class LocationWiseAssetPage implements OnInit {
   }
 
   selcatdrop(category:any) {
+
     if(category == "<< Select >>"){
       this.detailsubcategory = [];
       this.subcategory = "<< Select >>";
-      
+    }else if(category == category){
+      this.subcategory="<< Select >>";
+      this.detailsubcategory = [];
     }
     var datac = {
       'functionidrep': this.functionID,

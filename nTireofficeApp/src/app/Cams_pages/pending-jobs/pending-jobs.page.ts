@@ -70,14 +70,14 @@ export class PendingJobsPage implements OnInit {
     this.category = "<< Select >>";
     this.subCategory = "<< Select >>";
     this.getCards();
-  
+
 
   }
 
   ngOnInit() {
 
     this.getAssertCatergory();
-    
+
   }
 
   doRefresh(event) {
@@ -93,7 +93,16 @@ export class PendingJobsPage implements OnInit {
     if( this.CurrentDate >= todate){
 console.log(this.CurrentDate);
 console.log(todate)
-this.presentAlert('Alert','Date should not be current Date')
+
+if (this.fromdate == undefined) {
+  this.presentAlert1('', 'Please Select From Date');
+}
+else if (todate == undefined) {
+  this.presentAlert1('', 'Please Select To Date');
+}
+else if (this.fromdate > todate) {
+  this.presentAlert1('', 'From Date should not be Greater than To Date');
+}
     }
   }
   getItems(ev: any) {
@@ -201,6 +210,16 @@ this.presentAlert('Alert','Date should not be current Date')
     debugger;
     console.log(this.jobs)
     // this.responseData = {};
+
+    // if (fromdate == undefined) {
+    //   this.presentAlert1('', 'Please Select From Date');
+    // }
+    // else if (todate == undefined) {
+    //   this.presentAlert1('', 'Please Select To Date');
+    // }
+    // else if (fromdate > todate) {
+    //   this.presentAlert1('', 'From Date should not be Greater than To Date');
+    // }
 
     if (this.Realease_status == "<< Select >>" || this.Realease_status == undefined) {
       var status = "null";
@@ -314,10 +333,12 @@ this.presentAlert('Alert','Date should not be current Date')
 
   getsubCategory(event) {
     debugger;
-    if(event == "<< Select >>"){
+    if(this.category == "<< Select >>"){
       this.subCategoryresp = [];
       this.subCategory = "<< Select >>";
-      
+    }else if(this.category == this.category){
+      this.subCategory="<< Select >>";
+      this.subCategoryresp = [];
     }
     console.log(event)
     const header = new Headers();
@@ -392,7 +413,9 @@ this.presentAlert('Alert','Date should not be current Date')
           console.log("error : " + JSON.stringify(error));
 
         });
-      } else {
+      }
+
+      else {
         this.presentAlert("Invalid date", "From date should be lesser than To date!");
       }
     } else {
@@ -480,6 +503,18 @@ this.presentAlert('Alert','Date should not be current Date')
     } else {
       alert("Future Date task Cannot be Started");
     }
+  }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   pendingtab(item) {

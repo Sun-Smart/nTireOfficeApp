@@ -587,12 +587,14 @@ app-login ion-content {
 }
 
 ion-searchbar {
-  padding: 0;
+  padding: 0px !important;
+  height: 40px !important;
+  margin: auto;
 }
 
 .searchbar-input.sc-ion-searchbar-md {
   display: block;
-  height: 25px;
+  height: 40px;
   font-size: 14px;
   line-height: 1.42857143;
   color:black!important;
@@ -833,6 +835,7 @@ ion-icon {
 
 .hydrated {
   visibility: visible !important;
+  margin-block: auto;
 }
 
 ion-button {
