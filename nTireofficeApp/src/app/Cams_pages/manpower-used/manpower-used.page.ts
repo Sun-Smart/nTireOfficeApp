@@ -141,7 +141,7 @@ var dataem = {
 
   'branchid': this.branchID,
   'functionid':parseInt(this.functionID),
-  'userskill':parseInt(this.skill),
+  'userskill': parseInt(this.skill),
   'assetid':parseInt(this.urldata.CMD_ASSET_ID),
   'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
   'assetpmref':parseInt(this.urldata.pmr_reference),

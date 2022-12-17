@@ -96,7 +96,7 @@ export class ConsumableUsedPage implements OnInit {
 
       'branchid': this.branchID,
       'functionid': parseInt(this.functionID),
-      'itemid':parseInt(matc),
+      'itemid':matc,
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
@@ -123,14 +123,13 @@ export class ConsumableUsedPage implements OnInit {
   insertconsumable(){
     var dataem = {
 
-
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),
-     // 'slno':$scope.spares.sno,
+      //'slno':$scope.spares.sno,
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
       'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
       'assetpmref':parseInt(this.urldata.pmr_reference),
-      'itemcode':parseInt(this.itemcodein),
+      'itemcode':this.itemcodein,
       'plannedqty':parseInt(this.quantity),
       'replaceqty':parseInt(this.replaceqty),
       'returnqty':parseInt(this.returnqty),
@@ -151,6 +150,7 @@ export class ConsumableUsedPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       this.consumecountcheck=resp;
+
         if(this.consumecountcheck!='spare'){
         // alert("inserted Successfully");
 
@@ -246,14 +246,12 @@ export class ConsumableUsedPage implements OnInit {
 
     var dataeasc = {
 
-
-      'branchid': this.branchID,
+      'branchid': localStorage.getItem('TUM_BRANCH_ID'),
       'functionid':parseInt( this.functionID),
 
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
       'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
       'assetpmref':parseInt(this.urldata.pmr_reference),
-
 
       'access_token':this.accessToken,
       'userid':this.userID,
