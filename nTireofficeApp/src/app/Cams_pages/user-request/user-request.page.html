@@ -76,7 +76,7 @@
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">Category</ion-label>
         <select [(ngModel)]="categoryissue" class="form-control" style="width:100%">
-          <option>&lt;&lt; Select &gt;&gt;</option>
+          <option selected="selected">&lt;&lt; Select &gt;&gt;</option>
           <option *ngFor="let item of detailsreqcat; let i = index" [ngValue]="item.ISSUEID">{{item.ISSUEDESCRIPTION}}
           </option>
         </select>

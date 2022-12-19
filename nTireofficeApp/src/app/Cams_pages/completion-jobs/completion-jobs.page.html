@@ -51,7 +51,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Asset Category</ion-label>
             <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="getsubCategory(category)">
-              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+              <option class="ContentName"><< Select >></option>
               <option class="ContentName" *ngFor="let item of product; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
               </option>
             </select>
@@ -59,7 +59,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Asset SubCategory</ion-label>
             <select [(ngModel)]="subCategory" class="form-control" style="width:100%">
-              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+              <option class="ContentName"><< Select >></option>
               <option class="ContentName" *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">{{item.SUB_CATEGORY_DESC}}
               </option>
             </select>
@@ -68,7 +68,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">PMJobs</ion-label>
             <select [(ngModel)]="jobs" class="form-control" (change)="requestedJobs()">
-              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
+              <option class="ContentName"><< Select >></option>
               <option class="ContentName" value="MT">PM Jobs</option>
               <option class="ContentName" value="AT">Requested Jobs</option>
             </select>

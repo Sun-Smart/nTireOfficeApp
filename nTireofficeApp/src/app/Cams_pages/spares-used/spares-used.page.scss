@@ -2,3 +2,11 @@ ion-content {
     --background: url('../../../assets/images/tpbackground.png') repeat !important;
     position: relative;
   }
+
+  .card-content-md {
+    padding-left: unset;
+    padding-right: unset;
+    padding-inline-start: 3px;
+    padding-inline-end: 3px;
+}
+

@@ -163,6 +163,28 @@ debugger
 
   completioncards(){
     console.log(event)
+    debugger;
+
+    if (this.jobs == "<< Select >>" || this.jobs == undefined) {
+      var jobs = 'MT';
+    } else {
+      jobs = this.jobs
+    }
+
+    if (this.category == "<< Select >>" || this.category == undefined ) {
+      this.category = null;
+    } else {
+      this.category = this.category ? this.category : null;
+      // console.log(assetCat)
+      console.log(this.category)
+    }
+
+    if (this.subCategory == "<< Select >>" || this.subCategory == undefined) {
+      this.subCategory = null;
+    } else {
+      this.subCategory = this.subCategory ? this.subCategory: null;
+    }
+
 
     const header = new Headers();
     header.append("Content-Type", "application/json");
@@ -251,11 +273,12 @@ getReferMax(){
 
 closecompletejob(item){
 
-if(item.CMD_ACTIVITY_ID == null || item.CMD_ASSET_ID == null){
-
+if(item.CMD_ACTIVITY_ID == null || item.CMD_ASSET_ID == null)
+{
   this.presentAlert('Alert','cant Close');
-}else{
-
+}
+else
+{
   var functionreport1 = this.functionID;
   var brnchlreport1 = this.branchID;
   var userid = this.userID;
@@ -273,7 +296,7 @@ if(item.CMD_ACTIVITY_ID == null || item.CMD_ASSET_ID == null){
     'functionidrep': functionreport1,
     'branchid': brnchlreport1,
     'activityid': item.CMD_ACTIVITY_ID,
-    'assetid': parseInt(item.CMD_ASSET_ID),
+    'assetid': item.CMD_ASSET_ID,
     'createdby': userid,
     'frequency': item.amd_frequency,
     'actualhours': item.amd_maintenance_duration,
@@ -335,34 +358,34 @@ requestedJobs() {
   //   status = this.Realease_status
   // }
 
-  if (this.jobs == "<<Select>>" || this.jobs == undefined) {
-    var jobs = 'MT';
+  if (this.jobs == "<< Select >>" || this.jobs == undefined) {
+    this.jobs = 'MT';
   } else {
-    jobs = this.jobs
+    this.jobs = this.jobs ? this.jobs : null;
   }
 
-  if (this.category == "<<Select>>" || this.category == undefined) {
-    var assetCat = 'null';
+  if (this.category == "<< Select >>" || this.category == undefined ) {
+    this.category = null;
   } else {
-    assetCat = this.category
-    console.log(assetCat)
+    this.category = this.category ? this.category : null;
+    // console.log(assetCat)
   }
 
   if (this.subCategory == "<< Select >>" || this.subCategory == undefined) {
-    var assetSubCat = 'null';
+    this.subCategory = null;
   } else {
-    assetSubCat = this.subCategory
+    this.subCategory = this.subCategory ? this.subCategory : 0;
   }
 
-  if (this.fromdate == "<<Select>>" || this.fromdate == undefined) {
-    var fromdate = 'null';
+  if (this.fromdate == "<< Select >>" || this.fromdate == undefined) {
+    var fromdate = null;
   } else {
     this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd/MM/yyyy');
     fromdate = this.fromdate2
   }
 
-  if (this.todate == "<<Select>>" || this.todate == undefined) {
-    var todate = 'null';
+  if (this.todate == "<< Select >>" || this.todate == undefined) {
+    var todate = null;
   } else {
     this.todate2 = this.datePipe.transform(this.todate, 'dd/MM/yyyy');
     todate = this.todate2
@@ -371,7 +394,7 @@ requestedJobs() {
   header.append("Content-Type", "application/json");
 
   let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+window.localStorage.getItem('id')+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+this.category+'&drptype='+assetSubCat+'&TASKTYPE=MT'+'&AssetCode=null', {
+  this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'CAMSPENDING_COMPLTED_SEARCH?strfunction='+this.functionID+'&branch='+window.localStorage.getItem('id')+'&fdate='+fromdate+'&tdate='+todate+'&Status=C&drpcategory='+this.category+'&drptype='+this.subCategory+'&TASKTYPE=MT'+'&AssetCode=null', {
     // &TASKTYPE=84&AssetCode=MT
     headers: options,
   }).subscribe(resp => {
