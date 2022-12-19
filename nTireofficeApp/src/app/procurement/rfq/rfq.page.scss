@@ -78,3 +78,15 @@ ion-input.Input-text-field.textareaField.ng-valid.sc-ion-input-ios-h.sc-ion-inpu
   color: black;
     font-weight: 700;
 }
+
+.list-md {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background: var(--ion-item-background, var(--ion-background-color, #fff));
+}

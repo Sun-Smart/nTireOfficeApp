@@ -255,7 +255,7 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     this.submitview =!this.submitview;
     this.overallsubmitnew =true;
     this.expenseArray.push({
-     
+
       "mrsdetail_id":'',
       "MRS_ID": "",
       "Item_Id": this.getitemid ,
@@ -336,7 +336,7 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
             this.status = "";
             this.todate = "";
             this.fromdate = "";
-            
+
 
           }
         }
@@ -404,7 +404,7 @@ this.mrs_no=resp
 for (var i = 0; i < this.mrs_no.length; i++) {
   this.MRScode.push({
     mrs_code: this.mrs_no[i].mrs_code,
-      
+
   });
 };
 
@@ -420,13 +420,8 @@ if (val && val.trim() != '') {
 }
 
 
-
-
-
-
 addponumbercode(item:any){
   console.log(item,"item");
-
   this.MRS_CODE=item.mrs_code;
   this.isPropertycodeAvailable = false;
 
@@ -437,10 +432,10 @@ addponumbercode(item:any){
 getItems(event: any) {
   let items = "I";
 
-  
+
     this.getdataitem = [];
     this.isItemAvailable = false;
-  
+
 
   this.HttpClient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + "getItemcode" + '/' + items).subscribe((resp: any) => {
     console.log(resp)
@@ -483,9 +478,9 @@ fetchreconcilation(itemcode: any) {
       this.unitprice = this.getitemdata[0].Price
       this.stockqty = this.getitemdata[0].stock_uom
 
-  
+
   });
- 
+
 }
 
 // orderpriority() {
@@ -526,7 +521,7 @@ fetchreconcilation(itemcode: any) {
 
 
 submitdata(){
-  
+
   let body =
   {
     "mrsdetail": [
@@ -563,10 +558,10 @@ this.materialreqsearch = this.materialrequestsearch.itemDetails;
 }
 
 netpriced(){
- 
-  
+
+
   this.netprice=this.unitprice*this.requestqty
   console.log(this.netprice);
-  
+
 }
 }
