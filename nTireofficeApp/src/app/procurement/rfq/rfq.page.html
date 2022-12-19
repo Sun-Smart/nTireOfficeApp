@@ -29,9 +29,17 @@
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">PRS Code</ion-label>
-          <ion-input type="text" [(ngModel)]="prscode" style="color: black;
-          font-weight: 700;" class="Input-text-field textareaField"></ion-input>
+          <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)">
+          </ion-searchbar>
+          <ion-list  class="searchlist" style="height: auto;">
+            <ion-item *ngFor="let item of getRfqItems" (click)="PRSCode(item)"
+              style="background:none !important;color:#444 !important;display: block;">
+              {{item}}
+            </ion-item>
+          <!-- <ion-input *ngFor="let item of getItems" [numeric]="true" [active]="true" type="text" [(ngModel)]="prscode" (click)="PRSCode()" style="color: black;
+          font-weight: 700;" class="Input-text-field textareaField"></ion-input> -->
           <!-- [(ngModel)]="VendorQuot.qty" -->
+        </ion-list>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -62,13 +70,13 @@
            (change)="getVal($event.target.value)"
             style="display:inline-block;padding: 8px; color: black;
             font-weight: 700;"  class="Input-text-field textareaField" >
-            <option ngValue="undefined" selected disabled><< Select >></option>
-            <option ngValue="P">Pending</option>
+            <option ngValue="undefined" ><< Select >></option>
+            <option ngValue="P" selected>Pending</option>
             <option ngValue="RFQ Raised">Raised RFQ</option>
             <option ngValue="A">Cancelled RFQ</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
-          
+
         </ion-col>
 
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -135,7 +143,7 @@
 
 <!-- Pending RFQ -->
 <ion-card *ngIf="showRfq">
-  
+
   <ion-row >
     <ion-col>
       <ion-col style="text-align: center">
@@ -208,7 +216,7 @@
       <ion-col>
         <ion-col style="text-align: center">
           <ion-label style="color:black ;">Last Date</ion-label>
-          <ion-input type="date" style="color: black !important; 
+          <ion-input type="date" style="color: black !important;
         font-weight: 500 !important; ;"  (click)="test()"   class="Input-text-field textareaField" [(ngModel)]="lastdate"></ion-input>
         </ion-col>
       </ion-col>

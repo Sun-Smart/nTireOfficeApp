@@ -53,6 +53,7 @@ export class UserRequestPage implements OnInit {
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.priority = "<< Select >>"
+    this.categoryissue = "<< Select >>"
     this.getReferMax();
 
     var today = new Date();
@@ -311,7 +312,7 @@ export class UserRequestPage implements OnInit {
       console.log("error : " + JSON.stringify(error));
 
     });
-    
+
 
   }
 

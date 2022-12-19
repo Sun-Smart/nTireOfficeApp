@@ -119,7 +119,7 @@ export class EmployeesPage implements OnInit {
     } else {
       designation = this.designation.VALUE;
 
-      
+
     }
     if (this.branch == undefined || this.branch == '') {
       debugger;
@@ -166,7 +166,7 @@ export class EmployeesPage implements OnInit {
       this.loading = false;
       this.allemp = resp;
       console.log(this.allemp,"emp");
-      
+
       // this.allemp = JSON.parse(resp.toString());
       if( this.allemp=="No data found"){
       this.count= JSON.stringify(this.displayEmployee);
@@ -174,7 +174,7 @@ export class EmployeesPage implements OnInit {
         this.displayEmployee = this.displayEmployee.concat(this.allemp);
         // console.log("displayEmployee : " + JSON.stringify(this.displayEmployee));
       }
-     
+
 
       //  this.displayEmployee.forEach
 
@@ -270,6 +270,7 @@ export class EmployeesPage implements OnInit {
   }
 
   portChange(event: {
+
     component: IonicSelectableComponent,
     value: any,
   }) {
