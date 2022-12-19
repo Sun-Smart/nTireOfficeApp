@@ -15,12 +15,12 @@
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
           <ion-label style="font-weight:bold;display: block;">S.no<span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="text" class="form-control" [(ngModel)]="sno">{{sno}}</ion-input>
+          <ion-input type="text" class="form-control" [(ngModel)]="sno" disabled="">{{sno}}</ion-input>
         </ion-col>
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
           <ion-label style="font-weight:bold;display: block;">Material Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
           
-          <select [(ngModel)]="materialcode" class="form-control" style="width:100%" (change)="matrialdtle(materialcode)" disabled>
+          <select [(ngModel)]="materialcode" class="form-control" style="width:100%" (change)="matrialdtle(materialcode)" disabled="">
             <option>{{materialcode}}</option>
             <!-- <option *ngFor="let item of sparematerialddtl; let i = index" [value]="item.ITEM_CODE">{{item.ITEM_CODE}} -->
             <!-- </option> -->
@@ -29,22 +29,22 @@
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
           <ion-label style="font-weight:bold;display: block;"> Material Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="text" class="form-control" disabled>{{materialdescp}}</ion-input>
+          <ion-input type="text" class="form-control" disabled="">{{materialdescp}}</ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
           <ion-label style="font-weight:bold;display: block;"> Cost <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="cost" class="form-control" disabled>{{cost}}</ion-input>
+          <ion-input type="number" [(ngModel)]="cost" class="form-control" disabled="" >{{cost}}</ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">  
           <ion-label style="font-weight:bold;display: block;"> Date Of Installation <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-datetime  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" class="form-control" disabled>{{doi}}</ion-datetime>
+          <ion-input  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" class="form-control" disabled="" >{{doi}}</ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
           <ion-label style="font-weight:bold;display: block;"> Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="quantity" (change)="spareCostvalidate(quantity)" class="form-control">{{quantity}}</ion-input>
+          <ion-input type="number" [(ngModel)]="quantity" (click)="spareCostvalidate($event)" class="form-control"></ion-input>
         </ion-col>
 
         <!-- <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12"  >

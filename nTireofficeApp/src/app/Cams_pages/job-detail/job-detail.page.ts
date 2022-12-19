@@ -272,7 +272,7 @@ if(releaseStatus==true){
       if (resp != "") {
         this.jobs = "MT";
         //$scope.getCards();
-        this.presentAlert("Success","Successfully Completed!")
+        this.presentAlert1("Success","Successfully Completed!")
         //  $state.go('app.complete');
 
 
@@ -305,6 +305,18 @@ async presentAlert(heading, tittle) {
 
   await alert.present();
 }
+
+async presentAlert1(heading, tittle) {
+  var alert = await this.alertController.create({
+    header: heading,
+    cssClass: 'Cssbutton',
+    backdropDismiss: false,
+    message: tittle,
+    buttons: ['OK']
+  });
+
+  await alert.present();
+};
 
 previous(){
   this.remarks = '';
