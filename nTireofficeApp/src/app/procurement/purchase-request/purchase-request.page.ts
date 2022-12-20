@@ -366,7 +366,7 @@ let data=event.target.value
   }
 
 
-  getItemDetail(e: any) {
+    getItemDetail(e: any) {
     this.showsavebtn = true
     if(this.qty=='' || this.qty==undefined || this.qty==null){
       this.showqty=true
@@ -456,13 +456,26 @@ this.filter = false;
 
   showline() {  //submit btn
 
-    if(this.itemcode==""|| this.itemcode=="undefined" || this.itemcode==null){
+    if(this.itemcode ==""|| this.itemcode=="undefined" || this.itemcode==null){
       this.presentAlert1("add item failed",'Please Enter Item Code');
     }else if(this.qty==""|| this.qty=="undefined" || this.qty==null){
       this.presentAlert1("add item failed",'Please Enter Quantity');
     }else  if(this.Requiredbefore==""|| this.Requiredbefore=="undefined" || this.Requiredbefore==null){
       this.presentAlert1("add item failed",'Please Enter  Required Before Date');
       }
+      else if(this.Category =="" || this.Category == "undefined" || this.Category == null)
+      {
+        this.presentAlert1("add item failed",'Please Enter Category');
+      }
+else if(this.netprice = "" || this.netprice == "undefined" || this.netprice == null)
+{
+  this.presentAlert1("add item failed",'Please Enter Net Price');
+}
+else if(this.Requiredbefore =="" || this.Requiredbefore == "undefined"|| this.Requiredbefore == null)
+{
+  this.presentAlert1("add item failed",'Please Enter Required Before Date');
+}
+
 else{
   debugger
     this.showviewlist = true
@@ -489,9 +502,6 @@ else{
     if (this.userid == undefined) {
       this.userid = this.requestby
     }
-
-
-
 
 
 // this.newitem=new Set(this.expenseArray)

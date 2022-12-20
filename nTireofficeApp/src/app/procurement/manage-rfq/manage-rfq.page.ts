@@ -102,7 +102,7 @@ getVendorDetails(){
     this.splitted = this.splitted[1];
     console.log('new', this.splitted)
     this.router.navigate(['/vendorsdetails', this.splitted,item.itemCategory,item.itemSubCategory,item.itemID,item.rFQCode,item.item_Code,item.item_short_Desc]);
-    
+
   }
   fieldsChange(values:any,item:any):void {
     this.requestquatation = false;

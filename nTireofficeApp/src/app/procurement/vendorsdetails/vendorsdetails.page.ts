@@ -98,14 +98,14 @@ this.addVendor = true;
     console.log(data);
 
     // for (var i =0; i< this.AddVendor.length; i ++) {
-         
+
     // }
 
     let body ={
 
       "Add_vendor":[
         {
-          
+
           "Vendor_details":this.VendorDetails
         }
       ]
@@ -114,10 +114,11 @@ this.addVendor = true;
     let options = new HttpHeaders().set('Content-Type', 'application/json')
     this.http.post(this.IpaddressService.ipaddress1+this.IpaddressService.serviceerpapi +'Add_Vendor', body,{
       headers: options, responseType: 'text'
-    } 
+    }
       ).subscribe((resp :any)=>{
         console.log(resp);
         this.presentAlert("",resp );
+        this.router.navigate(['/manage-rfq',this.splitted,this.item])
       })
 
 }
@@ -135,7 +136,7 @@ selectAllvendorCheckbox(value) {
   }
 }
 fieldsChange(values:any,item:any):void {
- 
+
   if( this.Checked == true){
     this.addVendor = true;
   }else{
@@ -193,7 +194,8 @@ async presentAlert(heading, tittle) {
     cssClass: 'Cssbutton',
     backdropDismiss: false,
     message: tittle,
-    buttons: ['OK']
+    buttons: ['OK'],
+
   });
 
   await alert.present();
