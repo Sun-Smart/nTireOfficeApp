@@ -38,6 +38,8 @@ export class sparesUsedPage implements OnInit {
   sparerecord:any;
   materialcode:any;
   rowuniqids:any;
+  mtrcode: any;
+  matcode: any;
 
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
@@ -102,11 +104,13 @@ export class sparesUsedPage implements OnInit {
   }
 
   matrialdtle(mat){
-
+    this.mtrcode=mat.split("-")
+    console.log(this.mtrcode);
+    this.matcode=this.mtrcode[0]
     var dataesp = {
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),
-      'itemid':mat,
+      'itemid': this.matcode,
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken

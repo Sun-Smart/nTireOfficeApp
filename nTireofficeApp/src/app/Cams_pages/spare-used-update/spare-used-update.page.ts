@@ -136,8 +136,8 @@ export class SpareUsedUpdatePage implements OnInit {
 
 
   updatespare(){
-    var instdte=this.datePipe.transform(this.doi, 'yyyy-MM-dd');
-    console.log(instdte);
+    // var instdte=this.datePipe.transform(this.doi, 'yyyy-MM-dd');
+    // console.log(instdte);
 
     this.spareCost= this.quantity * this.data.SPARECOST;
     var dataem = {
@@ -151,7 +151,7 @@ export class SpareUsedUpdatePage implements OnInit {
       'spareqty':this.quantity,
       'cost':this.spareCost,
       //'spareqty':$scope.spares.quantity,
-      'instdte':instdte,
+      'instdte':this.doi,
       'uniqueid':parseInt(this.data.rowuniqueid),
       'access_token':this.accessToken,
       'userid':this.userID,

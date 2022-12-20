@@ -38,6 +38,8 @@ export class ConsumableUsedPage implements OnInit {
   consumerecord:any;
   materialcode:any;
   rowuniqidsc:any;
+  mtrcode: any;
+  matcode: any;
 
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
@@ -91,12 +93,16 @@ export class ConsumableUsedPage implements OnInit {
 
   matrialdtleconsume(matc){
     debugger;
+    this.mtrcode=matc.split("-")
+    console.log(this.mtrcode);
+    this.matcode=this.mtrcode[0]
+    
     var dataespc = {
 
 
       'branchid': this.branchID,
       'functionid': parseInt(this.functionID),
-      'itemid':matc,
+      'itemid': this.matcode,
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
