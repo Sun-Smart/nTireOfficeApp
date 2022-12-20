@@ -119,7 +119,9 @@ export class RFQPage implements OnInit {
 
 
   ngOnInit() {
-
+   if(this.status == ""){
+    this.status = "Pending";
+  }
   }
 
   Submit() {
