@@ -835,7 +835,7 @@ ion-icon {
 
 .hydrated {
   visibility: visible !important;
-  margin-block: auto;
+  margin-block: initial;
 }
 
 ion-button {
@@ -1067,7 +1067,7 @@ ion-card {
     color: #ffff !important;
     margin: auto;
     display: inline-block;
-    justify-content: center;
+    justify-content: center !important;
     font-weight: bold;
   }
   // padding-right: 50px !important;
@@ -1101,7 +1101,7 @@ ion-card {
       rgb(2, 154, 222) 50%
     ) !important;
     color: white !important;
-    text-align: initial;
+    text-align: center;
     padding: 10px;
   }
 }
