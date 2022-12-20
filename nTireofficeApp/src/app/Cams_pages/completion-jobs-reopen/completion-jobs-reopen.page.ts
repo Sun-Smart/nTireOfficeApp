@@ -32,6 +32,7 @@ export class CompletionJobsReopenPage implements OnInit {
   assetr;
   pmrrefr;
   wrkno;
+  assetref: any;
 
   constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router) {
 
@@ -68,12 +69,12 @@ export class CompletionJobsReopenPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.activityr = this.data.CMD_ACTIVITY_ID;
+    this.activityr = this.data.ASSET_ACTIVITY_ID||null;
     console.log(this.activityr)
-    this.assetr = this.data.CMD_ASSET_ID;
+    this.assetr = this.data.ASSET_ID||null;
     console.log(this.assetr);
-
-    this.pmrrefr = this.data.pmr_reference;
+this.assetref=this.data.pmr_asset_reference||null;
+    this.pmrrefr = this.data.pmr_reference||null
     console.log(this.pmrrefr);
 
     this.wrkno = this.data.WorkorderNo;
@@ -82,7 +83,7 @@ export class CompletionJobsReopenPage implements OnInit {
 
     // console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + "CAMS_PENDING_REOPENED" + this.activityr + "/" + this.assetr + "/" + this.pmrrefr + "/1/" + this.pmrrefr + "/" + this.reason + "/" + finaltodayDate + "/" + this.userID + "/" + this.branchID + "/" + this.wrkno, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + "CAMS_PENDING_REOPENED/" + this.activityr + "/" + this.assetr + "/" + this.assetref+ "/" +this.functionID+"/"+ this.pmrrefr + "/" + this.reason + "/" + finaltodayDate + "/" + this.userID + "/" + this.branchID + "/" + this.wrkno, {
       headers: options,
     }).subscribe(resp => {
       this.presentAlert('Alert', 'Successfully Reopened');

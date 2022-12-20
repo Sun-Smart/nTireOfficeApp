@@ -36,6 +36,8 @@ export class SpareUsedUpdatePage implements OnInit {
   quantity;
   doi;
   cost;
+  costof: number;
+  costed: any;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private model:ModalController,navParams: NavParams) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -46,14 +48,19 @@ export class SpareUsedUpdatePage implements OnInit {
     this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.data=navParams.get('item');
+
+    
+    this.costed= this.data.SPARECOST
     this.sno=this.data.serialno;
     console.log(this.sno);
     console.log(this.data);
+ 
     this.materialcode = this.data.MaterialCode;
-    // this.getItem();
+     this.getItem();
   }
 
   ngOnInit() {
+    this.quantity=this.data.sparequantity;
   }
 
   closemodel(){
@@ -65,7 +72,7 @@ export class SpareUsedUpdatePage implements OnInit {
     this.sno=this.data.serialno;
     this.materialdescp= this.data.MaterialDescription;
     this.quantity=this.data.sparequantity;
-    this.doi= this.data.doi;
+    this.doi= this.data.CAMS_ASSET_INSTALLATION_DATE;
     this.cost = this.data.SPARECOST;
     this.materialcode = this.data.MaterialCode;
     var dataes = {
@@ -123,7 +130,8 @@ export class SpareUsedUpdatePage implements OnInit {
   }
 
   spareCostvalidate(qty){
-    this.cost= qty * this.data.SPARECOST
+    this.cost= qty.target.value * this.data.SPARECOST
+    console.log(this.cost);
   }
 
 
@@ -134,17 +142,17 @@ export class SpareUsedUpdatePage implements OnInit {
     this.spareCost= this.quantity * this.data.SPARECOST;
     var dataem = {
       'branchid': this.branchID,
-      'functionid':this.functionID,
+      'functionid':parseInt(this.functionID),
       'slno':this.sno,
-      'assetid':this.data.assetid,
-      'assetactivityid':this.data.assetactivityid,
-      'assetpmref':this.data.assetpmref,
+      'assetid':parseInt(this.data.assetid),
+      'assetactivityid':parseInt(this.data.assetactivityid),
+      'assetpmref':parseInt(this.data.assetpmref),
       'itemcode':this.materialcode,
       'spareqty':this.quantity,
       'cost':this.spareCost,
       //'spareqty':$scope.spares.quantity,
       'instdte':instdte,
-      'uniqueid':this.data.rowuniqueid,
+      'uniqueid':parseInt(this.data.rowuniqueid),
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
