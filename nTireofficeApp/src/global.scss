@@ -869,15 +869,16 @@ ion-button {
   }
 }
 
-.subtabs
-{
-  background-color: #c9d322;
+.subtabs {
+  background-color: #33ade4;
   text-align: center;
-  height: 41px;
+  color: white;
+  height: 28px;
   font-size: 17px;
-  text-align: center;
+  margin: auto;
+  font-weight: bold;
+  position: relative;
 }
-
 
 #loginInput {
   background-color: #fff;

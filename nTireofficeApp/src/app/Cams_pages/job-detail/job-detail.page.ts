@@ -122,7 +122,7 @@ debugger;
       console.log(index)
         this.pendingcomplete = this.responseData;
         this.branch = this.pendingcomplete[index].Branch;
-        console.log("branch",this.branch);
+        console.log("branch",this.assetid);
 
         this.AssetCodeComp = this.pendingcomplete[index].pmm_asset_code;
         this.AssetDescriptionComp = this.pendingcomplete[index].pmm_asset_desc;
@@ -133,7 +133,7 @@ debugger;
         this.frequencyd = this.pendingcomplete[index].amd_frequency;
         this.maintanance = this.pendingcomplete[index].amd_maintenance_duration;
         this.assetid = this.pendingcomplete[index].CMD_ASSET_ID;
-        console.log(this.assetid);
+        // alert(this.assetid);
 
         this.activityid = this.pendingcomplete[index].CMD_ACTIVITY_ID;
         console.log(this.activityid);

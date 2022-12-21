@@ -96,7 +96,7 @@ export class ConsumableUsedPage implements OnInit {
     this.mtrcode=matc.split("-")
     console.log(this.mtrcode);
     this.matcode=this.mtrcode[0]
-    
+
     var dataespc = {
 
 
@@ -252,9 +252,9 @@ export class ConsumableUsedPage implements OnInit {
 
     var dataeasc = {
 
-      'branchid': localStorage.getItem('TUM_BRANCH_ID'),
+      'branchid': parseInt(this.urldata.TUM_BRANCH_ID),
+      // 'branchid': localStorage.getItem('TUM_BRANCH_ID'),
       'functionid':parseInt( this.functionID),
-
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
       'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
       'assetpmref':parseInt(this.urldata.pmr_reference),
