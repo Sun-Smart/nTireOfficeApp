@@ -862,12 +862,22 @@ ion-button {
 
 .subheader {
   height: 7%;
-
   ion-title {
     text-align: center;
     margin-top: 12px;
+    justify-content: center;
   }
 }
+
+.subtabs
+{
+  background-color: #c9d322;
+  text-align: center;
+  height: 41px;
+  font-size: 17px;
+  text-align: center;
+}
+
 
 #loginInput {
   background-color: #fff;

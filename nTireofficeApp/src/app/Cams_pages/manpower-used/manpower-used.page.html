@@ -38,8 +38,12 @@
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="display: inline-block;">
             <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
+            onKeyPress="if(this.value!=undefined && this.value.length==2) return false;"
+                  (keyup)="phonenumber(profile.nomhours) "
               placeholder="HH:" [(ngModel)]="nomhours">
             <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
+            onKeyPress="if(this.value!=undefined && this.value.length==2) return false;"
+                  (keyup)="phonenumber(profile.nomhoursm) "
               placeholder="MM" [(ngModel)]="nomhoursm">
 
           </ion-col>
