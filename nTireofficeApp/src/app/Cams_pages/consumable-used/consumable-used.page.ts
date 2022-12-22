@@ -40,6 +40,7 @@ export class ConsumableUsedPage implements OnInit {
   rowuniqidsc:any;
   mtrcode: any;
   matcode: any;
+  branch_ID: any;
 
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
@@ -49,7 +50,7 @@ export class ConsumableUsedPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branch_ID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
 
     console.log(JSON.stringify(this.Tabparams.data));
@@ -68,7 +69,7 @@ export class ConsumableUsedPage implements OnInit {
     var dataesc = {
 
 
-      'branchid': this.branchID,
+      'branchid': this.branch_ID,
       'functionid': parseInt(this.functionID),
       'access_token': this.accessToken,
       'userid': this.userID,
@@ -100,7 +101,7 @@ export class ConsumableUsedPage implements OnInit {
     var dataespc = {
 
 
-      'branchid': this.branchID,
+      'branchid': this.branch_ID,
       'functionid': parseInt(this.functionID),
       'itemid': this.matcode,
       'access_token': this.accessToken,
@@ -129,7 +130,7 @@ export class ConsumableUsedPage implements OnInit {
   insertconsumable(){
     var dataem = {
 
-      'branchid': this.branchID,
+      'branchid': this.branch_ID,
       'functionid':parseInt(this.functionID),
       //'slno':$scope.spares.sno,
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
@@ -212,7 +213,7 @@ export class ConsumableUsedPage implements OnInit {
           text: 'Ok',
           handler: () => {
             var datamddc = {
-              'branchid': this.branchID,
+              'branchid': this.branch_ID,
                 'functionid':this.functionID,
                 //'slno':$scope.spares.sno,
                 'assetid':this.urldata.CMD_ASSET_ID,
@@ -252,7 +253,7 @@ export class ConsumableUsedPage implements OnInit {
 
     var dataeasc = {
 
-      'branchid': parseInt(this.urldata.TUM_BRANCH_ID),
+      'branchid': this.branch_ID,
       // 'branchid': localStorage.getItem('TUM_BRANCH_ID'),
       'functionid':parseInt( this.functionID),
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
