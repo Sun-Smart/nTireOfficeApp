@@ -20,12 +20,12 @@
       <ion-card-content>
 
         <ion-row>
-          <ion-col size="6">
+          <ion-col size="3">
             <ion-label>S.no :</ion-label>
             <ion-input type="text" class="form-control" [(ngModel)]="sno"></ion-input>
           </ion-col>
 
-          <ion-col size="6">
+          <ion-col size="9">
             <ion-label>Material Code<span style="color:red;margin-left: 5px;">*</span> :</ion-label>
             <select [(ngModel)]="materialcode" class="form-control" style="width:100%; padding: 9px 20px !important; "
               (change)="matrialdtle(materialcode)">
@@ -36,17 +36,17 @@
             </select>
           </ion-col>
 
-          <ion-col  size="6">
+          <ion-col  size="12">
             <ion-label>Material Description <span style="color:red;margin-left: 5px;">*</span>:</ion-label>
             <ion-input type="text" [(ngModel)]="materialdescp" class="form-control"></ion-input>
           </ion-col>
 
-          <ion-col  size="6">
+          <ion-col  size="12">
             <ion-label>Date Of Installation <span style="color:red;margin-left: 5px;">*</span>:</ion-label>
             <ion-input type="date" class="form-control" [(ngModel)]="doi"></ion-input>
           </ion-col>
 
-          <ion-col  size="6">
+          <ion-col  size="12">
             <ion-label>Quantity <span style="color:red;margin-left: 5px;">*</span>:</ion-label>
             <ion-input type="number" [(ngModel)]="quantity" class="form-control"></ion-input>
           </ion-col>
