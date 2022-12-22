@@ -19,9 +19,9 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label style="font-weight:bold;display: block;">User Role<span style="color:red;margin-left: 5px;">*</span>
             </ion-label>
-            <select class="form-control" style="width:100%">
+            <select #sel class="form-control" style="width:100%" [(ngModel)]="userRole" (change)="Userroleselect(userRole)" >
               <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor ="let item of manpowerskill; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+              <option *ngFor ="let item of manpowerskill; let i = index"  [ngValue]="item.VAL">{{item.TEXT}}
               </option>
             </select>
           </ion-col>
@@ -31,7 +31,7 @@
                 style="color:red;margin-left: 5px;">*</span></ion-label>
             <select class="form-control" style="width:100%">
               <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let item of manpowerrefdetail; let i = index" [ngValue]="item.tum_user_id">
+              <option *ngFor="let item of manpowerrefdetail; let i = index" (change)="employeeUser()" [ngValue]="this.userRoleID">
                 {{item.tum_user_code}}-{{item.tum_user_name}}
               </option>
             </select>

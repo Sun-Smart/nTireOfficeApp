@@ -24,7 +24,7 @@ export class ManpowerUsedPage implements OnInit {
   accessToken:any;
   branchID:any;
   functionID:any;
-
+  userRoleID:any;
   urldata;
   assetcodetabrefe:any;
   manpowerskill:any;
@@ -36,7 +36,7 @@ export class ManpowerUsedPage implements OnInit {
   skill:any;
   manpowerrecord:any;
   rowuniqid:any;
-
+  userRole:any;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -60,8 +60,13 @@ export class ManpowerUsedPage implements OnInit {
     this.getManpowerskill();
     this.manskill();
     this.manpoweralldata();
+    console.log(this.userRole)
   }
-
+  Userroleselect(ev:any){
+    debugger;
+    this.userRoleID = ev;
+   this.manskill();
+  }
   getManpowerskill(){
       var data = {
         'branchid': this.branchID,
@@ -87,11 +92,20 @@ export class ManpowerUsedPage implements OnInit {
       });
   }
 
+  employeeUser(data:any){
+    debugger
+    console.log(data)
+    this.manskill();
+  }
+
   manskill(){
+    debugger
+    console.log(this.userRole)
+
     var datae = {
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),
-      'usertype':this.usertype,
+      'usertype':this.userRoleID,
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -141,7 +155,7 @@ var dataem = {
 
   'branchid': this.branchID,
   'functionid':parseInt(this.functionID),
-  'userskill': parseInt(this.skill),
+  'userskill': parseInt(this.userRoleID),
   'assetid':parseInt(this.urldata.CMD_ASSET_ID),
   'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
   'assetpmref':parseInt(this.urldata.pmr_reference),
