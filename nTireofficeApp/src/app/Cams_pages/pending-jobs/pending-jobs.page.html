@@ -114,8 +114,8 @@
     <center *ngIf="responseData" class="totalCount">Total records: {{responseData.length ? responseData.length : "0"}} </center>
 
 
-    <ion-card *ngFor="let item1 of responseData; let i = index">
-      <ion-card-header class="card_header">
+    <ion-card *ngFor="let item1 of responseData; let i = index" >
+      <ion-card-header class="card_header" >
         <ion-row>
           <ion-col>
             <ion-label class="card_header_text">{{item1.pmm_asset_code}} - {{item1.WorkorderNo}}</ion-label>

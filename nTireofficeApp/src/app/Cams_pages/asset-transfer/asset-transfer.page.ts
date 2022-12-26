@@ -115,6 +115,11 @@ export class AssetTransferPage implements OnInit {
   }
 
   getItems(ev: any) {
+    this.detailfrombranchi = '';
+          this.detailassetdecpi = '';
+          this.detailownercodei = '';
+          this.departmenttransferi = '';
+          this.assetcodei = '';
     this.newasset = ev.target.value;
     console.log(this.newasset);
     this.assetcode1 = [];
@@ -156,7 +161,6 @@ export class AssetTransferPage implements OnInit {
           return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
         })
       }
-
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
@@ -495,11 +499,19 @@ export class AssetTransferPage implements OnInit {
           this.departmenttransferi = '';
           this.assetcodei = '';
 
-        } else {
+        }
+
+        else {
 
           if (this.arri != "This Asset Already Transferred") {
             //$http.post("http://mydesk.nextit.in:8165/assettransferfrombranch", datafb).then(function(response) {
             this.assttransfer1i = resp;
+            this.detailfrombranchi = '';
+          this.detailassetdecpi = '';
+
+          this.detailownercodei = '';
+          this.departmenttransferi = '';
+          // this.assetcodei = '';
             //var alt1 = response.data;
             //console.log(alt1.length);
             if (this.assttransfer1i.length != 0) {
@@ -531,9 +543,7 @@ export class AssetTransferPage implements OnInit {
             this.detailownercodei = '';
             this.departmenttransferi = '';
             this.assetcodei = '';
-
           }
-
         }
 
       }, error => {
@@ -568,9 +578,9 @@ export class AssetTransferPage implements OnInit {
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assettransfertobranch', datatbi, {
       headers: options,
     }).subscribe(resp => {
+
       console.log(resp);
       this.detailtobranchi = resp;
-
     }, error => {
       console.log("error : " + JSON.stringify(error));
 

@@ -156,8 +156,8 @@ var dataem = {
   'branchid': this.branchID,
   'functionid':parseInt(this.functionID),
   'userskill': parseInt(this.userRoleID),
-  'assetid':parseInt(this.urldata.CMD_ASSET_ID),
-  'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+  'assetid':this.urldata.CMD_ASSET_ID,
+  'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
   'assetpmref':parseInt(this.urldata.pmr_reference),
   'assetempid':parseInt(empref),
   'assethrs':this.hhmm,
@@ -277,8 +277,8 @@ manpoweralldata(){
   var dataea = {
     'branchid': this.branchID,
     'functionid':parseInt(window.localStorage['FUNCTION_ID']),
-    'assetid':parseInt(this.urldata.CMD_ASSET_ID),
-    'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+    'assetid':this.urldata.CMD_ASSET_ID,
+    'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
     'assetpmref':parseInt(this.urldata.pmr_reference),
     'access_token':this.accessToken,
     'userid':this.userID,
@@ -297,7 +297,6 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
 }, error => {
   //this.presentAlert('Alert','Server Error,Contact not loaded');
   console.log("error : " + JSON.stringify(error));
-
 });
 }
 
@@ -309,7 +308,6 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
 // data.assetactivityid = this.urldata.CMD_ACTIVITY_ID;
 // data.assetpmref = this.urldata.pmr_reference;
 //   this.router.navigate(['/man-power-update',data]);
-
 // }
 
 async editItem(data, index) {
@@ -335,7 +333,5 @@ data.assetpmref = this.urldata.pmr_reference;
     });
 
   return await modal.present();
-
-
 }
 }
