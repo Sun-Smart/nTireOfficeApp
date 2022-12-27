@@ -370,7 +370,6 @@
             <ion-button (click)="close()" class="ion-color-danger" expand="block">Close</ion-button>
           </ion-col>
 
-
           <!-- <ion-col  size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
               <ion-button class ="ion-color-success" expand="block"><ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Item</ion-button>
             </ion-col> -->
@@ -384,7 +383,7 @@
           </ion-button>
         </ion-col>
         <ion-col style="text-align: center;" *ngIf="showcancel">
-          <ion-button (click)="clear()" class="ion-color-danger" expand="block">Clear</ion-button>
+          <ion-button (click)="clear()" routerLink="/prsstatus" class="ion-color-danger" expand="block">Clear</ion-button>
         </ion-col>
         <ion-col style="text-align: center;" *ngIf="showsubmit">
           <ion-button (click)="submit()" class="ion-color-success" expand="block">Submit</ion-button>
@@ -397,23 +396,14 @@
         </ion-col> -->
       </ion-row>
     </ion-grid>
-
   </ion-card>
-
-
-
-
 </ion-content>
 <!-- <ion-button class="button button-small button-block  button-full button-balanced schedulebutn"
   color="success" expand="block" type="button" (click)="updateVendorDetails(VendorQuot)" disabled="(VendorQuot.transportcharge==undefined||VendorQuot.transportcharge==''  || VendorQuot.unitprice=='' || VendorQuot.unitprice==undefined ||
   VendorQuot.discount==undefined||VendorQuot.discount=='' || VendorQuot.deliverydate=='' || VendorQuot.deliverydate==undefined )" class="button button-assertive editbut">UPDATE</ion-button>
 </ion-content> -->
 
-
-
 <!-- for line Items  -->
-
-
 
 <ion-footer>
   <ion-row>

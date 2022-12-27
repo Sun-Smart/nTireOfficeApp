@@ -455,6 +455,8 @@ this.filter = false;
   }
 
   showline() {  //submit btn
+    debugger;
+    console.log(this.netprice,'nandhini')
 
     if(this.itemcode ==""|| this.itemcode=="undefined" || this.itemcode==null){
       this.presentAlert1("add item failed",'Please Enter Item Code');
@@ -467,7 +469,7 @@ this.filter = false;
       {
         this.presentAlert1("add item failed",'Please Enter Category');
       }
-else if(this.netprice = "" || this.netprice == "undefined" || this.netprice == null)
+else if(this.netprice == "" || this.netprice == "undefined" || this.netprice == null)
 {
   this.presentAlert1("add item failed",'Please Enter Net Price');
 }
@@ -507,6 +509,7 @@ else{
 // this.newitem=new Set(this.expenseArray)
 // console.log(this.newitem);
 if(this.expenseArray.length==0){
+  debugger;
   this.expenseArray.push({
     prsid: "",
     itemid: this.getitemid,
@@ -860,9 +863,9 @@ itemcode: this.splititemcode,
       this.getresponse = res;
       // this.presentAlert("", "RFQ 345/AT Raised Successfully");
       this.presentAlert("", this.getresponse);
-      this.splitres=res.split(":")
-this.prscode=this.splitres[1]
-      console.log("split",  this.splitres);
+//       this.splitres=res.split(":")
+// this.prscode=this.splitres[1]
+//       console.log("split",  this.splitres);
 
       // this.router.navigate(['/prsstatus'])
     })

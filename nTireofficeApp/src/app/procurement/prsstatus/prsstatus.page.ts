@@ -187,7 +187,6 @@ getCards(){
     this.getresponse = res;
 
     console.log("Response", res)
-    console.log("Response", res)
     console.log(res.status)
     if (res.status == "d" || res.status == "D") {
       this.showdeledit = false
@@ -202,8 +201,6 @@ getCards(){
       this.showdeledit = false
     }
   })
-
-
 }
 
 async presentAlert1(heading, tittle) {
@@ -295,20 +292,20 @@ async presentAlert1(heading, tittle) {
       if(res&&res.length>0){
         for (let i = 0; i < res.length; i++) {
           const element = res[i].PRS_CODE.toLowerCase();
-          console.log(element,"res"); 
+          console.log(element,"res");
           if(this.prscode&&this.prscode!=null){
             if(element==this.prscode.toLowerCase()){
-          
+
             }else{
               this.presentAlert1("add item failed", 'Invalid PRSCODE!');
             }
           }
-         
+
         }
       }else{
         this.presentAlert1("add item failed", 'Invalid PRSCODE!');
       }
-    
+
       //   this.arrayvalue.push(element)
       //   console.log( this.arrayvalue,
       //     "asdad");
@@ -318,13 +315,13 @@ async presentAlert1(heading, tittle) {
       // }else{
       //   alert("wrg")
       // }
-      
+
       //  console.log(this.array,"this.array");
-        
-      
 
 
-   
+
+
+
 
 
       console.log(res.status)
