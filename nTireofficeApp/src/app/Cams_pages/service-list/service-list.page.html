@@ -10,11 +10,11 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+      <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Function</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="function"></ion-input>
-      </ion-col>
+      </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Branch</ion-label>
@@ -27,11 +27,12 @@
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
         <ion-row>
           <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
-            <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)">
+            <ion-searchbar style=" --background: white;" [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list *ngIf="isItemAvailable" class="searchlist" style="height: 100px !important;">
-              <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
-                  color: gray !important;" (click)="processasset(item)">
+              <ion-item class="ContentName" *ngFor="let item of assetcode1" 
+              style="background-color: white !important;
+              color: gray !important;" (click)="processasset(item)">
                 {{ item }}
               </ion-item>
             </ion-list>
@@ -52,10 +53,10 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label class="ContentName">Vendor Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
-        <ion-searchbar [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)">
+        <ion-searchbar style="--background: #fff;" [(ngModel)]="vendorcode" type="text" debounce="500" (ionInput)="getVendorItems($event)">
         </ion-searchbar>
         <ion-list *ngIf="isVendorItemAvailable" class="searchlist" [ngStyle]="{'height':vendor_code_det1.length >0?'100px':'0px'}">
-          <ion-item *ngFor="let item of vendor_code_det1" style="background-color: white !important;
+          <ion-item *ngFor="let item of vendor_code_det1" style="background-color: #fff !important;
             color: gray !important;" (click)="fetchservsvendorreq(item)">
             {{ item }}
           </ion-item>
@@ -81,8 +82,8 @@
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Date Of Service</ion-label>
-        <ion-input style="background-color: #d4d4d4!important;" class="form-control" type="date" [(ngModel)]="reqdate">
-          <ion-icon name="calendar" style="padding: 5px;"></ion-icon>
+        <ion-input style="background-color: #fff!important;" class="form-control" type="date" [(ngModel)]="reqdate">
+        
         </ion-input>
       </ion-col>
 
@@ -98,8 +99,12 @@
       </ion-col>
       </ion-row>
  </ion-grid>
- <p style="font-weight: bold;text-align:center;color: black!important;">Total Lead : {{listviewdetailsLength}}</p>
- <ion-card *ngFor="let item1 of listviewdetails; let i = index" style="background-color:#fff">
+ <!-- <p style="font-weight: bold;text-align:center;color: black!important;">Total Lead : {{listviewdetailsLength}}</p> -->
+ 
+ <center *ngIf="listviewdetails" class="totalCount">Total records: {{listviewdetails.length ? listviewdetails.length : "0"}} </center>
+
+ 
+ <ion-card *ngFor="let item1 of listviewdetails; let i = index" style="background-color:#fff;margin-bottom: 10px;">
   <ion-card-header class="card_header">
     <ion-row>
       <ion-col>

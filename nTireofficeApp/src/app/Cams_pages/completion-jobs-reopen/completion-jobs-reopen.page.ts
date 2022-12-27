@@ -42,7 +42,7 @@ export class CompletionJobsReopenPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
 
     var todayDate = new Date();
@@ -83,7 +83,7 @@ this.assetref=this.data.pmr_asset_reference||null;
 
     // console.log(this.Ipaddressservice.ipaddress1+this.Ipaddressservice.serviceurlCams+"/CAMS_PENDING_REOPENED/"+this.activityr+"/"+this.assetr+"/"+this.pmrrefr+"/1/"+this.pmrrefr+"/"+this.reason+"/"+finaltodayDate+"/"+this.userID+"/"+this.branchID+"/"+this.wrkno);
 
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + "CAMS_PENDING_REOPENED/" + this.activityr + "/" + this.assetr + "/" + this.assetref+ "/" +this.functionID+"/"+ this.pmrrefr + "/" + this.reason + "/" + finaltodayDate + "/" + this.userID + "/" + this.branchID + "/" + this.wrkno, {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + "CAMS_PENDING_REOPENED/" + this.activityr + "/" + this.assetr + "/" + this.pmrrefr+ "/" +this.functionID+"/"+ this.pmrrefr + "/" + this.reason + "/" + finaltodayDate + "/" + this.userID + "/" + this.branchID + "/" + this.wrkno, {
       headers: options,
     }).subscribe(resp => {
       this.presentAlert('Alert', 'Successfully Reopened');

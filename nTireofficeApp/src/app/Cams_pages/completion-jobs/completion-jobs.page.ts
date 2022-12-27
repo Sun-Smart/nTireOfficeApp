@@ -63,19 +63,21 @@ export class CompletionJobsPage implements OnInit {
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username=localStorage.getItem('TUM_USER_NAME');
 
-    this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/yyyy');
-    this.todate = this.datePipe.transform(this.todate, 'dd/MM/yyyy');
+    this.fromdate = this.datePipe.transform(this.fromdate, 'MM/dd/yyyy');
+    this.todate = this.datePipe.transform(this.todate, 'MM/dd/yyyy');
     // this.Realease_status = "<<Select>>";
+    this.jobs = "<< Select >>";
     this.category = "<< Select >>";
     this.subCategory = "<< Select >>";
-    this.jobs = "<< Select >>";
     this.getAssertCatergory();
     this.getReferMax();
 
    }
 
   ngOnInit() {
-
+    this.jobs = "<< Select >>";
+    this.category = "<< Select >>";
+    this.subCategory = "<< Select >>";
     this.completioncards();
   }
 
@@ -200,6 +202,9 @@ debugger
       this.responseData1 = this.carddata;
       console.log(this.responseData1.length);
     this.responseDatalength = this.responseData1.length;
+    if (this.responseDatalength == null) {
+
+    }
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');
       console.log("error : " + JSON.stringify(error));
@@ -296,7 +301,7 @@ else
     'functionidrep': functionreport1,
     'branchid': brnchlreport1,
     'activityid': item.CMD_ACTIVITY_ID,
-    'assetid': item.CMD_ASSET_ID,
+    'assetid': parseInt(item.CMD_ASSET_ID),
     'createdby': userid,
     'frequency': item.amd_frequency,
     'actualhours': item.amd_maintenance_duration,
@@ -380,14 +385,14 @@ requestedJobs() {
   if (this.fromdate == "<< Select >>" || this.fromdate == undefined) {
     var fromdate = null;
   } else {
-    this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd/MM/yyyy');
+    this.fromdate2 = this.datePipe.transform(this.fromdate, 'MM/dd/yyyy');
     fromdate = this.fromdate2
   }
 
   if (this.todate == "<< Select >>" || this.todate == undefined) {
     var todate = null;
   } else {
-    this.todate2 = this.datePipe.transform(this.todate, 'dd/MM/yyyy');
+    this.todate2 = this.datePipe.transform(this.todate, 'MM/dd/yyyy');
     todate = this.todate2
   }
   const header = new Headers();

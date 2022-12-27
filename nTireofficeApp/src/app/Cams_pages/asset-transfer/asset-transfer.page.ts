@@ -462,6 +462,7 @@ export class AssetTransferPage implements OnInit {
   // }
 
   frombranchi(assetcodei) {
+    debugger;
     console.log(assetcodei)
     this.assetcodei = assetcodei;
     this.isintItemAvailable = false;
@@ -483,8 +484,10 @@ export class AssetTransferPage implements OnInit {
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assettransferfrombranchnew', datafbi, {
         headers: options,
       }).subscribe(resp => {
+        debugger;
         console.log(resp);
         this.arri = resp;
+debugger;
 
         if (this.arri == "norecord") {
 
@@ -516,7 +519,8 @@ export class AssetTransferPage implements OnInit {
               //$scope.detailsdept = response.data.recordsets[1];
               console.log(this.detailassetdeparti);
 
-            } else {
+            }
+             else {
               this.presentAlert("Alert", "No Data Found");
               this.detailfrombranchi = '';
               this.detailassetdecpi = '';

@@ -113,15 +113,16 @@ export class ServiceRequestPage implements OnInit {
     this.getServiceActegory();
     this.replacement="<< Select >>";
     this.servicecategory="<< Select >>";
-
+debugger;
     this.today1 = new Date().toJSON().split('T')[0];
     var today = new Date();
     var todayDate = new Date();
     var day = todayDate.getDate();
     var month = todayDate.getMonth() + 1;
     var year = todayDate.getFullYear();
-    var finaltodayDate =day + "/" + month + "/" + year;
+    var finaltodayDate = month +"/"+day+ "/" + year;
     this.reqdate = finaltodayDate;
+    console.log(this.expdate)
     // this.ServiceExpensenew = [];
     // this.ServiceExpensenew=$rootScope.ServiceExpname;
 
@@ -296,6 +297,7 @@ export class ServiceRequestPage implements OnInit {
 
       this.presentAlert("Alert","No Data Found");
     } else {
+      debugger;     
       this.detailsser1.push(resp[0]);
       this.assetucode = resp[0].ASSET_CODE;
       this.assetdescpshow = resp[0].pmm_asset_desc;
@@ -444,8 +446,10 @@ export class ServiceRequestPage implements OnInit {
       'assetcode' : this.newreplaceasset,
     }
     this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodereplace',dataservv, {
+      
       headers: options,
     }).subscribe(resp => {
+      debugger;
       console.log(resp)
       // set val to the value of the searchbar
       this.Asset_code_detr = resp;
@@ -596,6 +600,8 @@ getServiceActegory(){
 }
 
 processassetservicereq(){
+  debugger;
+
   var todayDate = new Date();
   var day = todayDate.getDate();
   var month = todayDate.getMonth() + 1;
@@ -606,9 +612,9 @@ processassetservicereq(){
   //var finaltodayDateservices = year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss + "." + "000";
   var finaltodayDateservices = day + "-" + month + "-" + year + " " + hh + ":" + mm + ":" + ss;
   var warrantydtenew = this.datePipe.transform(this.warrantydte, 'dd-MM-yyyy');
-  var dater = this.datePipe.transform(this.reqdate, 'dd-MM-yyyy HH:mm:ss');
+  var dater = this.datePipe.transform(this.reqdate, 'dd-MM-yyyy');
 
-  var datewar = this.datePipe.transform(this.expdate, 'dd-MM-yyyy HH:mm:ss');
+  var datewar = this.datePipe.transform(this.expdate, 'dd-MM-yyyy');
 
   if (this.servicecategory == "" || this.servicecategory == undefined ||this.servicecategory == "<< Select >>") {
     var categ = 0;
@@ -654,8 +660,8 @@ processassetservicereq(){
     var sertilldte = "";
   }
 
-  if (this.insucompany == null) {
-    var insucompny = "";
+  if (this.insucompany == null || this.insucompany == undefined || this.insucompany == '') {
+    var insucompny = "null";
   } else {
      insucompny = this.insucompany;
 
@@ -668,7 +674,7 @@ processassetservicereq(){
   }
 
   if (warrantydtenew == undefined) {
-    var wardte = "";
+    var wardte = "null";
   } else {
     var wardte = warrantydtenew;
 

@@ -50,8 +50,9 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Asset Category</ion-label>
+          
             <select [(ngModel)]="category" class="form-control" style="width:100%" (change)="getsubCategory(category)">
-              <option class="ContentName"><< Select >></option>
+              <option class="ContentName"> &lt;&lt; Select &gt;&gt;</option>
               <option class="ContentName" *ngFor="let item of product; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
               </option>
             </select>
@@ -59,7 +60,7 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="ContentName">Asset SubCategory</ion-label>
             <select [(ngModel)]="subCategory" class="form-control" style="width:100%">
-              <option class="ContentName"><< Select >></option>
+              <option class="ContentName">&lt;&lt; Select &gt;&gt;</option>
               <option class="ContentName" *ngFor="let item of subCategoryresp; let i = index" [ngValue]="item.SUB_CATEGORY_ID">{{item.SUB_CATEGORY_DESC}}
               </option>
             </select>
@@ -84,9 +85,10 @@
       </ion-col>
     </ion-row>
 
-    <p id="ContentName" class="totalCount">Total Lead : {{responseDatalength}}</p>
+    <!-- <p id="ContentName" class="totalCount">Total Lead : {{responseDatalength}}</p> -->
+    <center *ngIf="responseData1" class="totalCount">Total records: {{responseData1.length ? responseData1.length : "0"}} </center>
 
-    <ion-card *ngFor="let item1 of responseData1; let i = index" style="background-color:#fff">
+    <ion-card *ngFor="let item1 of responseData1; let i = index" style="background-color:#fff;margin-bottom: 10px;">
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="8">

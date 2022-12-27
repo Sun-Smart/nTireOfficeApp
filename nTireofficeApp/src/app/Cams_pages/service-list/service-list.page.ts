@@ -35,7 +35,7 @@ export class ServiceListPage implements OnInit {
   assetcode1str;
   reqdate;
   vendorcode : any;
-  listviewdetails:any = [];
+  listviewdetails:any;
   listviewdetailsLength;
   newvendor: any;
   vendor_code_det;
@@ -350,7 +350,7 @@ export class ServiceListPage implements OnInit {
       var serlistvendorcode = '';
 
     } else {
-      serlistvendorcode = this.vendorcode;
+      serlistvendorcode = this.vendorcode[0];
 
     }
     var datalistprocess = {
@@ -372,14 +372,24 @@ export class ServiceListPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
-      this.listviewdetails = resp;
-      console.log(this.listviewdetails);
+      if (resp == null || resp == "No data found" || resp == "[]") {
+        this.listviewdetails = [];
+      } else {
+        this.listviewdetails = resp;
+       
+        console.log(this.listviewdetails);
+        this.listviewdetailsLength = this.listviewdetails.length;
+        this.assetcode = '';
+        this.vendorcode = '';
+        this.reqdate = '';
+        if (this.listviewdetails.length < 1) {
 
-      this.listviewdetailsLength=this.listviewdetails.length;
-      if (this.listviewdetails.length < 1) {
-
-        this.presentAlert("Alert","No Data Found")
+          this.presentAlert("Alert","No Data Found")
+        }
       }
+
+     
+ 
 
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -405,11 +415,21 @@ export class ServiceListPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
-      this.listviewdetails = resp;
-      this.listviewdetailsLength=this.listviewdetails.length;
-      this.assetcode = '';
-      this.vendorcode = '';
-      this.reqdate = '';
+
+      if (resp == null || resp == "No data found" || resp == "[]") {
+        this.listviewdetails = [];
+      } else {
+        this.listviewdetails = resp;
+       
+        console.log(this.listviewdetails);
+        this.listviewdetailsLength = this.listviewdetails.length;
+        this.assetcode = '';
+        this.vendorcode = '';
+        this.reqdate = '';
+      }
+
+    
+  
     }, error => {
       console.log("error : " + JSON.stringify(error));
 
@@ -434,13 +454,20 @@ export class ServiceListPage implements OnInit {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
-      this.listviewdetails = resp;
-      console.log(this.listviewdetails);
 
-      this.listviewdetailsLength=this.listviewdetails.length;
-      this.assetcode = '';
+      if (resp == null || resp == "No data found" || resp == "[]") {
+        this.listviewdetails = [];
+      } else {
+        this.listviewdetails = resp;
+       
+        console.log(this.listviewdetails);
+        this.listviewdetailsLength = this.listviewdetails.length;
+        this.assetcode = '';
       this.vendorcode = '';
       this.reqdate = '';
+      }
+
+     
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
