@@ -39,11 +39,11 @@
       </ion-col> -->
 
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-        <ion-label class="ContentName">Asset Code <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-label class="ContentName">Asset Code <span style="color:red;margin-left: 5px;" >*</span></ion-label>
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
-                <ion-searchbar style="--background: #fff;" [(ngModel)]="assetcode" type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+                <ion-searchbar [(ngModel)]="assetcode" type="text" debounce="500" (change)="assetcodechange" (ionInput)="getItems($event)"></ion-searchbar>
                 <ion-list *ngIf="isItemAvailable" class="searchlist"[ngStyle]="{'height':assetcode1.length >0?'100px':'0px'}" style="">
                   <ion-item *ngFor="let item of assetcode1" style="background-color: white !important;
                   color: gray !important;" (click)="processasset(item)">
@@ -100,7 +100,7 @@
         <!-- <div style="height:40px !important;background-color: aliceblue;"> -->
           <ion-row>
               <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10">
-                <ion-searchbar [(ngModel)]="assetcodei" type="text" debounce="500" (ionInput)="getintItems($event)"></ion-searchbar>
+                <ion-searchbar [(ngModel)]="assetcodei" type="text" debounce="500" (change)="getassetcode()" (ionInput)="getintItems($event)"></ion-searchbar>
                 <ion-list *ngIf="isintItemAvailable" class="searchlist" [ngStyle]="{'height':assetintcode1.length >0?'100px':'0px'}"style="">
                   <ion-item *ngFor="let item of assetintcode1" style="background-color: white !important;
                   color: gray !important;" (click)="frombranchi(item)">
@@ -120,7 +120,7 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">Asset Description  <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
-            [(ngModel)]="detailassetdecpi"></ion-input>
+            [(ngModel)]="detailassetdecpi" ></ion-input>
         </ion-col>
 
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">

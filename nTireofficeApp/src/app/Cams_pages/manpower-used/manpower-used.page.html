@@ -1,5 +1,6 @@
 <ion-content>
   <ion-grid>
+    <div class="subtabs">Manpower Used</div>
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset code</ion-label>
@@ -18,9 +19,9 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label style="font-weight:bold;display: block;">User Role<span style="color:red;margin-left: 5px;">*</span>
             </ion-label>
-            <select class="form-control" style="width:100%">
+            <select #sel class="form-control" style="width:100%" [(ngModel)]="userRole" (change)="Userroleselect(userRole)" >
               <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor ="let item of manpowerskill; let i = index" [ngValue]="item.VAL">{{item.TEXT}}
+              <option *ngFor ="let item of manpowerskill; let i = index"  [ngValue]="item.VAL">{{item.TEXT}}
               </option>
             </select>
           </ion-col>
@@ -30,7 +31,7 @@
                 style="color:red;margin-left: 5px;">*</span></ion-label>
             <select class="form-control" style="width:100%">
               <option>&lt;&lt; Select &gt;&gt;</option>
-              <option *ngFor="let item of manpowerrefdetail; let i = index" [ngValue]="item.tum_user_id">
+              <option *ngFor="let item of manpowerrefdetail; let i = index" (change)="employeeUser()" [ngValue]="this.userRoleID">
                 {{item.tum_user_code}}-{{item.tum_user_name}}
               </option>
             </select>
@@ -38,8 +39,12 @@
 
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="display: inline-block;">
             <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
+            onKeyPress="if(this.value!=undefined && this.value.length==2) return false;"
+                  (keyup)="phonenumber(profile.nomhours) "
               placeholder="HH:" [(ngModel)]="nomhours">
             <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
+            onKeyPress="if(this.value!=undefined && this.value.length==2) return false;"
+                  (keyup)="phonenumber(profile.nomhoursm) "
               placeholder="MM" [(ngModel)]="nomhoursm">
 
           </ion-col>

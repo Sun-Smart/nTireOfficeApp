@@ -113,7 +113,7 @@ debugger;
     }).subscribe(resp => {
 debugger;
       console.log(resp);
-      
+
       this.carddata=resp;
       this.responseData = this.carddata;
       console.log(this.responseData)
@@ -122,7 +122,7 @@ debugger;
       console.log(index)
         this.pendingcomplete = this.responseData;
         this.branch = this.pendingcomplete[index].Branch;
-        console.log("branch",this.branch);
+        console.log("branch",this.assetid);
 
         this.AssetCodeComp = this.pendingcomplete[index].pmm_asset_code;
         this.AssetDescriptionComp = this.pendingcomplete[index].pmm_asset_desc;
@@ -133,14 +133,14 @@ debugger;
         this.frequencyd = this.pendingcomplete[index].amd_frequency;
         this.maintanance = this.pendingcomplete[index].amd_maintenance_duration;
         this.assetid = this.pendingcomplete[index].CMD_ASSET_ID;
-        console.log(this.assetid);
-        
+        // alert(this.assetid);
+
         this.activityid = this.pendingcomplete[index].CMD_ACTIVITY_ID;
         console.log(this.activityid);
-        
+
         this.pmrref = this.pendingcomplete[index].pmr_reference;
         console.log( this.pmrref);
-        
+
         this.Planneddate = this.pendingcomplete[index].TAT_End;
         this.assetreference = this.pendingcomplete[index].pmr_asset_reference;
         this.TATEndsOnComp = this.pendingcomplete[index].pm_due_date;
@@ -237,18 +237,18 @@ if(releaseStatus==true){
       debugger;
       newpmrref = this.pmrref;
     }
-    if(this.assetid == ''||this.assetid == undefined){
+    if(this.assetid == ''|| this.assetid == undefined || this.assetid == "null" ){
       var newassetid = 0 ;
     }else{
       newassetid  = this.assetid;
     }
-    if(this.activityid  ==''||this.activityid == undefined){
+    if(this.activityid  ==''|| this.activityid == undefined){
      var newactivityid = 0
     }
     else{
       newactivityid = this.activityid
     }
-    if(this.relstatus==''||this.relstatus==undefined){
+    if(this.relstatus==''|| this.relstatus==undefined){
       var newrelstatus=0;
     }else{
       newrelstatus=this.relstatus

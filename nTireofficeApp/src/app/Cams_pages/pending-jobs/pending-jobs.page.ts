@@ -65,7 +65,7 @@ export class PendingJobsPage implements OnInit {
 
     this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
     this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
-    this.Realease_status = "<< Select >>";
+    this.Realease_status = "P";
     this.jobs = "<< Select >>";
     this.category = "<< Select >>";
     this.subCategory = "<< Select >>";

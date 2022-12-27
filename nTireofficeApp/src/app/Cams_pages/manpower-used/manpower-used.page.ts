@@ -24,7 +24,7 @@ export class ManpowerUsedPage implements OnInit {
   accessToken:any;
   branchID:any;
   functionID:any;
-
+  userRoleID:any;
   urldata;
   assetcodetabrefe:any;
   manpowerskill:any;
@@ -36,7 +36,7 @@ export class ManpowerUsedPage implements OnInit {
   skill:any;
   manpowerrecord:any;
   rowuniqid:any;
-
+  userRole:any;
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -60,8 +60,13 @@ export class ManpowerUsedPage implements OnInit {
     this.getManpowerskill();
     this.manskill();
     this.manpoweralldata();
+    console.log(this.userRole)
   }
-
+  Userroleselect(ev:any){
+    debugger;
+    this.userRoleID = ev;
+   this.manskill();
+  }
   getManpowerskill(){
       var data = {
         'branchid': this.branchID,
@@ -87,11 +92,20 @@ export class ManpowerUsedPage implements OnInit {
       });
   }
 
+  employeeUser(data:any){
+    debugger
+    console.log(data)
+    this.manskill();
+  }
+
   manskill(){
+    debugger
+    console.log(this.userRole)
+
     var datae = {
       'branchid': this.branchID,
       'functionid':parseInt(this.functionID),
-      'usertype':this.usertype,
+      'usertype':this.userRoleID,
       'access_token':this.accessToken,
       'userid':this.userID,
       'usertoken':this.userToken
@@ -141,9 +155,9 @@ var dataem = {
 
   'branchid': this.branchID,
   'functionid':parseInt(this.functionID),
-  'userskill': parseInt(this.skill),
-  'assetid':parseInt(this.urldata.CMD_ASSET_ID),
-  'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+  'userskill': parseInt(this.userRoleID),
+  'assetid':this.urldata.CMD_ASSET_ID,
+  'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
   'assetpmref':parseInt(this.urldata.pmr_reference),
   'assetempid':parseInt(empref),
   'assethrs':this.hhmm,
@@ -263,8 +277,8 @@ manpoweralldata(){
   var dataea = {
     'branchid': this.branchID,
     'functionid':parseInt(window.localStorage['FUNCTION_ID']),
-    'assetid':parseInt(this.urldata.CMD_ASSET_ID),
-    'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+    'assetid':this.urldata.CMD_ASSET_ID,
+    'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
     'assetpmref':parseInt(this.urldata.pmr_reference),
     'access_token':this.accessToken,
     'userid':this.userID,
@@ -283,7 +297,6 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
 }, error => {
   //this.presentAlert('Alert','Server Error,Contact not loaded');
   console.log("error : " + JSON.stringify(error));
-
 });
 }
 
@@ -295,7 +308,6 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
 // data.assetactivityid = this.urldata.CMD_ACTIVITY_ID;
 // data.assetpmref = this.urldata.pmr_reference;
 //   this.router.navigate(['/man-power-update',data]);
-
 // }
 
 async editItem(data, index) {
@@ -321,7 +333,5 @@ data.assetpmref = this.urldata.pmr_reference;
     });
 
   return await modal.present();
-
-
 }
 }

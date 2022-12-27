@@ -89,7 +89,6 @@ this.assetref=this.data.pmr_asset_reference||null;
       this.presentAlert('Alert', 'Successfully Reopened');
       this.router.navigate(['/completion-jobs']);
     }, error => {
-
       console.log(JSON.stringify(error));
     });
   }

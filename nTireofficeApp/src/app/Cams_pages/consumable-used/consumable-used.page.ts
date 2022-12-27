@@ -40,6 +40,7 @@ export class ConsumableUsedPage implements OnInit {
   rowuniqidsc:any;
   mtrcode: any;
   matcode: any;
+  branch_ID: any;
 
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService,public modalController: ModalController) {
 
@@ -49,7 +50,7 @@ export class ConsumableUsedPage implements OnInit {
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
     this.userToken = localStorage.getItem('usertoken');
     this.accessToken = localStorage.getItem('token');
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branch_ID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
 
     console.log(JSON.stringify(this.Tabparams.data));
@@ -68,7 +69,7 @@ export class ConsumableUsedPage implements OnInit {
     var dataesc = {
 
 
-      'branchid': this.branchID,
+      'branchid': this.branch_ID,
       'functionid': parseInt(this.functionID),
       'access_token': this.accessToken,
       'userid': this.userID,
@@ -96,11 +97,11 @@ export class ConsumableUsedPage implements OnInit {
     this.mtrcode=matc.split("-")
     console.log(this.mtrcode);
     this.matcode=this.mtrcode[0]
-    
+
     var dataespc = {
 
 
-      'branchid': this.branchID,
+      'branchid': this.branch_ID,
       'functionid': parseInt(this.functionID),
       'itemid': this.matcode,
       'access_token': this.accessToken,
@@ -129,7 +130,7 @@ export class ConsumableUsedPage implements OnInit {
   insertconsumable(){
     var dataem = {
 
-      'branchid': this.branchID,
+      'branchid': this.branch_ID,
       'functionid':parseInt(this.functionID),
       //'slno':$scope.spares.sno,
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
@@ -160,7 +161,7 @@ export class ConsumableUsedPage implements OnInit {
         if(this.consumecountcheck!='spare'){
         // alert("inserted Successfully");
 
-          this.presentAlert("Sucess","inserted Successfully");
+          this.presentAlert1("Sucess","inserted Successfully");
        this.consumerecord = resp;
         console.log(this.consumerecord);
 
@@ -192,6 +193,19 @@ export class ConsumableUsedPage implements OnInit {
     await alert.present();
   }
 
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass:'Cssbutton',
+      backdropDismiss:false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
   async deleteItemconsume(data, i){
     this.rowuniqidsc=data.mmp_rowuniqueid1;
 
@@ -205,29 +219,27 @@ export class ConsumableUsedPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-
             console.log('Confirm Cancel: blah');
           }
-        }, {
+        },
+        {
           text: 'Ok',
           handler: () => {
             var datamddc = {
-              'branchid': this.branchID,
+              'branchid': this.branch_ID,
                 'functionid':this.functionID,
                 //'slno':$scope.spares.sno,
-                'assetid':this.urldata.CMD_ASSET_ID,
+                'assetid':parseInt(this.urldata.CMD_ASSET_ID),
                 'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
                 'assetpmref':this.urldata.pmr_reference,
                 'rowuniqid':this.rowuniqidsc,
                 'access_token':this.accessToken,
                 'userid':this.userID,
                 'usertoken':this.userToken
-
              };
 
            const header = new Headers();
            header.append("Content-Type", "application/json");
-
            let options = new HttpHeaders().set('Content-Type', 'application/json');
            this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/sparedelete',datamddc, {
              headers: options,
@@ -238,7 +250,6 @@ export class ConsumableUsedPage implements OnInit {
            }, error => {
              //this.presentAlert('Alert','Server Error,Contact not loaded');
              console.log("error : " + JSON.stringify(error));
-
            });
           }
         }
@@ -252,9 +263,9 @@ export class ConsumableUsedPage implements OnInit {
 
     var dataeasc = {
 
-      'branchid': localStorage.getItem('TUM_BRANCH_ID'),
+      'branchid': this.branch_ID,
+      // 'branchid': localStorage.getItem('TUM_BRANCH_ID'),
       'functionid':parseInt( this.functionID),
-
       'assetid':parseInt(this.urldata.CMD_ASSET_ID),
       'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
       'assetpmref':parseInt(this.urldata.pmr_reference),
@@ -284,7 +295,7 @@ export class ConsumableUsedPage implements OnInit {
 
     console.log(data);
     console.log(index)
-  data.assetid=this.urldata.CMD_ASSET_ID;
+  data.assetid=parseInt(this.urldata.CMD_ASSET_ID);
   data.assetactivityid = this.urldata.CMD_ACTIVITY_ID;
   data.assetpmref = this.urldata.pmr_reference;
     const modal = await this.modalController.create({

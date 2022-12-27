@@ -44,7 +44,7 @@
         <select [(ngModel)]="Realease_status" class="form-control">
           <option class="ContentName" selected="null">&lt;&lt; Select &gt;&gt;</option>
           <option class="ContentName" value="P">Pending</option>
-          <option class="ContentName" value="S">Started</option>
+          <option class="ContentName" value="Y">Started</option>
           <option class="ContentName" value="N">New</option>
         </select>
       </ion-col>
@@ -114,8 +114,8 @@
     <center *ngIf="responseData" class="totalCount">Total records: {{responseData.length ? responseData.length : "0"}} </center>
 
 
-    <ion-card *ngFor="let item1 of responseData; let i = index">
-      <ion-card-header class="card_header">
+    <ion-card *ngFor="let item1 of responseData; let i = index" >
+      <ion-card-header class="card_header" >
         <ion-row>
           <ion-col>
             <ion-label class="card_header_text">{{item1.pmm_asset_code}} - {{item1.WorkorderNo}}</ion-label>
@@ -163,8 +163,8 @@
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
             <ion-label class="labelData-text"> {{item1.Criticality}} </ion-label>
           </ion-col>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"></ion-col>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-col></ion-col>
+          <ion-col>
             <a (click)="showmore(i)">
               <!-- <a ng-click="showmore(i,items.CALL_ID)"> -->
 
