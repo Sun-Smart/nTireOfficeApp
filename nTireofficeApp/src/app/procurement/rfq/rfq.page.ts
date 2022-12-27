@@ -22,7 +22,7 @@ export class RFQPage implements OnInit {
   itemcode: string;
   fromdate;
   toDate;
-  status: string = "Pending";
+  status: any;
   bidding: string;
   showRfq: boolean = false;
   showMRFQ: boolean = false;
@@ -71,7 +71,7 @@ export class RFQPage implements OnInit {
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
     console.log(this.lastdate);
-    this.status = "Pending"
+    this.status = "P"
   }
   CheckAllOptions() {
     if (this.checkboxes.every(val => val.checked == true))

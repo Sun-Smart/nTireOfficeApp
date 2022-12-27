@@ -30,7 +30,7 @@ export class MyapprovalsPage implements OnInit {
   todate;
   userid;
   userType;
-  status;
+  status : any;
   requestId;
   username;
   myapproval: any;
@@ -44,6 +44,8 @@ export class MyapprovalsPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.status = "P";
   }
 
   getReqtype() {

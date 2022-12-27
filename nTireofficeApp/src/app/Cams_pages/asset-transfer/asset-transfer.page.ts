@@ -115,11 +115,13 @@ export class AssetTransferPage implements OnInit {
   }
 
   getItems(ev: any) {
+    console.log('event check', ev);
+
     this.detailfrombranchi = '';
-          this.detailassetdecpi = '';
-          this.detailownercodei = '';
-          this.departmenttransferi = '';
-          this.assetcodei = '';
+    this.detailassetdecpi = '';
+    this.detailownercodei = '';
+    this.departmenttransferi = '';
+    this.assetcodei = '';
     this.newasset = ev.target.value;
     console.log(this.newasset);
     this.assetcode1 = [];
@@ -138,7 +140,7 @@ export class AssetTransferPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
-      "assetcode" :this.newasset,
+      "assetcode": this.newasset,
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
@@ -230,7 +232,8 @@ export class AssetTransferPage implements OnInit {
 
         if (this.arr == "norecord") {
 
-          this.presentAlert("Alert", "No Data Found");
+          this.presentAlert1
+          ("Alert", "No Data Found");
           this.detailfrombranch = '';
           this.assetcode = '';
         } else {
@@ -252,12 +255,12 @@ export class AssetTransferPage implements OnInit {
               console.log(this.detailassetdepart);
 
             } else {
-              this.presentAlert("Alert", "No Data Found");
+              this.presentAlert1("Alert", "No Data Found");
               this.detailfrombranch = '';
               this.assetcode = '';
             }
           } else {
-            this.presentAlert("Alert", "This Asset Already Transferred");
+            this.presentAlert1("Alert", "This Asset Already Transferred");
             this.detailfrombranch = '';
             this.assetcode = '';
           }
@@ -279,13 +282,25 @@ export class AssetTransferPage implements OnInit {
     var alert = await this.alertController.create({
       header: heading,
       cssClass: 'Cssbutton',
-      backdropDismiss:false,
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
 
     await alert.present();
   }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  };
 
   showmore(idvalue) {
     //        alert(idvalue);
@@ -341,17 +356,15 @@ export class AssetTransferPage implements OnInit {
       'oldbranchid': parseInt(this.detailfromidbranch),
       'ubranchid': parseInt(this.tobranch),
       'assetid': parseInt(this.detailassetid),
-      'assetdepart':parseInt( this.detailassetdepart),
-      'assetownerid':parseInt( this.detailownerid),
+      'assetdepart': parseInt(this.detailassetdepart),
+      'assetownerid': parseInt(this.detailownerid),
       'assetcategory': parseInt(this.detailassetcategory),
       'dateins': finaltodayDate,
       'createbytf': this.userID,
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken,
-      "tansfertype":"E"
-
-
+      "tansfertype": "E"
     }
     console.log(dataub);
 
@@ -379,7 +392,14 @@ export class AssetTransferPage implements OnInit {
 
 
   getintItems(ev: any) {
-    this.assetinternal =ev.target.value;
+    this.assetinternal = ev.target.value;
+    console.log('ev.target.value ', ev.target.value);
+    if (ev.target.value == "" || ev.target.value == null || ev.target.value == "undefined") {
+      this.detailassetdecpi = "";
+      this.detailownercodei = "";
+      this.departmenttransferi = "";
+    }
+
 
     this.assetintcode1 = [];
     if (ev.target.value == "") {
@@ -397,7 +417,7 @@ export class AssetTransferPage implements OnInit {
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
-     "assetcode" :this.assetinternal,
+      "assetcode": this.assetinternal,
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
@@ -489,62 +509,70 @@ export class AssetTransferPage implements OnInit {
       }).subscribe(resp => {
         console.log(resp);
         this.arri = resp;
+        if (this.arri.Result == "This Asset Already Transferred  ") {
+          this.presentAlert1("Alert", "This Asset Already Transferred");
+          return;
+        } else {
+          if (this.arri == "norecord") {
 
-        if (this.arri == "norecord") {
-
-          this.presentAlert("Alert", "No Data Found");
-          this.detailfrombranchi = '';
-          this.detailassetdecpi = '';
-          this.detailownercodei = '';
-          this.departmenttransferi = '';
-          this.assetcodei = '';
-
-        }
-
-        else {
-
-          if (this.arri != "This Asset Already Transferred") {
-            //$http.post("http://mydesk.nextit.in:8165/assettransferfrombranch", datafb).then(function(response) {
-            this.assttransfer1i = resp;
+            this.presentAlert1("Alert", "No Data Found");
             this.detailfrombranchi = '';
-          this.detailassetdecpi = '';
+            this.detailassetdecpi = '';
+            this.detailownercodei = '';
+            this.departmenttransferi = '';
+            this.assetcodei = '';
 
-          this.detailownercodei = '';
-          this.departmenttransferi = '';
-          // this.assetcodei = '';
-            //var alt1 = response.data;
-            //console.log(alt1.length);
-            if (this.assttransfer1i.length != 0) {
-              //$state.go('tab.dash');
-              //this.detailfrombranch =this.assttransfer1i[0].BRANCH_DESC;
-              this.detailfromidbranchi = this.assttransfer1i[0].BRANCH_ID;
-              this.detailassetidi = this.assttransfer1i[0].ASSET_ID;
-              this.detailassetdeparti = this.assttransfer1i[0].ASSET_DEPARTMENT;
-              this.detailowneridi = this.assttransfer1i[0].ASSET_OWNER_ID;
-              this.detailassetcategoryi = this.assttransfer1i[0].ASSET_CATEGORY;
-              this.detailownercodei = this.assttransfer1i[0].Assetownercode;
-              this.departmenttransferi = this.assttransfer1i[0].departmentdescription;
-              this.detailassetdecpi = this.assttransfer1i[0].ASSET_DESCRIPTION;
-              //$scope.detailsdept = response.data.recordsets[1];
-              console.log(this.detailassetdeparti);
+          }
 
+          else {
+
+            if (this.arri != "This Asset Already Transferred  ") {
+              //$http.post("http://mydesk.nextit.in:8165/assettransferfrombranch", datafb).then(function(response) {
+              this.assttransfer1i = resp;
+              this.detailfrombranchi = '';
+              this.detailassetdecpi = '';
+
+              this.detailownercodei = '';
+              this.departmenttransferi = '';
+              // this.assetcodei = '';
+              //var alt1 = response.data;
+              //console.log(alt1.length);
+              if (this.assttransfer1i.length != 0) {
+                //$state.go('tab.dash');
+                //this.detailfrombranch =this.assttransfer1i[0].BRANCH_DESC;
+                this.detailfromidbranchi = this.assttransfer1i[0].BRANCH_ID;
+                this.detailassetidi = this.assttransfer1i[0].ASSET_ID;
+                this.detailassetdeparti = this.assttransfer1i[0].ASSET_DEPARTMENT;
+                this.detailowneridi = this.assttransfer1i[0].ASSET_OWNER_ID;
+                this.detailassetcategoryi = this.assttransfer1i[0].ASSET_CATEGORY;
+                this.detailownercodei = this.assttransfer1i[0].Assetownercode;
+                this.departmenttransferi = this.assttransfer1i[0].departmentdescription;
+                this.detailassetdecpi = this.assttransfer1i[0].ASSET_DESCRIPTION;
+                //$scope.detailsdept = response.data.recordsets[1];
+                console.log(this.detailassetdeparti);
+
+              } else {
+                this.presentAlert1("Alert", "No Data Found");
+                this.detailfrombranchi = '';
+                this.detailassetdecpi = '';
+                this.detailownercodei = '';
+                this.departmenttransferi = '';
+                this.assetcodei = '';
+              }
             } else {
-              this.presentAlert("Alert", "No Data Found");
+              // if (this.arri.Result == "This Asset Already Transferred  ") {
+              this.presentAlert1("Alert", "This Asset Already Transferred");
               this.detailfrombranchi = '';
               this.detailassetdecpi = '';
               this.detailownercodei = '';
               this.departmenttransferi = '';
               this.assetcodei = '';
             }
-          } else {
-            this.presentAlert("Alert", "This Asset Already Transferred");
-            this.detailfrombranchi = '';
-            this.detailassetdecpi = '';
-            this.detailownercodei = '';
-            this.departmenttransferi = '';
-            this.assetcodei = '';
+            // }
           }
         }
+
+
 
       }, error => {
         console.log("error : " + JSON.stringify(error));
@@ -617,7 +645,7 @@ export class AssetTransferPage implements OnInit {
         'access_token': this.accessToken,
         'userid': this.userID,
         'usertoken': this.userToken,
-        "tansfertype":"I"
+        "tansfertype": "I"
 
       }
       console.log(dataubi);
