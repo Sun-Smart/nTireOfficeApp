@@ -43,7 +43,7 @@ filter : boolean = true;
 
   Description
   Item
-  Category;
+  Category : any;
   qty;
   unitprice;
   Requiredbefore
@@ -222,8 +222,10 @@ filter : boolean = true;
     // }
   }
   ngOnInit() {
-    this.Category="<<Select>>"
-    // this.Itemcode = '';
+
+    this.Category = undefined;
+
+        // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
       this.getorder1 = resp;
       this.getorder1.forEach(element => {
@@ -648,7 +650,7 @@ itemcode: this.splititemcode,
 this.showlineItems!=true;
     this.Additems();
     this.showlineItems == true;
-    this.Category = "<<Select>>"
+
     // this.showlineItems = true;
     // this.showlineItems = !this.showlineItems;
   }
