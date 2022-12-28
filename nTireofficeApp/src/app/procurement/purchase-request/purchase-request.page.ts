@@ -432,21 +432,21 @@ let data=event.target.value
     //   this.getorder1.forEach(element => {
     //     this.getdata.push(element)
     //     console.log(this.getdata);
-
     //   })
     // })
   }
 
   Additems() {
-    this.showlineItems = !this.showlineItems
-    this.showbtn = false;
-this.filter = false;
-    this.itemcode = "",
+      this.showlineItems = !this.showlineItems
+      this.showbtn = false;
+      this.filter = false;
+      this.itemcode = "",
       this.Description = "",
       this.unitprice = "",
       this.netprice = "",
       this.qty = "",
       this.itemdescription = ""
+      this.showsavebtn = true;
   }
 
   new()
@@ -456,9 +456,7 @@ this.filter = false;
 
   showline() {  //submit btn
     debugger;
-    console.log(this.netprice,'nandhini')
-
-    if(this.itemcode ==""|| this.itemcode=="undefined" || this.itemcode==null){
+        if(this.itemcode ==""|| this.itemcode=="undefined" || this.itemcode==null){
       this.presentAlert1("add item failed",'Please Enter Item Code');
     }else if(this.qty==""|| this.qty=="undefined" || this.qty==null){
       this.presentAlert1("add item failed",'Please Enter Quantity');
@@ -644,9 +642,17 @@ itemcode: this.splititemcode,
     let getdate = new Date();
     this.prsdate = this.datePipe.transform(getdate, 'dd/MM/yyyy');
   }
+
   delete(i) {
     this.expenseArray.splice(i, 1);
+this.showlineItems!=true;
+    this.Additems();
+    this.showlineItems == true;
+    this.Category = "<<Select>>"
+    // this.showlineItems = true;
+    // this.showlineItems = !this.showlineItems;
   }
+
   edit(i) {
     console.log(i)
     this.showlineItems = !this.showlineItems

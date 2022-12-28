@@ -269,6 +269,17 @@ ion-searchbar {
   padding: 12px;
 }
 
+
+.leadscolumns {
+  background-color: #00acfb !important;
+  // background-image: linear-gradient(to left, rgb(34, 191, 241), rgb(2, 154, 222) 50%, rgb(2, 154, 222) 50%);
+  color: #fff;
+  padding: 0px;
+  display: flex;
+  text-align: center;
+}
+
+
 .closebtn {
   color: red;
   position: absolute;
@@ -1080,6 +1091,7 @@ ion-card {
     display: inline-block;
     justify-content: center !important;
     font-weight: bold;
+    text-align: center;
   }
   // padding-right: 50px !important;
 }

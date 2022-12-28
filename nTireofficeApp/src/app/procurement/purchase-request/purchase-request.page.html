@@ -125,14 +125,14 @@
       </ion-row>
       <!-- for view mode -->
       <ion-card *ngFor="let items of expenseArray;let i=index">
-        <ion-row>
+        <ion-row >
 
-          <ion-col size-sm="10" size="10" size-md="10" size-lg="10" size-xl="10" class="leadscolumn">
+          <ion-col size-sm="8" size="8" size-md="8" size-lg="8" size-xl="8" class="leadscolumns">
             {{items.item_short_desc}}
           </ion-col>
 
 
-          <!-- <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
+          <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumns">
 
             <ion-label class="card_header_text">
               <ion-icon (click)="edit(i)" style="color: #fff;" name="create-outline"></ion-icon> &nbsp;&nbsp;&nbsp;
@@ -140,9 +140,9 @@
 
             </ion-label>
 
-          </ion-col> -->
+          </ion-col>
 
-          <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
+          <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumns">
 
             <ion-label class="card_header_text">
               <ion-icon *ngIf="showdel" (click)="delete(i)" routerLinkActive="router-link-active" style="color: red;"
@@ -200,10 +200,6 @@
 
 
 
-
-
-
-
       <!-- <ion-card style="width: -webkit-fill-available;" > -->
 
 
@@ -213,11 +209,7 @@
             <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Items
           </ion-button>
         </ion-col> -->
-
-
       <!-- close for view mode -->
-
-
 
 
       <!-- <ion-card *ngIf="showfilter"> -->
@@ -302,8 +294,6 @@
             <ion-label class="plabel">QTY<span style="color:red;margin-left: 5px;">*</span></ion-label>
             <ion-input type="number" [(ngModel)]="qty"  (click)="qtymethod()" class="Input-text-field textareaField"></ion-input>
           </ion-col>
-
-
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel">Unit Price</ion-label>
