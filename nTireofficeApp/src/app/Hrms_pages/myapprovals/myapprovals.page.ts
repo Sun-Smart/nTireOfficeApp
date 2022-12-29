@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttprequestService } from 'src/app/service/httprequest.service';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 import { ToastmessageService } from 'src/app/service/toastmessage.service';
+import { AlertController } from '@ionic/angular';
 declare var $: any;
 @Component({
   selector: 'app-myapprovals',
@@ -35,7 +36,7 @@ export class MyapprovalsPage implements OnInit {
   username;
   myapproval: any;
   constructor(private router: Router, private datepipe: DatePipe,
-    private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService) {
+    private HttpRequest: HttprequestService, public Ipaddressservice: IpaddressService, public toastmessageService: ToastmessageService, private alertController: AlertController) {
     this.functionId = window.localStorage["FUNCTION_ID"];
     this.userid = window.localStorage['TUM_USER_ID'];
     this.userType = window.localStorage['TUM_USER_TYPE'];
@@ -90,10 +91,14 @@ export class MyapprovalsPage implements OnInit {
   }
   myApprovalSearch() {
 
+    if (this.reqType == "Employee not Exist") {
+      this.toastmessageService.presentAlert1("", "Please select Req. Type");
+    }
+
     this.approve_result1 = [];
     this.fromdate = this.datepipe.transform(this.fromdate, "dd/MM/yyyy")||null;
     var todate = this.datepipe.transform(this.todate, "dd/MM/yyyy")||null;
-    var status=this.status||null
+    var status=this.status||null;
 
     // this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getMailBoxHistory?strFunction=' + window.localStorage["FUNCTION_ID"] + '&strConfigId=' + this.reqType + '&Username=' + this.requestBy + '&strWorkFlowNo=' + this.reqnumber + '&strFromDate=' + fromdate + '&strToDate=' + todate + '&strWFstatus=' + this.status + '&strMode=&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
     this.HttpRequest.GetRequest(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'myapprovalsearch?strFunction=' + this.functionId+ '&strConfigId=' + this.requestId + '&Username=' + this.username + '&strWorkFlowNo=null'+ '&strFromDate='+this.fromdate+ '&strToDate='+todate+'&strWFstatus=' + status + '&strMode=null&strUserId=' + this.userid + '&strusertype=' + this.userType).then(resp => {
@@ -134,43 +139,43 @@ export class MyapprovalsPage implements OnInit {
   };
 
   pathRedirect(item) {
-    this.router.navigate(['/hrmscoff-request', {
+    this.router.navigate(['/coff-request', {
       item: JSON.stringify(item)
 
     }])
   }
   pathRedirect1(item) {
-    this.router.navigate(['/hrmsassetrequest', {
+    this.router.navigate(['/assetrequest', {
       item: JSON.stringify(item)
 
     }])
   }
   pathRedirect2(item) {
-    this.router.navigate(['/hrmsleave-request', {
+    this.router.navigate(['/leave-request', {
       item: JSON.stringify(item)
 
     }])
   }
   pathRedirect3(item) {
-    this.router.navigate(['/hrmspermission-request', {
+    this.router.navigate(['/permission-request', {
       item: JSON.stringify(item)
 
     }])
   }
   pathRedirect4(item) {
-    this.router.navigate(['/hrmsassetreturn', {
+    this.router.navigate(['/assetreturn', {
       item: JSON.stringify(item)
 
     }])
   }
   pathRedirect5(item) {
-    this.router.navigate(['/hrmsod-request', {
+    this.router.navigate(['/od-request', {
       item: JSON.stringify(item)
 
     }])
   }
   pathRedirect6(item) {
-    this.router.navigate(['/hrmsloan-request', {
+    this.router.navigate(['/loan-request', {
       item: JSON.stringify(item)
 
     }])
