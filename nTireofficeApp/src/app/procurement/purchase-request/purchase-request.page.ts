@@ -65,7 +65,7 @@ filter : boolean = true;
   getitemdata: any;
   getitemid: any;
   getParamID: string;
-  getcategory: string;
+  getcategory: any;
   status: any;
   setitemcode: any;
   setredqty: any;
@@ -223,10 +223,10 @@ filter : boolean = true;
   }
   ngOnInit() {
 
-    if(this.Category == "")
+    if(this.getcategory == "")
     {
-    this.Category = "undefined"
-  }
+      this.getcategory = undefined
+    }
 
         // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
@@ -374,6 +374,7 @@ let data=event.target.value
 
 
     getItemDetail(e: any) {
+
     this.showsavebtn = true
     if(this.qty=='' || this.qty==undefined || this.qty==null){
       this.showqty=true
@@ -418,7 +419,7 @@ let data=event.target.value
 
 
     }
-    if (getcategory == "select") {
+    if (getcategory == "undefined") {
       this.hideitem = false;
       this.showitem = false;
       this.showsavebtn = false;
@@ -453,7 +454,7 @@ let data=event.target.value
       this.netprice = "",
       this.qty = "",
       this.itemdescription = "",
-      this.Category = "",
+      this.Category = undefined,
       this.Requiredbefore ="",
       this.showsavebtn = true;
   }
@@ -501,6 +502,7 @@ else{
 
     this.showlineItems = false
     this.showlineItems = !this.showlineItems;
+
     if (this.Category == "I") {
       this.getcategory = "Items"
     }
@@ -511,7 +513,6 @@ else{
     if (this.userid == undefined) {
       this.userid = this.requestby
     }
-
 
 // this.newitem=new Set(this.expenseArray)
 // console.log(this.newitem);
@@ -598,7 +599,6 @@ itemcode: this.splititemcode,
               CPC: "",
               flag: "I"
             })
-
           }
           else{
             this.presentAlert("add item failed", 'Item Added Successfully!');
