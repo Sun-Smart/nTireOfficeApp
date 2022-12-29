@@ -44,8 +44,9 @@ export class MyapprovalsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.reqType = "null";
 
-    this.status = "P";
+    this.status = "";
   }
 
   getReqtype() {
