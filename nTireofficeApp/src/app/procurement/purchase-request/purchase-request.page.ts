@@ -223,7 +223,10 @@ filter : boolean = true;
   }
   ngOnInit() {
 
-    this.Category = undefined;
+    if(this.Category == "")
+    {
+    this.Category = "undefined"
+  }
 
         // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
@@ -240,6 +243,8 @@ filter : boolean = true;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
     this.requestby = localStorage.getItem('TUM_USER_NAME')
   }
+
+
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
@@ -447,7 +452,9 @@ let data=event.target.value
       this.unitprice = "",
       this.netprice = "",
       this.qty = "",
-      this.itemdescription = ""
+      this.itemdescription = "",
+      this.Category = "",
+      this.Requiredbefore ="",
       this.showsavebtn = true;
   }
 
@@ -594,22 +601,16 @@ itemcode: this.splititemcode,
 
           }
           else{
-            this.presentAlert1("add item failed", 'Item Was Already Exits!');
+            this.presentAlert("add item failed", 'Item Added Successfully!');
           }
         }
       }
-
       }
-
-
-
     console.log(this.expenseArray)
-
     this.showbtn = true
-
   }
 
-  orderpriority() {
+orderpriority() {
     console.log(this.order)
     if (this.order == "2") //urjent
     {
@@ -801,9 +802,9 @@ this.showlineItems!=true;
   submit() {
 
     if(this.prsmode==""|| this.prsmode=="undefined" || this.prsmode==null){
-      this.presentAlert1("add item failed",'Please Enter Item Code');
+      this.presentAlert1("add item failed",'Please Enter PRS Mode');
     }else if(this.reasonpurchase==""|| this.reasonpurchase=="undefined" || this.reasonpurchase==null){
-      this.presentAlert1("add item failed",'Please Enter Quantity');
+      this.presentAlert1("add item failed",'Please Enter Reason For Purchase');
     }
     else{
 
@@ -813,7 +814,6 @@ this.showlineItems!=true;
     if (this.release == false) {
       this.status = "N"
     }
-
 
     if (this.order == "Urjent") {
       this.order = "1"
@@ -827,8 +827,6 @@ this.showlineItems!=true;
     if (this.order == "Medium") {
       this.order = "4"
     }
-
-
 
     this.getresponse.push({
       // "prscategory": this.Category,
@@ -878,6 +876,5 @@ this.showlineItems!=true;
       // this.router.navigate(['/prsstatus'])
     })
   }
-
   }
 }
