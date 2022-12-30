@@ -297,7 +297,7 @@ async presentAlert1(heading, tittle) {
             if(element==this.prscode.toLowerCase()){
 
             }else{
-              this.presentAlert1("add item failed", 'Invalid PRSCODE!');
+              this.presentAlert1("add item failed", 'No Data Found!');
             }
           }
 

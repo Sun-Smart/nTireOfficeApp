@@ -96,6 +96,10 @@ export class MyapprovalsPage implements OnInit {
       this.toastmessageService.presentAlert1("", "Please select Req. Type");
     }
 
+    else if (this.fromdate > this.todate) {
+      this.toastmessageService.presentAlert1("","To date should be greater than From date");
+    }
+else{
     this.approve_result1 = [];
     this.fromdate = this.datepipe.transform(this.fromdate, "dd/MM/yyyy")||null;
     var todate = this.datepipe.transform(this.todate, "dd/MM/yyyy")||null;
@@ -115,18 +119,14 @@ export class MyapprovalsPage implements OnInit {
 
       } else {
         console.log('No record found');
-
         this.approve_result1 = [];
         this.approval_search = "No record found"
       }
-
     }, error => {
-
       console.log("error : " + JSON.stringify(error));
-
     });
 
-
+  }
   }
 
   showless(idvalue) {

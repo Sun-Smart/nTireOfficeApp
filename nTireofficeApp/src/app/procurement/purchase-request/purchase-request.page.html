@@ -345,7 +345,7 @@
               <ion-button class ="ion-color-primary" expand="block">List</ion-button>
             </ion-col> -->
           <ion-col style="text-align: center;" *ngIf="showsavebtn">
-            <ion-button (click)="showline()" class="ion-color-success" expand="block" [disabled]="this.itemcode == null ||  this.qty == null || this.Requiredbefore  == undefined">Save</ion-button>
+            <ion-button (click)="showline()" class="ion-color-success" expand="block" [disabled]="this.itemcode == null ||  this.qty == '' || this.Requiredbefore  == '' " >Save</ion-button>
           </ion-col>
           <ion-col style="text-align: center;">
             <ion-button (click)="close()" class="ion-color-danger" expand="block">Close</ion-button>
@@ -359,7 +359,7 @@
       <!-- </ion-card> -->
       <ion-row *ngIf="showbtn">
         <ion-col style="text-align: center;">
-          <ion-button (click)="Additems()" class="ion-color-primary" expand="block">
+          <ion-button (click)="Additems()" class="ion-color-primary" *ngIf="additemsbtn" expand="block">
             <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Items
           </ion-button>
         </ion-col>

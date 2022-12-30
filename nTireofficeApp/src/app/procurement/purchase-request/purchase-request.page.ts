@@ -45,6 +45,7 @@ filter : boolean = true;
   Item
   Category : any;
   qty;
+  additemsbtn:boolean=true;
   unitprice;
   Requiredbefore
   netprice;
@@ -97,7 +98,7 @@ filter : boolean = true;
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
-
+// this.getParamID = localStorage.getItem('id');
 
     if (this.getParamID != null) {
       console.log(this.getParamID)
@@ -272,6 +273,11 @@ filter : boolean = true;
 
   checkbox() {
     console.log(this.release)
+    if(this.release == false){
+      this.additemsbtn=false;
+      this.showcancel = false;
+
+    }
     // if (this.status == "N") {
     //   if (this.release == false) {
     //     this.showsubmit = true
