@@ -69,7 +69,7 @@ export class RFQPage implements OnInit {
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
-    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
+    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-mm-dd');
     console.log(this.lastdate);
     this.status = "P"
   }
@@ -366,6 +366,11 @@ export class RFQPage implements OnInit {
 
   raiseRFQ(item: any) {
     console.log(this.lastdate)
+    if(this.lastdate == null || this.lastdate == '' || this.lastdate == undefined)
+    {
+      this.presentAlert1("","Please select Last Date to Raise RFQ")
+    }
+
     debugger;
     console.log(item);
     console.log(this.RaisedRFQ)
@@ -387,6 +392,8 @@ export class RFQPage implements OnInit {
         this.getraisedrfq = res;
         console.log(this.getraisedrfq)
         // this.showrfq = true;
+
+
         this.showviewlist = false;
 
         this.presentAlert("", res);
@@ -396,8 +403,6 @@ export class RFQPage implements OnInit {
       this.presentAlert('Alert', "last date should less then required before date")
     }
 
-
-
     // this.RaisedRFQdetails = this.RaisedRFQ;
     console.log(this.RaisedRFQdetails);
     // for(let i=0; i< this.RaisedRFQ.length; i++) {
@@ -406,7 +411,6 @@ export class RFQPage implements OnInit {
 
     // }
   }
-
 
   getItems(event: any) {
     this.getRfqItems = [];
@@ -463,6 +467,18 @@ export class RFQPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
+    await alert.present();
+  }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
     await alert.present();
   }
 
