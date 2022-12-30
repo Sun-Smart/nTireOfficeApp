@@ -108,8 +108,8 @@ export class MyapprovalsPage implements OnInit {
       var dat_s=JSON.parse(dat_s1)
       console.log(dat_s.Table);
 
-      if (dat_s.Table.length > 0) {
-        this.approve_result1 = dat_s.Table;
+      if (dat_s.length > 0) {
+        this.approve_result1 = dat_s;
         // this.approve_result=this.approve_result[0].RequestDate;
         console.log(this.approve_result1,"tab");
 
