@@ -601,7 +601,6 @@ export class ServiceRequestPage implements OnInit {
 
   processassetservicereq() {
     debugger;
-
     var todayDate = new Date();
     var day = todayDate.getDate();
     var month = todayDate.getMonth() + 1;
@@ -674,7 +673,7 @@ export class ServiceRequestPage implements OnInit {
     if (warrantydtenew == undefined) {
       var wardte = null;
     } else {
-      var wardte = warrantydtenew;
+      wardte = this.datePipe.transform(this.warrantydte, 'dd-MM-yyyy')
 
     }
 
