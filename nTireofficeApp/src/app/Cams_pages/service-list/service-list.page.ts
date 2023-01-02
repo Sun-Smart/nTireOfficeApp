@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
-import { Router} from '@angular/router';
-import { ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 // import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 declare var jquery: any;
@@ -17,48 +17,48 @@ declare var $: any;
 })
 export class ServiceListPage implements OnInit {
 
-  userID:any;
-  usertype:any;
-  function:any;
-  branch:any;
-  userToken:any;
-  accessToken:any;
-  branchID:any;
-  functionID:any;
-  username:any;
-  isItemAvailable:boolean;
+  userID: any;
+  usertype: any;
+  function: any;
+  branch: any;
+  userToken: any;
+  accessToken: any;
+  branchID: any;
+  functionID: any;
+  username: any;
+  isItemAvailable: boolean;
   assetcode1;
   Asset_code_det1r;
-  scannedCode:any;
+  scannedCode: any;
   assetcode;
   assetcodeResult;
   assetcode1str;
   reqdate;
-  vendorcode : any;
-  listviewdetails:any;
+  vendorcode: any;
+  listviewdetails: any;
   listviewdetailsLength;
   newvendor: any;
   vendor_code_det;
   vendor_code_det1;
-  isVendorItemAvailable:boolean;
-  detailsservendor:any;
-  detailsservendor1=[];
+  isVendorItemAvailable: boolean;
+  detailsservendor: any;
+  detailsservendor1 = [];
   vendorid;
-  departmentreqs:any;
-  detailsser:any;
-  detailsser1=[];
+  departmentreqs: any;
+  detailsser: any;
+  detailsser1 = [];
   assetucode: any;
   assetdescpshow;
-  assetid : any;
-  createdby : any;
-  insucompany:any;
-  insuamount:any;
-  warrantydte:any;
-  myValue:boolean;
+  assetid: any;
+  createdby: any;
+  insucompany: any;
+  insuamount: any;
+  warrantydte: any;
+  myValue: boolean;
   ifromdte;
 
 
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
+  constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private barcodeScanner: BarcodeScanner) {
     //,private qrScanner: QRScanner
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -68,7 +68,7 @@ export class ServiceListPage implements OnInit {
     this.accessToken = localStorage.getItem('token');
     this.branchID = localStorage.getItem('id');
     this.functionID = localStorage.getItem('FUNCTION_ID');
-    this.username=localStorage.getItem('TUM_USER_NAME');
+    this.username = localStorage.getItem('TUM_USER_NAME');
 
     // this.getserviceList();
   }
@@ -94,12 +94,12 @@ export class ServiceListPage implements OnInit {
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
     };
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodelist',params, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
       // set val to the value of the searchbar
-      this.assetcodeResult= resp;
+      this.assetcodeResult = resp;
       this.assetcode1str = this.assetcodeResult;
 
       for (var i = 0; i < this.assetcode1str.length; i++) {
@@ -151,82 +151,82 @@ export class ServiceListPage implements OnInit {
   //   .catch((e: any) => console.log('Error is', e));
   // }
 
-  processasset(assetcode){
-    this.detailsser1=[];
+  processasset(assetcode) {
+    this.detailsser1 = [];
     this.assetcode = assetcode;
     this.isItemAvailable = false;
     var data = {
-      'functionid':parseInt(this.functionID),
+      'functionid': parseInt(this.functionID),
       'assetcode': assetcode,
       'branchid': this.branchID,
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
-  }
-  console.log(data);
+    }
+    console.log(data);
 
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
 
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetserreqdept',data, {
-    headers: options,
-  }).subscribe(resp => {
-    console.log(resp);
-    this.departmentreqs = resp[0].Text;
-    console.log(this.departmentreqs);
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetserreqdept', data, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp);
+      this.departmentreqs = resp[0].Text;
+      console.log(this.departmentreqs);
 
-  }, error => {
-    console.log("error : " + JSON.stringify(error));
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
 
-  });
-  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicelist',data, {
-    headers: options,
-  }).subscribe(resp => {
-    console.log(resp);
-    var alassetrss = resp;
+    });
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicelist', data, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp);
+      var alassetrss = resp;
       this.detailsser = resp;
       console.log(this.detailsser);
-    if (this.detailsser.length < 1) {
+      if (this.detailsser.length < 1) {
 
-      this.presentAlert("Alert","No Data Found");
-    } else {
-      this.detailsser1.push(resp[0]);
-      this.assetucode = resp[0].ASSET_CODE;
-      this.assetdescpshow = resp[0].pmm_asset_desc;
-      this.assetid = resp[0].ASSET_ID;
-      this.createdby = resp[0].ASSET_USER;
-      this.insucompany = resp[0].pmm_insurance_company;
-      this.insuamount = resp[0].AMOUNT;
-      this.warrantydte = resp[0].pmm_warenty_expiry[0];
-      this.ifromdte = resp[0].pmm_insurance_expiry[0];
-      //$scope.detailsdept = response.data.recordsets[1];
-      console.log(this.assetid);
-      this.myValue = true;
-    }
+        this.presentAlert("Alert", "No Data Found");
+      } else {
+        this.detailsser1.push(resp[0]);
+        this.assetucode = resp[0].ASSET_CODE;
+        this.assetdescpshow = resp[0].pmm_asset_desc;
+        this.assetid = resp[0].ASSET_ID;
+        this.createdby = resp[0].ASSET_USER;
+        this.insucompany = resp[0].pmm_insurance_company;
+        this.insuamount = resp[0].AMOUNT;
+        this.warrantydte = resp[0].pmm_warenty_expiry[0];
+        this.ifromdte = resp[0].pmm_insurance_expiry[0];
+        //$scope.detailsdept = response.data.recordsets[1];
+        console.log(this.assetid);
+        this.myValue = true;
+      }
 
-  }, error => {
-    console.log("error : " + JSON.stringify(error));
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
 
-  });
+    });
   }
 
 
-  scancoderecon(){
+  scancoderecon() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
-      this.scannedCode=barcodeData.text;
+      this.scannedCode = barcodeData.text;
       this.processasset(this.scannedCode)
-      }).catch(err => {
+    }).catch(err => {
       console.log('Error', err);
-      });
+    });
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'buttonCss',
-      backdropDismiss:false,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
@@ -260,13 +260,13 @@ export class ServiceListPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     var dataservv = {
       //'vendorcode':$scope.asstdtlsser.vendorcode,
-      'functionid':parseInt( this.functionID),
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken,
-      'vendorcode':this.newvendor
+      'functionid': parseInt(this.functionID),
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken,
+      'vendorcode': this.newvendor
     }
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/vendorcodelist',dataservv, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/vendorcodelist', dataservv, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
@@ -274,7 +274,7 @@ export class ServiceListPage implements OnInit {
       this.vendor_code_det = resp;
       for (var i = 0; i < this.vendor_code_det.length; i++) {
         // $scope.user_type1 = $scope.user_type[i].DESCRIPTION;
-        this.vendor_code_det1.push(this.vendor_code_det[i].Vendor_Code+' - '+this.vendor_code_det[i].Vendor_Name);
+        this.vendor_code_det1.push(this.vendor_code_det[i].Vendor_Code + ' - ' + this.vendor_code_det[i].Vendor_Name);
       }
       const val = ev.target.value;
 
@@ -287,44 +287,44 @@ export class ServiceListPage implements OnInit {
       }
 
     },
-    // , error => {
-    //   //this.presentAlert('Alert','Server Error,Contact not loaded');
-    //   // console.log("error : " + JSON.stringify(error));
+      // , error => {
+      //   //this.presentAlert('Alert','Server Error,Contact not loaded');
+      //   // console.log("error : " + JSON.stringify(error));
 
-    // }
+      // }
     );
 
   }
 
 
-  fetchservsvendorreq(item){
-    this.detailsservendor1=[];
-    this.vendorcode=item;
-    this.isVendorItemAvailable=false;
-    this.vendorcode=item.split('-');
+  fetchservsvendorreq(item) {
+    this.detailsservendor1 = [];
+    this.vendorcode = item;
+    this.isVendorItemAvailable = false;
+    this.vendorcode = item.split('-');
     console.log(this.vendorcode)
     var dataserv = {
       'vendorcode': this.vendorcode[0],
       'functionid': parseInt(this.functionID),
-      'access_token':this.accessToken,
-      'userid':this.userID,
-        'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(dataserv);
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicevendorlist',dataserv, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicevendorlist', dataserv, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
-      this.detailsservendor=resp;
+      this.detailsservendor = resp;
       console.log(this.detailsservendor);
       this.detailsservendor1.push(resp[0]);
       this.vendorid = resp[0].vendor_id;
-        //$scope.detailsdept = response.data.recordsets[1];
-        console.log(this.vendorid);
+      //$scope.detailsdept = response.data.recordsets[1];
+      console.log(this.vendorid);
     }, error => {
       console.log("error : " + JSON.stringify(error));
 
@@ -332,18 +332,18 @@ export class ServiceListPage implements OnInit {
 
   }
 
-  processassetservicereqfilter(){
+  processassetservicereqfilter() {
 
     if (this.reqdate == null) {
       var dteserv = '';
     } else {
-       dteserv = this.datePipe.transform(this.reqdate, 'yyyy-MM-dd');
+      dteserv = this.datePipe.transform(this.reqdate, 'yyyy-MM-dd');
     }
     if (this.assetcode == undefined) {
       var serlistassetcode = '';
 
     } else {
-       serlistassetcode = this.assetcode;
+      serlistassetcode = this.assetcode;
 
     }
     if (this.vendorcode == undefined) {
@@ -358,9 +358,9 @@ export class ServiceListPage implements OnInit {
       'vendorcode': serlistvendorcode,
       'datofservice': dteserv,
       'branchid': this.branchID,
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(datalistprocess);
 
@@ -368,7 +368,7 @@ export class ServiceListPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservreqlistviewfilter',datalistprocess, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservreqlistviewfilter', datalistprocess, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -376,20 +376,17 @@ export class ServiceListPage implements OnInit {
         this.listviewdetails = [];
       } else {
         this.listviewdetails = resp;
-       
+
         console.log(this.listviewdetails);
         this.listviewdetailsLength = this.listviewdetails.length;
         this.assetcode = '';
-        this.vendorcode = '';
+        // this.vendorcode = '';
         this.reqdate = '';
         if (this.listviewdetails.length < 1) {
 
-          this.presentAlert("Alert","No Data Found")
+          this.presentAlert("Alert", "No Data Found")
         }
       }
-
-     
- 
 
     }, error => {
       console.log("error : " + JSON.stringify(error));
@@ -397,13 +394,13 @@ export class ServiceListPage implements OnInit {
     });
   }
 
-  resetservicereqfilter(){
+  resetservicereqfilter() {
     var datalistprocess = {
 
       'branchid': this.branchID,
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(datalistprocess);
 
@@ -411,7 +408,7 @@ export class ServiceListPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservreqlistview',datalistprocess, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservreqlistview', datalistprocess, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -420,7 +417,7 @@ export class ServiceListPage implements OnInit {
         this.listviewdetails = [];
       } else {
         this.listviewdetails = resp;
-       
+
         console.log(this.listviewdetails);
         this.listviewdetailsLength = this.listviewdetails.length;
         this.assetcode = '';
@@ -428,21 +425,21 @@ export class ServiceListPage implements OnInit {
         this.reqdate = '';
       }
 
-    
-  
+
+
     }, error => {
       console.log("error : " + JSON.stringify(error));
 
     });
   }
 
-  getserviceList(){
+  getserviceList() {
     var datalistprocess = {
 
       'branchid': this.branchID,
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(datalistprocess);
 
@@ -450,7 +447,7 @@ export class ServiceListPage implements OnInit {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservreqlistview',datalistprocess, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservreqlistview', datalistprocess, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
@@ -459,15 +456,15 @@ export class ServiceListPage implements OnInit {
         this.listviewdetails = [];
       } else {
         this.listviewdetails = resp;
-       
+
         console.log(this.listviewdetails);
         this.listviewdetailsLength = this.listviewdetails.length;
         this.assetcode = '';
-      this.vendorcode = '';
-      this.reqdate = '';
+        this.vendorcode = '';
+        this.reqdate = '';
       }
 
-     
+
     }, error => {
 
       console.log("error : " + JSON.stringify(error));
