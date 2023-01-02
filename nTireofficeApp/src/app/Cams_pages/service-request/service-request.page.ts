@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IpaddressService} from '../../service/ipaddress.service';
+import { IpaddressService } from '../../service/ipaddress.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { DatePipe } from '@angular/common';
-import { Router} from '@angular/router';
-import { ActivatedRoute} from '@angular/router';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { json } from '@angular-devkit/core';
 // import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
@@ -17,59 +17,59 @@ declare var $: any;
   styleUrls: ['./service-request.page.scss'],
 })
 export class ServiceRequestPage implements OnInit {
-  userID:any;
-  usertype:any;
-  function:any;
-  branch:any;
-  userToken:any;
-  accessToken:any;
-  branchID:any;
-  functionID:any;
+  userID: any;
+  usertype: any;
+  function: any;
+  branch: any;
+  userToken: any;
+  accessToken: any;
+  branchID: any;
+  functionID: any;
 
-  isItemAvailable:boolean;
-  isVendorItemAvailable:boolean;
-  isrespItemAvailable:boolean;
+  isItemAvailable: boolean;
+  isVendorItemAvailable: boolean;
+  isrespItemAvailable: boolean;
   vendorid;
   assetcode1;
   vendor_code_det1;
   Asset_code_det1r;
-  scannedCode:any;
-  scannedCoderep:any;
-  detailsreqcat:any;
-  assetcodeResult:any;
-  assetcode1str:any;
-  assetcode:any;
+  scannedCode: any;
+  scannedCoderep: any;
+  detailsreqcat: any;
+  assetcodeResult: any;
+  assetcode1str: any;
+  assetcode: any;
   ServiceExpensenew = [];
 
-  RequestRef:any;
-  ASSETCODEASSETDESCRIPTION:any;
-  RequestDate:any;
-  VENDORCODE:any;
-  DATEOFSERVICE:any;
-  EXPECTEDDATEOFDELIVERY:any;
-  SERVICETYPE:any;
-  Status:any;
-  workflow_no:any;
-  ServiceRefshow:boolean;
-  Serviceshow:boolean;
-  departmentreqs:any;
-  detailsser:any;
-  detailsser1=[];
-  assetid:any;
-  createdby:any;
-  insucompany:any;
-  insuamount:any;
-  warrantydte:any;
-  myValue:boolean;
-  vendor_code_det:any;
-  vendorcode:any;
-  detailsservendor:any;
-  detailsservendor1=[];
+  RequestRef: any;
+  ASSETCODEASSETDESCRIPTION: any;
+  RequestDate: any;
+  VENDORCODE: any;
+  DATEOFSERVICE: any;
+  EXPECTEDDATEOFDELIVERY: any;
+  SERVICETYPE: any;
+  Status: any;
+  workflow_no: any;
+  ServiceRefshow: boolean;
+  Serviceshow: boolean;
+  departmentreqs: any;
+  detailsser: any;
+  detailsser1 = [];
+  assetid: any;
+  createdby: any;
+  insucompany: any;
+  insuamount: any;
+  warrantydte: any;
+  myValue: boolean;
+  vendor_code_det: any;
+  vendorcode: any;
+  detailsservendor: any;
+  detailsservendor1 = [];
   repassetcode;
   Asset_code_detr;
   departmentreqreplace;
-  repdatalist:any;
-  repdatalist1=[];
+  repdatalist: any;
+  repdatalist1 = [];
   repassetid;
   detailssercat;
   reqdate;
@@ -82,85 +82,85 @@ export class ServiceRequestPage implements OnInit {
   assetdescpshow;
   ifromdte;
   scannedCode1;
-  username:any;
+  username: any;
   today1;
   newExpense: number;
   newasset: any;
   newvendor: any;
   newreplaceasset: any;
   assetucode: any;
-  doi:any;
+  doi: any;
 
-  numberOnly(event):boolean{
-    const charCode = (event.which)?event.which:event.keyCode;
-    if(charCode >31 &&(charCode<48||charCode>57)){
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       return false;
     }
     return true;
   }
-  constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private barcodeScanner: BarcodeScanner) {
+  constructor(private activatedRoute: ActivatedRoute, private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService, private router: Router, private barcodeScanner: BarcodeScanner) {
 
-     //,private qrScanner: QRScanner
-     this.function = localStorage.getItem('FUNCTION_DESC');
-     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
-     this.userID = localStorage.getItem('TUM_USER_ID');
-     this.usertype = localStorage.getItem('TUM_USER_TYPE');
-     this.userToken = localStorage.getItem('usertoken');
-     this.accessToken = localStorage.getItem('token');
-     this.branchID = localStorage.getItem('id');
-     this.functionID = localStorage.getItem('FUNCTION_ID');
-     this.username=localStorage.getItem('TUM_USER_NAME');
+    //,private qrScanner: QRScanner
+    this.function = localStorage.getItem('FUNCTION_DESC');
+    this.branch = localStorage.getItem('TUM_BRANCH_CODE');
+    this.userID = localStorage.getItem('TUM_USER_ID');
+    this.usertype = localStorage.getItem('TUM_USER_TYPE');
+    this.userToken = localStorage.getItem('usertoken');
+    this.accessToken = localStorage.getItem('token');
+    this.branchID = localStorage.getItem('id');
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.username = localStorage.getItem('TUM_USER_NAME');
     this.getServiceActegory();
-    this.replacement="<< Select >>";
-    this.servicecategory="<< Select >>";
-debugger;
+    this.replacement = "<< Select >>";
+    this.servicecategory = "<< Select >>";
+    debugger;
     this.today1 = new Date().toJSON().split('T')[0];
     var today = new Date();
     var todayDate = new Date();
     var day = todayDate.getDate();
     var month = todayDate.getMonth() + 1;
     var year = todayDate.getFullYear();
-    var finaltodayDate = month +"/"+day+ "/" + year;
+    var finaltodayDate = month + "/" + day + "/" + year;
     this.reqdate = finaltodayDate;
     console.log(this.expdate)
     // this.ServiceExpensenew = [];
     // this.ServiceExpensenew=$rootScope.ServiceExpname;
 
-  //    if(this.ServiceExpensenew!=undefined){
+    //    if(this.ServiceExpensenew!=undefined){
 
-  //    this.RequestRef=this.ServiceExpensenew[0].RequestRef;
-  //    this.ASSETCODEASSETDESCRIPTION=this.ServiceExpensenew[0].ASSETCODEASSETDESCRIPTION;
-  //    this.RequestDate=this.ServiceExpensenew[0].RequestDate;
-  //    this.VENDORCODE=this.ServiceExpensenew[0].VENDORCODE;
-  //    this.DATEOFSERVICE=this.ServiceExpensenew[0].DATEOFSERVICE;
-  //    this.EXPECTEDDATEOFDELIVERY=this.ServiceExpensenew[0].EXPECTEDDATEOFDELIVERY;
-  //    this.SERVICETYPE=this.ServiceExpensenew[0].SERVICETYPE;
+    //    this.RequestRef=this.ServiceExpensenew[0].RequestRef;
+    //    this.ASSETCODEASSETDESCRIPTION=this.ServiceExpensenew[0].ASSETCODEASSETDESCRIPTION;
+    //    this.RequestDate=this.ServiceExpensenew[0].RequestDate;
+    //    this.VENDORCODE=this.ServiceExpensenew[0].VENDORCODE;
+    //    this.DATEOFSERVICE=this.ServiceExpensenew[0].DATEOFSERVICE;
+    //    this.EXPECTEDDATEOFDELIVERY=this.ServiceExpensenew[0].EXPECTEDDATEOFDELIVERY;
+    //    this.SERVICETYPE=this.ServiceExpensenew[0].SERVICETYPE;
 
-  //    console.log(this.RequestDate);
+    //    console.log(this.RequestDate);
 
-  //    this.Status=this.ServiceExpensenew[0].Status;
-  //    this.workflow_no=this.ServiceExpensenew[0].workflow_no;
-  //  }
-  //  // alert("RequestRef"+$scope.RequestRef);
-  //    if(this.RequestRef!=undefined){
+    //    this.Status=this.ServiceExpensenew[0].Status;
+    //    this.workflow_no=this.ServiceExpensenew[0].workflow_no;
+    //  }
+    //  // alert("RequestRef"+$scope.RequestRef);
+    //    if(this.RequestRef!=undefined){
 
-      //  this.ServiceRefshow=true;
-      //  this.Serviceshow=false;
+    //  this.ServiceRefshow=true;
+    //  this.Serviceshow=false;
 
     //  }
     //  else{
 
-       this.ServiceRefshow=false;
-       this.Serviceshow=true;
+    this.ServiceRefshow = false;
+    this.Serviceshow = true;
     //  }
 
-   }
+  }
 
   ngOnInit() {
 
   }
 
-  doRefresh(event){
+  doRefresh(event) {
     this.getServiceActegory();
     this.reset();
     event.target.complete();
@@ -188,7 +188,7 @@ debugger;
       userid: window.localStorage['TUM_USER_ID'],
       'usertoken': window.localStorage['usertoken'],
       USER_ID: window.localStorage['TUM_USER_ID'],
-      "assetcode" :this.newasset,
+      "assetcode": this.newasset,
 
     };
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodelist', params, {
@@ -247,82 +247,82 @@ debugger;
   //   .catch((e: any) => console.log('Error is', e));
   // }
 
-  scancoderecon(){
+  scancoderecon() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
-      this.scannedCode=barcodeData.text;
+      this.scannedCode = barcodeData.text;
       this.processasset(this.scannedCode)
-      }).catch(err => {
+    }).catch(err => {
       console.log('Error', err);
-      });
+    });
   }
 
-  processasset(assetcode){
-    this.detailsser1=[];
+  processasset(assetcode) {
+    this.detailsser1 = [];
     this.assetcode = assetcode;
     this.isItemAvailable = false;
     var data = {
-      'functionid':parseInt(this.functionID),
+      'functionid': parseInt(this.functionID),
       'assetcode': assetcode,
       'branchid': this.branchID,
       'access_token': this.accessToken,
       'userid': this.userID,
       'usertoken': this.userToken
-  }
-  console.log(data);
+    }
+    console.log(data);
 
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
 
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetserreqdept',data, {
-    headers: options,
-  }).subscribe(resp => {
-    console.log(resp);
-    this.departmentreqs = resp[0].Text;
-    console.log(this.departmentreqs);
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetserreqdept', data, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp);
+      this.departmentreqs = resp[0].Text;
+      console.log(this.departmentreqs);
 
-  }, error => {
-    console.log("error : " + JSON.stringify(error));
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
 
-  });
-  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicelist',data, {
-    headers: options,
-  }).subscribe(resp => {
-    console.log(resp);
-    var alassetrss = resp;
+    });
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicelist', data, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp);
+      var alassetrss = resp;
       this.detailsser = resp;
       console.log(this.detailsser);
-    if (this.detailsser.length < 1) {
+      if (this.detailsser.length < 1) {
 
-      this.presentAlert("Alert","No Data Found");
-    } else {
-      debugger;     
-      this.detailsser1.push(resp[0]);
-      this.assetucode = resp[0].ASSET_CODE;
-      this.assetdescpshow = resp[0].pmm_asset_desc;
-      this.assetid = resp[0].ASSET_ID;
-      this.createdby = resp[0].ASSET_USER;
-      this.insucompany = resp[0].pmm_insurance_company;
-      this.insuamount = resp[0].AMOUNT;
-      this.warrantydte = resp[0].pmm_warenty_expiry[0];
-      this.ifromdte = resp[0].pmm_insurance_expiry[0];
-      //$scope.detailsdept = response.data.recordsets[1];
-      console.log(this.assetid);
-      this.myValue = true;
-    }
+        this.presentAlert("Alert", "No Data Found");
+      } else {
+        debugger;
+        this.detailsser1.push(resp[0]);
+        this.assetucode = resp[0].ASSET_CODE;
+        this.assetdescpshow = resp[0].pmm_asset_desc;
+        this.assetid = resp[0].ASSET_ID;
+        this.createdby = resp[0].ASSET_USER;
+        this.insucompany = resp[0].pmm_insurance_company;
+        this.insuamount = resp[0].AMOUNT;
+        this.warrantydte = resp[0].pmm_warenty_expiry[0];
+        this.ifromdte = resp[0].pmm_insurance_expiry[0];
+        //$scope.detailsdept = response.data.recordsets[1];
+        console.log(this.assetid);
+        this.myValue = true;
+      }
 
-  }, error => {
-    console.log("error : " + JSON.stringify(error));
+    }, error => {
+      console.log("error : " + JSON.stringify(error));
 
-  });
+    });
   }
 
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
-      cssClass:'Cssbutton',
-      backdropDismiss:false,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
       message: tittle,
       buttons: ['OK']
     });
@@ -355,13 +355,13 @@ debugger;
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     var dataservv = {
       //'vendorcode':$scope.asstdtlsser.vendorcode,
-      'functionid':parseInt( this.functionID),
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken,
-      'vendorcode':this.newvendor
+      'functionid': parseInt(this.functionID),
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken,
+      'vendorcode': this.newvendor
     }
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/vendorcodelist',dataservv, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/vendorcodelist', dataservv, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp)
@@ -369,7 +369,7 @@ debugger;
       this.vendor_code_det = resp;
       for (var i = 0; i < this.vendor_code_det.length; i++) {
         // $scope.user_type1 = $scope.user_type[i].DESCRIPTION;
-        this.vendor_code_det1.push(this.vendor_code_det[i].Vendor_Code+' - '+this.vendor_code_det[i].Vendor_Name);
+        this.vendor_code_det1.push(this.vendor_code_det[i].Vendor_Code + ' - ' + this.vendor_code_det[i].Vendor_Name);
       }
       const val = ev.target.value;
 
@@ -382,43 +382,43 @@ debugger;
       }
 
     },
-    // , error => {
-    //   //this.presentAlert('Alert','Server Error,Contact not loaded');
-    //   // console.log("error : " + JSON.stringify(error));
+      // , error => {
+      //   //this.presentAlert('Alert','Server Error,Contact not loaded');
+      //   // console.log("error : " + JSON.stringify(error));
 
-    // }
+      // }
     );
 
   }
 
-  fetchservsvendorreq(item){
-    this.detailsservendor1=[];
-    this.vendorcode=item;
-    this.isVendorItemAvailable=false;
-    this.vendorcode=item.split('-');
+  fetchservsvendorreq(item) {
+    this.detailsservendor1 = [];
+    this.vendorcode = item;
+    this.isVendorItemAvailable = false;
+    this.vendorcode = item.split('-');
     console.log(this.vendorcode)
     var dataserv = {
       'vendorcode': this.vendorcode[0],
       'functionid': parseInt(this.functionID),
-      'access_token':this.accessToken,
-      'userid':this.userID,
-        'usertoken':this.userToken
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
     }
     console.log(dataserv);
     const header = new Headers();
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicevendorlist',dataserv, {
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicevendorlist', dataserv, {
       headers: options,
     }).subscribe(resp => {
       console.log(resp);
-      this.detailsservendor=resp;
+      this.detailsservendor = resp;
       console.log(this.detailsservendor);
       this.detailsservendor1.push(resp[0]);
       this.vendorid = resp[0].vendor_id;
-        //$scope.detailsdept = response.data.recordsets[1];
-        console.log(this.vendorid);
+      //$scope.detailsdept = response.data.recordsets[1];
+      console.log(this.vendorid);
     }, error => {
       console.log("error : " + JSON.stringify(error));
 
@@ -426,8 +426,8 @@ debugger;
 
   }
 
-  getreplaceItems(ev){
-    this.newreplaceasset =ev.target.value;
+  getreplaceItems(ev) {
+    this.newreplaceasset = ev.target.value;
 
     this.Asset_code_det1r = [];
     if (ev.target.value == "") {
@@ -440,13 +440,13 @@ debugger;
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     var dataservv = {
-      'access_token':this.accessToken,
-      'userid':this.userID,
-      'usertoken':this.userToken,
-      'assetcode' : this.newreplaceasset,
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken,
+      'assetcode': this.newreplaceasset,
     }
-    this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetcodereplace',dataservv, {
-      
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetcodereplace', dataservv, {
+
       headers: options,
     }).subscribe(resp => {
       debugger;
@@ -503,35 +503,35 @@ debugger;
   //   })
   //   .catch((e: any) => console.log('Error is', e));
   // }
-  scancodeuserservrep(){
+  scancodeuserservrep() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
-      this.scannedCode1=barcodeData.text;
+      this.scannedCode1 = barcodeData.text;
       this.fetchservsreqreplace(this.scannedCode1)
-      }).catch(err => {
+    }).catch(err => {
       console.log('Error', err);
-      });
+    });
   }
 
-  fetchservsreqreplace(item){
-    this.repdatalist1=[];
-    this.repassetcode=item;
-    this.isrespItemAvailable=false;
+  fetchservsreqreplace(item) {
+    this.repdatalist1 = [];
+    this.repassetcode = item;
+    this.isrespItemAvailable = false;
     if (this.assetcode != item) {
 
       var dataser1 = {
-        'functionid':parseInt(window.localStorage['FUNCTION_ID']),
+        'functionid': parseInt(window.localStorage['FUNCTION_ID']),
         'assetcode': this.repassetcode,
         'branchid': this.branchID,
-        'access_token':this.accessToken,
-        'userid':this.userID,
-        'usertoken':this.userToken
+        'access_token': this.accessToken,
+        'userid': this.userID,
+        'usertoken': this.userToken
       }
-  const header = new Headers();
+      const header = new Headers();
       header.append("Content-Type", "application/json");
 
       let options = new HttpHeaders().set('Content-Type', 'application/json');
-      this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetserreqdept',dataser1, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetserreqdept', dataser1, {
         headers: options,
       }).subscribe(resp => {
         console.log(resp)
@@ -543,24 +543,24 @@ debugger;
         console.log("error : " + JSON.stringify(error));
 
       });
-      this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicelistreplace',dataser1, {
+      this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicelistreplace', dataser1, {
         headers: options,
       }).subscribe(resp => {
         console.log(resp)
 
-        this.repdatalist=resp;
+        this.repdatalist = resp;
 
         //$scope.detailsser1 = response.data[0];
         // var alassetrsrepc = this.repdatalist;
         // console.log(alassetrsrepc.length);
-        if (this.repdatalist.length  != 0) {
+        if (this.repdatalist.length != 0) {
           this.repdatalist1.push(resp[0]);
           this.repassetid = resp[0].pmm_asset_reference;
           console.log(this.repassetid);
           //console.log($scope.asstreq.descp);
 
         } else {
-          this.presentAlert("Alert","No Data Found");
+          this.presentAlert("Alert", "No Data Found");
 
         }
       }, error => {
@@ -569,186 +569,185 @@ debugger;
 
       });
 
-  }else{
-    this.presentAlert("Alert","Asset Code and replacement asset code should not be same");
-  }
-}
-
-getServiceActegory(){
-  var dataservcat = {
-    'functionid':parseInt(window.localStorage['FUNCTION_ID']),
-    'access_token':this.accessToken,
-    'userid':this.userID,
-    'usertoken':this.userToken
-  }
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetservicecategory',dataservcat, {
-    headers: options,
-  }).subscribe(resp => {
-    console.log(resp)
-
-    this.detailssercat = resp;
-    console.log(this.detailssercat);
-  }, error => {
-    //this.presentAlert('Alert','Server Error,Contact not loaded');
-    console.log("error : " + JSON.stringify(error));
-
-  });
-}
-
-processassetservicereq(){
-  debugger;
-
-  var todayDate = new Date();
-  var day = todayDate.getDate();
-  var month = todayDate.getMonth() + 1;
-  var year = todayDate.getFullYear();
-  var hh = todayDate.getHours();
-  var ss = todayDate.getMinutes();
-  var mm = todayDate.getSeconds();
-  //var finaltodayDateservices = year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss + "." + "000";
-  var finaltodayDateservices = day + "-" + month + "-" + year + " " + hh + ":" + mm + ":" + ss;
-  var warrantydtenew = this.datePipe.transform(this.warrantydte, 'dd-MM-yyyy');
-  var dater = this.datePipe.transform(this.reqdate, 'dd-MM-yyyy');
-
-  var datewar = this.datePipe.transform(this.expdate, 'dd-MM-yyyy');
-
-  if (this.servicecategory == "" || this.servicecategory == undefined ||this.servicecategory == "<< Select >>") {
-    var categ = 0;
-  } else {
-    categ = parseInt(this.servicecategory);
-
-  }
-  if (this.noofcharsdectest == undefined) {
-    var descp = "";
-  } else {
-    descp = this.noofcharsdectest;
-
-  }
-  if (this.repassetid == undefined) {
-    var repid = 0;
-  } else {
-    repid = parseInt(this.repassetid);
-
-  }
-  if (this.expexpense == undefined) {
-    var exp = 0;
-  } else {
-    exp = parseInt(this.expexpense);
-    // this.newExpense = exp;
-
-  }
-  if (this.replacement == undefined || this.replacement == "" || this.replacement == '<< Select >>') {
-    var reptype = "";
-  } else {
-     reptype = this.replacement;
-
-  }
-
-  if(this.replacement == 'T'){
-    if (this.tilldate == undefined) {
-      this.presentAlert("Alert","Enter the Till Date");
-      return false;
     } else {
-     var sertilldte = this.datePipe.transform(this.tilldate, 'dd-MM-yyyy');
+      this.presentAlert("Alert", "Asset Code and replacement asset code should not be same");
+    }
+  }
+
+  getServiceActegory() {
+    var dataservcat = {
+      'functionid': parseInt(window.localStorage['FUNCTION_ID']),
+      'access_token': this.accessToken,
+      'userid': this.userID,
+      'usertoken': this.userToken
+    }
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicecategory', dataservcat, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp)
+
+      this.detailssercat = resp;
+      console.log(this.detailssercat);
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+
+    });
+  }
+
+  processassetservicereq() {
+    debugger;
+
+    var todayDate = new Date();
+    var day = todayDate.getDate();
+    var month = todayDate.getMonth() + 1;
+    var year = todayDate.getFullYear();
+    var hh = todayDate.getHours();
+    var ss = todayDate.getMinutes();
+    var mm = todayDate.getSeconds();
+    //var finaltodayDateservices = year + "-" + month + "-" + day + " " + hh + ":" + mm + ":" + ss + "." + "000";
+    var finaltodayDateservices = day + "-" + month + "-" + year + " " + hh + ":" + mm + ":" + ss;
+    var warrantydtenew = this.datePipe.transform(this.warrantydte, 'dd-MM-yyyy')
+    var dater = this.datePipe.transform(this.reqdate, 'dd-MM-yyyy');
+
+    var datewar = this.datePipe.transform(this.expdate, 'dd-MM-yyyy');
+
+    if (this.servicecategory == "" || this.servicecategory == undefined || this.servicecategory == "<< Select >>") {
+      var categ = 0;
+    } else {
+      categ = parseInt(this.servicecategory);
+
+    }
+    if (this.noofcharsdectest == undefined) {
+      var descp = "";
+    } else {
+      descp = this.noofcharsdectest;
+
+    }
+    if (this.repassetid == undefined) {
+      var repid = 0;
+    } else {
+      repid = parseInt(this.repassetid);
+
+    }
+    if (this.expexpense == undefined) {
+      var exp = 0;
+    } else {
+      exp = parseInt(this.expexpense);
+      // this.newExpense = exp;
+
+    }
+    if (this.replacement == undefined || this.replacement == "" || this.replacement == '<< Select >>') {
+      var reptype = "";
+    } else {
+      reptype = this.replacement;
     }
 
-  }else{
-    var sertilldte = "";
+    if (this.replacement == 'T') {
+      if (this.tilldate == undefined) {
+        this.presentAlert("Alert", "Enter the Till Date");
+        return false;
+      } else {
+        var sertilldte = this.datePipe.transform(this.tilldate, 'dd-MM-yyyy');
+      }
+    } else {
+      var sertilldte = "";
+    }
+
+    if (this.insucompany == null || this.insucompany == undefined || this.insucompany == '') {
+      var insucompny = null;
+    } else {
+      insucompny = this.insucompany;
+
+    }
+    if (this.insuamount == null || this.insuamount == undefined || this.insuamount == '') {
+      var insuamt = 0;
+    } else {
+      insuamt = this.insuamount;
+
+    }
+
+    if (warrantydtenew == undefined) {
+      var wardte = null;
+    } else {
+      var wardte = warrantydtenew;
+
+    }
+
+
+
+
+    var assetcodeservice = this.assetcode + '~' + this.assetdescpshow;
+
+    var dataprocessserv = {
+      'serfunctionid': this.functionID,
+      'serbranchid': this.branchID,
+      'serassetcode': assetcodeservice,
+      'serassetid': parseInt(this.assetid),
+      'servendorid': parseInt(this.vendorid),
+      'servendorcode': this.vendorcode[0],
+      //'servendorcode':$scope.asstdtlsser.vendorcode,
+      'serdateofservice': dater,
+      'serexpdateofdelivery': datewar,
+      'serdescription': descp,
+      'serexpexpense': exp,
+      //'serexpexpense':$scope.asstdtlsser.expexpense,
+      'sercreatedby': this.userID,
+      'serinsucompany': insucompny,
+      'seramountinsu': insuamt,
+      'serwarrantydte': wardte,
+      'serreplacetype': reptype,
+      'serreplaceassetid': repid,
+      'servicecategory': categ,
+      'sercreatedon': finaltodayDateservices,
+      'assetreqby': this.userID,
+      'srvtilldate': sertilldte,
+      'userid': this.userID,
+      'usertoken': this.userToken,
+      "release": "true",
+      'access_token': this.accessToken
+    }
+    console.log(dataprocessserv);
+
+    const header = new Headers();
+    header.append("Content-Type", "application/json");
+
+    let options = new HttpHeaders().set('Content-Type', 'application/json');
+    this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetserviceinsert', dataprocessserv, {
+      headers: options,
+    }).subscribe(resp => {
+      console.log(resp)
+      this.presentAlert("Success", "Successfully Saved");
+      this.reset();
+    }, error => {
+      //this.presentAlert('Alert','Server Error,Contact not loaded');
+      console.log("error : " + JSON.stringify(error));
+
+    });
   }
 
-  if (this.insucompany == null || this.insucompany == undefined || this.insucompany == '') {
-    var insucompny = "null";
-  } else {
-     insucompny = this.insucompany;
-
-  }
-  if (this.insuamount == null || this.insuamount == undefined || this.insuamount == '') {
-    var insuamt = 0;
-  } else {
-    insuamt = this.insuamount;
-
-  }
-
-  if (warrantydtenew == undefined) {
-    var wardte = "null";
-  } else {
-    var wardte = warrantydtenew;
-
+  assetserviceliveview() {
+    this.router.navigate(['/service-list']);
   }
 
 
-
-
-  var assetcodeservice = this.assetcode + '~' + this.assetdescpshow;
-
-  var dataprocessserv = {
-    'serfunctionid': this.functionID,
-    'serbranchid': this.branchID,
-    'serassetcode': assetcodeservice,
-    'serassetid': parseInt(this.assetid),
-    'servendorid': parseInt(this.vendorid),
-    'servendorcode': this.vendorcode[0],
-    //'servendorcode':$scope.asstdtlsser.vendorcode,
-    'serdateofservice': dater,
-    'serexpdateofdelivery': datewar,
-    'serdescription': descp,
-    'serexpexpense': exp,
-    //'serexpexpense':$scope.asstdtlsser.expexpense,
-    'sercreatedby': this.userID,
-    'serinsucompany': insucompny,
-    'seramountinsu': insuamt,
-    'serwarrantydte': wardte,
-    'serreplacetype': reptype,
-    'serreplaceassetid': repid,
-    'servicecategory': categ,
-    'sercreatedon': finaltodayDateservices,
-    'assetreqby': this.userID,
-    'srvtilldate': sertilldte,
-    'userid':this.userID,
-    'usertoken':this.userToken,
-    'access_token':this.accessToken
+  reset() {
+    this.assetcode = '';
+    this.detailsser1 = [];
+    this.vendorcode = '';
+    this.detailsservendor1 = [];
+    this.expdate = '';
+    this.expexpense = '';
+    this.tilldate = '';
+    this.repassetcode = '';
+    this.repassetid = '';
+    this.repdatalist1 = [];
+    this.noofcharsdectest = '';
+    this.replacement = "<< Select >>";
+    this.servicecategory = "<< Select >>";
   }
-  console.log(dataprocessserv);
-
-  const header = new Headers();
-  header.append("Content-Type", "application/json");
-
-  let options = new HttpHeaders().set('Content-Type', 'application/json');
-  this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlCamsNode +'/assetserviceinsert',dataprocessserv, {
-    headers: options,
-  }).subscribe(resp => {
-    console.log(resp)
-  this.presentAlert("Success","Successfully Saved");
-  this.reset();
-  }, error => {
-    //this.presentAlert('Alert','Server Error,Contact not loaded');
-    console.log("error : " + JSON.stringify(error));
-
-  });
-}
-
-assetserviceliveview(){
-this.router.navigate(['/service-list']);
-}
-
-
-reset(){
-  this.assetcode='';
-  this.detailsser1=[];
-  this.vendorcode='';
-  this.detailsservendor1=[];
-  this.expdate='';
-  this.expexpense='';
-  this.tilldate='';
-  this.repassetcode='';
-  this.repassetid='';
-  this.repdatalist1=[];
-  this.noofcharsdectest='';
-  this.replacement="<< Select >>";
-  this.servicecategory="<< Select >>";
-}
 }
