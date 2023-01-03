@@ -79,6 +79,7 @@ export class TaskDetailPage implements OnInit {
 
 
   addSelectedItemData(list){
+    debugger;
     var selectedItems = [];
     console.log(list);
     list.forEach(obj => {
