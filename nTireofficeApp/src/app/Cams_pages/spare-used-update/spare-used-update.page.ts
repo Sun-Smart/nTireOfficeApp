@@ -148,7 +148,7 @@ export class SpareUsedUpdatePage implements OnInit {
       'assetactivityid':parseInt(this.data.assetactivityid),
       'assetpmref':parseInt(this.data.assetpmref),
       'itemcode':this.materialcode,
-      'spareqty':this.quantity,
+      'spareqty':parseInt(this.quantity),
       'cost':this.spareCost,
       //'spareqty':$scope.spares.quantity,
       'instdte':this.doi,

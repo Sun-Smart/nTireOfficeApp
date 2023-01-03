@@ -1,6 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Manpower Used</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-grid>
-    <div class="subtabs">Manpower Used</div>
+    <!-- <div class="subtabs">Manpower Used</div> -->
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset code</ion-label>
@@ -29,7 +38,7 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label style="font-weight:bold;display: block;">Employee Reference<span
                 style="color:red;margin-left: 5px;">*</span></ion-label>
-            <select class="form-control" style="width:100%">
+            <select class="form-control" style="width:100%" [(ngModel)]="empref">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let item of manpowerrefdetail; let i = index" (change)="employeeUser()" [ngValue]="this.userRoleID">
                 {{item.tum_user_code}}-{{item.tum_user_name}}
@@ -40,11 +49,11 @@
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="display: inline-block;">
             <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
             onKeyPress="if(this.value!=undefined && this.value.length==2) return false;"
-                  (keyup)="phonenumber(profile.nomhours) "
+            pattern="/\-?\d*\.?\d{1,2}/" (keyup)="phonenumber(profile.nomhours) "
               placeholder="HH:" [(ngModel)]="nomhours">
             <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
             onKeyPress="if(this.value!=undefined && this.value.length==2) return false;"
-                  (keyup)="phonenumber(profile.nomhoursm) "
+            pattern="/\-?\d*\.?\d{1,2}/" (keyup)="phonenumber(profile.nomhoursm) "
               placeholder="MM" [(ngModel)]="nomhoursm">
 
           </ion-col>
@@ -108,7 +117,7 @@
             <ion-label>Cost</ion-label>
           </ion-col>
           <ion-col size="6">
-            <ion-label class="labelData-text">: {{data.ASSET_COST}}</ion-label>
+            <ion-label class="labelData-text">: {{data.cost}}</ion-label>
           </ion-col>
         </ion-row>
       </ion-card-content>

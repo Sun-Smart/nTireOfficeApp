@@ -25,6 +25,7 @@ export class ManpowerUsedPage implements OnInit {
   branchID:any;
   functionID:any;
   userRoleID:any;
+  empRefernce:any;
   urldata;
   assetcodetabrefe:any;
   manpowerskill:any;
@@ -51,7 +52,7 @@ export class ManpowerUsedPage implements OnInit {
     console.log(JSON.stringify(this.Tabparams.data));
     this.urldata = JSON.parse(JSON.stringify(this.Tabparams.data));
     this.assetcodetabrefe=this.urldata.pmm_asset_code;
-
+this.userRole ="<< Select >>"
     this.skill="<< Select >>"
     this.empref="<< Select >>"
   }
@@ -128,15 +129,21 @@ export class ManpowerUsedPage implements OnInit {
   }
 
   manpowerinsert(){
-
+debugger;
     //var nomhrs=this.datePipe.transform(this.nomhours, 'HH:mm:ss');;
-    var empref = this.empref;
+
+    if(this.empref == null || this.empref == undefined || this.empref == "<< Select >>"){
+      var empref = "0";
+    }else{
+      empref = this.empref;
+    }
+    
     console.log(empref);
     var nomhrs=this.nomhours;
     console.log(nomhrs);
     var nommin=this.nomhoursm;
     console.log(nommin);
-    if(nomhrs > 16 ){
+    if(nomhrs >= 25  ){
       this.presentAlert("Alert","Number Of Hours(HH:MM) is not in proper format");
     }else{
        if(nommin > 60){
@@ -176,7 +183,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
   var costchk=resp;
         if(costchk!='nocost'){
 
-          this.presentAlert("Success","Inserted Successfully");
+          this.presentAlert("Success","Successfully Saved");
        this.manpowerrecord = resp;
         console.log(resp);
           this.hhmm='';
@@ -184,6 +191,9 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
           this.nomhours='';
           this.nomhoursm='';
           this.empref='';
+          this.userRole ="<< Select >>"
+    this.skill="<< Select >>"
+    this.empref="<< Select >>"
 
 }else{
   this.presentAlert("Alert","Please configure the cost");
@@ -241,7 +251,7 @@ this.http.post(this.Ipaddressservice.ipaddress+this.Ipaddressservice.serviceurlC
             'assetid':this.urldata.CMD_ASSET_ID,
             'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
             'assetpmref':this.urldata.pmr_reference,
-            'assetempid':empref,
+            'assetempid':parseInt(empref),
             'access_token':this.accessToken,
             'userid':this.userID,
             'usertoken':this.userToken,
@@ -325,6 +335,8 @@ data.assetpmref = this.urldata.pmr_reference;
     }
 
   });
+
+  
   modal.onDidDismiss()
     .then((resp) => {
       this.manpoweralldata();

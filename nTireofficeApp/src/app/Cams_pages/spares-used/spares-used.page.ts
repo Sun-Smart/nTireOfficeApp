@@ -138,12 +138,13 @@ export class sparesUsedPage implements OnInit {
 
 
   insertspare(){
+    debugger;
 console.log(this.itemcodein)
     var instdte=this.datePipe.transform(this.doi, 'yyyy-MM-dd');
     var dataem = {
     'branchid': this.branchID,
     'functionid':parseInt(this.functionID),
-    'slno':this.sno,
+    'slno':this.sno.toString(),
     'assetid':parseInt(this.urldata.CMD_ASSET_ID),
     'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
     'assetpmref':parseInt(this.urldata.pmr_reference),
@@ -169,13 +170,14 @@ console.log(this.itemcodein)
 
     if(this.consumecountcheck !='consume'){
     // alert("inserted Successfully");
-    this.presentAlert("Success", "inserted Successfully");
+    this.presentAlert("Success", "Successfully Saved");
    this.sparerecord = resp;
     console.log(this.sparerecord);
     this.sno='';
-    this.materialcode='';
+    this.materialcode="<< Select >>";
     this.materialdescp='';
     this.quantity='';
+    this.doi='dd/MM/YYYY';
    // $scope.spares.doi='';
 
 
@@ -196,6 +198,7 @@ this.presentAlert("Alert", "Already added a consumables");
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
+      cssClass: 'Cssbutton',
       backdropDismiss:false,
       message: tittle,
       buttons: ['OK']
@@ -287,8 +290,13 @@ this.presentAlert("Alert", "Already added a consumables");
   });
   }
 
-  async editItems(data, index) {
 
+
+  
+
+
+  async editItems(data, index) {
+debugger;
     console.log(data);
     console.log(index)
     this.sno = data.serialno;
@@ -298,6 +306,7 @@ this.presentAlert("Alert", "Already added a consumables");
   this.doi1=data.CAMS_ASSET_INSTALLATION_DATE.split('/');
   console.log(this.doi1);
   data.doi=new Date(this.doi1[2]+'/'+this.doi1[1]+'/'+this.doi1[0]);
+
     const modal = await this.modalController.create({
       component: SpareUsedUpdatePage,
       componentProps: {
