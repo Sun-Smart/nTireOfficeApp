@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
 @Component({
@@ -12,11 +12,12 @@ import { IpaddressService } from 'src/app/service/ipaddress.service';
   providers: [DatePipe]
 })
 export class PurchaseRequestPage implements OnInit {
-  showlineItems: boolean = true
-  showviewlist: boolean = false
-  showfilter: boolean = true
-  release: boolean = false
-  getlistitems: any
+  showlineItems: boolean = true;
+  showviewlist: boolean = false;
+  showfilter: boolean = true;
+  release: boolean = false;
+  loading: boolean = false;
+  getlistitems: any;
   expenseArray = [];
   getresponse = [];
   getdataitem = [];
@@ -95,7 +96,7 @@ filter : boolean = true;
   newitem: any;
 
 
-  constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
+  constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController : LoadingController ) {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
 // this.getParamID = localStorage.getItem('id');
@@ -243,6 +244,7 @@ filter : boolean = true;
     // this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
     this.requestby = localStorage.getItem('TUM_USER_NAME')
+    this.loading = true;
   }
 
 
@@ -267,7 +269,6 @@ filter : boolean = true;
       message: tittle,
       buttons: ['OK']
     });
-
     await alert.present();
   }
 
@@ -276,8 +277,14 @@ filter : boolean = true;
     if(this.release == false){
       this.additemsbtn=false;
       this.showcancel = false;
-
     }
+
+    if(this.release == true)
+    {
+      this.release = false;
+    }
+
+
     // if (this.status == "N") {
     //   if (this.release == false) {
     //     this.showsubmit = true
@@ -320,9 +327,15 @@ filter : boolean = true;
     });
   }
 
+  cancel()
+    {
+      // return this.modalController.dismiss(null, 'cancel');
+      this.router.navigate(['/prsstatus']);
+      this.filter = true;
+    }
+
   getItems(event: any) {
     console.log(this.Category);
-
     let items = this.Category;
 let data=event.target.value
     if (data == "") {
@@ -406,8 +419,6 @@ let data=event.target.value
         this.getorder1.forEach(element => {
           this.getdata.push(element)
           console.log(this.getdata);
-
-
         })
       })
     }
@@ -422,8 +433,6 @@ let data=event.target.value
         this.netprice = "",
         this.Requiredbefore = "",
         this.itemdescription = ""
-
-
     }
     if (getcategory == "undefined") {
       this.hideitem = false;
@@ -606,9 +615,9 @@ itemcode: this.splititemcode,
               flag: "I"
             })
           }
-          else{
-            this.presentAlert("add item failed", 'Item Added Successfully!');
-          }
+          // else{
+          //   this.presentAlert("add item failed", 'Item Added Successfully!');
+          // }
         }
       }
       }
@@ -673,8 +682,6 @@ this.showlineItems!=true;
       this.qty = this.getitemdetails[J].rEQUIRED_QTY,
       this.itemdescription = this.getitemdetails[J].iTEM_SHORT_DESC
 
-
-
     // this.setitemcode = resp.itemDetails[i].iTEM_CODE;
     // this.setredqty = resp.itemDetails[i].rEQUIRED_QTY;
     // this.setexpcost = resp.itemDetails[i].eXPECTED_COST;
@@ -683,8 +690,8 @@ this.showlineItems!=true;
     // this.setunitprice = resp.itemDetails[i].uNIT_PRICE;
     // this.setcategorydes = resp.itemDetails[i].cATEGORY;
     // this.getshort = resp.itemDetails[i].iTEM_SHORT_DESC;
-
   }
+
   async clear() {
     const alert = await this.alertController.create({
       header: 'Confirm',
@@ -692,7 +699,7 @@ this.showlineItems!=true;
       buttons: [
         {
           text: 'No',
-          role: 'cancel',
+          role: 'Cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
@@ -878,9 +885,25 @@ this.showlineItems!=true;
 //       this.splitres=res.split(":")
 // this.prscode=this.splitres[1]
 //       console.log("split",  this.splitres);
-
-      // this.router.navigate(['/prsstatus'])
+this.loading = true;
+      this.router.navigate(['/prsstatus'])
     })
   }
   }
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 500,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+    });
+    return await loading.present();
+  }
+
+  async loadingdismiss() {
+    return await this.loadingController.dismiss();
+  }
+
 }

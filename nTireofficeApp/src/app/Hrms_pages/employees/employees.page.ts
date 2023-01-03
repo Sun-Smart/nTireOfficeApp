@@ -259,11 +259,10 @@ export class EmployeesPage implements OnInit {
       message: 'Please wait...',
       translucent: true,
       cssClass: 'custom-class custom-loading',
-
-
     });
     return await loading.present();
   }
+
   async loadingdismiss() {
 
     return await this.loadingController.dismiss();

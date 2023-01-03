@@ -2,7 +2,7 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class PRSstatusPage implements OnInit {
   expression: boolean = true
   getresponse: any;
   prscode: String;
-  status: String;
+  status: any;
   todate: any;
   fromdate: any;
   editprs: boolean = false;
@@ -31,21 +31,24 @@ export class PRSstatusPage implements OnInit {
   arrayvalue: any=[];
   prscoderes: any;
   array: any;
-  constructor(private router: Router, private alertController: AlertController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
+  constructor(private router: Router, private alertController: AlertController, public loadingController: LoadingController, private Ipaddressservice: IpaddressService, private httpclient: HttpClient) {
 
   }
 
   ngOnInit() {
     this.Branchname = localStorage.getItem('TUM_BRANCH_CODE');
     this.getCards();
+
   }
 
   togglefilter() {
     this.showfilter = !this.showfilter;
   }
+
   next() {
     this.router.navigate(['/purchase-request'])
   }
+
   async presentAlert(heading, tittle) {
     var alert = await this.alertController.create({
       header: heading,
@@ -54,8 +57,6 @@ export class PRSstatusPage implements OnInit {
       message: tittle,
       buttons: ['OK']
     });
-
-
     await alert.present();
   }
 
@@ -154,20 +155,23 @@ export class PRSstatusPage implements OnInit {
 
     await alert.present();
   }
-  getVal(item: string) {
+  getVal(item: any) {
     console.log(item);
   }
 
 
 getCards(){
+  debugger;
+  this.loading = true;
+    this.presentLoadingWithOptions();
   var body = {
     "functionid": "1",
     "branchid": "1",
-    "prscode":null,
-    "fromdate": null,
-    "todate": null,
+    "prscode":"",
+    "fromdate": "",
+    "todate": "",
     "reuestdate": "",
-    "status": "P",
+    "status": "",
     "currentstatus": "",
     "reqtype": "",
     "menuid": "",
@@ -175,7 +179,7 @@ getCards(){
     "requser": "",
     "userid": "",
     "alphaname": "",
-    "sortexpression": "PRS_CODE",
+    "sortexpression": "PRS_ID",
     "qutype": "",
     "prsref": "",
     "pageindex1": 1,
@@ -201,6 +205,7 @@ getCards(){
       this.showdeledit = false
     }
   })
+
 }
 
 async presentAlert1(heading, tittle) {
@@ -272,18 +277,17 @@ async presentAlert1(heading, tittle) {
       "requser": "",
       "userid": "",
       "alphaname": "",
-      "sortexpression": "PRS_CODE",
+      "sortexpression": "PRS_ID",
       "qutype": "",
       "prsref": "",
       "pageindex1": 1,
       "pagesize1": 10
-
     };
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
-      this.loading = false
+      this.loading = false;
       this.getresponse = res;
       if(this.getresponse == null) {
-        this.noRecord = true;
+      this.noRecord = true;
       }
 
       console.log("Response", res)
@@ -300,10 +304,9 @@ async presentAlert1(heading, tittle) {
               this.presentAlert1("add item failed", 'No Data Found!');
             }
           }
-
         }
       }else{
-        this.presentAlert1("add item failed", 'Invalid PRSCODE!');
+        this.presentAlert1("add item failed", 'No Data Found!');
       }
 
       //   this.arrayvalue.push(element)
@@ -317,12 +320,6 @@ async presentAlert1(heading, tittle) {
       // }
 
       //  console.log(this.array,"this.array");
-
-
-
-
-
-
 
       console.log(res.status)
       if (res.status == "d" || res.status == "D") {
@@ -390,5 +387,22 @@ keyUpChecker(ev) {
   this.prscode = elementChecker.slice(0, -1);
   }
   }
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 500,
+      message: 'Please wait...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading',
+    });
+    return await loading.present();
+  }
+
+  async loadingdismiss() {
+
+    return await this.loadingController.dismiss();
+  }
+
 
 }

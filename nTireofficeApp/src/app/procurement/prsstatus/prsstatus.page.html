@@ -50,19 +50,19 @@
           <ion-label class="plabel">Status</ion-label>
           <select style="padding: 10px;"[(ngModel)]="status" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option value="0"> Select </option>
+            <option value="0">Select</option>
             <option value="N">New</option>
             <option value="P">Pending</option>
             <option value="A">Approved</option>
             <option value="D">Denied</option>
             <option value="U">Under Process</option>
-            <option value="C">Cancelled</option> 
+            <option value="C">Cancelled</option>
             <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
           </select>
         </ion-col>
         <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select style="padding: 10px;" [(ngModel)]="status" 
+          <select style="padding: 10px;" [(ngModel)]="status"
           (change)="getVal($event.target.value)" style="display:inline-block;padding: 8px; color: black;
           font-weight: bold;"
             class="Input-text-field textareaField">
@@ -91,14 +91,11 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
-
+  <ion-spinner *ngIf="loading"></ion-spinner>
 
   <p *ngIf="loading" class="totalCount">Please Wait..</p>
 
-  <div *ngIf="noRecord" style="text-align: center; color: black; font-weight: bold;">
-    No record found
-  </div>
+  <!-- <div *ngIf="noRecord" style="text-align: center; color: black; font-weight: bold;">No record found</div> -->
 
   <ion-card style="width: -webkit-fill-available;" *ngIf="showviewlist">
     <!-- <ion-card-header class="card_header">
@@ -114,16 +111,11 @@
             <ion-icon style="color: red;" name="trash-outline"></ion-icon>
           </ion-label>
         </ion-col>
-
-
-
-
       </ion-row>
     </ion-card-header> -->
   </ion-card>
- 
+
   <ion-card *ngFor="let item of getresponse">
-  
     <ion-card-content class="card_content" >
       <ion-card-header class="card_header">
         <ion-row>

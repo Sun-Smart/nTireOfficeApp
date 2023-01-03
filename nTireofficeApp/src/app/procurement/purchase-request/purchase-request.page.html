@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button (click)="cancel()" >
+        <ion-menu-button></ion-menu-button>
+        <!-- <ion-icon slot="start" name="arrow-back" style="color:white;"></ion-icon> -->
+      </ion-button>
     </ion-buttons>
     <ion-title>Purchase Request</ion-title>
   </ion-toolbar>
@@ -133,7 +136,7 @@
 
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
             <ion-label>
-              <ion-icon (click)="edit(i)" style="color: green;" name="create-outline"></ion-icon>
+              <ion-icon (click)="edit(i)"  style="color: green;" name="create-outline"></ion-icon>
             </ion-label>
           </ion-col>
 
@@ -353,7 +356,7 @@
 
           <!-- <ion-col  size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
               <ion-button class ="ion-color-success" expand="block"><ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Item</ion-button>
-            </ion-col> -->
+          </ion-col> -->
         </ion-row>
       </ion-grid>
       <!-- </ion-card> -->
