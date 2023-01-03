@@ -120,7 +120,7 @@
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col size="8">
-            <ion-label class="plabel" style="color:white ;">{{item.ITEM_DETAILED_DESCRIPTION}} </ion-label>
+            <ion-label class="plabel" style="color:white ;">{{item.PRS_CODE}} </ion-label>
           </ion-col>
           <ion-col size="4" *ngIf="showdeledit">
             <ion-label class="card_header_text">
@@ -136,23 +136,23 @@
           </ion-col>
         </ion-row>
       </ion-card-header>
-      <ion-row>
+      <!-- <ion-row>
         <ion-col size="6">
           <ion-label class="card_content_label labelHead-text">PRS Code</ion-label>
         </ion-col>
         <ion-col size="6">
           <ion-label class="labelData-text">: {{ item.PRS_CODE||"-"}}</ion-label>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
 
-      <ion-row>
+      <!-- <ion-row>
         <ion-col size="6">
           <ion-label class="card_content_label labelHead-text">Item Code</ion-label>
         </ion-col>
         <ion-col size="6">
           <ion-label class="labelData-text">: {{item.item_Code||"-"}}</ion-label>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
 
       <!-- <ion-row>
       <ion-col size="6">
@@ -167,10 +167,10 @@
 
       <ion-row>
         <ion-col size="6">
-          <ion-label class="card_content_label labelHead-text">Requisition Date </ion-label>
+          <ion-label class="card_content_label labelHead-text">PRS Date </ion-label>
         </ion-col>
         <ion-col size="6">
-          <ion-label class="labelData-text">: {{item.REQUESTED_DATE||"-"}}</ion-label>
+          <ion-label class="labelData-text">: {{item.LST_UPD_ON||"-"}}</ion-label>
         </ion-col>
       </ion-row>
 
@@ -200,6 +200,24 @@
         </ion-col>
         <ion-col size="6">
           <ion-label class="labelData-text">: {{item.CURRENT_STATUS}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Order Priority </ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">: {{item.}}</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="card_content_label labelHead-text">Reason for Purchase </ion-label>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="labelData-text">: {{item.REASON_PURCHASE}}</ion-label>
         </ion-col>
       </ion-row>
     </ion-card-content>
