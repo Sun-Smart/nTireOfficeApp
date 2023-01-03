@@ -632,21 +632,21 @@ orderpriority() {
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 2);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+      this.Requiredbefore = this.datePipe.transform(getdate, "yyyy-MM-dd");
     }
     if (this.order == "1") //critical
     {
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 1);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+      this.Requiredbefore = this.datePipe.transform(getdate, "yyyy-MM-dd");
     }
     if (this.order == "3") //high
     {
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 3);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+      this.Requiredbefore = this.datePipe.transform(getdate, "yyyy-MM-dd");
 
     }
     if (this.order == "4") //medium
@@ -654,11 +654,11 @@ orderpriority() {
       let getdate = new Date();
       getdate.setDate(getdate.getDate() + 4);
       console.log(getdate);
-      this.Requiredbefore = this.datePipe.transform(getdate, 'yyyy-MM-dd');
+      this.Requiredbefore = this.datePipe.transform(getdate, "yyyy-MM-dd");
 
     }
     let getdate = new Date();
-    this.prsdate = this.datePipe.transform(getdate, 'dd/MM/yyyy');
+    this.prsdate = this.datePipe.transform(getdate, "yyyy-MM-dd");
   }
 
   delete(i) {
