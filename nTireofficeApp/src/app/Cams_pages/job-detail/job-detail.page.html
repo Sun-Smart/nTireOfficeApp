@@ -44,7 +44,7 @@
 
               <ion-col size="6">
                 <ion-label class="labelHead-text">Start Date</ion-label>
-                <ion-label class="labelData-text">{{start| date:'dd/MM/yyyy'}}</ion-label>
+                <ion-label class="labelData-text">{{this.startDate}}</ion-label>
               </ion-col>
 
               <ion-col size="6">
@@ -108,7 +108,7 @@
 
                 <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
                 <ion-label>End Date<span style="color:red;margin-left: 5px;">*</span></ion-label>
-                <ion-input type="date" class="form-control" [(ngModel)]="endDate" [min]="today1">
+                <ion-input type="date" class="form-control" [(ngModel)]="endDate" [min]="today1" >
                   <!-- <ion-icon name="calendar" style="padding: 5px;"></ion-icon> -->
                 </ion-input>
               </ion-col>
@@ -124,7 +124,7 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label>Task Done By</ion-label>
             <ion-input style="background-color: #d4d4d4!important;" class="form-control"
-              [(ngModel)]="loginuser"></ion-input>
+              [(ngModel)]="loginuser" disabled="true"></ion-input>
         </ion-col>
 
               <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">

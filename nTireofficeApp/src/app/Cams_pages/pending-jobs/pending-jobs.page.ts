@@ -65,7 +65,7 @@ export class PendingJobsPage implements OnInit {
 
     this.fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
     this.todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
-    this.Realease_status = "P";
+    this.Realease_status = "<< Select >>";
     this.jobs = "<< Select >>";
     this.category = "<< Select >>";
     this.subCategory = "<< Select >>";
@@ -185,7 +185,7 @@ else if (this.fromdate > todate) {
     header.append("Content-Type", "application/json");
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'Pendingsearchs11?strfunction=' + this.funtionID + '&branch=' + this.branch_ID + '&fdate=null&tdate=null&Status=P&strUserId=' + this.userID + '&UserType=' + this.usertype + '&drpcategory=null&drptype=null&TASKTYPE=MT&AssetCode=null', {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceurlCams + 'Pendingsearchs11?strfunction=' + this.funtionID + '&branch=' + this.branch_ID + '&fdate=null&tdate=null&Status=null&strUserId=' + this.userID + '&UserType=' + this.usertype + '&drpcategory=null&drptype=null&TASKTYPE=MT&AssetCode=null', {
       // Pendingsearchs11?strfunction=1&branch
       // =1&fdate=28-01-2018&tdate=28-09-2022&Status=Pending&strUserId=193&UserType=11
       // &drpcategory=null&drptype=6&TASKTYPE=84&AssetCode=MT
@@ -284,6 +284,7 @@ else if (this.fromdate > todate) {
         console.log(this.responseData);
         this.responseDatalength = this.responseData.length;
         this.branch1 = this.responseData[0].Branch;
+        this.Realease_status = this.Realease_status;
       }
 
     }, error => {
@@ -518,6 +519,7 @@ else if (this.fromdate > todate) {
   }
 
   pendingtab(item) {
+    debugger;
     console.log(item)
     this.Tabparams.data = item;
     this.router.navigate(['/pending-jobs-tabs', {

@@ -226,14 +226,15 @@ export class AssetTransferPage implements OnInit {
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assettransferfrombranch', datafb, {
         headers: options,
-      }).subscribe(resp => {
+      }).subscribe((resp: any) => {
         console.log(resp);
+
         this.arr = resp;
 
         if (this.arr == "norecord") {
 
           this.presentAlert1
-          ("Alert", "No Data Found");
+            ("Alert", "No Data Found");
           this.detailfrombranch = '';
           this.assetcode = '';
         } else {
@@ -507,14 +508,15 @@ export class AssetTransferPage implements OnInit {
       let options = new HttpHeaders().set('Content-Type', 'application/json');
       this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assettransferfrombranchnew', datafbi, {
         headers: options,
-      }).subscribe(resp => {
+      }).subscribe((resp: any) => {
         debugger;
         console.log(resp);
         this.arri = resp;
-debugger;
-
+        debugger;
+        if (resp.Result == 'This Asset Already Transferred  ') {
+          this.presentAlert1("Alert", "This Asset Already Transferred");
+        }
         if (this.arri == "norecord") {
-
           this.presentAlert("Alert", "No Data Found");
           this.detailfrombranchi = '';
           this.detailassetdecpi = '';

@@ -174,7 +174,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.commonapi_sales = 'https://demo.herbieai.com/Testntiremydesk/Uploaddocu/SSTPL/';
     this.penleadfilter.branchid = window.localStorage['id'];
     this.penleadfilter.TCC_CUSTOMER_ID = 0;
-    this.penleadfilter.TCC_CUST_LEAD_ID ="";
+    this.penleadfilter.TCC_CUST_LEAD_ID = "";
     this.username = localStorage.getItem('TUM_USER_NAME');
     this.penleadfilter.CUST_LNAME = '';
     this.penleadfilter.MOBILE = '';
@@ -452,7 +452,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     this.penleadfilter.TCC_LEAD_RATING = "";
     this.user_type_val = "";
     this.penleadfilter.TCC_LEAD_BY = "";
-    this.penleadfilter.TCC_CUST_LEAD_ID ="";
+    this.penleadfilter.TCC_CUST_LEAD_ID = "";
 
 
     if (this.userTypedesc == "administrator") {
@@ -606,7 +606,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         RATING: "",
         LEADBY: "",
 
-        branchid:parseInt(window.localStorage['id']),
+        branchid: parseInt(window.localStorage['id']),
         Name: "", CAMPAIGNNAME: "",
         CUST_FNAME: this.penleadfilter.CUST_LNAME,
         CUST_LNAME: this.penleadfilter.CUST_LNAME,
@@ -619,7 +619,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
         TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
         TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
         TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-        TCC_CUST_LEAD_ID: String(this.TCC_CUSTOME_RIDs)||"" ,
+        TCC_CUST_LEAD_ID: String(this.TCC_CUSTOME_RIDs) || "",
         TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
         BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
@@ -791,7 +791,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
     localStorage.setItem('setbranchid', this.getbranchid)
 
 
-    console.log(this.penleadfilter.TCC_CUST_LEAD_ID,"sddgyi")
+    console.log(this.penleadfilter.TCC_CUST_LEAD_ID, "sddgyi")
 
     var tmpPendJson = {
       user_id: user_id_nw,
@@ -817,7 +817,7 @@ export class PendingleadsPage implements OnInit, OnDestroy {
       TCC_LEAD_PRIORITY: this.penleadfilter.TCC_LEAD_PRIORITY.toString(),
       TCC_LEAD_RATING: this.penleadfilter.TCC_LEAD_RATING.toString(),
       TCM_CAMPAIGN_SHORTDESC: this.penleadfilter.TCM_CAMPAIGN_SHORTDESC,
-      TCC_CUST_LEAD_ID: String(this.TCC_CUSTOME_RIDs ||""),
+      TCC_CUST_LEAD_ID: String(this.TCC_CUSTOME_RIDs || ""),
       TCC_CUSTOMER_ID: parseInt(window.localStorage['setcustid']),
       BRANCH_ID: parseInt(window.localStorage['setbranchid']),
 
@@ -1321,12 +1321,6 @@ export class PendingleadsPage implements OnInit, OnDestroy {
 
 
       });
-
-
-
-
-
-
       return false;
     }
 
