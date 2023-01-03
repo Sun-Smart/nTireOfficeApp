@@ -23,7 +23,7 @@ export class PurchaseRequestPage implements OnInit {
   getdataitem = [];
   itemNew: any;
   prsdate: any;
-filter : boolean = true;
+  filter: boolean = true;
   userid
   branchid
   hideitem: boolean = false;
@@ -44,9 +44,9 @@ filter : boolean = true;
 
   Description
   Item
-  Category : any;
+  Category: any;
   qty;
-  additemsbtn:boolean=true;
+  additemsbtn: boolean = true;
   unitprice;
   Requiredbefore
   netprice;
@@ -87,19 +87,19 @@ filter : boolean = true;
   // release
   itemCategory;
   itemsubcategory;
-  itemdes: any=[];
+  itemdes: any = [];
   splititemcode: any;
   userID: string;
   splitres: any;
   showqty: boolean;
-  duplicatePushArray: any=[];
+  duplicatePushArray: any = [];
   newitem: any;
 
 
-  constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController : LoadingController ) {
+  constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController: LoadingController) {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
-// this.getParamID = localStorage.getItem('id');
+    // this.getParamID = localStorage.getItem('id');
 
     if (this.getParamID != null) {
       console.log(this.getParamID)
@@ -190,7 +190,7 @@ filter : boolean = true;
             expected_cost: this.setexpcost,
             exp_date: this.setexpdate,
             status: "P",
-            created_by:  this.userID ,
+            created_by: this.userID,
             ipaddress: "",
             unit_price: this.setunitprice,
             Limit: "",
@@ -225,12 +225,11 @@ filter : boolean = true;
   }
   ngOnInit() {
 
-    if(this.getcategory == "")
-    {
+    if (this.getcategory == "") {
       this.getcategory = undefined
     }
 
-        // this.Itemcode = '';
+    // this.Itemcode = '';
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getOrderPriority").subscribe((resp: any) => {
       this.getorder1 = resp;
       this.getorder1.forEach(element => {
@@ -274,13 +273,12 @@ filter : boolean = true;
 
   checkbox() {
     console.log(this.release)
-    if(this.release == false){
-      this.additemsbtn=false;
+    if (this.release == false) {
+      this.additemsbtn = false;
       this.showcancel = false;
     }
 
-    if(this.release == true)
-    {
+    if (this.release == true) {
       this.release = false;
     }
 
@@ -308,7 +306,7 @@ filter : boolean = true;
     console.log(itemcode)
     const myArray = itemcode.split("-");
     console.log(myArray);
-    this.splititemcode=myArray[0]
+    this.splititemcode = myArray[0]
     // console.log("ee",this.splititemcode);
 
     this.isItemAvailable = false;
@@ -322,54 +320,53 @@ filter : boolean = true;
         this.unitprice = this.getitemdata[0].Price
       this.itemdescription = this.getitemdata[0].item_long_desc,
         this.getitemid = this.getitemdata[0].item_id
-        this.itemCategory = this.getitemdata[0].itemCategory,
+      this.itemCategory = this.getitemdata[0].itemCategory,
         this.itemsubcategory = this.getitemdata[0].itemSubCategory
     });
   }
 
-  cancel()
-    {
-      // return this.modalController.dismiss(null, 'cancel');
-      this.router.navigate(['/prsstatus']);
-      this.filter = true;
-    }
+  cancel() {
+    // return this.modalController.dismiss(null, 'cancel');
+    this.router.navigate(['/prsstatus']);
+    this.filter = true;
+  }
 
   getItems(event: any) {
     console.log(this.Category);
     let items = this.Category;
-let data=event.target.value
+    let data = event.target.value
     if (data == "") {
       this.getdataitem = [];
       this.isItemAvailable = false;
-      this.Description=''
-      this.unitprice=''
-      this.netprice=''
-      this.qty=''
-      this.itemdescription=''
+      this.Description = ''
+      this.unitprice = ''
+      this.netprice = ''
+      this.qty = ''
+      this.itemdescription = ''
     }
-    else{
-      this.netprice='0';
+    else {
+      this.netprice = '0';
     }
 
     this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "getItemcode" + '/' + data).subscribe((resp: any) => {
       console.log(resp)
       this.getdata1 = resp;
-      this.getdataitem=[]
+      this.getdataitem = []
       // this.itemNew = this.getdata1;
       // this.getorder1.forEach(element => {
       //   this.getdata.push(element)
       console.log(this.getdata1);
 
-      if(this.getdata1!="No data found"){
-      for (var i = 0; i < this.getdata1.length; i++) {
-        // this.getdataitem.push({ id: this.getdata1[i].item_Code, desc: this.getdata1[i].item_id });
-        this.getdataitem.push(this.getdata1[i].itemdetails,);
+      if (this.getdata1 != "No data found") {
+        for (var i = 0; i < this.getdata1.length; i++) {
+          // this.getdataitem.push({ id: this.getdata1[i].item_Code, desc: this.getdata1[i].item_id });
+          this.getdataitem.push(this.getdata1[i].itemdetails,);
 
-        // console.log("itemdes", this.itemdes);
+          // console.log("itemdes", this.itemdes);
+        }
+      } else {
+        this.getdataitem = []
       }
-    }else{
-      this.getdataitem=[]
-    }
       console.log(this.getdataitem);
       const val = event.target.value;
       // if the value is an empty string don't filter the items
@@ -382,23 +379,23 @@ let data=event.target.value
       }
     })
   }
-  qtymethod(){
+  qtymethod() {
     debugger
-    if(this.qty=='' || this.qty==undefined || this.qty==null){
-      this.showqty=true
-    }else{
-      this.showqty=false
+    if (this.qty == '' || this.qty == undefined || this.qty == null) {
+      this.showqty = true
+    } else {
+      this.showqty = false
     }
   }
 
 
-    getItemDetail(e: any) {
+  getItemDetail(e: any) {
 
     this.showsavebtn = true
-    if(this.qty=='' || this.qty==undefined || this.qty==null){
-      this.showqty=true
-    }else{
-      this.showqty=false
+    if (this.qty == '' || this.qty == undefined || this.qty == null) {
+      this.showqty = true
+    } else {
+      this.showqty = false
     }
     // let dataa = e.target.value
     // console.log(dataa)
@@ -460,122 +457,124 @@ let data=event.target.value
   }
 
   Additems() {
-      this.showlineItems = !this.showlineItems
-      this.showbtn = false;
-      this.filter = false;
-      this.itemcode = "",
+    this.showlineItems = !this.showlineItems;
+    this.showbtn = false;
+    this.filter = false;
+    this.itemcode = "",
       this.Description = "",
       this.unitprice = "",
       this.netprice = "",
       this.qty = "",
       this.itemdescription = "",
-      this.Category = undefined,
-      this.Requiredbefore ="",
+      this.Requiredbefore = "",
       this.showsavebtn = true;
+      this.Category == undefined
+      this.Category=""
+
+    if (this.Category == "undefined"|| this.Category == undefined || this.Category == "") {
+      this.hideitem = false;
+    }
   }
 
-  new()
-  {
+  new() {
     this.filter = false;
   }
 
   showline() {  //submit btn
     debugger;
-        if(this.itemcode ==""|| this.itemcode=="undefined" || this.itemcode==null){
-      this.presentAlert1("add item failed",'Please Enter Item Code');
-    }else if(this.qty==""|| this.qty=="undefined" || this.qty==null){
-      this.presentAlert1("add item failed",'Please Enter Quantity');
-    }else  if(this.Requiredbefore==""|| this.Requiredbefore=="undefined" || this.Requiredbefore==null){
-      this.presentAlert1("add item failed",'Please Enter  Required Before Date');
+    if (this.itemcode == "" || this.itemcode == "undefined" || this.itemcode == null) {
+      this.presentAlert1("add item failed", 'Please Enter Item Code');
+    } else if (this.qty == "" || this.qty == "undefined" || this.qty == null) {
+      this.presentAlert1("add item failed", 'Please Enter Quantity');
+    } else if (this.Requiredbefore == "" || this.Requiredbefore == "undefined" || this.Requiredbefore == null) {
+      this.presentAlert1("add item failed", 'Please Enter  Required Before Date');
+    }
+    else if (this.Category == "" || this.Category == "undefined" || this.Category == null) {
+      this.presentAlert1("add item failed", 'Please Enter Category');
+    }
+    else if (this.netprice == "" || this.netprice == "undefined" || this.netprice == null) {
+      this.presentAlert1("add item failed", 'Please Enter Net Price');
+    }
+    else if (this.Requiredbefore == "" || this.Requiredbefore == "undefined" || this.Requiredbefore == null) {
+      this.presentAlert1("add item failed", 'Please Enter Required Before Date');
+    }
+
+    else {
+      debugger
+      this.showviewlist = true
+      this.showsubmit = true
+
+      // if (this.status == undefined || this.status == "") {
+      //   this.showsubmit = true
+      // }
+      // if (this.status == "A" || this.status == "P" || this.status == "N") {
+      //   this.showsubmit = false
+      //   this.showcancel = false
+      //   this.showupdate = true
+      // }
+
+      this.showlineItems = false
+      this.showlineItems = !this.showlineItems;
+
+      if (this.Category == "I") {
+        this.getcategory = "Items"
       }
-      else if(this.Category =="" || this.Category == "undefined" || this.Category == null)
-      {
-        this.presentAlert1("add item failed",'Please Enter Category');
+      if (this.Category == "S") {
+        this.getcategory = "Service"
       }
-else if(this.netprice == "" || this.netprice == "undefined" || this.netprice == null)
-{
-  this.presentAlert1("add item failed",'Please Enter Net Price');
-}
-else if(this.Requiredbefore =="" || this.Requiredbefore == "undefined"|| this.Requiredbefore == null)
-{
-  this.presentAlert1("add item failed",'Please Enter Required Before Date');
-}
 
-else{
-  debugger
-    this.showviewlist = true
-    this.showsubmit = true
+      if (this.userid == undefined) {
+        this.userid = this.requestby
+      }
 
-    // if (this.status == undefined || this.status == "") {
-    //   this.showsubmit = true
-    // }
-    // if (this.status == "A" || this.status == "P" || this.status == "N") {
-    //   this.showsubmit = false
-    //   this.showcancel = false
-    //   this.showupdate = true
-    // }
+      // this.newitem=new Set(this.expenseArray)
+      // console.log(this.newitem);
+      if (this.expenseArray.length == 0) {
+        debugger;
+        this.expenseArray.push({
+          prsid: "",
+          itemid: this.getitemid,
+          i_function_id: "1",
+          required_qty: this.qty.toString(),
+          UOM: "15",
+          expected_cost: this.netprice,
+          exp_date: this.Requiredbefore,
+          status: "P",
+          created_by: this.userID,
+          ipaddress: "",
+          unit_price: this.unitprice,
+          Limit: "",
+          Availlimit: "",
+          BalanceLimit: "",
+          CATEGORY: this.getcategory,
+          TAX1: "",
+          TAX2: "",
+          TAX1DESC: "",
+          TAX2DESC: "",
+          OTHERCHARGES: "",
+          itemcode: this.splititemcode,
+          item_short_desc: this.Description,
+          item_long_desc: this.itemdescription,
+          REMARKS: this.Description,
+          CategoryID: this.itemCategory,
+          SubCategoryID: this.itemsubcategory,
+          prsDetailID: "",
+          FreightVALUE: "",
+          FreightID: "",
+          RecoveryVALUE: "",
+          RecoveryID: "",
+          BDC: "",
 
-    this.showlineItems = false
-    this.showlineItems = !this.showlineItems;
+          PTM: "",
+          ACC: "",
+          CPC: "",
+          flag: "I"
+        })
 
-    if (this.Category == "I") {
-      this.getcategory = "Items"
-    }
-    if (this.Category == "S") {
-      this.getcategory = "Service"
-    }
-
-    if (this.userid == undefined) {
-      this.userid = this.requestby
-    }
-
-// this.newitem=new Set(this.expenseArray)
-// console.log(this.newitem);
-if(this.expenseArray.length==0){
-  debugger;
-  this.expenseArray.push({
-    prsid: "",
-    itemid: this.getitemid,
-    i_function_id: "1",
-    required_qty: this.qty.toString(),
-    UOM: "15",
-    expected_cost: this.netprice,
-    exp_date: this.Requiredbefore,
-    status: "P",
-    created_by:  this.userID ,
-    ipaddress: "",
-    unit_price: this.unitprice,
-    Limit: "",
-    Availlimit: "",
-    BalanceLimit: "",
-    CATEGORY: this.getcategory,
-    TAX1: "",
-    TAX2: "",
-    TAX1DESC: "",
-    TAX2DESC: "",
-    OTHERCHARGES: "",
-itemcode: this.splititemcode,
-    item_short_desc: this.Description,
-    item_long_desc: this.itemdescription,
-    REMARKS: this.Description,
-    CategoryID:this.itemCategory,
-    SubCategoryID: this.itemsubcategory,
-    prsDetailID: "",
-    FreightVALUE: "",
-    FreightID: "",
-    RecoveryVALUE: "",
-    RecoveryID: "",
-    BDC: "",
-    PTM: "",
-    ACC: "",
-    CPC: "",
-    flag: "I"
-  })
-
-}else{
-  debugger
-        for(var i = 0; i < this.expenseArray.length ; i++){
-          if(this.expenseArray[i].itemid!=this.getitemid) {
+      } else {
+        debugger
+        for (var i = 0; i < this.expenseArray.length; i++) {
+          if (this.expenseArray[i].itemid != this.getitemid) {
             this.expenseArray.push({
               prsid: "",
               itemid: this.getitemid,
@@ -585,7 +584,7 @@ itemcode: this.splititemcode,
               expected_cost: this.netprice,
               exp_date: this.Requiredbefore,
               status: "P",
-              created_by:  this.userID ,
+              created_by: this.userID,
               ipaddress: "",
               unit_price: this.unitprice,
               Limit: "",
@@ -597,11 +596,11 @@ itemcode: this.splititemcode,
               TAX1DESC: "",
               TAX2DESC: "",
               OTHERCHARGES: "",
-        itemcode: this.splititemcode,
+              itemcode: this.splititemcode,
               item_short_desc: this.Description,
               item_long_desc: this.itemdescription,
               REMARKS: this.Description,
-              CategoryID:this.itemCategory,
+              CategoryID: this.itemCategory,
               SubCategoryID: this.itemsubcategory,
               prsDetailID: "",
               FreightVALUE: "",
@@ -620,12 +619,12 @@ itemcode: this.splititemcode,
           // }
         }
       }
-      }
+    }
     console.log(this.expenseArray)
     this.showbtn = true
   }
 
-orderpriority() {
+  orderpriority() {
     console.log(this.order)
     if (this.order == "2") //urjent
     {
@@ -647,7 +646,6 @@ orderpriority() {
       getdate.setDate(getdate.getDate() + 3);
       console.log(getdate);
       this.Requiredbefore = this.datePipe.transform(getdate, "yyyy-MM-dd");
-
     }
     if (this.order == "4") //medium
     {
@@ -663,7 +661,7 @@ orderpriority() {
 
   delete(i) {
     this.expenseArray.splice(i, 1);
-this.showlineItems!=true;
+    this.showlineItems != true;
     this.Additems();
     this.showlineItems == true;
 
@@ -814,81 +812,81 @@ this.showlineItems!=true;
   }
   submit() {
 
-    if(this.prsmode==""|| this.prsmode=="undefined" || this.prsmode==null){
-      this.presentAlert1("add item failed",'Please Enter PRS Mode');
-    }else if(this.reasonpurchase==""|| this.reasonpurchase=="undefined" || this.reasonpurchase==null){
-      this.presentAlert1("add item failed",'Please Enter Reason For Purchase');
+    if (this.prsmode == "" || this.prsmode == "undefined" || this.prsmode == null) {
+      this.presentAlert1("add item failed", 'Please Enter PRS Mode');
+    } else if (this.reasonpurchase == "" || this.reasonpurchase == "undefined" || this.reasonpurchase == null) {
+      this.presentAlert1("add item failed", 'Please Enter Reason For Purchase');
     }
-    else{
+    else {
 
-    if (this.release == true) {
-      this.status = "P"
-    }
-    if (this.release == false) {
-      this.status = "N"
-    }
+      if (this.release == true) {
+        this.status = "P"
+      }
+      if (this.release == false) {
+        this.status = "N"
+      }
 
-    if (this.order == "Urjent") {
-      this.order = "1"
-    }
-    if (this.order == "Critical") {
-      this.order = "2"
-    }
-    if (this.order == "High") {
-      this.order = "3"
-    }
-    if (this.order == "Medium") {
-      this.order = "4"
-    }
+      if (this.order == "Urjent") {
+        this.order = "1"
+      }
+      if (this.order == "Critical") {
+        this.order = "2"
+      }
+      if (this.order == "High") {
+        this.order = "3"
+      }
+      if (this.order == "Medium") {
+        this.order = "4"
+      }
 
-    this.getresponse.push({
-      // "prscategory": this.Category,
-      "prscategory": "I",
-      "functionid": "1",
-      "prsid": "",
-      "prscode": "",
-      "status": this.status,
-      "createdby": this.userID,
-      "ipaddress": "0",
-      "reasonpurchase": this.reasonpurchase,
-      "netamount": this.netprice,
-      "currency": "1",
-      "requestcomments": this.rfpcomments,
-      "isbid": "0",
-      "prstype": "0",
-      "branchid": "1",
-      "prsref": "0",
-      "userid": this.userID,
-      "requestby": this.userID,
-      "requestdate": this.prsdate,
-      "requettype": this.prsmode,
-      "issinglevendor": "0",
-      "orderpriority": this.order,
-      "release": this.release.toString(),
-      "Itemsdetail": this.expenseArray,
-    })
-    // window.location.reload()
-    // this.router.navigate(['/purchase-request'])
-    // this.showviewlist = true
-    // this.showlineItems = !this.showlineItems
-    var body = {
-      prsdetail: this.getresponse,
-      // "Itemsdetail": this.expenseArray,
+      this.getresponse.push({
+        // "prscategory": this.Category,
+        "prscategory": "I",
+        "functionid": "1",
+        "prsid": "",
+        "prscode": "",
+        "status": this.status,
+        "createdby": this.userID,
+        "ipaddress": "0",
+        "reasonpurchase": this.reasonpurchase,
+        "netamount": this.netprice,
+        "currency": "1",
+        "requestcomments": this.rfpcomments,
+        "isbid": "0",
+        "prstype": "0",
+        "branchid": "1",
+        "prsref": "0",
+        "userid": this.userID,
+        "requestby": this.userID,
+        "requestdate": this.prsdate,
+        "requettype": this.prsmode,
+        "issinglevendor": "0",
+        "orderpriority": this.order,
+        "release": this.release.toString(),
+        "Itemsdetail": this.expenseArray,
+      })
+      // window.location.reload()
+      // this.router.navigate(['/purchase-request'])
+      // this.showviewlist = true
+      // this.showlineItems = !this.showlineItems
+      var body = {
+        prsdetail: this.getresponse,
+        // "Itemsdetail": this.expenseArray,
+      }
+      let options = new HttpHeaders().set('Content-Type', 'application/json')
+      this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body, {
+        headers: options, responseType: 'text'
+      }).subscribe((res: any) => {
+        this.getresponse = res;
+        // this.presentAlert("", "RFQ 345/AT Raised Successfully");
+        this.presentAlert("", this.getresponse);
+        //       this.splitres=res.split(":")
+        // this.prscode=this.splitres[1]
+        //       console.log("split",  this.splitres);
+        this.loading = true;
+        this.router.navigate(['/prsstatus'])
+      })
     }
-    let options = new HttpHeaders().set('Content-Type', 'application/json')
-    this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body, {
-      headers: options, responseType: 'text'
-    }).subscribe((res: any) => {
-      this.getresponse = res;
-      // this.presentAlert("", "RFQ 345/AT Raised Successfully");
-      this.presentAlert("", this.getresponse);
-//       this.splitres=res.split(":")
-// this.prscode=this.splitres[1]
-//       console.log("split",  this.splitres);
-this.loading = true;
-      this.router.navigate(['/prsstatus'])
-    })
-  }
   }
 
   async presentLoadingWithOptions() {

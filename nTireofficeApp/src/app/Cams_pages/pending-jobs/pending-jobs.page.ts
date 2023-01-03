@@ -341,6 +341,7 @@ else if (this.fromdate > todate) {
       this.subCategory="<< Select >>";
       this.subCategoryresp = [];
     }
+
     console.log(event)
     const header = new Headers();
     header.append("Content-Type", "application/json");
