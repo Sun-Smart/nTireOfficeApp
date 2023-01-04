@@ -78,6 +78,7 @@ export class PurchaseRequestPage implements OnInit {
   getshort: any;
   setcategorydes: any;
   showupdate: boolean = false
+  showedit:boolean=true
   getprsmode: any;
   getitemdetails: any;
   getprsdetails: any;
@@ -94,6 +95,7 @@ export class PurchaseRequestPage implements OnInit {
   showqty: boolean;
   duplicatePushArray: any = [];
   newitem: any;
+  displayName: any;
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController: LoadingController) {
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -120,7 +122,7 @@ export class PurchaseRequestPage implements OnInit {
         }
         if (resp.prsDetails[0].status == "N" || resp.prsDetails[0].status == "n") {
           this.release = false
-          this.showsubmit = true
+          // this.showsubmit = true
           this.showupdate = true;
           this.showcancel = false
         }
@@ -164,7 +166,7 @@ export class PurchaseRequestPage implements OnInit {
         this.prscode = resp.prsDetails[0].prs_code
         this.prsdate = this.prsdate1
         this.prsmode = resp.prsDetails[0].request_type
-        this.requestby = resp.prsDetails[0].lst_upd_by
+        this.requestby = resp.prsDetails[0].requested_by
         this.reasonpurchase = resp.prsDetails[0].reason_purchase
         this.order = resp.prsDetails[0].pRIORITY
         this.rfpcomments = resp.prsDetails[0].request_comments
@@ -276,10 +278,14 @@ export class PurchaseRequestPage implements OnInit {
     if (this.release == false) {
       this.additemsbtn = false;
       this.showcancel = false;
+      this.showedit=false
     }
 
-    if (this.release == true) {
+   else if (this.release == true) {
       this.release = false;
+      this.showedit=false
+
+
     }
 
 
@@ -466,7 +472,7 @@ export class PurchaseRequestPage implements OnInit {
       this.netprice = "",
       this.qty = "",
       this.itemdescription = "",
-      this.Requiredbefore = "",
+      // this.Requiredbefore = "",
       this.showsavebtn = true;
       this.Category == undefined
       this.Category=""
@@ -662,12 +668,14 @@ export class PurchaseRequestPage implements OnInit {
   delete(i) {
     this.expenseArray.splice(i, 1);
     this.showlineItems != true;
-    this.Additems();
+    this.additemsbtn = true;
     this.showlineItems == true;
-
+    this.showcancel = true;
+this.showsubmit = false;
     // this.showlineItems = true;
     // this.showlineItems = !this.showlineItems;
   }
+
 
   edit(i) {
     console.log(i)
@@ -690,7 +698,7 @@ export class PurchaseRequestPage implements OnInit {
     // this.getshort = resp.itemDetails[i].iTEM_SHORT_DESC;
   }
 
-  async clear() {
+    async clear() {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Clear the Process',
@@ -705,11 +713,13 @@ export class PurchaseRequestPage implements OnInit {
         }, {
           text: 'Yes',
           handler: () => {
-            this.prsmode = ""
-            this.reasonpurchase = ""
+            this.prsmode = "undefined"
+            this.reasonpurchase = "undefined"
             // this.referenceifany = ""
             this.rfpcomments = ""
-            this.order = ""
+            this.order = "undefined"
+            this.prsdate = ""
+            this.prscode = ""
             // this.requestby = ""
             this.expenseArray = []
           }
@@ -729,10 +739,9 @@ export class PurchaseRequestPage implements OnInit {
 
   update() {
 debugger;
-    if (this.release == false) {
-      this.presentAlert1("add item failed", 'Please click Release');
-
-    }
+    // if (this.release == false) {
+      // this.presentAlert1("add item failed", 'Please click Release');
+    // }
     // else if (this.Category = "" || this.Category == "undefined" || this.Category == null) {
     //   this.presentAlert1("add item failed", 'Please Enter add-item Fields');
     // }
@@ -802,11 +811,16 @@ debugger;
       // if (res == "PRSCODE :") {
       //   res = "Successfully updated"
       // }
-      // this.getresponse = res;
+      this.getresponse = res;
+      console.log(res);
 
       this.presentAlert("", "Successfully updated");
-      // this.router.navigate(['/prsstatus'])
+
+       this.router.navigate(['/prsstatus'])
+this.loading = true;
     })
+
+
 
 
   }
@@ -878,6 +892,7 @@ debugger;
         headers: options, responseType: 'text'
       }).subscribe((res: any) => {
         this.getresponse = res;
+        this.displayName = res;
         // this.presentAlert("", "RFQ 345/AT Raised Successfully");
         this.presentAlert("", this.getresponse);
         //       this.splitres=res.split(":")
@@ -885,6 +900,11 @@ debugger;
         //       console.log("split",  this.splitres);
         this.loading = false;
         // this.router.navigate(['/prsstatus'])
+
+var pduedte_array = this.displayName.split(':');
+console.log(pduedte_array[1]);
+this.prscode =pduedte_array[1];
+
       })
     }
   }

@@ -162,7 +162,7 @@ export class PRSstatusPage implements OnInit {
 
 getCards(){
   debugger;
-  this.loading = false;
+  this.loading = true;
     // this.presentLoadingWithOptions();
   var body = {
     "functionid": "1",

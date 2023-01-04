@@ -136,7 +136,7 @@
 
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
             <ion-label>
-              <ion-icon (click)="edit(i)"  style="color: green;" name="create-outline"></ion-icon>
+              <ion-icon *ngIf="showedit" (click)="edit(i)"  style="color: green;" name="create-outline"></ion-icon>
             </ion-label>
           </ion-col>
 
@@ -317,7 +317,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel"> Item Detailed Description</ion-label>
-            <ion-input placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription"
+            <ion-input placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription" (onChange)="desctoitemdesc($event)"
               class="Input-text-field textareaField"
               style=" width:100%;background-color: #d4d4d4!important; color: black; font-weight: bold; height: 70px; display:inline-block;padding: 8px;"
               maxlength="150" required=""></ion-input>
