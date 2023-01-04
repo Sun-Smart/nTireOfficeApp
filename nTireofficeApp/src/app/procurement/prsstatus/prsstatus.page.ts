@@ -162,8 +162,8 @@ export class PRSstatusPage implements OnInit {
 
 getCards(){
   debugger;
-  this.loading = true;
-    this.presentLoadingWithOptions();
+  this.loading = false;
+    // this.presentLoadingWithOptions();
   var body = {
     "functionid": "1",
     "branchid": "1",
@@ -187,7 +187,7 @@ getCards(){
 
   };
   this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_search', body).subscribe((res: any) => {
-    this.loading = false
+    this.loading = false;
     this.getresponse = res;
 
     console.log("Response", res)
@@ -221,7 +221,7 @@ async presentAlert1(heading, tittle) {
 }
 
   Search() {
-    this.loading = true
+    // this.loading = false;
     // console.log(this.prscode)
     // console.log(this.status)
     // console.log(this.todate)

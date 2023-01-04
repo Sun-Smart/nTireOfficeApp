@@ -95,7 +95,6 @@ export class PurchaseRequestPage implements OnInit {
   duplicatePushArray: any = [];
   newitem: any;
 
-
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController: LoadingController) {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
@@ -121,7 +120,7 @@ export class PurchaseRequestPage implements OnInit {
         }
         if (resp.prsDetails[0].status == "N" || resp.prsDetails[0].status == "n") {
           this.release = false
-          // this.showsubmit = true
+          this.showsubmit = true
           this.showupdate = true;
           this.showcancel = false
         }
@@ -222,6 +221,7 @@ export class PurchaseRequestPage implements OnInit {
       })
     }
     // }
+
   }
   ngOnInit() {
 
@@ -243,7 +243,7 @@ export class PurchaseRequestPage implements OnInit {
     // this.prsdate = date;
     this.branchname = localStorage.getItem('TUM_BRANCH_CODE')
     this.requestby = localStorage.getItem('TUM_USER_NAME')
-    this.loading = true;
+    this.loading = false;
   }
 
 
@@ -728,7 +728,7 @@ export class PurchaseRequestPage implements OnInit {
   }
 
   update() {
-
+debugger;
     if (this.release == false) {
       this.presentAlert1("add item failed", 'Please click Release');
 
@@ -883,8 +883,8 @@ export class PurchaseRequestPage implements OnInit {
         //       this.splitres=res.split(":")
         // this.prscode=this.splitres[1]
         //       console.log("split",  this.splitres);
-        this.loading = true;
-        this.router.navigate(['/prsstatus'])
+        this.loading = false;
+        // this.router.navigate(['/prsstatus'])
       })
     }
   }
