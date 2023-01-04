@@ -1,6 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Spares Used</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-grid>
-    <div class="subtabs">Spares Used</div>
+    <!-- <div class="subtabs">Spares Used</div> -->
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset code</ion-label>
@@ -9,7 +17,9 @@
       </ion-col>
     </ion-row>
 
-    <ion-card>
+    <ion-card style="
+    margin: 0 25px 25px 25px;
+">
       <ion-card-header class="card_header">
         <ion-row>
           <ion-col>
@@ -22,7 +32,7 @@
         <ion-row>
           <ion-col size="3">
             <ion-label>S.no :</ion-label>
-            <ion-input type="text" class="form-control" [(ngModel)]="sno"></ion-input>
+            <ion-input type="number" class="form-control" pattern="/\-?\d*\.?\d{1,2}/" [(ngModel)]="sno"></ion-input>
           </ion-col>
 
           <ion-col size="9">

@@ -1,6 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Consumable Used</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-grid>
-    <div class="subtabs">Consumable Used</div>
+    <!-- <div class="subtabs">Consumable Used</div> -->
     <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset code</ion-label>
@@ -144,12 +153,44 @@
 
 
     <ion-card *ngFor="let data of consumerecord; let i = index" style="background-color:#fff">
+      <ion-card-header class="card_header" style="padding: 5px !important;">
+        <ion-row>
+          <ion-col size="7">
+            <ion-label class="card_header_text2">{{data.spare_code}}</ion-label>
+          </ion-col>
+          <ion-col class="card_header_text" size="5" style="background: transparent; text-align: end;">
+            <button ion-button icon-only style="    background: transparent;
+            color: white;">
+              <ion-icon slot="icon-only" name="create" (click)="editItemsc(data,i)"></ion-icon>
+            </button>
+            <button ion-button icon-only style=" background: transparent;
+            color: white;">
+              <ion-icon slot="icon-only" name="close-circle"(click)="deleteItemconsume(data,i)">
+              </ion-icon>
+            </button>
+          </ion-col>
+          <!-- <ion-col  class="card_header_text" size="5" style="background: transparent; text-align: end;">
+              <ion-label>
+                <ion-icon style="color: #fff;" (click)="editItems(data,i)"
+                  name="create"></ion-icon> &nbsp;&nbsp;&nbsp;
+              </ion-label>
+
+
+              <ion-label>
+                <ion-icon style="color: #fff;" (click)="deleteItems(data,i)"
+                  name="close-circle"></ion-icon> &nbsp;&nbsp;&nbsp;
+              </ion-label>
+          </ion-col> -->
+        </ion-row>
+      </ion-card-header>
+      
+      
       <ion-grid style="padding: 0px;">
         <ion-row>
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
             style="background-color: #2e3192!important;color:#fff;padding:12px;">
             {{data.spare_code}}
-          </ion-col>
+          </ion-col> -->
           <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
               style="background-color: #2e3192!important;color:#fff;padding:12px;text-align:right;">
               <ion-button style="--background:none; --background-hover:none;border: none;" (click)="editItemsc(data,i)">
@@ -159,7 +200,7 @@
                 <ion-icon slot="close-circle" name="" color="danger"></ion-icon>
               </ion-button>
             </ion-col> -->
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6"
             style="background-color: hsl(238, 52%, 38%)!important;color:#fff;padding:12px;text-align:right;">
             <button ion-button icon-only style="background-color:hsl(238, 52%, 38%)!important">
               <ion-icon slot="icon-only" name="create" style="color:#fff;" (click)="editItemsc(data,i)"></ion-icon>
@@ -168,7 +209,7 @@
               <ion-icon slot="icon-only" name="close-circle" style="color:#fff;" (click)="deleteItemconsume(data,i)">
               </ion-icon>
             </button>
-          </ion-col>
+          </ion-col> -->
           <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
             Material Description
           </ion-col>

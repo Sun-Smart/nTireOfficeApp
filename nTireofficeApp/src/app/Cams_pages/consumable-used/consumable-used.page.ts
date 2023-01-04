@@ -161,7 +161,7 @@ export class ConsumableUsedPage implements OnInit {
         if(this.consumecountcheck!='spare'){
         // alert("inserted Successfully");
 
-          this.presentAlert1("Sucess","inserted Successfully");
+          this.presentAlert1("Sucess","Successfully Saved");
        this.consumerecord = resp;
         console.log(this.consumerecord);
 

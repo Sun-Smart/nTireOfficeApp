@@ -20,37 +20,37 @@
     <ion-grid style="padding: 0px;">
       <ion-row>
        
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">S.no<span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="text" class="form-control" [(ngModel)]="sno" disabled=""  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;">{{sno}}</ion-input>
+        <ion-col size="12" >
+          <ion-label style="font-weight:bold;display: inline-flex;">S.no<span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="text" class="form-control" [(ngModel)]="sno" disabled=""  style=" background-color: #d4d4d4!important; display:inline-flex;padding: 8px;">{{sno}}</ion-input>
         </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">Material Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-col size="12">
+          <ion-label style="font-weight:bold;display: inline-flex;">Material Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
           
-          <select [(ngModel)]="materialcode" class="form-control" style="width:100%" (change)="matrialdtle(materialcode)" disabled=""  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;">
+          <select [(ngModel)]="materialcode" class="form-control" style="width:100%" (change)="matrialdtle(materialcode)" disabled=""  style=" background-color: #d4d4d4!important; display:inline-flex;padding: 8px;">
             <option>{{materialcode}}</option>
             <!-- <option *ngFor="let item of sparematerialddtl; let i = index" [value]="item.ITEM_CODE">{{item.ITEM_CODE}} -->
             <!-- </option> -->
           </select>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;"> Material Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="text" class="form-control" disabled=""  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;">{{materialdescp}}</ion-input>
+        <ion-col size="12">
+          <ion-label style="font-weight:bold;display: inline-flex;"> Material Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="text" class="form-control" disabled=""  style=" background-color: #d4d4d4!important; display:inline-flex;padding: 8px;">{{materialdescp}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;"> Cost <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="cost" class="form-control" disabled="" style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" >{{cost}}</ion-input>
+        <ion-col size="12">
+          <ion-label style="font-weight:bold;display: inline-flex;"> Cost <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="number" [(ngModel)]="cost" class="form-control" disabled="" style=" background-color: #d4d4d4!important; display:inline-flex;padding: 8px;" >{{cost}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4">  
-          <ion-label style="font-weight:bold;display: block;"> Date Of Installation <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" class="form-control" disabled=""  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;" >{{doi}}</ion-input>
+        <ion-col  size="12">  
+          <ion-label style="font-weight:bold;display: inline-flex;"> Date Of Installation <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" class="form-control" disabled=""  style=" background-color: #d4d4d4!important; display:inline-flex;padding: 8px;" >{{doi}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;"> Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-col  size="12">
+          <ion-label style="font-weight:bold;display: inline-flex;"> Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
           <ion-input type="number" [(ngModel)]="quantity" (change)="spareCostvalidate($event)" class="form-control"></ion-input>
         </ion-col>
 
