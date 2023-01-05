@@ -96,6 +96,7 @@ export class PurchaseRequestPage implements OnInit {
   duplicatePushArray: any = [];
   newitem: any;
   displayName: any;
+  compareItems: any =[];
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController: LoadingController) {
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -173,6 +174,7 @@ export class PurchaseRequestPage implements OnInit {
         this.netprice = resp.prsDetails[0].netamount
         this.prscategory = resp.prsDetails[0].prs_category
         this.setcretedby = resp.prsDetails[0].created_by;
+
         for (let i = 0; i < resp.itemDetails.length; i++) {
           this.setitemcode = resp.itemDetails[i].iTEM_ID;
           this.setredqty = resp.itemDetails[i].rEQUIRED_QTY;
@@ -182,6 +184,8 @@ export class PurchaseRequestPage implements OnInit {
           this.setunitprice = resp.itemDetails[i].uNIT_PRICE;
           this.setcategorydes = resp.itemDetails[i].cATEGORY;
           this.getshort = resp.itemDetails[i].iTEM_SHORT_DESC;
+          this.itemcode = resp.itemDetails[i].iTEM_CODE;
+          console.log(resp.itemDetails[i].iTEM_CODE)
           this.expenseArray.push({
             prsid: this.getprsdetails.prs_id.toString(),
             itemid: this.setitemcode,
@@ -198,6 +202,7 @@ export class PurchaseRequestPage implements OnInit {
             Availlimit: "",
             BalanceLimit: "",
             CATEGORY: this.setcategorydes,
+            itemcode:this.itemcode,
             TAX1: "",
             TAX2: "",
             TAX1DESC: "",
@@ -309,11 +314,24 @@ export class PurchaseRequestPage implements OnInit {
   }
   fetchreconcilation(itemcode: any) {
 
+    debugger;
     console.log(itemcode)
+    this.compareItems.push(itemcode);
+    console.log( this.compareItems,'gadggksjgjk');
+
+// const user = this.compareItems.find((x) => x.itemcode == itemcode)
+
+// if (user) {
+//  console.log('Username already exists');
+// } else {
+//  console.log(user);
+// }
+
+
     const myArray = itemcode.split("-");
     console.log(myArray);
     this.splititemcode = myArray[0]
-    // console.log("ee",this.splititemcode);
+    console.log("ee",this.splititemcode);
 
     this.isItemAvailable = false;
     this.itemcode = itemcode;
@@ -504,6 +522,10 @@ export class PurchaseRequestPage implements OnInit {
     else if (this.Requiredbefore == "" || this.Requiredbefore == "undefined" || this.Requiredbefore == null) {
       this.presentAlert1("add item failed", 'Please Enter Required Before Date');
     }
+    else if (this.itemcode[0] ==this.itemcode[i]) {
+      this.presentAlert1("add item failed", 'tyer');
+    }
+
 
     else {
       debugger
@@ -558,7 +580,7 @@ export class PurchaseRequestPage implements OnInit {
           TAX1DESC: "",
           TAX2DESC: "",
           OTHERCHARGES: "",
-          itemcode: this.splititemcode,
+          itemcode: this.itemcode,
           item_short_desc: this.Description,
           item_long_desc: this.itemdescription,
           REMARKS: this.Description,
@@ -678,16 +700,18 @@ this.showsubmit = false;
 
 
   edit(i) {
-    console.log(i)
+    console.log(i);
+    if(this.release == false)
+    {
     this.showlineItems = !this.showlineItems
     let J = i
-    this.itemcode = this.getitemdetails[J].iTEM_CODE,
+    // this.itemcode = this.getitemdetails[J].iTEM_CODE,
       this.Description = this.getitemdetails[J].iTEM_SHORT_DESC,
       this.unitprice = this.getitemdetails[J].uNIT_PRICE,
       // this.netprice = this.getitemdetails[J].iTEM_CODE,
       this.qty = this.getitemdetails[J].rEQUIRED_QTY,
       this.itemdescription = this.getitemdetails[J].iTEM_SHORT_DESC
-
+    }
     // this.setitemcode = resp.itemDetails[i].iTEM_CODE;
     // this.setredqty = resp.itemDetails[i].rEQUIRED_QTY;
     // this.setexpcost = resp.itemDetails[i].eXPECTED_COST;
@@ -807,22 +831,13 @@ debugger;
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_PRS_Insert_Update', body, {
       headers: options, responseType: 'text'
     }).subscribe((res: any) => {
-
-      // if (res == "PRSCODE :") {
-      //   res = "Successfully updated"
-      // }
       this.getresponse = res;
       console.log(res);
-
       this.presentAlert("", "Successfully updated");
+      //  this.router.navigate(['/prsstatus'])
 
-       this.router.navigate(['/prsstatus'])
-this.loading = true;
+      this.loading = true;
     })
-
-
-
-
   }
   submit() {
 
@@ -831,6 +846,7 @@ this.loading = true;
     } else if (this.reasonpurchase == "" || this.reasonpurchase == "undefined" || this.reasonpurchase == null) {
       this.presentAlert1("add item failed", 'Please Enter Reason For Purchase');
     }
+
     else {
 
       if (this.release == true) {
@@ -904,7 +920,6 @@ this.loading = true;
 var pduedte_array = this.displayName.split(':');
 console.log(pduedte_array[1]);
 this.prscode =pduedte_array[1];
-
       })
     }
   }
