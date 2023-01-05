@@ -42,6 +42,10 @@ export class ManPowerUpdate1Page implements OnInit {
   assetpmref;
   assetid;
   assetactivityid;
+  employeeName: any;
+  ActualHours: any;
+  hours: any;
+  min: any;
 
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private model:ModalController,navParams: NavParams) {
 
@@ -55,6 +59,15 @@ export class ManPowerUpdate1Page implements OnInit {
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.data=navParams.get('item');
     console.log(this.data);
+    this.employeeName = this.data.emp_name;
+    this.ActualHours = this.data.actual_hrs;
+    console.log(this.employeeName);
+    let TimeData = this.ActualHours;
+const myArray = TimeData.split(":");
+this.hours=myArray[0];
+this.min = myArray[1];
+
+
     this.getManpowerskill();
     this.getEmpre();
    }

@@ -17,7 +17,7 @@
   <ion-grid>
     <ion-row>
   <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-    <ion-label>Reason <span style="color:red;margin-left: 5px;">*</span></ion-label>
+    <ion-label class="ContentName">Reason <span style="color:red;margin-left: 5px;">*</span></ion-label>
 <ion-textarea maxlength="500" [(ngModel)]="reason" style="height:auto !important" class="form-control">
 </ion-textarea>
 <span *ngIf="reason && reason != 'undefined' && reason.length > 0"
@@ -25,7 +25,7 @@ class="customCounter">{{500 - reason.length}}</span>
 </ion-col>  
 
 <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">  
-  <ion-label style="font-weight:bold;display: block;"> Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
+  <ion-label class="ContentName" style="font-weight:bold;display: block;"> Date <span style="color:red;margin-left: 5px;">*</span></ion-label>
   <ion-input  displayFormat="MM/DD/YYYY" [(ngModel)]="doi" class="form-control" ></ion-input>
 </ion-col>
 

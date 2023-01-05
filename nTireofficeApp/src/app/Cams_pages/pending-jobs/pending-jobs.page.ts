@@ -493,6 +493,7 @@ else if (this.fromdate > todate) {
         if (resp == 'Started successfully') {
           this.presentAlert("Alert", "Successfully Started");
           this.getCards();
+          this.Realease_status = "<< Select >>";
         }
       }, error => {
 

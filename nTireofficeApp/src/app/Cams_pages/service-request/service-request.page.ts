@@ -410,8 +410,8 @@ export class ServiceRequestPage implements OnInit {
 
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetservicevendorlist', dataserv, {
-      headers: options,
-    }).subscribe(resp => {
+      headers: options, 
+    }).subscribe((resp:any) => {
       console.log(resp);
       this.detailsservendor = resp;
       console.log(this.detailsservendor);
@@ -718,9 +718,10 @@ export class ServiceRequestPage implements OnInit {
     let options = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceurlCamsNode + '/assetserviceinsert', dataprocessserv, {
       headers: options,
+      responseType: 'text'
     }).subscribe(resp => {
-      console.log(resp)
-      this.presentAlert("Success", "Successfully Saved");
+      console.log(resp);
+      this.presentAlert("Success", resp);
       this.reset();
     }, error => {
       //this.presentAlert('Alert','Server Error,Contact not loaded');

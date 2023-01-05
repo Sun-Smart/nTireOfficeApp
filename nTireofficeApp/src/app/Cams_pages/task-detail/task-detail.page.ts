@@ -28,6 +28,7 @@ export class TaskDetailPage implements OnInit {
   assetcodetabrefe:any;
   assetcodeDesc:any;
   jobtaskdetails:any;
+  checkedList:any=[];
   constructor(private activatedRoute: ActivatedRoute,private datePipe: DatePipe, public alertController: AlertController, private zone: NgZone, private http: HttpClient, public Ipaddressservice: IpaddressService,private router : Router,private Tabparams:TabparamserviceService) {
 
     this.function = localStorage.getItem('FUNCTION_DESC');
@@ -76,10 +77,29 @@ export class TaskDetailPage implements OnInit {
   
     });  
   }
+  checkItems(item:any){
+    debugger;
+    console.log(item)
+    this.checkedList.push(item)
 
+  }
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertController.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 
   addSelectedItemData(list){
+    
     debugger;
+    this.presentAlert('Success','Saved Successfully');
+    console.log(list);
     var selectedItems = [];
     console.log(list);
     list.forEach(obj => {

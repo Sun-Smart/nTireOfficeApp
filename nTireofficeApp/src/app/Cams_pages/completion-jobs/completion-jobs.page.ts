@@ -66,9 +66,9 @@ export class CompletionJobsPage implements OnInit {
     this.fromdate = this.datePipe.transform(this.fromdate, 'MM/dd/yyyy');
     this.todate = this.datePipe.transform(this.todate, 'MM/dd/yyyy');
     // this.Realease_status = "<<Select>>";
-    this.jobs = "<< Select >>";
-    this.category = "<< Select >>";
-    this.subCategory = "<< Select >>";
+    this.jobs ="<<Select>>";
+    this.category ="<<Select>>";
+    this.subCategory ="<<Select>>";
     this.getAssertCatergory();
     this.getReferMax();
 

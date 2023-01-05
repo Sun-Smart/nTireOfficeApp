@@ -22,44 +22,44 @@
           Consumable Used
         </ion-col>
         </ion-card-header> -->
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">Material Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
+        <ion-col size="12">
+          <ion-label style="font-weight:bold;display: inline-flex;">Material Code<span style="color:red;margin-left: 5px;">*</span></ion-label>
           <!-- <select [(ngModel)]="materialcode" class="form-control" style="width:100%" (change)="matrialdtleconsume(materialcode)">
             <option>&lt;&lt; Select &gt;&gt;</option>
             <option *ngFor="let item of consumablematerialddtl; let i = index" [value]="item.ITEM_CODE">{{item.ITEM_CODE}}
             </option>
           </select> -->
-          <ion-input type="text" [(ngModel)]="materialcode" class="form-control" disabled></ion-input>
+          <ion-input type="text" [(ngModel)]="materialcode" class="form-control" disabled="true" style="display: inline-flex;background: gray;">{{ this.materialcode}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;"> Material Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="text" [(ngModel)]="materialdescp" class="form-control" disabled></ion-input>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
+          <ion-label style="font-weight:bold;display: inline-flex;"> Material Description <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="text" [(ngModel)]="materialdescp" class="form-control" disabled="true" style="display: inline-flex;background: gray;">{{this.materialdescp}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;"> Quantity Planned <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="quantity" class="form-control" disabled></ion-input>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
+          <ion-label style="font-weight:bold;display: inline-flex;"> Quantity Planned <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="number" [(ngModel)]="quantity" class="form-control" style="display: inline-flex;">{{this.quantity}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">  Replacement Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="replaceqty" class="form-control"></ion-input>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
+          <ion-label style="font-weight:bold;display: inline-flex;">  Replacement Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="number" [(ngModel)]="replaceqty" class="form-control" style="display: inline-flex;">{{this.replaceqty}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">  Return Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="returnqty" class="form-control"></ion-input>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
+          <ion-label style="font-weight:bold;display: inline-flex;">  Return Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="number" [(ngModel)]="returnqty" class="form-control" style="display: inline-flex;">{{this.returnqty}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">  Scrap Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="scrapqty" class="form-control"></ion-input>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
+          <ion-label style="font-weight:bold;display: inline-flex;">  Scrap Quantity <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="number" [(ngModel)]="scrapqty" class="form-control" style="display: inline-flex;">{{this.scrapqty}}</ion-input>
         </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" >
-          <ion-label style="font-weight:bold;display: block;">Cost <span style="color:red;margin-left: 5px;">*</span></ion-label>
-          <ion-input type="number" [(ngModel)]="cost" class="form-control" disabled></ion-input>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" >
+          <ion-label style="font-weight:bold;display: inline-flex;">Cost <span style="color:red;margin-left: 5px;">*</span></ion-label>
+          <ion-input type="number" [(ngModel)]="cost" style="display: inline-flex;" class="form-control">{{this.cost}}</ion-input>
         </ion-col>
 
 

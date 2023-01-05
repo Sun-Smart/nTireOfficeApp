@@ -1,12 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title>Update</ion-title>
+    <ion-icon name="close-circle" (click)="closemodel()" style="float:right"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+
+
 <ion-content>
-  <ion-grid>
-    <ion-row>
+  <ion-card style="background-color:#fff">
+    <!-- <ion-card-header class="card_header" style="padding: 5px !important;">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="card_header_text1"> Spares Used</ion-label>
+        </ion-col>
+     
+      </ion-row>
+    </ion-card-header> -->
+ 
+    <!-- <ion-row>
       <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
         <ion-label>Asset code</ion-label>
         <ion-input style="background-color: #d4d4d4!important;" class="form-control" [disabled]="true"
           [(ngModel)]="assetcodetabrefe"></ion-input>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <!-- <ion-card style="background-color:#fff"> -->
       <ion-grid style="padding: 0px;">
@@ -18,29 +37,31 @@
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label style="font-weight:bold;display: block;">Skills<span style="color:red;margin-left: 5px;">*</span>
             </ion-label>
-            <select class="form-control" style="width:100%">
-              <option>&lt;&lt; Select &gt;&gt;</option>
+            <select [(ngModel)]="skill" class="form-control" style="width:100%" disabled="" >
+              <option>{{this.skill}}</option>
+              <!-- <option>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor ="let item of manpowerskill" value="item.VAL">{{item.TEXT}}
-              </option>
+              </option> -->
             </select>
           </ion-col>
 
           <ion-col size-sm="12" size="12" size-md="12" size-lg="12" size-xl="12">
             <ion-label style="font-weight:bold;display: block;">Employee Reference<span
                 style="color:red;margin-left: 5px;">*</span></ion-label>
-            <select class="form-control" style="width:100%">
-              <option>&lt;&lt; Select &gt;&gt;</option>
+            <select [(ngModel)]="skill" class="form-control" style="width:100%" disabled="" >
+              <option>{{this.employeeName}}</option>
+              <!-- <option>&lt;&lt; Select &gt;&gt;</option>
               <option *ngFor="let item of manpowerrefdetail; let i = index" [ngValue]="item.tum_user_id">
                 {{item.tum_user_code}}-{{item.tum_user_name}}
-              </option>
+              </option> -->
             </select>
           </ion-col>
 
-          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="display: inline-block;">
-            <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
-              placeholder="HH:" [(ngModel)]="nomhours">
-            <input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
-              placeholder="MM" [(ngModel)]="nomhoursm">
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="4" style="display: flex;">
+            <ion-input type="number"  style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
+               [(ngModel)]="nomhours">{{this.hours}}</ion-input>
+            <ion-input type="number" style="width:25%;border: none;border-bottom:green 1px solid;" required="" maxlength="2"
+              [(ngModel)]="nomhoursm">{{this.min}}</ion-input>
 
           </ion-col>
 
@@ -66,7 +87,7 @@
     <!-- <ion-card >
       <ion-card-header class="card_header"> -->
 
-        <ion-row *ngFor="let data of manpowerrecord; let i = index">
+        <!-- <ion-row *ngFor="let data of manpowerrecord; let i = index">
           <ion-col size="6">
             <ion-label class="card_header_text1">{{data.SKILL_TEXT}}</ion-label>
           </ion-col>
@@ -80,12 +101,12 @@
               </ion-icon>
             </button>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
 
       <!-- </ion-card-header> -->
 
       <!-- <ion-card-content> -->
-        <ion-row>
+        <!-- <ion-row>
           <ion-col size="6">
             <ion-label> Employee Reference</ion-label>
           </ion-col>
@@ -105,7 +126,7 @@
           <ion-col size="6">
             <ion-label class="labelData-text">: {{data.ASSET_COST}}</ion-label>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       <!-- </ion-card-content> -->
     <!-- </ion-card> -->
 
@@ -147,5 +168,6 @@
         </ion-row>
       </ion-grid>
     </ion-card> -->
-  </ion-grid>
+ 
+  </ion-card>
 </ion-content>

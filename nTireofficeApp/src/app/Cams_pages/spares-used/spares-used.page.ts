@@ -225,13 +225,13 @@ this.presentAlert("Alert", "Already added a consumables");
         text: 'Ok',
         handler: () => {
           var datamdd = {
-            'branchid': window.localStorage['TUM_BRANCH_ID'],
-           'functionid':window.localStorage['FUNCTION_ID'],
-           'assetid':this.urldata.CMD_ASSET_ID,
-           'assetactivityid':this.urldata.CMD_ACTIVITY_ID,
-           'assetpmref':this.urldata.pmr_reference,
+            'branchid': window.localStorage['id'],
+           'functionid':parseInt(window.localStorage['FUNCTION_ID']),
+           'assetid':parseInt(this.urldata.CMD_ASSET_ID),
+           'assetactivityid':parseInt(this.urldata.CMD_ACTIVITY_ID),
+           'assetpmref':parseInt(this.urldata.pmr_reference),
            'itemcode':this.materialcode,
-           'uniqueid':this.rowuniqids,
+           'uniqueid':parseInt(this.rowuniqids),
            'access_token':window.localStorage['token'],
            'userid':this.userID,
            'usertoken':this.userToken
@@ -247,6 +247,7 @@ this.presentAlert("Alert", "Already added a consumables");
          }).subscribe(resp => {
           this.presentAlert("Delete","Deleted Successfully");
           this.sparerecord = resp;
+          this.sparealldata();
         console.log(resp);
          }, error => {
            //this.presentAlert('Alert','Server Error,Contact not loaded');
