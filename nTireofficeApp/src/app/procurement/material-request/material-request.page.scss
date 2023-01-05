@@ -4,17 +4,20 @@ ion-content {
 }
 
 ion-card {
-  .card_header1 {
-    background-image: linear-gradient(
-      to left,
-      rgb(34, 191, 241),
-      rgb(2, 154, 222) 50%,
-      rgb(2, 154, 222) 50%
-    ) !important;
-    color: white !important;
-    font-size: x-large;
-    padding: 0px !important;
-  }
+  background: #ffffff;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  // box-shadow: 0 -3px 2px 0 rgb(255 255 255 / 20%), 0 -5px 12px 0 rgb(255 245 245 / 53%) !important;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+ion-spinner{
+  // color:white;
+  color: black;
+  display: block;
+  margin: 15px auto;
 }
 
 .interlable{
