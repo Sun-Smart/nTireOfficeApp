@@ -120,3 +120,39 @@ ion-card {
   font-weight: 600;
   color: black;
 }
+
+
+.item-native {
+  border-radius: var(--border-radius);
+  margin: 0px;
+  padding-left: calc(var(--padding-start) + var(--ion-safe-area-left, 0px));
+  padding-right: var(--padding-end);
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-decoration: inherit;
+  text-indent: inherit;
+  text-overflow: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+  white-space: inherit;
+  color: inherit;
+  display: flex;
+  position: relative;
+  align-items: inherit;
+  justify-content: inherit;
+  width: 100%;
+  transition: var(--transition);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: var(--border-color);
+  outline: none;
+  background: var(--background);
+  overflow: inherit;
+  box-sizing: border-box;
+  z-index: 1;
+}
