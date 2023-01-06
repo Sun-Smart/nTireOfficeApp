@@ -34,7 +34,7 @@
           </ion-searchbar>
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of MRScode" (click)="addponumbercode(item)"
-              style="background:none !important;color:#444 !important;display: block;">
+              style="background:none !important;color:#444 !important;display: block;font-weight: bold;">
               {{item.mrs_code}} 
             </ion-item>
           </ion-list>
@@ -44,19 +44,19 @@
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">From Date</ion-label>
           <input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField"
-            style=" display:inline-block;padding: 8px;">
+            style=" display:inline-block;padding: 8px; font-weight: bold;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">To Date</ion-label>
           <input type="date" [(ngModel)]="todate" class="Input-text-field textareaField"
-            style=" display:inline-block;padding: 8px;">
+            style=" display:inline-block;padding: 8px; font-weight: bold;">
           <!-- [(ngModel)]="VendorQuot.deliverydate" -->
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">Status</ion-label>
-          <select style="padding: 10px;"[(ngModel)]="status" style="display:inline-block;padding: 8px;"
-            class="Input-text-field textareaField">
+          <select style="padding: 10px;"[(ngModel)]="status" class="Input-text-field textareaField"
+            style="display:inline-block;padding: 8px; font-weight: bold;">
             <option value="0"> Select </option>
             <option value="N">New</option>
             <option value="P">Pending</option>
