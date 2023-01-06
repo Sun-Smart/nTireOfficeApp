@@ -330,13 +330,12 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel"> Item Detailed Description</ion-label>
             <ion-textarea placeholder=" " id="textareaID" [(ngModel)]="itemdescription"
-              class="Input-text-field textareaField" style="width:100%;" maxlength="150" required=""></ion-textarea>
+              class="Input-text-field textareaField" style="width:100%;" maxlength="150" required="">{{Description}}</ion-textarea>
             <!-- (ionSelect)="resize()" -->
             <!-- (keyup)="checkTestPressure(this)" -->
             <!-- [(ngModel)]="VendorQuot.remarks" -->
             <!-- <span class="customCounter">{{150 - VendorQuot.remarks.length}}</span> -->
           </ion-col>
-
 
           <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
               <ion-button (click)="showline()" class="ion-color-success" expand="block">

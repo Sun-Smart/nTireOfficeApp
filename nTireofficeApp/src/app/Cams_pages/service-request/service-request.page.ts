@@ -459,6 +459,7 @@ export class ServiceRequestPage implements OnInit {
 
 
       }
+      console.log(this.Asset_code_det1r)
       const val = ev.target.value;
 
       // if the value is an empty string don't filter the items

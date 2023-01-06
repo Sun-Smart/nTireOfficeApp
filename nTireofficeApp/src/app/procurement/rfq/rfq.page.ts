@@ -59,6 +59,8 @@ export class RFQPage implements OnInit {
   RaisedRFQdetails: any = [];
   itemprscode: any;
   requiredDate: any;
+  isPropertycodeAvailable: boolean;
+  isItemAvailable: boolean;
   constructor(private router: Router, private datePipe: DatePipe, private alertController: AlertController, private httpclient: HttpClient, private IpaddressService: IpaddressService) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -119,9 +121,9 @@ export class RFQPage implements OnInit {
 
 
   ngOnInit() {
-   if(this.status == ""){
-    this.status = "Pending";
-  }
+    if (this.status == "") {
+      this.status = "Pending";
+    }
   }
 
   Submit() {
@@ -269,6 +271,12 @@ export class RFQPage implements OnInit {
     //   this.showCRFQ = false;
     // }
   }
+  getRfq(item: any) {
+    console.log('item', item);
+    this.prscode = item;
+    this.isItemAvailable = false;
+
+  }
 
   fieldsChange(values: any, item: any): void {
     debugger;
@@ -366,9 +374,8 @@ export class RFQPage implements OnInit {
 
   raiseRFQ(item: any) {
     console.log(this.lastdate)
-    if(this.lastdate == null || this.lastdate == '' || this.lastdate == undefined)
-    {
-      this.presentAlert1("","Please select Last Date to Raise RFQ")
+    if (this.lastdate == null || this.lastdate == '' || this.lastdate == undefined) {
+      this.presentAlert1("", "Please select Last Date to Raise RFQ")
     }
 
     debugger;
@@ -414,14 +421,15 @@ export class RFQPage implements OnInit {
 
   getItems(event: any) {
     this.getRfqItems = [];
+    this.isItemAvailable = true;
     if (event.target.value == "") {
       this.getRfqItems = [];
-      // this.isPropertycodeAvailable = false;
+      this.isPropertycodeAvailable = false;
     };
     let data = event.target.value
 
     this.httpclient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getPRScode/' + event.target.value).subscribe((resp: any) => {
-      this.loadingdismiss();
+      // this.loadingdismiss();
       this.getRfqItems = [];
       this.loading = false;
       this.getdata = resp;
@@ -433,7 +441,7 @@ export class RFQPage implements OnInit {
 
       this.getRfqItems.push(this.getdata.prs_code);
 
-      console.log("skuhfksu",this.getRfqItems.push(this.getdata.prs_code));
+      console.log("", this.getRfqItems.push(this.getdata.prs_code));
 
 
 
@@ -501,10 +509,11 @@ export class RFQPage implements OnInit {
             this.itemcode = "";
             this.fromdate = "";
             this.toDate = "";
-            this.status = "";
+            this.status = "P";
             this.bidding = "";
             // this.remarks="";
             this.getresponse = [];
+            this.showRfq = false;
           }
         }
       ]

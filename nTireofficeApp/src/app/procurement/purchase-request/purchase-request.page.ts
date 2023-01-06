@@ -24,13 +24,12 @@ export class PurchaseRequestPage implements OnInit {
   itemNew: any;
   prsdate: any;
   filter: boolean = true;
-  userid
-  branchid
+  userid;
+  branchid;
   hideitem: boolean = false;
   showitem: boolean = false;
 
   // Itemcode: any;
-
   branch
   Requisitiondate
   prscode
