@@ -427,7 +427,7 @@ export class PurchaseRequestPage implements OnInit {
     if (getcategory == "I") {
       this.hideitem = true;
       this.showitem = false;
-      this.qty = ""
+      this.qty = "",
       this.itemcode = "",
         this.Description = "",
         this.unitprice = "",

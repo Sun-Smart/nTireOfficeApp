@@ -71,7 +71,7 @@ export class RFQPage implements OnInit {
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.username = localStorage.getItem('TUM_USER_NAME');
-    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-mm-dd');
+    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
     console.log(this.lastdate);
     this.status = "P"
   }
@@ -249,7 +249,8 @@ export class RFQPage implements OnInit {
   test() {
     // alert("ih")
     // console.log(e.target.value)
-    console.log(this.lastdate)
+    console.log(this.lastdate);
+    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
 
 
   }
@@ -286,6 +287,8 @@ export class RFQPage implements OnInit {
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
+    console.log(this.requiredDate);
+
 
     this.test()
     if (this.Checked == true) {
@@ -373,16 +376,18 @@ export class RFQPage implements OnInit {
   }
 
   raiseRFQ(item: any) {
-    console.log(this.lastdate)
+    debugger;
+    console.log(this.lastdate);
+    this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
     if (this.lastdate == null || this.lastdate == '' || this.lastdate == undefined) {
-      this.presentAlert1("", "Please select Last Date to Raise RFQ")
+      this.presentAlert1("", "Please select Last Date to Raise RFQ");
     }
 
     debugger;
     console.log(item);
     console.log(this.RaisedRFQ)
-    this.requiredDate = this.RaisedRFQ[0].RequiredBefore;
-    if (this.lastdate <= this.requiredDate) {
+    this.requiredDate = this.RaisedRFQ[0].requested_Date;
+    if (this.requiredDate < this.lastdate || this.requiredDate == this.lastdate) {
       let body = {
         "RFQ_raise": [
           {
@@ -404,12 +409,16 @@ export class RFQPage implements OnInit {
         this.showviewlist = false;
 
         this.presentAlert("", res);
+        this.showRfq = false;
         this.RaisedRFQ = [];
+
       });
     } else {
-      this.presentAlert('Alert', "last date should less then required before date")
+      this.presentAlert('Alert', "last date should less then required before date");
+      return;
     }
 
+this.loading = true;
     // this.RaisedRFQdetails = this.RaisedRFQ;
     console.log(this.RaisedRFQdetails);
     // for(let i=0; i< this.RaisedRFQ.length; i++) {
@@ -450,7 +459,6 @@ export class RFQPage implements OnInit {
   }
 
   async loadingdismiss() {
-
     return await this.loadingController.dismiss();
   }
 

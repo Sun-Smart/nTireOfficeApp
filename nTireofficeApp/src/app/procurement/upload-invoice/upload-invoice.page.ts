@@ -48,7 +48,7 @@ export class UploadInvoicePage implements OnInit {
   open: any;
   openfile: any;
   getopen: string;
- 
+
   windowop: any;
   filePath: string;
   branchID: string;
@@ -73,7 +73,7 @@ export class UploadInvoicePage implements OnInit {
 
     };
 
-    this.branchID = localStorage.getItem('TUM_BRANCH_ID');
+    this.branchID = localStorage.getItem('setbranchid');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.usertype = localStorage.getItem('TUM_USER_TYPE');
@@ -131,6 +131,9 @@ export class UploadInvoicePage implements OnInit {
       this.poinvoicecode = [];
       this.isPropertycodeAvailable = false;
     }
+    this.functionID = localStorage.getItem('FUNCTION_ID');
+    this.branchID = localStorage.getItem('setbranchid');
+
     // const header = new Headers();
     // header.append("Content-Type", "application/json");
      let options = new HttpHeaders().set('Content-Type', 'application/json');
@@ -139,15 +142,15 @@ export class UploadInvoicePage implements OnInit {
     }).subscribe(resp => {
       this.poinvoicecode = [];
       this.isPropertycodeAvailable = false;
-  
+
   this.poinvoive_no=resp
   for (var i = 0; i < this.poinvoive_no.length; i++) {
     this.poinvoicecode.push({
       po_number: this.poinvoive_no[i].po_number,
-        
+
     });
   };
-  
+
   const val = e.target.value;
   if (val && val.trim() != '') {
     this.isPropertycodeAvailable = true;
@@ -155,41 +158,41 @@ export class UploadInvoicePage implements OnInit {
       return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
     });
   }
-  
+
     })
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   addponumbercode(item:any){
     console.log(item,"item");
     this.poid=item.po_id;
     this.ponumber=item.po_number;
     this.isPropertycodeAvailable = false;
-  
+
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'getpo_invoiceamount/' +  this.functionID + "/" +     this.branchID + "/" + this.poid, {
       headers: headers,
     }).subscribe(resp => {
 
       console.log(resp,"num");
-      
+
       // this.invoiceget = resp[0].po_amount
       this.invoiceform.value.invoiceamount=resp[0].po_amount;
       this.invoiceform.get('invoiceamount').setValue(this.invoiceform.value.invoiceamount)
-      
+
       console.log( this.invoiceform.value.invoiceamount,"o");
-      
-  
-   
+
+
+
     });
   }
 
 
-  
+
 
   additem() {
 
@@ -209,7 +212,7 @@ if(this.invoiceform.value.invoicenumber==""|| this.invoiceform.value.invoicenumb
 else{
 
 let data={
-  
+
   "filename": this.filename,
   "functionid": this.functionID ,
   "branchid": this.branchID,
@@ -226,8 +229,8 @@ console.log(data);
 debugger
 let options = new HttpHeaders().set('Content-Type', 'application/json');
 this.http.post(this.Ipaddressservice.ipaddress + this.Ipaddressservice.serviceerpapi + 'uploadinvoice/', data,{ headers: options,responseType: 'text'}).subscribe(res => {
- 
- 
+
+
 if(res="Uploaded successfully"){
   this.presentAlert1("add item Success",'Insert Successfully');
   this.invoiceform.reset();
@@ -292,7 +295,7 @@ if(res="Uploaded successfully"){
 
 onSelectFile(event) {
 
- 
+
   if (event.target.files && event.target.files[0]) {
     var reader = new FileReader();
 
@@ -303,7 +306,7 @@ onSelectFile(event) {
       console.log(this.url);
       this.pdfdata=this.url.slice(28)
     }
- 
+
     // reader.readAsArrayBuffer($img.files[0]);
     // console.log( $img.files[0]);
     // this.pdfimg= $img.files[0]
@@ -313,7 +316,7 @@ onSelectFile(event) {
  console.log(this.filename);
 
 
- 
+
 }
 omit_special_chart(event) {
   var k;
@@ -338,14 +341,14 @@ omit_special_chart(event) {
 
 
 //  this.open=test[0].test
- 
+
 //  console.log(this.open);
 //  this.openfile=this.open.slice(5)
 //  window.PreviewAnyFile.previewBase64(
 //    success=>console.log("on success",success),
 //   error=>console.log("on error", error),
 //   this.open
-   
+
 //  )
 // }
 

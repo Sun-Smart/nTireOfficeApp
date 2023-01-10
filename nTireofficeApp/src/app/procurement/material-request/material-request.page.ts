@@ -69,7 +69,7 @@ export class MaterialRequestPage implements OnInit {
   isPropertycodeAvailable: boolean;
   mrs_no: any;
   mrsnum: any;
-  getdataitem: any[];
+  getdataitem: any=[];
   isItemAvailable: boolean;
   getdata1: any;
   itemNew: any;
@@ -78,6 +78,9 @@ export class MaterialRequestPage implements OnInit {
   itemdescription: any;
   getitemid: any;
   netprice: any;
+  itemdetails: string;
+  stock_uom: string;
+  WeightUOM: string;
 
   constructor( private router :Router,private alertController: AlertController,private toastmessageservice :ToastmessageService,private datePipe: DatePipe, private HttpClient: HttpClient, private IpaddressService: IpaddressService)
   {
@@ -220,7 +223,7 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
 
 
   Addnewitem(){
-    // this.showlineItems1 = !this.showlineItems1;
+    this.showlineItems1 = !this.showlineItems1;
 
     this.ShowAllItem = false;
     if(this.release ==true)
@@ -235,7 +238,7 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
 
   onsubmit(){
     this.toastmessageservice.presentAlert1('saved successfully','this process is saved successfully')
-    // this.showlineItems =!this.showlineItems;
+    this.showlineItems =!this.showlineItems;
     this.expenseArray=[];
     this.initialSearch=true;
     this.showlineItems=false;
@@ -243,12 +246,11 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
     this.filter = true;
     // this.showbtn = true
   // this.ngOnInit();
-
   }
 
   showline(){
 
-    // this.showlineItems = false;
+    this.showlineItems = false;
     this.Showcard = true;
     this.shownewcard =false;
     this.overallsubmit = true;
@@ -286,8 +288,6 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
      }else{
       INSUPSTATUS= this.status;
      }
-
-
   }
 
   Searchlist(){
@@ -305,7 +305,7 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
   }
 
   new(){
-        // this.showlineItems = !this.showlineItems
+        this.showlineItems = !this.showlineItems
     // this.showviewlist = false;
     // this.Showcard = false;
     this.overallsubmit=true;
@@ -360,7 +360,7 @@ this.HttpClient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.se
 
   togglefilter(){
     this.showfilter = !this.showfilter;
-    // this.hidefilter = !this.hidefilter;
+    this.hidefilter = !this.hidefilter;
   }
 
   close(){
@@ -424,18 +424,21 @@ addponumbercode(item:any){
   console.log(item,"item");
   this.MRS_CODE=item.mrs_code;
   this.isPropertycodeAvailable = false;
-
 }
 
 
-
 getItems(event: any) {
-  let items = "I";
-
-
+  debugger
+  let items = event.target.value
     this.getdataitem = [];
     this.isItemAvailable = false;
-
+    if(items==null || items==undefined || items ==""){
+   this.itemdescription = "";
+   this.uom = "";
+   this.unitprice = "";
+   this.netprice = "";
+   this.stockqty ="";
+    }
 
   this.HttpClient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + "getItemcode" + '/' + items).subscribe((resp: any) => {
     console.log(resp)
@@ -444,6 +447,8 @@ getItems(event: any) {
     // this.getorder1.forEach(element => {
     //   this.getdata.push(element)
     console.log(this.itemNew);
+
+
     for (var i = 0; i < this.itemNew.length; i++) {
       // this.getdataitem.push({ id: this.itemNew[i].item_Code, desc: this.itemNew[i].item_id });
       this.getdataitem.push(this.itemNew[i].item_Code);
@@ -459,10 +464,12 @@ getItems(event: any) {
       })
       console.log(this.getdataitem)
     }
+
   })
 }
 
 fetchreconcilation(itemcode: any) {
+  debugger
   console.log(itemcode)
   this.itemcode = itemcode;
   this.isItemAvailable = false;
@@ -474,13 +481,10 @@ fetchreconcilation(itemcode: any) {
       this.unitprice = this.getitemdata[0].Price
     this.itemdescription = this.getitemdata[0].item_long_desc,
       this.getitemid = this.getitemdata[0].item_id,
-      this.uom = this.getitemdata[0].WeightUOM
-      this.unitprice = this.getitemdata[0].Price
-      this.stockqty = this.getitemdata[0].stock_uom
-
-
+      this.uom = this.getitemdata[0].WeightUOM;
+      this.unitprice = this.getitemdata[0].Price;
+      this.stockqty = this.getitemdata[0].stock_uom;
   });
-
 }
 
 // orderpriority() {

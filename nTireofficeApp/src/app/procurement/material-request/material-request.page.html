@@ -35,12 +35,12 @@
           <ion-list *ngIf="isPropertycodeAvailable" class="searchlist" style="height: 100px;">
             <ion-item *ngFor="let item of MRScode" (click)="addponumbercode(item)"
               style="background:none !important;color:#444 !important;display: block;font-weight: bold;">
-              {{item.mrs_code}} 
+              {{item.mrs_code}}
             </ion-item>
           </ion-list>
         </ion-col>
 
-      
+
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="plabel">From Date</ion-label>
           <input type="date" [(ngModel)]="fromdate" class="Input-text-field textareaField"
@@ -87,7 +87,7 @@
   </ion-card>
 
 
-  
+
 <!-- card show all data -->
   <ion-card *ngFor="let item of materialrequestsearch; let i=index">
     <ion-card-header class="card_header">
@@ -165,7 +165,7 @@
         </ion-row>
 
 
-        
+
 
         <ion-row>
           <ion-col size="6">
@@ -175,7 +175,7 @@
             <p style="text-align: right;">{{item.RequiredQty}}</p>
           </ion-col>
         </ion-row>
-  
+
         <ion-row>
           <ion-col size="6">
             <p style="text-align:left;font-weight: bold">stock Qty</p>
@@ -226,7 +226,7 @@
 
 
 
-     
+
 
       </ion-grid>
     </ion-card-content>
@@ -297,7 +297,7 @@
         </select>
         </ion-col>
 
-    
+
           <ion-col size="6">
             <div style="padding: 12px;display: flex;">
               <ion-checkbox class="checkboxbg" [(ngModel)]="release" [value]="true"></ion-checkbox> &nbsp; &nbsp;
@@ -312,11 +312,11 @@
               </ion-label>
             </div>
           </ion-col>
-       
 
 
 
-  
+
+
   <ion-col  size="6" *ngIf="overallsubmit">
     <ion-button (click)="Additems()" class="ion-color-primary" expand="block">
       <ion-icon style="color: #fff;" name="add-circle-outline"></ion-icon> Add Items
@@ -332,7 +332,7 @@
 
       </ion-row>
 
-     
+
 
 
         <!-- close -->
@@ -404,7 +404,7 @@
         <!-- saved cards -->
         <!-- add item -->
         <ion-row *ngIf="shownewcard">
-<!-- 
+<!--
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">SNO</ion-label>
             <ion-input type="number" [(ngModel)]="sno" class="Input-text-field textareaField"></ion-input>
@@ -414,7 +414,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Item</ion-label>
-            <ion-searchbar [(ngModel)]="itemcode" type="text" debounce="500" (ionInput)="getItems($event)">
+            <ion-searchbar [(ngModel)]="itemcode" (ngModelChange)="getItemDetail($event)" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist"
               [ngStyle]="{'height':getdataitem.length >0?'100px':'0px'}">
@@ -441,7 +441,7 @@
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
             <ion-label class="plabel">Net Price</ion-label>
-            <ion-input type="number" [(ngModel)]="netprice"  class="Input-text-field textareaField"  disabled=""  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"></ion-input>
+            <ion-input type="number" value="{{requestqty*unitprice}}" [(ngModel)]="netprice" disabled="" class="Input-text-field textareaField"  disabled=""  style=" background-color: #d4d4d4!important; display:inline-block;padding: 8px;"></ion-input>
           </ion-col>
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
@@ -523,32 +523,33 @@
       Item/Service
     </ion-col>
     <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      : {{items.itemid}}
+      : {{items.Item_Id}}
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
       QTY
     </ion-col>
     <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      : {{items.required_qty}}
+      : {{items.RequiredQty}}
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
       Unit Price
     </ion-col>
     <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      : {{items.unit_price}}
+      : {{items.unitprice}}
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
       Requiredbefore
     </ion-col>
     <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      : {{items.exp_date}}
+      : {{items.EXP_DATE}}
     </ion-col>
     <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
       netprice
     </ion-col>
     <ion-col style="font-weight: 600; color: black;" size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-      : {{items.expected_cost}}
+      : {{items.netamount}}
     </ion-col>
+
     <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
       itemdescription
     </ion-col>
@@ -557,10 +558,9 @@
     </ion-col> -->
   </ion-row>
 </ion-card>
+
 </ion-content>
 <!-- for line Items  -->
-
-
 
 <ion-footer>
   <ion-row>
