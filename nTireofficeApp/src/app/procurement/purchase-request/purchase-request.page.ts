@@ -77,7 +77,7 @@ export class PurchaseRequestPage implements OnInit {
   getshort: any;
   setcategorydes: any;
   showupdate: boolean = false
-  showedit:boolean=true
+  showedit: boolean = true
   getprsmode: any;
   getitemdetails: any;
   getprsdetails: any;
@@ -95,24 +95,27 @@ export class PurchaseRequestPage implements OnInit {
   duplicatePushArray: any = [];
   newitem: any;
   displayName: any;
-  compareItems: any =[];
+  compareItems: any = [];
+  functionid: string;
 
   constructor(private route: ActivatedRoute, private datePipe: DatePipe, private router: Router, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService, private loadingController: LoadingController) {
     this.userID = localStorage.getItem('TUM_USER_ID');
     this.getParamID = this.route.snapshot.paramMap.get('id');
-    // this.getParamID = localStorage.getItem('id');
+    this.functionid = localStorage.getItem('id');
 
+    let getdate3 = new Date();
+    this.prsdate = this.datePipe.transform(getdate3, "yyyy-MM-dd");
     if (this.getParamID != null) {
       console.log(this.getParamID)
       // if (!this.getParamID) {
-      this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "get_edit_prs" + '/' + this.getParamID + '/' + 1).subscribe((resp: any) => {
+      this.httpclient.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + "get_edit_prs" + '/' + this.getParamID + '/' + this.functionid).subscribe((resp: any) => {
         console.log(resp)
         console.log(resp.itemDetails[0])
         this.getitemdetails = resp.itemDetails
         console.log(resp.prsDetails[0])
         this.getprsdetails = resp.prsDetails[0]
         // resp.itemDetails[0].iTEM_CODE
-
+        this.showedit = false
 
         if (resp.prsDetails[0].status == "p" || resp.prsDetails[0].status == "P") {
           this.release = true
@@ -201,7 +204,7 @@ export class PurchaseRequestPage implements OnInit {
             Availlimit: "",
             BalanceLimit: "",
             CATEGORY: this.setcategorydes,
-            itemcode:this.itemcode,
+            itemcode: this.itemcode,
             TAX1: "",
             TAX2: "",
             TAX1DESC: "",
@@ -279,36 +282,36 @@ export class PurchaseRequestPage implements OnInit {
 
   checkbox() {
     console.log(this.release)
-    if (this.release == false) {
-      this.additemsbtn = false;
-      this.showcancel = false;
-      this.showedit=false
-    }
-
-   else if (this.release == true) {
-      this.release = false;
-      this.showedit=false
-
-
-    }
-
-
-    // if (this.status == "N") {
-    //   if (this.release == false) {
-    //     this.showsubmit = true
-    //   }
-    //   if (this.release == true) {
-    //     this.showsubmit = false
-    //   }
+    // if (this.release == false) {
+    //   this.additemsbtn = false;
+    //   this.showcancel = false;
+    //   this.showedit = false
     // }
-    // if (this.status == "P") {
-    //   if (this.release == false) {
-    //     this.showupdate = true
-    //   }
-    //   if (this.release == true) {
-    //     this.showupdate = false
-    //   }
+
+    // else if (this.release == true) {
+    //   this.release = false;
+    //   this.showedit = false
+
+
     // }
+
+
+    if (this.status == "N") {
+      if (this.release == false) {
+        this.showsubmit = true
+      }
+      if (this.release == true) {
+        this.showsubmit = false
+      }
+    }
+    if (this.status == "P") {
+      if (this.release == false) {
+        this.showupdate = true
+      }
+      if (this.release == true) {
+        this.showupdate = false
+      }
+    }
 
   }
   fetchreconcilation(itemcode: any) {
@@ -316,21 +319,21 @@ export class PurchaseRequestPage implements OnInit {
     debugger;
     console.log(itemcode)
     this.compareItems.push(itemcode);
-    console.log( this.compareItems,'gadggksjgjk');
+    console.log(this.compareItems, 'gadggksjgjk');
 
-// const user = this.compareItems.find((x) => x.itemcode == itemcode)
+    // const user = this.compareItems.find((x) => x.itemcode == itemcode)
 
-// if (user) {
-//  console.log('Username already exists');
-// } else {
-//  console.log(user);
-// }
+    // if (user) {
+    //  console.log('Username already exists');
+    // } else {
+    //  console.log(user);
+    // }
 
 
     const myArray = itemcode.split("-");
     console.log(myArray);
     this.splititemcode = myArray[0]
-    console.log("ee",this.splititemcode);
+    console.log("ee", this.splititemcode);
 
     this.isItemAvailable = false;
     this.itemcode = itemcode;
@@ -428,7 +431,7 @@ export class PurchaseRequestPage implements OnInit {
       this.hideitem = true;
       this.showitem = false;
       this.qty = "",
-      this.itemcode = "",
+        this.itemcode = "",
         this.Description = "",
         this.unitprice = "",
         this.netprice = ""
@@ -491,10 +494,10 @@ export class PurchaseRequestPage implements OnInit {
       this.itemdescription = "",
       // this.Requiredbefore = "",
       this.showsavebtn = true;
-      this.Category == undefined
-      this.Category=""
+    this.Category == undefined
+    this.Category = ""
 
-    if (this.Category == "undefined"|| this.Category == undefined || this.Category == "") {
+    if (this.Category == "undefined" || this.Category == undefined || this.Category == "") {
       this.hideitem = false;
     }
   }
@@ -521,7 +524,7 @@ export class PurchaseRequestPage implements OnInit {
     else if (this.Requiredbefore == "" || this.Requiredbefore == "undefined" || this.Requiredbefore == null) {
       this.presentAlert1("add item failed", 'Please Enter Required Before Date');
     }
-    else if (this.itemcode[0] ==this.itemcode[i]) {
+    else if (this.itemcode[0] == this.itemcode[i]) {
       this.presentAlert1("add item failed", 'tyer');
     }
 
@@ -683,7 +686,7 @@ export class PurchaseRequestPage implements OnInit {
 
     }
     let getdate = new Date();
-    this.prsdate = this.datePipe.transform(getdate, "yyyy-MM-dd");
+    // this.prsdate = this.datePipe.transform(getdate, "yyyy-MM-dd");
   }
 
   delete(i) {
@@ -692,7 +695,7 @@ export class PurchaseRequestPage implements OnInit {
     this.additemsbtn = true;
     this.showlineItems == true;
     this.showcancel = true;
-this.showsubmit = false;
+    this.showsubmit = false;
     // this.showlineItems = true;
     // this.showlineItems = !this.showlineItems;
   }
@@ -700,16 +703,15 @@ this.showsubmit = false;
 
   edit(i) {
     console.log(i);
-    if(this.release == false)
-    {
-    this.showlineItems = !this.showlineItems
-    let J = i
-    // this.itemcode = this.getitemdetails[J].iTEM_CODE,
+    if (this.release == false) {
+      this.showlineItems = !this.showlineItems
+      let J = i
+      // this.itemcode = this.getitemdetails[J].iTEM_CODE,
       this.Description = this.getitemdetails[J].iTEM_SHORT_DESC,
-      this.unitprice = this.getitemdetails[J].uNIT_PRICE,
-      // this.netprice = this.getitemdetails[J].iTEM_CODE,
-      this.qty = this.getitemdetails[J].rEQUIRED_QTY,
-      this.itemdescription = this.getitemdetails[J].iTEM_SHORT_DESC
+        this.unitprice = this.getitemdetails[J].uNIT_PRICE,
+        // this.netprice = this.getitemdetails[J].iTEM_CODE,
+        this.qty = this.getitemdetails[J].rEQUIRED_QTY,
+        this.itemdescription = this.getitemdetails[J].iTEM_SHORT_DESC
     }
     // this.setitemcode = resp.itemDetails[i].iTEM_CODE;
     // this.setredqty = resp.itemDetails[i].rEQUIRED_QTY;
@@ -721,7 +723,7 @@ this.showsubmit = false;
     // this.getshort = resp.itemDetails[i].iTEM_SHORT_DESC;
   }
 
-    async clear() {
+  async clear() {
     const alert = await this.alertController.create({
       header: 'Confirm',
       message: 'Are you sure want to Clear the Process',
@@ -761,9 +763,9 @@ this.showsubmit = false;
   }
 
   update() {
-debugger;
+    debugger;
     // if (this.release == false) {
-      // this.presentAlert1("add item failed", 'Please click Release');
+    // this.presentAlert1("add item failed", 'Please click Release');
     // }
     // else if (this.Category = "" || this.Category == "undefined" || this.Category == null) {
     //   this.presentAlert1("add item failed", 'Please Enter add-item Fields');
@@ -834,7 +836,7 @@ debugger;
       console.log(res);
       this.presentAlert("", "Successfully updated");
       //  this.router.navigate(['/prsstatus'])
-
+      this.showupdate = false
       this.loading = true;
     })
   }
@@ -910,15 +912,16 @@ debugger;
         this.displayName = res;
         // this.presentAlert("", "RFQ 345/AT Raised Successfully");
         this.presentAlert("", this.getresponse);
+        this.showsubmit = false
         //       this.splitres=res.split(":")
         // this.prscode=this.splitres[1]
         //       console.log("split",  this.splitres);
         this.loading = false;
         // this.router.navigate(['/prsstatus'])
 
-var pduedte_array = this.displayName.split(':');
-console.log(pduedte_array[1]);
-this.prscode =pduedte_array[1];
+        var pduedte_array = this.displayName.split(':');
+        console.log(pduedte_array[1]);
+        this.prscode = pduedte_array[1];
       })
     }
   }

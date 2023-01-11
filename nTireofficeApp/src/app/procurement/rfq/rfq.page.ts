@@ -398,7 +398,7 @@ export class RFQPage implements OnInit {
     // if(this.requiredDate >  this.lastdate ){
     //   alert("12345")
     // }
-    if (this.requiredDate <  this.lastdate || this.requiredDate == this.lastdate) {
+    if (this.requiredDate < this.lastdate || this.requiredDate == this.lastdate) {
       let body = {
         "RFQ_raise": [
           {
@@ -429,7 +429,7 @@ export class RFQPage implements OnInit {
       return;
     }
 
-this.loading = true;
+    this.loading = true;
     // this.RaisedRFQdetails = this.RaisedRFQ;
     console.log(this.RaisedRFQdetails);
     // for(let i=0; i< this.RaisedRFQ.length; i++) {
