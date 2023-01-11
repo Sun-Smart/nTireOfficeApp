@@ -135,8 +135,8 @@
           </ion-col>
 
           <ion-col size-sm="2" size="2" size-md="2" size-lg="2" size-xl="2" class="leadscolumn">
-            <ion-label >
-              <ion-icon *ngIf="showedit" (click)="edit(i)"  style="color: green; display: none;" name="create-outline" ></ion-icon>
+            <ion-label>
+              <ion-icon *ngIf="showedit" (click)="edit(i)"  style="color: green;" name="create-outline"></ion-icon>
             </ion-label>
           </ion-col>
 
@@ -235,7 +235,7 @@
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel">Item/Service<span style="color:red;margin-left: 5px;">*</span></ion-label>
-            <select style="padding: 10px;" [(ngModel)]="itemcode" class="Input-text-field textareaField">
+            <select style="padding: 10px;" [(ngModel)]="iTEM_CODE" class="Input-text-field textareaField">
               <option>&lt;&lt; Select &gt;&gt;</option>
               <option>System maintenance</option>
               <option>Repairing Service</option>
@@ -245,7 +245,7 @@
           </ion-col>
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel">Item/Service<span style="color:red;margin-left: 5px;">*</span></ion-label>
-            <ion-searchbar [(ngModel)]="itemcode" type="text" debounce="500" (ionInput)="getItems($event)">
+            <ion-searchbar [(ngModel)]="iTEM_CODE" type="text" debounce="500" (ionInput)="getItems($event)">
             </ion-searchbar>
             <ion-list class="ContentName" *ngIf="isItemAvailable" class="searchlist"
               [ngStyle]="{'height':getdataitem.length >0?'90px':'0px'}">
@@ -317,7 +317,7 @@
 
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="hideitem">
             <ion-label class="plabel"> Item Detailed Description</ion-label>
-            <ion-input placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription" (onChange)="desctoitemdesc($event)"
+            <ion-input placeholder=" " disabled="" id="textareaID" [(ngModel)]="itemdescription"
               class="Input-text-field textareaField"
               style=" width:100%;background-color: #d4d4d4!important; color: black; font-weight: bold; height: 70px; display:inline-block;padding: 8px;"
               maxlength="150" required=""></ion-input>
@@ -330,12 +330,13 @@
           <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" *ngIf="showitem">
             <ion-label class="plabel"> Item Detailed Description</ion-label>
             <ion-textarea placeholder=" " id="textareaID" [(ngModel)]="itemdescription"
-              class="Input-text-field textareaField" style="width:100%;" maxlength="150" required="">{{Description}}</ion-textarea>
+              class="Input-text-field textareaField" style="width:100%;" maxlength="150" required=""></ion-textarea>
             <!-- (ionSelect)="resize()" -->
             <!-- (keyup)="checkTestPressure(this)" -->
             <!-- [(ngModel)]="VendorQuot.remarks" -->
             <!-- <span class="customCounter">{{150 - VendorQuot.remarks.length}}</span> -->
           </ion-col>
+
 
           <!-- <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
               <ion-button (click)="showline()" class="ion-color-success" expand="block">

@@ -415,7 +415,6 @@ if (val && val.trim() != '') {
     return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
   });
 }
-
   })
 }
 

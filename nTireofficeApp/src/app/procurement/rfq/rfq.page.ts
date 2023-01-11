@@ -128,6 +128,7 @@ export class RFQPage implements OnInit {
 
   Submit() {
     this.showviewlist = true;
+    this.lastdate = "";
     console.log('this.status ', this.status);
     // Status : Pending RFQ
 
@@ -180,6 +181,7 @@ export class RFQPage implements OnInit {
       this.showMRFQ = true;
       this.showRfq = false;
       this.showCRFQ = false;
+
 
       let body = {
         "functionid": "1",
@@ -289,7 +291,6 @@ export class RFQPage implements OnInit {
     console.log(item);
     console.log(this.requiredDate);
 
-
     this.test()
     if (this.Checked == true) {
       if (this.RaisedRFQ.length == 0) {
@@ -379,6 +380,7 @@ export class RFQPage implements OnInit {
     debugger;
     console.log(this.lastdate);
     this.lastdate = this.datePipe.transform(this.lastdate, 'yyyy-MM-dd');
+
     if (this.lastdate == null || this.lastdate == '' || this.lastdate == undefined) {
       this.presentAlert1("", "Please select Last Date to Raise RFQ");
     }
@@ -387,7 +389,16 @@ export class RFQPage implements OnInit {
     console.log(item);
     console.log(this.RaisedRFQ)
     this.requiredDate = this.RaisedRFQ[0].requested_Date;
-    if (this.requiredDate < this.lastdate || this.requiredDate == this.lastdate) {
+
+    console.log(this.requiredDate)
+    console.log(this.lastdate)
+    // if(this.requiredDate <  this.lastdate ){
+    //   alert("tyui")
+    // }
+    // if(this.requiredDate >  this.lastdate ){
+    //   alert("12345")
+    // }
+    if (this.requiredDate <  this.lastdate || this.requiredDate == this.lastdate) {
       let body = {
         "RFQ_raise": [
           {

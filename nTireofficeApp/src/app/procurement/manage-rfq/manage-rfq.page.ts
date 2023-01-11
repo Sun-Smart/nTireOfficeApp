@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { IpaddressService } from './../../service/ipaddress.service';
 import { HttprequestService } from '../../service/httprequest.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

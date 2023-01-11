@@ -21,7 +21,7 @@ export class VendorpendingQuotationsPage implements OnInit {
   data;
   RFQCODE;
   RFQID;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) { 
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private alertController: AlertController, private httpclient: HttpClient, private Ipaddressservice: IpaddressService) {
 
 
 
@@ -29,7 +29,8 @@ export class VendorpendingQuotationsPage implements OnInit {
 
   ngOnInit() {
     this.Submit();
-
+    this.status = "S";
+    this.Quotation = "S";
   }
   async clear() {
     const alert = await this.alertController.create({
@@ -49,8 +50,8 @@ export class VendorpendingQuotationsPage implements OnInit {
             this.rfqcode = "";
             this.fromdate = "";
             this.todate = "";
-            this.status = "";
-            this.Quotation = "";
+            this.status = "S";
+            this.Quotation = "S";
             this.getresponse = [];
             this.responseDatalength = ""
 
@@ -103,15 +104,13 @@ export class VendorpendingQuotationsPage implements OnInit {
     this.httpclient.post(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_pending_quotation_search', body).subscribe((res: any) => {
       this.getresponse = res;
       this.responseDatalength = this.getresponse.length;
-
       for (let item of this.getresponse) {
         console.log(item);
       }
     })
-
   }
   Updatequotation(item:any){
     console.log(item);
-    this.router.navigate(['/vendor-quotation',item])
+    this.router.navigate(['/vendor-quotation',item]);
   }
 }

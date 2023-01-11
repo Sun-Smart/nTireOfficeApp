@@ -396,21 +396,21 @@ export class AppComponent {
       url: '/material-issue',
       icon: 'bag-handle-outline'
     },
-    {
-      title: 'Physcial Inventory',
-      url: '/physical-inventory',
-      icon: 'card-sharp'
-    },
-    {
-      title: 'PI Mismatch',
-      url: '/pi-mismatch',
-      icon: 'shield-sharp'
-    },
-    {
-      title: 'Inter Location Transfer',
-      url: '/inter-location-transfer',
-      icon: 'compass-sharp'
-    },
+    // {
+    //   title: 'Physcial Inventory',
+    //   url: '/physical-inventory',
+    //   icon: 'card-sharp'
+    // },
+    // {
+    //   title: 'PI Mismatch',
+    //   url: '/pi-mismatch',
+    //   icon: 'shield-sharp'
+    // },
+    // {
+    //   title: 'Inter Location Transfer',
+    //   url: '/inter-location-transfer',
+    //   icon: 'compass-sharp'
+    // },
     {
       title: 'Pending Quotation',
       url: '/vendorpending-quotations',

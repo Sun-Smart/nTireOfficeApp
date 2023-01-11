@@ -30,7 +30,7 @@ export class VendorQuotationPage implements OnInit {
   itemCode;
   UpdateVendor;
   splitted;
-  constructor( private router: Router,private activatedRoute: ActivatedRoute, public Ipaddressservice: IpaddressService,private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) { 
+  constructor( private router: Router,private activatedRoute: ActivatedRoute, public Ipaddressservice: IpaddressService,private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) {
 
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.data = params;
@@ -56,7 +56,7 @@ export class VendorQuotationPage implements OnInit {
   }
 
   ngOnInit() {
-   
+
   }
 
   transCancel(){
