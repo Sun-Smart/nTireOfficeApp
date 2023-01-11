@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
   templateUrl: './updatevendorquot.page.html',
   styleUrls: ['./updatevendorquot.page.scss'],
   encapsulation: ViewEncapsulation.None
-
 })
+
 export class UpdatevendorquotPage implements OnInit {
   showedit: boolean = false
   options = { checkboxes: true }
@@ -21,8 +21,6 @@ export class UpdatevendorquotPage implements OnInit {
   constructor(private router: Router, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) { }
 
   ngOnInit() {
-
-
 
   }
 
@@ -33,13 +31,14 @@ export class UpdatevendorquotPage implements OnInit {
   edit() {
     this.showedit = true
   }
+
   submit() {
     this.router.navigate(['/vendor-quotation'])
 
   }
+
   cancel() {
-
-
+    this.router.navigate(['/vendor-quotation'])
   }
 
 }

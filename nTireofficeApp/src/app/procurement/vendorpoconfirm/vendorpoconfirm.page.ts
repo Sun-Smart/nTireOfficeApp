@@ -23,7 +23,7 @@ export class VendorpoconfirmPage implements OnInit {
     Status: new FormControl(''),
     fromdate: new FormControl(''),
     todate: new FormControl(''),
-   
+
   });
 
   vendorcode = window.localStorage['VENDOR_CODE'];
@@ -75,9 +75,10 @@ export class VendorpoconfirmPage implements OnInit {
   poid: any;
   ponumber: any;
   isPocodeAvailable: boolean;
+  confirmbtn: boolean = true;
   constructor(public modalController: ModalController, private router: Router, private http: HttpClient, public navCtrl: NavController, public Ipaddressservice: IpaddressService,public datepipe: DatePipe) {
     this.username = localStorage.getItem('TUM_USER_NAME');
-    
+
     this.branchID = localStorage.getItem('TUM_BRANCH_ID');
     this.functionID = localStorage.getItem('FUNCTION_ID');
     this.userID = localStorage.getItem('TUM_USER_ID');
@@ -86,12 +87,11 @@ export class VendorpoconfirmPage implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   ionViewDidEnter() {
     this.getallbranches();
-  
   }
 
   togglefilter() {
@@ -195,7 +195,7 @@ console.log( this.from);
       usertype: window.localStorage['TUM_USER_TYPE'],
       usertoken: usertoken,
       access_token: window.localStorage['token'],
-      
+
     }
     console.log(po_list);
 
@@ -205,15 +205,24 @@ console.log( this.from);
       if(this.PO_list_res==null||this.PO_list_res==''){
         this.showdata="NO Record Found"
       }else {
-        this.showdata="Total Count:" +" "+this.PO_list_res.length
-       
+        this.showdata="Total Count:" +" "+this.PO_list_res.length;
       }
 
+
+      if(res[0].status == "Approved"){
+        this.confirmbtn= false;
+        }
+        else
+        {
+          this.confirmbtn = true;
+        }
+
+
       console.log(  this.PO_list_res,"polist");
-      
+
       this.PO_list = this.PO_list_res.recordset;
       console.log( this.PO_list );
-      
+
       if (this.PO_list == undefined) {
         this.PO_list = [];
       }
@@ -225,6 +234,7 @@ console.log( this.from);
 
   confirmPo(item) {
     console.log(item.po_id);
+
     var function_id = localStorage.getItem('FUNCTION_ID');
     var userid = window.localStorage['TUM_USER_ID'];
 
@@ -234,6 +244,7 @@ console.log( this.from);
     var po_confirm = {
       "functionid": function_id,
       "poid": item.po_id,
+
       // userid: userid,
       // usertoken: usertoken,
       // access_token: window.localStorage['token']
@@ -310,17 +321,17 @@ console.log( this.from);
     }).subscribe(resp => {
       this.conformvendorcode = [];
       this.isPropertycodeAvailable = false;
-  
+
   this.vendorres=resp
   console.log(this.vendorres);
-  
+
   for (var i = 0; i < this.vendorres.length; i++) {
     this.conformvendorcode.push({
       VENDOR_CODE: this.vendorres[i].VENDOR_CODE,
-        
+
     });
   };
-  
+
   const val = e.target.value;
   if (val && val.trim() != '') {
     this.isPropertycodeAvailable = true;
@@ -328,26 +339,26 @@ console.log( this.from);
       return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
     });
   }
-  
+
     })
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   addvendornumbercode(item:any){
     console.log(item,"item");
 
   this.vendornum=item.VENDOR_CODE;
     this.isPropertycodeAvailable = false;
-  
+
   }
 
 
 
-  
+
 
 getinvoiceCode(e:any){
 
@@ -370,7 +381,7 @@ this.poinvoive_no=resp
 for (var i = 0; i < this.poinvoive_no.length; i++) {
   this.poinvoicecode.push({
     po_number: this.poinvoive_no[i].po_number,
-      
+
   });
 };
 

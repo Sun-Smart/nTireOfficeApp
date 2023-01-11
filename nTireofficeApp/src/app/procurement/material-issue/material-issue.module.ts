@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -18,6 +18,7 @@ import { MaterialIssuePage } from './material-issue.page';
     NgxDatatableModule
   ],
   declarations: [MaterialIssuePage],
-  providers:[DatePipe]
+  providers:[DatePipe],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MaterialIssuePageModule {}

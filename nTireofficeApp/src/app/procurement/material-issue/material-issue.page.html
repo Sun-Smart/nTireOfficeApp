@@ -50,9 +50,9 @@
             <ion-label class="plabel">Status</ion-label>
             <select [(ngModel)]="Status" #selectList style="padding: 10px;"  (change)="setstatusvalue(selectList.value)" style="display:inline-block;padding: 8px;"
               class="Input-text-field textareaField">
-              <ion-option value="0" selected> &lt;&lt; Select &gt;&gt; </ion-option>
-              <ion-option value="P">Pending</ion-option>
-              <ion-option value="C">Completed</ion-option>
+              <option value="0" selected> &lt;&lt; Select &gt;&gt; </option>
+              <option value="P">Pending</option>
+              <option value="C">Completed</option>
               <!-- <ion-option *ngFor="let items of Vendors_Item_uom" value="{{items.VAL}}">{{items.TEXT}}</ion-option> -->
             </select>
           </ion-col>

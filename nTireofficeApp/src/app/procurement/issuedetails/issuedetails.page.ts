@@ -21,21 +21,22 @@ export class IssuedetailsPage implements OnInit {
   AVAILABLEQUANTITY;
   LocationDetails;
   BinLocationDetails;
-  constructor(  private http: HttpClient,private activatedRoute: ActivatedRoute,public Ipaddressservice: IpaddressService,private datePipe: DatePipe) { 
+  getdata: any;
+  constructor(  private http: HttpClient,private activatedRoute: ActivatedRoute,public Ipaddressservice: IpaddressService,private datePipe: DatePipe) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
-  
+
     this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/YYYY');
     this.todate = this.datePipe.transform(this.todate, 'dd/MM/YYYY');
 
     this.sub = this.activatedRoute.params.subscribe(params => {
-      this.data = params;  
+      this.data = params;
       console.log('this.data ', this.data);
       this.ITEMCODE = this.data.item_Code11;
       this.AVAILABLEQUANTITY = this.data.STOCKQTY;
-    
-    
+
+
 
     });
   }
@@ -80,29 +81,30 @@ export class IssuedetailsPage implements OnInit {
   SearchList(){
 
     let body =  {
-      
-        "FUNCTIONIDMIS":this.funtionID,
-        "BRANCHIDMIS":this.branch_ID,
-        "LOCATION_IDMIS":12,
-        "BINMIS":36,
-        "ITEM_IDMIS":1272,
+
+        "FUNCTIONIDMIS":this.funtionID.toString(),
+        "BRANCHIDMIS":this.branch_ID.toString(),
+        "LOCATION_IDMIS":"12",
+        "BINMIS":"36",
+        "ITEM_IDMIS":"1272",
         "ALPHANAMEMIS":"",
         "SORTEXPRESSIONMIS":"batch_serial_no desc",
         "PAGEINDEXMIS":0,
         "PAGESIZEMIS":10,
-        "STOREEMIS":165,
-        "RACKEMIS":5953
-       
-    
+        "STOREEMIS":"165",
+        "RACKEMIS":"5953"
+
+
     }
-    
+
         // const header = new Headers();
         // header.append("Content-Type", "application/json");
         // let options = new HttpHeaders().set('Content-Type', 'application/json');
         this.http.post(this.Ipaddressservice.ipaddress1+
           this.Ipaddressservice.serviceerpapi+'MaterialIssueDetailsLinkSearch' , body).subscribe((res:any) =>{
             console.log(res)
-         
+
+this.getdata =res
           })
 
   }

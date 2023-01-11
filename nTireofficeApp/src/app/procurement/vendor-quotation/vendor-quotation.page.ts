@@ -33,7 +33,10 @@ export class VendorQuotationPage implements OnInit {
   constructor( private router: Router,private activatedRoute: ActivatedRoute, public Ipaddressservice: IpaddressService,private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) {
 
     this.sub = this.activatedRoute.params.subscribe(params => {
+
+
       this.data = params;
+      console.log(this.data)
       this.rfqid = this.data.RFQID;
       this.rfqcode = this.data.RFQCODE;
       this.quoref = this.data.QUOTE_REF;
@@ -44,15 +47,15 @@ export class VendorQuotationPage implements OnInit {
       this.prsId = this.data.PRSID;
       this.ExpDate = this.data.EXPECTEDDATE;
       this.itemCode = this.data.item_Code;
+      console.log(this.itemCode);
+
       var str = this.data.item_Code;
       console.log(str)
       this.splitted = str.split('~');
       console.log(this.splitted);
       this.splitted = this.splitted[0];
       console.log('new', this.splitted)
-
     });
-
   }
 
   ngOnInit() {
@@ -66,10 +69,12 @@ export class VendorQuotationPage implements OnInit {
   edit(){
     this.showedit=true
   }
-  updatevendorquot(prs:any,itemcode:any){
-    console.log(prs,itemcode)
+
+  // updatevendorquot(this.prsId,this.splitted)
+  updatevendorquot(prs:any,splitted:any){
+    console.log(prs,splitted)
     // https://demo.herbie.ai/nTireMobileCoreAPI/api/ERP/get_Quotation_Items/16094/ITEM9
-    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_Quotation_Items/' + prs + '/' + itemcode).subscribe((res: any) => {
+    this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_Quotation_Items/' + prs + '/' + this.splitted).subscribe((res: any) => {
      this.UpdateVendor = res;
     })
     this.router.navigate(['/updatevendorquot'])

@@ -79,6 +79,7 @@ flex: 0 0 calc(calc(5 / var(--ion-grid-columns, 12)) * 100%);
 width: calc(calc(5 / var(--ion-grid-columns, 12)) * 100%);
 max-width: calc(calc(5 / var(--ion-grid-columns, 14)) * 100%);
 }
+
 .selectTag{
 
     border-bottom: 0px; border-top: 0px; border-left: 0px; border-right: 0px;
@@ -89,6 +90,7 @@ margin-bottom: -23px;
 ::ng-deep.native-textarea.sc-ion-textarea-md{
   height: 50px;
 }
+
 ion-card {
   .card_header_text {
     font-size: 15px;

@@ -53,7 +53,7 @@ export class MaterialIssuePage implements OnInit {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
-  
+
     this.fromdate = this.datePipe.transform(this.fromdate, 'dd/MM/YYYY');
     this.todate = this.datePipe.transform(this.todate, 'dd/MM/YYYY');
     this.mode = "<< Select >>";
@@ -78,9 +78,9 @@ export class MaterialIssuePage implements OnInit {
   }
 
   SearchList() {
-this.showviewlist = true; 
+this.showviewlist = true;
 if(this.mode == "<< Select >>" || this.mode == undefined){
-  var MRSMODE = "null";
+  var MRSMODE = "0";
  }else{
   MRSMODE= this.mode;
  }
@@ -90,14 +90,13 @@ if(this.mode == "<< Select >>" || this.mode == undefined){
   MISTATUS= this.Status;
  }
 if(this.fromdate == "<< Select >>" || this.fromdate == undefined){
-  var fromdate = 'null';
+  var fromdate = "0";
  }else{
   this.fromdate2 = this.datePipe.transform(this.fromdate, 'dd/MM/YYYY');
   fromdate= this.fromdate2;
  }
-
  if(this.todate == "<< Select >>" || this.todate == undefined){
-  var todate = 'null';
+  var todate = "0";
  }else{
   this.todate2 = this.datePipe.transform(this.todate, 'dd/MM/YYYY');
   todate= this.todate2;
@@ -134,42 +133,7 @@ let body =  {
       })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Mode : Location
-
-
-
 
     // this.showviewlist = true
     // const header = new Headers();
@@ -196,9 +160,8 @@ let body =  {
   edit() {
     this.showedit = true
   }
+
   Search() {
     this.showsearch = true
   }
-
-
 }
