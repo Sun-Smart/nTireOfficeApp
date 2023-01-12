@@ -32,7 +32,7 @@
           <ion-label class="plabel">Status</ion-label>
           <select [(ngModel)]="status" style="padding: 10px;" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option value = "S">&lt;&lt; Select &gt;&gt;</option>
+            <option value="">&lt;&lt; Select &gt;&gt;</option>
             <option value="N">New</option>
             <option value="R">Released</option>
             <option value="W">Withdraw</option>
@@ -42,7 +42,7 @@
           <ion-label class="plabel">Quotation Through</ion-label>
           <select [(ngModel)]="Quotation" style="padding: 10px;" style="display:inline-block;padding: 8px;"
             class="Input-text-field textareaField">
-            <option value = "S">&lt;&lt; Select &gt;&gt;</option>
+            <option value="S">&lt;&lt; Select &gt;&gt;</option>
             <option value="1">Bidding</option>
             <option value="2">Others</option>
           </select>
@@ -106,8 +106,7 @@
           <ion-label class="labelData-text"> : {{item.STATUSVAL}}</ion-label>
         </ion-col>
         <ion-col size="12" style="font-weight:bold;">
-          <ion-button expand="block" class="ion-color-success"
-            (click)="Updatequotation(item)">Update
+          <ion-button expand="block" class="ion-color-success" (click)="Updatequotation(item)">Update
           </ion-button>
         </ion-col>
       </ion-row>

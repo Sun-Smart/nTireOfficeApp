@@ -73,7 +73,7 @@ export class VendorpendingQuotationsPage implements OnInit {
     if (this.rfqcode == undefined) {
       this.rfqcode = "0"
     }
-    if (this.status == undefined || this.status == "<< Select >>") {
+    if (this.status == undefined || this.status == "<< Select >>" || this.status == "S") {
       this.status = "0"
     }
     if (this.fromdate == undefined) {
@@ -109,8 +109,8 @@ export class VendorpendingQuotationsPage implements OnInit {
       }
     })
   }
-  Updatequotation(item:any){
+  Updatequotation(item: any) {
     console.log(item);
-    this.router.navigate(['/vendor-quotation',item]);
+    this.router.navigate(['/vendor-quotation', item]);
   }
 }
