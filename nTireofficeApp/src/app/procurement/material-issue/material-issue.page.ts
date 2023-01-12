@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { ViewEncapsulation } from '@angular/core';
 import { TableSampleService } from 'src/app/Property_Pages/table-sample.service';
@@ -48,8 +48,10 @@ export class MaterialIssuePage implements OnInit {
   mrsCode;
 
   MaterialIssue;
+  hidecount: boolean=false;
+  showcount: boolean=false;
 
-  constructor(private router: Router,private modalCtrl: ModalController,private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
+  constructor(private router: Router,private modalCtrl: ModalController,private alertcontroller: AlertController, private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -129,7 +131,19 @@ let body =  {
         this.MaterialIssue =res;
         this.responseData =this.MaterialIssue;
       console.log(this.responseData);
-      this.responseDatalength = this.responseData.length;
+
+if(this.responseData == "null" || this.responseData == null || this.responseData == "")
+{
+  this.hidecount=true
+  this.showcount =false
+
+}
+if(this.responseData != null)
+{
+  this.responseDatalength = this.responseData.length;
+  this.showcount =true
+  this.hidecount=false
+}
       })
 
 
@@ -152,6 +166,31 @@ let body =  {
     //   console.log(JSON.stringify(error));
     // });
   }
+
+  async presentAlert(heading, tittle) {
+    var alert = await this.alertcontroller.create({
+      header: heading,
+      cssClass: 'Cssbutton',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async presentAlert1(heading, tittle) {
+    var alert = await this.alertcontroller.create({
+      header: heading,
+      cssClass: 'buttonCss',
+      backdropDismiss: false,
+      message: tittle,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 
   transCancel() {
     this.modalCtrl.dismiss();
