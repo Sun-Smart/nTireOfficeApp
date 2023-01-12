@@ -43,8 +43,6 @@ export class IssuedetailsPage implements OnInit {
       this.ITEMCODE = this.data.item_Code11;
       this.AVAILABLEQUANTITY = this.data.STOCKQTY;
       this.CurrentQty = this.data.QuantityPending
-
-
     });
   }
 
@@ -52,7 +50,6 @@ export class IssuedetailsPage implements OnInit {
     debugger;
     this.getLocation();
     this.getBinLocation();
-
   }
 
   getLocation() {

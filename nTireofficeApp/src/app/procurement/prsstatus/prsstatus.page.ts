@@ -38,7 +38,7 @@ export class PRSstatusPage implements OnInit {
   ngOnInit() {
     this.Branchname = localStorage.getItem('TUM_BRANCH_CODE');
     this.getCards();
-
+    this.status = "0";
   }
 
   togglefilter() {
@@ -143,7 +143,7 @@ export class PRSstatusPage implements OnInit {
           handler: () => {
 
             this.prscode = "";
-            this.status = "";
+            this.status = "0";
             this.todate = "";
             this.fromdate = "";
             this.getresponse = [];

@@ -25,11 +25,11 @@ export class MaterialIssuePage implements OnInit {
   fromdate;
   todate;
   responseData;
-  mode : any;
+  mode : any = true;
   mrscode;
   fromdate1;
   todate1;
-  Status;
+  Statusselect : any = true;
   fromdate2;
   todate2;
   function;
@@ -50,6 +50,7 @@ export class MaterialIssuePage implements OnInit {
   MaterialIssue;
   hidecount: boolean=false;
   showcount: boolean=false;
+  Select: any;
 
   constructor(private router: Router,private modalCtrl: ModalController,private alertcontroller: AlertController, private datePipe: DatePipe, private http: HttpClient, private tableApi: TableSampleService,public Ipaddressservice: IpaddressService ) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
@@ -63,7 +64,8 @@ export class MaterialIssuePage implements OnInit {
    }
 
   ngOnInit() {
-
+this.mode = null;
+this.Statusselect = 0;
   }
   IssueDetails(item : any){
     console.log(item);
@@ -86,10 +88,10 @@ if(this.mode == "<< Select >>" || this.mode == undefined){
  }else{
   MRSMODE= this.mode;
  }
- if(this.Status == "<< Select >>" || this.Status == undefined){
+ if(this.Select == "<< Select >>" || this.Select == undefined){
   var MISTATUS = "0";
  }else{
-  MISTATUS= this.Status;
+  MISTATUS= this.Select;
  }
 if(this.fromdate == "<< Select >>" || this.fromdate == undefined){
   var fromdate = "0";
