@@ -82,7 +82,8 @@
     </ion-card-content> -->
 
   </ion-card>
-  <p  id="ContentName" class="totalCount">Total Lead :{{responseDatalength}} </p>
+  <p  id="ContentName"  *ngIf="showcount" class="totalCount">Total Lead :{{responseDatalength}} </p>
+  <p  id="ContentName"  *ngIf="hidecount" class="totalCount">No Record Found</p>
 <ion-card *ngFor="let item of responseData">
     <ion-card-header class="card_header">
       <ion-row>

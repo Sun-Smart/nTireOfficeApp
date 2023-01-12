@@ -163,7 +163,6 @@ getVendorDetails(){
       this.quotationDetails = res;
       this.presentAlert("",res );
     })
-
   }
 
   cancel() {
