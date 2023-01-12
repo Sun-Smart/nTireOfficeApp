@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -9,6 +9,7 @@ import { AlertController } from '@ionic/angular';
   selector: 'app-issuedetails',
   templateUrl: './issuedetails.page.html',
   styleUrls: ['./issuedetails.page.scss'],
+
 })
 export class IssuedetailsPage implements OnInit {
   funtionID;
@@ -25,6 +26,7 @@ export class IssuedetailsPage implements OnInit {
   getdata: any;
   CurrentQty: any;
   getlength: any;
+  getdatalength: any;
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
     private alertController: AlertController,
     public Ipaddressservice: IpaddressService, private datePipe: DatePipe) {
@@ -41,10 +43,6 @@ export class IssuedetailsPage implements OnInit {
       this.ITEMCODE = this.data.item_Code11;
       this.AVAILABLEQUANTITY = this.data.STOCKQTY;
       this.CurrentQty = this.data.QuantityPending
-
-
-
-
     });
   }
 
@@ -52,7 +50,6 @@ export class IssuedetailsPage implements OnInit {
     debugger;
     this.getLocation();
     this.getBinLocation();
-
   }
 
   getLocation() {
@@ -104,16 +101,15 @@ export class IssuedetailsPage implements OnInit {
 
     }
 
-    // const header = new Headers();
-    // header.append("Content-Type", "application/json");
-    // let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.post(this.Ipaddressservice.ipaddress1 +
-      this.Ipaddressservice.serviceerpapi + 'MaterialIssueDetailsLinkSearch', body).subscribe((res: any) => {
-        console.log(res)
-
+        // const header = new Headers();
+        // header.append("Content-Type", "application/json");
+        // let options = new HttpHeaders().set('Content-Type', 'application/json');
+        this.http.post(this.Ipaddressservice.ipaddress1+
+          this.Ipaddressservice.serviceerpapi+'MaterialIssueDetailsLinkSearch' , body).subscribe((res:any) =>{
+            console.log(res)
         this.getdata = res
-        this.getlength = this.getdata.length
-      })
+        this.getdatalength =this.getdata.length
+          })
 
   }
 

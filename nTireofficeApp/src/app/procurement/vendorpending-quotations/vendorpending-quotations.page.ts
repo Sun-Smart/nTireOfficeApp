@@ -29,7 +29,7 @@ export class VendorpendingQuotationsPage implements OnInit {
 
   ngOnInit() {
     this.Submit();
-    this.status = "S";
+    this.status = "";
     this.Quotation = "S";
   }
   async clear() {

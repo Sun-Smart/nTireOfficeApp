@@ -21,22 +21,22 @@
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">From Date</ion-label>
-          <ion-input type="date" class="form-control" [(ngModel)]="fromdate">      
+          <ion-input type="date" class="form-control" [(ngModel)]="fromdate">
           </ion-input>
-         
+
         </ion-col>
         <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
           <ion-label class="ContentName">To Date</ion-label>
           <ion-input type="date" class="form-control" [(ngModel)]="todate">
           </ion-input>
-         
+
         </ion-col>
         <ion-col size="12">
           <ion-button (click)="requestedJobs()" expand="block" class="ion-color-success">Search
           </ion-button>
         </ion-col>
       </ion-row>
-   
+
     </ion-grid>
   </ion-card>
   <p  id="ContentName" class="totalCount">Total Lead :{{responseDatalength}} </p>
@@ -49,7 +49,7 @@
         </ion-col-4>
 
         <ion-col-8 style="margin-left: 120px;">
-          <ion-label class="card_header_text">{{item1.PRS_CODE}}</ion-label>
+          <ion-label class="card_header_text">{{item1.po_reference}}</ion-label>
           <!-- PO Reference NO -->
         </ion-col-8>
       </ion-row>
@@ -57,7 +57,7 @@
     <ion-label class="labelData-text"></ion-label>
     <ion-card-content>
       <ion-row>
-        
+
         <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
 
           <ion-label class="labelHead-text">PO Date :</ion-label>

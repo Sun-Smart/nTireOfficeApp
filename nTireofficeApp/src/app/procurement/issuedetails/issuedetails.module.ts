@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -16,6 +16,7 @@ import { IssuedetailsPage } from './issuedetails.page';
     IssuedetailsPageRoutingModule
   ],
   declarations: [IssuedetailsPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers:[DatePipe]
 })
 export class IssuedetailsPageModule {}

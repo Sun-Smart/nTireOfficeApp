@@ -508,9 +508,10 @@ export class PurchaseRequestPage implements OnInit {
 
   showline() {  //submit btn
     debugger;
-    if (this.itemcode == "" || this.itemcode == "undefined" || this.itemcode == null) {
-      this.presentAlert1("add item failed", 'Please Enter Item Code');
-    } else if (this.qty == "" || this.qty == "undefined" || this.qty == null) {
+    // if (this.itemcode == "" || this.itemcode == "undefined" || this.itemcode == null) {
+    //   this.presentAlert1("add item failed", 'Please Enter Item Code');
+    // }
+     if (this.qty == "" || this.qty == "undefined" || this.qty == null) {
       this.presentAlert1("add item failed", 'Please Enter Quantity');
     } else if (this.Requiredbefore == "" || this.Requiredbefore == "undefined" || this.Requiredbefore == null) {
       this.presentAlert1("add item failed", 'Please Enter  Required Before Date');
@@ -525,15 +526,13 @@ export class PurchaseRequestPage implements OnInit {
       this.presentAlert1("add item failed", 'Please Enter Required Before Date');
     }
     else if (this.itemcode[0] == this.itemcode[i]) {
-      this.presentAlert1("add item failed", 'tyer');
+      this.presentAlert1("add item failed", '');
     }
-
-
     else {
       debugger
-      this.showviewlist = true
-      this.showsubmit = true
-
+      this.showviewlist = true;
+      this.showsubmit = true;
+      this.showsavebtn = false;
       // if (this.status == undefined || this.status == "") {
       //   this.showsubmit = true
       // }
