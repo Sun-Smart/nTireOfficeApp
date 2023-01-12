@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { IpaddressService } from 'src/app/service/ipaddress.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-issuedetails',
   templateUrl: './issuedetails.page.html',
   styleUrls: ['./issuedetails.page.scss'],
+
 })
 export class IssuedetailsPage implements OnInit {
   funtionID;
@@ -22,6 +23,7 @@ export class IssuedetailsPage implements OnInit {
   LocationDetails;
   BinLocationDetails;
   getdata: any;
+  getdatalength: any;
   constructor(  private http: HttpClient,private activatedRoute: ActivatedRoute,public Ipaddressservice: IpaddressService,private datePipe: DatePipe) {
     this.funtionID = localStorage.getItem('FUNCTION_ID');
     this.branch_ID = localStorage.getItem('TUM_BRANCH_ID')
@@ -35,8 +37,6 @@ export class IssuedetailsPage implements OnInit {
       console.log('this.data ', this.data);
       this.ITEMCODE = this.data.item_Code11;
       this.AVAILABLEQUANTITY = this.data.STOCKQTY;
-
-
 
     });
   }
@@ -103,8 +103,8 @@ export class IssuedetailsPage implements OnInit {
         this.http.post(this.Ipaddressservice.ipaddress1+
           this.Ipaddressservice.serviceerpapi+'MaterialIssueDetailsLinkSearch' , body).subscribe((res:any) =>{
             console.log(res)
-
-this.getdata =res
+        this.getdata = res
+        this.getdatalength =this.getdata.length
           })
 
   }
