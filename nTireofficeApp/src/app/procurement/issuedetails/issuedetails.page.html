@@ -8,79 +8,83 @@
 </ion-header>
 <ion-content>
   <ion-card>
-          <ion-grid>
-        <ion-row>
+    <ion-grid>
+      <ion-row>
 
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Location </ion-label>
-            <select style="padding: 10px;" style=" padding: 8px;"
-            class="Input-text-field textareaField">
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Location </ion-label>
+          <select style="padding: 10px;" style=" padding: 8px;" class="Input-text-field textareaField">
             <option value="null"> Select </option>
-           <option value="" *ngFor=" let data of LocationDetails">{{data.LocationDescription}}</option>
+            <option value="" *ngFor=" let data of LocationDetails">{{data.LocationDescription}}</option>
           </select>
-          </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Bin Location</ion-label>
-            <select  style="padding: 10px;" style=" padding: 8px;"
-            class="Input-text-field textareaField">
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Bin Location</ion-label>
+          <select style="padding: 10px;" style=" padding: 8px;" class="Input-text-field textareaField">
             <option value="null"> Select </option>
-            <option value=""  *ngFor="let item of BinLocationDetails" >{{item.bin_desc}}</option>
+            <option value="" *ngFor="let item of BinLocationDetails">{{item.bin_desc}}</option>
             <!-- <option value="Req"> Material Requisition Slip </option>
             <option value="Sal"> Sales Return </option> -->
           </select>
         </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Item Code</ion-label>
-            <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text" class="Input-text-field textareaField" disabled="">{{this.ITEMCODE}}
-            </ion-input>
-          </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Issue ID</ion-label>
-            <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text" class="Input-text-field textareaField" disabled="">
-            </ion-input>
-          </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Current Qty</ion-label>
-            <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text" class="Input-text-field textareaField" disabled="">
-            </ion-input>
-          </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
-            <ion-label class="plabel">Available Qty</ion-label>
-            <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text" class="Input-text-field textareaField" disabled="">{{this.AVAILABLEQUANTITY}}
-            </ion-input>
-          </ion-col>
-          <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
-            <ion-button (click)="SearchList()" class="ion-color-success" expand="block">
-              <ion-icon style="color:white ;" name="search-outline"></ion-icon>
-              Search
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Item Code</ion-label>
+          <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text"
+            class="Input-text-field textareaField" disabled="">{{this.ITEMCODE}}
+          </ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Issue ID</ion-label>
+          <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text"
+            class="Input-text-field textareaField" disabled="">
+          </ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Current Qty</ion-label>
+          <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text"
+            class="Input-text-field textareaField" disabled="">{{this.CurrentQty}}
+          </ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4">
+          <ion-label class="plabel">Available Qty</ion-label>
+          <ion-input style="background-color: #d4d4d4!important; display:inline-block;padding: 8px;" type="text"
+            class="Input-text-field textareaField" disabled="">{{this.AVAILABLEQUANTITY}}
+          </ion-input>
+        </ion-col>
+        <ion-col size-sm="6" size="12" size-md="6" size-lg="6" size-xl="4" style="text-align: center;">
+          <ion-button (click)="SearchList()" class="ion-color-success" expand="block">
+            <ion-icon style="color:white ;" name="search-outline"></ion-icon>
+            Search
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </ion-card>
-  <p  id="ContentName" class="totalCount">Total Lead :   </p>
-  <ion-card   *ngFor="let item of this.getdata">
-    <ion-card-header class="card_header">
-      <ion-row>
-        <ion-col-4>
-          <ion-label class="card_header_text">Tracking Serial</ion-label>
-        </ion-col-4>
 
-        <ion-col-8 style="margin-left: 120px;">
-          <ion-label class="card_header_text"></ion-label>
-          <!-- PO Reference NO -->
-        </ion-col-8>
-      </ion-row>
-    </ion-card-header>
-    <ion-label class="labelData-text"></ion-label>
-    <ion-card-content >
-      <ion-row >
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+  <p id="ContentName" class="totalCount">Total Lead : {{this.getlength}} </p>
+  <div *ngFor="let item of this.getdata">
+    <ion-card>
+      <ion-card-header class="card_header">
+        <ion-row>
+          <ion-col-4>
+            <ion-label class="card_header_text">Tracking Serial</ion-label>
+          </ion-col-4>
 
-          <ion-label class="labelHead-text">Location</ion-label>
-        </ion-col>
-        <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+          <ion-col-8 style="margin-left: 120px;">
+            <ion-label class="card_header_text"></ion-label>
+            <!-- PO Reference NO -->
+          </ion-col-8>
+        </ion-row>
+      </ion-card-header>
+      <ion-label class="labelData-text"></ion-label>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+
+            <ion-label class="labelHead-text">Location</ion-label>
+          </ion-col>
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
           <select style="padding: 10px;" style=" padding: 8px;"
             class="Input-text-field textareaField">
             <option value="null"> Select </option>
@@ -89,50 +93,50 @@
           </select>
         </ion-col> -->
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text">  :  {{item.LOCATIONTEXT}} </ion-label>
-        </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelData-text"> : {{item.LOCATIONTEXT}} </ion-label>
+          </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-          <ion-label class="labelHead-text">Location Bin </ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text">  : {{item.BINTEXT}} </ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-          <ion-label class="labelHead-text">Tracking</ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text">  :  {{item.TRACKINGTEXT}} </ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-          <ion-label class="labelHead-text">Tracking Serial/Batch No </ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text">  :  {{item.BATCH_SERIAL_NO}} </ion-label>
-        </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            <ion-label class="labelHead-text">Location Bin </ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelData-text"> : {{item.BINTEXT}} </ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            <ion-label class="labelHead-text">Tracking</ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelData-text"> : {{item.TRACKINGTEXT}} </ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            <ion-label class="labelHead-text">Tracking Serial/Batch No </ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelData-text"> : {{item.BATCH_SERIAL_NO}} </ion-label>
+          </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
-          <ion-label class="labelHead-text">Qty  </ion-label>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-label class="labelData-text">  : {{item.STOCK_QTY}}</ion-label>
-        </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6" style="font-weight:bold;">
+            <ion-label class="labelHead-text">Qty </ion-label>
+          </ion-col>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-label class="labelData-text"> : {{item.STOCK_QTY}}</ion-label>
+          </ion-col>
 
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-button expand="block" class="ion-color-success" >Issue
-          </ion-button>
-        </ion-col>
-        <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
-          <ion-button expand="block" class="ion-color-danger" > Close
-          </ion-button>
-        </ion-col>
-          </ion-row>
-     </ion-card-content>
-  </ion-card>
+          <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-button expand="block" (click)="issue()" class="ion-color-success">Issue
+            </ion-button>
+          </ion-col>
+          <!-- <ion-col size-sm="6" size="6" size-md="6" size-lg="6" size-xl="6">
+            <ion-button expand="block" class="ion-color-danger"> Close
+            </ion-button>
+          </ion-col> -->
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
 <ion-footer>
-
   <ion-row>
     <ion-col size-sm="5" size="6" size-md="5" size-lg="5" size-xl="5">
       © SunSmart Global Inc
@@ -141,6 +145,4 @@
       {{username}}
     </ion-col>
   </ion-row>
-
-
 </ion-footer>
