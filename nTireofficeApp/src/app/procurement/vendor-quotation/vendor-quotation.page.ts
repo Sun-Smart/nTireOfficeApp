@@ -13,7 +13,7 @@ import { IpaddressService } from 'src/app/service/ipaddress.service';
   encapsulation: ViewEncapsulation.None
 })
 export class VendorQuotationPage implements OnInit {
-  showedit:boolean=false
+  showedit: boolean = false
   options = { checkboxes: true }
   // data: any=[];
   sub;
@@ -30,7 +30,7 @@ export class VendorQuotationPage implements OnInit {
   itemCode;
   UpdateVendor;
   splitted;
-  constructor( private router: Router,private activatedRoute: ActivatedRoute, public Ipaddressservice: IpaddressService,private modalCtrl: ModalController, private http:HttpClient, private tableApi : TableSampleService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, public Ipaddressservice: IpaddressService, private modalCtrl: ModalController, private http: HttpClient, private tableApi: TableSampleService) {
 
     this.sub = this.activatedRoute.params.subscribe(params => {
 
@@ -40,7 +40,7 @@ export class VendorQuotationPage implements OnInit {
       this.rfqid = this.data.RFQID;
       this.rfqcode = this.data.RFQCODE;
       this.quoref = this.data.QUOTE_REF;
-      this.quoDate = this.data.QUOTE_DATE;
+      this.quoDate = this.data.QUOTE_DATE1;
       this.statusvalue = this.data.STATUSVAL;
       this.Unitprice = this.data.UNIT_PRICE;
       this.Qty = this.data.QUANTITY;
@@ -62,20 +62,20 @@ export class VendorQuotationPage implements OnInit {
 
   }
 
-  transCancel(){
+  transCancel() {
     this.modalCtrl.dismiss();
   }
 
-  edit(){
-    this.showedit=true
+  edit() {
+    this.showedit = true
   }
 
   // updatevendorquot(this.prsId,this.splitted)
-  updatevendorquot(prs:any,splitted:any){
-    console.log(prs,splitted)
+  updatevendorquot(prs: any, splitted: any) {
+    console.log(prs, splitted)
     // https://demo.herbie.ai/nTireMobileCoreAPI/api/ERP/get_Quotation_Items/16094/ITEM9
     this.http.get(this.Ipaddressservice.ipaddress1 + this.Ipaddressservice.serviceerpapi + 'get_Quotation_Items/' + prs + '/' + this.splitted).subscribe((res: any) => {
-     this.UpdateVendor = res;
+      this.UpdateVendor = res;
     })
     this.router.navigate(['/updatevendorquot'])
   }

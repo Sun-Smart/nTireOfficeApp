@@ -45,6 +45,7 @@ export class VendorsdetailsPage implements OnInit {
   splitted;
   item;
   addVendor: boolean = false;
+  getprsid: any;
   constructor(private router: Router, private alertcontroller: AlertController, private activatedRoute: ActivatedRoute, private httpresponse: HttprequestService, private IpaddressService: IpaddressService, private http: HttpClient) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -68,6 +69,7 @@ export class VendorsdetailsPage implements OnInit {
       this.ITEMCODE = this.data.itemCode;
       this.ITEMDESC = this.data.itemdesc;
       this.splitted = this.data.id;
+      this.getprsid = this.data.pRSID
       console.log(this.splitted)
       this.item = this.data.rfq;
       console.log(this.item);
@@ -89,6 +91,7 @@ export class VendorsdetailsPage implements OnInit {
       console.log(this.findvendor);
     })
   }
+
 
   add(event: any) {
     this.addvalue = event.target.value;
@@ -173,7 +176,7 @@ export class VendorsdetailsPage implements OnInit {
         "tamount": item.amount,
         "qty": "",
         "vendoritemid": item.vendorItemID,
-        "prsid": ""
+        "prsid": this.getprsid
       });
       console.log(this.VendorDetails);
     }

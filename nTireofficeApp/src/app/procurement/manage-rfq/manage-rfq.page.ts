@@ -42,9 +42,10 @@ export class ManageRfqPage implements OnInit {
   RFQID;
   VendorList;
   Checked;
-  Requestrequstion:any=[];
+  Requestrequstion: any = [];
   quotationDetails;
-  requestquatation:boolean=true;
+  requestquatation: boolean = true;
+  getprscode: any;
   constructor(private router: Router, private alertcontroller: AlertController, private activatedRoute: ActivatedRoute, private IpaddressService: IpaddressService, private httpclient: HttpClient) {
     this.function = localStorage.getItem('FUNCTION_DESC');
     this.branch = localStorage.getItem('TUM_BRANCH_CODE');
@@ -68,8 +69,8 @@ export class ManageRfqPage implements OnInit {
 
     this.getCards();
     this.getVendorDetails();
-    if(this.RFQID == this.RFQID){
-     this.requestquatation = true;
+    if (this.RFQID == this.RFQID) {
+      this.requestquatation = true;
 
     }
   }
@@ -82,64 +83,65 @@ export class ManageRfqPage implements OnInit {
     })
   }
 
-getVendorDetails(){
-  this.httpclient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getvendor_RFQ?functionId='+this.functionID+'&rfqcode='+this.RFQCODE).subscribe((res : any) =>{
-    console.log(res);
-    this.VendorList = res;
+  getVendorDetails() {
+    this.httpclient.get(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'getvendor_RFQ?functionId=' + this.functionID + '&rfqcode=' + this.RFQCODE).subscribe((res: any) => {
+      console.log(res);
+      this.VendorList = res;
 
-      })
-}
+    })
+  }
 
 
   findrfq(item: any) {
     console.log(item)
     // this.findvedor = item.itemDetails
-
+    this.getprscode = item.pRSID
+    console.log(this.getprscode)
     var str = item.rFQCode;
     console.log(str)
     this.splitted = str.split('/');
     console.log(this.splitted);
     this.splitted = this.splitted[1];
     console.log('new', this.splitted)
-    this.router.navigate(['/vendorsdetails', this.splitted,item.itemCategory,item.itemSubCategory,item.itemID,item.rFQCode,item.item_Code,item.item_short_Desc]);
+    this.router.navigate(['/vendorsdetails', this.splitted, item.itemCategory, item.itemSubCategory, item.itemID, item.rFQCode, item.item_Code, item.item_short_Desc, item.pRSID]);
 
   }
-  fieldsChange(values:any,item:any):void {
+  fieldsChange(values: any, item: any): void {
     this.requestquatation = false;
-    if(this.Checked == true){
+    if (this.Checked == true) {
       this.requestquatation = true;
-    }else{
+    } else {
       this.requestquatation = false;
     }
     console.log(values.currentTarget.checked);
     this.Checked = values.currentTarget.checked;
     console.log(item);
 
-    if(this.Checked == true){
+    if (this.Checked == true) {
       this.Requestrequstion.push({
-        "ItemID":item.ITEM_ID,
-        "RFQID":item.RFQID,
-        "vendor_id":item.VENDOR_ID,
-        "branchid":item.branch_id,
-        "quotationdate":item.quotationdate,
-        "itemsubcategory":item.ITEMSUBCATEGORY,
-        "requiredqty":item.requiredqty,
-        "NetPrice":item.NET_PRICE_PER_UNIT,
-        "strUserId":this.userID,
-        "strIpAddress":"",
-        "Email":item.Email,
-        "VENDORITEMID":item.VENDORITEMID,
-        "PRSDetailsID":item.PRSDetailsID,
-        "NETP":item.netp
+        "ItemID": item.ITEM_ID,
+        "RFQID": item.RFQID,
+        "vendor_id": item.VENDOR_ID,
+        "branchid": item.branch_id,
+        "quotationdate": item.quotationdate,
+        "itemsubcategory": item.ITEMSUBCATEGORY,
+        "requiredqty": item.requiredqty,
+        "NetPrice": item.NET_PRICE_PER_UNIT,
+        "strUserId": this.userID,
+        "strIpAddress": "",
+        "Email": item.Email,
+        "VENDORITEMID": item.VENDORITEMID,
+        "PRSDetailsID": item.PRSDetailsID,
+        "NETP": item.netp
 
       });
       console.log(this.Requestrequstion);
     }
     else {
       var index = this.Requestrequstion.indexOf(item);
-      if(index > -1){
-        this.Requestrequstion.splice(index,1)
-        console.log(this.Requestrequstion,'filterarray');
+      if (index > -1) {
+        this.Requestrequstion.splice(index, 1)
+        console.log(this.Requestrequstion, 'filterarray');
       }
 
 
@@ -149,19 +151,19 @@ getVendorDetails(){
   RequestVenderQuotation() {
     // this.showvendorqrotation = true;
     // this.showvendorqrotationaction = false;
-    let body={
-      "Raise_quotation" :[
+    let body = {
+      "Raise_quotation": [
         {
-          "Raise_details" : this.Requestrequstion
+          "Raise_details": this.Requestrequstion
         }
       ]
     }
     let options = new HttpHeaders().set('Content-Type', 'application/json');
-    this.httpclient.post(this.IpaddressService.ipaddress1+this.IpaddressService.serviceerpapi+'Request_for_quotation',body ,{
+    this.httpclient.post(this.IpaddressService.ipaddress1 + this.IpaddressService.serviceerpapi + 'Request_for_quotation', body, {
       headers: options, responseType: 'text'
-    }).subscribe((res :any) =>{
+    }).subscribe((res: any) => {
       this.quotationDetails = res;
-      this.presentAlert("",res );
+      this.presentAlert("", res);
     })
   }
 

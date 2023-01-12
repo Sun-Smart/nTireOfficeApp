@@ -73,7 +73,7 @@ const routes: Routes = [
     loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then(m => m.VendorsdetailsPageModule)
   },
   {
-    path: 'vendorsdetails/:id/:category/:subcategory/:itemid/:rfq/:itemCode/:itemdesc',
+    path: 'vendorsdetails/:id/:category/:subcategory/:itemid/:rfq/:itemCode/:itemdesc/:pRSID',
     loadChildren: () => import('./procurement/vendorsdetails/vendorsdetails.module').then(m => m.VendorsdetailsPageModule)
   },
   {
@@ -658,7 +658,7 @@ const routes: Routes = [
   },
   {
     path: 'mytask-completed-page',
-    loadChildren: () => import('./Property_Pages/mytask-completed-page/mytask-completed-page.module').then( m => m.MytaskCompletedPagePageModule)
+    loadChildren: () => import('./Property_Pages/mytask-completed-page/mytask-completed-page.module').then(m => m.MytaskCompletedPagePageModule)
   },
 
 
